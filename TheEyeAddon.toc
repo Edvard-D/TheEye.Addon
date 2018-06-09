@@ -6,3 +6,5 @@
 Namespaces.lua
 
 Classes/UIElements/UIElementBase.lua
+
+TheEyeAddon.lua
