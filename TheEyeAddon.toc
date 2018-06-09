@@ -5,6 +5,7 @@
 
 Namespaces.lua
 
-Frames/FrameBase.lua
+#---Frames---
+FrameBase.lua
 
 TheEyeAddon.lua
