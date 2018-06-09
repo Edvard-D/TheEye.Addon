@@ -4,3 +4,5 @@
 ## Version: 80000.0.1
 
 TheEyeAddon.lua
+
+Classes/UIElements/UIElementBase.lua
