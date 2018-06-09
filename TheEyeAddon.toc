@@ -5,4 +5,5 @@
 
 TheEyeAddon.lua
 
+Classes/UIElements/UIElements.lua
 Classes/UIElements/UIElementBase.lua
