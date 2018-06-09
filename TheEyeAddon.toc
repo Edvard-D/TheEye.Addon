@@ -3,6 +3,6 @@
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
-namespaces.lua
+Namespaces.lua
 
-Classes/UIElements/uielementbase.lua
+Classes/UIElements/UIElementBase.lua
