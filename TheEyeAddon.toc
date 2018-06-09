@@ -3,4 +3,4 @@
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
-TheEye.lua
+TheEyeAddon.lua
