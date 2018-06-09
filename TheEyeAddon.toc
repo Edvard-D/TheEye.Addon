@@ -3,7 +3,7 @@
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
-TheEyeAddon.lua
+theeyeaddon.lua
 
-Classes/UIElements/UIElements.lua
-Classes/UIElements/UIElementBase.lua
+Classes/UIElements/uielements.lua
+Classes/UIElements/uielementbase.lua
