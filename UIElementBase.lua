@@ -1,0 +1,9 @@
+TheEyeAddon.UIElements.UIElementBase = {}
+
+function TheEyeAddon.UIElements.UIElementBase:new()
+	local instance = {}
+	setmetatable(instance, TheEyeAddon.UIElements.UIElementBase)
+	self.__index = self
+
+	return instance
+end
