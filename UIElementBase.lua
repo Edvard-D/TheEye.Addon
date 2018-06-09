@@ -1,6 +1,6 @@
 TheEyeAddon.UIElements.UIElementBase = {}
 
-function TheEyeAddon.UIElements.UIElementBase:new()
+function TheEyeAddon.UIElements.UIElementBase:Create()
 	local instance = {}
 	setmetatable(instance, TheEyeAddon.UIElements.UIElementBase)
 	self.__index = self
