@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A4B5B83-BFB6-40EE-A717-BAF754F2D100}"
 	ProjectSection(SolutionItems) = preProject
-		namespaces.lua = namespaces.lua
+		Namespaces.lua = Namespaces.lua
 		TheEyeAddon.toc = TheEyeAddon.toc
 	EndProjectSection
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{318A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIElements", "UIElements", "{4ED52AE2-1D44-466C-BBFB-390A5C492E02}"
 	ProjectSection(SolutionItems) = preProject
-		uielementbase.lua = uielementbase.lua
+		UIElementBase.lua = UIElementBase.lua
 	EndProjectSection
 EndProject
 Global
