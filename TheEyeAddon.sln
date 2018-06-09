@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A4B5B83-BFB6-40EE-A717-BAF754F2D100}"
 	ProjectSection(SolutionItems) = preProject
 		namespaces.lua = namespaces.lua
-		theeyeaddon.lua = theeyeaddon.lua
 		TheEyeAddon.toc = TheEyeAddon.toc
 	EndProjectSection
 EndProject

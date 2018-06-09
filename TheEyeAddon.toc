@@ -5,7 +5,5 @@
 
 namespaces.lua
 
-theeyeaddon.lua
-
 Classes/UIElements/uielements.lua
 Classes/UIElements/uielementbase.lua
