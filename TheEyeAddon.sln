@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{318A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frames", "Frames", "{4ED52AE2-1D44-466C-BBFB-390A5C492E02}"
 	ProjectSection(SolutionItems) = preProject
-		UIElementBase.lua = UIElementBase.lua
+		Classes\UIElements\FrameBase.lua = Classes\UIElements\FrameBase.lua
 	EndProjectSection
 EndProject
 Global
