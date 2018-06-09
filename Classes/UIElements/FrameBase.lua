@@ -1,8 +1,8 @@
-TheEyeAddon.UIElements.UIElementBase = {}
+TheEyeAddon.UIElements.FrameBase = {}
 
-function TheEyeAddon.UIElements.UIElementBase:Create()
+function TheEyeAddon.Frames.FrameBase:Create()
 	local instance = {}
-	setmetatable(instance, TheEyeAddon.UIElements.UIElementBase)
+	setmetatable(instance, TheEyeAddon.UIElements.FrameBase)
 	self.__index = self
 
 	return instance
