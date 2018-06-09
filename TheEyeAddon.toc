@@ -3,6 +3,8 @@
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
+namespaces.lua
+
 theeyeaddon.lua
 
 Classes/UIElements/uielements.lua
