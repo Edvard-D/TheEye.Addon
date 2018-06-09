@@ -1,7 +1,7 @@
 TheEyeAddon.Frames.FrameBase = {}
 
-function TheEyeAddon.Frames.FrameBase:Create(frameType, frameName, parentFrame)
-	local instance =
+function TheEyeAddon.Frames.FrameBase:Create(instance, frameType, frameName, parentFrame)
+	instance = instance or
 	{
 		"frame" = CreateFrame(frameType, frameName, parentFrame)
 	}
