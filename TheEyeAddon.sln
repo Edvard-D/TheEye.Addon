@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{318A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIElements", "UIElements", "{4ED52AE2-1D44-466C-BBFB-390A5C492E02}"
 	ProjectSection(SolutionItems) = preProject
+		UIElements.lua = UIElements.lua
 		UIElementBase.lua = UIElementBase.lua
 	EndProjectSection
 EndProject
