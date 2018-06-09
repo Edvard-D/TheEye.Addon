@@ -5,6 +5,6 @@
 
 Namespaces.lua
 
-Classes/UIElements/FrameBase.lua
+Classes/Frames/FrameBase.lua
 
 TheEyeAddon.lua
