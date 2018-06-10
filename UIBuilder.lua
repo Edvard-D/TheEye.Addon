@@ -5,10 +5,10 @@ local setmetatable = setmetatable
 local UIParent = UIParent
 
 
-function TEA.UIBuilder:Create(instance)
-	local instance = instance or {}
+function TEA.UIBuilder:Create()
+	local instance = {}
 
-
+	
 	setmetatable(instance, TEA.UIBuilder)
 	self.__index = self
 

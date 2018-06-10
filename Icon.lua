@@ -30,21 +30,18 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
-	local instance = instance or
-	{
-		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
-	}
+function TheEyeAddon.UIObjects.Icon:Create(parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
+	local instance = TEA.UIObjects.FrameBase:Create("Frame", nil, parentFrame)
 	
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "ARTWORK", iconTextureFileID)
+	instance.texture = TEA.UIObjects.Texture:Create(instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
-		instance.text = TEA.UIObjects.Text:Create(nil, instance, "OVERLAY", text)
+		instance.text = TEA.UIObjects.Text:Create(instance, "OVERLAY", text)
 	end
 
 	if isCooldownDisplay == true then
-		instance.cooldown = TEA.UIObjects.Cooldown:Create(nil, instance, isReversed)
+		instance.cooldown = TEA.UIObjects.Cooldown:Create(instance, isReversed)
 	end
 
 

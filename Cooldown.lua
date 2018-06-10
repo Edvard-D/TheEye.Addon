@@ -4,11 +4,9 @@ TEA.UIObjects.Cooldown = {}
 local setmetatable = setmetatable
 
 
-function TEA.UIObjects.Cooldown:Create(instance, parentFrame, isReversed)
-	local instance = instance or
-	{
-		TEA.UIObjects.FrameBase:Create(nil, "Cooldown", nil, parentFrame)
-	}
+function TEA.UIObjects.Cooldown:Create(parentFrame, isReversed)
+	local instance = TEA.UIObjects.FrameBase:Create("Cooldown", nil, parentFrame)
+
 	instance:SetReverse(isReversed)
 
 

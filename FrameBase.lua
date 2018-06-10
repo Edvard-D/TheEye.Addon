@@ -4,11 +4,8 @@ TEA.UIObjects.FrameBase = {}
 local setmetatable = setmetatable
 
 
-function TEA.UIObjects.FrameBase:Create(instance, frameType, frameName, parentFrame)
-	local instance = instance or
-	{
-		CreateFrame(frameType, frameName, parentFrame)
-	}
+function TEA.UIObjects.FrameBase:Create(frameType, frameName, parentFrame)
+	local instance = CreateFrame(frameType, frameName, parentFrame)
 
 
 	setmetatable(instance, TEA.UIObjects.FrameBase)
