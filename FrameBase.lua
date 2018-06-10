@@ -1,6 +1,7 @@
 local TEA = TheEyeAddon
 TEA.UIObjects.FrameBase = {}
 
+local CreateFrame = CreateFrame
 local setmetatable = setmetatable
 
 
