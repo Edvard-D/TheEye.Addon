@@ -7,4 +7,4 @@ TEA.UIObjects.IconObjectType =
 	Item = 2
 }
 
-TEA.TypeHelpers:Protect(_TEA.UIObjects.IconObjectType)
+TEA.TypeHelpers:Protect(TEA.UIObjects.IconObjectType)
