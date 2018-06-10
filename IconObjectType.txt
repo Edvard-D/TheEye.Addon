@@ -1,0 +1,8 @@
+_TEA = TheEyeAddon
+_TEA.UIObjects.IconObjectType =
+{
+	Skill = 1,
+	Item = 2,
+	Buff = 3,
+	Debuff = 4
+}

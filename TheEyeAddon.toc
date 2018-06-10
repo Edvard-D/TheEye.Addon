@@ -5,9 +5,13 @@
 
 Namespaces.lua
 
-#---Frames---
+
+#---UIObjects---
+IconObjectType.lua
+
 FrameBase.lua
 Texture.lua
 Icon.lua
+
 
 TheEyeAddon.lua
