@@ -5,7 +5,7 @@ _TEA.UIObjects.Texture = {}
 function _TEA.UIObjects.Texture:Create(instance, parentFrame, layer, fileID)
 	instance = instance or
 	{
-		frame = TheEyeAddon.UIObjects.FrameBase("Frame", nil, parentFrame),
+		frame = _TEA.UIObjects.FrameBase:Create("Frame", nil, parentFrame),
 		texture = frame:CreateTexture(nil, layer)
 	}
 

@@ -7,7 +7,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame)
 	
 	instance = instance or
 	{
-		frame = _TEA.UIObjects.FrameBase(frameType, nil, parentFrame)
+		frame = _TEA.UIObjects.FrameBase:Create(frameType, nil, parentFrame)
 	}
 	setmetatable(instance, _TEA.UIObjects.Icon)
 	self.__index = self
