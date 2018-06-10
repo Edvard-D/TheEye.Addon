@@ -8,7 +8,7 @@ local UIParent = UIParent
 function TEA.UIBuilder:Create()
 	local instance = {}
 
-	
+
 	setmetatable(instance, TEA.UIBuilder)
 	self.__index = self
 
@@ -17,5 +17,5 @@ end
 
 function TEA.UIBuilder:Initialize()
 	local mindFlayID = 15407
-	TEA.UIObjects.Icon:Create(nil, UIParent, TEA.UIObjects.IconObjectType.Spell, mindFlayID, false, nil, false, false)
+	TEA.UIObjects.Icon:Create(UIParent, TEA.UIObjects.IconObjectType.Spell, mindFlayID, false, nil, false, false)
 end
