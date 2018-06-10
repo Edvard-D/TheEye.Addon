@@ -42,7 +42,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			return
 		end
 	else
-		error("No IconObjectType exists with a value of " .. tostring(iconObjectType)".")
+		error("No IconObjectType exists with a value of " .. tostring(iconObjectType)". iconObjectID passed: " .. tostring(iconObjectID)".")
 		return
 	end
 
