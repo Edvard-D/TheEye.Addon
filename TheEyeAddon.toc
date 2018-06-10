@@ -12,6 +12,7 @@ TypeHelpers.lua
 IconObjectType.lua
 
 FrameBase.lua
+FontString.lua
 Texture.lua
 Icon.lua
 
