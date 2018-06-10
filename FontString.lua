@@ -1,6 +1,8 @@
 local TEA = TheEyeAddon
 TEA.UIObjects.FontString = {}
 
+local setmetatable = setmetatable
+
 
 function TEA.UIObjects.FontString:Create(instance, parentFrame, layer, text)
 	local instance = instance or
