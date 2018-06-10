@@ -6,30 +6,6 @@ local GetSpellTexture = GetSpellTexture
 local setmetatable = setmetatable
 
 
-function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
-	local instance = instance or
-	{
-		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
-	}
-	
-	local iconTextureFileID = self:GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "ARTWORK", iconTextureFileID)
-
-	if isTextDisplay == true then
-		instance.text = TEA.UIObjects.Text:Create(nil, instance, "OVERLAY", text)
-	end
-
-	if isCooldownDisplay == true then
-		instance.cooldown = TEA.UIObjects.Cooldown:Create(nil, instance, isReversed)
-	end
-
-
-	setmetatable(instance, TEA.UIObjects.Icon)
-	self.__index = self
-
-	return instance
-end
-
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	local fileID = nil
 
@@ -51,4 +27,29 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	end
 
 	return fileID
+end
+
+
+function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
+	local instance = instance or
+	{
+		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
+	}
+	
+	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
+	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "ARTWORK", iconTextureFileID)
+
+	if isTextDisplay == true then
+		instance.text = TEA.UIObjects.Text:Create(nil, instance, "OVERLAY", text)
+	end
+
+	if isCooldownDisplay == true then
+		instance.cooldown = TEA.UIObjects.Cooldown:Create(nil, instance, isReversed)
+	end
+
+
+	setmetatable(instance, TEA.UIObjects.Icon)
+	self.__index = self
+
+	return instance
 end
