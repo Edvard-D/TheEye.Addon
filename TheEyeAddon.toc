@@ -46,6 +46,7 @@ IconObjectType.lua
 # ---Classes---
 FrameBase.lua
 
+Cooldown.lua
 FontString.lua
 Texture.lua
 
