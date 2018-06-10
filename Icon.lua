@@ -31,7 +31,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType
 end
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
-	local fileID
+	local fileID = nil
 	
 	if iconObjectType == TEA.UIObjects.IconObjectType.Spell then
 		fileID = GetSpellTexture(iconObjectID)
@@ -40,7 +40,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			return
 		end
 	else if iconObjectType == TEA.UIObjects.IconObjectType.Item then
-		local _, _, _, _, _, _, _, _, _, fileID, ... = GetItemInfo(iconObjectID)
+		local _, _, _, _, _, _, _, _, _, fileID = GetItemInfo(iconObjectID)
 		if fileID == nil then
 			error("Could not find an item with an ID of " .. tostring(iconObjectID)".")
 			return
