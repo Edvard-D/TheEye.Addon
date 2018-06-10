@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TheEyeAddon.lua = TheEyeAddon.lua
 		TheEyeAddon.toc = TheEyeAddon.toc
 		TypeHelpers.lua = TypeHelpers.lua
+		UIBuilder.lua = UIBuilder.lua
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIObjects", "UIObjects", "{4ED52AE2-1D44-466C-BBFB-390A5C492E02}"
