@@ -4,13 +4,13 @@ TEA.UIObjects.Texture = {}
 local setmetatable = setmetatable
 
 
-function _TEA.UIObjects.Texture:Create(instance, parentFrame, layer, fileID)
+function TEA.UIObjects.Texture:Create(instance, parentFrame, layer, fileID)
 	local instance = instance or {}
 	instance.texture = parentFrame:CreateTexture(nil, layer)
 	instance.texture:SetTexture(fileID)
 
 
-	setmetatable(instance, _TEA.UIObjects.Texture)
+	setmetatable(instance, TEA.UIObjects.Texture)
 	self.__index = self
 
 	return instance
