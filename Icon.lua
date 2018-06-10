@@ -6,7 +6,7 @@ local GetSpellTexture = GetSpellTexture
 local setmetatable = setmetatable
 
 
-function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID, text)
+function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID, isTextDisplay, text)
 	local instance = instance or
 	{
 		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
@@ -15,7 +15,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "ARTWORK", iconTextureFileID)
 
-	if text ~= nil then
+	if isTextDisplay == true then
 		instance.text = TEA.UIObjects.Text:Create(nil, instance, "OVERLAY", text)
 	end
 
