@@ -35,7 +35,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			error("Could not find a spell with an ID of " .. tostring(iconObjectID)".")
 			return
 		end
-	else if iconObjectType == TEA.UIObjects.IconObjectType.Skill then
+	else if iconObjectType == TEA.UIObjects.IconObjectType.Item then
 		local _, _, _, _, _, _, _, _, _, fileID, ... = GetItemInfo(iconObjectID)
 		if fileID == nil then
 			error("Could not find an item with an ID of " .. tostring(iconObjectID)".")
