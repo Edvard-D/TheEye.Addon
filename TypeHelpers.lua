@@ -8,7 +8,13 @@ function TEA.TypeHelpers:Protect(table)
 	return setmetatable({}, {
      __index = table,
      __newindex = function(table, key, value)
-                    error("Cannot change " .. tostring(table) ..  " value " .. tostring(key) .. " to " .. tostring(value)".", 2)
+                    error("Cannot change " ..
+                    tostring(table) ..
+                    " value " ..
+                    tostring(key) ..
+                    " to " ..
+                    tostring(value) ..
+                    ".", 2)
                   end,
      __metatable = false
    })
