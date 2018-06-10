@@ -13,7 +13,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType
 	}
 	
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.Texture:Create(nil, parentFrame, "BACKGROUND", iconTextureFileID)
+	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "BACKGROUND", iconTextureFileID)
 
 	if text ~= nil then
 		instance.text = TEA.UIObjects.Text:Create(nil, instance, "OVERLAY", text)
