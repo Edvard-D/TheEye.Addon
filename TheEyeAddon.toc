@@ -59,4 +59,4 @@ Icon.lua
 # ---------------------------
 UIBuilder.lua
 
-TheEyeAddon.lua
+Initializer.lua
