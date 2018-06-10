@@ -12,7 +12,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType
 		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
 	}
 	
-	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
+	local iconTextureFileID = self:GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TEA.UIObjects.Texture:Create(nil, instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
