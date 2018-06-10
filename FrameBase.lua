@@ -5,8 +5,10 @@ local setmetatable = setmetatable
 
 
 function TEA.UIObjects.FrameBase:Create(instance, frameType, frameName, parentFrame)
-	local instance = instance or {}
-	instance.frame = CreateFrame(frameType, frameName, parentFrame)
+	local instance = instance or
+	{
+		CreateFrame(frameType, frameName, parentFrame)
+	}
 
 
 	setmetatable(instance, TEA.UIObjects.FrameBase)

@@ -7,9 +7,10 @@ local setmetatable = setmetatable
 
 
 function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID)
-	local instance = instance or {}
-	instance.frame = frame = TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
-
+	local instance = instance or
+	{
+		TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame)
+	}
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TEA.UIObjects.Texture:Create(nil, parentFrame, "BACKGROUND", iconTextureFileID)
 
