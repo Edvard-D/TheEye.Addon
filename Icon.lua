@@ -3,6 +3,8 @@ _TEA.UIObjects.Icon = {}
 
 
 function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType, iconObjectID)
+	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
+	
 	instance = instance or
 	{
 		frame = _TEA.UIObjects.FrameBase:Create("Frame", nil, parentFrame)
