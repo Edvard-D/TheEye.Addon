@@ -5,11 +5,8 @@ local setmetatable = setmetatable
 
 
 function _TEA.UIObjects.Texture:Create(instance, parentFrame, layer, fileID)
-	local instance = instance or
-	{
-		texture = parentFrame:CreateTexture(nil, layer)
-	}
-
+	local instance = instance or {}
+	instance.texture = parentFrame:CreateTexture(nil, layer)
 	instance.texture:SetTexture(fileID)
 
 
