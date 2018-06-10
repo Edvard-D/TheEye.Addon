@@ -6,3 +6,5 @@ _TEA.UIObjects.IconObjectType =
 	Buff = 3,
 	Debuff = 4
 }
+
+_TEA.TypeHelpers:Protect(_TEA.UIObjects.IconObjectType)
