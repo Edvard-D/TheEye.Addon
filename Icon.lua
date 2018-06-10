@@ -7,7 +7,7 @@ function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame, iconObjectType
 	
 	instance = instance or
 	{
-		frame = _TEA.UIObjects.FrameBase:Create("Frame", nil, parentFrame),
+		frame = _TEA.UIObjects.FrameBase:Create(nil, "Frame", nil, parentFrame),
 		texture = _TEA.UIObjects.Texture:Create(nil, parentFrame, "BACKGROUND", iconTextureFileID)
 	}
 	setmetatable(instance, _TEA.UIObjects.Icon)
