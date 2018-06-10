@@ -1,13 +1,13 @@
 _TEA = TheEyeAddon
-_TEA.Frames.FrameBase = {}
+_TEA.UIObjects.FrameBase = {}
 
 
-function _TEA.Frames.FrameBase:Create(instance, frameType, frameName, parentFrame)
+function _TEA.UIObjects.FrameBase:Create(instance, frameType, frameName, parentFrame)
 	instance = instance or
 	{
 		"frame" = CreateFrame(frameType, frameName, parentFrame)
 	}
-	setmetatable(instance, _TEA.Frames.FrameBase)
+	setmetatable(instance, _TEA.UIObjects.FrameBase)
 	self.__index = self
 
 	return instance

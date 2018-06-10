@@ -1,15 +1,15 @@
 _TEA = TheEyeAddon
-_TEA.Frames.Icon = {}
+_TEA.UIObjects.Icon = {}
 
 
-function TheEyeAddon.Frames.Icon:Create(instance, parentFrame)
+function TheEyeAddon.UIObjects.Icon:Create(instance, parentFrame)
 	-- TODO: assign frameType
 	
 	instance = instance or
 	{
-		frame = _TEA.Frames.FrameBase(frameType, nil, parentFrame)
+		frame = _TEA.UIObjects.FrameBase(frameType, nil, parentFrame)
 	}
-	setmetatable(instance, _TEA.Frames.Icon)
+	setmetatable(instance, _TEA.UIObjects.Icon)
 	self.__index = self
 
 	return instance

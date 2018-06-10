@@ -1,13 +1,13 @@
 _TEA = TheEyeAddon
-_TEA.Frames.Texture = {}
+_TEA.UIObjects.Texture = {}
 
 
-function _TEA.Frames.Texture:Create(instance, parentFrame)
+function _TEA.UIObjects.Texture:Create(instance, parentFrame)
 	instance = instance or
 	{
-		frame = TheEyeAddon.Frames.FrameBase("Texture", nil, parentFrame)
+		frame = TheEyeAddon.UIObjects.FrameBase("Texture", nil, parentFrame)
 	}
-	setmetatable(instance, _TEA.Frames.Texture)
+	setmetatable(instance, _TEA.UIObjects.Texture)
 	self.__index = self
 
 	return instance

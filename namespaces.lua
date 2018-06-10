@@ -1,3 +1,3 @@
 TheEyeAddon = {}
 
-TheEyeAddon.Frames = {}
+TheEyeAddon.UIObjects = {}
