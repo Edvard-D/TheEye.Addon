@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frames", "Frames", "{4ED52A
 	ProjectSection(SolutionItems) = preProject
 		FrameBase.lua = FrameBase.lua
 		Icon.lua = Icon.lua
+		Texture.lua = Texture.lua
 	EndProjectSection
 EndProject
 Global

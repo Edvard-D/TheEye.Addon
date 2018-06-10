@@ -7,6 +7,7 @@ Namespaces.lua
 
 #---Frames---
 FrameBase.lua
+Texture.lua
 Icon.lua
 
 TheEyeAddon.lua
