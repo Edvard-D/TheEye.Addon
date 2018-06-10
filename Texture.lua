@@ -1,9 +1,11 @@
-_TEA = TheEyeAddon
-_TEA.UIObjects.Texture = {}
+local TEA = TheEyeAddon
+TEA.UIObjects.Texture = {}
+
+local setmetatable = setmetatable
 
 
 function _TEA.UIObjects.Texture:Create(instance, parentFrame, layer, fileID)
-	instance = instance or
+	local instance = instance or
 	{
 		texture = parentFrame:CreateTexture(nil, layer)
 	}

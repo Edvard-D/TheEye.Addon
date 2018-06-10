@@ -1,8 +1,10 @@
-_TEA = TheEyeAddon
-_TEA.TypeHelpers = {}
+local TEA = TheEyeAddon
+TEA.TypeHelpers = {}
+
+local setmetatable = setmetatable
 
 
-function _TEA.TypeHelpers:Protect(table)
+function TEA.TypeHelpers:Protect(table)
 	return setmetatable ({}, {
 		self:__index = tbl
 		self:__newindex = function (t, key, value)

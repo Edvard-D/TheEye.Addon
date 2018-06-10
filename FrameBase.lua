@@ -1,13 +1,15 @@
-_TEA = TheEyeAddon
-_TEA.UIObjects.FrameBase = {}
+local TEA = TheEyeAddon
+TEA.UIObjects.FrameBase = {}
+
+local setmetatable = setmetatable
 
 
-function _TEA.UIObjects.FrameBase:Create(instance, frameType, frameName, parentFrame)
-	instance = instance or
+function TEA.UIObjects.FrameBase:Create(instance, frameType, frameName, parentFrame)
+	local instance = instance or
 	{
 		"frame" = CreateFrame(frameType, frameName, parentFrame)
 	}
-	setmetatable(instance, _TEA.UIObjects.FrameBase)
+	setmetatable(instance, TEA.UIObjects.FrameBase)
 	self.__index = self
 
 	return instance
