@@ -1,10 +1,8 @@
 _TEA = TheEyeAddon
 _TEA.UIObjects.IconObjectType =
 {
-	Skill = 1,
-	Item = 2,
-	Buff = 3,
-	Debuff = 4
+	Spell = 1,
+	Item = 2
 }
 
 _TEA.TypeHelpers:Protect(_TEA.UIObjects.IconObjectType)
