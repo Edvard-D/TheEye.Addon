@@ -1,20 +1,59 @@
+# ---------------------------
+# |		  STYLE GUIDE		|
+# ---------------------------
+# Add a space after hashtags.
+#
+# Sections
+#	Signified by a large header.
+#	Name in all caps.
+#	Add 3 lines between sections.
+#
+# Subsections
+#	Signified by a small header.
+#	Add 2 lines between sections.
+#	Types come before Classes.
+#	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
+#	Alphabetically organize files in the same section that can be loaded in any order.
+
+
+
+# ---------------------------
+# |		   SETTINGS			|
+# ---------------------------
 ## Interface: 70300
 ## Title: TheEye.Addon
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
 
+
+# ---------------------------
+# |			CORE			|
+# ---------------------------
 Namespaces.lua
+
 TypeHelpers.lua
 
 
-#---UIObjects---
+
+# ---------------------------
+# |		  UIOBJECTS			|
+# ---------------------------
+# ---Types---
 IconObjectType.lua
 
+
+# ---Classes---
 FrameBase.lua
+
 FontString.lua
 Texture.lua
+
 Icon.lua
 
 
+
+# ---------------------------
+# |			FINAL			|
+# ---------------------------
 TheEyeAddon.lua
