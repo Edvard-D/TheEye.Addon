@@ -39,13 +39,13 @@ end
 
 
 function TheEyeAddon.UIObjects.Icon:Create(parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
-	local instance = TEA.UIObjects.FrameBase:Create("Frame", nil, parentFrame)
-	
+	local instance = TEA.UIObjects.FrameFactory:Create("Frame", nil, parentFrame)
+
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.Texture:Create(instance, "ARTWORK", iconTextureFileID)
+	instance.texture = TEA.UIObjects.TextureFactory:Create(instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
-		instance.text = TEA.UIObjects.Text:Create(instance, "OVERLAY", text)
+		instance.text = TEA.UIObjects.FontStringFactory:Create(instance, "OVERLAY", text)
 	end
 
 	if isCooldownDisplay == true then
