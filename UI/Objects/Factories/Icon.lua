@@ -51,7 +51,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 		point, relativePoint, offsetX, offsetY)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UI.Objects.Factories.Texture:Create(instance, "ARTWORK", iconTextureFileID)
+	instance.texture = TEA.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
 
 	if isTextDisplay == true then
 		instance.text = TEA.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", text, fontTemplate)
