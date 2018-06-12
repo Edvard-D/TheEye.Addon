@@ -5,4 +5,5 @@ TheEyeAddon = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Modules = {}
         TheEyeAddon.UI.Objects = {}
+            TheEyeAddon.UI.Objects.DimensionTemplates = {}
             TheEyeAddon.UI.Objects.Factories = {}

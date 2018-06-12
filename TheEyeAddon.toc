@@ -11,7 +11,7 @@
 # Subsections
 #	Signified by a small header.
 #	Add 2 lines between sections.
-#	Order: Types > Factories.
+#	Order: Types > Dimension Templates > Factories.
 #	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
 #	Alphabetically organize files in the same section that can be loaded in any order.
 
@@ -44,6 +44,10 @@ UI\Fonts\Templates.lua
 UI\Objects\IconObjectType.lua
 
 
+# ---Dimension Templates---
+UI\Objects\DimensionTemplates\Icon_Large.lua
+
+
 # ---Factories---
 UI\Objects\Factories\FontString.lua
 UI\Objects\Factories\Frame.lua
@@ -52,10 +56,6 @@ UI\Objects\Factories\Texture.lua
 UI\Objects\Factories\Cooldown.lua
 
 UI\Objects\Factories\Icon.lua
-
-
-# ---Templates---
-UI\Objects\Templates\Icon_Large.lua
 
 
 

@@ -1,5 +1,5 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Templates.Icon_Large =
+TheEyeAddon.UI.Objects.DimensionTemplates.Icon_Large =
 {
     width = 50,
     height = 50,
