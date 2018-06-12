@@ -40,19 +40,19 @@ TypeHelpers.lua
 # |		  UIOBJECTS			|
 # ---------------------------
 # ---Types---
-IconObjectType.lua
+UIObjects\IconObjectType.lua
 
 
 # ---Factories---
-FontStringFactory.lua
-FrameFactory.lua
-TextureFactory.lua
+UIObjects\FontStringFactory.lua
+UIObjects\FrameFactory.lua
+UIObjects\TextureFactory.lua
 
 
 # ---Classes---
-Cooldown.lua
+UIObjects\Cooldown.lua
 
-Icon.lua
+UIObjects\Icon.lua
 
 
 
