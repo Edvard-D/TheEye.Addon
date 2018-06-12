@@ -5,7 +5,10 @@ local setmetatable = setmetatable
 
 
 function TEA.UIObjects.Cooldown:Create(parentFrame, width, height, isReversed)
-	local instance = TEA.UIObjects.FrameFactory:Create("Cooldown", parentFrame, width, height)
+	local instance = TEA.UIObjects.FrameFactory:Create(
+		"Cooldown", parentFrame,
+		width, height,
+		"CENTER", "CENTER", 0, 0)
 
 	instance:SetReverse(isReversed)
 
