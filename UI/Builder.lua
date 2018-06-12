@@ -11,6 +11,6 @@ function TEA.UI.Builder:Initialize()
 		50, 50,
 		"CENTER", "CENTER", 0, 0,
 		TEA.UI.Objects.IconObjectType.spell, mindFlayID,
-		true, "TEST",
+		true, "TEST", TEA.UI.Fonts.Templates.Icon.Default,
 		false, nil)
 end

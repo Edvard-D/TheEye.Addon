@@ -7,7 +7,7 @@ local GetSpellTexture = GetSpellTexture
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	local fileID = nil
-	
+
 	if iconObjectType == TEA.UI.Objects.IconObjectType.spell then
 		fileID = GetSpellTexture(iconObjectID)
 		if fileID == nil then
@@ -42,7 +42,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 	width, height,
 	point, relativePoint, offsetX, offsetY,
 	iconObjectType, iconObjectID,
-	isTextDisplay, text,
+	isTextDisplay, text, fontTemplate,
 	isCooldownDisplay, isReversed)
 
 	local instance = TEA.UI.Objects.Factories.Frame:Create(
@@ -54,7 +54,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 	instance.texture = TEA.UI.Objects.Factories.Texture:Create(instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
-		instance.text = TEA.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", text)
+		instance.text = TEA.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", text, fontTemplate)
 	end
 
 	if isCooldownDisplay == true then
