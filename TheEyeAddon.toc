@@ -55,7 +55,7 @@ UI\Objects\Factories\Icon.lua
 
 
 # ---Templates---
-UI\Objects\Templates\Icon_Primary.lua
+UI\Objects\Templates\Icon_Large.lua
 
 
 
