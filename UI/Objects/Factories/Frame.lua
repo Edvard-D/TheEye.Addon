@@ -11,10 +11,15 @@ function TEA.UI.Objects.Factories.Frame:Create(
 
 	local instance = CreateFrame(frameType, nil, parentFrame)
 
-	instance:SetWidth(width)
-	instance:SetHeight(height)
-
-	instance:SetPoint(point, parentFrame, relativePoint, offsetX, offsetY)
+	if width ~= nil and height ~= nil and
+		point ~= nil and parentFrame ~= nil and relativePoint ~= nil and offsetX ~= nil and offsetY ~= nil then
+		
+		instance:SetWidth(width)
+		instance:SetHeight(height)
+		instance:SetPoint(point, parentFrame, relativePoint, offsetX, offsetY)
+	else
+		instance:SetAllPoints()
+	end
 
 	return instance
 end
