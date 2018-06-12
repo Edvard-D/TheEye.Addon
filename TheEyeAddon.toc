@@ -33,7 +33,7 @@
 Namespaces.lua
 
 TypeHelpers.lua
-UI\Fonts.lua
+UI\Fonts\Templates.lua
 
 
 

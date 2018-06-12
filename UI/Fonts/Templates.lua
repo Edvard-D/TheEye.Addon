@@ -1,9 +1,9 @@
 local TEA = TheEyeAddon
-TEA.UI.Fonts = {}
+TEA.UI.Fonts.Templates = {}
 
 
-TEA.UI.Fonts.Icon = {}
-TEA.UI.Fonts.Icon.Default =
+TEA.UI.Fonts.Templates.Icon = {}
+TEA.UI.Fonts.Templates.Icon.Default =
 {
     font = "Fonts\\MORPHEUS.TTF",
     size = 20,
