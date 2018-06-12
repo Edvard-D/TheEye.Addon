@@ -39,7 +39,7 @@ end
 
 
 function TheEyeAddon.UIObjects.Icon:Create(parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
-	local instance = TEA.UIObjects.FrameFactory:Create("Frame", nil, parentFrame)
+	local instance = TEA.UIObjects.FrameFactory:Create("Frame", parentFrame)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TEA.UIObjects.TextureFactory:Create(instance, "ARTWORK", iconTextureFileID)
