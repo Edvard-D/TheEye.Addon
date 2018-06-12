@@ -3,12 +3,11 @@ TEA.UI.Fonts.Templates = {}
 
 
 TEA.UI.Fonts.Templates.Icon = {}
-TEA.UI.Fonts.Templates.Icon.Default =
-{
-    font = "Fonts\\MORPHEUS.TTF",
-    size = 20,
+local Icon = TEA.UI.Fonts.Templates.Icon
 
+Icon.Default =
+{
     SetFont = function(fontInstance)
-        fontInstance:SetFont(font, size)
+        fontInstance:SetFont("Fonts\\MORPHEUS.TTF", 20, nil)
     end
 }
