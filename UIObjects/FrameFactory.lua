@@ -5,9 +5,9 @@ local CreateFrame = CreateFrame
 
 
 function TEA.UIObjects.FrameFactory:Create(
-		frameType, parentFrame,
-		width, height,
-		point, relativePoint, offsetX, offsetY)
+	frameType, parentFrame,
+	width, height,
+	point, relativePoint, offsetX, offsetY)
 
 	local instance = CreateFrame(frameType, nil, parentFrame)
 
