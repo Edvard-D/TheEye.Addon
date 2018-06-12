@@ -32,8 +32,8 @@
 # ---------------------------
 Namespaces.lua
 
-UI\Fonts.lua
 TypeHelpers.lua
+UI\Fonts.lua
 
 
 
