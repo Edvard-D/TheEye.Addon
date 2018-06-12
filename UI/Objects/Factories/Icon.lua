@@ -7,8 +7,8 @@ local GetSpellTexture = GetSpellTexture
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	local fileID = nil
-
-	if iconObjectType == TEA.UI.Objects.IconObjectType.Spell then
+	
+	if iconObjectType == TEA.UI.Objects.IconObjectType.spell then
 		fileID = GetSpellTexture(iconObjectID)
 		if fileID == nil then
 			error("Could not find a spell with an ID of " ..
@@ -16,7 +16,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			".")
 			return
 		end
-	elseif iconObjectType == TEA.UI.Objects.IconObjectType.Item then
+	elseif iconObjectType == TEA.UI.Objects.IconObjectType.item then
 		local _, _, _, _, _, _, _, _, _, fileID = GetItemInfo(iconObjectID)
 		if fileID == nil then
 			error("Could not find an item with an ID of " ..
