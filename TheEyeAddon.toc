@@ -38,7 +38,7 @@ UI\Fonts\Templates.lua
 
 
 # ---------------------------
-# |		  UI\Objects			|
+# |		  UI\Objects		|
 # ---------------------------
 # ---Types---
 UI\Objects\IconObjectType.lua
