@@ -13,6 +13,4 @@ function TEA.UIBuilder:Initialize()
 		TEA.UIObjects.IconObjectType.Spell, mindFlayID,
 		false, nil,
 		false, nil)
-
-	mindFlay:Show()
 end
