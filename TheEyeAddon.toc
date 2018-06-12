@@ -54,6 +54,10 @@ UI\Objects\Factories\Cooldown.lua
 UI\Objects\Factories\Icon.lua
 
 
+# ---Templates---
+UI\Objects\Templates\Icon_Primary.lua
+
+
 
 # ---------------------------
 # |		  UI\Modules		|
