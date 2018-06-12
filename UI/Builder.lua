@@ -10,7 +10,7 @@ function TEA.UI.Builder:Initialize()
 		UIParent,
 		50, 50,
 		"CENTER", "CENTER", 0, 0,
-		TEA.UI.Objects.IconObjectType.Spell, mindFlayID,
+		TEA.UI.Objects.IconObjectType.spell, mindFlayID,
 		true, "TEST",
 		false, nil)
 end
