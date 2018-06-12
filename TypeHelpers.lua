@@ -1,10 +1,10 @@
-local TEA = TheEyeAddon
-TEA.TypeHelpers = {}
+local TheEyeAddon = TheEyeAddon
+TheEyeAddon.TypeHelpers = {}
 
 local setmetatable = setmetatable
 
 
-function TEA.TypeHelpers:Protect(table)
+function TheEyeAddon.TypeHelpers:Protect(table)
 	return setmetatable({}, {
      __index = table,
      __newindex = function(table, key, value)

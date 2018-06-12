@@ -1,4 +1,4 @@
-local TEA = TheEyeAddon
+local TheEyeAddon = TheEyeAddon
 
 
-TEA.UI.Builder:Initialize()
+TheEyeAddon.UI.Builder:Initialize()

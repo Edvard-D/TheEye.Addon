@@ -1,10 +1,10 @@
-local TEA = TheEyeAddon
+local TheEyeAddon = TheEyeAddon
 
 
-TEA.UI.Objects.IconObjectType =
+TheEyeAddon.UI.Objects.IconObjectType =
 {
 	spell = 1,
 	item = 2
 }
 
-TEA.TypeHelpers:Protect(TEA.UI.Objects.IconObjectType)
+TheEyeAddon.TypeHelpers:Protect(TheEyeAddon.UI.Objects.IconObjectType)

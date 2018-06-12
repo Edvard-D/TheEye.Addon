@@ -1,8 +1,8 @@
-local TEA = TheEyeAddon
-TEA.UI.Builder = {}
+local TheEyeAddon = TheEyeAddon
+TheEyeAddon.UI.Builder = {}
 
 local UIParent = UIParent
 
 
-function TEA.UI.Builder:Initialize()
+function TheEyeAddon.UI.Builder:Initialize()
 end

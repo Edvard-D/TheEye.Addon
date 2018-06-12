@@ -1,9 +1,9 @@
-local TEA = TheEyeAddon
-TEA.UI.Fonts.Templates = {}
+local TheEyeAddon = TheEyeAddon
+TheEyeAddon.UI.Fonts.Templates = {}
 
 
-TEA.UI.Fonts.Templates.Icon = {}
-local Icon = TEA.UI.Fonts.Templates.Icon
+TheEyeAddon.UI.Fonts.Templates.Icon = {}
+local Icon = TheEyeAddon.UI.Fonts.Templates.Icon
 
 Icon.Default =
 {
