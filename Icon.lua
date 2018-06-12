@@ -38,8 +38,8 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UIObjects.Icon:Create(parentFrame, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
-	local instance = TEA.UIObjects.FrameFactory:Create("Frame", parentFrame)
+function TheEyeAddon.UIObjects.Icon:Create(parentFrame, width, height, iconObjectType, iconObjectID, isTextDisplay, text, isCooldownDisplay, isReversed)
+	local instance = TEA.UIObjects.FrameFactory:Create("Frame", parentFrame, width, height)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TEA.UIObjects.TextureFactory:Create(instance, "ARTWORK", iconTextureFileID)
@@ -49,7 +49,7 @@ function TheEyeAddon.UIObjects.Icon:Create(parentFrame, iconObjectType, iconObje
 	end
 
 	if isCooldownDisplay == true then
-		instance.cooldown = TEA.UIObjects.Cooldown:Create(instance, isReversed)
+		instance.cooldown = TEA.UIObjects.Cooldown:Create(instance, width, height, isReversed)
 	end
 
 
