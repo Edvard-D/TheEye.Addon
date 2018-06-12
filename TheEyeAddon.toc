@@ -37,26 +37,26 @@ TypeHelpers.lua
 
 
 # ---------------------------
-# |		  UIOBJECTS			|
+# |		  UI\Objects			|
 # ---------------------------
 # ---Types---
-UIObjects\IconObjectType.lua
+UI\Objects\IconObjectType.lua
 
 
 # ---Factories---
-UIObjects\Factories\FontString.lua
-UIObjects\Factories\Frame.lua
-UIObjects\Factories\Texture.lua
+UI\Objects\Factories\FontString.lua
+UI\Objects\Factories\Frame.lua
+UI\Objects\Factories\Texture.lua
 
-UIObjects\Factories\Cooldown.lua
+UI\Objects\Factories\Cooldown.lua
 
-UIObjects\Factories\Icon.lua
+UI\Objects\Factories\Icon.lua
 
 
 
 # ---------------------------
 # |			FINAL			|
 # ---------------------------
-UIBuilder.lua
+UI\Builder.lua
 
 Initializer.lua

@@ -1,5 +1,5 @@
 local TEA = TheEyeAddon
-TEA.UIObjects.Factories.Icon = {}
+TEA.UI.Objects.Factories.Icon = {}
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
@@ -8,7 +8,7 @@ local GetSpellTexture = GetSpellTexture
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	local fileID = nil
 
-	if iconObjectType == TEA.UIObjects.IconObjectType.Spell then
+	if iconObjectType == TEA.UI.Objects.IconObjectType.Spell then
 		fileID = GetSpellTexture(iconObjectID)
 		if fileID == nil then
 			error("Could not find a spell with an ID of " ..
@@ -16,7 +16,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			".")
 			return
 		end
-	elseif iconObjectType == TEA.UIObjects.IconObjectType.Item then
+	elseif iconObjectType == TEA.UI.Objects.IconObjectType.Item then
 		local _, _, _, _, _, _, _, _, _, fileID = GetItemInfo(iconObjectID)
 		if fileID == nil then
 			error("Could not find an item with an ID of " ..
@@ -37,7 +37,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UIObjects.Factories.Icon:Create(
+function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 	parentFrame,
 	width, height,
 	point, relativePoint, offsetX, offsetY,
@@ -45,20 +45,20 @@ function TheEyeAddon.UIObjects.Factories.Icon:Create(
 	isTextDisplay, text,
 	isCooldownDisplay, isReversed)
 
-	local instance = TEA.UIObjects.Factories.Frame:Create(
+	local instance = TEA.UI.Objects.Factories.Frame:Create(
 		"Frame", parentFrame,
 		width, height,
 		point, relativePoint, offsetX, offsetY)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.Factories.Texture:Create(instance, "ARTWORK", iconTextureFileID)
+	instance.texture = TEA.UI.Objects.Factories.Texture:Create(instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
-		instance.text = TEA.UIObjects.Factories.FontString:Create(instance, "OVERLAY", text)
+		instance.text = TEA.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", text)
 	end
 
 	if isCooldownDisplay == true then
-		instance.cooldown = TEA.UIObjects.Factories.Cooldown:Create(instance, width, height, isReversed)
+		instance.cooldown = TEA.UI.Objects.Factories.Cooldown:Create(instance, width, height, isReversed)
 	end
 
 	return instance

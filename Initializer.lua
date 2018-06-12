@@ -1,4 +1,4 @@
 local TEA = TheEyeAddon
 
 
-TEA.UIBuilder:Initialize()
+TEA.UI.Builder:Initialize()
