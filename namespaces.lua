@@ -1,3 +1,3 @@
 TheEyeAddon = {}
-
-TheEyeAddon.UIObjects = {}
+    TheEyeAddon.UIObjects = {}
+        TheEyeAddon.UIObjects.Factories = {}

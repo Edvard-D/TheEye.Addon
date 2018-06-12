@@ -1,10 +1,10 @@
 local TEA = TheEyeAddon
-TEA.UIObjects.FrameFactory = {}
+TEA.UIObjects.Factories.Frame = {}
 
 local CreateFrame = CreateFrame
 
 
-function TEA.UIObjects.FrameFactory:Create(
+function TEA.UIObjects.Factories.Frame:Create(
 	frameType, parentFrame,
 	width, height,
 	point, relativePoint, offsetX, offsetY)

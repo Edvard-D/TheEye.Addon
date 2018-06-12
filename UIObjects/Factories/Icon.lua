@@ -1,9 +1,8 @@
 local TEA = TheEyeAddon
-TEA.UIObjects.Icon = {}
+TEA.UIObjects.Factories.Icon = {}
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
-local setmetatable = setmetatable
 
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
@@ -38,7 +37,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UIObjects.Icon:Create(
+function TheEyeAddon.UIObjects.Factories.Icon:Create(
 	parentFrame,
 	width, height,
 	point, relativePoint, offsetX, offsetY,
@@ -46,25 +45,21 @@ function TheEyeAddon.UIObjects.Icon:Create(
 	isTextDisplay, text,
 	isCooldownDisplay, isReversed)
 
-	local instance = TEA.UIObjects.FrameFactory:Create(
+	local instance = TEA.UIObjects.Factories.Frame:Create(
 		"Frame", parentFrame,
 		width, height,
 		point, relativePoint, offsetX, offsetY)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
-	instance.texture = TEA.UIObjects.TextureFactory:Create(instance, "ARTWORK", iconTextureFileID)
+	instance.texture = TEA.UIObjects.Factories.Texture:Create(instance, "ARTWORK", iconTextureFileID)
 
 	if isTextDisplay == true then
-		instance.text = TEA.UIObjects.FontStringFactory:Create(instance, "OVERLAY", text)
+		instance.text = TEA.UIObjects.Factories.FontString:Create(instance, "OVERLAY", text)
 	end
 
 	if isCooldownDisplay == true then
-		instance.cooldown = TEA.UIObjects.Cooldown:Create(instance, width, height, isReversed)
+		instance.cooldown = TEA.UIObjects.Factories.Cooldown:Create(instance, width, height, isReversed)
 	end
-
-
-	setmetatable(instance, TEA.UIObjects.Icon)
-	self.__index = self
 
 	return instance
 end

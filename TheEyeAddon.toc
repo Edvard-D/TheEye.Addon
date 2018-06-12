@@ -11,7 +11,7 @@
 # Subsections
 #	Signified by a small header.
 #	Add 2 lines between sections.
-#	Order: Types > Factories > Classes.
+#	Order: Types > Factories.
 #	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
 #	Alphabetically organize files in the same section that can be loaded in any order.
 
@@ -44,15 +44,13 @@ UIObjects\IconObjectType.lua
 
 
 # ---Factories---
-UIObjects\FontStringFactory.lua
-UIObjects\FrameFactory.lua
-UIObjects\TextureFactory.lua
+UIObjects\Factories\FontString.lua
+UIObjects\Factories\Frame.lua
+UIObjects\Factories\Texture.lua
 
+UIObjects\Factories\Cooldown.lua
 
-# ---Classes---
-UIObjects\Cooldown.lua
-
-UIObjects\Icon.lua
+UIObjects\Factories\Icon.lua
 
 
 

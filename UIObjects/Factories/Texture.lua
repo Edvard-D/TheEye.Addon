@@ -1,8 +1,8 @@
 local TEA = TheEyeAddon
-TEA.UIObjects.TextureFactory = {}
+TEA.UIObjects.Factories.Texture = {}
 
 
-function TEA.UIObjects.TextureFactory:Create(parentFrame, layer, fileID)
+function TEA.UIObjects.Factories.Texture:Create(parentFrame, layer, fileID)
 	local instance = parentFrame:CreateTexture(nil, layer)
 	
 	instance:SetTexture(fileID)

@@ -1,11 +1,11 @@
 local TEA = TheEyeAddon
-TEA.UIObjects.Cooldown = {}
+TEA.UIObjects.Factories.Cooldown = {}
 
 local setmetatable = setmetatable
 
 
-function TEA.UIObjects.Cooldown:Create(parentFrame, width, height, isReversed)
-	local instance = TEA.UIObjects.FrameFactory:Create(
+function TEA.UIObjects.Factories.Cooldown:Create(parentFrame, width, height, isReversed)
+	local instance = TEA.UIObjects.Factories.Frame:Create(
 		"Cooldown", parentFrame,
 		width, height,
 		"CENTER", "CENTER", 0, 0)

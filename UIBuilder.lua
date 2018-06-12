@@ -6,11 +6,13 @@ local UIParent = UIParent
 
 function TEA.UIBuilder:Initialize()
 	local mindFlayID = 15407
-	TEA.UIObjects.Icon:Create(
+	local mindFlay = TEA.UIObjects.Factories.Icon:Create(
 		UIParent,
 		50, 50,
 		"CENTER", "CENTER", 0, 0,
 		TEA.UIObjects.IconObjectType.Spell, mindFlayID,
 		false, nil,
 		false, nil)
+
+	mindFlay:Show()
 end
