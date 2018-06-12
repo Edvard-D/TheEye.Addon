@@ -1,10 +1,63 @@
-## Interface: 70300
+# ---------------------------
+# |		  STYLE GUIDE		|
+# ---------------------------
+# Add a space after hashtags.
+#
+# Sections
+#	Signified by a large header.
+#	Name in all caps.
+#	Add 3 lines between sections.
+#
+# Subsections
+#	Signified by a small header.
+#	Add 2 lines between sections.
+#	Order: Types > Factories.
+#	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
+#	Alphabetically organize files in the same section that can be loaded in any order.
+
+
+
+# ---------------------------
+# |		   SETTINGS			|
+# ---------------------------
+## Interface: 80000
 ## Title: TheEye.Addon
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
 
+
+
+# ---------------------------
+# |			CORE			|
+# ---------------------------
 Namespaces.lua
 
-Classes/UIElements/UIElementBase.lua
+TypeHelpers.lua
+UI\Fonts\Templates.lua
 
-TheEyeAddon.lua
+
+
+# ---------------------------
+# |		  UI\Objects			|
+# ---------------------------
+# ---Types---
+UI\Objects\IconObjectType.lua
+
+
+# ---Factories---
+UI\Objects\Factories\FontString.lua
+UI\Objects\Factories\Frame.lua
+UI\Objects\Factories\Texture.lua
+
+UI\Objects\Factories\Cooldown.lua
+
+UI\Objects\Factories\Icon.lua
+
+
+
+# ---------------------------
+# |			FINAL			|
+# ---------------------------
+UI\Builder.lua
+
+Initializer.lua
