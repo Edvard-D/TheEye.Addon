@@ -5,11 +5,11 @@ local CreateFrame = CreateFrame
 
 
 function TEA.UI.Objects.Factories.Frame:Create(
-	frameType, parentFrame,
+	frameType, parentFrame, inheritsFrom,
 	width, height,
 	point, relativePoint, offsetX, offsetY)
 
-	local instance = CreateFrame(frameType, nil, parentFrame)
+	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
 
 	if width ~= nil and height ~= nil and
 		point ~= nil and parentFrame ~= nil and relativePoint ~= nil and offsetX ~= nil and offsetY ~= nil then

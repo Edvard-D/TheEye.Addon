@@ -46,7 +46,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 	isCooldownDisplay, isReversed)
 
 	local instance = TEA.UI.Objects.Factories.Frame:Create(
-		"Frame", parentFrame,
+		"Frame", parentFrame, nil,
 		width, height,
 		point, relativePoint, offsetX, offsetY)
 
