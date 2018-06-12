@@ -20,7 +20,7 @@
 # ---------------------------
 # |		   SETTINGS			|
 # ---------------------------
-## Interface: 70300
+## Interface: 80000
 ## Title: TheEye.Addon
 ## Author: EdvardXYZ
 ## Version: 80000.0.1
