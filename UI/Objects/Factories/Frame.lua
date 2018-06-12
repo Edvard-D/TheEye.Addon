@@ -4,19 +4,19 @@ TheEyeAddon.UI.Objects.Factories.Frame = {}
 local CreateFrame = CreateFrame
 
 
-function TheEyeAddon.UI.Objects.Factories.Frame:Create(
-	frameType, parentFrame, inheritsFrom,
-	width, height,
-	point, relativePoint, offsetX, offsetY)
+function TheEyeAddon.UI.Objects.Factories.Frame:Create(frameType, parentFrame, inheritsFrom, dimensionTemplate)
 
 	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
 
-	if width ~= nil and height ~= nil and
-		point ~= nil and parentFrame ~= nil and relativePoint ~= nil and offsetX ~= nil and offsetY ~= nil then
-		
-		instance:SetWidth(width)
-		instance:SetHeight(height)
-		instance:SetPoint(point, parentFrame, relativePoint, offsetX, offsetY)
+	if dimensionTemplate ~= nil then
+		instance:SetWidth(dimensionTemplate.width)
+		instance:SetHeight(dimensionTemplate.height)
+		instance:SetPoint(
+			dimensionTemplate.point,
+			dimensionTemplate.parentFrame,
+			dimensionTemplate.relativePoint,
+			dimensionTemplate.offsetX,
+			dimensionTemplate.offsetY)
 	else
 		instance:SetAllPoints()
 	end

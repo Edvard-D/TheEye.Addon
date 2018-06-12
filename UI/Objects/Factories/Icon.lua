@@ -38,12 +38,12 @@ end
 
 
 function TheEyeAddon.UI.Objects.Factories.Icon:Create(
-	parentFrame, objectTemplate,
+	parentFrame, dimensionTemplate,
 	iconObjectType, iconObjectID,
 	isTextDisplay, text, fontTemplate,
 	isCooldownDisplay, isReversed)
 
-	local instance = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", parentFrame, nil, objectTemplate)
+	local instance = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", parentFrame, nil, dimensionTemplate)
 
 	local iconTextureFileID = GetIconTextureFileID(iconObjectType, iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
@@ -53,7 +53,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Create(
 	end
 
 	if isCooldownDisplay == true then
-		instance.cooldown = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(instance, objectTemplate, isReversed)
+		instance.cooldown = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(instance, isReversed)
 	end
 
 	return instance
