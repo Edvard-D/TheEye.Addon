@@ -1,2 +1,2 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.EventHandler = {}
+TheEyeAddon.EventHandlers = {}
