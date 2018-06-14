@@ -35,6 +35,7 @@ Namespaces.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
 
+EventHandler.lua
 
 
 # ---------------------------
