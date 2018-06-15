@@ -6,3 +6,16 @@ local function RegisterToEvents(eventHandler)
         eventHandler.frame:RegisterEvent(eventHandler.registerTo[k])
     end
 end
+
+function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
+    if table.hasvalue(eventHandler.listeners, listener) == false then
+        table.insert(eventHandler.listeners, listener)
+
+        eventHandler.listenerCount = eventHandler.listenerCount + 1
+        if eventHandler.listenerCount == 1 then
+            RegisterToEvents(eventHandler)
+        end
+    else
+        error("Trying to add a duplicate listener to an event handler.")
+    end
+end
