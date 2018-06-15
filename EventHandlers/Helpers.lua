@@ -19,3 +19,12 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
         error("Trying to add a duplicate listener to an event handler.")
     end
 end
+
+function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
+    table.removevalue(eventHandler.listeners, listener)
+
+    eventHandler.listenerCount = eventHandler.listenerCount - 1
+    if eventHandler.listenerCounter == 0 then
+        eventHandler.frame:UnregisterAllEvents()
+    end
+end
