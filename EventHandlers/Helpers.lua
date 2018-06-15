@@ -4,6 +4,7 @@ local TheEyeAddon = TheEyeAddon
 local function RegisterToEvents(eventHandler)
     if eventHandler.frame == nil then
         eventHandler.frame = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", nil, UIParent)
+        eventHandler.frame:SetScript("OnEvent", eventHandler.HandleEvents)
     end
 
     for k,v in pairs(eventHandler.registerTo) do
@@ -30,5 +31,6 @@ function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
     eventHandler.listenerCount = eventHandler.listenerCount - 1
     if eventHandler.listenerCounter == 0 then -- If the value was greater than 0 before
         eventHandler.frame:UnregisterAllEvents()
+        eventHandler.frame:SetScript("OnEvent", nil)
     end
 end
