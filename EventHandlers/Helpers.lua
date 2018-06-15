@@ -16,7 +16,7 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
         table.insert(eventHandler.listeners, listener)
 
         eventHandler.listenerCount = eventHandler.listenerCount + 1
-        if eventHandler.listenerCount == 1 then
+        if eventHandler.listenerCount == 1 then -- If the value was 0 before
             RegisterToEvents(eventHandler)
         end
     else
@@ -28,7 +28,7 @@ function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
     table.removevalue(eventHandler.listeners, listener)
 
     eventHandler.listenerCount = eventHandler.listenerCount - 1
-    if eventHandler.listenerCounter == 0 then
+    if eventHandler.listenerCounter == 0 then -- If the value was greater than 0 before
         eventHandler.frame:UnregisterAllEvents()
     end
 end
