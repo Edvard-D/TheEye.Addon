@@ -32,5 +32,9 @@ function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
     if eventHandler.listenerCounter == 0 then -- If the value was greater than 0 before
         eventHandler.frame:UnregisterAllEvents()
         eventHandler.frame:SetScript("OnEvent", nil)
+    elseif eventHandler.listenerCounter < 0 then
+        error("Registered listeners set to " ..
+            tostring(eventHandler.listenerCount) ..
+            " but should never be below 0.")
     end
 end
