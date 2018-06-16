@@ -1,8 +1,8 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Operators = {}
+TheEyeAddon.Comparisons = {}
 
 
-function TheEyeAddon.Operators.EqualTo(value1, value2)
+function TheEyeAddon.Comparisons.EqualTo(value1, value2)
     if value1 == value2 then
         return true
     else
@@ -10,7 +10,7 @@ function TheEyeAddon.Operators.EqualTo(value1, value2)
     end
 end
 
-function TheEyeAddon.Operators.NotEqualTo(value1, value2)
+function TheEyeAddon.Comparisons.NotEqualTo(value1, value2)
     if value1 ~= value2 then
         return true
     else
@@ -18,7 +18,7 @@ function TheEyeAddon.Operators.NotEqualTo(value1, value2)
     end
 end
 
-function TheEyeAddon.Operators.GreaterThan(value1, value2)
+function TheEyeAddon.Comparisons.GreaterThan(value1, value2)
     if value1 > value2 then
         return true
     else
@@ -26,7 +26,7 @@ function TheEyeAddon.Operators.GreaterThan(value1, value2)
     end
 end
 
-function TheEyeAddon.Operators.LessThan(value1, value2)
+function TheEyeAddon.Comparisons.LessThan(value1, value2)
     if value1 < value2 then
         return true
     else
@@ -34,7 +34,7 @@ function TheEyeAddon.Operators.LessThan(value1, value2)
     end
 end
 
-function TheEyeAddon.Operators.GreaterThanEqualTo(value1, value2)
+function TheEyeAddon.Comparisons.GreaterThanEqualTo(value1, value2)
     if value1 >= value2 then
         return true
     else
@@ -42,7 +42,7 @@ function TheEyeAddon.Operators.GreaterThanEqualTo(value1, value2)
     end
 end
 
-function TheEyeAddon.Operators.LessThanEqualTo(value1, value2)
+function TheEyeAddon.Comparisons.LessThanEqualTo(value1, value2)
     if value1 <= value2 then
         return true
     else
