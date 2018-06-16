@@ -37,7 +37,7 @@ end
 
 
 function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
-    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.validValue)
+    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
 
     if table.hasvalue(listeners, listener) == false then
         table.insert(listeners, listener)
@@ -52,11 +52,11 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
 end
 
 function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
-    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.validValue)
+    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
     table.removevalue(listeners, listener)
     if next(listeners) == nil then -- This value has no listeners
         local values = GetComparisonValues(eventHandler, listener.comparison)
-        table.removevalue(values, listener.validValue)
+        table.removevalue(values, listener.comparisonValue)
         if next(values) == nil then -- This comparison has no values
             table.removevalue(eventHandler.Comparisons, listener.comparison)
         end
