@@ -32,6 +32,7 @@
 # ---------------------------
 Namespaces.lua
 
+Operators.lua
 TableHelpers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
