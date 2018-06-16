@@ -6,7 +6,9 @@ TheEyeAddon.Initializer:RegisterEvent("ADDON_LOADED")
 
 
 local function OnAddonLoaded(event, addonName)
-    if addonName == "TheEye.Addon" then
+    local _, class, _ = UnitClass("player")
+    local spec = GetSpecialization()
+    if addonName == "TheEye.Addon" and class == "PRIEST" and spec == 3 then
         TheEyeAddon.UI.Builder:Initialize()
     end
 end
