@@ -37,7 +37,7 @@ TableHelpers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
 
-EventHandlers\Helpers.lua
+EventHandlers\EventHandlersHelpers.lua
 
 
 # ---------------------------
