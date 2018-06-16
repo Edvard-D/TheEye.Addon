@@ -73,6 +73,14 @@ function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
     end
 end
 
+function TheEyeAddon.EventHandlers:EvaluateState(eventHandler, eventData)
+    local evaluatedValue = eventHandler:Evaluate(eventData)
+    if evaluatedValue ~= eventHandler.currentValue then
+        eventHandler.currentValue = evaluatedValue
+        TheEyeAddon.EventHandlers:NotifyListeners(eventHandler, evaluatedValue)
+    end
+end
+
 function TheEyeAddon.EventHandlers:NotifyListeners(eventHandler, evaluatedValue)
     for comparison,values in pairs(eventHandler.Comparisons) do
         for value,listeners in pairs(values) do
