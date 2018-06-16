@@ -28,6 +28,13 @@
 
 
 # ---------------------------
+# |	    SAVED VARIABLES		|
+# ---------------------------
+## SavedVariablesPerCharacter: DisabledUIModules
+
+
+
+# ---------------------------
 # |			CORE			|
 # ---------------------------
 Namespaces.lua
