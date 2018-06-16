@@ -75,18 +75,22 @@ end
 
 function TheEyeAddon.EventHandlers:EvaluateState(eventHandler, eventData)
     local evaluatedValue = eventHandler:Evaluate(eventData)
-    if evaluatedValue ~= eventHandler.currentValue then
+    if evaluatedValue ~= eventHandler.currentValue then        
         eventHandler.currentValue = evaluatedValue
-        TheEyeAddon.EventHandlers:NotifyListeners(eventHandler, evaluatedValue)
+        for comparison,values in pairs(eventHandler.Comparisons) do
+            for comparisonValue,listeners in pairs(values) do
+                local evaluatedState = comparison(evaluatedValue, comparisonValue)
+                if evaluatedState ~= comparisonValue.currentState then
+                    comparisonValue.currentState = newState
+                    TheEyeAddon.EventHandlers:NotifyListeners(listeners, evaluatedState)
+                end
+            end
+        end
     end
 end
 
-function TheEyeAddon.EventHandlers:NotifyListeners(eventHandler, evaluatedValue)
-    for comparison,values in pairs(eventHandler.Comparisons) do
-        for value,listeners in pairs(values) do
-            for k,listener in pairs(listeners) do
-                listener:OnStateChange(newState)
-            end
-        end
+function TheEyeAddon.EventHandlers:NotifyListeners(listeners, newState)
+    for k,listener in pairs(listeners) do
+        listener:OnStateChange(newState)
     end
 end
