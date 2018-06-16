@@ -72,3 +72,13 @@ function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
             " but should never be below 0.")
     end
 end
+
+function TheEyeAddon.EventHandlers:NotifyListeners(eventHandler, evaluatedValue)
+    for comparison,values in pairs(eventHandler.Comparisons) do
+        for value,listeners in pairs(values) do
+            for k,listener in pairs(listeners) do
+                listener:OnStateChange(newState)
+            end
+        end
+    end
+end
