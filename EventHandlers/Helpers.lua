@@ -26,24 +26,24 @@ local function GetComparisonValues(eventHandler, comparison)
     return eventHandler.Comparisons[comparison]
 end
 
-local function GetValueListeners(eventHandler, comparison, value)
-    local values = GetComparisonValues(eventHandler, comparison)
+local function GetComparisonValueListeners(eventHandler, comparison, comparisonValue)
+    local comparisonValues = GetComparisonValues(eventHandler, comparison)
 
-    if values[value] == nil then
-        values[value] = {}
+    if comparisonValues[value] == nil then
+        comparisonValues[value] = {}
     end
-    return values[value]
+    return comparisonValues[value]
 end
 
 
 function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
-    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
+    local listeners = GetComparisonValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
 
     if table.hasvalue(listeners, listener) == false then
         table.insert(listeners, listener)
 
         eventHandler.listenerCount = eventHandler.listenerCount + 1
-        if eventHandler.listenerCount == 1 then -- If the value was 0 before
+        if eventHandler.listenerCount == 1 then -- If the comparisonValue was 0 before
             RegisterToEvents(eventHandler)
         end
     else
@@ -52,18 +52,18 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
 end
 
 function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
-    local listeners = GetValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
+    local listeners = GetComparisonValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
     table.removevalue(listeners, listener)
-    if next(listeners) == nil then -- This value has no listeners
-        local values = GetComparisonValues(eventHandler, listener.comparison)
+    if next(listeners) == nil then -- This comparisonValue has no listeners
+        local comparisonValues = GetComparisonValues(eventHandler, listener.comparison)
         table.removevalue(values, listener.comparisonValue)
-        if next(values) == nil then -- This comparison has no values
+        if next(values) == nil then -- This comparison has no comparisonValues
             table.removevalue(eventHandler.Comparisons, listener.comparison)
         end
     end
 
     eventHandler.listenerCount = eventHandler.listenerCount - 1
-    if eventHandler.listenerCounter == 0 then -- If the value was greater than 0 before
+    if eventHandler.listenerCounter == 0 then -- If the comparisonValue was greater than 0 before
         eventHandler.frame:UnregisterAllEvents()
         eventHandler.frame:SetScript("OnEvent", nil)
     elseif eventHandler.listenerCounter < 0 then
@@ -77,7 +77,7 @@ function TheEyeAddon.EventHandlers:EvaluateState(eventHandler, eventData)
     local evaluatedValue = eventHandler:Evaluate(eventData)
     if evaluatedValue ~= eventHandler.currentValue then        
         eventHandler.currentValue = evaluatedValue
-        for comparison,values in pairs(eventHandler.Comparisons) do
+        for comparison,comparisonValues in pairs(eventHandler.Comparisons) do
             for comparisonValue,listeners in pairs(values) do
                 local evaluatedState = comparison(evaluatedValue, comparisonValue)
                 if evaluatedState ~= comparisonValue.currentState then
