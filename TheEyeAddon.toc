@@ -49,6 +49,8 @@ UI\Fonts\Templates.lua
 # ---------------------------
 # |	        Events        	|
 # ---------------------------
+Events\Coordinator.lua
+
 Events\Handlers\HandlersHelpers.lua
 
 Events\Handlers\Target.lua
