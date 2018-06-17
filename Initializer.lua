@@ -14,7 +14,7 @@ local function OnEvent(event, arg1)
         if event == "ACTIVE_TALENT_GROUP_CHANGED" or
         (event == "ADDON_LOADED" and arg1 == "TheEye.Addon") then
             if spec == 3 then
-                TheEyeAddon.UI.Modules:Initialize()
+                TheEyeAddon.UI.Modules:Setup()
             else
                 --TODO: disable addon
             end

@@ -9,8 +9,14 @@ local function SetupModule(module)
     end
 end
 
+local function TeardownModule(module)
+    for k,v in pairs(module.Components) do
+        TheEyeAddon.UI.Modules.Components:TeardownComponent(module, module.Components[k])
+    end
+end
 
-function TheEyeAddon.UI.Modules:Initialize()
+
+function TheEyeAddon.UI.Modules:Setup()
     for k,moduleData in pairs(TheEyeAddon.UI.Modules) do
         if table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k) == false then
             SetupModule(moduleData)
