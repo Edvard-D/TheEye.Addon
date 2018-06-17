@@ -37,7 +37,8 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	return fileID
 end
 
-local function Claim(parentFrame, dimensionTable)
+
+function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 	local instance = nil
 	for i,frame in ipairs(Pool) do
 		if frame.isClaimed == false then
@@ -48,24 +49,19 @@ local function Claim(parentFrame, dimensionTable)
 
 	if instance ~= nil then
 		instance:SetParent(parentFrame)
-		TheEyeAddon.UI.Objects.Factories.Frame:SetDimensions(instance, dimensionTable)
+		TheEyeAddon.UI.Objects.Factories.Frame:SetDimensions(instance, displayData.dimensionTable)
 	else
-		instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, dimensionTable)
+		instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
 	end
 
+
 	instance.isClaimed = true
-	return instance
-end
-
-
-function TheEyeAddon.UI.Objects.Factories.Icon:ClaimAndSetup(parentFrame, displayData)
-	local instance = Claim(parentFrame, displayData.dimensionTable)
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
 
 	if displayData.isTextDisplay == true then
-		instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", displayData.text, displayData.fontTemplate)
+		instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Claim(instance, "OVERLAY", displayData.text, displayData.fontTemplate)
 	end
 
 	return instance
