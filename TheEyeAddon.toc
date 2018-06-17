@@ -47,6 +47,7 @@ UI\Fonts\Templates.lua
 EventHandlers\EventHandlersHelpers.lua
 
 
+
 # ---------------------------
 # |		  UI\Objects		|
 # ---------------------------
