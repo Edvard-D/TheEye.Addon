@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 
+-- SETUP/TEARDOWN
 local function SetupListener(module, component, stateGroup, listener, eventHandlerName)
     listener.module = module
     listener.component = component
@@ -27,6 +28,7 @@ function TheEyeAddon.UI.Modules.Components:SetupComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Enabled)
 end
 
+-- STATE CHANGES
 function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState)
     local stateGroup = stateListener.stateGroup
     local previousState = stateGroup.currentState
