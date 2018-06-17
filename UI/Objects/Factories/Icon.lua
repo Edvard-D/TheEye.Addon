@@ -52,6 +52,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 		TheEyeAddon.UI.Objects.Factories.Frame:SetDimensions(instance, displayData.dimensionTable)
 	else
 		instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
+		table.insert(Pool, instance)
 	end
 
 
