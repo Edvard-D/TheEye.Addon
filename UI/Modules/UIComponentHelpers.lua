@@ -5,6 +5,7 @@ local function SetupListener(module, component, stateGroup, listener, eventHandl
     listener.module = module
     listener.component = component
     listener.stateGroup = enabledGroup
+    listener.OnStateChange = TheEyeAddon.UI.Modules.Components.OnStateChange
     TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
 end
 
