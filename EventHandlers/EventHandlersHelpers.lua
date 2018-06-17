@@ -6,7 +6,7 @@ local next = next
 
 local function RegisterToEvents(eventHandler)
     if eventHandler.frame == nil then
-        eventHandler.frame = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", nil, UIParent)
+        eventHandler.frame = TheEyeAddon.UI.Factories.Frame:Create("Frame", nil, UIParent)
         eventHandler.frame:SetScript("OnEvent", eventHandler.HandleEvent)
     end
 

@@ -1,8 +1,8 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Factories.FontString = {}
+TheEyeAddon.UI.Factories.FontString = {}
 
 
-function TheEyeAddon.UI.Objects.Factories.FontString:Create(instance, parentFrame, layer, text, fontTemplate)
+function TheEyeAddon.UI.Factories.FontString:Create(instance, parentFrame, layer, text, fontTemplate)
 	instance = instance or parentFrame:CreateFontString(nil, layer)
 	
 	fontTemplate.SetFont(instance)

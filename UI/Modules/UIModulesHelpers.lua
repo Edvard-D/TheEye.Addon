@@ -2,7 +2,7 @@ local TheEyeAddon = TheEyeAddon
 
 
 local function SetupModule(module)
-    module.frame = module.frame or TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", TheEyeAddon.UI.ParentFrame, nil, module.dimensionTemplate)
+    module.frame = module.frame or TheEyeAddon.UI.Factories.Frame:Create("Frame", TheEyeAddon.UI.ParentFrame, nil, module.dimensionTemplate)
 
     for k,v in pairs(module.Components) do
         TheEyeAddon.UI.Components:SetupComponent(module, module.Components[k])

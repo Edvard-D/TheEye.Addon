@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 
-TheEyeAddon.UI.ParentFrame = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", UIParent, nil, nil)
+TheEyeAddon.UI.ParentFrame = TheEyeAddon.UI.Factories.Frame:Create("Frame", UIParent, nil, nil)
 TheEyeAddon.UI.ParentFrame:RegisterEvent("ADDON_LOADED")
 TheEyeAddon.UI.ParentFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 

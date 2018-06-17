@@ -44,28 +44,32 @@ TableHelpers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
 
+
+
+# ---------------------------
+# |	     EventHandlers   	|
+# ---------------------------
 EventHandlers\EventHandlersHelpers.lua
 
 
 
 # ---------------------------
-# |		  UI\Objects		|
+# |	 UI\DimensionTemplates	|
 # ---------------------------
-# ---Types---
-
-
-# ---Dimension Templates---
 UI\Objects\DimensionTemplates\Icon_Large.lua
 
 
-# ---Factories---
-UI\Objects\Factories\FontString.lua
-UI\Objects\Factories\Frame.lua
-UI\Objects\Factories\Texture.lua
 
-UI\Objects\Factories\Cooldown.lua
+# ---------------------------
+# |		  UI\Factories		|
+# ---------------------------
+UI\Factories\FontString.lua
+UI\Factories\Frame.lua
+UI\Factories\Texture.lua
 
-UI\Objects\Factories\Icon.lua
+UI\Factories\Cooldown.lua
+
+UI\Factories\Icon.lua
 
 
 

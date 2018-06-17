@@ -1,5 +1,5 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Factories.Icon = {}
+TheEyeAddon.UI.Factories.Icon = {}
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
@@ -38,7 +38,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
+function TheEyeAddon.UI.Factories.Icon:Claim(parentFrame, displayData)
 	local instance = nil
 	for i,frame in ipairs(Pool) do
 		if frame.isClaimed == false then
@@ -49,26 +49,26 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 
 	if instance ~= nil then
 		instance:SetParent(parentFrame)
-		TheEyeAddon.UI.Objects.Factories.Frame:SetDimensions(instance, displayData.dimensionTable)
+		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, displayData.dimensionTable)
 	else
-		instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
+		instance = TheEyeAddon.UI.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
 		table.insert(Pool, instance)
 	end
 
 
 	instance.isClaimed = true
-	instance.Release = TheEyeAddon.UI.Objects.Factories.Icon.Release
+	instance.Release = TheEyeAddon.UI.Factories.Icon.Release
 	instance:Show()
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
-	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance.texture, instance, "BACKGROUND", iconTextureFileID)
+	instance.texture = TheEyeAddon.UI.Factories.Texture:Create(instance.texture, instance, "BACKGROUND", iconTextureFileID)
 
-	instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Create(instance.text, instance, "OVERLAY", displayData.text, displayData.fontTemplate)
+	instance.text = TheEyeAddon.UI.Factories.FontString:Create(instance.text, instance, "OVERLAY", displayData.text, displayData.fontTemplate)
 
 	return instance
 end
 
-function TheEyeAddon.UI.Objects.Factories.Icon:Release()
+function TheEyeAddon.UI.Factories.Icon:Release()
 	self.isClaimed = false
 	self:SetParent(nil)
 	self:Hide()
