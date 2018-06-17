@@ -69,9 +69,15 @@ UI\Objects\Factories\Icon.lua
 
 
 # ---------------------------
+# |		 UI\Components		|
+# ---------------------------
+UI\Components\UIComponentHelpers.lua
+
+
+
+# ---------------------------
 # |		  UI\Modules		|
 # ---------------------------
-UI\Modules\UIComponentHelpers.lua
 UI\Modules\UIModulesHelpers.lua
 UI\Modules\Primary.lua
 

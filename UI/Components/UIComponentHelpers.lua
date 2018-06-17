@@ -6,7 +6,7 @@ local function SetupListener(module, component, stateGroup, listener, eventHandl
     listener.module = module
     listener.component = component
     listener.stateGroup = stateGroup
-    listener.OnStateChange = TheEyeAddon.UI.Modules.Components.OnStateChange
+    listener.OnStateChange = TheEyeAddon.UI.Components.OnStateChange
     TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
 end
 
@@ -24,18 +24,18 @@ local function TeardownStateGroup(stateGroup)
     end
 end
 
-function TheEyeAddon.UI.Modules.Components:SetupComponent(module, component)
+function TheEyeAddon.UI.Components:SetupComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Enabled)
 end
 
-function TheEyeAddon.UI.Modules.Components:TeardownComponent(component)
+function TheEyeAddon.UI.Components:TeardownComponent(component)
     for k,v in pairs(component.StateGroups) do
         TeardownStateGroup(component.StateGroups[k])
     end
 end
 
 -- STATE CHANGES
-function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState)
+function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     local stateGroup = stateListener.stateGroup
     local previousState = stateGroup.currentState
     
@@ -58,23 +58,23 @@ function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState
     end
 end
 
-function TheEyeAddon.UI.Modules.Components:EnableComponent(module, component)
+function TheEyeAddon.UI.Components:EnableComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Visible)
 end
 
-function TheEyeAddon.UI.Modules.Components:DisableComponent(module, component)
+function TheEyeAddon.UI.Components:DisableComponent(module, component)
     TeardownStateGroup(component.StateGroups.Visible)
     if component.StateGroups.Visible.currentState == true then
         TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
     end
 end
 
-function TheEyeAddon.UI.Modules.Components:ShowComponent(module, component)
+function TheEyeAddon.UI.Components:ShowComponent(module, component)
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
     module:OnComponentVisibleChanged()
 end
 
-function TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
+function TheEyeAddon.UI.Components:HideComponent(module, component)
     component.frame:Release()
     component.frame = nil
     module:OnComponentVisibleChanged()

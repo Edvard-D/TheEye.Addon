@@ -3,9 +3,9 @@
 TheEyeAddon = {}
     TheEyeAddon.EventHandlers = {}
     TheEyeAddon.UI = {}
+        TheEyeAddon.UI.Components = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Modules = {}
-            TheEyeAddon.UI.Modules.Components = {}
         TheEyeAddon.UI.Objects = {}
             TheEyeAddon.UI.Objects.DimensionTemplates = {}
             TheEyeAddon.UI.Objects.Factories = {}
