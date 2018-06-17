@@ -1,19 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
-
 local next = next
 
-
-local function RegisterToEvents(handler)
-    if handler.frame == nil then
-        handler.frame = TheEyeAddon.UI.Factories.Frame:Create("Frame", nil, UIParent)
-        handler.frame:SetScript("OnEvent", handler.HandleEvent)
-    end
-
-    for k,v in pairs(handler.registerTo) do
-        handler.frame:RegisterEvent(v)
-    end
-end
 
 local function GetComparisonValues(handler, comparison)
     if handler.Comparisons == nil then
@@ -48,7 +36,7 @@ function TheEyeAddon.Events.Handlers:RegisterListener(handlerKey, listener)
         end
         handler.listenerCount = handler.listenerCount + 1
         if handler.listenerCount == 1 then -- If the comparisonValue was 0 before
-            RegisterToEvents(handler)
+            TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
         end
     else
         error("Trying to add a duplicate listener to an event handler.")
@@ -69,8 +57,7 @@ function TheEyeAddon.Events.Handlers:UnregisterListener(handlerKey, listener)
 
     handler.listenerCount = handler.listenerCount - 1
     if handler.listenerCounter == 0 then -- If the comparisonValue was greater than 0 before
-        handler.frame:UnregisterAllEvents()
-        handler.frame:SetScript("OnEvent", nil)
+        TheEyeAddon.Events.Coordinator:UnregisterHandler(handler)
     elseif handler.listenerCounter < 0 then
         error("Registered listeners set to " ..
             tostring(handler.listenerCount) ..
