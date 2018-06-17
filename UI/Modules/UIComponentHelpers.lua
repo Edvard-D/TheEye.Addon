@@ -54,6 +54,13 @@ function TheEyeAddon.UI.Modules.Components:EnableComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Visible)
 end
 
+function TheEyeAddon.UI.Modules.Components:DisableComponent(module, component)
+    TeardownStateGroup(component.StateGroups.Visible)
+    if component.StateGroups.Visible.currentState == true then
+        TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
+    end
+end
+
 function TheEyeAddon.UI.Modules.Components:ShowComponent(module, component)
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
 end
@@ -61,5 +68,4 @@ end
 function TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
     component.frame:Release()
     component.frame = nil
-    TeardownStateGroup(component.StateGroups.Visible)
 end
