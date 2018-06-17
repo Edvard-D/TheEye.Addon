@@ -16,6 +16,13 @@ local function SetupStateGroup(module, component, stateGroup)
     end
 end
 
+local function TeardownStateGroup(stateGroup)
+    for eventHandlerName,v in pairs(stateGroup.StateListeners) do
+        local listener = stateGroup.StateListeners[eventHandlerName]
+        TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
+    end
+end
+
 function TheEyeAddon.UI.Modules.Components:SetupComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Enabled)
 end
