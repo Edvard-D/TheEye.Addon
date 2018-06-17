@@ -30,7 +30,7 @@
 # ---------------------------
 # |	    SAVED VARIABLES		|
 # ---------------------------
-## SavedVariablesPerCharacter: DisabledUIModules
+## SavedVariablesPerCharacter: TheEyeAddon.Settings
 
 
 
