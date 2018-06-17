@@ -24,7 +24,7 @@ function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState
     local stateGroup = stateListener.stateGroup
     local previousState = stateGroup.currentState
     
-    if newState == stateListener.validValue then
+    if newState == true then
         stateGroup.stateKey = stateGroup.stateKey + stateListener.stateValue
     else
         stateGroup.stateKey = stateGroup.stateKey - stateListener.stateValue
