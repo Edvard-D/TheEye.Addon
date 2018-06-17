@@ -56,6 +56,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 
 
 	instance.isClaimed = true
+	instance.Release = TheEyeAddon.UI.Objects.Factories.Icon.Release
 	instance:Show()
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
@@ -64,4 +65,10 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 	instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Create(instance.text, instance, "OVERLAY", displayData.text, displayData.fontTemplate)
 
 	return instance
+end
+
+function TheEyeAddon.UI.Objects.Factories.Icon:Release()
+	self.isClaimed = false
+	self:SetParent(nil)
+	self:Hide()
 end
