@@ -14,3 +14,7 @@ local function SetupStateGroup(component, stateGroup)
         SetupListener(component, stateGroup, listener, eventHandlerName)
     end
 end
+
+function TheEyeAddon.UI.Modules.UIComponentHelpers:SetupComponent(module, component)
+    SetupStateGroup(component, component.StateGroups.Enabled)
+end
