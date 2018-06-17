@@ -4,14 +4,14 @@ local TheEyeAddon = TheEyeAddon
 local function SetupListener(module, component, stateGroup, listener, eventHandlerName)
     listener.module = module
     listener.component = component
-    listener.stateGroup = enabledGroup
+    listener.stateGroup = stateGroup
     listener.OnStateChange = TheEyeAddon.UI.Modules.Components.OnStateChange
     TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
 end
 
 local function SetupStateGroup(module, component, stateGroup)
-    for eventHandlerName,v in pairs(enabledGroup.StateListeners) do
-        local listener = enabledGroup.StateListeners[eventHandlerName]
+    for eventHandlerName,v in pairs(stateGroup.StateListeners) do
+        local listener = stateGroup.StateListeners[eventHandlerName]
         SetupListener(module, component, stateGroup, listener, eventHandlerName)
     end
 end
