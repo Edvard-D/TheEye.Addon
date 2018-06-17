@@ -60,9 +60,7 @@ function TheEyeAddon.UI.Objects.Factories.Icon:Claim(parentFrame, displayData)
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
 
-	if displayData.isTextDisplay == true then
-		instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Claim(instance, "OVERLAY", displayData.text, displayData.fontTemplate)
-	end
+	instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Create(instance.text, instance, "OVERLAY", displayData.text, displayData.fontTemplate)
 
 	return instance
 end
