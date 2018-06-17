@@ -29,8 +29,9 @@ function TheEyeAddon.UI.Modules.Components:SetupComponent(module, component)
 end
 
 function TheEyeAddon.UI.Modules.Components:TeardownComponent(component)
-    TeardownStateGroup(component.StateGroups.Enabled)
-    TeardownStateGroup(component.StateGroups.Visible)
+    for k,v in pairs(tableName) do
+        TeardownStateGroup(v)
+    end
 end
 
 -- STATE CHANGES
