@@ -23,3 +23,11 @@ function TheEyeAddon.UI.Modules:Setup()
         end
     end
 end
+
+function TheEyeAddon.UI.Modules:Teardown()
+    for k,moduleData in pairs(TheEyeAddon.UI.Modules) do
+        if table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k) == false then
+            TeardownModule(moduleData)
+        end
+    end
+end
