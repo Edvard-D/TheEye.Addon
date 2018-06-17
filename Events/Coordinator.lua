@@ -2,7 +2,8 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = { Handlers = {} }
 local Handlers = TheEyeAddon.Events.Coordinator.Handlers
 
-local frame = nil
+local frame = CreateFrame("Frame", nil, UIParent)
+frame:SetScript("OnEvent", TheEyeAddon.Events.Coordinator.HandleEvent)
 
 
 function TheEyeAddon.Events.Coordinator:HandleEvent(event)
@@ -12,11 +13,6 @@ function TheEyeAddon.Events.Coordinator:HandleEvent(event)
 end
 
 function TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
-    if frame == nil then
-        frame = TheEyeAddon.UI.Factories.Frame:Create("Frame", nil, UIParent)
-        frame:SetScript("OnEvent", TheEyeAddon.Events.Coordinator.HandleEvent)
-    end
-
     for i,eventName in ipairs(handler.registerTo) do
         if Handlers.eventName == nil then
             Handlers.eventName = { handler }
