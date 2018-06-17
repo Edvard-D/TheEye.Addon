@@ -5,7 +5,6 @@ local CreateFrame = CreateFrame
 
 
 function TheEyeAddon.UI.Objects.Factories.Frame:Create(frameType, parentFrame, inheritsFrom, dimensionTemplate)
-
 	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
 
 	if dimensionTemplate ~= nil then
