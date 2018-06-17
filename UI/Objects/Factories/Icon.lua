@@ -3,6 +3,7 @@ TheEyeAddon.UI.Objects.Factories.Icon = {}
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
+local Pool = {}
 
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
@@ -36,8 +37,29 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	return fileID
 end
 
-function TheEyeAddon.UI.Objects.Factories.Icon:Create(parentFrame, displayData)
-	local instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
+local function Claim(parentFrame, dimensionTable)
+	local instance = nil
+	for i,frame in ipairs(Pool) do
+		if frame.isClaimed == false then
+			instance = frame
+			break
+		end
+	end
+
+	if instance ~= nil then
+		instance:SetParent(parentFrame)
+		TheEyeAddon.UI.Objects.Factories.Frame:SetDimensions(instance, dimensionTable)
+	else
+		instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, dimensionTable)
+	end
+
+	instance.isClaimed = true
+	return instance
+end
+
+
+function TheEyeAddon.UI.Objects.Factories.Icon:ClaimAndSetup(parentFrame, displayData)
+	local instance = Claim(parentFrame, displayData.dimensionTable)
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
