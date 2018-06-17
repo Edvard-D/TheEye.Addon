@@ -81,6 +81,4 @@ UI\Modules\Primary.lua
 # ---------------------------
 # |			FINAL			|
 # ---------------------------
-UI\Builder.lua
-
 Initializer.lua
