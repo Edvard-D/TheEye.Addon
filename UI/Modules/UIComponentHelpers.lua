@@ -53,3 +53,9 @@ end
 function TheEyeAddon.UI.Modules.Components:ShowComponent(module, component)
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
 end
+
+function TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
+    component.frame:Release()
+    component.frame = nil
+    TeardownStateGroup(component.StateGroups.Visible)
+end
