@@ -1,2 +1,2 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Modules.UIComponentHelpers.lua = {}
+TheEyeAddon.UI.Modules.UIComponentHelpers = {}
