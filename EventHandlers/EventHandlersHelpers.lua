@@ -36,7 +36,8 @@ local function GetComparisonValueListeners(eventHandler, comparison, comparisonV
 end
 
 
-function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
+function TheEyeAddon.EventHandlers:RegisterListener(eventHandlerKey, listener)
+    local eventHandler = TheEyeAddon.EventHandlers[eventHandlerKey]
     local listeners = GetComparisonValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
 
     if table.hasvalue(listeners, listener) == false then
@@ -51,7 +52,8 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandler, listener)
     end
 end
 
-function TheEyeAddon.EventHandlers:UnregisterListener(eventHandler, listener)
+function TheEyeAddon.EventHandlers:UnregisterListener(eventHandlerKey, listener)
+    local eventHandler = TheEyeAddon.EventHandlers[eventHandlerKey]
     local listeners = GetComparisonValueListeners(eventHandler, listener.comparison, listener.comparisonValue)
     table.removevalue(listeners, listener)
     if next(listeners) == nil then -- This comparisonValue has no listeners
