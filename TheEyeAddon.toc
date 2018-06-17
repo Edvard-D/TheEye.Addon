@@ -51,6 +51,8 @@ UI\Fonts\Templates.lua
 # ---------------------------
 EventHandlers\EventHandlersHelpers.lua
 
+EventHandlers\Target.lua
+
 
 
 # ---------------------------
