@@ -38,17 +38,13 @@ end
 
 
 function TheEyeAddon.UI.Objects.Factories.Icon:CreateFromDisplayData(parentFrame, displayData)
-	local instance = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", parentFrame, nil, displayData.dimensionTemplate)
-
+	local instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable, displayData.isReversed)
+	
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
 
 	if displayData.isTextDisplay == true then
 		instance.text = TheEyeAddon.UI.Objects.Factories.FontString:Create(instance, "OVERLAY", displayData.text, displayData.fontTemplate)
-	end
-
-	if displayData.isCooldownDisplay == true then
-		instance.cooldown = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(instance, displayData.isReversed)
 	end
 
 	return instance
