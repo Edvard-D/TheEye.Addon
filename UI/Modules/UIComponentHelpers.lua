@@ -50,6 +50,10 @@ function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState
     end
 end
 
+function TheEyeAddon.UI.Modules.Components:EnableComponent(module, component)
+    SetupStateGroup(module, component, component.StateGroups.Visible)
+end
+
 function TheEyeAddon.UI.Modules.Components:ShowComponent(module, component)
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
 end
