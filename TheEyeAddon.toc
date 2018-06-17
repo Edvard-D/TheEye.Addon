@@ -51,7 +51,6 @@ EventHandlers\EventHandlersHelpers.lua
 # |		  UI\Objects		|
 # ---------------------------
 # ---Types---
-UI\Objects\IconObjectType.lua
 UI\Objects\Pools.lua
 
 

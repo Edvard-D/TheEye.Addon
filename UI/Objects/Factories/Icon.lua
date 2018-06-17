@@ -9,7 +9,7 @@ local Pool = {}
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	local fileID = nil
 
-	if iconObjectType == TheEyeAddon.UI.Objects.IconObjectType.spell then
+	if iconObjectType == "SPELL" then
 		fileID = GetSpellTexture(iconObjectID)
 		if fileID == nil then
 			error("Could not find a spell with an ID of " ..
@@ -17,7 +17,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			".")
 			return
 		end
-	elseif iconObjectType == TheEyeAddon.UI.Objects.IconObjectType.item then
+	elseif iconObjectType == "ITEM" then
 		local _, _, _, _, _, _, _, _, _, fileID = GetItemInfo(iconObjectID)
 		if fileID == nil then
 			error("Could not find an item with an ID of " ..
@@ -26,7 +26,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			return
 		end
 	else
-		error("No IconObjectType exists with a value of " ..
+		error("No case exists for an iconObjectType of " ..
 		tostring(iconObjectType) ..
 		". iconObjectID passed: " ..
 		tostring(iconObjectID) ..
