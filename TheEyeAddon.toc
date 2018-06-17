@@ -67,6 +67,8 @@ UI\Objects\Factories\Cooldown.lua
 
 UI\Objects\Factories\Icon.lua
 
+UI\Objects\Factories\Module.lua
+
 
 
 # ---------------------------
