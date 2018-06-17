@@ -8,3 +8,12 @@ local function SetupModule(module)
         TheEyeAddon.UI.Modules.Components:SetupComponent(module, module.Components[k])
     end
 end
+
+
+function TheEyeAddon.UI.Modules:Initialize()
+    for k,moduleData in pairs(TheEyeAddon.UI.Modules) do
+        if table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k) == false then
+            SetupModule(moduleData)
+        end
+    end
+end
