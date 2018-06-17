@@ -1,9 +1,9 @@
 local TheEyeAddon = TheEyeAddon
 
 
-TheEyeAddon.Initializer = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", UIParent, nil, nil)
-TheEyeAddon.Initializer:RegisterEvent("ADDON_LOADED")
-TheEyeAddon.Initializer:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+TheEyeAddon.UI.ParentFrame = TheEyeAddon.UI.Objects.Factories.Frame:Create("Frame", UIParent, nil, nil)
+TheEyeAddon.UI.ParentFrame:RegisterEvent("ADDON_LOADED")
+TheEyeAddon.UI.ParentFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 
 
 local function OnEvent(event, arg1)
@@ -23,4 +23,4 @@ local function OnEvent(event, arg1)
 end
 
 
-TheEyeAddon.Initializer:SetScript("OnEvent", OnEvent)
+TheEyeAddon.UI.ParentFrame:SetScript("OnEvent", OnEvent)
