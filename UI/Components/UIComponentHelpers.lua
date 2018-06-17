@@ -2,25 +2,25 @@ local TheEyeAddon = TheEyeAddon
 
 
 -- SETUP/TEARDOWN
-local function SetupListener(module, component, stateGroup, listener, eventHandlerName)
+local function SetupListener(module, component, stateGroup, listener, handlerName)
     listener.module = module
     listener.component = component
     listener.stateGroup = stateGroup
     listener.OnStateChange = TheEyeAddon.UI.Components.OnStateChange
-    TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
+    TheEyeAddon.Events.Handlers:RegisterListener(handlerName, listener)
 end
 
 local function SetupStateGroup(module, component, stateGroup)
-    for eventHandlerName,v in pairs(stateGroup.StateListeners) do
-        local listener = stateGroup.StateListeners[eventHandlerName]
-        SetupListener(module, component, stateGroup, listener, eventHandlerName)
+    for handlerName,v in pairs(stateGroup.StateListeners) do
+        local listener = stateGroup.StateListeners[handlerName]
+        SetupListener(module, component, stateGroup, listener, handlerName)
     end
 end
 
 local function TeardownStateGroup(stateGroup)
-    for eventHandlerName,v in pairs(stateGroup.StateListeners) do
-        local listener = stateGroup.StateListeners[eventHandlerName]
-        TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
+    for handlerName,v in pairs(stateGroup.StateListeners) do
+        local listener = stateGroup.StateListeners[handlerName]
+        TheEyeAddon.Events.Handlers:RegisterListener(handlerName, listener)
     end
 end
 

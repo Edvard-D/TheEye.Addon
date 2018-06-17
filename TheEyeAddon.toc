@@ -47,11 +47,11 @@ UI\Fonts\Templates.lua
 
 
 # ---------------------------
-# |	     EventHandlers   	|
+# |	        Events        	|
 # ---------------------------
-EventHandlers\EventHandlersHelpers.lua
+Events\Handlers\HandlersHelpers.lua
 
-EventHandlers\Target.lua
+Events\Handlers\Target.lua
 
 
 
