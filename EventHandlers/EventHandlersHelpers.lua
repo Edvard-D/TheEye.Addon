@@ -20,19 +20,19 @@ local function GetComparisonValues(eventHandler, comparison)
         eventHandler.Comparisons = {}
     end
 
-    if eventHandler.Comparisons[comparison] == nil then
-        eventHandler.Comparisons[comparison] = {}
+    if eventHandler.Comparisons.comparison == nil then
+        eventHandler.Comparisons.comparison = {}
     end
-    return eventHandler.Comparisons[comparison]
+    return eventHandler.Comparisons.comparison
 end
 
 local function GetComparisonValueListeners(eventHandler, comparison, comparisonValue)
     local comparisonValues = GetComparisonValues(eventHandler, comparison)
 
-    if comparisonValues[value] == nil then
-        comparisonValues[value] = {}
+    if comparisonValues.value == nil then
+        comparisonValues.value = {}
     end
-    return comparisonValues[value]
+    return comparisonValues.value
 end
 
 
