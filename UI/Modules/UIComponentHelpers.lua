@@ -7,3 +7,10 @@ local function SetupListener(component, stateGroup, listener, eventHandlerName)
     listener.stateGroup = enabledGroup
     TheEyeAddon.EventHandlers:RegisterListener(eventHandlerName, listener)
 end
+
+local function SetupStateGroup(component, stateGroup)
+    for eventHandlerName,v in pairs(enabledGroup.StateListeners) do
+        local listener = enabledGroup.StateListeners[eventHandlerName]
+        SetupListener(component, stateGroup, listener, eventHandlerName)
+    end
+end
