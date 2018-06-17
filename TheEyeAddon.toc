@@ -52,6 +52,7 @@ EventHandlers\EventHandlersHelpers.lua
 # ---------------------------
 # ---Types---
 UI\Objects\IconObjectType.lua
+UI\Objects\Pools.lua
 
 
 # ---Dimension Templates---
