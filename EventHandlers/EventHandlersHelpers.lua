@@ -43,6 +43,9 @@ function TheEyeAddon.EventHandlers:RegisterListener(eventHandlerKey, listener)
     if table.hasvalue(listeners, listener) == false then
         table.insert(listeners, listener)
 
+        if eventHandler.listenerCount == nil then 
+            eventHandler.listenerCount = 0
+        end
         eventHandler.listenerCount = eventHandler.listenerCount + 1
         if eventHandler.listenerCount == 1 then -- If the comparisonValue was 0 before
             RegisterToEvents(eventHandler)
