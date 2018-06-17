@@ -31,3 +31,18 @@ function TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
         Handlers.eventName.handlerCount = Handlers.eventName.handlerCount + 1
     end
 end
+
+function TheEyeAddon.Events.Coordinator:UnregisterHandler(handler)
+    for i,eventName in ipairs(handler.registerTo) do
+        table.removevalue(Handlers.eventName, handler)
+        
+        Handlers.eventName.handlerCount = Handlers.eventName.handlerCount - 1
+        if Handlers.eventName.handlerCount == 0 then
+            frame:UnregisterEvent(eventName)
+        elseif Handlers.eventName.handlerCount < 0 then
+            error("Registered handlers set to " ..
+                tostring(Handlers.eventName.handlerCount) ..
+                " but should never be below 0.")
+        end
+    end
+end
