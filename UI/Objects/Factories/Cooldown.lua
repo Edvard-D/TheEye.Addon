@@ -2,11 +2,10 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Factories.Cooldown = {}
 
 
-function TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, dimensionTable, isReversed)
+function TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, dimensionTable)
 	local instance = TheEyeAddon.UI.Objects.Factories.Frame:Create(
 		"Cooldown", parentFrame, "CooldownFrameTemplate", dimensionTable)
 
-	instance:SetReverse(isReversed)
 	instance:SetDrawBling(false)
 	instance:SetDrawEdge(false)
 

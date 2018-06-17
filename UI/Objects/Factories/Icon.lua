@@ -36,10 +36,9 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	return fileID
 end
 
+function TheEyeAddon.UI.Objects.Factories.Icon:Create(parentFrame, displayData)
+	local instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
 
-function TheEyeAddon.UI.Objects.Factories.Icon:CreateFromDisplayData(parentFrame, displayData)
-	local instance = TheEyeAddon.UI.Objects.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable, displayData.isReversed)
-	
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Objects.Factories.Texture:Create(instance, "BACKGROUND", iconTextureFileID)
 
