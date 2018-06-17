@@ -1,9 +1,11 @@
 local table = table
 
 function table.hasvalue(tab, value)
-    for k,v in tab do
-        if v == value then
-            return true
+    if tab ~= nil then
+        for k,v in tab do
+            if v == value then
+                return true
+            end
         end
     end
 
@@ -11,12 +13,14 @@ function table.hasvalue(tab, value)
 end
 
 function table.removevalue(tab, value)
-    local count = 0
-    for k,v in tab do
-        count = count + 1
-        if v == value then
-            table.remove(tab, count)
-            return
+    if tab ~= nil then
+        local count = 0
+        for k,v in tab do
+            count = count + 1
+            if v == value then
+                table.remove(tab, count)
+                return
+            end
         end
     end
 end
