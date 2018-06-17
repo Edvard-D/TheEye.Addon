@@ -28,6 +28,11 @@ function TheEyeAddon.UI.Modules.Components:SetupComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Enabled)
 end
 
+function TheEyeAddon.UI.Modules.Components:TeardownComponent(component)
+    TeardownStateGroup(component.StateGroups.Enabled)
+    TeardownStateGroup(component.StateGroups.Visible)
+end
+
 -- STATE CHANGES
 function TheEyeAddon.UI.Modules.Components:OnStateChange(stateListener, newState)
     local stateGroup = stateListener.stateGroup
