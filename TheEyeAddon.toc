@@ -56,7 +56,7 @@ EventHandlers\EventHandlersHelpers.lua
 # ---------------------------
 # |	 UI\DimensionTemplates	|
 # ---------------------------
-UI\Objects\DimensionTemplates\Icon_Large.lua
+UI\DimensionTemplates\Icon_Large.lua
 
 
 
@@ -74,17 +74,22 @@ UI\Factories\Icon.lua
 
 
 # ---------------------------
+# |		  UI\Modules		|
+# ---------------------------
+UI\Modules\UIModulesHelpers.lua
+
+UI\Modules\Primary.lua
+
+
+
+# ---------------------------
 # |		 UI\Components		|
 # ---------------------------
 UI\Components\UIComponentHelpers.lua
 
 
-
-# ---------------------------
-# |		  UI\Modules		|
-# ---------------------------
-UI\Modules\UIModulesHelpers.lua
-UI\Modules\Primary.lua
+# --- Primary ---
+UI\Components\Primary\MindFlay.lua
 
 
 
