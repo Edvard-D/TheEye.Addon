@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Modules.Instances.Primary.Components.Spell_15407 =
+TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
 {
     priority = nil,
     tags = { "ICON", "PRIMARY", "SPELL", "DAMAGE" },

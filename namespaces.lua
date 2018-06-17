@@ -8,4 +8,3 @@ TheEyeAddon = {}
         TheEyeAddon.UI.Factories = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Modules = {}
-            TheEyeAddon.UI.Modules.Instances = {}

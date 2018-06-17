@@ -17,17 +17,19 @@ end
 
 
 function TheEyeAddon.UI.Modules:Setup()
-    for k,v in pairs(TheEyeAddon.UI.Modules.Instances) do
-        if TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k) == false then
-            SetupModule(TheEyeAddon.UI.Modules.Instances[k])
+    for k,v in pairs(TheEyeAddon.UI.Modules) do
+        if type(TheEyeAddon.UI.Modules[k]) == "table" and
+        (TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k)) == false then
+            SetupModule(TheEyeAddon.UI.Modules[k])
         end
     end
 end
 
 function TheEyeAddon.UI.Modules:Teardown()
     for k,v in pairs(TheEyeAddon.UI.Modules) do
-        if table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k) == false then
-            TeardownModule(TheEyeAddon.UI.Modules.Instances[k])
+        if type(TheEyeAddon.UI.Modules[k]) == "table" and
+        (TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, k)) == false then
+            TeardownModule(TheEyeAddon.UI.Modules[k])
         end
     end
 end

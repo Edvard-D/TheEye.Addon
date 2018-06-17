@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 
-TheEyeAddon.UI.Modules.Instances.Primary =
+TheEyeAddon.UI.Modules.Primary =
 {
     tags = { "PRIMARY" },
     sortType = nil, --TheEyeAddon.UI.SortType.prioritySort,
