@@ -68,8 +68,8 @@ function TheEyeAddon.Events.Handlers:EvaluateState(handler, eventData)
         for comparison,comparisonValues in pairs(handler.Comparisons) do
             for comparisonValue,listeners in pairs(comparisonValues) do
                 local evaluatedState = comparison(evaluatedValue, comparisonValue)
-                if evaluatedState ~= comparisonValue.currentState then
-                    comparisonValue.currentState = newState
+                if evaluatedState ~= comparisonValues[comparisonValue].currentState then
+                    comparisonValues[comparisonValue].currentState = newState
                     TheEyeAddon.Events.Handlers:NotifyListeners(listeners, evaluatedState)
                 end
             end
