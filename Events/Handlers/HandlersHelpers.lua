@@ -79,6 +79,6 @@ end
 
 function TheEyeAddon.Events.Handlers:NotifyListeners(listeners, newState)
     for k,listener in pairs(listeners) do
-        TheEyeAddon.UI.Modules.Components:OnStateChange(listener, newState)
+        TheEyeAddon.UI.Components:OnStateChange(listener, newState)
     end
 end
