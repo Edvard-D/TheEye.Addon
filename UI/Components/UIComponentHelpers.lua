@@ -11,6 +11,7 @@ local function SetupListener(module, component, stateGroup, listener, handlerNam
 end
 
 local function SetupStateGroup(module, component, stateGroup)
+    stateGroup.stateKey = 0
     for handlerName,v in pairs(stateGroup.StateListeners) do
         local listener = stateGroup.StateListeners[handlerName]
         SetupListener(module, component, stateGroup, listener, handlerName)
