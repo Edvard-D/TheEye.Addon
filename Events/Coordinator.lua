@@ -2,15 +2,15 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = { Handlers = {} }
 local Handlers = TheEyeAddon.Events.Coordinator.Handlers
 
+
 local frame = CreateFrame("Frame", nil, UIParent)
-frame:SetScript("OnEvent", TheEyeAddon.Events.Coordinator.HandleEvent)
-
-
-function TheEyeAddon.Events.Coordinator:HandleEvent(event)
-    for i,handler in ipairs(Handlers.event) do
-        TheEyeAddon.Events.Handlers:EvaluateState(handler, event)
+local function HandleEvent(self, eventName)
+    for i,handler in ipairs(Handlers.eventName) do
+        TheEyeAddon.Events.Handlers:EvaluateState(handler, eventName)
     end
 end
+frame:SetScript("OnEvent", HandleEvent)
+
 
 function TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
     for i,eventName in ipairs(handler.registerTo) do
