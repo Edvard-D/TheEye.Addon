@@ -8,19 +8,19 @@ local function GetComparisonValues(handler, comparison)
         handler.Comparisons = {}
     end
 
-    if handler.Comparisons.comparison == nil then
-        handler.Comparisons.comparison = {}
+    if handler.Comparisons[comparison] == nil then
+        handler.Comparisons[comparison] = {}
     end
-    return handler.Comparisons.comparison
+    return handler.Comparisons[comparison]
 end
 
 local function GetComparisonValueListeners(handler, comparison, comparisonValue)
     local comparisonValues = GetComparisonValues(handler, comparison)
 
-    if comparisonValues.value == nil then
-        comparisonValues.value = {}
+    if comparisonValues[comparisonValue] == nil then
+        comparisonValues[comparisonValue] = {}
     end
-    return comparisonValues.value
+    return comparisonValues[comparisonValue]
 end
 
 
@@ -28,18 +28,14 @@ function TheEyeAddon.Events.Handlers:RegisterListener(handlerKey, listener)
     local handler = TheEyeAddon.Events.Handlers[handlerKey]
     local listeners = GetComparisonValueListeners(handler, listener.comparison, listener.comparisonValue)
 
-    if table.hasvalue(listeners, listener) == false then
-        table.insert(listeners, listener)
+    table.insert(listeners, listener)
 
-        if handler.listenerCount == nil then 
-            handler.listenerCount = 0
-        end
-        handler.listenerCount = handler.listenerCount + 1
-        if handler.listenerCount == 1 then -- If the comparisonValue was 0 before
-            TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
-        end
-    else
-        error("Trying to add a duplicate listener to an event handler.")
+    if handler.listenerCount == nil then 
+        handler.listenerCount = 0
+    end
+    handler.listenerCount = handler.listenerCount + 1
+    if handler.listenerCount == 1 then -- If the comparisonValue was 0 before
+        TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
     end
 end
 
