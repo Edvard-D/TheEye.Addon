@@ -7,7 +7,7 @@ TheEyeAddon.UI.ParentFrame:RegisterEvent("ADDON_LOADED")
 TheEyeAddon.UI.ParentFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 
 
-function TheEyeAddon.Initializer:OnEvent(event, arg1)
+local function HandleEvent(self, event, arg1)
     local _, class, _ = UnitClass("player")
     local previousSpec = TheEyeAddon.CurrentSpec
     TheEyeAddon.CurrentSpec = GetSpecialization()
@@ -25,4 +25,4 @@ function TheEyeAddon.Initializer:OnEvent(event, arg1)
 end
 
 
-TheEyeAddon.UI.ParentFrame:SetScript("OnEvent", TheEyeAddon.Initializer.OnEvent)
+TheEyeAddon.UI.ParentFrame:SetScript("OnEvent", HandleEvent)
