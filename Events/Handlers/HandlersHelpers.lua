@@ -66,7 +66,7 @@ function TheEyeAddon.Events.Handlers:EvaluateState(handler, eventData)
     if evaluatedValue ~= handler.currentValue then        
         handler.currentValue = evaluatedValue
         for comparison,comparisonValues in pairs(handler.Comparisons) do
-            for comparisonValue,listeners in pairs(values) do
+            for comparisonValue,listeners in pairs(comparisonValues) do
                 local evaluatedState = comparison(evaluatedValue, comparisonValue)
                 if evaluatedState ~= comparisonValue.currentState then
                     comparisonValue.currentState = newState
