@@ -35,7 +35,7 @@ function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
         Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount - 1
         if Evaluators[eventName].evaluatorCount == 0 then
             frame:UnregisterEvent(eventName)
-        elseif Evaluators[eventName].evaluatorCount < 0 then
+        elseif Evaluators[eventName].evaluatorCount < 0 then -- DEBUG
             error("Registered evaluators set to " ..
                 tostring(Evaluators[eventName].evaluatorCount) ..
                 " but should never be below 0.")
