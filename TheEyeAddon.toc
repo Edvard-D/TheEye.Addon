@@ -51,9 +51,9 @@ UI\Fonts\Templates.lua
 # ---------------------------
 Events\Coordinator.lua
 
-Events\Handlers\HandlersHelpers.lua
+Events\Evaluators\EvaluatorsHelpers.lua
 
-Events\Handlers\Target.lua
+Events\Evaluators\Target.lua
 
 
 

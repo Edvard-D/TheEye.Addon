@@ -1,43 +1,43 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Coordinator = { Handlers = {} }
-local Handlers = TheEyeAddon.Events.Coordinator.Handlers
+TheEyeAddon.Events.Coordinator = { Evaluators = {} }
+local Evaluators = TheEyeAddon.Events.Coordinator.Evaluators
 
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local function HandleEvent(self, eventName)
-    for i,handler in ipairs(Handlers[eventName]) do
-        TheEyeAddon.Events.Handlers:EvaluateState(handler, eventName)
+    for i,evaluator in ipairs(Evaluators[eventName]) do
+        TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName)
     end
 end
 frame:SetScript("OnEvent", HandleEvent)
 
 
-function TheEyeAddon.Events.Coordinator:RegisterHandler(handler)
-    for i,eventName in ipairs(handler.registerTo) do
-        if Handlers[eventName] == nil then
-            Handlers[eventName] = { handler }
+function TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
+    for i,eventName in ipairs(evaluator.registerTo) do
+        if Evaluators[eventName] == nil then
+            Evaluators[eventName] = { evaluator }
             frame:RegisterEvent(eventName)
         else
-            table.insert(Handlers[eventName], handler)
+            table.insert(Evaluators[eventName], evaluator)
         end
 
-        if Handlers[eventName].handlerCount == nil then
-            Handlers[eventName].handlerCount = 0
+        if Evaluators[eventName].evaluatorCount == nil then
+            Evaluators[eventName].evaluatorCount = 0
         end
-        Handlers[eventName].handlerCount = Handlers[eventName].handlerCount + 1
+        Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount + 1
     end
 end
 
-function TheEyeAddon.Events.Coordinator:UnregisterHandler(handler)
-    for i,eventName in ipairs(handler.registerTo) do
-        table.removevalue(Handlers[eventName], handler)
+function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
+    for i,eventName in ipairs(evaluator.registerTo) do
+        table.removevalue(Evaluators[eventName], evaluator)
         
-        Handlers[eventName].handlerCount = Handlers[eventName].handlerCount - 1
-        if Handlers[eventName].handlerCount == 0 then
+        Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount - 1
+        if Evaluators[eventName].evaluatorCount == 0 then
             frame:UnregisterEvent(eventName)
-        elseif Handlers[eventName].handlerCount < 0 then
-            error("Registered handlers set to " ..
-                tostring(Handlers[eventName].handlerCount) ..
+        elseif Evaluators[eventName].evaluatorCount < 0 then
+            error("Registered evaluators set to " ..
+                tostring(Evaluators[eventName].evaluatorCount) ..
                 " but should never be below 0.")
         end
     end

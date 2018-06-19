@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local UnitCanAttack = UnitCanAttack
 
 
-TheEyeAddon.Events.Handlers.Target_Attackable =
+TheEyeAddon.Events.Evaluators.Target_Attackable =
 {
     registerTo = { "PLAYER_TARGET_CHANGED" },
     Evaluate = function()
