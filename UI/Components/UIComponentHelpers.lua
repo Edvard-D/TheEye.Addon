@@ -61,6 +61,7 @@ end
 
 function TheEyeAddon.UI.Components:EnableComponent(module, component)
     SetupStateGroup(module, component, component.StateGroups.Visible)
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:DisableComponent(module, component)
@@ -68,15 +69,18 @@ function TheEyeAddon.UI.Components:DisableComponent(module, component)
     if component.StateGroups.Visible.currentState == true then
         TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
     end
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, false)
 end
 
 function TheEyeAddon.UI.Components:ShowComponent(module, component)
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
     module:OnComponentVisibleChanged()
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:HideComponent(module, component)
     component.frame:Release()
     component.frame = nil
     module:OnComponentVisibleChanged()
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, false)
 end
