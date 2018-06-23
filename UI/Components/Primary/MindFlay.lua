@@ -29,7 +29,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         {
             OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
-            validKeys = { 4, 6 },
+            validKeys = { 0, 4, 6 },
             StateListeners =
             {
                 Unit_Casting =
