@@ -65,6 +65,8 @@ function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventData, ...)
     local key, evaluatedState = evaluator:Evaluate(eventData, ...)
     local valueGroup = evaluator.ValueGroups[key]
 
+    print("Evaluators:EvaluateState ValueGroup    " .. key) -- DEBUG
+
     if evaluatedState ~= valueGroup.currentState then
         valueGroup.currentState = evaluatedState
         TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
