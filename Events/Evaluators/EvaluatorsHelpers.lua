@@ -41,6 +41,11 @@ function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
         TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
+        evaluator:SetInitialState(evaluator, listener.inputValues)
+    end
+
+    if valueGroup.currentState == true then
+        TheEyeAddon.UI.Components:OnStateChange(listener, valueGroup.currentState)
     end
 end
 
