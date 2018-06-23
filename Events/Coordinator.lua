@@ -43,22 +43,30 @@ end
 
 
 function TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
-    for i,eventName in ipairs(evaluator.gameEvents) do
-        InsertEvaluator(eventName, evaluator, true)
+    if evaluator.gameEvents ~= nil then
+        for i,eventName in ipairs(evaluator.gameEvents) do
+            InsertEvaluator(eventName, evaluator, true)
+        end
     end
 
-    for i,eventName in ipairs(evaluator.customEvents) do
-        InsertEvaluator(eventName, evaluator, false)
+    if evaluator.customEvents ~= nil then
+        for i,eventName in ipairs(evaluator.customEvents) do
+            InsertEvaluator(eventName, evaluator, false)
+        end
     end
 end
 
 function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    for i,eventName in ipairs(evaluator.gameEvents) do
-        RemoveEvaluator(eventName, evaluator, true)
+    if evaluator.gameEvents ~= nil then
+        for i,eventName in ipairs(evaluator.gameEvents) do
+            RemoveEvaluator(eventName, evaluator, true)
+        end
     end
     
-    for i,eventName in ipairs(evaluator.customEvents) do
-        RemoveEvaluator(eventName, evaluator, false)
+    if evaluator.customEvents ~= nil then
+        for i,eventName in ipairs(evaluator.customEvents) do
+            RemoveEvaluator(eventName, evaluator, false)
+        end
     end
 end
 
