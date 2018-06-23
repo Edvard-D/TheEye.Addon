@@ -21,7 +21,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
             {
                 Target_Attackable =
                 {
-                    stateValue = 2
+                    keyValue = 2
                 }
             }
         },
@@ -34,12 +34,12 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
             {
                 Unit_Casting =
                 {
-                    stateValue = 2,
+                    keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
                 Unit_CastStarted_Recently =
                 {
-                    stateValue = 4,
+                    keyValue = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 }
             }
