@@ -19,9 +19,7 @@ local function GetValueGroup(evaluator, inputValues)
     return evaluator.ValueGroups[valueGroupKey]
 end
 
-local function GetValueGroupListeners(evaluator, inputValues)
-    local valueGroup = GetValueGroup(evaluator, inputValues)
-    
+local function GetValueGroupListeners(valueGroup)
     if valueGroup.listeners == nil then
         valueGroup.listeners = {}
     end
@@ -32,7 +30,8 @@ end
 
 function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
-    local listeners = GetValueGroupListeners(evaluator, listener.inputValues)
+    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local listeners = GetValueGroupListeners(valueGroup)
 
     table.insert(listeners, listener)
 
@@ -47,7 +46,8 @@ end
 
 function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey]
-    local listeners = GetValueGroupListeners(evaluator, listener.inputValues)
+    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local listeners = GetValueGroupListeners(valueGroup)
 
     table.removevalue(listeners, listener)
 
