@@ -54,7 +54,7 @@ function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener
     table.removevalue(listeners, listener)
 
     evaluator.listenerCount = evaluator.listenerCount - 1
-    if evaluator.listenerCounter == 0 then -- If the comparisonValue was greater than 0 before
+    if evaluator.listenerCounter == 0 then -- If the listenerCounter was greater than 0 before
         TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
     elseif evaluator.listenerCounter < 0 then -- DEBUG
         error("listenerCount set to " ..
