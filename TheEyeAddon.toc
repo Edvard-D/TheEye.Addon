@@ -41,6 +41,7 @@ Namespaces.lua
 
 Comparisons.lua
 TableHelpers.lua
+Timers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
 
