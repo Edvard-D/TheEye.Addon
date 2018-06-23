@@ -11,7 +11,7 @@ local function SetupListener(module, component, stateGroup, listener, evaluatorN
 end
 
 local function SetupStateGroup(module, component, stateGroup)
-    stateGroup.combinedKeyValues = 0
+    stateGroup.combinedKeyValue = 0
     for evaluatorName,v in pairs(stateGroup.StateListeners) do
         local listener = stateGroup.StateListeners[evaluatorName]
         SetupListener(module, component, stateGroup, listener, evaluatorName)
@@ -41,14 +41,14 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     local previousState = stateGroup.currentState
     
     if newState == true then
-        stateGroup.combinedKeyValues = stateGroup.combinedKeyValues + stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue + stateListener.keyValue
     else
-        stateGroup.combinedKeyValues = stateGroup.combinedKeyValues - stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - stateListener.keyValue
     end
 
     stateGroup.currentState = not stateGroup.currentState
 
-    if stateGroup.validKeys[stateGroup.combinedKeyValues] ~= nil then
+    if stateGroup.validKeys[stateGroup.combinedKeyValue] ~= nil then
         stateGroup:OnValidKey(stateListener.module, stateListener.component)
     else
         stateGroup:OnInvalidKey(stateListener.module, stateListener.component)
