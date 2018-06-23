@@ -19,18 +19,29 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
             validKeys = { 2 },
             StateListeners =
             {
-                Target_Attackable = { stateValue = 2, comparison = TheEyeAddon.Comparisons.EqualTo, comparisonValue = true }
+                Target_Attackable =
+                {
+                    stateValue = 2
+                }
             }
         },
         Visible =
         {
             OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
-            validKeys = { 2, 4 },
+            validKeys = { 4, 6 },
             StateListeners =
             {
-                Player_Casting = { stateValue = 2, comparison = TheEyeAddon.Comparisons.NotEqualTo, comparisonValue = 15407 },
-                Player_RecentlyCast = { stateValue = 4, comparison = TheEyeAddon.Comparisons.EqualTo, comparisonValue = 15407 }
+                Unit_Casting =
+                {
+                    stateValue = 2,
+                    inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
+                },
+                Unit_CastStarted_Recently =
+                {
+                    stateValue = 4,
+                    inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
+                }
             }
         }
     }
