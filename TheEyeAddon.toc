@@ -54,6 +54,7 @@ Events\Coordinator.lua
 Events\Evaluators\EvaluatorsHelpers.lua
 
 Events\Evaluators\Target.lua
+Events\Evaluators\UnitSpellcast.lua
 
 
 
