@@ -4,9 +4,9 @@ local Evaluators = TheEyeAddon.Events.Coordinator.Evaluators
 
 
 local frame = CreateFrame("Frame", nil, UIParent)
-local function HandleEvent(self, eventName)
+local function HandleEvent(self, eventName, ...)
     for i,evaluator in ipairs(Evaluators[eventName]) do
-        TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName)
+        TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName, ...)
     end
 end
 frame:SetScript("OnEvent", HandleEvent)
