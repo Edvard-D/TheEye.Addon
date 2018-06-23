@@ -71,5 +71,7 @@ function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
 end
 
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
-    HandleEvent(frame, eventName, ...)
+    if Evaluators[event] ~= nil then
+        HandleEvent(frame, eventName, ...)
+    end
 end
