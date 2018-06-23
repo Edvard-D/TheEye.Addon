@@ -37,7 +37,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
-                Unit_Spellcast_ElapsedTime =
+                Unit_Spellcast_StartedRecently =
                 {
                     keyValue = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
