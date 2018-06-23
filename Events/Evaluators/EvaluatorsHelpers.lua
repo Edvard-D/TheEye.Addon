@@ -1,7 +1,5 @@
 local TheEyeAddon = TheEyeAddon
 
-local next = next
-
 
 local function GetValueGroup(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
