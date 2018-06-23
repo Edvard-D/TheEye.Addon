@@ -32,12 +32,12 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
             validKeys = { 0, 4, 6 },
             StateListeners =
             {
-                Unit_Casting =
+                Unit_Spellcast_Active =
                 {
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
-                Unit_CastStarted_Recently =
+                Unit_Spellcast_ElapsedTime =
                 {
                     keyValue = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
