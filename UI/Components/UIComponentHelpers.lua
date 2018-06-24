@@ -52,6 +52,8 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
         stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - stateListener.keyValue
     end
     
+    print("stateGroup.combinedKeyValue    " .. tostring(stateGroup.combinedKeyValue))
+
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
         stateGroup:OnValidKey(stateListener.module, stateListener.component)
     else
@@ -61,35 +63,41 @@ end
 
 function TheEyeAddon.UI.Components:EnableComponent(module, component)
     print("EnableComponent")
-    component.StateGroups.Enabled.currentState = true
-    SetupStateGroup(module, component, component.StateGroups.Visible)
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, true)
+    if component.StateGroups.Enabled.currentState ~= true then
+        component.StateGroups.Enabled.currentState = true
+        SetupStateGroup(module, component, component.StateGroups.Visible)
+        TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, true)
+    end
 end
 
 function TheEyeAddon.UI.Components:DisableComponent(module, component)
     print("DisableComponent")
-    if component.StateGroups.Visible.currentState == true then
+    if component.StateGroups.Enabled.currentState ~= false then
         TheEyeAddon.UI.Components:HideComponent(module, component)
-    end
-    TeardownStateGroup(component.StateGroups.Visible)
+        TeardownStateGroup(component.StateGroups.Visible)
 
-    component.StateGroups.Enabled.currentState = false
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, false)
+        component.StateGroups.Enabled.currentState = false
+        TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, false)
+    end
 end
 
 function TheEyeAddon.UI.Components:ShowComponent(module, component)
     print("ShowComponent")
-    component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
-    component.StateGroups.Visible.currentState = true
-    module:OnComponentVisibleChanged()
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, true)
+    if component.StateGroups.Visible.currentState ~= true then
+        component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
+        component.StateGroups.Visible.currentState = true
+        module:OnComponentVisibleChanged()
+        TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, true)
+    end
 end
 
 function TheEyeAddon.UI.Components:HideComponent(module, component)
     print("HideComponent")
-    component.frame:Release()
-    component.frame = nil
-    component.StateGroups.Visible.currentState = false
-    module:OnComponentVisibleChanged()
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, false)
+    if component.StateGroups.Visible.currentState ~= false then
+        component.frame:Release()
+        component.frame = nil
+        component.StateGroups.Visible.currentState = false
+        module:OnComponentVisibleChanged()
+        TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, false)
+    end
 end
