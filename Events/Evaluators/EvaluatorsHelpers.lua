@@ -52,9 +52,9 @@ end
 
 local function DecreaseEvaluatorListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
-    if evaluator.listenerCounter == 0 then -- If the listenerCounter was greater than 0 before
+    if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    elseif evaluator.listenerCounter < 0 then -- DEBUG
+    elseif evaluator.listenerCount < 0 then -- DEBUG
         error("Evaluator listenerCount set to " ..
             tostring(evaluator.listenerCount) ..
             " but should never be below 0.")
@@ -63,7 +63,7 @@ end
 
 local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
     valueGroup.listenerCount = evaluator.listenerCount - 1
-    if valueGroup.listenerCounter == 0 then -- If the listenerCounter was greater than 0 before
+    if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         table.removevalue(evaluator, valueGroup)
     end
 end
