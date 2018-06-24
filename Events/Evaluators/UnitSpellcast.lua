@@ -11,8 +11,18 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
         
         if event == "UNIT_SPELLCAST_START" then
             return table.concat({ unit, spellID }), true
-        else
+        else -- UNIT_SPELLCAST_STOP
             return table.concat({ unit, spellID }), false
+        end
+    end,
+    SetInitialState = function(self, valueGroup, inputValues)
+        local expectedSpellID = inputValues[2]
+        local currentSpellID = select(9, UnitCastingInfo(inputValues[1]))
+
+        if currentSpellID == expectedSpellID then
+            valueGroup.currentState = true
+        else
+            valueGroup.currentState = false
         end
     end
 }
@@ -42,6 +52,20 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
         else -- UNIT_SPELLCAST_STOP
             local unit, _, spellID = ...
             return table.concat({ unit, spellID }), false
+        end
+    end,
+    SetInitialState = function(self, valueGroup, inputValues)
+        local unit = inputValues[1]
+        local expectedSpellID = inputValues[2]
+        local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
+        local trueStateEndTime = (startTime / 1000) + self.castLength
+        local timerLength = trueStateEndTime - GetTime()
+
+        if currentSpellID == expectedSpellID and timerLength > 0 then
+            TheEyeAddon.Timers:StartEventTimer(self.castLength, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
+            valueGroup.currentState = true
+        else
+            valueGroup.currentState = false
         end
     end
 }
