@@ -31,7 +31,7 @@ end
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(event, ...)
     local unit, _, spellID = ...
     
-    if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
+    if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         return table.concat({ unit, spellID }), true
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
         return table.concat({ unit, spellID }), false

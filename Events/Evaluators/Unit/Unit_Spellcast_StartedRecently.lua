@@ -42,7 +42,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitial
 end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:Evaluate(event, ...)
-    if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
+    if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))
 
