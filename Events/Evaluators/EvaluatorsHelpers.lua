@@ -54,10 +54,6 @@ local function DecreaseEvaluatorListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    elseif evaluator.listenerCount < 0 then -- DEBUG
-        error("Evaluator listenerCount set to " ..
-            tostring(evaluator.listenerCount) ..
-            " but should never be below 0.")
     end
 end
 
