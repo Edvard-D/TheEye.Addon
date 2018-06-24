@@ -1,5 +1,9 @@
 local TheEyeAddon = TheEyeAddon
 
+local pairs = pairs
+local table = table
+local type = type
+
 
 local function SetupModule(module)
     module.frame = module.frame or TheEyeAddon.UI.Factories.Frame:Create("Frame", TheEyeAddon.UI.ParentFrame, nil, module.dimensionTemplate)

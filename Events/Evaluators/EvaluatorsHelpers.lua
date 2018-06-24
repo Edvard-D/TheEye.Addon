@@ -1,5 +1,8 @@
 local TheEyeAddon = TheEyeAddon
 
+local ipairs = ipairs
+local table = table
+
 
 local function GetValueGroup(evaluator, inputValues)
     if evaluator.ValueGroups == nil then

@@ -1,5 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
+local pairs = pairs
+
 
 -- SETUP/TEARDOWN
 local function SetupListener(module, component, stateGroup, listener, evaluatorName)
@@ -47,7 +49,7 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     end
 
     stateGroup.currentState = not stateGroup.currentState
- 
+    
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
         stateGroup:OnValidKey(stateListener.module, stateListener.component)
     else

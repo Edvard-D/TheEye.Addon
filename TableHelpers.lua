@@ -1,4 +1,6 @@
+local pairs = pairs
 local table = table
+
 
 function table.hasvalue(tab, value)
     if tab ~= nil then

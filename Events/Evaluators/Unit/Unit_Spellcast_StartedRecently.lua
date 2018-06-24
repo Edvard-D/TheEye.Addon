@@ -1,6 +1,9 @@
 local TheEyeAddon = TheEyeAddon
 
+local GetTime = GetTime
 local select = select
+local table = table
+local UnitCastingInfo = UnitCastingInfo
 
 
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }

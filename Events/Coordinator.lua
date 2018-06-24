@@ -2,6 +2,9 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = { Evaluators = {} }
 local Evaluators = TheEyeAddon.Events.Coordinator.Evaluators
 
+local ipairs = ipairs
+local table = table
+
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local function HandleEvent(self, eventName, ...)

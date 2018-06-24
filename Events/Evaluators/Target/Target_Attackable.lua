@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 local UnitCanAttack = UnitCanAttack
+local select = select
 
 
 -- inputValues = nil

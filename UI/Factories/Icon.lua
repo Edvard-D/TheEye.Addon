@@ -3,7 +3,9 @@ TheEyeAddon.UI.Factories.Icon = {}
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
+local ipairs = ipairs
 local Pool = {}
+local table = table
 
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
