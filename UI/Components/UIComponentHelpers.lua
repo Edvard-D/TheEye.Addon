@@ -1,5 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
+local pairs = pairs
+
 
 -- SETUP/TEARDOWN
 local function SetupListener(module, component, stateGroup, listener, evaluatorName)
@@ -11,17 +13,21 @@ local function SetupListener(module, component, stateGroup, listener, evaluatorN
 end
 
 local function SetupStateGroup(module, component, stateGroup)
-    stateGroup.stateKey = 0
+    stateGroup.combinedKeyValue = 0
     for evaluatorName,v in pairs(stateGroup.StateListeners) do
         local listener = stateGroup.StateListeners[evaluatorName]
         SetupListener(module, component, stateGroup, listener, evaluatorName)
+    end
+
+    if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
+        stateGroup:OnValidKey(module, component)
     end
 end
 
 local function TeardownStateGroup(stateGroup)
     for evaluatorName,v in pairs(stateGroup.StateListeners) do
         local listener = stateGroup.StateListeners[evaluatorName]
-        TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
+        TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
     end
 end
 
@@ -41,46 +47,49 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     local previousState = stateGroup.currentState
     
     if newState == true then
-        stateGroup.combinedKeyValues = stateGroup.combinedKeyValues + stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue + stateListener.keyValue
     else
-        stateGroup.combinedKeyValues = stateGroup.combinedKeyValues - stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - stateListener.keyValue
     end
-
-    if stateGroup.validKeys[stateGroup.combinedKeyValues] ~= nil then
-        stateGroup.currentState = true
-        if previousState == false or previousState == nil then
-            stateGroup:OnValidKey(stateListener.module, stateListener.component)
-        end
+    
+    if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
+        stateGroup:OnValidKey(stateListener.module, stateListener.component)
     else
-        stateGroup.currentState = false
-        if previousState == true or previousState == nil then
-            stateGroup:OnInvalidKey(stateListener.module, stateListener.component)
-        end
+        stateGroup:OnInvalidKey(stateListener.module, stateListener.component)
     end
 end
 
 function TheEyeAddon.UI.Components:EnableComponent(module, component)
+    print("EnableComponent")
+    component.StateGroups.Enabled.currentState = true
     SetupStateGroup(module, component, component.StateGroups.Visible)
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:DisableComponent(module, component)
-    TeardownStateGroup(component.StateGroups.Visible)
+    print("DisableComponent")
     if component.StateGroups.Visible.currentState == true then
-        TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
+        TheEyeAddon.UI.Components:HideComponent(module, component)
     end
+    TeardownStateGroup(component.StateGroups.Visible)
+
+    component.StateGroups.Enabled.currentState = false
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, false)
 end
 
 function TheEyeAddon.UI.Components:ShowComponent(module, component)
+    print("ShowComponent")
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
+    component.StateGroups.Visible.currentState = true
     module:OnComponentVisibleChanged()
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:HideComponent(module, component)
+    print("HideComponent")
     component.frame:Release()
     component.frame = nil
+    component.StateGroups.Visible.currentState = false
     module:OnComponentVisibleChanged()
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, false)
 end

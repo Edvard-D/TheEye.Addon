@@ -2,9 +2,13 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = { Evaluators = {} }
 local Evaluators = TheEyeAddon.Events.Coordinator.Evaluators
 
+local ipairs = ipairs
+local table = table
+
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local function HandleEvent(self, eventName, ...)
+    print ("Coordinator:HandleEvent    " .. eventName) -- DEBUG
     for i,evaluator in ipairs(Evaluators[eventName]) do
         TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName, ...)
     end
@@ -14,6 +18,7 @@ frame:SetScript("OnEvent", HandleEvent)
 local function InsertEvaluator(eventName, evaluator, isGameEvent)
     if Evaluators[eventName] == nil then
         Evaluators[eventName] = { evaluator }
+        print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:RegisterEvent(eventName)
@@ -22,46 +27,60 @@ local function InsertEvaluator(eventName, evaluator, isGameEvent)
         table.insert(Evaluators[eventName], evaluator)
     end
 
-    if Evaluators[eventName].evaluatorCount == nil then
-        Evaluators[eventName].evaluatorCount = 0
+    local eventGroup = Evaluators[eventName]
+    if eventGroup.evaluatorCount == nil then
+        eventGroup.evaluatorCount = 0
     end
-    Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount + 1
+    eventGroup.evaluatorCount = eventGroup.evaluatorCount + 1
 end
 
 local function RemoveEvaluator(eventName, evaluator, isGameEvent)
-    table.removevalue(Evaluators[eventName], evaluator)
+    local eventGroup = Evaluators[eventName]
+    table.removevalue(eventGroup, evaluator)
     
-    Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount - 1
-    if isGameEvent == true and Evaluators[eventName].evaluatorCount == 0 then
-        frame:UnregisterEvent(eventName)
-    elseif Evaluators[eventName].evaluatorCount < 0 then -- DEBUG
-        error("Registered evaluators set to " ..
-            tostring(Evaluators[eventName].evaluatorCount) ..
-            " but should never be below 0.")
+    eventGroup.evaluatorCount = eventGroup.evaluatorCount - 1
+    if eventGroup.evaluatorCount == 0 then -- If the evaluatorCount was greater than 0 before
+        Evaluators[eventName] = nil
+        eventGroup = nil
+        print ("UnregisterEvent    " .. eventName) -- DEBUG
+
+        if isGameEvent == true then
+            frame:UnregisterEvent(eventName)
+        end
     end
 end
 
 
 function TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
-    for i,eventName in ipairs(evaluator.gameEvents) do
-        InsertEvaluator(eventName, evaluator, true)
+    if evaluator.gameEvents ~= nil then
+        for i,eventName in ipairs(evaluator.gameEvents) do
+            InsertEvaluator(eventName, evaluator, true)
+        end
     end
 
-    for i,eventName in ipairs(evaluator.customEvents) do
-        InsertEvaluator(eventName, evaluator, false)
+    if evaluator.customEvents ~= nil then
+        for i,eventName in ipairs(evaluator.customEvents) do
+            InsertEvaluator(eventName, evaluator, false)
+        end
     end
 end
 
 function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    for i,eventName in ipairs(evaluator.gameEvents) do
-        RemoveEvaluator(eventName, evaluator, true)
+    if evaluator.gameEvents ~= nil then
+        for i,eventName in ipairs(evaluator.gameEvents) do
+            RemoveEvaluator(eventName, evaluator, true)
+        end
     end
     
-    for i,eventName in ipairs(evaluator.customEvents) do
-        RemoveEvaluator(eventName, evaluator, false)
+    if evaluator.customEvents ~= nil then
+        for i,eventName in ipairs(evaluator.customEvents) do
+            RemoveEvaluator(eventName, evaluator, false)
+        end
     end
 end
 
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
-    HandleEvent(frame, eventName, ...)
+    if Evaluators[eventName] ~= nil then
+        HandleEvent(frame, eventName, ...)
+    end
 end

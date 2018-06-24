@@ -8,7 +8,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,
-        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon
+        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.Display
     },
     StateGroups =
     {
@@ -16,7 +16,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         {
             OnValidKey = TheEyeAddon.UI.Components.EnableComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.DisableComponent,
-            validKeys = { 2 },
+            validKeys = { [2] = true },
             StateListeners =
             {
                 Target_Attackable =
@@ -29,7 +29,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         {
             OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
-            validKeys = { 0, 4, 6 },
+            validKeys = { [0] = true, [4] = true, [6] = true},
             StateListeners =
             {
                 Unit_Spellcast_Active =
@@ -37,7 +37,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
-                Unit_Spellcast_ElapsedTime =
+                Unit_Spellcast_StartedRecently =
                 {
                     keyValue = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }

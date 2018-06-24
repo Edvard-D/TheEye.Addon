@@ -1,5 +1,8 @@
 local TheEyeAddon = TheEyeAddon
 
+local ipairs = ipairs
+local table = table
+
 
 local function GetValueGroup(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
@@ -19,9 +22,7 @@ local function GetValueGroup(evaluator, inputValues)
     return evaluator.ValueGroups[valueGroupKey]
 end
 
-local function GetValueGroupListeners(evaluator, inputValues)
-    local valueGroup = GetValueGroup(evaluator, inputValues)
-    
+local function GetValueGroupListeners(valueGroup)
     if valueGroup.listeners == nil then
         valueGroup.listeners = {}
     end
@@ -29,13 +30,7 @@ local function GetValueGroupListeners(evaluator, inputValues)
     return valueGroup.listeners
 end
 
-
-function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
-    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
-    local listeners = GetValueGroupListeners(evaluator, listener.inputValues)
-
-    table.insert(listeners, listener)
-
+local function IncreaseEvaluatorListenerCount(evaluator)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
     end
@@ -45,29 +40,70 @@ function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     end
 end
 
-function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener)
-    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey]
-    local listeners = GetValueGroupListeners(evaluator, listener.inputValues)
-
-    table.removevalue(listeners, listener)
-
-    evaluator.listenerCount = evaluator.listenerCount - 1
-    if evaluator.listenerCounter == 0 then -- If the listenerCounter was greater than 0 before
-        TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    elseif evaluator.listenerCounter < 0 then -- DEBUG
-        error("listenerCount set to " ..
-            tostring(evaluator.listenerCount) ..
-            " but should never be below 0.")
+local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
+    if valueGroup.listenerCount == nil then 
+        valueGroup.listenerCount = 0
+    end
+    valueGroup.listenerCount = valueGroup.listenerCount + 1
+    if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
+        evaluator:SetInitialState(valueGroup, listener.inputValues)
     end
 end
 
-function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventData, ...)
-    local key, evaluatedState = evaluator:Evaluate(eventData, ...)
-    local valueGroup = evaluator.ValueGroups[key]
+local function DecreaseEvaluatorListenerCount(evaluator)
+    evaluator.listenerCount = evaluator.listenerCount - 1
+    if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
+    end
+end
 
-    if evaluatedState ~= valueGroup.currentState then
-        valueGroup.currentState = evaluatedState
-        TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
+    valueGroup.listenerCount = evaluator.listenerCount - 1
+    if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        table.removevalue(evaluator, valueGroup)
+    end
+end
+
+
+function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
+    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
+    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local listeners = GetValueGroupListeners(valueGroup)
+
+    table.insert(listeners, listener)
+
+    IncreaseEvaluatorListenerCount(evaluator)
+    IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
+
+    if valueGroup.currentState == true then
+        TheEyeAddon.UI.Components:OnStateChange(listener, true)
+    end
+end
+
+function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener)
+    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey]
+    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local listeners = GetValueGroupListeners(valueGroup)
+
+    table.removevalue(listeners, listener)
+    
+    DecreaseEvaluatorListenerCount(evaluator)
+    DecreaseValueGroupListenerCount(evaluator, valueGroup)
+end
+
+function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, event, ...)
+    local valueGroupKey = evaluator:GetKey(event, ...)
+    local valueGroup = evaluator.ValueGroups[valueGroupKey]
+
+    if valueGroup ~= nil then
+        local evaluatedState = evaluator:Evaluate(event, ...)
+
+        if evaluatedState ~= valueGroup.currentState then
+            print("Evaluators:EvaluateState ValueGroup    " .. valueGroupKey .. "    " .. tostring(evaluatedState)) -- DEBUG
+
+            valueGroup.currentState = evaluatedState
+            TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+        end
     end
 end
 

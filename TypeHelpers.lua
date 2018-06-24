@@ -4,12 +4,12 @@ TheEyeAddon.TypeHelpers = {}
 local setmetatable = setmetatable
 
 
-function TheEyeAddon.TypeHelpers:Protect(table)
+function TheEyeAddon.TypeHelpers:Protect(tbl)
 	return setmetatable({}, {
-     __index = table,
+     __index = tbl,
      __newindex = function(table, key, value)
                     error("Cannot change " ..
-                    tostring(table) ..
+                    tostring(tbl) ..
                     " value " ..
                     tostring(key) ..
                     " to " ..
