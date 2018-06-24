@@ -51,8 +51,6 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     else
         stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - stateListener.keyValue
     end
-    
-    print("stateGroup.combinedKeyValue    " .. tostring(stateGroup.combinedKeyValue))
 
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
         stateGroup:OnValidKey(stateListener.module, stateListener.component)
@@ -62,7 +60,6 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
 end
 
 function TheEyeAddon.UI.Components:EnableComponent(module, component)
-    print("EnableComponent")
     if component.StateGroups.Enabled.currentState ~= true then
         component.StateGroups.Enabled.currentState = true
         SetupStateGroup(module, component, component.StateGroups.Visible)
@@ -71,7 +68,6 @@ function TheEyeAddon.UI.Components:EnableComponent(module, component)
 end
 
 function TheEyeAddon.UI.Components:DisableComponent(module, component)
-    print("DisableComponent")
     if component.StateGroups.Enabled.currentState ~= false then
         TheEyeAddon.UI.Components:HideComponent(module, component)
         TeardownStateGroup(component.StateGroups.Visible)
@@ -82,7 +78,6 @@ function TheEyeAddon.UI.Components:DisableComponent(module, component)
 end
 
 function TheEyeAddon.UI.Components:ShowComponent(module, component)
-    print("ShowComponent")
     if component.StateGroups.Visible.currentState ~= true then
         component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
         component.StateGroups.Visible.currentState = true
@@ -92,7 +87,6 @@ function TheEyeAddon.UI.Components:ShowComponent(module, component)
 end
 
 function TheEyeAddon.UI.Components:HideComponent(module, component)
-    print("HideComponent")
     if component.StateGroups.Visible.currentState ~= false then
         component.frame:Release()
         component.frame = nil
