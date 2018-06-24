@@ -41,25 +41,39 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitial
     valueGroup.currentState = false
 end
 
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:GetKey(event, ...)
+    local unit
+    local spellID
+
+    if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
+        local unit, _, spellID = ...
+    elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
+        local unit, spellID, _ = ...
+    else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
+        local unit, _, spellID = ...
+    end
+    
+    return table.concat({ unit, spellID })
+end
+
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:Evaluate(event, ...)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))
 
         TheEyeAddon.Timers:StartEventTimer(self.castLength, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
-        return table.concat({ unit, spellID }), true
+        return true
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(4, ...)
         if timerDuration == self.castLength then
-            local unit, requiredSpellID, requiredCastID = ...
-            local _, _, _, _, _, _, castID, _, spellID = UnitCastingInfo(unit)
+            local unit, _, requiredCastID = ...
+            local castID = select(7, UnitCastingInfo(unit))
 
             if castID == requiredCastID then
-                return table.concat({ unit, spellID }), false
+                return false
             end
         end
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
-        local unit, _, spellID = ...
-        return table.concat({ unit, spellID }), false
+        return false
     end
 end

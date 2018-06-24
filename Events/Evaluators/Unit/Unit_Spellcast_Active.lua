@@ -28,12 +28,15 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:SetInitialState(val
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:GetKey(event, ...)
     local unit, _, spellID = ...
-    
+    return table.concat({ unit, spellID })
+end
+
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(event)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
-        return table.concat({ unit, spellID }), true
+        return true
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
-        return table.concat({ unit, spellID }), false
+        return false
     end
 end

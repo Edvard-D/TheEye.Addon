@@ -92,14 +92,18 @@ function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener
 end
 
 function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, event, ...)
-    local valueGroupKey, evaluatedState = evaluator:Evaluate(event, ...)
+    local valueGroupKey = evaluator:GetKey(event, ...)
     local valueGroup = evaluator.ValueGroups[valueGroupKey]
 
-    if valueGroup ~= nil and evaluatedState ~= valueGroup.currentState then
-        print("Evaluators:EvaluateState ValueGroup    " .. valueGroupKey .. "    " .. tostring(evaluatedState)) -- DEBUG
+    if valueGroup ~= nil then
+        local evaluatedState = evaluator:Evaluate(event, ...)
 
-        valueGroup.currentState = evaluatedState
-        TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+        if evaluatedState ~= valueGroup.currentState then
+            print("Evaluators:EvaluateState ValueGroup    " .. valueGroupKey .. "    " .. tostring(evaluatedState)) -- DEBUG
+
+            valueGroup.currentState = evaluatedState
+            TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+        end
     end
 end
 

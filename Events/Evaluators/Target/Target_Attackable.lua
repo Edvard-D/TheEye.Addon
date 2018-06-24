@@ -17,6 +17,10 @@ function TheEyeAddon.Events.Evaluators.Target_Attackable:SetInitialState(valueGr
     valueGroup.currentState = select(2, self.Evaluate())
 end
 
+function TheEyeAddon.Events.Evaluators.Target_Attackable:GetKey()
+    return "default"
+end
+
 function TheEyeAddon.Events.Evaluators.Target_Attackable:Evaluate()
-    return "default", UnitCanAttack("player", "target")
+    return UnitCanAttack("player", "target")
 end
