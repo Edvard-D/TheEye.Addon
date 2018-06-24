@@ -8,8 +8,8 @@ local table = table
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local function HandleEvent(self, eventName, ...)
+    print ("Coordinator:HandleEvent    " .. eventName) -- DEBUG
     for i,evaluator in ipairs(Evaluators[eventName]) do
-        print ("Coordinator:HandleEvent    " .. eventName) -- DEBUG
         TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName, ...)
     end
 end
@@ -20,6 +20,7 @@ local function InsertEvaluator(eventName, evaluator, isGameEvent)
         Evaluators[eventName] = { evaluator }
 
         if isGameEvent == true then
+            print ("RegisterEvent    " .. eventName) -- DEBUG
             frame:RegisterEvent(eventName)
         end
     else
@@ -37,6 +38,7 @@ local function RemoveEvaluator(eventName, evaluator, isGameEvent)
     
     Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount - 1
     if isGameEvent == true and Evaluators[eventName].evaluatorCount == 0 then
+        print ("UnregisterEvent    " .. eventName) -- DEBUG
         frame:UnregisterEvent(eventName)
     elseif Evaluators[eventName].evaluatorCount < 0 then -- DEBUG
         error("Registered evaluators set to " ..
