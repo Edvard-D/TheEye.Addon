@@ -18,6 +18,10 @@ local function SetupStateGroup(module, component, stateGroup)
         local listener = stateGroup.StateListeners[evaluatorName]
         SetupListener(module, component, stateGroup, listener, evaluatorName)
     end
+
+    if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
+        stateGroup:OnValidKey(module, component)
+    end
 end
 
 local function TeardownStateGroup(stateGroup)
@@ -58,11 +62,13 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
 end
 
 function TheEyeAddon.UI.Components:EnableComponent(module, component)
+    print("EnableComponent")
     SetupStateGroup(module, component, component.StateGroups.Visible)
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_ENABLED_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:DisableComponent(module, component)
+    print("DisableComponent")
     TeardownStateGroup(component.StateGroups.Visible)
     if component.StateGroups.Visible.currentState == true then
         TheEyeAddon.UI.Modules.Components:HideComponent(module, component)
@@ -71,12 +77,14 @@ function TheEyeAddon.UI.Components:DisableComponent(module, component)
 end
 
 function TheEyeAddon.UI.Components:ShowComponent(module, component)
+    print("ShowComponent")
     component.frame = component.DisplayData.factory:Claim(module.frame, component.DisplayData)
     module:OnComponentVisibleChanged()
     TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_COMPONENT_VISIBILE_CHANGED", component, true)
 end
 
 function TheEyeAddon.UI.Components:HideComponent(module, component)
+    print("HideComponent")
     component.frame:Release()
     component.frame = nil
     module:OnComponentVisibleChanged()
