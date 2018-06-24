@@ -80,7 +80,7 @@ function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
 end
 
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
-    if Evaluators[event] ~= nil then
+    if Evaluators[eventName] ~= nil then
         HandleEvent(frame, eventName, ...)
     end
 end
