@@ -18,9 +18,9 @@ frame:SetScript("OnEvent", HandleEvent)
 local function InsertEvaluator(eventName, evaluator, isGameEvent)
     if Evaluators[eventName] == nil then
         Evaluators[eventName] = { evaluator }
+        print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
-            print ("RegisterEvent    " .. eventName) -- DEBUG
             frame:RegisterEvent(eventName)
         end
     else
@@ -39,11 +39,14 @@ local function RemoveEvaluator(eventName, evaluator, isGameEvent)
     table.removevalue(eventGroup, evaluator)
     
     eventGroup.evaluatorCount = eventGroup.evaluatorCount - 1
-    if isGameEvent == true and eventGroup.evaluatorCount == 0 then -- If the evaluatorCount was greater than 0 before
-        print ("UnregisterEvent    " .. eventName) -- DEBUG
-        frame:UnregisterEvent(eventName)
+    if eventGroup.evaluatorCount == 0 then -- If the evaluatorCount was greater than 0 before
         Evaluators[eventName] = nil
         eventGroup = nil
+        print ("UnregisterEvent    " .. eventName) -- DEBUG
+
+        if isGameEvent == true then
+            frame:UnregisterEvent(eventName)
+        end
     end
 end
 
