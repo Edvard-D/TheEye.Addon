@@ -39,7 +39,7 @@ local function RemoveEvaluator(eventName, evaluator, isGameEvent)
     table.removevalue(eventGroup, evaluator)
     
     eventGroup.evaluatorCount = eventGroup.evaluatorCount - 1
-    if isGameEvent == true and eventGroup.evaluatorCount == 0 then
+    if isGameEvent == true and eventGroup.evaluatorCount == 0 then -- If the evaluatorCount was greater than 0 before
         print ("UnregisterEvent    " .. eventName) -- DEBUG
         frame:UnregisterEvent(eventName)
         Evaluators[eventName] = nil
