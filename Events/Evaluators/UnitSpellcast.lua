@@ -13,7 +13,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
         "UNIT_SPELLCAST_START",
         "UNIT_SPELLCAST_STOP"
     },
-    Evaluate = function(event, ...)
+    Evaluate = function(self, event, ...)
         local unit, _, spellID = ...
         
         if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
@@ -49,7 +49,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
         "THEEYE_UNIT_SPELLCAST_TIMER_END"
     },
     castLength = 0.5,
-    Evaluate = function(event, ...)
+    Evaluate = function(self, event, ...)
         if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
             local unit, _, spellID = ...
             local castID = select(7, UnitCastingInfo(unit))
