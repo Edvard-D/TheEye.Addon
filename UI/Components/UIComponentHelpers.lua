@@ -23,7 +23,7 @@ end
 local function TeardownStateGroup(stateGroup)
     for evaluatorName,v in pairs(stateGroup.StateListeners) do
         local listener = stateGroup.StateListeners[evaluatorName]
-        TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
+        TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
     end
 end
 
