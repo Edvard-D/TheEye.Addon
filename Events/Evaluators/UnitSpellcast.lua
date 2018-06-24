@@ -6,13 +6,19 @@ local select = select
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
 {
-    gameEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP" },
+    gameEvents =
+    {
+        "UNIT_SPELLCAST_CHANNEL_START",
+        "UNIT_SPELLCAST_CHANNEL_STOP",
+        "UNIT_SPELLCAST_START",
+        "UNIT_SPELLCAST_STOP"
+    },
     Evaluate = function(event, ...)
         local unit, _, spellID = ...
         
-        if event == "UNIT_SPELLCAST_START" then
+        if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
             return table.concat({ unit, spellID }), true
-        else -- UNIT_SPELLCAST_STOP
+        else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
             return table.concat({ unit, spellID }), false
         end
     end,
@@ -31,11 +37,20 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
 {
-    gameEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP" },
-    customEvents = { "THEEYE_UNIT_SPELLCAST_TIMER_END" },
+    gameEvents =
+    {
+        "UNIT_SPELLCAST_CHANNEL_START",
+        "UNIT_SPELLCAST_CHANNEL_STOP",
+        "UNIT_SPELLCAST_START",
+        "UNIT_SPELLCAST_STOP"
+    },
+    customEvents =
+    {
+        "THEEYE_UNIT_SPELLCAST_TIMER_END"
+    },
     castLength = 0.5,
     Evaluate = function(event, ...)
-        if event == "UNIT_SPELLCAST_START" then
+        if event == "UNIT_SPELLCAST_START" or "UNIT_SPELLCAST_CHANNEL_START" then
             local unit, _, spellID = ...
             local castID = select(7, UnitCastingInfo(unit))
 
@@ -51,7 +66,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
                     return table.concat({ unit, spellID }), false
                 end
             end
-        else -- UNIT_SPELLCAST_STOP
+        else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
             local unit, _, spellID = ...
             return table.concat({ unit, spellID }), false
         end
