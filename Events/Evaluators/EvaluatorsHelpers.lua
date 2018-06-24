@@ -77,7 +77,7 @@ function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
 
     if valueGroup.currentState == true then
-        TheEyeAddon.UI.Components:OnStateChange(listener, valueGroup.currentState)
+        TheEyeAddon.UI.Components:OnStateChange(listener, true)
     end
 end
 
