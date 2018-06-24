@@ -8,7 +8,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,
-        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.Display
+        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
     },
     StateGroups =
     {
