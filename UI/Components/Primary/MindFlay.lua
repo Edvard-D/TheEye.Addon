@@ -16,7 +16,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         {
             OnValidKey = TheEyeAddon.UI.Components.EnableComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.DisableComponent,
-            validKeys = { 2 },
+            validKeys = { [2] = true },
             StateListeners =
             {
                 Target_Attackable =
@@ -29,7 +29,7 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         {
             OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
             OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
-            validKeys = { 0, 4, 6 },
+            validKeys = { [0] = true, [4] = true, [6] = true},
             StateListeners =
             {
                 Unit_Spellcast_Active =

@@ -47,8 +47,8 @@ function TheEyeAddon.UI.Components:OnStateChange(stateListener, newState)
     end
 
     stateGroup.currentState = not stateGroup.currentState
-
-    if stateGroup.validKeys[stateGroup.combinedKeyValue] ~= nil then
+ 
+    if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
         stateGroup:OnValidKey(stateListener.module, stateListener.component)
     else
         stateGroup:OnInvalidKey(stateListener.module, stateListener.component)
