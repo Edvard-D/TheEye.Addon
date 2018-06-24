@@ -67,26 +67,24 @@ end
 
 function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
-    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local valueGroup = GetValueGroup(evaluator, listener.inputValues)
     local listeners = GetValueGroupListeners(valueGroup)
 
     table.insert(listeners, listener)
-
     IncreaseEvaluatorListenerCount(evaluator)
     IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
 
-    if valueGroup.currentState == true then
+    if valueGroup.currentState == true then -- Set in IncreaseValueGroupListenerCount
         TheEyeAddon.UI.Components:OnStateChange(listener, true)
     end
 end
 
 function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey]
-    local valueGroup = GetValueGroup(evaluator, inputValues)
+    local valueGroup = GetValueGroup(evaluator, listener.inputValues)
     local listeners = GetValueGroupListeners(valueGroup)
 
     table.removevalue(listeners, listener)
-    
     DecreaseEvaluatorListenerCount(evaluator)
     DecreaseValueGroupListenerCount(evaluator, valueGroup)
 end
@@ -94,13 +92,9 @@ end
 function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, event, ...)
     local valueGroupKey = evaluator:GetKey(event, ...)
     local valueGroup = evaluator.ValueGroups[valueGroupKey]
-
     if valueGroup ~= nil then
         local evaluatedState = evaluator:Evaluate(event, ...)
-
         if evaluatedState ~= valueGroup.currentState then
-            print("Evaluators:EvaluateState ValueGroup    " .. valueGroupKey .. "    " .. tostring(evaluatedState)) -- DEBUG
-
             valueGroup.currentState = evaluatedState
             TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
         end
