@@ -20,7 +20,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
     {
         "THEEYE_UNIT_SPELLCAST_TIMER_END"
     },
-    castLength = 0.5
+    timerDuration = 0.5
 }
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitialState(valueGroup, inputValues)
@@ -29,10 +29,10 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitial
     local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
 
     if currentSpellID ~= nil and currentSpellID == expectedSpellID then
-        local trueStateEndTime = (startTime / 1000) + self.castLength
+        local trueStateEndTime = (startTime / 1000) + self.timerDuration
         local timerLength = trueStateEndTime - GetTime()
         if timerLength > 0 then
-            TheEyeAddon.Timers:StartEventTimer(self.castLength, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
+            TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
             valueGroup.currentState = true
             return
         end
@@ -61,11 +61,11 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:Evaluate(e
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))
 
-        TheEyeAddon.Timers:StartEventTimer(self.castLength, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
+        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
         return true
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
-        local timerDuration = select(4, ...)
-        if timerDuration == self.castLength then
+        local timerDuration = select(1, ...)
+        if timerDuration == self.timerDuration then
             local unit, _, requiredCastID = ...
             local castID = select(7, UnitCastingInfo(unit))
 
