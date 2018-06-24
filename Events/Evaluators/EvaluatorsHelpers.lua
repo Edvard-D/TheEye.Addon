@@ -43,7 +43,7 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
     valueGroup.listenerCount = valueGroup.listenerCount + 1
     if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
-        evaluator:SetInitialState(evaluator, listener.inputValues)
+        evaluator.SetInitialState(evaluator, valueGroup, listener.inputValues)
     end
 end
 
