@@ -27,22 +27,25 @@ local function InsertEvaluator(eventName, evaluator, isGameEvent)
         table.insert(Evaluators[eventName], evaluator)
     end
 
-    if Evaluators[eventName].evaluatorCount == nil then
-        Evaluators[eventName].evaluatorCount = 0
+    local eventGroup = Evaluators[eventName]
+    if eventGroup.evaluatorCount == nil then
+        eventGroup.evaluatorCount = 0
     end
-    Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount + 1
+    eventGroup.evaluatorCount = eventGroup.evaluatorCount + 1
 end
 
 local function RemoveEvaluator(eventName, evaluator, isGameEvent)
-    table.removevalue(Evaluators[eventName], evaluator)
+    local eventGroup = Evaluators[eventName]
+    table.removevalue(eventGroup, evaluator)
     
-    Evaluators[eventName].evaluatorCount = Evaluators[eventName].evaluatorCount - 1
-    if isGameEvent == true and Evaluators[eventName].evaluatorCount == 0 then
+    eventGroup.evaluatorCount = eventGroup.evaluatorCount - 1
+    if isGameEvent == true and eventGroup.evaluatorCount == 0 then
         print ("UnregisterEvent    " .. eventName) -- DEBUG
         frame:UnregisterEvent(eventName)
-    elseif Evaluators[eventName].evaluatorCount < 0 then -- DEBUG
+
+    elseif eventGroup.evaluatorCount < 0 then -- DEBUG
         error("Registered evaluators set to " ..
-            tostring(Evaluators[eventName].evaluatorCount) ..
+            tostring(eventGroup.evaluatorCount) ..
             " but should never be below 0.")
     end
 end
