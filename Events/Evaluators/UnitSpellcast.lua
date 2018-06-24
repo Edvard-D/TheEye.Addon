@@ -3,6 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local select = select
 
 
+-- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
 {
     gameEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP" },
@@ -27,6 +28,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
     end
 }
 
+-- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
 {
     gameEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP" },

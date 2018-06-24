@@ -3,6 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local UnitCanAttack = UnitCanAttack
 
 
+-- inputValues = nil
 TheEyeAddon.Events.Evaluators.Target_Attackable =
 {
     gameEvents = { "PLAYER_TARGET_CHANGED" },
