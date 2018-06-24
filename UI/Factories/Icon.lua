@@ -51,12 +51,11 @@ function TheEyeAddon.UI.Factories.Icon:Claim(parentFrame, displayData)
 
 	if instance ~= nil then
 		instance:SetParent(parentFrame)
-		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, displayData.dimensionTable)
+		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, displayData.dimensionTemplate)
 	else
-		instance = TheEyeAddon.UI.Factories.Cooldown:Create(parentFrame, displayData.dimensionTable)
+		instance = TheEyeAddon.UI.Factories.Frame:Create("Frame", parentFrame, nil, displayData.dimensionTemplate)
 		table.insert(Pool, instance)
 	end
-
 
 	instance.isClaimed = true
 	instance.Release = TheEyeAddon.UI.Factories.Icon.Release
