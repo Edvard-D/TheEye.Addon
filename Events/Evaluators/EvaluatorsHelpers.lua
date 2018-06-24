@@ -43,7 +43,7 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
     valueGroup.listenerCount = valueGroup.listenerCount + 1
     if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
-        evaluator.SetInitialState(evaluator, valueGroup, listener.inputValues)
+        evaluator:SetInitialState(valueGroup, listener.inputValues)
     end
 end
 
@@ -93,7 +93,7 @@ function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener
 end
 
 function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, event, ...)
-    local valueGroupKey, evaluatedState = evaluator.Evaluate(evaluator, event, ...)
+    local valueGroupKey, evaluatedState = evaluator:Evaluate(event, ...)
     local valueGroup = evaluator.ValueGroups[valueGroupKey]
 
     if valueGroup ~= nil and evaluatedState ~= valueGroup.currentState then

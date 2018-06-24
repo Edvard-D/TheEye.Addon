@@ -9,11 +9,13 @@ TheEyeAddon.Events.Evaluators.Target_Attackable =
     gameEvents =
     {
         "PLAYER_TARGET_CHANGED"
-    },
-    Evaluate = function()
-        return "default", UnitCanAttack("player", "target")
-    end,
-    SetInitialState = function(self, valueGroup)
-        valueGroup.currentState = select(2, self.Evaluate())
-    end
+    }
 }
+
+function TheEyeAddon.Events.Evaluators.Target_Attackable:SetInitialState(valueGroup)
+    valueGroup.currentState = select(2, self.Evaluate())
+end
+
+function TheEyeAddon.Events.Evaluators.Target_Attackable:Evaluate()
+    return "default", UnitCanAttack("player", "target")
+end
