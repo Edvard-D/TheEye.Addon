@@ -1,8 +1,6 @@
 TheEyeAddon.UI.Objects:Add(
 {
-    tags = { "HUD", "MODULE", "PRIMARY" },
-    sortType = nil, --TheEyeAddon.UI.SortType.prioritySort,
-    OnComponentVisibleChanged = function() end, --TODO
+    tags = { "GROUP", "HUD", "PRIMARY" },
     DisplayData =
     {
         dimensionTemplate =
@@ -14,7 +12,6 @@ TheEyeAddon.UI.Objects:Add(
             offsetX = 0,
             offsetY = -50,
         },
-    },    
-    Components = { }
+    }
 }
 )
