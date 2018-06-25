@@ -3,6 +3,7 @@ TheEyeAddon.UI.Objects:Add(
     tags = { "GROUP", "HUD", "PRIMARY" },
     DisplayData =
     {
+        factory = TheEyeAddon.UI.Factories.Group,
         dimensionTemplate =
         {
             width = 0,
