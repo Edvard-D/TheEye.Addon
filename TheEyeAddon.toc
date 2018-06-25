@@ -82,8 +82,8 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
+UI\Objects\UIObjectHelpers.lua
 UI\Pools.lua
-UI\UIObjects.lua
 
 
 
@@ -101,22 +101,12 @@ UI\Factories\Icon.lua
 
 
 # ---------------------------
-# |		  UI\Modules		|
+# |	      UI\Objects     	|
 # ---------------------------
-UI\Modules\UIModulesHelpers.lua
-
-UI\Modules\Primary.lua
-
-
-
-# ---------------------------
-# |		 UI\Components		|
-# ---------------------------
-UI\Components\UIComponentHelpers.lua
-
-
 # --- Primary ---
-UI\Components\Primary\MindFlay.lua
+UI\Objects\Primary\PrimaryGroup.lua
+
+UI\Objects\Primary\MindFlay.lua
 
 
 

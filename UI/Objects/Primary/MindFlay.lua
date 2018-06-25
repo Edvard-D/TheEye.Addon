@@ -14,8 +14,8 @@ TheEyeAddon.UI.Objects:Add(
     {
         Enabled =
         {
-            OnValidKey = TheEyeAddon.UI.Components.EnableComponent,
-            OnInvalidKey = TheEyeAddon.UI.Components.DisableComponent,
+            OnValidKey = TheEyeAddon.UI.Objects.Enable,
+            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [2] = true },
             StateListeners =
             {
@@ -27,8 +27,8 @@ TheEyeAddon.UI.Objects:Add(
         },
         Visible =
         {
-            OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
-            OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
+            OnValidKey = TheEyeAddon.UI.Objects.Show,
+            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
             validKeys = { [0] = true, [4] = true, [6] = true },
             StateListeners =
             {

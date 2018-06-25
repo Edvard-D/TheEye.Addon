@@ -16,9 +16,9 @@ local function HandleEvent(self, event, arg1)
         if event == "ACTIVE_TALENT_GROUP_CHANGED" or
         (event == "ADDON_LOADED" and arg1 == "TheEyeAddon") then
             if TheEyeAddon.CurrentSpec == 3 then
-                TheEyeAddon.UI.Modules:Setup()
+                --TODO: setup
             elseif previousSpec == 3 then
-                TheEyeAddon.UI.Modules:Teardown()
+                --TODO: teardown
             end
         end
     end
