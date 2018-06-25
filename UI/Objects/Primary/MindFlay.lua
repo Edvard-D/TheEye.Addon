@@ -19,9 +19,10 @@ TheEyeAddon.UI.Objects:Add(
             validKeys = { [2] = true },
             StateListeners =
             {
-                Target_Attackable =
+                UIObject_Visible =
                 {
-                    keyValue = 2
+                    keyValue = 2,
+                    inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
         },
