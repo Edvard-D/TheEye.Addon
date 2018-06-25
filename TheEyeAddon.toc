@@ -76,10 +76,16 @@ UI\DimensionTemplates\Icon_Large.lua
 
 
 # ---------------------------
-# |		  UI\Factories		|
+# |		      UI		    |
 # ---------------------------
 UI\Pools.lua
+UI\UIObjectHelpers.lua
 
+
+
+# ---------------------------
+# |		  UI\Factories		|
+# ---------------------------
 UI\Factories\FontString.lua
 UI\Factories\Frame.lua
 UI\Factories\Texture.lua
