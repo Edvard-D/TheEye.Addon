@@ -45,11 +45,11 @@ local function TeardownStateGroup(stateGroup)
     end
 end
 
-function TheEyeAddon.UI.Objects:SetupUIObject(uiObject)
+function TheEyeAddon.UI.Objects:Setup(uiObject)
     SetupStateGroup(uiObject, uiObject.StateGroups.Enabled)
 end
 
-function TheEyeAddon.UI.Objects:TeardownUIObject(uiObject)
+function TheEyeAddon.UI.Objects:Teardown(uiObject)
     for k,v in pairs(uiObject.StateGroups) do
         TeardownStateGroup(uiObject.StateGroups[k])
     end
