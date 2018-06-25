@@ -78,7 +78,7 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		  UI\Factories		|
 # ---------------------------
-UI\Factories\Pools.lua
+UI\Pools.lua
 
 UI\Factories\FontString.lua
 UI\Factories\Frame.lua
