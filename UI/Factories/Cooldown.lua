@@ -5,7 +5,7 @@ local ipairs = ipairs
 local Pool = {}
 local table = table
 
-function Release()
+local function Release()
 	self.isClaimed = false
 	self:SetParent(nil)
 	self:Hide()
