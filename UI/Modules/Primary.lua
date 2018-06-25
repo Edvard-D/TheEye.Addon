@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Objects:Add(
 {
-    tags = { "PRIMARY" },
+    tags = { "HUD", "MODULE", "PRIMARY" },
     sortType = nil, --TheEyeAddon.UI.SortType.prioritySort,
     OnComponentVisibleChanged = function() end, --TODO
     DisplayData =
