@@ -59,16 +59,24 @@ Events\Coordinator.lua
 # ---------------------------
 Events\Evaluators\EvaluatorsHelpers.lua
 
+
 # --- General ---
 Events\Evaluators\General\Setting_Module_Enabled.lua
 Events\Evaluators\General\Addon_Loaded.lua
 
+
+# --- Player ---
+Events\Evaluators\Player\Player_Class.lua
+
+
 # --- Target ---
 Events\Evaluators\Target\Target_Attackable.lua
+
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIObject_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
+
 
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
