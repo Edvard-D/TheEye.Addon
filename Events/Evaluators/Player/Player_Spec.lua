@@ -11,7 +11,8 @@ TheEyeAddon.Events.Evaluators.Player_Spec =
 {
     gameEvents =
     {
-        "ACTIVE_TALENT_GROUP_CHANGED"
+        "ACTIVE_TALENT_GROUP_CHANGED",
+        "ADDON_LOADED"
     }
 }
 
