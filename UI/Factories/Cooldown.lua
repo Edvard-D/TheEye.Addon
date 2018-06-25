@@ -1,7 +1,9 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Cooldown = {}
 
+local ipairs = ipairs
 local Pool = {}
+local table = table
 
 function Release()
 	self.isClaimed = false
