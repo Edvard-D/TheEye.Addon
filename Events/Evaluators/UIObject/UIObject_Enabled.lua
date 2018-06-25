@@ -4,7 +4,7 @@ local select = select
 local table = table
 
 
--- inputValues = { --[[tags]] , }
+-- inputValues = { --[[uiObjectKey]] "" }
 
  TheEyeAddon.Events.Evaluators.UIObject_Enabled =
 {
@@ -16,7 +16,7 @@ local table = table
 }
 
 function TheEyeAddon.Events.Evaluators.UIObject_Enabled:SetInitialState(valueGroup, inputValues)
-    local uiObject = TheEyeAddon.UI.Objects[table.concat(iputValues, "_")]
+    local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
     if uiObject == nil then
         valueGroup.currentState = false
