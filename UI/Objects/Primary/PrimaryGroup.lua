@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Objects:Add(
 {
-    tags = { "GROUP", "HUD", "PRIMARY" },
+    tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
