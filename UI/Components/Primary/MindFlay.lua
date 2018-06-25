@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
+TheEyeAddon.UI.Objects:Add(
 {
     priority = nil,
     tags = { "ICON", "PRIMARY", "SPELL", "DAMAGE" },
@@ -46,3 +46,4 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         }
     }
 }
+)
