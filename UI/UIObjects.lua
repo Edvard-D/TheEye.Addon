@@ -9,4 +9,10 @@ function TheEyeAddon.UI.Objects:Add(uiObject)
     local key = table.concat(uiObject.tags, "-")
     uiObject.key = key
     TheEyeAddon.UI.Objects[key] = uiObject
+
+    local searchableTags = {}
+    for i,tag in ipairs(tableName) do
+        searchableTags[tag] = true
+    end
+    uiObject.tags = searchableTags
 end
