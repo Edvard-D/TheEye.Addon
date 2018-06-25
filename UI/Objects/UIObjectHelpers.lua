@@ -28,6 +28,7 @@ end
 
 local function SetupStateGroup(uiObject, stateGroup)
     stateGroup.combinedKeyValue = 0
+    stateGroup.currentState = false
     
     if stateGroup.Listeners ~= nil then
         for evaluatorName,v in pairs(stateGroup.Listeners) do
