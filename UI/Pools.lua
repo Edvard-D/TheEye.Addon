@@ -28,3 +28,9 @@ local function Claim(frameType, parentFrame, template, dimensionTable)
 
 	return instance
 end
+
+function TheEyeAddon.UI.Pools:Create()
+    local instance = { Claim = Claim, instances = {} }
+    table.insert(TheEyeAddon.UI.Pools, instance)
+    return instance
+end
