@@ -28,9 +28,12 @@ end
 
 local function SetupStateGroup(uiObject, stateGroup)
     stateGroup.combinedKeyValue = 0
-    for evaluatorName,v in pairs(stateGroup.Listeners) do
-        local listener = stateGroup.Listeners[evaluatorName]
-        SetupListener(uiObject, stateGroup, listener, evaluatorName)
+    
+    if stateGroup.Listeners ~= nil then
+        for evaluatorName,v in pairs(stateGroup.Listeners) do
+            local listener = stateGroup.Listeners[evaluatorName]
+            SetupListener(uiObject, stateGroup, listener, evaluatorName)
+        end
     end
 
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
