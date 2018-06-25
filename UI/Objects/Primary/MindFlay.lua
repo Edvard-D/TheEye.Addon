@@ -1,7 +1,7 @@
 TheEyeAddon.UI.Objects:Add(
 {
     priority = nil,
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL_15407" },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-15407" },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,

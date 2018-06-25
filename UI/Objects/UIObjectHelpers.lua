@@ -7,7 +7,7 @@ local unpack = unpack
 
 
 function TheEyeAddon.UI.Objects:Add(uiObject)
-    local key = table.concat(uiObject.tags, "-")
+    local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEyeAddon.UI.Objects[key] = uiObject
 

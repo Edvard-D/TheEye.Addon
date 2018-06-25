@@ -16,7 +16,7 @@ local table = table
 }
 
 function TheEyeAddon.Events.Evaluators.UIObject_Enabled:SetInitialState(valueGroup, inputValues)
-    local uiObject = TheEyeAddon.UI.Objects[table.concat(iputValues, "-")]
+    local uiObject = TheEyeAddon.UI.Objects[table.concat(iputValues, "_")]
 
     if uiObject == nil then
         valueGroup.currentState = false
