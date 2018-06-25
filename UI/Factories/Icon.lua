@@ -39,6 +39,12 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 	return fileID
 end
 
+local function Release()
+	self.isClaimed = false
+	self:SetParent(nil)
+	self:Hide()
+end
+
 
 function TheEyeAddon.UI.Factories.Icon:Claim(parentFrame, displayData)
 	local instance = nil
@@ -58,17 +64,11 @@ function TheEyeAddon.UI.Factories.Icon:Claim(parentFrame, displayData)
 	end
 
 	instance.isClaimed = true
-	instance.Release = TheEyeAddon.UI.Factories.Icon.Release
+	instance.Release = Release
 	instance:Show()
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Factories.Texture:Create(instance.texture, instance, "BACKGROUND", iconTextureFileID)
 
 	return instance
-end
-
-function TheEyeAddon.UI.Factories.Icon:Release()
-	self.isClaimed = false
-	self:SetParent(nil)
-	self:Hide()
 end
