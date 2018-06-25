@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 local select = select
-local table = table
+local UnitClass = UnitClass
 
 
 -- inputValues = { --[[englishClass]] "" }
