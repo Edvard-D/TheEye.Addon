@@ -14,15 +14,15 @@ TheEyeAddon.Events.Evaluators.Player_Class =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Player_Class:SetInitialState(valueGroup, inputValues)
     local _, englishClass, _ = UnitClass("player")
     return englishClass == inputValues[1]
 end
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Class:GetKey(event, ...)
     return select(2, UnitClass("player")) -- englishClass
 end
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(event, ...)
     return true
 end
