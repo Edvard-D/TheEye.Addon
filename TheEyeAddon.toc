@@ -62,6 +62,9 @@ Events\Evaluators\EvaluatorsHelpers.lua
 # --- Target ---
 Events\Evaluators\Target\Target_Attackable.lua
 
+# --- UIObject ---
+Events\Evaluators\UIObject\UIObject_Enabled.lua
+
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_StartedRecently.lua
