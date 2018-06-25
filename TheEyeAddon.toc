@@ -106,7 +106,10 @@ UI\Factories\Icon.lua
 # ---------------------------
 # |	      UI\Objects     	|
 # ---------------------------
-# --- Primary ---
+UI\Objects\UIParentGroup.lua
+
+
+# --- HUD: Primary ---
 UI\Objects\Primary\PrimaryGroup.lua
 
 UI\Objects\Primary\MindFlay.lua
