@@ -1,7 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 
 local select = select
-local table = table
 
 
 -- inputValues = { --[[addonName]] "" }
