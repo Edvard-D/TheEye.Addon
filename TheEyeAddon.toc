@@ -83,7 +83,7 @@ UI\Factories\Frame.lua
 UI\Factories\Texture.lua
 
 UI\Factories\Cooldown.lua
-
+UI\Factories\Group.lua
 UI\Factories\Icon.lua
 
 
