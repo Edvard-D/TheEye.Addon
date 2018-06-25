@@ -2,7 +2,6 @@ local TheEyeAddon = TheEyeAddon
 
 local GetSpecialization = GetSpecialization
 local select = select
-local table = table
 
 
 -- inputValues = { --[[specNumber]] 0 }
