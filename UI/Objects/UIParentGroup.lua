@@ -12,7 +12,7 @@ TheEyeAddon.UI.Objects:Add(
             OnValidKey = TheEyeAddon.UI.Objects.Enable,
             OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [14] = true },
-            StateListeners =
+            Listeners =
             {
                 Addon_Loaded =
                 {

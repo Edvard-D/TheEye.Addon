@@ -28,8 +28,8 @@ end
 
 local function SetupStateGroup(uiObject, stateGroup)
     stateGroup.combinedKeyValue = 0
-    for evaluatorName,v in pairs(stateGroup.StateListeners) do
-        local listener = stateGroup.StateListeners[evaluatorName]
+    for evaluatorName,v in pairs(stateGroup.Listeners) do
+        local listener = stateGroup.Listeners[evaluatorName]
         SetupListener(uiObject, stateGroup, listener, evaluatorName)
     end
 
@@ -39,8 +39,8 @@ local function SetupStateGroup(uiObject, stateGroup)
 end
 
 local function TeardownStateGroup(stateGroup)
-    for evaluatorName,v in pairs(stateGroup.StateListeners) do
-        local listener = stateGroup.StateListeners[evaluatorName]
+    for evaluatorName,v in pairs(stateGroup.Listeners) do
+        local listener = stateGroup.Listeners[evaluatorName]
         TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
     end
 end
