@@ -69,7 +69,6 @@ end
 -- STATE CHANGES
 function TheEyeAddon.UI.Objects:OnStateChange(stateListener, newState)
     local stateGroup = stateListener.stateGroup
-    local previousState = stateGroup.currentState
     
     if newState == true then
         stateGroup.combinedKeyValue = stateGroup.combinedKeyValue + stateListener.keyValue
