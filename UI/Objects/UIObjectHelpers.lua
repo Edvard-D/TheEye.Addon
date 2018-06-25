@@ -45,13 +45,21 @@ local function TeardownStateGroup(stateGroup)
     end
 end
 
-function TheEyeAddon.UI.Objects:Setup(uiObject)
+local function Setup(uiObject)
     SetupStateGroup(uiObject, uiObject.StateGroups.Enabled)
 end
 
-function TheEyeAddon.UI.Objects:Teardown(uiObject)
+local function Teardown(uiObject)
     for k,v in pairs(uiObject.StateGroups) do
         TeardownStateGroup(uiObject.StateGroups[k])
+    end
+end
+
+function TheEyeAddon.UI.Objects:Initialize()
+    for k,v in pairs(TheEyeAddon.UI.Objects) do
+        if type(v) == "table" then
+            Setup(TheEyeAddon.UI.Objects[k])
+        end
     end
 end
 
