@@ -20,8 +20,7 @@ function TheEyeAddon.Events.Evaluators.Player_Class:SetInitialState(valueGroup, 
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Class:GetKey(event, ...)
-    local classIndex = select(3, UnitClass("player"))
-    return table.concat({ "_", classIndex })
+    return select(3, UnitClass("player")) -- classIndex
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(event, ...)

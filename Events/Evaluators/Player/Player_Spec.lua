@@ -21,7 +21,7 @@ function TheEyeAddon.Events.Evaluators.Player_Spec:SetInitialState(valueGroup, i
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Spec:GetKey(event, ...)
-    return table.concat({ "_", GetSpecialization() })
+    return GetSpecialization()
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Spec:Evaluate(event, ...)
