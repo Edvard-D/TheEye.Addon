@@ -59,6 +59,9 @@ Events\Coordinator.lua
 # ---------------------------
 Events\Evaluators\EvaluatorsHelpers.lua
 
+# --- Setting ---
+Events\Evaluators\Setting\Setting_Module_Enabled.lua
+
 # --- Target ---
 Events\Evaluators\Target\Target_Attackable.lua
 
