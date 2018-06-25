@@ -67,6 +67,7 @@ Events\Evaluators\General\Addon_Loaded.lua
 
 # --- Player ---
 Events\Evaluators\Player\Player_Class.lua
+Events\Evaluators\Player\Player_Spec.lua
 
 
 # --- Target ---
