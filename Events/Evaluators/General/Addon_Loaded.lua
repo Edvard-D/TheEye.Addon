@@ -13,8 +13,8 @@ TheEyeAddon.Events.Evaluators.Addon_Loaded =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:SetInitialState(valueGroup, inputValues)
-    valueGroup.currentState = false
+function TheEyeAddon.Events.Evaluators.Addon_Loaded:CalculateCurrentState(inputValues)
+    return false
 end
 
 function TheEyeAddon.Events.Evaluators.Addon_Loaded:GetKey(event, ...)

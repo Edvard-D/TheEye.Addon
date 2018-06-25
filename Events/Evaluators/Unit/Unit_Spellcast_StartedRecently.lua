@@ -23,7 +23,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
     timerDuration = 0.5
 }
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:CalculateCurrentState(inputValues)
     local unit = inputValues[1]
     local expectedSpellID = inputValues[2]
     local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
@@ -33,12 +33,11 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:SetInitial
         local timerLength = trueStateEndTime - GetTime()
         if timerLength > 0 then
             TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
-            valueGroup.currentState = true
-            return
+            return true
         end
     end
 
-    valueGroup.currentState = false
+    return false
 end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:GetKey(event, ...)

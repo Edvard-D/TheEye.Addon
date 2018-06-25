@@ -15,7 +15,7 @@ TheEyeAddon.Events.Evaluators.Player_Spec =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Player_Spec:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Player_Spec:CalculateCurrentState(inputValues)
     return inputValues[1] == GetSpecialization()
 end
 

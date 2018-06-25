@@ -14,7 +14,7 @@ TheEyeAddon.Events.Evaluators.Player_Class =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Player_Class:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Player_Class:CalculateCurrentState(inputValues)
     local classIndex = select(3, UnitClass("player"))
     return classIndex == inputValues[1]
 end

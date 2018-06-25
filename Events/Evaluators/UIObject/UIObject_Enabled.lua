@@ -15,13 +15,13 @@ local table = table
     }
 }
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.UIObject_Enabled:CalculateCurrentState(inputValues)
     local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
     if uiObject == nil then
-        valueGroup.currentState = false
+        return false
     else
-        valueGroup.currentState = uiObject.StateGroups.Enabled.currentState
+        return uiObject.StateGroups.Enabled.currentState
     end
 end
 

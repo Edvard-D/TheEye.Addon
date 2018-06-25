@@ -14,11 +14,11 @@ TheEyeAddon.Events.Evaluators.Setting_Module_Enabled =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:CalculateCurrentState(inputValues)
     if TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
-        valueGroup.currentState = true
+        return true
     else
-        valueGroup.currentState = false
+        return false
     end
 end
 

@@ -19,6 +19,7 @@ local function GetValueGroup(evaluator, inputValues)
     if evaluator.ValueGroups[valueGroupKey] == nil then
         evaluator.ValueGroups[valueGroupKey] = {}
     end
+    
     return evaluator.ValueGroups[valueGroupKey]
 end
 
@@ -46,7 +47,7 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
     valueGroup.listenerCount = valueGroup.listenerCount + 1
     if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
-        evaluator:SetInitialState(valueGroup, listener.inputValues)
+        valueGroup.currentState = evaluator:CalculateCurrentState(listener.inputValues)
     end
 end
 

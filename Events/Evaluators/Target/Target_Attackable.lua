@@ -13,8 +13,8 @@ TheEyeAddon.Events.Evaluators.Target_Attackable =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Target_Attackable:SetInitialState(valueGroup)
-    valueGroup.currentState = self.Evaluate()
+function TheEyeAddon.Events.Evaluators.Target_Attackable:CalculateCurrentState()
+    return self.Evaluate()
 end
 
 function TheEyeAddon.Events.Evaluators.Target_Attackable:GetKey()
