@@ -61,6 +61,7 @@ Events\Evaluators\EvaluatorsHelpers.lua
 
 # --- General ---
 Events\Evaluators\General\Setting_Module_Enabled.lua
+Events\Evaluators\General\Addon_Loaded.lua
 
 # --- Target ---
 Events\Evaluators\Target\Target_Attackable.lua
