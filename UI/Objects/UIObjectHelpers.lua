@@ -12,7 +12,7 @@ function TheEyeAddon.UI.Objects:Add(uiObject)
     TheEyeAddon.UI.Objects[key] = uiObject
 
     local searchableTags = {}
-    for i,tag in ipairs(tableName) do
+    for i,tag in ipairs(uiObject.tags) do
         searchableTags[tag] = true
     end
     uiObject.tags = searchableTags
