@@ -3,6 +3,12 @@ TheEyeAddon.UI.Factories.Cooldown = {}
 
 local Pool = {}
 
+function Release()
+	self.isClaimed = false
+	self:SetParent(nil)
+	self:Hide()
+end
+
 
 function TheEyeAddon.UI.Factories.Cooldown:Create(parentFrame, start, duration)
 	local instance = nil
@@ -24,16 +30,10 @@ function TheEyeAddon.UI.Factories.Cooldown:Create(parentFrame, start, duration)
 	end
 
 	instance.isClaimed = true
-	instance.Release = TheEyeAddon.UI.Factories.Cooldown.Release
+	instance.Release = Release
 	instance:Show()
 
 	instance:SetCooldown(start, duration)
 
 	return instance
-end
-
-function TheEyeAddon.UI.Factories.Cooldown:Release()
-	self.isClaimed = false
-	self:SetParent(nil)
-	self:Hide()
 end
