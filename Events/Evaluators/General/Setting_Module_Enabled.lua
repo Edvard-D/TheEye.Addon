@@ -26,6 +26,6 @@ function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:GetKey(event, ...)
     return select(1, ...) -- moduleKey
 end
 
-function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:Evaluate(event)
+function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:Evaluate(event, ...)
     return select(2, ...) -- enabledState
 end
