@@ -4,7 +4,7 @@ local select = select
 local UnitClass = UnitClass
 
 
--- inputValues = { --[[englishClass]] "" }
+-- inputValues = { --[[classIndex]] 0 }
 
 TheEyeAddon.Events.Evaluators.Player_Class =
 {
@@ -15,12 +15,13 @@ TheEyeAddon.Events.Evaluators.Player_Class =
 }
 
 function TheEyeAddon.Events.Evaluators.Player_Class:SetInitialState(valueGroup, inputValues)
-    local _, englishClass, _ = UnitClass("player")
-    return englishClass == inputValues[1]
+    local classIndex = select(3, UnitClass("player"))
+    return classIndex == inputValues[1]
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Class:GetKey(event, ...)
-    return select(2, UnitClass("player")) -- englishClass
+    local classIndex = select(3, UnitClass("player"))
+    return table.concat({ "_", classIndex })
 end
 
 function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(event, ...)

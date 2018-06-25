@@ -22,7 +22,7 @@ TheEyeAddon.UI.Objects:Add(
                 Player_Class =
                 {
                     keyValue = 4,
-                    inputValues = { "PRIEST" }
+                    inputValues = { 5 }
                 },
                 Player_Spec =
                 {
