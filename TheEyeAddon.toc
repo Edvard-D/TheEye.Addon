@@ -79,7 +79,7 @@ UI\DimensionTemplates\Icon_Large.lua
 # |		      UI		    |
 # ---------------------------
 UI\Pools.lua
-UI\UIObjectHelpers.lua
+UI\UIObjects.lua
 
 
 
