@@ -4,6 +4,7 @@ local GetTime = GetTime
 local select = select
 local table = table
 local UnitCastingInfo = UnitCastingInfo
+local unpack = unpack
 
 
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
@@ -22,6 +23,16 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
     },
     timerDuration = 0.5
 }
+
+
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:SetupListeningTo(valueGroup, inputValues)
+    TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
+    {
+        listeningToKey = "Unit_Spellcast_Instant",
+        evaluator = TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently,
+        inputValues = inputValues
+    })
+end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurrentState(inputValues)
     local unit = inputValues[1]
@@ -46,6 +57,8 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
 
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         unit, _, spellID = ...
+    elseif event == "Unit_Spellcast_Instant" then
+        unit, spellID = unpack(select(1, ...))
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
         _, unit, spellID = ...
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
@@ -62,13 +75,17 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(save
 
         TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
         return true
+    elseif event == "Unit_Spellcast_Instant" then
+        local unit, spellID = unpack(select(1, ...))
+        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, "INSTANT")
+        return true
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(1, ...)
         if timerDuration == self.timerDuration then
             local _, unit, _, requiredCastID = ...
             local castID = select(7, UnitCastingInfo(unit))
 
-            if castID == requiredCastID then
+            if requiredCastID == "INSTANT" or castID == requiredCastID then
                 return false
             end
         end
