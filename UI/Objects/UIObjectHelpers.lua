@@ -68,19 +68,19 @@ function TheEyeAddon.UI.Objects:Initialize()
 end
 
 -- STATE CHANGES
-function TheEyeAddon.UI.Objects:OnStateChange(stateListener, newState)
-    local stateGroup = stateListener.stateGroup
+function TheEyeAddon.UI.Objects:OnStateChange(newState)
+    local stateGroup = self.stateGroup
     
     if newState == true then
-        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue + stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue + self.keyValue
     else
-        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - stateListener.keyValue
+        stateGroup.combinedKeyValue = stateGroup.combinedKeyValue - self.keyValue
     end
 
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
-        stateGroup:OnValidKey(stateListener.uiObject)
+        stateGroup:OnValidKey(self.uiObject)
     else
-        stateGroup:OnInvalidKey(stateListener.uiObject)
+        stateGroup:OnInvalidKey(self.uiObject)
     end
 end
 

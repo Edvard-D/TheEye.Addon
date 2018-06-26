@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local ipairs = ipairs
 local table = table
 
-
+-- SETUP
 local function GetValueGroup(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
         evaluator.ValueGroups = {}
@@ -47,7 +47,12 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
     valueGroup.listenerCount = valueGroup.listenerCount + 1
     if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
+        if evaluator.SetupListeningTo ~= nil then
+            evaluator:SetupListeningTo(valueGroup, listener.inputValues)
+        end
+
         valueGroup.currentState = evaluator:CalculateCurrentState(listener.inputValues)
+        
         if evaluator.hasSavedValues == true then
             valueGroup.savedValues = {}
         end
@@ -61,14 +66,37 @@ local function DecreaseEvaluatorListenerCount(evaluator)
     end
 end
 
+local function UnregisterValueGroupListeningTo(listeningTo)
+    for i,listener in ipairs(tableName) do
+        TheEyeAddon.Events.Evaluators:UnregisterListener(listener.listeningToKey, listener)
+    end
+end
+
 local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
     valueGroup.listenerCount = evaluator.listenerCount - 1
     if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        if valueGroup.ListeningTo ~= nil then
+            UnregisterValueGroupListeningTo(valueGroup.ListeningTo)
+        end
+
         table.removevalue(evaluator, valueGroup)
     end
 end
 
+-- LISTENING TO: handling of Evaluators that are listening to an Evaluator
+function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(listeningTo)
+    for i,listener in ipairs(listeningTo) do
+        listeningTo[i].OnStateChange = TheEyeAddon.Events.Evaluators.OnStateChange,
+        TheEyeAddon.Events.Evaluators:RegisterListener(listener.listeningToKey, listener)
+    end
+end
 
+function TheEyeAddon.Events.Evaluators:OnStateChange(newState)
+    TheEyeAddon.Events.Evaluators:EvaluateState(listener.evaluator, listener.listeningToKey, listener.inputValues, newState)
+end
+
+
+-- LISTENERS: handling of Listeners that are listening to an Evaluator
 function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
     local valueGroup = GetValueGroup(evaluator, listener.inputValues)
@@ -79,7 +107,7 @@ function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
 
     if valueGroup.currentState == true then -- Set in IncreaseValueGroupListenerCount
-        TheEyeAddon.UI.Objects:OnStateChange(listener, true)
+        listener:OnStateChange(true)
     end
 end
 
@@ -107,6 +135,6 @@ end
 
 function TheEyeAddon.Events.Evaluators:NotifyListeners(listeners, newState)
     for i,listener in ipairs(listeners) do
-        TheEyeAddon.UI.Objects:OnStateChange(listener, newState)
+        listener:OnStateChange(newState)
     end
 end
