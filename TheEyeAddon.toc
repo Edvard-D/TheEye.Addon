@@ -60,6 +60,10 @@ Events\Coordinator.lua
 Events\Evaluators\EvaluatorsHelpers.lua
 
 
+# --- Combat ---
+Events\Evaluators\Combat\Combat_Log.lua
+
+
 # --- General ---
 Events\Evaluators\General\Setting_Module_Enabled.lua
 Events\Evaluators\General\Addon_Loaded.lua
