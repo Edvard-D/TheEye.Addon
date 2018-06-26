@@ -81,7 +81,7 @@ Events\Evaluators\UIObject\UIObject_Visible.lua
 
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
-Events\Evaluators\Unit\Unit_Spellcast_StartedRecently.lua
+Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
 
 
 
@@ -123,6 +123,7 @@ UI\Objects\UIParentGroup.lua
 UI\Objects\Primary\PrimaryGroup.lua
 
 UI\Objects\Primary\MindFlay.lua
+UI\Objects\Primary\ShadowWordPain.lua
 
 
 

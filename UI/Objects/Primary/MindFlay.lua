@@ -39,7 +39,7 @@ TheEyeAddon.UI.Objects:Add(
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
-                Unit_Spellcast_StartedRecently =
+                Unit_Spellcast_CastRecently =
                 {
                     keyValue = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }

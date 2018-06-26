@@ -7,7 +7,7 @@ local UnitCastingInfo = UnitCastingInfo
 
 
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
-TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
+TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 {
     gameEvents =
     {
@@ -23,7 +23,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently =
     timerDuration = 0.5
 }
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:CalculateCurrentState(inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurrentState(inputValues)
     local unit = inputValues[1]
     local expectedSpellID = inputValues[2]
     local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
@@ -40,7 +40,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:CalculateC
     return false
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event, ...)
     local unit
     local spellID
 
@@ -55,7 +55,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:GetKey(eve
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_StartedRecently:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(event, ...)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))
