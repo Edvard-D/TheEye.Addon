@@ -96,7 +96,7 @@ function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
 end
 
 function TheEyeAddon.Events.Evaluators:OnStateChange(newState)
-    TheEyeAddon.Events.Evaluators:EvaluateState(listener.evaluator, listener.listeningToKey, listener.inputValues, newState)
+    TheEyeAddon.Events.Evaluators:EvaluateState(self.evaluator, self.listeningToKey, self.inputValues, newState)
 end
 
 
