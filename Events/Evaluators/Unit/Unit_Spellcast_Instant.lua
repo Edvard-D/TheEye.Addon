@@ -1,17 +1,15 @@
 local TheEyeAddon = TheEyeAddon
 
-local select = select
 local table = table
 
 
--- inputValues = { --[[unit]] "" }
+-- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
 {
     gameEvents =
     {
-        "UNIT_SPELLCAST_FAILED",
-        "UNIT_SPELLCAST_INTERRUPTED",
         "UNIT_SPELLCAST_START",
+        "UNIT_SPELLCAST_STOP",
         "UNIT_SPELLCAST_SUCCEEDED"
     },
     hasSavedValues = true
@@ -22,7 +20,8 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:CalculateCurrentSt
 end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:GetKey(event, ...)
-    return table.concat({ select(1, ...) }) -- unit
+    local unit, _, spellID = ...
+    return table.concat({ unit, spellID })
 end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(savedValues, event, ...)
@@ -32,11 +31,11 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(savedValu
         end
         savedValues.isCasting = false
         return false
-    elseif event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_INTERRUPTED" then
-        savedValues.isCasting = false
-        return false
-    else -- UNIT_SPELLCAST_START
+    elseif event == "UNIT_SPELLCAST_START" then
         savedValues.isCasting = true
+        return false
+    else -- UNIT_SPELLCAST_STOP
+        savedValues.isCasting = false
         return false
     end
 end
