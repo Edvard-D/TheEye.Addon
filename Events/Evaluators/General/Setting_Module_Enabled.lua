@@ -8,6 +8,7 @@ local table = table
 
 TheEyeAddon.Events.Evaluators.Setting_Module_Enabled =
 {
+    type = "STATE",
     customEvents =
     {
         "THEEYE_SETTING_CHANGED"

@@ -7,6 +7,7 @@ local select = select
 
 TheEyeAddon.Events.Evaluators.Addon_Loaded =
 {
+    type = "STATE",
     gameEvents =
     {
         "ADDON_LOADED"

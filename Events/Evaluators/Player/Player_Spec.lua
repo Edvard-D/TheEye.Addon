@@ -8,6 +8,7 @@ local select = select
 
 TheEyeAddon.Events.Evaluators.Player_Spec =
 {
+    type = "STATE",
     gameEvents =
     {
         "ACTIVE_TALENT_GROUP_CHANGED",

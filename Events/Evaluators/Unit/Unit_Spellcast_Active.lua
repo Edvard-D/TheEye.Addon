@@ -8,6 +8,7 @@ local UnitCastingInfo = UnitCastingInfo
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
 {
+    type = "STATE",
     gameEvents =
     {
         "UNIT_SPELLCAST_CHANNEL_START",

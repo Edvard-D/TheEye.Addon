@@ -8,6 +8,7 @@ local UnitClass = UnitClass
 
 TheEyeAddon.Events.Evaluators.Player_Class =
 {
+    type = "STATE",
     gameEvents =
     {
         "ADDON_LOADED"

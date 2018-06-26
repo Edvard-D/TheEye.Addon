@@ -7,6 +7,7 @@ local select = select
 -- inputValues = nil
 TheEyeAddon.Events.Evaluators.Target_Attackable =
 {
+    type = "STATE",
     gameEvents =
     {
         "PLAYER_TARGET_CHANGED"

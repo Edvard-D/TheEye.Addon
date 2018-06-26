@@ -10,6 +10,7 @@ local unpack = unpack
 -- inputValues = { --[[unit]] "", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 {
+    type = "STATE",
     gameEvents =
     {
         "UNIT_SPELLCAST_CHANNEL_START",

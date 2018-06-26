@@ -8,6 +8,7 @@ local table = table
 
  TheEyeAddon.Events.Evaluators.UIObject_Visible =
 {
+    type = "STATE",
     customEvents =
     {
         "THEEYE_UIOBJECT_SHOWN",
