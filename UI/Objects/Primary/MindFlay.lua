@@ -1,10 +1,11 @@
-TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
+TheEyeAddon.UI.Objects:Add(
 {
     priority = nil,
-    tags = { "ICON", "PRIMARY", "SPELL", "DAMAGE" },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-15407" },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
+        parentKey = "GROUP_HUD_MODULE_PRIMARY",
         dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,
@@ -14,23 +15,24 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
     {
         Enabled =
         {
-            OnValidKey = TheEyeAddon.UI.Components.EnableComponent,
-            OnInvalidKey = TheEyeAddon.UI.Components.DisableComponent,
+            OnValidKey = TheEyeAddon.UI.Objects.Enable,
+            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [2] = true },
-            StateListeners =
+            Listeners =
             {
-                Target_Attackable =
+                UIObject_Visible =
                 {
-                    keyValue = 2
+                    keyValue = 2,
+                    inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
         },
         Visible =
         {
-            OnValidKey = TheEyeAddon.UI.Components.ShowComponent,
-            OnInvalidKey = TheEyeAddon.UI.Components.HideComponent,
+            OnValidKey = TheEyeAddon.UI.Objects.Show,
+            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
             validKeys = { [0] = true, [4] = true, [6] = true },
-            StateListeners =
+            Listeners =
             {
                 Unit_Spellcast_Active =
                 {
@@ -46,3 +48,4 @@ TheEyeAddon.UI.Modules.Primary.Components.Spell_15407 =
         }
     }
 }
+)

@@ -1,39 +1,13 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Cooldown = {}
 
-local Pool = {}
+local Pool = TheEyeAddon.UI.Pools:Create()
 
 
-function TheEyeAddon.UI.Factories.Cooldown:Create(parentFrame, start, duration)
-	local instance = nil
-	for i,frame in ipairs(Pool) do
-		if frame.isClaimed == false then
-			instance = frame
-			break
-		end
-	end
-
-	if instance ~= nil then
-		instance:SetParent(parentFrame)
-		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, displayData.dimensionTemplate)
-	else
-		local instance = TheEyeAddon.UI.Factories.Frame:Create("Cooldown", parentFrame, "CooldownFrameTemplate")
-		instance:SetDrawBling(false)
-		instance:SetDrawEdge(false)
-		table.insert(Pool, instance)
-	end
-
-	instance.isClaimed = true
-	instance.Release = TheEyeAddon.UI.Factories.Cooldown.Release
-	instance:Show()
+function TheEyeAddon.UI.Factories.Cooldown:Claim(displayData, start, duration)
+	local instance = Pool:Claim("Cooldown", displayData.parentKey, "CooldownFrameTemplate", displayData.dimensionTemplate)
 
 	instance:SetCooldown(start, duration)
-
+	
 	return instance
-end
-
-function TheEyeAddon.UI.Factories.Cooldown:Release()
-	self.isClaimed = false
-	self:SetParent(nil)
-	self:Hide()
 end

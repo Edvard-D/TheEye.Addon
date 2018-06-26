@@ -17,14 +17,14 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:SetInitialState(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:CalculateCurrentState(inputValues)
     local expectedSpellID = inputValues[2]
     local currentSpellID = select(9, UnitCastingInfo(inputValues[1]))
 
     if currentSpellID == expectedSpellID then
-        valueGroup.currentState = true
+        return true
     else
-        valueGroup.currentState = false
+        return false
     end
 end
 
