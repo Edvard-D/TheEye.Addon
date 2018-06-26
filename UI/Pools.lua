@@ -5,7 +5,7 @@ local ipairs = ipairs
 local table = table
 
 
-function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTable)
+function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTemplate)
 	local instance = nil
 	for i,frame in ipairs(self.instances) do
 		if frame.isClaimed == false then
