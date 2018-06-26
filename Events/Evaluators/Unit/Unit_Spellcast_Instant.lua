@@ -26,7 +26,7 @@ end
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(savedValues, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
-        if savedValues.isCasting == false then
+        if savedValues.isCasting ~= true then
             return true
         end
         savedValues.isCasting = false
