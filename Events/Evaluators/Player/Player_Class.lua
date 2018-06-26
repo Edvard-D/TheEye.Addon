@@ -23,6 +23,6 @@ function TheEyeAddon.Events.Evaluators.Player_Class:GetKey(event, ...)
     return select(3, UnitClass("player")) -- classIndex
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(savedValues, event, ...)
     return true
 end

@@ -55,7 +55,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(savedValues, event, ...)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))

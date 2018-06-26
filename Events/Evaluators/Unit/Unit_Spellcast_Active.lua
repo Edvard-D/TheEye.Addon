@@ -33,7 +33,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(event)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(savedValues, event)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         return true
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP

@@ -30,7 +30,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Enabled:GetKey(event, ...)
     return uiObject.key
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:Evaluate(event)
+function TheEyeAddon.Events.Evaluators.UIObject_Enabled:Evaluate(savedValues, event)
     if event == "THEEYE_UIOBJECT_ENABLED" then
         return true
     else -- THEEYE_UIOBJECT_DISABLED

@@ -23,6 +23,6 @@ function TheEyeAddon.Events.Evaluators.Player_Spec:GetKey(event, ...)
     return GetSpecialization()
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Spec:Evaluate(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Spec:Evaluate(savedValues, event, ...)
     return true
 end

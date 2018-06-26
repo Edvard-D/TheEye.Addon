@@ -30,7 +30,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Visible:GetKey(event, ...)
     return uiObject.key
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Visible:Evaluate(event)
+function TheEyeAddon.Events.Evaluators.UIObject_Visible:Evaluate(savedValues, event)
     if event == "THEEYE_UIOBJECT_SHOWN" then
         return true
     else -- THEEYE_UIOBJECT_HIDDEN
