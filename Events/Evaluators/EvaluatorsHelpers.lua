@@ -67,7 +67,7 @@ local function DecreaseEvaluatorListenerCount(evaluator)
 end
 
 local function UnregisterValueGroupListeningTo(listeningTo)
-    for i,listener in ipairs(tableName) do
+    for i,listener in ipairs(listeningTo) do
         TheEyeAddon.Events.Evaluators:UnregisterListener(listener.listeningToKey, listener)
     end
 end
@@ -102,6 +102,7 @@ end
 
 -- LISTENERS: handling of Listeners that are listening to an Evaluator
 function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
+    print("RegisterListener evaluatorKey: " .. evaluatorKey)
     local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
     local valueGroup = GetValueGroup(evaluator, listener.inputValues)
     local listeners = GetValueGroupListeners(valueGroup)
