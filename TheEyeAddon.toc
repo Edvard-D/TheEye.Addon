@@ -82,6 +82,7 @@ Events\Evaluators\UIObject\UIObject_Visible.lua
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
+Events\Evaluators\Unit\Unit_Spellcast_Instant.lua
 
 
 
