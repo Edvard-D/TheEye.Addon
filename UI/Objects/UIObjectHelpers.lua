@@ -86,6 +86,7 @@ end
 
 function TheEyeAddon.UI.Objects:Enable(uiObject)
     if uiObject.StateGroups.Enabled.currentState ~= true then
+        print ("ENABLE    " .. uiObject.key) -- DEBUG
         uiObject.StateGroups.Enabled.currentState = true
         SetupStateGroup(uiObject, uiObject.StateGroups.Visible)
         TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_UIOBJECT_ENABLED", uiObject)
@@ -94,6 +95,7 @@ end
 
 function TheEyeAddon.UI.Objects:Disable(uiObject)
     if uiObject.StateGroups.Enabled.currentState ~= false then
+        print ("DISABLE    " .. uiObject.key) -- DEBUG
         TheEyeAddon.UI.Objects:Hide(uiObject)
         TeardownStateGroup(uiObject.StateGroups.Visible)
 
@@ -104,6 +106,7 @@ end
 
 function TheEyeAddon.UI.Objects:Show(uiObject)
     if uiObject.StateGroups.Visible.currentState ~= true then
+        print ("SHOW    " .. uiObject.key) -- DEBUG
         uiObject.frame = uiObject.DisplayData.factory:Claim(uiObject.DisplayData)
         uiObject.StateGroups.Visible.currentState = true
         TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_UIOBJECT_SHOWN", uiObject)
@@ -112,6 +115,7 @@ end
 
 function TheEyeAddon.UI.Objects:Hide(uiObject)
     if uiObject.StateGroups.Visible.currentState ~= false then
+        print ("HIDE    " .. uiObject.key) -- DEBUG
         uiObject.frame:Release()
         uiObject.frame = nil
         uiObject.StateGroups.Visible.currentState = false
