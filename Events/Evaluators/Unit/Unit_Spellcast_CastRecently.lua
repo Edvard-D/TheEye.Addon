@@ -19,8 +19,8 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
     },
     customEvents =
     {
-        "THEEYE_UNIT_SPELLCAST_TIMER_END",
-        "UNIT_SPELLCAST_INSTANT"
+        "UNIT_SPELLCAST_INSTANT",
+        "UNIT_SPELLCAST_TIMER_END"
     },
     timerDuration = 0.5
 }
@@ -44,7 +44,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurr
         local trueStateEndTime = (startTime / 1000) + self.timerDuration
         local timerLength = trueStateEndTime - GetTime()
         if timerLength > 0 then
-            TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
+            TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
             return true
         end
     end
@@ -60,7 +60,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
     event == "UNIT_SPELLCAST_CHANNEL_START" or
     event == "UNIT_SPELLCAST_INSTANT" then
         unit, _, spellID = ...
-    elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
+    elseif event == "UNIT_SPELLCAST_TIMER_END" then
         _, unit, spellID = ...
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
         unit, _, spellID = ...
@@ -74,13 +74,13 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(save
         local unit, _, spellID = ...
         local castID = select(7, UnitCastingInfo(unit))
 
-        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
+        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
         return true
     elseif event == "UNIT_SPELLCAST_INSTANT" then
         local unit, _, spellID = ...
-        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, "INSTANT")
+        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, spellID, "INSTANT")
         return true
-    elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
+    elseif event == "UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(1, ...)
         if timerDuration == self.timerDuration then
             local _, unit, _, requiredCastID = ...
