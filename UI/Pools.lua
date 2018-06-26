@@ -5,9 +5,9 @@ local ipairs = ipairs
 local table = table
 
 
-local function Claim(frameType, parentKey, template, dimensionTable)
+function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTable)
 	local instance = nil
-	for i,frame in ipairs(self) do
+	for i,frame in ipairs(self.instances) do
 		if frame.isClaimed == false then
 			instance = frame
 			break
@@ -37,7 +37,7 @@ local function Claim(frameType, parentKey, template, dimensionTable)
 end
 
 function TheEyeAddon.UI.Pools:Create()
-    local instance = { Claim = Claim, instances = {} }
+	local instance = { Claim = TheEyeAddon.UI.Pools.Claim, instances = {} }
     table.insert(TheEyeAddon.UI.Pools, instance)
     return instance
 end
