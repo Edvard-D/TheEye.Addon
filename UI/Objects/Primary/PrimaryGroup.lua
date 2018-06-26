@@ -4,6 +4,7 @@ TheEyeAddon.UI.Objects:Add(
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
+        parentKey = "GROUP_UIPARENT",
         dimensionTemplate =
         {
             width = 0,

@@ -5,6 +5,7 @@ TheEyeAddon.UI.Objects:Add(
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
+        parentKey = "GROUP_HUD_MODULE_PRIMARY",
         dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,

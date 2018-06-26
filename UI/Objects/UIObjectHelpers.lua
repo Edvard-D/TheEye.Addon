@@ -104,7 +104,7 @@ end
 
 function TheEyeAddon.UI.Objects:Show(uiObject)
     if uiObject.StateGroups.Visible.currentState ~= true then
-        uiObject.frame = uiObject.DisplayData.factory:Claim(module.frame, uiObject.DisplayData) --TODO: set parent
+        uiObject.frame = uiObject.DisplayData.factory:Claim(uiObject.DisplayData)
         uiObject.StateGroups.Visible.currentState = true
         TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_UIOBJECT_SHOWN", uiObject)
     end

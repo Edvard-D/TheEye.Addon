@@ -4,8 +4,8 @@ TheEyeAddon.UI.Factories.Cooldown = {}
 local Pool = TheEyeAddon.UI.Pools:Create()
 
 
-function TheEyeAddon.UI.Factories.Cooldown:Claim(parentFrame, displayData, start, duration)
-	local instance = Pool:Claim("Cooldown", parentFrame, "CooldownFrameTemplate", displayData.dimensionTemplate)
+function TheEyeAddon.UI.Factories.Cooldown:Claim(displayData, start, duration)
+	local instance = Pool:Claim("Cooldown", displayData.parentKey, "CooldownFrameTemplate", displayData.dimensionTemplate)
 
 	instance:SetCooldown(start, duration)
 	

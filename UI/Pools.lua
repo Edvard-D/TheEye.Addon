@@ -5,13 +5,20 @@ local ipairs = ipairs
 local table = table
 
 
-local function Claim(frameType, parentFrame, template, dimensionTable)
+local function Claim(frameType, parentKey, template, dimensionTable)
 	local instance = nil
 	for i,frame in ipairs(self) do
 		if frame.isClaimed == false then
 			instance = frame
 			break
 		end
+	end
+
+	local parentFrame
+	if parentKey ~= nil then
+		parentFrame = TheEyeAddon.UI.Objects[parentKey].frame
+	else
+		parentFrame = UIParent
 	end
 
 	if instance ~= nil then
