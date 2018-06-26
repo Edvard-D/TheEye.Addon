@@ -6,9 +6,9 @@ local unpack = unpack
 
 
 function TheEyeAddon.Timers:StartEventTimer(duration, eventName, ...)
-    local args = {duration, ...}
+    local args = { duration, ... }
     After(duration, 
-    function(...)
+    function()
         TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, unpack(args))
     end)
 end
