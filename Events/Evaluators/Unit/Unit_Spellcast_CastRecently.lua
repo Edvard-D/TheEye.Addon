@@ -19,7 +19,8 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
     },
     customEvents =
     {
-        "THEEYE_UNIT_SPELLCAST_TIMER_END"
+        "THEEYE_UNIT_SPELLCAST_TIMER_END",
+        "UNIT_SPELLCAST_INSTANT"
     },
     timerDuration = 0.5
 }
@@ -55,12 +56,10 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
     local unit
     local spellID
 
-    if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
+    if event == "UNIT_SPELLCAST_START" or
+    event == "UNIT_SPELLCAST_CHANNEL_START" or
+    event == "UNIT_SPELLCAST_INSTANT" then
         unit, _, spellID = ...
-    elseif event == "Unit_Spellcast_Instant" then
-        local inputValues = select(1, ...)
-        unit = inputValues[1]
-        spellID = inputValues[2]
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
         _, unit, spellID = ...
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
@@ -77,10 +76,8 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(save
 
         TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
         return true
-    elseif event == "Unit_Spellcast_Instant" then
-        local inputValues = select(1, ...)
-        local unit = inputValues[1]
-        local spellID = inputValues[2]
+    elseif event == "UNIT_SPELLCAST_INSTANT" then
+        local unit, _, spellID = ...
         TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "THEEYE_UNIT_SPELLCAST_TIMER_END", unit, spellID, "INSTANT")
         return true
     elseif event == "THEEYE_UNIT_SPELLCAST_TIMER_END" then
