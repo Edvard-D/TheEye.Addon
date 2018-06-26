@@ -84,11 +84,15 @@ local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
 end
 
 -- LISTENING TO: handling of Evaluators that are listening to an Evaluator
-function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(listeningTo)
-    for i,listener in ipairs(listeningTo) do
-        listeningTo[i].OnStateChange = TheEyeAddon.Events.Evaluators.OnStateChange,
-        TheEyeAddon.Events.Evaluators:RegisterListener(listener.listeningToKey, listener)
+function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup, listener)
+    if valueGroup.ListeningTo == nil then
+        valueGroup.ListeningTo = {}
     end
+
+    listener.OnStateChange = TheEyeAddon.Events.Evaluators.OnStateChange
+    table.insert(valueGroup.ListeningTo, listener)
+    
+    TheEyeAddon.Events.Evaluators:RegisterListener(listener.listeningToKey, listener)
 end
 
 function TheEyeAddon.Events.Evaluators:OnStateChange(newState)
