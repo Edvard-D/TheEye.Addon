@@ -5,10 +5,10 @@ local ipairs = ipairs
 local table = table
 
 
-function TheEyeAddon.UI.Pools:Release()
-	self.Hide()
-	self.SetParent(nil)
-	self.isClaimed = false
+function TheEyeAddon.UI.Pools:Release(frame)
+	frame:Hide()
+	frame:SetParent(nil)
+	frame.isClaimed = false
 end
 
 function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTemplate)
@@ -32,7 +32,6 @@ function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTem
 		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, dimensionTemplate)
 	else
 		instance = TheEyeAddon.UI.Factories.Frame:Create("Frame", parentFrame, nil, dimensionTemplate)
-		instance.Release = TheEyeAddon.UI.Pools.Release
 		table.insert(self, instance)
 	end
 

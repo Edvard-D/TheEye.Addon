@@ -116,7 +116,7 @@ end
 function TheEyeAddon.UI.Objects:Hide(uiObject)
     if uiObject.StateGroups.Visible.currentState ~= false then
         print ("HIDE    " .. uiObject.key) -- DEBUG
-        uiObject.frame:Release()
+        TheEyeAddon.UI.Pools:Release(uiObject.frame)
         uiObject.frame = nil
         uiObject.StateGroups.Visible.currentState = false
         TheEyeAddon.Events.Coordinator:SendCustomEvent("THEEYE_UIOBJECT_HIDDEN", uiObject)
