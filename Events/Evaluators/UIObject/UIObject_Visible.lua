@@ -11,8 +11,8 @@ local table = table
     type = "STATE",
     customEvents =
     {
-        "THEEYE_UIOBJECT_SHOWN",
-        "THEEYE_UIOBJECT_HIDDEN"
+        "UIOBJECT_SHOWN",
+        "UIOBJECT_HIDDEN"
     }
 }
 
@@ -32,9 +32,9 @@ function TheEyeAddon.Events.Evaluators.UIObject_Visible:GetKey(event, ...)
 end
 
 function TheEyeAddon.Events.Evaluators.UIObject_Visible:Evaluate(savedValues, event)
-    if event == "THEEYE_UIOBJECT_SHOWN" then
+    if event == "UIOBJECT_SHOWN" then
         return true
-    else -- THEEYE_UIOBJECT_HIDDEN
+    else -- UIOBJECT_HIDDEN
         return false
     end
 end
