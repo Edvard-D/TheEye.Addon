@@ -22,7 +22,7 @@ end
 function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate()
     self.formattedEventInfo = {}
 
-    for i,valueName in ipairs(TheEyeAddon.Events.Evaluators.Combat_Log.EventNameValues[self.rawEventInfo[2]]) do
+    for i,valueName in ipairs(TheEyeAddon.Events.Evaluators.Combat_Log.EventValueNames[self.rawEventInfo[2]]) do
         self.formattedEventInfo[valueName] = self.rawEventInfo[i]
     end
 
