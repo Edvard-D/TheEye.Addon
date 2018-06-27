@@ -24,7 +24,7 @@ TheEyeAddon.Events.Evaluators.Combat_Log =
 }
 
 function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
-    if event == COMBAT_LOG_EVENT_UNFILTERED then
+    if event == "COMBAT_LOG_EVENT_UNFILTERED" then
         self.combatLogSent = false
     elseif self.combatLogSent == false then -- COMBAT_LOG_REQUESTED
         self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
