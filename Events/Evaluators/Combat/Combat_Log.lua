@@ -14,10 +14,16 @@ TheEyeAddon.Events.Evaluators.Combat_Log =
 }
 
 function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey()
-    self.currentEventInfo = { CombatLogGetCurrentEventInfo() }
-    return self.currentEventInfo[2]
+    self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
+    return self.rawEventInfo[2]
 end
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(savedValues)
-    TheEyeAddon.Events.Coordinator:SendCustomEvent(self.currentEventInfo[2], self.currentEventInfo)
+function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate()
+    self.formattedEventInfo = {}
+
+    for i,valueName in ipairs(TheEyeAddon.Events.Evaluators.Combat_Log.EventNameValues[self.rawEventInfo[2]]) do
+        self.formattedEventInfo[valueName] = self.rawEventInfo[i]
+    end
+
+    TheEyeAddon.Events.Coordinator:SendCustomEvent(self.formattedEventInfo["event"], self.formattedEventInfo)
 end
