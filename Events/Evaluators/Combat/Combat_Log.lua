@@ -45,23 +45,21 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
 
             if (sourceUnit == "" or sourceGUID == unitGUIDs[sourceUnit]) and
             (destUnit == "" or destGUID == unitGUIDs[destUnit]) then
-                self.sourceUnit = sourceUnit
-                self.destUnit = destUnit
                 return table.concat({ self.rawEventInfo[2], sourceUnit, destUnit })
             end
         end
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate()
+function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
     self.formattedEventInfo = {}
 
     for i,valueName in ipairs(TheEyeAddon.Events.Evaluators.Combat_Log.EventValueNames[self.rawEventInfo[2]]) do
         self.formattedEventInfo[valueName] = self.rawEventInfo[i]
     end
 
-    self.formattedEventInfo["sourceUnit"] = self.sourceUnit
-    self.formattedEventInfo["destUnit"] = self.destUnit
+    self.formattedEventInfo["sourceUnit"] = valueGroup.inputValues[2]
+    self.formattedEventInfo["destUnit"] = valueGroup.inputValues[3]
 
     TheEyeAddon.Events.Coordinator:SendCustomEvent(self.formattedEventInfo["event"], self.formattedEventInfo)
     self.combatLogSent = true
