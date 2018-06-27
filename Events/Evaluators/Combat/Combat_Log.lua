@@ -1,5 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 
+local ipairs = ipairs
 local table = table
 
 
