@@ -63,7 +63,7 @@ Events\Evaluators\EvaluatorsHelpers.lua
 # --- Combat ---
 Events\Evaluators\Combat\Combat_Log.lua
 
-Events\Evaluators\Combat\EventValueNames.lua
+Events\Evaluators\Combat\EventDataFormats.lua
 
 
 # --- General ---

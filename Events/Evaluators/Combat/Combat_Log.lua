@@ -54,10 +54,13 @@ end
 function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
     self.formattedEventInfo = {}
 
-    for i,valueName in ipairs(TheEyeAddon.Events.Evaluators.Combat_Log.EventValueNames[self.rawEventInfo[2]]) do
+    local eventDataFormat = TheEyeAddon.Events.Evaluators.Combat_Log.EventDataFormats[self.rawEventInfo[2]]
+    for i,valueName in ipairs(eventDataFormat.ValueNames) do
         self.formattedEventInfo[valueName] = self.rawEventInfo[i]
     end
 
+    self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]
+    self.formattedEventInfo["suffix"] = eventDataFormat["suffix"]
     self.formattedEventInfo["sourceUnit"] = valueGroup.inputValues[2]
     self.formattedEventInfo["destUnit"] = valueGroup.inputValues[3]
 
