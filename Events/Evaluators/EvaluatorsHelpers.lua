@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 local ipairs = ipairs
+local pairs = pairs
 local table = table
 
 -- SETUP
@@ -127,14 +128,25 @@ function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener
     DecreaseValueGroupListenerCount(evaluator, valueGroup)
 end
 
+local function EvaluateState(evaluator, valueGroup, event, ...)
+    local evaluatedState = evaluator:Evaluate(valueGroup, event, ...)
+    if evaluatedState ~= valueGroup.currentState then
+        valueGroup.currentState = evaluatedState
+        TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+    end
+end
+
 function TheEyeAddon.Events.Evaluators:OnEvent(event, ...)
-    local valueGroupKey = self:GetKey(event, ...)
-    local valueGroup = self.ValueGroups[valueGroupKey]
-    if valueGroup ~= nil then
-        local evaluatedState = self:Evaluate(valueGroup, event, ...)
-        if evaluatedState ~= valueGroup.currentState then
-            valueGroup.currentState = evaluatedState
-            TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
+    if self.reevaluateEvents ~= nil and self.reevaluateEvents[event] ~= nil then
+        for k,valueGroup in pairs(self.ValueGroups) do
+            EvaluateState(self, valueGroup, event, ...)
+        end
+    else
+        local valueGroupKey = self:GetKey(event, ...)
+        local valueGroup = self.ValueGroups[valueGroupKey]
+
+        if valueGroup ~= nil then
+            EvaluateState(self, valueGroup, event, ...)
         end
     end
 end
