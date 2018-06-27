@@ -1,46 +1,46 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Coordinator = { Evaluators = {} }
-local Evaluators = TheEyeAddon.Events.Coordinator.Evaluators
+TheEyeAddon.Events.Coordinator = { Listeners = {} }
+local Listeners = TheEyeAddon.Events.Coordinator.Listeners
 
 local ipairs = ipairs
 local table = table
 
 
 local frame = CreateFrame("Frame", nil, UIParent)
-local function HandleEvent(self, eventName, ...)
-    print ("Coordinator:HandleEvent    " .. eventName) -- DEBUG
-    for i,evaluator in ipairs(Evaluators[eventName]) do
-        TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, eventName, ...)
+local function OnEvent(self, eventName, ...)
+    print ("Coordinator OnEvent    " .. eventName) -- DEBUG
+    for i,listener in ipairs(Listeners[eventName]) do
+        listener:OnEvent(eventName, ...)
     end
 end
-frame:SetScript("OnEvent", HandleEvent)
+frame:SetScript("OnEvent", OnEvent)
 
-local function InsertEvaluator(eventName, evaluator, isGameEvent)
-    if Evaluators[eventName] == nil then
-        Evaluators[eventName] = { evaluator }
+local function InsertListener(eventName, listener, isGameEvent)
+    if Listeners[eventName] == nil then
+        Listeners[eventName] = { listener }
         print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:RegisterEvent(eventName)
         end
     else
-        table.insert(Evaluators[eventName], evaluator)
+        table.insert(Listeners[eventName], listener)
     end
 
-    local eventGroup = Evaluators[eventName]
-    if eventGroup.evaluatorCount == nil then
-        eventGroup.evaluatorCount = 0
+    local eventGroup = Listeners[eventName]
+    if eventGroup.listenerCount == nil then
+        eventGroup.listenerCount = 0
     end
-    eventGroup.evaluatorCount = eventGroup.evaluatorCount + 1
+    eventGroup.listenerCount = eventGroup.listenerCount + 1
 end
 
-local function RemoveEvaluator(eventName, evaluator, isGameEvent)
-    local eventGroup = Evaluators[eventName]
-    table.removevalue(eventGroup, evaluator)
+local function RemoveListener(eventName, listener, isGameEvent)
+    local eventGroup = Listeners[eventName]
+    table.removevalue(eventGroup, listener)
     
-    eventGroup.evaluatorCount = eventGroup.evaluatorCount - 1
-    if eventGroup.evaluatorCount == 0 then -- If the evaluatorCount was greater than 0 before
-        Evaluators[eventName] = nil
+    eventGroup.listenerCount = eventGroup.listenerCount - 1
+    if eventGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        Listeners[eventName] = nil
         eventGroup = nil
         print ("UnregisterEvent    " .. eventName) -- DEBUG
 
@@ -51,36 +51,36 @@ local function RemoveEvaluator(eventName, evaluator, isGameEvent)
 end
 
 
-function TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
-    if evaluator.gameEvents ~= nil then
-        for i,eventName in ipairs(evaluator.gameEvents) do
-            InsertEvaluator(eventName, evaluator, true)
+function TheEyeAddon.Events.Coordinator:RegisterListener(listener)
+    if listener.gameEvents ~= nil then
+        for i,eventName in ipairs(listener.gameEvents) do
+            InsertListener(eventName, listener, true)
         end
     end
 
-    if evaluator.customEvents ~= nil then
-        for i,eventName in ipairs(evaluator.customEvents) do
-            InsertEvaluator(eventName, evaluator, false)
+    if listener.customEvents ~= nil then
+        for i,eventName in ipairs(listener.customEvents) do
+            InsertListener(eventName, listener, false)
         end
     end
 end
 
-function TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
-    if evaluator.gameEvents ~= nil then
-        for i,eventName in ipairs(evaluator.gameEvents) do
-            RemoveEvaluator(eventName, evaluator, true)
+function TheEyeAddon.Events.Coordinator:UnregisterListener(listener)
+    if listener.gameEvents ~= nil then
+        for i,eventName in ipairs(listener.gameEvents) do
+            RemoveListener(eventName, listener, true)
         end
     end
     
-    if evaluator.customEvents ~= nil then
-        for i,eventName in ipairs(evaluator.customEvents) do
-            RemoveEvaluator(eventName, evaluator, false)
+    if listener.customEvents ~= nil then
+        for i,eventName in ipairs(listener.customEvents) do
+            RemoveListener(eventName, listener, false)
         end
     end
 end
 
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
-    if Evaluators[eventName] ~= nil then
+    if Listeners[eventName] ~= nil then
         HandleEvent(frame, eventName, ...)
     end
 end

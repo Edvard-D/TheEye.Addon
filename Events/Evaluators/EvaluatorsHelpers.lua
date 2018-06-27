@@ -37,7 +37,7 @@ local function IncreaseEvaluatorListenerCount(evaluator)
     end
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
-        TheEyeAddon.Events.Coordinator:RegisterEvaluator(evaluator)
+        TheEyeAddon.Events.Coordinator:RegisterListener(evaluator)
     end
 end
 
@@ -62,7 +62,7 @@ end
 local function DecreaseEvaluatorListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        TheEyeAddon.Events.Coordinator:UnregisterEvaluator(evaluator)
+        TheEyeAddon.Events.Coordinator:UnregisterListener(evaluator)
     end
 end
 
@@ -126,11 +126,11 @@ function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener
     DecreaseValueGroupListenerCount(evaluator, valueGroup)
 end
 
-function TheEyeAddon.Events.Evaluators:EvaluateState(evaluator, event, ...)
-    local valueGroupKey = evaluator:GetKey(event, ...)
-    local valueGroup = evaluator.ValueGroups[valueGroupKey]
+function TheEyeAddon.Events.Evaluators:OnEvent(event, ...)
+    local valueGroupKey = self:GetKey(event, ...)
+    local valueGroup = self.ValueGroups[valueGroupKey]
     if valueGroup ~= nil then
-        local evaluatedState = evaluator:Evaluate(valueGroup, event, ...)
+        local evaluatedState = self:Evaluate(valueGroup, event, ...)
         if evaluatedState ~= valueGroup.currentState then
             valueGroup.currentState = evaluatedState
             TheEyeAddon.Events.Evaluators:NotifyListeners(valueGroup.listeners, evaluatedState)
