@@ -72,6 +72,7 @@ local function UnregisterValueGroupListeningTo(listeningTo)
     for i,listener in ipairs(listeningTo) do
         TheEyeAddon.Events.Evaluators:UnregisterListener(listener.listeningToKey, listener)
     end
+    listeningTo = nil
 end
 
 local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
