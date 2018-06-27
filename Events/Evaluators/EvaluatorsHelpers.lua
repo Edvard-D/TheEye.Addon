@@ -37,6 +37,7 @@ local function IncreaseEvaluatorListenerCount(evaluator)
     end
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
+        evaluator.OnEvent = TheEyeAddon.Events.Evaluators.OnEvent
         TheEyeAddon.Events.Coordinator:RegisterListener(evaluator)
     end
 end

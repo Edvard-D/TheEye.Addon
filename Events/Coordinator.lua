@@ -81,6 +81,6 @@ end
 
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
     if Listeners[eventName] ~= nil then
-        HandleEvent(frame, eventName, ...)
+        OnEvent(frame, eventName, ...)
     end
 end
