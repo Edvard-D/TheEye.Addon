@@ -13,10 +13,11 @@ TheEyeAddon.Events.Evaluators.Combat_Log =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event, ...)
-    return select(2, ...)
+function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey()
+    self.currentEventInfo = { CombatLogGetCurrentEventInfo() }
+    return self.currentEventInfo[2]
 end
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(savedValues, event, ...)
-    TheEyeAddon.Events.Coordinator:SendCustomEvent(select(2, ...), ...)
+function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(savedValues)
+    TheEyeAddon.Events.Coordinator:SendCustomEvent(self.currentEventInfo[2], self.currentEventInfo)
 end
