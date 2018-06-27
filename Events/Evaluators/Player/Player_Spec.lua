@@ -20,10 +20,10 @@ function TheEyeAddon.Events.Evaluators.Player_Spec:CalculateCurrentState(inputVa
     return inputValues[1] == GetSpecialization()
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Spec:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Spec:GetKey()
     return GetSpecialization()
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Spec:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Spec:Evaluate()
     return true
 end

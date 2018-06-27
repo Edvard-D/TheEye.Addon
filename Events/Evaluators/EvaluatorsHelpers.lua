@@ -47,8 +47,10 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
     valueGroup.listenerCount = valueGroup.listenerCount + 1
     if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
+        valueGroup.inputValues = listener.inputValues
+
         if evaluator.SetupListeningTo ~= nil then
-            evaluator:SetupListeningTo(valueGroup, listener.inputValues)
+            evaluator:SetupListeningTo(valueGroup)
         end
 
         if evaluator.CalculateCurrentState ~= nil then

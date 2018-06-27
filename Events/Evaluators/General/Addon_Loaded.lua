@@ -14,7 +14,7 @@ TheEyeAddon.Events.Evaluators.Addon_Loaded =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:CalculateCurrentState(inputValues)
+function TheEyeAddon.Events.Evaluators.Addon_Loaded:CalculateCurrentState()
     return false
 end
 
@@ -22,6 +22,6 @@ function TheEyeAddon.Events.Evaluators.Addon_Loaded:GetKey(event, ...)
     return select(1, ...)
 end
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Addon_Loaded:Evaluate()
     return true
 end

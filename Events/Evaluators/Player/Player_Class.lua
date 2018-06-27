@@ -20,10 +20,10 @@ function TheEyeAddon.Events.Evaluators.Player_Class:CalculateCurrentState(inputV
     return classIndex == inputValues[1]
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Class:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Class:GetKey()
     return select(3, UnitClass("player")) -- classIndex
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate()
     return true
 end
