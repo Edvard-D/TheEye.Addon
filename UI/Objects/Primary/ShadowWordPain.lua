@@ -38,6 +38,11 @@ TheEyeAddon.UI.Objects:Add(
                 {
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 589 }
+                },
+                Unit_Aura_Active =
+                {
+                    keyValue = 4,
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589 }
                 }
             }
         }
