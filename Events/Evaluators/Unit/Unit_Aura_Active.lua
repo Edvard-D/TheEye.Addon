@@ -10,6 +10,10 @@ local unpack = unpack
 TheEyeAddon.Events.Evaluators.Unit_Aura_Active =
 {
     type = "STATE",
+    reevaluateEvents =
+    {
+        PLAYER_TARGET_CHANGED = true
+    },
     gameEvents =
     {
         "PLAYER_TARGET_CHANGED"
@@ -50,7 +54,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:CalculateCurrentState(in
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
     
     for i=1,40 do
-        local sourceUnit, _, _, spellID = select(8, UnitAura(destUnit, i))
+        local sourceUnit, _, _, spellID = select(7, UnitAura(destUnit, i, "HARMFUL"))
         if spellID ~= nil then
             if spellID == spellIDExpected and sourceUnit == sourceUnitExpected then
                 return true
@@ -68,7 +72,7 @@ end
 
 function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:Evaluate(valueGroup, event, ...)
     if event == "PLAYER_TARGET_CHANGED" then
-        return self.CalculateCurrentState(valueGroup.inputValues)
+        return TheEyeAddon.Events.Evaluators.Unit_Aura_Active:CalculateCurrentState(valueGroup.inputValues)
     else
         local combatLogData = ...
         
