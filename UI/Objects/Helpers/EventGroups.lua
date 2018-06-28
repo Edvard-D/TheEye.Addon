@@ -10,3 +10,8 @@ function TheEyeAddon.UI.Objects:RegisterChild(event, uiObject)
         table.insert(self.uiObject.Children, uiObject)
     end
 end
+
+function TheEyeAddon.UI.Objects:SortChildrenByPriority(uiObject)
+    table.sort(uiObject.Children, function(a,b)
+        return a.ListenerGroups.Priority.combinedKeyValue > b.ListenerGroups.Priority.combinedKeyValue end) 
+end
