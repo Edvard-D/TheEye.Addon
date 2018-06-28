@@ -23,7 +23,7 @@ TheEyeAddon.UI.Objects:Add(
                 UIObject_Visible =
                 {
                     keyValue = 2,
-                    inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
         },

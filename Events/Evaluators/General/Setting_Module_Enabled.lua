@@ -4,8 +4,7 @@ local select = select
 local table = table
 
 
--- inputValues = { --[[moduleKey]] "_" }
-
+-- inputValues = { --[[uiObjectKey]] "_" }
 TheEyeAddon.Events.Evaluators.Setting_Module_Enabled =
 {
     type = "STATE",

@@ -17,11 +17,12 @@ TheEyeAddon.UI.Objects:Add(
                 Addon_Loaded =
                 {
                     keyValue = 2,
-                    inputValues = { "TheEyeAddon" }
+                    inputValues = { --[[addonName]] "TheEyeAddon" }
                 },
                 Game_Data_Loaded =
                 {
                     keyValue = 4
+                    -- inputValues = nil
                 }
             }
         },

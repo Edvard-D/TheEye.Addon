@@ -27,12 +27,12 @@ TheEyeAddon.UI.Objects:Add(
                 Setting_Module_Enabled =
                 {
                     keyValue = 2,
-                    inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 },
                 UIObject_Visible =
                 {
                     keyValue = 4,
-                    inputValues = { "GROUP_UIPARENT" }
+                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" }
                 }
             }
         },
