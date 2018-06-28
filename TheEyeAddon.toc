@@ -103,6 +103,7 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 UI\Objects\UIObjectHelpers.lua
 UI\Pools.lua
+UI\Objects\TagGroups.lua
 
 
 
