@@ -17,11 +17,3 @@ function TheEyeAddon.UI.Objects:TeardownEventGroups(uiObject)
         end
     end
 end
-
-local function Teardown(uiObject)
-    for k,v in pairs(uiObject.StateGroups) do
-        TeardownGroup(uiObject.StateGroups[k])
-    end
-
-    TeardownEventGroups(uiObject)
-end
