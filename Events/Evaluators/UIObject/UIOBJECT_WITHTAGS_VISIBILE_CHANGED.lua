@@ -18,7 +18,7 @@ TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_INITIALIZED:Evaluate(valueGroup, event, ...)
+function TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_VISIBILE_CHANGED:Evaluate(valueGroup, event, ...)
     local uiObject = ...
     local hasTags = TheEyeAddon.UI.Objects.Tags:UIObjectHasTags(uiObject, valueGroup.inputValues, valueGroup.key)
 
