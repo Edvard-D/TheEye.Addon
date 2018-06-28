@@ -1,7 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 
 local ipairs = ipairs
-local select = select
 local table = table
 local unpack = unpack
 
@@ -52,16 +51,11 @@ end
 
 function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:CalculateCurrentState(inputValues)
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
-    
-    for i=1,40 do
-        local sourceUnit, _, _, spellID = select(7, UnitAura(destUnit, i, "HARMFUL"))
-        if spellID ~= nil then
-            if spellID == spellIDExpected and sourceUnit == sourceUnitExpected then
-                return true
-            end
-        else
-            return false
-        end
+
+    if TheEyeAddon.Auras:UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil then
+        return true
+    else
+        return false
     end
 end
 
