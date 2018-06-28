@@ -5,7 +5,7 @@ local table = table
 local unpack = unpack
 
 
--- inputValues = { --[[sourceUnit]] "", --[[destUnit]] "", --[[spellID]] "" }
+-- inputValues = { --[[sourceUnit]] "_", --[[destUnit]] "_", --[[spellID]] "_" }
 TheEyeAddon.Events.Evaluators.Unit_Aura_Active =
 {
     type = "STATE",

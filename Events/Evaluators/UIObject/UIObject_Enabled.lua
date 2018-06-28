@@ -4,7 +4,7 @@ local select = select
 local table = table
 
 
--- inputValues = { --[[uiObjectKey]] "" }
+-- inputValues = { --[[uiObjectKey]] "_" }
 
  TheEyeAddon.Events.Evaluators.UIObject_Enabled =
 {

@@ -7,7 +7,7 @@ local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
 
 
--- inputValues = { --[[unit]] "", --[[spellID]] 0 }
+-- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 {
     type = "STATE",

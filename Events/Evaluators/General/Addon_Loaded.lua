@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local select = select
 
 
--- inputValues = { --[[addonName]] "" }
+-- inputValues = { --[[addonName]] "_" }
 
 TheEyeAddon.Events.Evaluators.Addon_Loaded =
 {

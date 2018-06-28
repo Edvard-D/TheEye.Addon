@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local table = table
 
 
--- inputValues = { --[[unit]] "", --[[spellID]] 0 }
+-- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
 {
     type = "EVENT",

@@ -7,7 +7,7 @@ local table = table
 local UnitGUID = UnitGUID
 
 
--- inputValues = { --[[eventName]] "", --[[sourceUnit]] "", --[[destUnit]] "" }
+-- inputValues = { --[[eventName]] "_", --[[sourceUnit]] "_", --[[destUnit]] "_" }
 TheEyeAddon.Events.Evaluators.Combat_Log =
 {
     type = "EVENT",
@@ -29,15 +29,15 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
         local sourceUnit = valueGroup.inputValues[2]
         local destUnit = valueGroup.inputValues[3]
 
-        if sourceUnit ~= "" and unitGUIDs[sourceUnit] == nil then
+        if sourceUnit ~= "_" and unitGUIDs[sourceUnit] == nil then
             unitGUIDs[sourceUnit] = UnitGUID(sourceUnit)
         end
-        if destUnit ~= "" and unitGUIDs[destUnit] == nil then
+        if destUnit ~= "_" and unitGUIDs[destUnit] == nil then
             unitGUIDs[destUnit] = UnitGUID(destUnit)
         end
 
-        if (sourceUnit == "" or sourceGUID == unitGUIDs[sourceUnit]) and
-        (destUnit == "" or destGUID == unitGUIDs[destUnit]) then
+        if (sourceUnit == "_" or sourceGUID == unitGUIDs[sourceUnit]) and
+        (destUnit == "_" or destGUID == unitGUIDs[destUnit]) then
             return table.concat({ self.rawEventInfo[2], sourceUnit, destUnit })
         end
     end
