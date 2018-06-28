@@ -1,11 +1,9 @@
 local TheEyeAddon = TheEyeAddon
 
 local select = select
-local table = table
 
 
 -- inputValues = { --[[uiObjectKey]] "_" }
-
  TheEyeAddon.Events.Evaluators.UIObject_Visible =
 {
     type = "STATE",
