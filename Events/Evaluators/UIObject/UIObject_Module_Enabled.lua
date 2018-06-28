@@ -10,7 +10,7 @@ TheEyeAddon.Events.Evaluators.Module_Enabled =
     type = "STATE",
     customEvents =
     {
-        "THEEYE_SETTING_CHANGED"
+        "SETTING_CHANGED"
     }
 }
 
