@@ -15,6 +15,19 @@ TheEyeAddon.UI.Objects:Add(
             offsetY = -50,
         }
     },
+    EventGroups =
+    {
+        {
+            OnEvent = TheEyeAddon.UI.Objects.RegisterChild,
+            ListeningTo =
+            {
+                UIOBJECT_WITHTAGS_INITIALIZED =
+                {
+                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                },
+            }
+        }
+    },
     StateGroups =
     {
         Enabled =
