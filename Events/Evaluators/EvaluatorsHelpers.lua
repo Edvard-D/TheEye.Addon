@@ -146,7 +146,9 @@ local function EvaluateState(evaluator, valueGroup, event, ...)
     local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
     local evaluatedState = evaluatedValues[1]
     
-    if (evaluator.type == "EVENT" and evaluatedState == true) or evaluatedState ~= valueGroup.currentState then
+    if (evaluator.type == "EVENT" and evaluatedState == true)
+        or (evaluator.type == "STATE" and evaluatedState ~= valueGroup.currentState) then
+
         valueGroup.currentState = evaluatedState
         NotifyListeners(valueGroup.listeners, unpack(evaluatedValues))
     end
