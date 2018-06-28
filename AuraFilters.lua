@@ -1,4 +1,5 @@
 -- Allowed filters: HELPFUL, HARMFUL, CANCELABLE, NOT_CANCELABLE
+-- All filters must have a space after them
 
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Auras.Filters = {}
