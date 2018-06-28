@@ -20,17 +20,17 @@ function TheEyeAddon.UI.Objects:Add(uiObject) -- @TODO: rename to Register
 end
 
 
-function SetupListener(uiObject, evaluatorGroup, listener, evaluatorName, OnEvaluate)
+function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
     listener.uiObject = uiObject
-    listener.evaluatorGroup = evaluatorGroup
+    listener.listenerGroup = listenerGroup
     listener.OnEvaluate = OnEvaluate
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
-local function SetupListeningTo(uiObject, evaluatorGroup, listeningTo, OnEvaluate)
+local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
     for evaluatorName,v in pairs(listeningTo) do
-        local listener = evaluatorGroup.ListeningTo[evaluatorName]
-        SetupListener(uiObject, evaluatorGroup, listener, evaluatorName, OnEvaluate)
+        local listener = listenerGroup.ListeningTo[evaluatorName]
+        SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
     end
 end
 
@@ -47,14 +47,10 @@ function TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, listenerGroup)
     end
 end
 
-local function SetupEventGroup(uiObject, eventGroup)
-    SetupListeningTo(uiObject, eventGroup, eventGroup.ListeningTo, eventGroup.OnEvent)
-end
-
 function TheEyeAddon.UI.Objects:SetupEventGroups(uiObject)
-    for i,evaluatorGroup in ipairs(uiObject.ListenerGroups) do
-        if evaluatorGroup.type == "EVENT" then
-            SetupEventGroup(uiObject, evaluatorGroup)
+    for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
+        if listenerGroup.type == "EVENT" then
+            SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvent)
         end
     end
 end
