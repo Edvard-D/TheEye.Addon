@@ -11,10 +11,12 @@ function TheEyeAddon.UI.Objects:TeardownGroup(listenerGroup)
     end
 end
 
-function TheEyeAddon.UI.Objects:TeardownEventGroups(uiObject)
+function TheEyeAddon.UI.Objects:TeardownListenerGroupsOfType(uiObject, groupType)
     if uiObject.ListenerGroups ~= nil then
-        for i,eventGroup in ipairs(uiObject.ListenerGroups) do
-            TeardownGroup(uiObject, eventGroup)
+        for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
+            if listenerGroup.type == groupType then
+                TeardownGroup(uiObject, listenerGroup)
+            end
         end
     end
 end

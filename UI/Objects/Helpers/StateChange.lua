@@ -35,7 +35,7 @@ function TheEyeAddon.UI.Objects:Disable(uiObject)
         TheEyeAddon.UI.Objects:Hide(uiObject)
 
         TheEyeAddon.UI.Objects:TeardownGroup(uiObject.ListenerGroups.Visible)
-        TheEyeAddon.UI.Objects:TeardownEventGroups(uiObject)
+        TheEyeAddon.UI.Objects:TeardownListenerGroupsOfType(uiObject, "EVENT")
 
         uiObject.ListenerGroups.Enabled.currentState = false
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
