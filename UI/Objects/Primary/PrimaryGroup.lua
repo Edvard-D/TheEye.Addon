@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Objects:Add(
+TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
     DisplayData =

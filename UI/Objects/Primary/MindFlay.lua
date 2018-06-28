@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Objects:Add(
+TheEyeAddon.UI.Objects:FormatData(
 {
     priority = nil,
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-15407" },
