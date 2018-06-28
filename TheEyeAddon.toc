@@ -74,10 +74,6 @@ Events\Evaluators\General\Game_Data_Loaded.lua
 Events\Evaluators\General\Setting_Module_Enabled.lua
 
 
-# --- Player ---
-Events\Evaluators\Player\Player_Class.lua
-
-
 # --- UIObject ---
 Events\Evaluators\UIObject\UIObject_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
@@ -86,6 +82,7 @@ Events\Evaluators\UIObject\UIObject_Visible.lua
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Aura_Active.lua
 Events\Evaluators\Unit\Unit_CanAttack_Unit.lua
+Events\Evaluators\Unit\Unit_Class.lua
 Events\Evaluators\Unit\Unit_Spec.lua
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
