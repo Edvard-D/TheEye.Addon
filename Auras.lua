@@ -29,9 +29,9 @@ function TheEyeAddon.Auras:UnitAuraGetBySpellID(sourceUnitExpected, destUnit, sp
     for i=1,40 do -- 40 is the maximum number of auras that can be on a unit
         local filterTable = AuraFiltersGet("SpellID", spellIDExpected, sourceUnitExpected)
         local auraValues = { UnitAura(destUnit, i, table.concat(filterTable or {})) }
-        local spellID = select(10, auraValues)
+        local spellID = auraValues[10]
         if spellID ~= nil then
-            local sourceUnit = select(7, auraValues)
+            local sourceUnit = auraValues[7]
             if spellID == spellIDExpected and sourceUnit == sourceUnitExpected then
                 return auraValues
             end
