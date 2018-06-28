@@ -20,11 +20,11 @@ TheEyeAddon.Events.Evaluators.Unit_Class =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Player_Class:CalculateCurrentState(inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Class:CalculateCurrentState(inputValues)
     local classIndex = select(3, UnitClass(inputValues[1]))
     return classIndex == inputValues[2]
 end
 
-function TheEyeAddon.Events.Evaluators.Player_Class:Evaluate(valueGroup)
-    return TheEyeAddon.Events.Evaluators.Player_Class:CalculateCurrentState(valueGroup.inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Class:Evaluate(valueGroup)
+    return TheEyeAddon.Events.Evaluators.Unit_Class:CalculateCurrentState(valueGroup.inputValues)
 end
