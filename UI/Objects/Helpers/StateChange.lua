@@ -24,6 +24,7 @@ function TheEyeAddon.UI.Objects:Enable(uiObject)
 
         TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, uiObject.ListenerGroups.Visible)
         TheEyeAddon.UI.Objects:SetupListenerGroupsOfType(uiObject, "EVENT")
+        TheEyeAddon.UI.Objects:SetupListenerGroupsOfType(uiObject, "SORT")
 
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
     end
@@ -36,6 +37,7 @@ function TheEyeAddon.UI.Objects:Disable(uiObject)
 
         TheEyeAddon.UI.Objects:TeardownGroup(uiObject.ListenerGroups.Visible)
         TheEyeAddon.UI.Objects:TeardownListenerGroupsOfType(uiObject, "EVENT")
+        TheEyeAddon.UI.Objects:TeardownListenerGroupsOfType(uiObject, "SORT")
 
         uiObject.ListenerGroups.Enabled.currentState = false
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
