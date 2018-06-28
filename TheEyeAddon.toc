@@ -71,11 +71,11 @@ Events\Evaluators\Combat\EventDataFormats.lua
 # --- General ---
 Events\Evaluators\General\Addon_Loaded.lua
 Events\Evaluators\General\Game_Data_Loaded.lua
-Events\Evaluators\General\Setting_Module_Enabled.lua
 
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIObject_Enabled.lua
+Events\Evaluators\UIObject\UIObject_Module_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
 
 

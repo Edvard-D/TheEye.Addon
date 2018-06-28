@@ -24,7 +24,7 @@ TheEyeAddon.UI.Objects:Add(
             validKeys = { [6] = true },
             Listeners =
             {
-                Setting_Module_Enabled =
+                Module_Enabled =
                 {
                     keyValue = 2,
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
