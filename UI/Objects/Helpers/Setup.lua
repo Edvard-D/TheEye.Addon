@@ -10,7 +10,7 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
 
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
-    TheEyeAddon.UI.Objects[key] = uiObject
+    TheEyeAddon.UI.Objects.Instances[key] = uiObject
 
     local searchableTags = {}
     for i,tag in ipairs(uiObject.tags) do
@@ -57,10 +57,8 @@ end
 
 function TheEyeAddon.UI.Objects:Initialize()
     local type = type
-    for k,v in pairs(TheEyeAddon.UI.Objects) do
-        if type(v) == "table" then
-            local uiObject = TheEyeAddon.UI.Objects[k]
-            TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, uiObject.ListenerGroups.Enabled)
-        end
+    for k,uiObject in pairs(TheEyeAddon.UI.Objects.Instances) do
+        print(tostring(uiObject.key))
+        TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, uiObject.ListenerGroups.Enabled)
     end
 end
