@@ -20,6 +20,8 @@ local function AuraFiltersGet(subTableKey, filtersKey, sourceUnit)
             table.insert(filters, v)
         end
     end
+
+    return filters
 end
 
 
@@ -28,7 +30,6 @@ function TheEyeAddon.Auras:UnitAuraGetBySpellID(sourceUnitExpected, destUnit, sp
         local filterTable = AuraFiltersGet("SpellID", spellIDExpected, sourceUnitExpected)
         local auraValues = { UnitAura(destUnit, i, table.concat(filterTable or {})) }
         local spellID = select(10, auraValues)
-        
         if spellID ~= nil then
             local sourceUnit = select(7, auraValues)
             if spellID == spellIDExpected and sourceUnit == sourceUnitExpected then
