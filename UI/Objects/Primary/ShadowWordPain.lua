@@ -18,7 +18,7 @@ TheEyeAddon.UI.Objects:Add(
             OnValidKey = TheEyeAddon.UI.Objects.Enable,
             OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [2] = true },
-            Listeners =
+            ListeningTo =
             {
                 UIObject_Visible =
                 {
@@ -32,7 +32,7 @@ TheEyeAddon.UI.Objects:Add(
             OnValidKey = TheEyeAddon.UI.Objects.Show,
             OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
             validKeys = { [0] = true, [2] = true, [6] = true },
-            Listeners =
+            ListeningTo =
             {
                 Unit_Spellcast_CastRecently =
                 {
