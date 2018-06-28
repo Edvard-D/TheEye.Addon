@@ -59,7 +59,8 @@ function TheEyeAddon.UI.Objects:Initialize()
     local type = type
     for k,v in pairs(TheEyeAddon.UI.Objects) do
         if type(v) == "table" then
-            SetupStateGroup(TheEyeAddon.UI.Objects[k], uiObject.ListenerGroups.Enabled)
+            local uiObject = TheEyeAddon.UI.Objects[k]
+            TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, uiObject.ListenerGroups.Enabled)
         end
     end
 end
