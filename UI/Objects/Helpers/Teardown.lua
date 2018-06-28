@@ -4,9 +4,9 @@ local ipairs = ipairs
 local pairs = pairs
 
 
-function TheEyeAddon.UI.Objects:TeardownGroup(group)
-    for evaluatorName,v in pairs(group.ListeningTo) do
-        local listener = group.ListeningTo[evaluatorName]
+function TheEyeAddon.UI.Objects:TeardownGroup(evaluatorGroup)
+    for evaluatorName,v in pairs(evaluatorGroup.ListeningTo) do
+        local listener = evaluatorGroup.ListeningTo[evaluatorName]
         TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
     end
 end
