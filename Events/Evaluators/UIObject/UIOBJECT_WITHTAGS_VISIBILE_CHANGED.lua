@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 
 -- inputValues = { --[[tags]] "_", "_" }
 --      tags: must be in alphabetical order
- TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
 {
     type = "EVENT",
     reevaluateEvents =
