@@ -20,7 +20,6 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
     },
     customEvents =
     {
-        "UNIT_SPELLCAST_INSTANT",
         "UNIT_SPELLCAST_TIMER_END"
     },
     timerDuration = 0.5
