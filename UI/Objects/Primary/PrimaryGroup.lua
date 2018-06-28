@@ -19,7 +19,7 @@ TheEyeAddon.UI.Objects:Add(
     {
         {
             type = "EVENT",
-            OnEvent = TheEyeAddon.UI.Objects.SortChildrenByPriority,
+            OnEvaluate = TheEyeAddon.UI.Objects.SortChildrenByPriority,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
@@ -30,7 +30,7 @@ TheEyeAddon.UI.Objects:Add(
         },
         {
             type = "EVENT",
-            OnEvent = TheEyeAddon.UI.Objects.RegisterChild,
+            OnEvaluate = TheEyeAddon.UI.Objects.RegisterChild,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_INITIALIZED =
