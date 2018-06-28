@@ -1,5 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
+local table = table
+
 
 function TheEyeAddon.UI.Objects:RegisterChild(event, uiObject)
     if self.uiObject.Children == nil then
