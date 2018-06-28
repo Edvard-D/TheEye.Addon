@@ -43,9 +43,10 @@ TheEyeAddon.UI.Objects:Add(
             validKeys = { [2] = true },
             Listeners =
             {
-                Target_Attackable =
+                Unit_CanAttack_Unit =
                 {
-                    keyValue = 2
+                    keyValue = 2,
+                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" }
                 }
             }
         }

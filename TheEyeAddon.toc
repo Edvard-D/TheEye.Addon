@@ -78,10 +78,6 @@ Events\Evaluators\Player\Player_Class.lua
 Events\Evaluators\Player\Player_Spec.lua
 
 
-# --- Target ---
-Events\Evaluators\Target\Target_Attackable.lua
-
-
 # --- UIObject ---
 Events\Evaluators\UIObject\UIObject_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
@@ -89,6 +85,7 @@ Events\Evaluators\UIObject\UIObject_Visible.lua
 
 # --- Unit ---
 Events\Evaluators\Unit\Unit_Aura_Active.lua
+Events\Evaluators\Unit\Unit_CanAttack_Unit.lua
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
 Events\Evaluators\Unit\Unit_Spellcast_Instant.lua
