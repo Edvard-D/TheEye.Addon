@@ -1,5 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 
+local ipairs = ipairs
 local pairs = pairs
 
 
@@ -12,7 +13,7 @@ end
 
 function TheEyeAddon.UI.Objects:TeardownEventGroups(uiObject)
     if uiObject.EventGroups ~= nil then
-        for k,eventGroup in pairs(uiObject.EventGroups) do
+        for i,eventGroup in ipairs(uiObject.EventGroups) do
             TeardownGroup(uiObject, eventGroup)
         end
     end

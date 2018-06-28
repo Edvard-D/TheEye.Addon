@@ -50,7 +50,7 @@ local function SetupEventGroup(uiObject, eventGroup)
 end
 
 function TheEyeAddon.UI.Objects:SetupEventGroups(uiObject)
-    for k,eventGroup in pairs(uiObject.EventGroups) do
+    for i,eventGroup in ipairs(uiObject.EventGroups) do
         SetupEventGroup(uiObject, eventGroup)
     end
 end
@@ -60,6 +60,7 @@ local function Setup(uiObject)
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
+    local type = type
     for k,v in pairs(TheEyeAddon.UI.Objects) do
         if type(v) == "table" then
             Setup(TheEyeAddon.UI.Objects[k])
