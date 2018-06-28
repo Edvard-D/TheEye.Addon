@@ -22,7 +22,7 @@ function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTem
 
 	local parentFrame
 	if parentKey ~= nil then
-		parentFrame = TheEyeAddon.UI.Objects[parentKey].frame
+		parentFrame = TheEyeAddon.UI.Objects.Instances[parentKey].frame
 	else
 		parentFrame = UIParent
 	end
