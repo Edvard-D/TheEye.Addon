@@ -22,7 +22,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Enabled:CalculateCurrentState(in
     if uiObject == nil then
         return false
     else
-        return uiObject.StateGroups.Enabled.currentState
+        return uiObject.ListenerGroups.Enabled.currentState
     end
 end
 

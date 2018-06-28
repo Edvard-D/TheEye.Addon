@@ -5,7 +5,9 @@ local pairs = pairs
 local table = table
 
 
-function TheEyeAddon.UI.Objects:Add(uiObject)
+function TheEyeAddon.UI.Objects:Add(uiObject) -- @TODO: rename to Register
+    uiObject.DisplayData.uiObject = uiObject
+
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEyeAddon.UI.Objects[key] = uiObject
@@ -32,16 +34,16 @@ local function SetupListeningTo(uiObject, group, listeningTo, OnEvaluate)
     end
 end
 
-function TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, stateGroup)
-    stateGroup.combinedKeyValue = 0
-    stateGroup.currentState = false
+function TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, listenerGroup)
+    listenerGroup.combinedKeyValue = 0
+    listenerGroup.currentState = false
     
-    if stateGroup.ListeningTo ~= nil then
-        SetupListeningTo(uiObject, stateGroup, stateGroup.ListeningTo, TheEyeAddon.UI.Objects.OnStateChange)
+    if listenerGroup.ListeningTo ~= nil then
+        SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, TheEyeAddon.UI.Objects.OnStateChange)
     end
 
-    if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
-        stateGroup:OnValidKey(uiObject)
+    if listenerGroup.validKeys[listenerGroup.combinedKeyValue] == true then
+        listenerGroup:OnValidKey(uiObject)
     end
 end
 
@@ -50,20 +52,18 @@ local function SetupEventGroup(uiObject, eventGroup)
 end
 
 function TheEyeAddon.UI.Objects:SetupEventGroups(uiObject)
-    for i,eventGroup in ipairs(uiObject.EventGroups) do
-        SetupEventGroup(uiObject, eventGroup)
+    for i,group in ipairs(uiObject.ListenerGroups) do
+        if group.type == "EVENT" then
+            SetupEventGroup(uiObject, eventGroup)
+        end
     end
-end
-
-local function Setup(uiObject)
-    SetupStateGroup(uiObject, uiObject.StateGroups.Enabled)
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
     local type = type
     for k,v in pairs(TheEyeAddon.UI.Objects) do
         if type(v) == "table" then
-            Setup(TheEyeAddon.UI.Objects[k])
+            SetupStateGroup(TheEyeAddon.UI.Objects[k], uiObject.ListenerGroups.Enabled)
         end
     end
 end

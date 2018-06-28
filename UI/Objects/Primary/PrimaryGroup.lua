@@ -15,9 +15,21 @@ TheEyeAddon.UI.Objects:Add(
             offsetY = -50,
         }
     },
-    EventGroups =
+    ListenerGroups =
     {
         {
+            type = "EVENT",
+            OnEvent = nil, -- @TODO
+            ListeningTo =
+            {
+                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+                {
+                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                },
+            }
+        },
+        {
+            type = "EVENT",
             OnEvent = TheEyeAddon.UI.Objects.RegisterChild,
             ListeningTo =
             {
@@ -26,12 +38,10 @@ TheEyeAddon.UI.Objects:Add(
                     inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
                 },
             }
-        }
-    },
-    StateGroups =
-    {
+        },
         Enabled =
         {
+            type = "STATE",
             OnValidKey = TheEyeAddon.UI.Objects.Enable,
             OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [6] = true },
@@ -51,6 +61,7 @@ TheEyeAddon.UI.Objects:Add(
         },
         Visible =
         {
+            type = "STATE",
             OnValidKey = TheEyeAddon.UI.Objects.Show,
             OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
             validKeys = { [2] = true },

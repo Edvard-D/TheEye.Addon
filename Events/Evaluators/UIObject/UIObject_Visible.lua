@@ -20,7 +20,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Visible:CalculateCurrentState(in
     if uiObject == nil then
         return false
     else
-        return uiObject.StateGroups.Visible.currentState
+        return uiObject.ListenerGroups.Visible.currentState
     end
 end
 

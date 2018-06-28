@@ -5,10 +5,11 @@ TheEyeAddon.UI.Objects:Add(
     {
         factory = TheEyeAddon.UI.Factories.Group
     },
-    StateGroups =
+    ListenerGroups =
     {
         Enabled =
         {
+            type = "STATE",
             OnValidKey = TheEyeAddon.UI.Objects.Enable,
             OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
             validKeys = { [6] = true },
@@ -28,6 +29,7 @@ TheEyeAddon.UI.Objects:Add(
         },
         Visible =
         {
+            type = "STATE",
             OnValidKey = TheEyeAddon.UI.Objects.Show,
             OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
             validKeys = { [2] = true },

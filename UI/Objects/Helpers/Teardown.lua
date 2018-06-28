@@ -12,8 +12,8 @@ function TheEyeAddon.UI.Objects:TeardownGroup(group)
 end
 
 function TheEyeAddon.UI.Objects:TeardownEventGroups(uiObject)
-    if uiObject.EventGroups ~= nil then
-        for i,eventGroup in ipairs(uiObject.EventGroups) do
+    if uiObject.ListenerGroups ~= nil then
+        for i,eventGroup in ipairs(uiObject.ListenerGroups) do
             TeardownGroup(uiObject, eventGroup)
         end
     end
