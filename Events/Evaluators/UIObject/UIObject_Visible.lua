@@ -9,8 +9,8 @@ local select = select
     type = "STATE",
     customEvents =
     {
+        "UIOBJECT_HIDDEN",
         "UIOBJECT_SHOWN",
-        "UIOBJECT_HIDDEN"
     }
 }
 
