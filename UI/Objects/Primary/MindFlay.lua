@@ -47,6 +47,11 @@ TheEyeAddon.UI.Objects:Add(
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 }
             }
+        },
+        {
+            type = "SORT",
+            OnEvaluate = TheEyeAddon.UI.Objects.OnPriorityChange,
+            sortValue = 1
         }
     }
 }
