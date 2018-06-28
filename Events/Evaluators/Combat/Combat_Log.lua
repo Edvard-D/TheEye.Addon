@@ -18,7 +18,6 @@ TheEyeAddon.Events.Evaluators.Combat_Log =
 }
 
 function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
-    self.combatLogSent = false
     self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
     
     local sourceGUID = self.rawEventInfo[4]
@@ -43,7 +42,7 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
+function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup, event)
     self.formattedEventInfo = {}
 
     local eventDataFormat = TheEyeAddon.Events.Evaluators.Combat_Log.EventDataFormats[self.rawEventInfo[2]]
@@ -56,6 +55,5 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
     self.formattedEventInfo["sourceUnit"] = valueGroup.inputValues[2]
     self.formattedEventInfo["destUnit"] = valueGroup.inputValues[3]
 
-    TheEyeAddon.Events.Coordinator:SendCustomEvent(self.formattedEventInfo["event"], self.formattedEventInfo)
-    self.combatLogSent = true
+    return true, self.formattedEventInfo["event"], self.formattedEventInfo
 end

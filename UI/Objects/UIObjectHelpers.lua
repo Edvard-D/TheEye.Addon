@@ -22,7 +22,7 @@ end
 local function SetupListener(uiObject, stateGroup, listener, evaluatorName)
     listener.uiObject = uiObject
     listener.stateGroup = stateGroup
-    listener.OnStateChange = TheEyeAddon.UI.Objects.OnStateChange
+    listener.OnEvaluate = TheEyeAddon.UI.Objects.OnStateChange
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
