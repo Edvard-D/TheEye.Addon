@@ -19,7 +19,7 @@ TheEyeAddon.UI.Objects:Add(
     {
         {
             type = "EVENT",
-            OnEvent = nil, -- @TODO
+            OnEvent = TheEyeAddon.UI.Objects.SortChildrenByPriority,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
