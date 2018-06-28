@@ -47,9 +47,9 @@ function TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, listenerGroup)
     end
 end
 
-function TheEyeAddon.UI.Objects:SetupEventGroups(uiObject)
+function TheEyeAddon.UI.Objects:SetupListenerGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
-        if listenerGroup.type == "EVENT" then
+        if listenerGroup.type == groupType then
             SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvent)
         end
     end

@@ -23,7 +23,7 @@ function TheEyeAddon.UI.Objects:Enable(uiObject)
         uiObject.ListenerGroups.Enabled.currentState = true
 
         TheEyeAddon.UI.Objects:SetupStateGroup(uiObject, uiObject.ListenerGroups.Visible)
-        TheEyeAddon.UI.Objects:SetupEventGroups(uiObject)
+        TheEyeAddon.UI.Objects:SetupListenerGroupsOfType(uiObject, "EVENT")
 
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
     end
