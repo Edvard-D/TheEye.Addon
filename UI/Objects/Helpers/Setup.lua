@@ -5,7 +5,7 @@ local pairs = pairs
 local table = table
 
 
-function TheEyeAddon.UI.Objects:FormatDataData(uiObject)
+function TheEyeAddon.UI.Objects:FormatData(uiObject)
     uiObject.DisplayData.uiObject = uiObject
 
     local key = table.concat(uiObject.tags, "_")
