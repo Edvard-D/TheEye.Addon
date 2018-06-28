@@ -24,10 +24,10 @@ TheEyeAddon.UI.Objects:Add(
                     keyValue = 4,
                     inputValues = { 5 }
                 },
-                Player_Spec =
+                Unit_Spec =
                 {
                     keyValue = 8,
-                    inputValues = { 3 }
+                    inputValues = { --[[unit]] "player", --[[specID]] 258 }
                 }
             }
         },
