@@ -20,7 +20,10 @@ local function GetValueGroup(evaluator, inputValues)
 
     if evaluator.ValueGroups[valueGroupKey] == nil then
         evaluator.ValueGroups[valueGroupKey] = {}
-        evaluator.ValueGroups[valueGroupKey].evaluator = evaluator
+        local valueGroup = evaluator.ValueGroups[valueGroupKey]
+        valueGroup.key = valueGroupKey
+        valueGroup.evaluator = evaluator
+        return valueGroup
     end
     
     return evaluator.ValueGroups[valueGroupKey]
