@@ -1,9 +1,5 @@
 local TheEyeAddon = TheEyeAddon
 
-local ipairs = ipairs
-local select = select
-local table = table
-
 
 -- inputValues = { --[[tags]] "_", "_" }
 --      tags: must be in alphabetical order
@@ -22,15 +18,9 @@ local table = table
     }
 }
 
-function TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_VISIBILE_CHANGED:Evaluate(valueGroup, event, ...)
+function TheEyeAddon.Events.Evaluators.UIOBJECT_WITHTAGS_INITIALIZED:Evaluate(valueGroup, event, ...)
     local uiObject = ...
-    local uiObjectKey = uiObject.key
+    local hasTags = TheEyeAddon.UI.Objects.Tags:UIObjectHasTags(uiObject, valueGroup.inputValues, valueGroup.key)
 
-    for i,tag in ipairs(valueGroup.inputValues) do
-        if uiObjectKey:find(tag) == nil then
-            return false
-        end
-    end
-    
-    return true, "UIOBJECT_WITHTAGS_VISIBILE_CHANGED", uiObject
+    return hasTags, "UIOBJECT_WITHTAGS_VISIBILE_CHANGED", uiObject
 end
