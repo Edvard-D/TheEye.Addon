@@ -47,6 +47,9 @@ TypeHelpers.lua
 UI\Fonts\Templates.lua
 
 
+AuraFilters.lua
+
+
 
 # ---------------------------
 # |	        Events        	|
