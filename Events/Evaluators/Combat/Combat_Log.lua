@@ -45,7 +45,7 @@ end
 function TheEyeAddon.Events.Evaluators.COMBAT_LOG:Evaluate(valueGroup, event)
     self.formattedEventInfo = {}
 
-    local eventDataFormat = TheEyeAddon.Events.Evaluators.COMBAT_LOG.EventDataFormats[self.rawEventInfo[2]]
+    local eventDataFormat = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats[self.rawEventInfo[2]]
     for i,valueName in ipairs(eventDataFormat.ValueNames) do
         self.formattedEventInfo[valueName] = self.rawEventInfo[i]
     end
