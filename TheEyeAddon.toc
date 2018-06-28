@@ -103,11 +103,11 @@ UI\DimensionTemplates\Icon_Large.lua
 # |		      UI		    |
 # ---------------------------
 UI\Objects\Helpers\EventGroups.lua
+UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
 UI\Objects\Helpers\StateChangeHelpers.lua
 UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\Teardown.lua
-UI\Pools.lua
 
 
 
