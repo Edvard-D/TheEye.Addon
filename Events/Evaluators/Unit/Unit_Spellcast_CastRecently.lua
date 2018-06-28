@@ -29,7 +29,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:SetupListeningTo(valueGroup)
     TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
     {
-        listeningToKey = "Unit_Spellcast_Instant",
+        listeningToKey = "UNIT_SPELLCAST_INSTANT",
         evaluator = TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently,
         inputValues = valueGroup.inputValues
     })

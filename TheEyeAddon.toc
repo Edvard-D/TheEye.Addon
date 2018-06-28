@@ -63,7 +63,7 @@ Events\Evaluators\EvaluatorsHelpers.lua
 
 
 # --- Combat ---
-Events\Evaluators\Combat\Combat_Log.lua
+Events\Evaluators\Combat\COMBAT_LOG.lua
 
 Events\Evaluators\Combat\EventDataFormats.lua
 
@@ -86,7 +86,7 @@ Events\Evaluators\Unit\Unit_Class.lua
 Events\Evaluators\Unit\Unit_Spec.lua
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
-Events\Evaluators\Unit\Unit_Spellcast_Instant.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
 
 
 
