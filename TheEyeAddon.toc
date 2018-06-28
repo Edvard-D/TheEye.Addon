@@ -102,6 +102,7 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
+UI\Objects\Helpers\EventGroups.lua
 UI\Objects\Helpers\Setup.lua
 UI\Objects\Helpers\StateChangeHelpers.lua
 UI\Objects\Helpers\Tags.lua
