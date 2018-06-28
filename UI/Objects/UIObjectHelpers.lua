@@ -30,9 +30,9 @@ local function SetupStateGroup(uiObject, stateGroup)
     stateGroup.combinedKeyValue = 0
     stateGroup.currentState = false
     
-    if stateGroup.Listeners ~= nil then
-        for evaluatorName,v in pairs(stateGroup.Listeners) do
-            local listener = stateGroup.Listeners[evaluatorName]
+    if stateGroup.ListeningTo ~= nil then
+        for evaluatorName,v in pairs(stateGroup.ListeningTo) do
+            local listener = stateGroup.ListeningTo[evaluatorName]
             SetupListener(uiObject, stateGroup, listener, evaluatorName)
         end
     end
@@ -43,8 +43,8 @@ local function SetupStateGroup(uiObject, stateGroup)
 end
 
 local function TeardownStateGroup(stateGroup)
-    for evaluatorName,v in pairs(stateGroup.Listeners) do
-        local listener = stateGroup.Listeners[evaluatorName]
+    for evaluatorName,v in pairs(stateGroup.ListeningTo) do
+        local listener = stateGroup.ListeningTo[evaluatorName]
         TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
     end
 end
