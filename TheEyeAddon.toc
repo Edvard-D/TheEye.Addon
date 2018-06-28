@@ -39,6 +39,7 @@
 # ---------------------------
 Namespaces.lua
 
+Auras.lua
 Comparisons.lua
 TableHelpers.lua
 Timers.lua
