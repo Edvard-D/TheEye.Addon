@@ -18,12 +18,19 @@ function TheEyeAddon.UI.Objects:Add(uiObject)
     uiObject.tags = searchableTags
 end
 
--- SETUP/TEARDOWN
-local function SetupListener(uiObject, stateGroup, listener, evaluatorName)
+-- SETUP
+local function SetupListener(uiObject, group, listener, evaluatorName, OnEvaluate)
     listener.uiObject = uiObject
-    listener.stateGroup = stateGroup
-    listener.OnEvaluate = TheEyeAddon.UI.Objects.OnStateChange
+    listener.group = group
+    listener.OnEvaluate = OnEvaluate
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
+end
+
+local function SetupListeningTo(uiObject, group, listeningTo, OnEvaluate)
+    for evaluatorName,v in pairs(listeningTo) do
+        local listener = group.ListeningTo[evaluatorName]
+        SetupListener(uiObject, group, listener, evaluatorName, OnEvaluate)
+    end
 end
 
 local function SetupStateGroup(uiObject, stateGroup)
@@ -31,10 +38,7 @@ local function SetupStateGroup(uiObject, stateGroup)
     stateGroup.currentState = false
     
     if stateGroup.ListeningTo ~= nil then
-        for evaluatorName,v in pairs(stateGroup.ListeningTo) do
-            local listener = stateGroup.ListeningTo[evaluatorName]
-            SetupListener(uiObject, stateGroup, listener, evaluatorName)
-        end
+        SetupListeningTo(uiObject, stateGroup, stateGroup.ListeningTo, TheEyeAddon.UI.Objects.OnStateChange)
     end
 
     if stateGroup.validKeys[stateGroup.combinedKeyValue] == true then
@@ -42,21 +46,18 @@ local function SetupStateGroup(uiObject, stateGroup)
     end
 end
 
-local function TeardownStateGroup(stateGroup)
-    for evaluatorName,v in pairs(stateGroup.ListeningTo) do
-        local listener = stateGroup.ListeningTo[evaluatorName]
-        TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
+local function SetupEventGroup(uiObject, eventGroup)
+    SetupListeningTo(uiObject, eventGroup, eventGroup.ListeningTo, eventGroup.OnEvent)
+end
+
+local function SetupEventGroups(uiObject)
+    for k,eventGroup in pairs(uiObject.EventGroups) do
+        SetupEventGroup(uiObject, eventGroup)
     end
 end
 
 local function Setup(uiObject)
     SetupStateGroup(uiObject, uiObject.StateGroups.Enabled)
-end
-
-local function Teardown(uiObject)
-    for k,v in pairs(uiObject.StateGroups) do
-        TeardownStateGroup(uiObject.StateGroups[k])
-    end
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
@@ -65,6 +66,30 @@ function TheEyeAddon.UI.Objects:Initialize()
             Setup(TheEyeAddon.UI.Objects[k])
         end
     end
+end
+
+-- TEARDOWN
+local function TeardownGroup(group)
+    for evaluatorName,v in pairs(group.ListeningTo) do
+        local listener = group.ListeningTo[evaluatorName]
+        TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
+    end
+end
+
+local function TeardownEventGroups(uiObject)
+    if uiObject.EventGroups ~= nil then
+        for k,eventGroup in pairs(uiObject.EventGroups) do
+            TeardownGroup(uiObject, eventGroup)
+        end
+    end
+end
+
+local function Teardown(uiObject)
+    for k,v in pairs(uiObject.StateGroups) do
+        TeardownGroup(uiObject.StateGroups[k])
+    end
+
+    TeardownEventGroups(uiObject)
 end
 
 -- STATE CHANGES
@@ -88,7 +113,10 @@ function TheEyeAddon.UI.Objects:Enable(uiObject)
     if uiObject.StateGroups.Enabled.currentState ~= true then
         print ("ENABLE    " .. uiObject.key) -- DEBUG
         uiObject.StateGroups.Enabled.currentState = true
+
         SetupStateGroup(uiObject, uiObject.StateGroups.Visible)
+        SetupEventGroups(uiObject)
+
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
     end
 end
@@ -97,7 +125,9 @@ function TheEyeAddon.UI.Objects:Disable(uiObject)
     if uiObject.StateGroups.Enabled.currentState ~= false then
         print ("DISABLE    " .. uiObject.key) -- DEBUG
         TheEyeAddon.UI.Objects:Hide(uiObject)
-        TeardownStateGroup(uiObject.StateGroups.Visible)
+
+        TeardownGroup(uiObject.StateGroups.Visible)
+        TeardownEventGroups(uiObject)
 
         uiObject.StateGroups.Enabled.currentState = false
         TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
