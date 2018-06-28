@@ -31,13 +31,18 @@ TheEyeAddon.UI.Objects:Add(
         {
             OnValidKey = TheEyeAddon.UI.Objects.Show,
             OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [0] = true, [2] = true },
+            validKeys = { [0] = true, [2] = true, [6] = true },
             Listeners =
             {
                 Unit_Spellcast_CastRecently =
                 {
                     keyValue = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 589 }
+                },
+                Unit_Aura_Active =
+                {
+                    keyValue = 4,
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589 }
                 }
             }
         }

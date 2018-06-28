@@ -3,7 +3,7 @@ local TheEyeAddon = TheEyeAddon
 local table = table
 
 
--- inputValues = { --[[unit]] "", --[[spellID]] 0 }
+-- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
 {
     type = "EVENT",
@@ -12,8 +12,7 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
         "UNIT_SPELLCAST_START",
         "UNIT_SPELLCAST_STOP",
         "UNIT_SPELLCAST_SUCCEEDED"
-    },
-    hasSavedValues = true
+    }
 }
 
 function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:GetKey(event, ...)
@@ -21,15 +20,15 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
-        if savedValues.isCasting ~= true then
+        if valueGroup.isCasting ~= true then
             TheEyeAddon.Events.Coordinator:SendCustomEvent("UNIT_SPELLCAST_INSTANT", ...)
         end
-        savedValues.isCasting = false
+        valueGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then
-        savedValues.isCasting = true
+        valueGroup.isCasting = true
     else -- UNIT_SPELLCAST_STOP
-        savedValues.isCasting = false
+        valueGroup.isCasting = false
     end
 end

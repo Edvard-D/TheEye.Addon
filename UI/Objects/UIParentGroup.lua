@@ -11,23 +11,18 @@ TheEyeAddon.UI.Objects:Add(
         {
             OnValidKey = TheEyeAddon.UI.Objects.Enable,
             OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
-            validKeys = { [14] = true },
+            validKeys = { [6] = true },
             Listeners =
             {
                 Addon_Loaded =
                 {
                     keyValue = 2,
-                    inputValues = { "TheEyeAddon" }
+                    inputValues = { --[[addonName]] "TheEyeAddon" }
                 },
-                Player_Class =
+                Game_Data_Loaded =
                 {
-                    keyValue = 4,
-                    inputValues = { 5 }
-                },
-                Player_Spec =
-                {
-                    keyValue = 8,
-                    inputValues = { 3 }
+                    keyValue = 4
+                    -- inputValues = nil
                 }
             }
         },
@@ -35,7 +30,15 @@ TheEyeAddon.UI.Objects:Add(
         {
             OnValidKey = TheEyeAddon.UI.Objects.Show,
             OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [0] = true }
+            validKeys = { [2] = true },
+            Listeners =
+            {
+                Unit_Spec =
+                {
+                    keyValue = 2,
+                    inputValues = { --[[unit]] "player", --[[specID]] 258 }
+                }
+            }
         }
     }
 }

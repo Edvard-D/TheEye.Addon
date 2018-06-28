@@ -24,15 +24,15 @@ TheEyeAddon.UI.Objects:Add(
             validKeys = { [6] = true },
             Listeners =
             {
-                Setting_Module_Enabled =
+                Module_Enabled =
                 {
                     keyValue = 2,
-                    inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 },
                 UIObject_Visible =
                 {
                     keyValue = 4,
-                    inputValues = { "GROUP_UIPARENT" }
+                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" }
                 }
             }
         },
@@ -43,9 +43,10 @@ TheEyeAddon.UI.Objects:Add(
             validKeys = { [2] = true },
             Listeners =
             {
-                Target_Attackable =
+                Unit_CanAttack_Unit =
                 {
-                    keyValue = 2
+                    keyValue = 2,
+                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" }
                 }
             }
         }

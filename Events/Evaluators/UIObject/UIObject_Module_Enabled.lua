@@ -4,9 +4,8 @@ local select = select
 local table = table
 
 
--- inputValues = { --[[moduleKey]] "" }
-
-TheEyeAddon.Events.Evaluators.Setting_Module_Enabled =
+-- inputValues = { --[[uiObjectKey]] "_" }
+TheEyeAddon.Events.Evaluators.Module_Enabled =
 {
     type = "STATE",
     customEvents =
@@ -15,7 +14,7 @@ TheEyeAddon.Events.Evaluators.Setting_Module_Enabled =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:CalculateCurrentState(inputValues)
+function TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(inputValues)
     if TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
     else
@@ -23,10 +22,10 @@ function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:CalculateCurrentSt
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.Module_Enabled:GetKey(event, ...)
     return select(1, ...) -- moduleKey
 end
 
-function TheEyeAddon.Events.Evaluators.Setting_Module_Enabled:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Module_Enabled:Evaluate(valueGroup, event, ...)
     return select(2, ...) -- enabledState
 end

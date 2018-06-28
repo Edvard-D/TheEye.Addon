@@ -5,7 +5,7 @@ local table = table
 local UnitCastingInfo = UnitCastingInfo
 
 
--- inputValues = { --[[unit]] "", --[[spellID]] 0 }
+-- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active =
 {
     type = "STATE",
@@ -34,7 +34,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(savedValues, event)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Active:Evaluate(valueGroup, event)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         return true
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP

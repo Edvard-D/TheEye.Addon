@@ -7,7 +7,7 @@ local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
 
 
--- inputValues = { --[[unit]] "", --[[spellID]] 0 }
+-- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
 TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 {
     type = "STATE",
@@ -27,12 +27,12 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
 }
 
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:SetupListeningTo(valueGroup, inputValues)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:SetupListeningTo(valueGroup)
     TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
     {
         listeningToKey = "Unit_Spellcast_Instant",
         evaluator = TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently,
-        inputValues = inputValues
+        inputValues = valueGroup.inputValues
     })
 end
 
@@ -70,22 +70,22 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(savedValues, event, ...)
+function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
-        local unit, _, spellID = ...
-        local castID = select(7, UnitCastingInfo(unit))
+        local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
 
-        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, spellID, castID)
+        TheEyeAddon.Timers:StartEventTimer(
+            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], castID)
         return true
     elseif event == "UNIT_SPELLCAST_INSTANT" then
-        local unit, _, spellID = ...
-        TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, spellID, "INSTANT")
+        TheEyeAddon.Timers:StartEventTimer(
+            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], "INSTANT")
         return true
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(1, ...)
         if timerDuration == self.timerDuration then
-            local _, unit, _, requiredCastID = ...
-            local castID = select(7, UnitCastingInfo(unit))
+            local requiredCastID = select(4, ...)
+            local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
 
             if requiredCastID == "INSTANT" or castID == requiredCastID then
                 return false

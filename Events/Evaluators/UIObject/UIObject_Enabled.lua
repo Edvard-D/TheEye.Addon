@@ -4,7 +4,7 @@ local select = select
 local table = table
 
 
--- inputValues = { --[[uiObjectKey]] "" }
+-- inputValues = { --[[uiObjectKey]] "_" }
 
  TheEyeAddon.Events.Evaluators.UIObject_Enabled =
 {
@@ -31,7 +31,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Enabled:GetKey(event, ...)
     return uiObject.key
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:Evaluate(savedValues, event)
+function TheEyeAddon.Events.Evaluators.UIObject_Enabled:Evaluate(valueGroup, event)
     if event == "UIOBJECT_ENABLED" then
         return true
     else -- UIOBJECT_DISABLED
