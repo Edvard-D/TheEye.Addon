@@ -4,7 +4,7 @@ TheEyeAddon.UI.Objects:FormatData(
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
-        dimensionTemplate =
+        DimensionTemplate =
         {
             PointSettings =
             {

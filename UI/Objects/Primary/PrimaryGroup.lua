@@ -9,7 +9,7 @@ TheEyeAddon.UI.Objects:FormatData(
         factory = TheEyeAddon.UI.Factories.Group,
         parentKey = "GROUP_UIPARENT",
         GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
-        dimensionTemplate =
+        DimensionTemplate =
         {
             PointSettings =
             {

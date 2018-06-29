@@ -39,7 +39,7 @@ end
 
 
 function TheEyeAddon.UI.Factories.Icon:Claim(displayData)
-	local instance = Pool:Claim("Frame", displayData.parentKey, nil, displayData.dimensionTemplate)
+	local instance = Pool:Claim("Frame", displayData.parentKey, nil, displayData.DimensionTemplate)
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TheEyeAddon.UI.Factories.Texture:Create(instance.texture, instance, "BACKGROUND", iconTextureFileID)

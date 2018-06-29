@@ -6,7 +6,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         factory = TheEyeAddon.UI.Factories.Icon,
         parentKey = "GROUP_HUD_MODULE_PRIMARY",
-        dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
+        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
