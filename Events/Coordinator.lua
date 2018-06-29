@@ -6,15 +6,18 @@ local ipairs = ipairs
 local table = table
 
 
+-- Event Handling
 local frame = CreateFrame("Frame", nil, UIParent)
 local function OnEvent(self, eventName, ...)
-    print ("Coordinator OnEvent    " .. eventName) -- DEBUG
+    --print ("Coordinator OnEvent    " .. eventName) -- DEBUG
     for i,listener in ipairs(Listeners[eventName]) do
         listener:OnEvent(eventName, ...)
     end
 end
 frame:SetScript("OnEvent", OnEvent)
 
+
+-- Register/Unregister
 local function InsertListener(eventName, listener, isGameEvent)
     if Listeners[eventName] == nil then
         Listeners[eventName] = { listener }
@@ -50,7 +53,6 @@ local function RemoveListener(eventName, listener, isGameEvent)
     end
 end
 
-
 function TheEyeAddon.Events.Coordinator:RegisterListener(listener)
     if listener.gameEvents ~= nil then
         for i,eventName in ipairs(listener.gameEvents) do
@@ -79,6 +81,8 @@ function TheEyeAddon.Events.Coordinator:UnregisterListener(listener)
     end
 end
 
+
+-- Custom Events
 function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
     if Listeners[eventName] ~= nil then
         OnEvent(frame, eventName, ...)
