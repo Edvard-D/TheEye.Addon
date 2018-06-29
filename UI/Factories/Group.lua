@@ -32,6 +32,31 @@ local function GetSizeFromRects(rects)
 	return width, height
 end
 
+function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
+    local children = self.uiObject.Children
+    local xOffset = 0
+    local yOffset = 0
+    local childRects = {}
+
+    for i = 1, #children do
+        local childFrame = children[i].frame
+        if childFrame ~= nil then
+            local xOffsetCurrent, yOffsetCurrent = select(4, childFrame:GetPoint(1))
+            
+            if xOffsetCurrent ~= xOffset or yOffsetCurrent ~= yOffset then
+                childFrame:ClearAllPoints()
+                childFrame:SetPoint(self.GroupArranger.point, self, self.GroupArranger.relativePoint, xOffset, yOffset)
+            end
+
+            table.insert(childRects, { childFrame:GetRect() })
+            
+            xOffset, yOffset = self.GroupArranger.UpdateOffset(xOffset, yOffset, childFrame)
+        end
+	end
+	
+	self:SetSizeWithEvent(GetSizeFromRects(childRects))
+end
+
 
 function TheEyeAddon.UI.Factories.Group:Claim(uiObject, displayData)
 	local instance = Pool:Claim(uiObject, "Frame", displayData.parentKey, nil, displayData.DimensionTemplate)

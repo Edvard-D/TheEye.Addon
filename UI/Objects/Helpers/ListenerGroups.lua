@@ -79,25 +79,7 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, eve
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange()
-    local arranger = self.uiObject.DisplayData.GroupArranger
-    local frame = self.uiObject.frame
-    local children = self.uiObject.Children
-    local xOffset = 0
-    local yOffset = 0
-
-    for i = 1, #children do
-        local childFrame = children[i].frame
-        if childFrame ~= nil then
-            local xOffsetCurrent, yOffsetCurrent = select(4, childFrame:GetPoint(1))
-            
-            if xOffsetCurrent ~= xOffset or yOffsetCurrent ~= yOffset then
-                childFrame:ClearAllPoints()
-                childFrame:SetPoint(arranger.point, frame, arranger.relativePoint, xOffset, yOffset)
-            end
-            
-            xOffset, yOffset = arranger.UpdateOffset(xOffset, yOffset, childFrame)
-        end
-    end
+    self.uiObject.frame:ChildrenArrange(self.uiObject.Children)
 end
 
 
