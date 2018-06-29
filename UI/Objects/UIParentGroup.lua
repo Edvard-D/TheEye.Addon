@@ -5,14 +5,32 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         factory = TheEyeAddon.UI.Factories.Group
     },
+    ValueHandlers =
+    {
+        Enabled =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
+            validValues = { [6] = true },
+        },
+        Visible =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
+            validValues = { [2] = true },
+        }
+    },
     ListenerGroups =
     {
         Enabled =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Enable,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
-            validKeys = { [6] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Enabled",
             ListeningTo =
             {
                 Addon_Loaded =
@@ -30,9 +48,8 @@ TheEyeAddon.UI.Objects:FormatData(
         Visible =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Show,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [2] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Visible",
             ListeningTo =
             {
                 Unit_Spec =

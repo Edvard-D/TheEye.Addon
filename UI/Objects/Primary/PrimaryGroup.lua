@@ -15,36 +15,32 @@ TheEyeAddon.UI.Objects:FormatData(
             offsetY = -50,
         }
     },
+    ValueHandlers =
+    {
+        Enabled =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
+            validValues = { [6] = true },
+        },
+        Visible =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
+            validValues = { [2] = true },
+        }
+    },
     ListenerGroups =
     {
-        {
-            type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.SortChildrenByPriority,
-            ListeningTo =
-            {
-                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
-                {
-                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
-                },
-            }
-        },
-        {
-            type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.RegisterChild,
-            ListeningTo =
-            {
-                UIOBJECT_WITHTAGS_INITIALIZED =
-                {
-                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
-                },
-            }
-        },
         Enabled =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Enable,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
-            validKeys = { [6] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Enabled",
             ListeningTo =
             {
                 Module_Enabled =
@@ -62,9 +58,8 @@ TheEyeAddon.UI.Objects:FormatData(
         Visible =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Show,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [2] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Enabled",
             ListeningTo =
             {
                 Unit_CanAttack_Unit =
@@ -73,7 +68,29 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" }
                 }
             }
-        }
+        },
+        {
+            type = "EVENT",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.SortChildrenByPriority,
+            ListeningTo =
+            {
+                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+                {
+                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                },
+            }
+        },
+        {
+            type = "EVENT",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.RegisterChild,
+            ListeningTo =
+            {
+                UIOBJECT_WITHTAGS_INITIALIZED =
+                {
+                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                },
+            }
+        },
     }
 }
 )

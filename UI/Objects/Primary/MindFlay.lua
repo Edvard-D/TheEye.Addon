@@ -11,19 +11,41 @@ TheEyeAddon.UI.Objects:FormatData(
         iconObjectID = 15407,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
     },
+    ValueHandlers =
+    {
+        Enabled =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
+            validValues = { [2] = true },
+        },
+        Visible =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
+            validValues = { [0] = true, [4] = true, [6] = true },
+        },
+        SortRank =
+        {
+            value = 1,
+        }
+    },
     ListenerGroups =
     {
         Enabled =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Enable,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
-            validKeys = { [2] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Enabled",
             ListeningTo =
             {
                 UIObject_Visible =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
@@ -31,27 +53,21 @@ TheEyeAddon.UI.Objects:FormatData(
         Visible =
         {
             type = "STATE",
-            OnValidKey = TheEyeAddon.UI.Objects.Show,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [0] = true, [4] = true, [6] = true },
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            valueHandlerKey = "Visible",
             ListeningTo =
             {
                 Unit_Spellcast_Active =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
                 Unit_Spellcast_CastRecently =
                 {
-                    keyValue = 4,
+                    value = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 }
             }
-        },
-        {
-            type = "SORT",
-            OnEvaluate = TheEyeAddon.UI.Objects.OnPriorityChange,
-            sortValue = 1
         }
     }
 }
