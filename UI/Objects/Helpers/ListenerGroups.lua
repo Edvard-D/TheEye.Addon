@@ -67,6 +67,22 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, eve
         return a.ValueGroups.SortRank.value > b.ValueGroups.SortRank.combinedKeyValue end) 
 end
 
+function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange(arranger)
+    local frame = self.uiObject.frame
+    local children = self.uiObject.Children
+    local xOffset = 0
+    local yOffset = 0
+
+    for i = 1, #children do
+        local childFrame = children[i].frame
+        if childFrame ~= nil then
+            childFrame:ClearAllPoints()
+            childFrame:SetPoint(arranger.point, frame, arranger.relativePoint, xOffset, yOffset)
+            xOffset, yOffset = arranger.AddOffset(xOffset, yOffset, childFrame)
+        end
+    end
+end
+
 
 -- OnEvaluate: STATE
 function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
