@@ -56,3 +56,15 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Show(uiObject)
     uiObject.frame = uiObject.DisplayData.factory:Claim(uiObject.DisplayData)
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_SHOWN", uiObject)
 end
+
+
+-- OnInvalidValue
+function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
+    print ("DISABLE    " .. uiObject.key) -- DEBUG
+    TheEyeAddon.UI.Objects:Hide(uiObject)
+
+    TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(uiObject.ListenerGroups.Visible)
+    TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, "EVENT")
+
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
+end
