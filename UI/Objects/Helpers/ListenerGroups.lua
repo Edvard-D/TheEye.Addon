@@ -3,6 +3,7 @@ TheEyeAddon.UI.Objects.ListenerGroups = {}
 
 local ipairs = ipairs
 local pairs = pairs
+local select = select
 local table = table
 
 
@@ -87,8 +88,13 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange()
     for i = 1, #children do
         local childFrame = children[i].frame
         if childFrame ~= nil then
-            childFrame:ClearAllPoints()
-            childFrame:SetPoint(arranger.point, frame, arranger.relativePoint, xOffset, yOffset)
+            local xOffsetCurrent, yOffsetCurrent = select(4, childFrame:GetPoint(1))
+            
+            if xOffsetCurrent ~= xOffset or yOffsetCurrent ~= yOffset then
+                childFrame:ClearAllPoints()
+                childFrame:SetPoint(arranger.point, frame, arranger.relativePoint, xOffset, yOffset)
+            end
+            
             xOffset, yOffset = arranger.UpdateOffset(xOffset, yOffset, childFrame)
         end
     end
