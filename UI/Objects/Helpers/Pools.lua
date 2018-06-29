@@ -6,8 +6,6 @@ local table = table
 
 
 function TheEyeAddon.UI.Pools:Release(frame)
-	if frame == nil then return end
-	
 	frame:Hide()
 	frame:SetParent(nil)
 	frame.isClaimed = false
