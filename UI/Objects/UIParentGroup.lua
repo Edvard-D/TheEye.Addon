@@ -3,7 +3,16 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "GROUP", "UIPARENT" },
     DisplayData =
     {
-        factory = TheEyeAddon.UI.Factories.Group
+        factory = TheEyeAddon.UI.Factories.Group,
+        dimensionTemplate =
+        {
+            PointSettings =
+            {
+                point = "CENTER",
+                relativePoint = "CENTER",
+                yOffset = -150,
+            }
+        }
     },
     ValueHandlers =
     {

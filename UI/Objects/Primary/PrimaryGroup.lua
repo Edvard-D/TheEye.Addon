@@ -11,12 +11,12 @@ TheEyeAddon.UI.Objects:FormatData(
         GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
         dimensionTemplate =
         {
-            width = 0,
-            height = 0,
-            point = "TOP",
-            relativePoint = "CENTER",
-            offsetX = 0,
-            offsetY = -50,
+            PointSettings =
+            {
+                point = "TOP",
+                relativePoint = "CENTER",
+                yOffset = -50,
+            }
         }
     },
     ValueHandlers =
