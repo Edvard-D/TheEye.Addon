@@ -12,6 +12,15 @@ function TheEyeAddon.UI.Objects.ValueHandlers:SetupStateValue()
     end
 end
 
+function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
+    for k,valueHandler in pairs(uiObject.ValueHandlers) do
+        uiObject.ValueHandlers[k].uiObject = uiObject
+
+        if valueHandler.Setup ~= nil then
+            valueHandler:Setup()
+        end
+    end
+end
 
 -- ChangeValue
 function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
