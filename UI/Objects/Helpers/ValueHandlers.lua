@@ -1,6 +1,8 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.ValueHandlers = {}
 
+local pairs = pairs
+
 
 -- Setup
 function TheEyeAddon.UI.Objects.ValueHandlers:SetupStateValue()
