@@ -24,6 +24,14 @@ local function GetBoundsFromRects(rects)
 	return leftMin, bottomMin, rightMax, topMax
 end
 
+local function GetSizeFromRects(rects)
+	local leftMin, bottomMin, rightMax, topMax = GetBoundsFromRects(rects)
+	local width = rightMax - leftMin
+	local height = topMax - bottomMin
+	
+	return width, height
+end
+
 
 function TheEyeAddon.UI.Factories.Group:Claim(uiObject, displayData)
 	local instance = Pool:Claim(uiObject, "Frame", displayData.parentKey, nil, displayData.DimensionTemplate)
