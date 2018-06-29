@@ -12,8 +12,7 @@ end
 
 function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
-		instance:SetWidth(dimensionTemplate.width or 0)
-		instance:SetHeight(dimensionTemplate.height or 0)
+		instance:SetSize(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
 		if dimensionTemplate.PointSettings ~= nil then
 			instance:SetPoint(
 				dimensionTemplate.PointSettings.point,
