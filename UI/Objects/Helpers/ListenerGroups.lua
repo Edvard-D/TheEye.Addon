@@ -77,7 +77,8 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, eve
         return a.ValueGroups.SortRank.value > b.ValueGroups.SortRank.combinedKeyValue end) 
 end
 
-function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange(arranger)
+function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange()
+    local arranger = self.uiObject.DisplayData.GroupArranger
     local frame = self.uiObject.frame
     local children = self.uiObject.Children
     local xOffset = 0
