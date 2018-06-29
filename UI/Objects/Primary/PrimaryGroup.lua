@@ -1,3 +1,6 @@
+local childrenTags = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+
+
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
@@ -76,7 +79,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 UIOBJECT_WITHTAGS_INITIALIZED =
                 {
-                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                    inputValues = childrenTags
                 },
             }
         },
@@ -87,7 +90,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
                 {
-                    inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
+                    inputValues = childrenTags
                 },
             }
         },
