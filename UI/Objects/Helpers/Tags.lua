@@ -7,26 +7,25 @@ local tagGroups = {}
 
 
 local function KeyHasTags(key, tags)
-    for i,tag in ipairs(tags) do
-        if key:find(tag) == nil then
+    for i=1, #tags do
+        if key:find(tags[i]) == nil then
             return false
         end
     end
-
     return true
 end
 
 
 function TheEyeAddon.UI.Objects.Tags:UIObjectHasTags(uiObject, tags, tagsConcatenated)
-    if tagGroups[tagsConcatenated] ~= nil then
-        if tagGroups[tagsConcatenated][uiObject.key] == true then
-            return true
-        else
-            return false
-        end
+    local tagGroup = tagGroups[tagsConcatenated]
+
+    if tagGroup ~= nil and tagGroup[uiObject.key] ~= nil then
+        return tagGroup[uiObject.key]
     else
-        tagGroups[tagsConcatenated] = {}
+        tagGroup = {}
+        local hasTags = KeyHasTags(uiObject.key, tags)
+        tagGroup[uiObject.key] = hasTags
+        
+        return hasTags
     end
-    
-    tagGroups[tagsConcatenated][uiObject.key] = KeyHasTags(uiObject.key, tags)
 end
