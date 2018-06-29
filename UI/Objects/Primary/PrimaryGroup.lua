@@ -8,6 +8,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         factory = TheEyeAddon.UI.Factories.Group,
         parentKey = "GROUP_UIPARENT",
+        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
         dimensionTemplate =
         {
             width = 0,
@@ -89,6 +90,21 @@ TheEyeAddon.UI.Objects:FormatData(
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+                {
+                    inputValues = childrenTags
+                },
+            }
+        },
+        {
+            type = "EVENT",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChildrenArrange,
+            ListeningTo =
+            {
+                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+                {
+                    inputValues = childrenTags
+                },
+                UIOBJECT_WITHTAGS_SORTRANK_CHANGED =
                 {
                     inputValues = childrenTags
                 },
