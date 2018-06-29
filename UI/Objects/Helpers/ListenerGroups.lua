@@ -17,6 +17,14 @@ function TheEyeAddon.UI.Objects.ListenerGroups:Setup(uiObject, listenerGroup, li
     end
 end
 
+function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
+    for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
+        if listenerGroup.type == groupType then
+            SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
+        end
+    end
+end
+
 
 -- OnEvaluate: EVENT
 function TheEyeAddon.UI.Objects.ListenerGroups:RegisterChild(event, uiObject)
