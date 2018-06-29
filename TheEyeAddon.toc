@@ -109,6 +109,8 @@ UI\Objects\Helpers\SortGroups.lua
 UI\Objects\Helpers\StateChange.lua
 UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\Teardown.lua
+UI\Objects\Helpers\ValueHandlers.lua
+
 
 
 
