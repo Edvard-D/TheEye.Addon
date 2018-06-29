@@ -71,10 +71,10 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.SortChildrenByPriority,
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.RegisterChild,
             ListeningTo =
             {
-                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
+                UIOBJECT_WITHTAGS_INITIALIZED =
                 {
                     inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
                 },
@@ -82,10 +82,10 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.RegisterChild,
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.SortChildrenByPriority,
             ListeningTo =
             {
-                UIOBJECT_WITHTAGS_INITIALIZED =
+                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
                 {
                     inputValues = { --[[tags]] "HUD", "ICON", "PRIMARY" }
                 },
