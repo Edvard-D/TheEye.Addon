@@ -34,6 +34,16 @@ function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(listenerGroup)
     end
 end
 
+function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, groupType)
+    if uiObject.ListenerGroups ~= nil then
+        for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
+            if listenerGroup.type == groupType then
+                TeardownGroup(uiObject, listenerGroup)
+            end
+        end
+    end
+end
+
 
 -- OnEvaluate: EVENT
 function TheEyeAddon.UI.Objects.ListenerGroups:RegisterChild(event, uiObject)
