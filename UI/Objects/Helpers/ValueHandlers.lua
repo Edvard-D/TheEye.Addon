@@ -50,3 +50,9 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Enable(uiObject)
 
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
 end
+
+function TheEyeAddon.UI.Objects.ValueHandlers:Show(uiObject)
+    print ("SHOW    " .. uiObject.key) -- DEBUG
+    uiObject.frame = uiObject.DisplayData.factory:Claim(uiObject.DisplayData)
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_SHOWN", uiObject)
+end
