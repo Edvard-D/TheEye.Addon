@@ -102,7 +102,6 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
-UI\Objects\Helpers\EventGroups.lua
 UI\Objects\Helpers\ListenerGroups.lua
 UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
