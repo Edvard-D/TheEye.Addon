@@ -82,7 +82,7 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.SortChildrenByPriority,
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChildrenSortDescending,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
