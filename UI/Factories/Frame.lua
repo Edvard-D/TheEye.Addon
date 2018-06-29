@@ -4,9 +4,13 @@ TheEyeAddon.UI.Factories.Frame = {}
 local CreateFrame = CreateFrame
 
 
-function TheEyeAddon.UI.Factories.Frame:Create(frameType, parentFrame, inheritsFrom, dimensionTemplate)
+function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, parentFrame, inheritsFrom, dimensionTemplate)
 	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
+
+	instance.UIObject = uiObject
+	instance.SetSizeWithMessage = TheEyeAddon.UI.Factories.Frame.SetSizeWithMessage
 	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
+
 	return instance
 end
 

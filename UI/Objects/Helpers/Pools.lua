@@ -9,11 +9,12 @@ function TheEyeAddon.UI.Pools:Release(frame)
 	frame:Hide()
 	frame:SetParent(nil)
 	frame.isClaimed = false
+	frame.UIObject = nil
 end
 
-function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTemplate)
+function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, parentKey, template, dimensionTemplate)
 	local instance = nil
-	for i,frame in ipairs(self.instances) do
+	for i,frame in ipairs(self.Instances) do
 		if frame.isClaimed == false then
 			instance = frame
 			break
@@ -29,10 +30,11 @@ function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTem
 
 	if instance ~= nil then
 		instance:SetParent(parentFrame)
+		instance.UIObject = uiObject
 		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, dimensionTemplate)
 	else
-		instance = TheEyeAddon.UI.Factories.Frame:Create("Frame", parentFrame, nil, dimensionTemplate)
-		table.insert(self, instance)
+		instance = TheEyeAddon.UI.Factories.Frame:Create(uiObject, "Frame", parentFrame, nil, dimensionTemplate)
+		table.insert(self.Instances, instance)
 	end
 
 	instance.isClaimed = true
@@ -42,7 +44,7 @@ function TheEyeAddon.UI.Pools:Claim(frameType, parentKey, template, dimensionTem
 end
 
 function TheEyeAddon.UI.Pools:Create()
-	local instance = { Claim = TheEyeAddon.UI.Pools.Claim, instances = {} }
+	local instance = { Claim = TheEyeAddon.UI.Pools.Claim, Instances = {} }
     table.insert(TheEyeAddon.UI.Pools, instance)
     return instance
 end
