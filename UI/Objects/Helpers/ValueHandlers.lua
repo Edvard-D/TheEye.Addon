@@ -27,12 +27,14 @@ end
 function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
     self.value = self.value + valueChange
 
-    self.state = self.validValues[self.value]
+    if self.validValues[self.value] ~= self.state then
+        self.state = self.validValues[self.value]
 
-    if self.state == true then
-        self:OnValidValue(self.uiObject)
-    else
-        self:OnInvalidValue(self.uiObject)
+        if self.state == true then
+            self:OnValidValue(self.uiObject)
+        else
+            self:OnInvalidValue(self.uiObject)
+        end
     end
 end
 
