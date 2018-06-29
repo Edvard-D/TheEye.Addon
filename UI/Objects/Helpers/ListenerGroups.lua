@@ -28,7 +28,7 @@ end
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
         if listenerGroup.type == groupType then
-            TheEyeAddon.UI.Objects.ListenerGroups:SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
+            SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
         end
     end
 end
