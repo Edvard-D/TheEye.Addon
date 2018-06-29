@@ -63,7 +63,7 @@ end
 -- OnInvalidValue
 function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
     print ("DISABLE    " .. uiObject.key) -- DEBUG
-    TheEyeAddon.UI.Objects:Hide(uiObject)
+    TheEyeAddon.UI.Objects.ValueHandlers:Hide(uiObject)
 
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, "EVENT")
