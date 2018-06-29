@@ -39,8 +39,8 @@ TheEyeAddon.UI.Objects:FormatData(
         Enabled =
         {
             type = "STATE",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             valueHandlerKey = "Enabled",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             ListeningTo =
             {
                 UIObject_Visible =
@@ -53,8 +53,8 @@ TheEyeAddon.UI.Objects:FormatData(
         Visible =
         {
             type = "STATE",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             valueHandlerKey = "Visible",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             ListeningTo =
             {
                 Unit_Spellcast_Active =
