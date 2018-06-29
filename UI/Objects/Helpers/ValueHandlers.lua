@@ -32,3 +32,8 @@ function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
         self:OnInvalidValue(self.uiObject)
     end
 end
+
+function TheEyeAddon.UI.Objects.ValueHandlers:OnPriorityChange(valueChange)
+    self.value = self.value + valueChange
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_PRIORITY_CHANGED", uiObject)
+end
