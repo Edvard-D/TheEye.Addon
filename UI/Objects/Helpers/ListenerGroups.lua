@@ -26,6 +26,15 @@ function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, group
 end
 
 
+-- Teardown
+function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(listenerGroup)
+    for evaluatorName,v in pairs(listenerGroup.ListeningTo) do
+        local listener = listenerGroup.ListeningTo[evaluatorName]
+        TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
+    end
+end
+
+
 -- OnEvaluate: EVENT
 function TheEyeAddon.UI.Objects.ListenerGroups:RegisterChild(event, uiObject)
     if self.uiObject.Children == nil then
