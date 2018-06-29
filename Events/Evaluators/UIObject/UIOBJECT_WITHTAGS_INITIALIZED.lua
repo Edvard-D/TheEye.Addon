@@ -1,9 +1,5 @@
 local TheEyeAddon = TheEyeAddon
 
-local ipairs = ipairs
-local select = select
-local table = table
-
 
 -- inputValues = { --[[tags]] "_", "_" }
 --      tags: must be in alphabetical order
