@@ -78,7 +78,7 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange(arranger)
         if childFrame ~= nil then
             childFrame:ClearAllPoints()
             childFrame:SetPoint(arranger.point, frame, arranger.relativePoint, xOffset, yOffset)
-            xOffset, yOffset = arranger.AddOffset(xOffset, yOffset, childFrame)
+            xOffset, yOffset = arranger.UpdateOffset(xOffset, yOffset, childFrame)
         end
     end
 end
