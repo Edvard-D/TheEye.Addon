@@ -7,10 +7,6 @@ local pairs = pairs
 -- Setup
 function TheEyeAddon.UI.Objects.ValueHandlers:SetupStateValue()
     self.value = 0
-
-    if self.validValues[0] == true then
-        self:OnValidValue(self.uiObject)
-    end
 end
 
 function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
