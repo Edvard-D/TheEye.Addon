@@ -27,11 +27,11 @@ function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, parentKey, template, di
 	else
 		parentFrame = UIParent
 	end
-
+	
 	if instance ~= nil then
 		instance:SetParent(parentFrame)
 		instance.UIObject = uiObject
-		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, dimensionTemplate)
+		TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 	else
 		instance = TheEyeAddon.UI.Factories.Frame:Create(uiObject, "Frame", parentFrame, nil, dimensionTemplate)
 		table.insert(self.Instances, instance)
