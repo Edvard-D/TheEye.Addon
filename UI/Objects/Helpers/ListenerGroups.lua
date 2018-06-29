@@ -1,6 +1,10 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.ListenerGroups = {}
 
+local ipairs = ipairs
+local pairs = pairs
+local table = table
+
 
 -- Setup
 function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
@@ -10,17 +14,21 @@ function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvalu
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
-function TheEyeAddon.UI.Objects.ListenerGroups:SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
+local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
     for evaluatorName,v in pairs(listeningTo) do
         local listener = listenerGroup.ListeningTo[evaluatorName]
         SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
     end
 end
 
+function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, group)
+    SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
+end
+
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
         if listenerGroup.type == groupType then
-            SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
+            TheEyeAddon.UI.Objects.ListenerGroups:SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
         end
     end
 end
