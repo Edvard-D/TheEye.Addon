@@ -6,20 +6,22 @@ local CreateFrame = CreateFrame
 
 function TheEyeAddon.UI.Factories.Frame:Create(frameType, parentFrame, inheritsFrom, dimensionTemplate)
 	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
-	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, dimensionTemplate)
+	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 	return instance
 end
 
-function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, dimensionTemplate)
+function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
 		instance:SetWidth(dimensionTemplate.width)
 		instance:SetHeight(dimensionTemplate.height)
-		instance:SetPoint(
-			dimensionTemplate.point,
-			dimensionTemplate.parentFrame,
-			dimensionTemplate.relativePoint,
-			dimensionTemplate.offsetX,
-			dimensionTemplate.offsetY)
+		if dimensionTemplate.PointSettings ~= nil then
+			instance:SetPoint(
+				dimensionTemplate.PointSettings.point,
+				parentFrame,
+				dimensionTemplate.PointSettings.relativePoint,
+				dimensionTemplate.PointSettings.xOffset,
+				dimensionTemplate.PointSettings.yOffset)
+		end
 	else
 		instance:SetAllPoints()
 	end
