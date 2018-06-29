@@ -7,7 +7,6 @@ local pairs = pairs
 -- Setup
 function TheEyeAddon.UI.Objects.ValueHandlers:SetupStateValue()
     self.value = 0
-    self.state = false
 
     if self.validValues[0] == true then
         self:OnValidValue(self.uiObject)
@@ -28,11 +27,11 @@ end
 function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
     self.value = self.value + valueChange
 
-    if self.validValues[self.value] == true then
-        self.state = true
+    self.state = self.validValues[self.value]
+
+    if self.state == true then
         self:OnValidValue(self.uiObject)
     else
-        self.state = false
         self:OnInvalidValue(self.uiObject)
     end
 end
