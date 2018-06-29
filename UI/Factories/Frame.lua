@@ -8,7 +8,7 @@ function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, parentFrame,
 	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
 
 	instance.UIObject = uiObject
-	instance.SetSizeWithMessage = TheEyeAddon.UI.Factories.Frame.SetSizeWithMessage
+	instance.SetSizeWithEvent = TheEyeAddon.UI.Factories.Frame.SetSizeWithEvent
 	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 
 	return instance
@@ -16,7 +16,7 @@ end
 
 function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
-		instance:SetSize(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
+		instance:SetSizeWithEvent(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
 		if dimensionTemplate.PointSettings ~= nil then
 			instance:SetPoint(
 				dimensionTemplate.PointSettings.point,
@@ -27,5 +27,12 @@ function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dim
 		end
 	else
 		instance:SetAllPoints()
+	end
+end
+
+function TheEyeAddon.UI.Factories.Frame:SetSizeWithEvent(width, height)
+	if width ~= self:GetWidth() or height ~= self:GetHeight() then
+		self:SetSize(width, height)
+		TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
 	end
 end
