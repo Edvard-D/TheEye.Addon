@@ -45,7 +45,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 UIObject_Visible =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
@@ -59,12 +59,12 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 Unit_Spellcast_CastRecently =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 589 }
                 },
                 Unit_Aura_Active =
                 {
-                    keyValue = 4,
+                    value = 4,
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589 }
                 }
             }

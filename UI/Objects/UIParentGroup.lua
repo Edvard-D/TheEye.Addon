@@ -35,12 +35,12 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 Addon_Loaded =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[addonName]] "TheEyeAddon" }
                 },
                 Game_Data_Loaded =
                 {
-                    keyValue = 4
+                    value = 4
                     -- inputValues = nil
                 }
             }
@@ -54,7 +54,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 Unit_Spec =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[unit]] "player", --[[specID]] 258 }
                 }
             }

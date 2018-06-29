@@ -45,12 +45,12 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 Module_Enabled =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 },
                 UIObject_Visible =
                 {
-                    keyValue = 4,
+                    value = 4,
                     inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" }
                 }
             }
@@ -64,7 +64,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 Unit_CanAttack_Unit =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" }
                 }
             }
