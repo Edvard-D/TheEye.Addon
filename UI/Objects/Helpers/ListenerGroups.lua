@@ -28,6 +28,7 @@ end
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
         if listenerGroup.type == groupType then
+            listenerGroup.uiObject = uiObject
             SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
         end
     end
@@ -64,15 +65,15 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChildUpdateRegistration(state, ev
         return
     else
         if children == nil then
-            children = { uiObject }
+            self.uiObject.Children = { childUIObject }
         else
             table.insert(children, childUIObject)
         end
     end
 end
 
-function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, event, uiObject)
-    table.sort(uiObject.Children, function(a,b)
+function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, event, childUIObject)
+    table.sort(self.uiObject.Children, function(a,b)
         return a.ValueGroups.SortRank.value > b.ValueGroups.SortRank.combinedKeyValue end) 
 end
 
