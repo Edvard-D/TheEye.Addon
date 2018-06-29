@@ -43,6 +43,7 @@ end
 -- OnValidValue
 function TheEyeAddon.UI.Objects.ValueHandlers:Enable(uiObject)
     print ("ENABLE    " .. uiObject.key) -- DEBUG
+    uiObject.ValueHandlers["Visible"]:ChangeValue(0)
 
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, "EVENT")
@@ -60,7 +61,7 @@ end
 -- OnInvalidValue
 function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
     print ("DISABLE    " .. uiObject.key) -- DEBUG
-    TheEyeAddon.UI.Objects.ValueHandlers:Hide(uiObject)
+    uiObject.ValueHandlers["Visible"].state = nil
 
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, "EVENT")
