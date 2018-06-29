@@ -74,7 +74,7 @@ end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, event, childUIObject)
     table.sort(self.uiObject.Children, function(a,b)
-        return a.ValueGroups.SortRank.value > b.ValueGroups.SortRank.combinedKeyValue end) 
+        return a.ValueHandlers.SortRank.value > b.ValueHandlers.SortRank.value end)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange()
