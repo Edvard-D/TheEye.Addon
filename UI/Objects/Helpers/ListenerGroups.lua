@@ -54,11 +54,20 @@ end
 
 
 -- OnEvaluate: EVENT
-function TheEyeAddon.UI.Objects.ListenerGroups:RegisterChild(event, uiObject)
-    if self.uiObject.Children == nil then
-        self.uiObject.Children = { uiObject }
+function TheEyeAddon.UI.Objects.ListenerGroups:ChildUpdateRegistration(state, event, childUIObject)
+    local children = self.uiObject.Children
+
+    if childUIObject.frame == nil then
+        if children ~= nil then
+            table.removevalue(children, childUIObject)
+        end
+        return
     else
-        table.insert(self.uiObject.Children, uiObject)
+        if children == nil then
+            children = { uiObject }
+        else
+            table.insert(children, childUIObject)
+        end
     end
 end
 

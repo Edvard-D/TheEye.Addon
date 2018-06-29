@@ -75,10 +75,10 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.RegisterChild,
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChildUpdateRegistration,
             ListeningTo =
             {
-                UIOBJECT_WITHTAGS_INITIALIZED =
+                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
                 {
                     inputValues = childrenTags
                 },
