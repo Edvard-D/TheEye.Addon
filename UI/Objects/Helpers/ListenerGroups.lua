@@ -10,6 +10,13 @@ function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvalu
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
+function TheEyeAddon.UI.Objects.ListenerGroups:Setup(uiObject, listenerGroup, listeningTo, OnEvaluate)
+    for evaluatorName,v in pairs(listeningTo) do
+        local listener = listenerGroup.ListeningTo[evaluatorName]
+        SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
+    end
+end
+
 
 -- OnEvaluate: EVENT
 function TheEyeAddon.UI.Objects.ListenerGroups:RegisterChild(event, uiObject)
