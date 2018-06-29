@@ -34,9 +34,9 @@ function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
     end
 end
 
-function TheEyeAddon.UI.Objects.ValueHandlers:OnPriorityChange(valueChange)
+function TheEyeAddon.UI.Objects.ValueHandlers:OnSortRankChanged(valueChange)
     self.value = self.value + valueChange
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_PRIORITY_CHANGED", uiObject)
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_SORTRANK_CHANGED", uiObject)
 end
 
 
