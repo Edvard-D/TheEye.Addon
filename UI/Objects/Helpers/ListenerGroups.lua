@@ -21,8 +21,8 @@ local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate
     end
 end
 
-function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, group)
-    SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
+function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, listenerGroup)
+    SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
