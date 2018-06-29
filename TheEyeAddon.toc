@@ -78,6 +78,7 @@ Events\Evaluators\UIObject\UIObject_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Module_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
 Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_VISIBILE_CHANGED.lua
 
 
