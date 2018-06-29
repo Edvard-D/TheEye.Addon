@@ -27,8 +27,10 @@ function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
     self.value = self.value + valueChange
 
     if self.validValues[self.value] == true then
+        self.state = true
         self:OnValidValue(self.uiObject)
     else
+        self.state = false
         self:OnInvalidValue(self.uiObject)
     end
 end
@@ -36,4 +38,15 @@ end
 function TheEyeAddon.UI.Objects.ValueHandlers:OnPriorityChange(valueChange)
     self.value = self.value + valueChange
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_PRIORITY_CHANGED", uiObject)
+end
+
+
+-- OnValidValue
+function TheEyeAddon.UI.Objects.ValueHandlers:Enable(uiObject)
+    print ("ENABLE    " .. uiObject.key) -- DEBUG
+
+    TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, uiObject.ListenerGroups.Visible)
+    TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, "EVENT")
+
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
 end
