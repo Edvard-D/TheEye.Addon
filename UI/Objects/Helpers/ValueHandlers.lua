@@ -68,3 +68,10 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
 
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
 end
+
+function TheEyeAddon.UI.Objects.ValueHandlers:Hide(uiObject)
+    print ("HIDE    " .. uiObject.key) -- DEBUG
+    TheEyeAddon.UI.Pools:Release(uiObject.frame)
+    uiObject.frame = nil
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_HIDDEN", uiObject)
+end
