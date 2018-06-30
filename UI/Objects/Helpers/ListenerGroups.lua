@@ -8,31 +8,31 @@ local table = table
 
 
 -- Setup
-function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate, OnTeardown)
+function SetupListener(uiObject, listenerGroup, listener, evaluatorName)
     listener.uiObject = uiObject
     listener.listenerGroup = listenerGroup
-    listener.OnEvaluate = OnEvaluate
-    listener.OnTeardown = OnTeardown
+    listener.OnEvaluate = listenerGroup.OnEvaluate
+    listener.OnTeardown = listenerGroup.OnTeardown
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
-local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate, OnTeardown)
+local function SetupListeningTo(uiObject, listenerGroup)
+    local listeningTo = listenerGroup
     for evaluatorName,v in pairs(listeningTo) do
-        local listener = listenerGroup.ListeningTo[evaluatorName]
-        SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate, OnTeardown)
+        local listener = listeningTo[evaluatorName]
+        SetupListener(uiObject, listenerGroup, listener, evaluatorName)
     end
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, listenerGroup)
-    SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo,
-        listenerGroup.OnEvaluate, listenerGroup.OnTeardown)
+    SetupListeningTo(uiObject, listenerGroup)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
         if listenerGroup.type == groupType then
             listenerGroup.uiObject = uiObject
-            SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
+            SetupListeningTo(uiObject, listenerGroup)
         end
     end
 end
@@ -60,7 +60,7 @@ function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, gr
 end
 
 
--- OnEvaluate: STATE
+-- STATE
 function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
     if state == true then
         self.uiObject.ValueHandlers[self.listenerGroup.valueHandlerKey]:ChangeValue(self.value)
@@ -69,8 +69,6 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
     end
 end
 
-
---OnTeardown: STATE
 function TheEyeAddon.UI.Objects.ListenerGroups:StateSetFalse()
     print ("YEP")
     self:OnEvaluate(false)
