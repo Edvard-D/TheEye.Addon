@@ -52,7 +52,6 @@ function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
             end
 
 			table.insert(childRects, { childFrame:GetRect() })
-            
             combinedOffsetX, combinedOffsetY = self.GroupArranger.UpdateOffset(combinedOffsetX, combinedOffsetY, childFrame)
         end
 	end
