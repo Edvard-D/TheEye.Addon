@@ -61,8 +61,6 @@ end
 -- OnInvalidValue
 function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
     print ("DISABLE    " .. uiObject.key) -- DEBUG
-    uiObject.ValueHandlers["Visible"].state = nil
-
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, "EVENT")
 
@@ -71,7 +69,8 @@ end
 
 function TheEyeAddon.UI.Objects.ValueHandlers:Hide(uiObject)
     print ("HIDE    " .. uiObject.key) -- DEBUG
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_HIDDEN", uiObject) -- Must come before setting frame to nil
+
     TheEyeAddon.UI.Pools:Release(uiObject.frame)
     uiObject.frame = nil
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_HIDDEN", uiObject)
 end
