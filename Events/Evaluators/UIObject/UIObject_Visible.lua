@@ -1,18 +1,16 @@
 local TheEyeAddon = TheEyeAddon
 
 local select = select
-local table = table
 
 
 -- inputValues = { --[[uiObjectKey]] "_" }
-
  TheEyeAddon.Events.Evaluators.UIObject_Visible =
 {
     type = "STATE",
     customEvents =
     {
+        "UIOBJECT_HIDDEN",
         "UIOBJECT_SHOWN",
-        "UIOBJECT_HIDDEN"
     }
 }
 
@@ -22,7 +20,7 @@ function TheEyeAddon.Events.Evaluators.UIObject_Visible:CalculateCurrentState(in
     if uiObject == nil then
         return false
     else
-        return uiObject.StateGroups.Visible.currentState
+        return uiObject.ListenerGroups.Visible.currentState
     end
 end
 

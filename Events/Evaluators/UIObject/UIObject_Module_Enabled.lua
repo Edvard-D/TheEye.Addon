@@ -8,14 +8,23 @@ local table = table
 TheEyeAddon.Events.Evaluators.Module_Enabled =
 {
     type = "STATE",
+    reevaluateEvents =
+    {
+        ADDON_LOADED = true
+    },
+    gameEvents =
+    {
+        "ADDON_LOADED"
+    },
     customEvents =
     {
-        "THEEYE_SETTING_CHANGED"
+        "SETTING_CHANGED"
     }
 }
 
 function TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(inputValues)
-    if TheEyeAddon.Settings == nil or table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
+    if TheEyeAddon.Settings ~= nil
+            and table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
     else
         return false
@@ -23,9 +32,9 @@ function TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(inpu
 end
 
 function TheEyeAddon.Events.Evaluators.Module_Enabled:GetKey(event, ...)
-    return select(1, ...) -- moduleKey
+    return select(1, ...) -- SETTING_CHANGED: moduleKey
 end
 
 function TheEyeAddon.Events.Evaluators.Module_Enabled:Evaluate(valueGroup, event, ...)
-    return select(2, ...) -- enabledState
+    return TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(valueGroup.inputValues)
 end

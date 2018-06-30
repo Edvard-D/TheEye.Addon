@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Objects:Add(
+TheEyeAddon.UI.Objects:FormatData(
 {
     priority = nil,
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-15407" },
@@ -6,42 +6,67 @@ TheEyeAddon.UI.Objects:Add(
     {
         factory = TheEyeAddon.UI.Factories.Icon,
         parentKey = "GROUP_HUD_MODULE_PRIMARY",
-        dimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
+        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = 15407,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
     },
-    StateGroups =
+    ValueHandlers =
     {
         Enabled =
         {
-            OnValidKey = TheEyeAddon.UI.Objects.Enable,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Disable,
-            validKeys = { [2] = true },
-            Listeners =
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
+            validValues = { [2] = true },
+        },
+        Visible =
+        {
+            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
+            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
+            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
+            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
+            validValues = { [0] = true, [4] = true, [6] = true },
+        },
+        SortRank =
+        {
+            value = 1,
+        }
+    },
+    ListenerGroups =
+    {
+        Enabled =
+        {
+            type = "STATE",
+            valueHandlerKey = "Enabled",
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            ListeningTo =
             {
                 UIObject_Visible =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
                 }
             }
         },
         Visible =
         {
-            OnValidKey = TheEyeAddon.UI.Objects.Show,
-            OnInvalidKey = TheEyeAddon.UI.Objects.Hide,
-            validKeys = { [0] = true, [4] = true, [6] = true },
-            Listeners =
+            type = "STATE",
+            valueHandlerKey = "Visible",
+            OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
+            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
+            ListeningTo =
             {
                 Unit_Spellcast_Active =
                 {
-                    keyValue = 2,
+                    value = 2,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 },
                 Unit_Spellcast_CastRecently =
                 {
-                    keyValue = 4,
+                    value = 4,
                     inputValues = { --[[unit]] "player", --[[spellID]] 15407 }
                 }
             }

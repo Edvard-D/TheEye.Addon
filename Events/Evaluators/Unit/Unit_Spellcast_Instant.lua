@@ -4,7 +4,7 @@ local table = table
 
 
 -- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
-TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
+TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT =
 {
     type = "EVENT",
     gameEvents =
@@ -15,15 +15,15 @@ TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:GetKey(event, ...)
+function TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT:GetKey(event, ...)
     local unit, _, spellID = ...
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(valueGroup, event, ...)
+function TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         if valueGroup.isCasting ~= true then
-            TheEyeAddon.Events.Coordinator:SendCustomEvent("UNIT_SPELLCAST_INSTANT", ...)
+            return true, "UNIT_SPELLCAST_INSTANT", ...
         end
         valueGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then
@@ -31,4 +31,6 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_Instant:Evaluate(valueGrou
     else -- UNIT_SPELLCAST_STOP
         valueGroup.isCasting = false
     end
+
+    return false
 end

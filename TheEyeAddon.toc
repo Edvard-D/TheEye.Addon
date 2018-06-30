@@ -63,7 +63,7 @@ Events\Evaluators\EvaluatorsHelpers.lua
 
 
 # --- Combat ---
-Events\Evaluators\Combat\Combat_Log.lua
+Events\Evaluators\Combat\COMBAT_LOG.lua
 
 Events\Evaluators\Combat\EventDataFormats.lua
 
@@ -77,6 +77,9 @@ Events\Evaluators\General\Game_Data_Loaded.lua
 Events\Evaluators\UIObject\UIObject_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Module_Enabled.lua
 Events\Evaluators\UIObject\UIObject_Visible.lua
+Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_VISIBILE_CHANGED.lua
 
 
 # --- Unit ---
@@ -86,7 +89,7 @@ Events\Evaluators\Unit\Unit_Class.lua
 Events\Evaluators\Unit\Unit_Spec.lua
 Events\Evaluators\Unit\Unit_Spellcast_Active.lua
 Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
-Events\Evaluators\Unit\Unit_Spellcast_Instant.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
 
 
 
@@ -100,8 +103,13 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
-UI\Objects\UIObjectHelpers.lua
-UI\Pools.lua
+UI\Objects\Helpers\GroupArrangers.lua
+UI\Objects\Helpers\GroupChildren.lua
+UI\Objects\Helpers\ListenerGroups.lua
+UI\Objects\Helpers\Pools.lua
+UI\Objects\Helpers\Setup.lua
+UI\Objects\Helpers\Tags.lua
+UI\Objects\Helpers\ValueHandlers.lua
 
 
 

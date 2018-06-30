@@ -17,7 +17,7 @@ TheEyeAddon.Events.Evaluators.Unit_Aura_Active =
     {
         "PLAYER_TARGET_CHANGED"
     },
-    customEvents =
+    combatLogEvents =
     {
         "RANGE_AURA_APPLIED",
         "RANGE_AURA_BROKEN",
@@ -39,10 +39,10 @@ TheEyeAddon.Events.Evaluators.Unit_Aura_Active =
 }
 
 function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:SetupListeningTo(valueGroup)
-    for i,auraName in ipairs(self.customEvents) do
+    for i,auraName in ipairs(self.combatLogEvents) do
         TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
         {
-            listeningToKey = "Combat_Log",
+            listeningToKey = "COMBAT_LOG",
             evaluator = TheEyeAddon.Events.Evaluators.Unit_Aura_Active,
             inputValues = { auraName, valueGroup.inputValues[1], valueGroup.inputValues[2] }
         })

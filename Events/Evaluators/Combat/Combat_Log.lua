@@ -8,7 +8,7 @@ local UnitGUID = UnitGUID
 
 
 -- inputValues = { --[[eventName]] "_", --[[sourceUnit]] "_", --[[destUnit]] "_" }
-TheEyeAddon.Events.Evaluators.Combat_Log =
+TheEyeAddon.Events.Evaluators.COMBAT_LOG =
 {
     type = "EVENT",
     gameEvents =
@@ -17,15 +17,14 @@ TheEyeAddon.Events.Evaluators.Combat_Log =
     }
 }
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
-    self.combatLogSent = false
+function TheEyeAddon.Events.Evaluators.COMBAT_LOG:GetKey(event)
     self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
     
     local sourceGUID = self.rawEventInfo[4]
     local destGUID = self.rawEventInfo[8]
     local unitGUIDs = {}
 
-    for k,valueGroup in pairs(self.ValueGroups) do
+    for k,valueGroup in pairs(self.ValueGroups) do -- @TODO create table that stores the GUIDs for each unitID
         local sourceUnit = valueGroup.inputValues[2]
         local destUnit = valueGroup.inputValues[3]
 
@@ -43,10 +42,10 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:GetKey(event)
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
+function TheEyeAddon.Events.Evaluators.COMBAT_LOG:Evaluate(valueGroup, event)
     self.formattedEventInfo = {}
 
-    local eventDataFormat = TheEyeAddon.Events.Evaluators.Combat_Log.EventDataFormats[self.rawEventInfo[2]]
+    local eventDataFormat = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats[self.rawEventInfo[2]]
     for i,valueName in ipairs(eventDataFormat.ValueNames) do
         self.formattedEventInfo[valueName] = self.rawEventInfo[i]
     end
@@ -56,6 +55,5 @@ function TheEyeAddon.Events.Evaluators.Combat_Log:Evaluate(valueGroup)
     self.formattedEventInfo["sourceUnit"] = valueGroup.inputValues[2]
     self.formattedEventInfo["destUnit"] = valueGroup.inputValues[3]
 
-    TheEyeAddon.Events.Coordinator:SendCustomEvent(self.formattedEventInfo["event"], self.formattedEventInfo)
-    self.combatLogSent = true
+    return true, self.formattedEventInfo["event"], self.formattedEventInfo
 end
