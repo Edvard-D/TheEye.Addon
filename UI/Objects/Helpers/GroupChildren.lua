@@ -11,17 +11,18 @@ local function ClearAll(uiObject)
     end
 end
 
-function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, event, childUIObject)
+function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, event, ...)
     local uiObject = self.UIObject
     local children = uiObject.Children
 
     if event == "UIOBJECT_WITHTAGS_VISIBILE_CHANGED" then
         if children == nil then
+            local childUIObject = ...
             uiObject.Children = { childUIObject }
         else
             table.insert(children, childUIObject)
         end
-    else -- UIOBJECT_VISIBILE_CHANGED
+    elseif ... == false then -- this UIObject_Visible
         ClearAll(uiObject)
     end
 end
