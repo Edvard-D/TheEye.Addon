@@ -18,4 +18,6 @@ function this:Setup(
         OnTeardown, -- @TODO
         OnEvaluate -- @TODO
     )
+
+    instance.ValueHandler = ValueHandler
 end
