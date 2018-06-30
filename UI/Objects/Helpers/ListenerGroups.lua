@@ -72,5 +72,6 @@ end
 
 --OnTeardown: STATE
 function TheEyeAddon.UI.Objects.ListenerGroups:StateSetFalse()
+    print ("YEP")
     self:OnEvaluate(false)
 end
