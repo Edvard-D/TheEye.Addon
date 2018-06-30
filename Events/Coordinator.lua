@@ -21,7 +21,7 @@ frame:SetScript("OnEvent", OnEvent)
 local function InsertListener(eventName, listener, isGameEvent)
     if Listeners[eventName] == nil then
         Listeners[eventName] = { listener }
-        print ("RegisterEvent    " .. eventName) -- DEBUG
+        --print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:RegisterEvent(eventName)
@@ -45,7 +45,7 @@ local function RemoveListener(eventName, listener, isGameEvent)
     if eventGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         Listeners[eventName] = nil
         eventGroup = nil
-        print ("UnregisterEvent    " .. eventName) -- DEBUG
+        --print ("UnregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:UnregisterEvent(eventName)
