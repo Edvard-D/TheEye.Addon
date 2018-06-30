@@ -55,6 +55,7 @@ TheEyeAddon.UI.Objects:FormatData(
             type = "STATE",
             valueHandlerKey = "Visible",
             OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.StateSetFalse,
             ListeningTo =
             {
                 Unit_Spellcast_Active =
