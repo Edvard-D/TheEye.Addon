@@ -59,6 +59,8 @@ function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
 	
 	if #childRects > 0 then
 		self:SetSizeWithEvent(GetSizeFromRects(childRects))
+	else
+		self:SetSizeWithEvent(0, 0)
 	end
 end
 
