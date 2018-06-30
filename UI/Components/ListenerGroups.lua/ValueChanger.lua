@@ -14,8 +14,8 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ListenerGroups.Base:Setup(
         instance,
         TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup,
-        OnSetup, -- @TODO
-        OnTeardown, -- @TODO
+        ValueHandler.Reset,
+        ValueHandler.Reset,
         OnEvaluate -- @TODO
     )
 
