@@ -121,6 +121,8 @@ UI\Objects\Components\KeyBasedState.lua
 # --- Value Handlers ---
 UI\Objects\Components\ValueHandlers\Base.lua
 
+UI\Objects\Components\ValueHandlers\KeyState.lua
+
 
 
 # ---------------------------
