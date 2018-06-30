@@ -5,10 +5,6 @@ local pairs = pairs
 
 
 -- Setup
-function TheEyeAddon.UI.Objects.ValueHandlers:SetupStateValue()
-    self.value = 0
-end
-
 function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
     for k,valueHandler in pairs(uiObject.ValueHandlers) do
         uiObject.ValueHandlers[k].UIObject = uiObject
@@ -20,22 +16,6 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
 end
 
 -- ChangeValue
-function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
-    if valueChange ~= nil then
-        self.value = self.value + valueChange
-    end
-
-    if self.validValues[self.value] ~= self.state then
-        self.state = self.validValues[self.value]
-
-        if self.state == true then
-            self:OnValidValue(self.UIObject)
-        else
-            self:OnInvalidValue(self.UIObject)
-        end
-    end
-end
-
 function TheEyeAddon.UI.Objects.ValueHandlers:OnSortRankChanged(valueChange)
     if valueChange ~= nil then
         self.value = self.value + valueChange

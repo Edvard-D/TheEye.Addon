@@ -65,17 +65,3 @@ function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, gr
         end
     end
 end
-
-
--- STATE
-function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
-    if state == true then
-        self.UIObject.ValueHandlers[self.listenerGroup.valueHandlerKey]:ChangeValue(self.value)
-    else
-        self.UIObject.ValueHandlers[self.listenerGroup.valueHandlerKey]:ChangeValue(self.value * -1)
-    end
-end
-
-function TheEyeAddon.UI.Objects.ListenerGroups:ValueHandlerTriggerEvaluation()
-    self.UIObject.ValueHandlers[self.valueHandlerKey]:ChangeValue(nil)
-end
