@@ -2,24 +2,26 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger
 
+-- DEFINED IN TEMPLATE
+--      value               integer
 
+
+-- SETUP
+--      instance
+--      OnEvaluate          function(...): should change ValueGroup
+--      ValueGroup          ValueGroup: ValueGroup that should be changed
 function this:Setup(
     instance,
-    -- base
-    evaluatorKey,   -- string: must match the name of an Evaluator
-    inputValues,    -- table: structure defined by Evaluators
-    OnEvaluate      -- function: should do something with value to ValueGroup
-    -- this
-    value,          -- integer: value passed to ValueGroup
-    ValueGroup      -- ValueGroup
+    OnEvaluate,
+    ValueGroup
 )
-    TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Base:Setup(
+
+    TheEyeAddon.UI.Objects.Components.Listeners.Base:Setup(
         instance,
         evaluatorKey,
         inputValues,
         OnEvaluate
     )
 
-    instance.value = value
     instance.ValueGroup = ValueGroup
 end

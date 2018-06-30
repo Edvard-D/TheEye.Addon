@@ -2,13 +2,18 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
+-- DEFINED IN TEMPLATE
+--      ValidKeys           table { [0] = true }
 
+
+-- SETUP
+--      instance
+--      OnValidKey          function(...)
+--      OnInvalidKey        function(...)
 function this:Setup(
     instance,
-    -- this
-    ValidKeys,      -- table { [0] = true }
-    OnValidKey,     -- function(...)
-    OnInvalidKey    -- function(...)
+    OnValidKey,
+    OnInvalidKey
 )
     TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Setup(
         instance,

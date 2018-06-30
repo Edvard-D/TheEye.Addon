@@ -2,12 +2,17 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueHandlers.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
+-- DEFINED IN TEMPLATE
+--      Listeners           table { Listener }
 
+
+-- SETUP
+--      ChangeValue,        function(self.value)
+--      valueDefault        value
 function this:Setup(
     instance,
-    -- this
-    ChangeValue,    -- function(value)
-    valueDefault    -- value
+    ChangeValue,
+    valueDefault
 )
     instance.ChangeValue = ChangeValue
     instance.valueDefault = valueDefault
