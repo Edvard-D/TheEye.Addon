@@ -8,20 +8,14 @@ local this = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger
 
 -- SETUP
 --      instance
---      OnEvaluate          function(...): should change ValueGroup
---      ValueGroup          ValueGroup: ValueGroup that should be changed
+--      ListenerGroup       ListenerGroup: ListenerGroup this is assigned to
 function this:Setup(
     instance,
-    OnEvaluate,
-    ValueGroup
+    ListenerGroup
 )
 
     TheEyeAddon.UI.Objects.Components.Listeners.Base:Setup(
         instance,
-        evaluatorKey,
-        inputValues,
-        OnEvaluate
+        ListenerGroup
     )
-
-    instance.ValueGroup = ValueGroup
 end

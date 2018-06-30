@@ -9,14 +9,14 @@ local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
 -- SETUP
 --      instance
---      OnEvaluate          function(...)
+--      ListenerGroup       ListenerGroup: ListenerGroup this is assigned to
 function this:Setup(
     instance,
-    OnEvaluate
+    ListenerGroup
 )
 
-    instance.evaluatorKey = evaluatorKey
-    instance.OnEvaluate = OnEvaluate
+    instance.ListenerGroup = ListenerGroup
+    instance.OnEvaluate = ListenerGroup.OnEvaluate
 
     -- @TODO register with Evaluator
 end
