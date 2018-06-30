@@ -43,6 +43,9 @@ function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(listenerGroup)
     for evaluatorName,v in pairs(listenerGroup.ListeningTo) do
         local listener = listenerGroup.ListeningTo[evaluatorName]
         TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
+        if listener.OnTeardown ~= nil then
+            listener:OnTeardown()
+        end
     end
 end
 
