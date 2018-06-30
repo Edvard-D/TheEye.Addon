@@ -2,18 +2,23 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueHandler = {}
 
 
-function TheEyeAddon.UI.Components.ValueHandler:Create(setup, changeValue, valueDefault)
+function TheEyeAddon.UI.Components.ValueHandler:Create(
+    setup, -- function
+    changeValue, -- function
+    valueDefault -- value
+)
+    
     local instance = {}
     
-    -- Base
-    instance.Reset = function() self.value = self.valueDefault end
+    instance.Reset = function()
+        self.value = self.valueDefault
+    end
 
-    -- Passed
-    instance.Setup = setup -- function
-    instance.ChangeValue = changeValue -- function
+    instance.Setup = setup
+    instance.ChangeValue = changeValue
     
-    instance.valueDefault = valueDefault -- value
-    instance.value = valueDefault -- value
+    instance.valueDefault = valueDefault
+    instance.value = valueDefault
 
     return instance 
 end
