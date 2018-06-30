@@ -11,7 +11,7 @@ function this:Setup(
     OnEvaluate      -- function: should do something with value to ValueGroup
     -- this
     value,          -- integer: value passed to ValueGroup
-    ValueGroup     -- ValueGroup
+    ValueGroup      -- ValueGroup
 )
     TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Base:Setup(
         instance,

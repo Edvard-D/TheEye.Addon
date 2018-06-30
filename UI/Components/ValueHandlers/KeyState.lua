@@ -6,9 +6,9 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 function this:Setup(
     instance,
     -- this
-    ValidKeys,      -- table: integer keys
-    OnValidKey,     -- function
-    OnInvalidKey    -- function
+    ValidKeys,      -- table { [0] = true }
+    OnValidKey,     -- function(...)
+    OnInvalidKey    -- function(...)
 )
     TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Setup(
         instance,

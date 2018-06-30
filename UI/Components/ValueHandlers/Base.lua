@@ -6,7 +6,7 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 function this:Setup(
     instance,
     -- this
-    ChangeValue,    -- function
+    ChangeValue,    -- function(value)
     valueDefault    -- value
 )
     instance.ChangeValue = ChangeValue

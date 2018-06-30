@@ -8,7 +8,7 @@ function this:Setup(
     -- this
     evaluatorKey,   -- string: must match the name of an Evaluator
     inputValues,    -- table: structure defined by Evaluators
-    OnEvaluate      -- function
+    OnEvaluate      -- function(...)
 )
 
     instance.evaluatorKey = evaluatorKey

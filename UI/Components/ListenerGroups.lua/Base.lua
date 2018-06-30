@@ -6,11 +6,11 @@ local this = TheEyeAddon.UI.Objects.Components.ListenerGroup.Base
 function this:Setup(
     instance,
     -- temp
-    ListenerSetup,  -- function
+    ListenerSetup,  -- function( { Listener } )
     -- this
-    Listeners,      -- table
-    OnSetup,        -- function
-    OnTeardown      -- function
+    Listeners,      -- table { Listener }
+    OnSetup,        -- function(...)
+    OnTeardown      -- function(...)
 )
 
     instance.Listeners = Listeners
