@@ -12,7 +12,7 @@ local function ClearAll(uiObject)
 end
 
 function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, event, childUIObject)
-    local uiObject = self.uiObject
+    local uiObject = self.UIObject
     local children = uiObject.Children
 
     if event == "UIOBJECT_WITHTAGS_VISIBILE_CHANGED" then
@@ -27,10 +27,10 @@ function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, 
 end
 
 function TheEyeAddon.UI.Objects.GroupChildren:ChildrenSortDescending(state, event, childUIObject)
-    table.sort(self.uiObject.Children, function(a,b)
+    table.sort(self.UIObject.Children, function(a,b)
         return a.ValueHandlers.SortRank.value > b.ValueHandlers.SortRank.value end)
 end
 
 function TheEyeAddon.UI.Objects.GroupChildren:ChildrenArrange()
-    self.uiObject.frame:ChildrenArrange(self.uiObject.Children)
+    self.UIObject.frame:ChildrenArrange(self.UIObject.Children)
 end

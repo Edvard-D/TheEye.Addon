@@ -6,7 +6,7 @@ local table = table
 
 
 function TheEyeAddon.UI.Objects:FormatData(uiObject)
-    uiObject.DisplayData.uiObject = uiObject
+    uiObject.DisplayData.UIObject = uiObject
 
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
