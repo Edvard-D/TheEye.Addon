@@ -3,13 +3,15 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
 
-function this:Create(
+function this:Setup(
+    instance,
     -- this
     ValidKeys,      -- table: integer keys
     OnValidKey,     -- function
     OnInvalidKey    -- function
 )
-    instance = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Create(
+    TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Setup(
+        instance,
         this.ChangeValue,
         0
     )
