@@ -8,22 +8,24 @@ local table = table
 
 
 -- Setup
-function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
+function SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate, OnTeardown)
     listener.uiObject = uiObject
     listener.listenerGroup = listenerGroup
     listener.OnEvaluate = OnEvaluate
+    listener.OnTeardown = OnTeardown
     TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorName, listener)
 end
 
-local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate)
+local function SetupListeningTo(uiObject, listenerGroup, listeningTo, OnEvaluate, OnTeardown)
     for evaluatorName,v in pairs(listeningTo) do
         local listener = listenerGroup.ListeningTo[evaluatorName]
-        SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate)
+        SetupListener(uiObject, listenerGroup, listener, evaluatorName, OnEvaluate, OnTeardown)
     end
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, listenerGroup)
-    SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo, listenerGroup.OnEvaluate)
+    SetupListeningTo(uiObject, listenerGroup, listenerGroup.ListeningTo,
+        listenerGroup.OnEvaluate, listenerGroup.OnTeardown)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
