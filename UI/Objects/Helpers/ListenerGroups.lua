@@ -17,7 +17,7 @@ function SetupListener(uiObject, listenerGroup, listener, evaluatorName)
 end
 
 local function SetupListeningTo(uiObject, listenerGroup)
-    local listeningTo = listenerGroup
+    local listeningTo = listenerGroup.ListeningTo
     for evaluatorName,v in pairs(listeningTo) do
         local listener = listeningTo[evaluatorName]
         SetupListener(uiObject, listenerGroup, listener, evaluatorName)
