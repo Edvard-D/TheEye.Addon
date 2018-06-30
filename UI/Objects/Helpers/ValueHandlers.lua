@@ -11,7 +11,7 @@ end
 
 function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
     for k,valueHandler in pairs(uiObject.ValueHandlers) do
-        uiObject.ValueHandlers[k].uiObject = uiObject
+        uiObject.ValueHandlers[k].UIObject = uiObject
         
         if valueHandler.Setup ~= nil then
             valueHandler:Setup()
@@ -21,21 +21,26 @@ end
 
 -- ChangeValue
 function TheEyeAddon.UI.Objects.ValueHandlers:OnStateKeyChange(valueChange)
-    self.value = self.value + valueChange
+    if valueChange ~= nil then
+        self.value = self.value + valueChange
+    end
 
     if self.validValues[self.value] ~= self.state then
         self.state = self.validValues[self.value]
 
         if self.state == true then
-            self:OnValidValue(self.uiObject)
+            self:OnValidValue(self.UIObject)
         else
-            self:OnInvalidValue(self.uiObject)
+            self:OnInvalidValue(self.UIObject)
         end
     end
 end
 
 function TheEyeAddon.UI.Objects.ValueHandlers:OnSortRankChanged(valueChange)
-    self.value = self.value + valueChange
+    if valueChange ~= nil then
+        self.value = self.value + valueChange
+    end
+
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_SORTRANK_CHANGED", uiObject)
 end
 
@@ -43,8 +48,6 @@ end
 -- OnValidValue
 function TheEyeAddon.UI.Objects.ValueHandlers:Enable(uiObject)
     print ("ENABLE    " .. uiObject.key) -- DEBUG
-    uiObject.ValueHandlers["Visible"]:ChangeValue(0)
-
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, "EVENT")
 
