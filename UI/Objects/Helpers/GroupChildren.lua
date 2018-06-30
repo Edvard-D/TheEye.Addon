@@ -16,8 +16,8 @@ function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, 
     local children = uiObject.Children
 
     if event == "UIOBJECT_WITHTAGS_VISIBILE_CHANGED" then
+        local childUIObject = ...
         if children == nil then
-            local childUIObject = ...
             uiObject.Children = { childUIObject }
         else
             table.insert(children, childUIObject)
