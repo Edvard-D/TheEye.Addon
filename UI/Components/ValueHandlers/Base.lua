@@ -4,8 +4,9 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
 
 function this:Create(
-    ChangeValue, -- function
-    valueDefault -- value
+    -- this
+    ChangeValue,    -- function
+    valueDefault    -- value
 )
     local instance = {}
 

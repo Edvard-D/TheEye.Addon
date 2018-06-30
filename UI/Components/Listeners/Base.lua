@@ -4,6 +4,7 @@ local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
 
 function this:Create(
+    -- this
     evaluatorKey,   -- string: must match the name of an Evaluator
     inputValues,    -- table: structure defined by Evaluators
     OnEvaluate      -- function
