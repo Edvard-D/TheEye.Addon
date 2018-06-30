@@ -55,17 +55,6 @@ function TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, gr
 end
 
 
--- OnEvaluate: EVENT
-function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, event, childUIObject)
-    table.sort(self.uiObject.Children, function(a,b)
-        return a.ValueHandlers.SortRank.value > b.ValueHandlers.SortRank.value end)
-end
-
-function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenArrange()
-    self.uiObject.frame:ChildrenArrange(self.uiObject.Children)
-end
-
-
 -- OnEvaluate: STATE
 function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
     if state == true then

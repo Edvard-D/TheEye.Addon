@@ -25,3 +25,12 @@ function TheEyeAddon.UI.Objects.GroupChildren:ChildrenUpdateRegistration(state, 
         ClearAll(uiObject)
     end
 end
+
+function TheEyeAddon.UI.Objects.GroupChildren:ChildrenSortDescending(state, event, childUIObject)
+    table.sort(self.uiObject.Children, function(a,b)
+        return a.ValueHandlers.SortRank.value > b.ValueHandlers.SortRank.value end)
+end
+
+function TheEyeAddon.UI.Objects.GroupChildren:ChildrenArrange()
+    self.uiObject.frame:ChildrenArrange(self.uiObject.Children)
+end
