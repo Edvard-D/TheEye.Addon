@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ListenerGroup.Base = {}
-local this = TheEyeAddon.UI.Objects.Components.ListenerGroup.Base
+TheEyeAddon.UI.Objects.Components.ListenerGroups.Base = {}
+local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
 -- DEFINED IN TEMPLATE
 --      Listeners           table { Listener }
