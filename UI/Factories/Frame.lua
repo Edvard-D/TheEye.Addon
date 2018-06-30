@@ -22,8 +22,8 @@ function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dim
 				dimensionTemplate.PointSettings.point,
 				parentFrame,
 				dimensionTemplate.PointSettings.relativePoint,
-				dimensionTemplate.PointSettings.xOffset or 0,
-				dimensionTemplate.PointSettings.yOffset or 0)
+				dimensionTemplate.PointSettings.offsetX or 0,
+				dimensionTemplate.PointSettings.offsetY or 0)
 		end
 	else
 		instance:SetAllPoints()

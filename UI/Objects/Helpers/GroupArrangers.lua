@@ -6,7 +6,7 @@ TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom =
 {
     point = "TOP",
     relativePoint = "TOP",
-    UpdateOffset = function(xOffset, yOffset, frame)
-        return xOffset, yOffset - frame:GetHeight()
+    UpdateOffset = function(offsetX, offsetY, frame)
+        return offsetX, offsetY - frame:GetHeight()
     end
 }
