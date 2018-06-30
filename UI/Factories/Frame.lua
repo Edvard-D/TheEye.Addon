@@ -31,6 +31,9 @@ function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dim
 end
 
 function TheEyeAddon.UI.Factories.Frame:SetSizeWithEvent(width, height)
+	if width < 0.0001 then width = 0.0001 end
+	if height < 0.0001 then height = 0.0001 end
+
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
 		TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
