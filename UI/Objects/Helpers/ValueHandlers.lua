@@ -50,7 +50,6 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Enable(uiObject)
     print ("ENABLE    " .. uiObject.key) -- DEBUG
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, "EVENT")
-
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", uiObject)
 end
 
@@ -66,14 +65,12 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Disable(uiObject)
     print ("DISABLE    " .. uiObject.key) -- DEBUG
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroup(uiObject.ListenerGroups.Visible)
     TheEyeAddon.UI.Objects.ListenerGroups:TeardownGroupsOfType(uiObject, "EVENT")
-
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", uiObject)
 end
 
 function TheEyeAddon.UI.Objects.ValueHandlers:Hide(uiObject)
     print ("HIDE    " .. uiObject.key) -- DEBUG
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_HIDDEN", uiObject) -- Must come before setting frame to nil
-
     TheEyeAddon.UI.Pools:Release(uiObject.frame)
     uiObject.frame = nil
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_HIDDEN", uiObject)
 end

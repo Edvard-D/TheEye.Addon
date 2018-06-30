@@ -43,17 +43,15 @@ function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
 
     for i = 1, #children do
         local childFrame = children[i].frame
-        if childFrame ~= nil then
-            local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
-            
-            if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
-                childFrame:ClearAllPoints()
-                childFrame:SetPoint(self.GroupArranger.point, self, self.GroupArranger.relativePoint, combinedOffsetX, combinedOffsetY)
-            end
+		local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
+		
+		if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
+			childFrame:ClearAllPoints()
+			childFrame:SetPoint(self.GroupArranger.point, self, self.GroupArranger.relativePoint, combinedOffsetX, combinedOffsetY)
+		end
 
-			table.insert(childRects, { childFrame:GetRect() })
-            combinedOffsetX, combinedOffsetY = self.GroupArranger.UpdateOffset(combinedOffsetX, combinedOffsetY, childFrame)
-        end
+		table.insert(childRects, { childFrame:GetRect() })
+		combinedOffsetX, combinedOffsetY = self.GroupArranger.UpdateOffset(combinedOffsetX, combinedOffsetY, childFrame)
 	end
 	
 	if #childRects > 0 then
