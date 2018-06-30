@@ -8,4 +8,5 @@ TheEyeAddon = {}
         TheEyeAddon.UI.Factories = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Objects = {}
+            TheEyeAddon.UI.Objects.Components = {}
             TheEyeAddon.UI.Objects.Instances = {}
