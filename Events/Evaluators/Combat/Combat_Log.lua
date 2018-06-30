@@ -24,7 +24,7 @@ function TheEyeAddon.Events.Evaluators.COMBAT_LOG:GetKey(event)
     local destGUID = self.rawEventInfo[8]
     local unitGUIDs = {}
 
-    for k,valueGroup in pairs(self.ValueGroups) do
+    for k,valueGroup in pairs(self.ValueGroups) do -- @TODO create table that stores the GUIDs for each unitID
         local sourceUnit = valueGroup.inputValues[2]
         local destUnit = valueGroup.inputValues[3]
 
