@@ -48,13 +48,18 @@ function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
                 childFrame:SetPoint(self.GroupArranger.point, self, self.GroupArranger.relativePoint, xOffset, yOffset)
             end
 
-            table.insert(childRects, { childFrame:GetRect() })
+			local childRect = { childFrame:GetRect() }
+			if #childRect > 0 then
+				table.insert(childRects, { childFrame:GetRect() })
+			end
             
             xOffset, yOffset = self.GroupArranger.UpdateOffset(xOffset, yOffset, childFrame)
         end
 	end
 	
-	self:SetSizeWithEvent(GetSizeFromRects(childRects))
+	if #childRects > 0 then
+		self:SetSizeWithEvent(GetSizeFromRects(childRects))
+	end
 end
 
 
