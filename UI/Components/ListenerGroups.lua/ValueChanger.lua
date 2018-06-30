@@ -6,9 +6,11 @@ local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 -- SETUP
 --      instance
 --      ValueHandler
+--      OnEvaluate          function(...)
 function this:Setup(
     instance,
-    ValueHandler
+    ValueHandler,
+    OnEvaluate
 )
 
     TheEyeAddon.UI.Objects.Components.ListenerGroups.Base:Setup(
@@ -16,7 +18,7 @@ function this:Setup(
         TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup,
         ValueHandler.Reset,
         ValueHandler.Reset,
-        OnEvaluate -- @TODO
+        OnEvaluate
     )
 
     instance.ValueHandler = ValueHandler
