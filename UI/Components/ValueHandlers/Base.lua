@@ -4,7 +4,6 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
 
 function this:Create(
-    setup, -- function
     changeValue, -- function
     valueDefault -- value
 )
@@ -15,7 +14,6 @@ function this:Create(
         self.value = self.valueDefault
     end
 
-    instance.Setup = setup
     instance.ChangeValue = changeValue
     
     instance.valueDefault = valueDefault
