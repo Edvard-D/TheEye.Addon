@@ -4,7 +4,7 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
 
 function this:Create(
-    ValidKeys, -- table with integer keys
+    ValidKeys, -- table: integer keys
     OnValidKey, -- function
     OnInvalidKey -- function
 )
