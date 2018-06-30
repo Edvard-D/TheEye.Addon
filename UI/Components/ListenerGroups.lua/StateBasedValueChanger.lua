@@ -5,14 +5,17 @@ local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueCha
 
 -- SETUP
 --      instance
---      ValueHandler
+--      UIObject            UIObject
+--      ValueHandler        ValueHandler
 function this:Setup(
     instance,
+    UIObject,
     ValueHandler
 )
 
     TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger:Setup(
         instance,
+        UIObject,
         ValueHandler,
         this.ChangeValueByState
     )

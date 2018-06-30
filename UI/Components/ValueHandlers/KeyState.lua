@@ -8,19 +8,24 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
 -- SETUP
 --      instance
+--      UIObject            UIObject
 --      OnValidKey          function(...)
 --      OnInvalidKey        function(...)
 function this:Setup(
     instance,
+    UIObject,
     OnValidKey,
     OnInvalidKey
 )
+
     TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Setup(
         instance,
+        UIObject,
         this.ChangeValue,
         0
     )
 
+    instance.state = nil
     instance.ValidKeys = ValidKeys
     instance.OnValidKey = OnValidKey
     instance.OnInvalidKey = OnInvalidKey

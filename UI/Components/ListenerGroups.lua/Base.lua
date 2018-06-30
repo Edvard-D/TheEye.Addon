@@ -8,17 +8,21 @@ local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
 -- SETUP
 --      instance
+--      UIObject            UIObject
 --      ListenerSetup       function(Listener, ListenerGroup)
 --      OnSetup             function(...)
 --      OnTeardown          function(...)
 --      OnEvaluate          function(...)
 function this:Setup(
     instance,
+    UIObject,
     ListenerSetup,
     OnSetup,
     OnTeardown,
     OnEvaluate
 )
+
+    instance.UIObject = UIObject
 
     for i=1, #Listeners do
         ListenerSetup(Listeners[i], instance)

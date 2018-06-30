@@ -7,13 +7,18 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
 
 -- SETUP
---      ChangeValue,        function(self.value)
+--      instance
+--      UIObject            UIObject
+--      ChangeValue         function(self.value)
 --      valueDefault        value
 function this:Setup(
     instance,
+    UIObject,
     ChangeValue,
     valueDefault
 )
+
+    instance.UIObject = UIObject
     instance.ChangeValue = ChangeValue
     instance.valueDefault = valueDefault
     instance.value = valueDefault
