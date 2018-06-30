@@ -22,6 +22,4 @@ function this:Setup(
 
     instance.value = value
     instance.ValueGroup = ValueGroup
-
-    return instance
 end

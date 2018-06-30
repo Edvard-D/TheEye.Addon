@@ -16,6 +16,4 @@ function this:Setup(
     instance.OnEvaluate = OnEvaluate
 
     -- @TODO register with Evaluator
-
-    return instance 
 end

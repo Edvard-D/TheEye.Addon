@@ -19,8 +19,6 @@ function this:Setup(
     instance.ValidKeys = ValidKeys
     instance.OnValidKey = OnValidKey
     instance.OnInvalidKey = OnInvalidKey
-
-    return instance
 end
 
 function this:ChangeValue(valueChangeAmount)

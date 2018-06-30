@@ -20,6 +20,4 @@ function this:Setup(
 
     instance.OnSetup = OnSetup
     instance.OnTeardown = OnTeardown
-    
-    return instance
 end

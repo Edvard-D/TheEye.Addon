@@ -16,6 +16,4 @@ function this:Setup(
     instance.Reset = function()
         self.value = self.valueDefault
     end
-
-    return instance 
 end
