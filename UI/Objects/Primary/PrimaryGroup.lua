@@ -64,6 +64,7 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             type = "STATE",
             valueHandlerKey = "Visible",
+            OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.StateSetFalse,
             OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.StateSetFalse,
             ListeningTo =

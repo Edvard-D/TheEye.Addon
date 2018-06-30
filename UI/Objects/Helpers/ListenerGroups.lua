@@ -25,18 +25,18 @@ local function SetupListeningTo(uiObject, listenerGroup)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, listenerGroup)
+    if listenerGroup.OnSetup ~= nil then
+        listenerGroup:OnSetup()
+    end
+    
     SetupListeningTo(uiObject, listenerGroup)
 end
 
 function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, groupType)
     for i,listenerGroup in ipairs(uiObject.ListenerGroups) do
         if listenerGroup.type == groupType then
-            if listenerGroup.OnSetup ~= nil then
-                listenerGroup:OnSetup()
-            end
-            
             listenerGroup.uiObject = uiObject
-            SetupListeningTo(uiObject, listenerGroup)
+            SetupGroup(uiObject, listenerGroup)
         end
     end
 end
