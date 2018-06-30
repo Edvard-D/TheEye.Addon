@@ -56,23 +56,6 @@ end
 
 
 -- OnEvaluate: EVENT
-function TheEyeAddon.UI.Objects.ListenerGroups:ChildUpdateRegistration(state, event, childUIObject)
-    local children = self.uiObject.Children
-
-    if childUIObject.frame == nil then
-        if children ~= nil then
-            table.removevalue(children, childUIObject)
-        end
-        return
-    else
-        if children == nil then
-            self.uiObject.Children = { childUIObject }
-        else
-            table.insert(children, childUIObject)
-        end
-    end
-end
-
 function TheEyeAddon.UI.Objects.ListenerGroups:ChildrenSortDescending(state, event, childUIObject)
     table.sort(self.uiObject.Children, function(a,b)
         return a.ValueHandlers.SortRank.value > b.ValueHandlers.SortRank.value end)
