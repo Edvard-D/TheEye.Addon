@@ -19,3 +19,19 @@ function this:Create(
 
     return instance
 end
+
+function this:ChangeValue(valueChangeAmount)
+    if valueChangeAmount ~= nil then
+        self.value = self.value + valueChangeAmount
+    end
+
+    if self.ValidKeys[self.value] ~= self.state then
+        self.state = self.ValidKeys[self.value]
+
+        if self.state == true then
+            self:OnValidKey()
+        else
+            self:OnInvalidKey()
+        end
+    end
+end
