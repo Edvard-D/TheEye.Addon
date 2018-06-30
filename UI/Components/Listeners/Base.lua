@@ -18,5 +18,5 @@ function this:Setup(
     instance.ListenerGroup = ListenerGroup
     instance.OnEvaluate = ListenerGroup.OnEvaluate
 
-    -- @TODO register with Evaluator
+    TheEyeAddon.Events.Evaluators:RegisterListener(instance.evaluatoryKey, instance)
 end
