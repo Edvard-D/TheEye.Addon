@@ -10,8 +10,8 @@ local function GetBoundsFromRects(rects)
 	local rightMax = width + leftMin
 	local topMax = height + bottomMin
 	
-	if #childRects > 1 then
-		for i = 2, #childRects do
+	if #rects > 1 then
+		for i = 2, #rects do
 			local left, bottom, width, height = unpack(rects[i])
 
 			leftMin = left < leftMin or leftMin
