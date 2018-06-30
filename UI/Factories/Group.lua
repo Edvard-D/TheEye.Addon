@@ -6,13 +6,13 @@ local unpack = unpack
 
 
 local function GetBoundsFromRects(rects)
-	local leftMin, bottomMin, width, height = unpack(childRects[1])
+	local leftMin, bottomMin, width, height = unpack(rects[1])
 	local rightMax = width + leftMin
 	local topMax = height + bottomMin
 	
 	if #childRects > 1 then
 		for i = 2, #childRects do
-			local left, bottom, width, height = unpack(childRects[i])
+			local left, bottom, width, height = unpack(rects[i])
 
 			leftMin = left < leftMin or leftMin
 			bottomMin = bottom < bottomMin or bottomMin
@@ -33,7 +33,7 @@ local function GetSizeFromRects(rects)
 end
 
 function TheEyeAddon.UI.Factories.Group:ChildrenArrange(children)
-    local children = self.uiObject.Children
+    local children = self.UIObject.Children
     local xOffset = 0
     local yOffset = 0
     local childRects = {}
