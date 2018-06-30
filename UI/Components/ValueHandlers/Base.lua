@@ -1,8 +1,9 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueHandler = {}
+TheEyeAddon.UI.Objects.Components.ValueHandlers.Base = {}
+local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
 
-function TheEyeAddon.UI.Components.ValueHandler:Create(
+function this:Create(
     setup, -- function
     changeValue, -- function
     valueDefault -- value
