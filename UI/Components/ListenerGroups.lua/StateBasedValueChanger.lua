@@ -14,6 +14,14 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger:Setup(
         instance,
         ValueHandler,
-        OnEvaluate -- @TODO
+        this.ChangeValueByState
     )
+end
+
+function this:ChangeValueByState(state)
+    if state == true then
+        self.ValueHandler:ChangeValue(self.value)
+    else
+        self.ValueHandler:ChangeValue(self.value * -1)
+    end
 end
