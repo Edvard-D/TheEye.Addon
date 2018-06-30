@@ -84,7 +84,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 {
                     inputValues = childrenTags
                 },
-                UIOBJECT_VISIBILE_CHANGED =
+                UIObject_Visible =
                 {
                     inputValues = thisKey
                 },
