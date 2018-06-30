@@ -5,14 +5,14 @@ local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
 function this:Create(
     evaluatorKey,   -- string: must match the name of an Evaluator
-    OnEvaluate,     -- function
-    inputValues     -- table: structure defined by Evaluators
+    inputValues,     -- table: structure defined by Evaluators
+    OnEvaluate     -- function
 )
     local instance = {}
 
     instance.evaluatorKey = evaluatorKey
-    instance.OnEvaluate = OnEvaluate
     instance.inputValues = inputValues
+    instance.OnEvaluate = OnEvaluate
 
     -- @TODO register with Evaluator
 
