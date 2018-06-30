@@ -20,6 +20,7 @@ TheEyeAddon.UI.Objects:FormatData(
             }
         }
     },
+    Children = {},
     ValueHandlers =
     {
         Enabled =
