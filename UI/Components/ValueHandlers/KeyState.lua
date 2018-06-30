@@ -4,9 +4,9 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
 
 function this:Create(
-    ValidKeys, -- table: integer keys
-    OnValidKey, -- function
-    OnInvalidKey -- function
+    ValidKeys,      -- table: integer keys
+    OnValidKey,     -- function
+    OnInvalidKey    -- function
 )
     instance = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base:Create(
         this.ChangeValue,
