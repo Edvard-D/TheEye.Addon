@@ -9,8 +9,7 @@ function this:Create(
 )
     local instance = {}
 
-    instance.OnEvaluate = OnEvaluate
     instance.ListeningTo = ListeningTo
 
-    return instance 
+    return instance
 end
