@@ -1,3 +1,4 @@
+local thisKey = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" } -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
 local childrenTags = { --[[tags]] "HUD", "ICON", "PRIMARY" }
 
 
@@ -50,7 +51,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 Module_Enabled =
                 {
                     value = 2,
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }
+                    inputValues = thisKey
                 },
                 UIObject_Visible =
                 {
@@ -64,6 +65,7 @@ TheEyeAddon.UI.Objects:FormatData(
             type = "STATE",
             valueHandlerKey = "Visible",
             OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.StateSetFalse,
             ListeningTo =
             {
                 Unit_CanAttack_Unit =
@@ -75,12 +77,16 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChildUpdateRegistration,
+            OnEvaluate = TheEyeAddon.UI.Objects.GroupChildren.ChildrenUpdateRegistration,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
                 {
                     inputValues = childrenTags
+                },
+                UIOBJECT_VISIBILE_CHANGED =
+                {
+                    inputValues = thisKey
                 },
             }
         },
