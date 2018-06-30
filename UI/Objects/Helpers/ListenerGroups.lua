@@ -63,3 +63,9 @@ function TheEyeAddon.UI.Objects.ListenerGroups:ChangeValueByState(state)
         self.uiObject.ValueHandlers[self.listenerGroup.valueHandlerKey]:ChangeValue(self.value * -1)
     end
 end
+
+
+--OnTeardown: STATE
+function TheEyeAddon.UI.Objects.ListenerGroups:StateSetFalse()
+    self:OnEvaluate(false)
+end
