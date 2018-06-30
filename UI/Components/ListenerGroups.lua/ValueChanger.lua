@@ -19,9 +19,9 @@ function this:Setup(
         instance,
         UIObject,
         TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup,
+        OnEvaluate,
         ValueHandler.Reset,
-        ValueHandler.Reset,
-        OnEvaluate
+        ValueHandler.Reset
     )
 
     instance.ValueHandler = ValueHandler
