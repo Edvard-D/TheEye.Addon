@@ -37,7 +37,7 @@ function TheEyeAddon.UI.Objects.ListenerGroups:SetupGroupsOfType(uiObject, group
     for i = 1, #listenerGroups do
         local listenerGroup = listenerGroups[i]
         if listenerGroup.type == groupType then
-            SetupGroup(uiObject, listenerGroup)
+            TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, listenerGroup)
         end
     end
 end
