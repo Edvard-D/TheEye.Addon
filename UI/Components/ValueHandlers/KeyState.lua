@@ -3,12 +3,13 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
-local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
+local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    Evaluator = #TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue#TEMPLATE#
     ValidKeys = { #VALUE# = true }
 }
 ]]
@@ -17,19 +18,19 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluator
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    Action                      function(#VALUE#)
+    ValueAction                 function(#VALUE#)
     defaultValue                #VALUE#
     OnStateChange               function(#BOOL#)
 ]]
 function this:Setup(
     instance,
     UIObject,
-    Action,
+    ValueAction,
     defaultValue,
     OnStateChange
 )
 
-    local evaluatorInstance = ReturnKeyPairValueSetup(
+    local Evaluator = ReturnKeyPairValueSetup(
         instance.Evaluator or {},
         UIObject,
         instance.ValidKeys
@@ -38,9 +39,8 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        Action,
-        Changer,
-        evaluatorInstance,
+        ValueAction,
+        Evaluator,
         this.OnEvaluate,
         defaultValue
     )
