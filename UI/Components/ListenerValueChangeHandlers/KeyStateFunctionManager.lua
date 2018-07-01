@@ -44,11 +44,11 @@ function this:Setup(
     )
 
     inherited:Setup(
-    instance,
-    UIObject,
-    ValueHandler,
-    ListenerGroup
-)
+        instance,
+        UIObject,
+        ValueHandler,
+        ListenerGroup
+    )
 end
 
 function this:OnStateChange(state)
