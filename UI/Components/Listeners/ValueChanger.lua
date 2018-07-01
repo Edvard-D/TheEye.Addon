@@ -3,6 +3,7 @@ TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger
 local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
+
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#

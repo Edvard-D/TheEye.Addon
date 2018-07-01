@@ -3,6 +3,7 @@ TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue
 local inherited = TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base
 
+
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#

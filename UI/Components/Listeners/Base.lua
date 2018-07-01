@@ -2,6 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
+
 --[[ #this#TEMPLATE#
 {
     eventEvaluatorKey = #EVALUATOR#name#

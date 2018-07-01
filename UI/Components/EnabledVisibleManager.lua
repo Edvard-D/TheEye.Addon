@@ -2,6 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.EnabledVisibleManager = {}
 local this = TheEyeAddon.UI.Components.EnabledVisibleManager
 
+
 -- DEFINED IN TEMPLATE
 --      Enabled             Enabled: must be of type KeyBasedStateManager
 --      Visible             Visible: must be of type KeyBasedStateManager

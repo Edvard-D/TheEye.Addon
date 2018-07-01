@@ -2,6 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base
 
+
 --[[ #this#TEMPLATE#
 {
     nil
