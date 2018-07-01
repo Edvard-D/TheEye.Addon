@@ -29,7 +29,7 @@ function this:Setup(
     instance.ValueHandler = IntegerKeyStateSetup:Setup(
         instance.ValueHandler or {},
         UIObject,
-        this.OnStateChange -- @TODO
+        this.OnStateChange
     )
 
     StateBasedValueChangerSetup:Setup(
@@ -37,4 +37,12 @@ function this:Setup(
         UIObject,
         instance.ValueHandler
     )
+end
+
+function this:OnStateChange(state)
+    if state == true then
+        self:OnValidKey()
+    else
+        self:OnInvalidKey()
+    end
 end
