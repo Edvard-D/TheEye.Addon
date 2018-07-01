@@ -10,6 +10,8 @@ local StateBasedValueChangerSetup = TheEyeAddon.UI.Objects.Components.ListenerGr
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    ValueHandler = #TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState#TEMPLATE#
+    ListenerGroup = #TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger#TEMPLATE#
 }
 ]]
 
