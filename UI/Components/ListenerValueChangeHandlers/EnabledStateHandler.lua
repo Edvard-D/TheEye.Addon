@@ -24,7 +24,7 @@ function this:Setup(
         instance,
         UIObject,
         this.Enable,
-        this.Disable -- @TODO
+        this.Disable
     )
 end
 
@@ -32,4 +32,10 @@ function this:Enable()
     print ("ENABLE    " .. self.UIObject.key) -- DEBUG
     self.UIObject.Enable()
     TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", self.UIObject)
+end
+
+function this:Disable()
+    print ("DISABLE    " .. self.UIObject.key) -- DEBUG
+    self.UIObject.Disable()
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_DISABLED", self.UIObject)
 end
