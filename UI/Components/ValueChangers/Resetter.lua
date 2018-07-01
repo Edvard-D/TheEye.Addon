@@ -18,7 +18,11 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ValueChangers.Base:Setup(
         instance,
         UIObject,
-        this.Reset, -- @TODO
+        this.Reset,
         0
     )
+end
+
+function this:Reset(value)
+    self.value = self.valueDefault
 end
