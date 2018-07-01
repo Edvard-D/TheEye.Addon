@@ -18,8 +18,16 @@ function this:Setup(
 )
 
     instance.UIObject = UIObject
+    instance.Activate = this.Activate
+    instance.Deactivate = this.Deactivate
     instance.ListenerGroup = ListenerGroup
     instance.OnEvaluate = ListenerGroup.OnEvaluate
+end
 
+function this:Activate()
     TheEyeAddon.Events.Evaluators:RegisterListener(instance.evaluatoryKey, instance)
+end
+
+function this:Deactivate()
+    TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
 end

@@ -23,11 +23,29 @@ function this:Setup(
 )
 
     instance.UIObject = UIObject
+    instance.Activate = this.Activate
+    instance.Deactivate = this.Deactivate
     instance.OnEvaluate = OnEvaluate
     instance.OnActivate = OnActivate
     instance.OnDeactivate = OnDeactivate
 
     for i=1, #Listeners do -- must come after value assignment
         ListenerSetup(Listeners[i], UIObject, instance)
+    end
+end
+
+function this:Activate()
+    self.OnActivate() -- must be called before activating listeners
+
+    for i=1, #Listeners do
+        Listeners[i].Activate()
+    end
+end
+
+function this:Deactivate()
+    self.OnDeactivate()
+
+    for i=1, #Listeners do
+        Listeners[i].Deactivate()
     end
 end
