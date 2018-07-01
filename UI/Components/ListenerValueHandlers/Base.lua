@@ -5,8 +5,7 @@ local this = TheEyeAddon.UI.Components.ListenerValueHandlers.Base
 
 --[[ #this#TEMPLATE#
 {
-    ValueHandler = #TheEyeAddon.UI.Objects.Components.ValueHandlers#NAME#TEMPLATE#
-    ListenerGroup = #TheEyeAddon.UI.Objects.Components.ListenerGroups#NAME#TEMPLATE#
+    nil
 }
 ]]
 
@@ -14,35 +13,17 @@ local this = TheEyeAddon.UI.Components.ListenerValueHandlers.Base
 --[[ SETUP
     instance
     UIObject                    UIObject
-    OnValidKey                  function()
-    OnInvalidKey                function()
+    ValueHandler                ValueHandler
+    ListenerGroup               ListenerGroup
 ]]
 function this:Setup(
     instance,
     UIObject,
-    OnValidKey,
-    OnInvalidKey
+    ValueHandler,
+    ListenerGroup
 )
     
     instance.UIObject = UIObject
-
-    instance.ValueHandler = IntegerKeyStateSetup:Setup(
-        instance.ValueHandler or {},
-        UIObject,
-        this.OnStateChange
-    )
-
-    instance.ListenerGroup = StateBasedValueChangerSetup:Setup(
-        instance.ListenerGroup or {},
-        UIObject,
-        instance.ValueHandler
-    )
-end
-
-function this:OnStateChange(state)
-    if state == true then
-        self:OnValidKey()
-    else
-        self:OnInvalidKey()
-    end
+    instance.ValueHandler = ValueHandler
+    instance.ListenerGroup = ListenerGroup
 end
