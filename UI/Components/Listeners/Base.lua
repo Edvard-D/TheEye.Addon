@@ -33,6 +33,9 @@ function this:Setup(
     instance.Register = Register
     instance.Unregister = Unregister
     instance.ListenerGroup = ListenerGroup
+    
+    instance.Activate = this.Activate
+    instance.Deactivate = this.Deactivate
 
     instance.OnEvaluate = ListenerGroup.OnEvaluate
 end

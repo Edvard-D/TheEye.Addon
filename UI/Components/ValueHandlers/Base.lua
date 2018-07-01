@@ -33,6 +33,9 @@ function this:Setup(
     instance.OnEvaluate = OnEvaluate
     instance.defaultValue = defaultValue
     instance.value = defaultValuee
+
+    instance.Change = this.Change
+    instance.Reset = this.Reset
 end
 
 function this:Change(value)
