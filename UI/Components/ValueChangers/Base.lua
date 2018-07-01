@@ -21,6 +21,4 @@ function this:Setup(
 
     instance.UIObject = UIObject
     instance.Execute = Execute
-    instance.valueDefault = valueDefault
-    instance.value = valueDefault
 end
