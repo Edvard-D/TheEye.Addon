@@ -10,7 +10,6 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluator
 {
     #inherited#TEMPLATE#
     ValidKeys = { #VALUE# = true }
-    Evaluator = #evaluator#TEMPLATE#
 }
 ]]
 
@@ -18,14 +17,14 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluator
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    Changer                     function(#VALUE#)
+    Action                      function(#VALUE#)
     defaultValue                #VALUE#
     OnStateChange               function(#BOOL#)
 ]]
 function this:Setup(
     instance,
     UIObject,
-    Changer,
+    Action,
     defaultValue,
     OnStateChange
 )
@@ -39,6 +38,7 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
+        Action,
         Changer,
         evaluatorInstance,
         this.OnEvaluate,

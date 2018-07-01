@@ -3,7 +3,7 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
-local Add = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base.Add
+local Add = TheEyeAddon.UI.Objects.Components.ValueActions.Add
 
 
 --[[ #this#TEMPLATE#
