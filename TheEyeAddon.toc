@@ -125,6 +125,7 @@ UI\Objects\Components\ListenerGroups\ValueChanger.lua
 # --- Listeners ---
 UI\Objects\Components\Listeners\Base.lua
 UI\Objects\Components\Listeners\EvaluatorListener.lua
+UI\Objects\Components\Listeners\EventListener.lua
 
 
 # --- Listener Value Change Handlers ---
