@@ -3,7 +3,7 @@ TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
-local ValueChangerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup
+local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -18,20 +18,20 @@ local ValueChangerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChang
     instance
     UIObject                    UIObject
     ValueHandler                ValueHandler
-    OnEvaluate                  function()
+    OnNotify                    function(...)
 ]]
 function this:Setup(
     instance,
     UIObject,
     ValueHandler,
-    OnEvaluate
+    OnNotify
 )
 
     inherited:Setup(
         instance,
         UIObject,
-        ValueChangerSetup,
-        OnEvaluate,
+        ListenerSetup,
+        OnNotify,
         ValueHandler.Reset,
         ValueHandler.Reset
     )

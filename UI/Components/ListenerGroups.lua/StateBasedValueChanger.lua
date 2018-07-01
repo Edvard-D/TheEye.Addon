@@ -3,6 +3,8 @@ TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger
 local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 
+local select = select
+
 
 --[[ #this#TEMPLATE#
 {
@@ -30,7 +32,9 @@ function this:Setup(
     )
 end
 
-function this:ChangeValueByState(state)
+function this:ChangeValueByState(...)
+    local state = select(1, ...)
+
     if state == true then
         self.ValueHandler:ChangeValue(self.value)
     else

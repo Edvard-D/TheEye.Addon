@@ -19,18 +19,18 @@ local UnregisterListener = TheEyeAddon.Events.Evaluators.UnregisterListener
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    ListenerGroup               ListenerGroup
+    OnNotify                    function(...)
 ]]
 function this:Setup(
     instance,
     UIObject,
-    ListenerGroup
+    OnNotify
 )
 
     inherited:Setup(
         instance,
         UIObject,
-        ListenerGroup,
+        OnNotify,
         this.Register,
         this.Unregister
     )

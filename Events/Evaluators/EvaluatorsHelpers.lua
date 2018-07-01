@@ -97,7 +97,7 @@ function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
         valueGroup.ListeningTo = {}
     end
 
-    listener.OnEvaluate = TheEyeAddon.Events.Evaluators.OnEventEvaluator
+    listener.Notify = TheEyeAddon.Events.Evaluators.OnEventEvaluator
     listener.valueGroup = valueGroup
     table.insert(valueGroup.ListeningTo, listener)
     
@@ -120,7 +120,7 @@ function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
     IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
 
     if valueGroup.currentState == true then -- Set in IncreaseValueGroupListenerCount
-        listener:OnEvaluate(true)
+        listener:Notify(true)
     end
 end
 
@@ -138,7 +138,7 @@ end
 -- EVENT EVALUATION
 local function NotifyListeners(listeners, state, ...)
     for i,listener in ipairs(listeners) do
-        listener:OnEvaluate(state, ...)
+        listener:Notify(state, ...)
     end
 end
 

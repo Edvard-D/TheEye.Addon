@@ -41,7 +41,7 @@ function this:Setup(
         UIObject,
         ValueAction,
         Evaluator,
-        this.OnEvaluate,
+        this.Notify,
         defaultValue
     )
 
@@ -49,7 +49,7 @@ function this:Setup(
     instance.state = nil
 end
 
-function this:OnEvaluate(state)
+function this:Notify(state)
     if self.state ~= state then
         self.state = self.ValidKeys[self.value]
         self:OnStateChange(state)
