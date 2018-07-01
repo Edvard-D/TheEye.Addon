@@ -11,10 +11,11 @@ local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 ]]
 
 
--- SETUP
---      instance
---      UIObject                    UIObject
---      ValueHandler                ValueHandler
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    ValueHandler                ValueHandler
+]]
 function this:Setup(
     instance,
     UIObject,
