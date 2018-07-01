@@ -119,6 +119,10 @@ UI\Objects\Helpers\ValueHandlers.lua
 UI\Objects\Components\KeyBasedStateManager.lua
 
 
+# --- Listener Actors ---
+UI\Objects\Components\ListenerActors\Base.lua
+
+
 # --- Listener Groups ---
 UI\Objects\Components\ListenerGroups\Base.lua
 UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
