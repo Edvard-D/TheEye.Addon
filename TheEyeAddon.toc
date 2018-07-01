@@ -126,6 +126,7 @@ UI\Objects\Components\ListenerActors\Base.lua
 # --- Listener Changers ---
 UI\Objects\Components\ListenerChangers\Base.lua
 UI\Objects\Components\ListenerChangers\Adder.lua
+UI\Objects\Components\ListenerChangers\Resetter.lua
 
 
 # --- Listener Groups ---
