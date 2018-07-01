@@ -130,6 +130,10 @@ UI\Objects\Components\Listeners\Base.lua
 UI\Objects\Components\Listeners\ValueChanger.lua
 
 
+# --- Listener Value Handlers ---
+UI\Objects\Components\ListenerValueHandlers\Base.lua
+
+
 # --- Value Changers ---
 UI\Objects\Components\ValueChangers\Base.lua
 UI\Objects\Components\ValueChangers\Add.lua
