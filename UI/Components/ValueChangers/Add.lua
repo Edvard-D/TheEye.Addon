@@ -18,11 +18,11 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ValueChangers.Base:Setup(
         instance,
         UIObject,
-        this.Add,
+        this.Execute,
         0
     )
 end
 
-function this:Add(value)
+function this:Execute(value)
     self.value = self.value + value
 end

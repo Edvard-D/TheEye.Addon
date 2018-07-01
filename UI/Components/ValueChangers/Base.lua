@@ -10,17 +10,17 @@ nil
 -- SETUP
 --      instance
 --      UIObject                    UIObject
---      ValueChangeOperation        function(value)
+--      Execute                     function(value)
 --      valueDefault                value
 function this:Setup(
     instance,
     UIObject,
-    ValueChangeOperation,
+    Execute,
     valueDefault
 )
 
     instance.UIObject = UIObject
-    instance.ValueChangeOperation = ValueChangeOperation
+    instance.Execute = Execute
     instance.valueDefault = valueDefault
     instance.value = valueDefault
 end
