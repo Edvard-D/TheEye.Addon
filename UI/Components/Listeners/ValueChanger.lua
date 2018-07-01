@@ -1,22 +1,27 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger
+local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
--- DEFINED IN TEMPLATE
---      value               integer
+--[[ #this#TEMPLATE#
+{
+    #inherited#TEMPLATE#
+}
+]]
 
 
--- SETUP
---      instance
---      UIObject            UIObject
---      ListenerGroup       ListenerGroup: ListenerGroup this is assigned to
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    ListenerGroup               ListenerGroup
+]]
 function this:Setup(
     instance,
     UIObject,
     ListenerGroup
 )
 
-    TheEyeAddon.UI.Objects.Components.Listeners.Base:Setup(
+    inherited:Setup(
         instance,
         UIObject,
         ListenerGroup

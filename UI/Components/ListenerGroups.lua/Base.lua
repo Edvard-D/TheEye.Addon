@@ -2,17 +2,21 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ListenerGroups.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
--- DEFINED IN TEMPLATE
---      Listeners           table { Listener }
+--[[ #this#TEMPLATE#
+{
+    Listeners = { #TheEyeAddon.UI.Objects.Components.Listeners.Base#TEMPLATE# }
+}
+]]
 
 
--- SETUP
---      instance
---      UIObject            UIObject
---      ListenerSetup       function(Listener, ListenerGroup)
---      OnEvaluate          function(...)
---      OnActivate          function(...)
---      OnDeactivate        function(...)
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    ListenerSetup               function(Listener, UIObject, ListenerGroup)
+    OnEvaluate                  function()
+    OnActivate                  function()
+    OnDeactivate                function()
+]]
 function this:Setup(
     instance,
     UIObject,

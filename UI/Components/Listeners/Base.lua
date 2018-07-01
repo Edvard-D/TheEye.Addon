@@ -2,15 +2,19 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
--- DEFINED IN TEMPLATE
---      evaluatorKey        string: must match the name of an Evaluator
---      inputValues         table: structure defined by Evaluators
+--[[ #this#TEMPLATE#
+{
+    eventEvaluatorKey = #EVALUATOR#name#
+    inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
+}
+]]
 
 
--- SETUP
---      instance
---      UIObject            UIObject
---      ListenerGroup       ListenerGroup: ListenerGroup this is assigned to
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    ListenerGroup               ListenerGroup
+]]
 function this:Setup(
     instance,
     UIObject,

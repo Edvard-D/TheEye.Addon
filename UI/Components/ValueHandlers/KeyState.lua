@@ -1,41 +1,46 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
+local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
+local evaluator = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
 
---[[ TEMPLATE
-nil
+--[[ #this#TEMPLATE#
+{
+    #inherited#TEMPLATE#
+    ValidKeys = { #VALUE# = true }
+    Evaluator = #evaluator#TEMPLATE#
+}
 ]]
 
 
--- SETUP
---      instance
---      UIObject                    UIObject
---      Changer                     function(value)
---      valueDefault                value
---      ValidKeys                   table { [key] = state }
---      OnValidKey                  function()
---      OnInvalidKey                function()
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    Changer                     function(#VALUE#)
+    valueDefault                #VALUE#
+    OnValidKey                  function()
+    OnInvalidKey                function()
+]]
 function this:Setup(
     instance,
     UIObject,
     Changer,
     defaultValue,
-    ValidKeys,
     OnValidKey,
     OnInvalidKey
 )
 
-    local evaluator = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue:Setup(
-        {},
+    local evaluatorInstance = evaluator:Setup(
+        instance.Evaluator or {},
         UIObject,
-        ValidKeys
+        instance.ValidKeys
     )
 
-    this:Setup(
+    inherited:Setup(
         instance,
         UIObject,
         Changer,
-        evaluator,
+        evaluatorInstance,
         this.OnEvaluate,
         defaultValue
     )

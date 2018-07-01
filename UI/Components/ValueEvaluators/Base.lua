@@ -2,15 +2,18 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base
 
---[[ TEMPLATE
-nil
+--[[ #this#TEMPLATE#
+{
+    nil
+}
 ]]
 
 
--- SETUP
---      instance
---      UIObject                    UIObject
---      Execute                     function(value)
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    Execute                     function(#VALUE#)
+]]
 function this:Setup(
     instance,
     UIObject,

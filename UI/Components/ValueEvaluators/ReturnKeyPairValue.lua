@@ -1,23 +1,27 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
+local inherited = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue
 
---[[ TEMPLATE
-nil
+--[[ #this#TEMPLATE#
+{
+    #inherited#TEMPLATE#
+}
 ]]
 
 
--- SETUP
---      instance
---      UIObject                    UIObject
---      keyPairs                    table { [key] = value }
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    keyPairs                    { #VALUE# = #VALUE# }
+]]
 function this:Setup(
     instance,
     UIObject,
     keyPairs
 )
 
-    TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue:Setup(
+    inherited:Setup(
         instance,
         UIObject,
         this.Return

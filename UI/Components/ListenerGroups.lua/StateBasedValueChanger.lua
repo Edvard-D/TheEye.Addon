@@ -1,19 +1,26 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger
+local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
+
+--[[ #this#TEMPLATE#
+{
+    #inherited#TEMPLATE#
+}
+]]
 
 
 -- SETUP
 --      instance
---      UIObject            UIObject
---      ValueHandler        ValueHandler
+--      UIObject                    UIObject
+--      ValueHandler                ValueHandler
 function this:Setup(
     instance,
     UIObject,
     ValueHandler
 )
 
-    TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger:Setup(
+    inherited:Setup(
         instance,
         UIObject,
         ValueHandler,
