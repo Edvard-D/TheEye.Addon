@@ -17,14 +17,12 @@ local Add = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base.Add
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    OnValidKey                  function()
-    OnInvalidKey                function()
+    OnStateChange               function(#BOOL#)
 ]]
 function this:Setup(
     instance,
     UIObject,
-    OnValidKey,
-    OnInvalidKey
+    OnStateChange
 )
 
     inherited:Setup(
@@ -32,7 +30,6 @@ function this:Setup(
         UIObject,
         Add,
         0,
-        OnValidKey,
-        OnInvalidKey
+        OnStateChange
     )
 end

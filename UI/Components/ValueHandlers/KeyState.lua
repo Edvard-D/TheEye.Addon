@@ -19,17 +19,15 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluator
     instance
     UIObject                    UIObject
     Changer                     function(#VALUE#)
-    valueDefault                #VALUE#
-    OnValidKey                  function()
-    OnInvalidKey                function()
+    defaultValue                #VALUE#
+    OnStateChange               function(#BOOL#)
 ]]
 function this:Setup(
     instance,
     UIObject,
     Changer,
     defaultValue,
-    OnValidKey,
-    OnInvalidKey
+    OnStateChange
 )
 
     local evaluatorInstance = ReturnKeyPairValueSetup(
@@ -47,19 +45,13 @@ function this:Setup(
         defaultValue
     )
 
-    instance.OnValidKey = OnValidKey
-    instance.OnInvalidKey = OnInvalidKey
+    instance.OnStateChange = OnStateChange
     instance.state = nil
 end
 
 function this:OnEvaluate(state)
     if self.state ~= state then
         self.state = self.ValidKeys[self.value]
-
-        if self.state == true then
-            self:OnValidKey()
-        else
-            self:OnInvalidKey()
-        end
+        self:OnStateChange(state)
     end
 end
