@@ -10,13 +10,13 @@ nil
 -- SETUP
 --      instance
 --      UIObject                    UIObject
---      OnValueChanged              function(value)
+--      Execute                     function(value)
 function this:Setup(
     instance,
     UIObject,
-    OnValueChange
+    Execute
 )
 
     instance.UIObject = UIObject
-    instance.OnValueChange = OnValueChange
+    instance.Execute = Execute
 end
