@@ -1,3 +1,27 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueActors.ReturnEvaluation = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueActors.ReturnEvaluation
+
+--[[ TEMPLATE
+nil
+]]
+
+
+-- SETUP
+--      instance
+--      UIObject                    UIObject
+--      Evaluate                    function(value) return evaluation end
+function this:Setup(
+    instance,
+    UIObject,
+    Evaluate
+)
+
+    TheEyeAddon.UI.Objects.Components.ValueActors.Base:Setup(
+        instance,
+        UIObject,
+        this.Execute -- @TODO
+    )
+
+    instance.Evaluate = Evaluate
+end
