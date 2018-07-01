@@ -3,6 +3,8 @@ TheEyeAddon.UI.Objects.Components.Listeners.EventListener = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.EventListener
 local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
+local RegisterListener = TheEyeAddon.Events.Coordinator.RegisterListener
+
 
 --[[ #this#TEMPLATE#
 {
@@ -28,7 +30,11 @@ function this:Setup(
         instance,
         UIObject,
         OnNotify,
-        this.Register, -- @TODO
+        this.Register,
         this.Unregister -- @TODO
     )
+end
+
+function this:Register()
+    RegisterListener(self.eventName, self)
 end
