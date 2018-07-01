@@ -34,8 +34,9 @@ function this:Setup(
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate
 
-    for i=1, #Listeners do -- must come after value assignment
-        ListenerSetup(Listeners[i], UIObject, OnNotify)
+    local listeners = instance.Listeners
+    for i=1, #listeners do -- must come after value assignment
+        ListenerSetup(listeners[i], UIObject, OnNotify)
     end
 end
 
