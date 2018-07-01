@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.ListenerValueChangeHandlers.KeyStateFunctionManager = {}
-local this = TheEyeAddon.UI.Components.ListenerValueHandlers.KeyStateFunctionManager
-local inherited = TheEyeAddon.UI.Components.ListenerValueHandlers.Base
+local this = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.KeyStateFunctionManager
+local inherited = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.Base
 
 local IntegerKeyStateSetup = TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState.Setup
 local StateBasedValueChangerSetup = TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger.Setup

@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.ListenerValueHandlers.Base = {}
-local this = TheEyeAddon.UI.Components.ListenerValueHandlers.Base
+TheEyeAddon.UI.Components.ListenerValueChangeHandlers.Base = {}
+local this = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.Base
 
 
 --[[ #this#TEMPLATE#

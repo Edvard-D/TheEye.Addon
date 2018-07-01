@@ -127,9 +127,9 @@ UI\Objects\Components\Listeners\Base.lua
 UI\Objects\Components\Listeners\ValueChanger.lua
 
 
-# --- Listener Value Handlers ---
-UI\Objects\Components\ListenerValueHandlers\Base.lua
-UI\Objects\Components\ListenerValueHandlers\KeyStateFunctionManager.lua
+# --- Listener Value Change Handlers ---
+UI\Objects\Components\ListenerValueChangeHandlers\Base.lua
+UI\Objects\Components\ListenerValueChangeHandlers\KeyStateFunctionManager.lua
 
 
 # --- Value Changers ---
