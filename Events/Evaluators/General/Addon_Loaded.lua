@@ -1,26 +1,32 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Addon_Loaded"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local select = select
 
 
--- inputValues = { --[[addonName]] "_" }
-TheEyeAddon.Events.Evaluators.Addon_Loaded =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    gameEvents =
-    {
-        "ADDON_LOADED"
-    }
+    inputValues = { #LABEL#Addon Name# #STRING# }
+}
+]]
+
+
+this.type = "STATE"
+this.gameEvents = 
+{
+    "ADDON_LOADED"
 }
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:CalculateCurrentState()
+
+function this:CalculateCurrentState()
     return false
 end
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:GetKey(event, ...)
+function this:GetKey(event, ...)
     return select(1, ...)
 end
 
-function TheEyeAddon.Events.Evaluators.Addon_Loaded:Evaluate()
+function this:Evaluate()
     return true
 end

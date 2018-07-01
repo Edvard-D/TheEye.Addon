@@ -1,20 +1,26 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "UIObject_Visible"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local select = select
 
 
--- inputValues = { --[[uiObjectKey]] "_" }
- TheEyeAddon.Events.Evaluators.UIObject_Visible =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    customEvents =
-    {
-        "UIOBJECT_HIDDEN",
-        "UIOBJECT_SHOWN",
-    }
+    inputValues = { #LABEL#UIObject Key# #UIOBJECT#KEY# }
+}
+]]
+
+
+this.type = "STATE"
+this.customEvents =
+{
+    "UIOBJECT_HIDDEN",
+    "UIOBJECT_SHOWN",
 }
 
-function TheEyeAddon.Events.Evaluators.UIObject_Visible:CalculateCurrentState(inputValues)
+
+function this:CalculateCurrentState(inputValues)
     local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
     if uiObject == nil then
@@ -24,12 +30,12 @@ function TheEyeAddon.Events.Evaluators.UIObject_Visible:CalculateCurrentState(in
     end
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Visible:GetKey(event, ...)
+function this:GetKey(event, ...)
     local uiObject = select(1, ...)
     return uiObject.key
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Visible:Evaluate(valueGroup, event)
+function this:Evaluate(valueGroup, event)
     if event == "UIOBJECT_SHOWN" then
         return true
     else -- UIOBJECT_HIDDEN

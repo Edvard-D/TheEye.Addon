@@ -1,30 +1,38 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Unit_Class"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local select = select
 local UnitClass = UnitClass
 
 
--- inputValues = { --[[unit]] "_", --[[classIndex]] 0 }
---      unit: required
---      classIndex: required
-TheEyeAddon.Events.Evaluators.Unit_Class =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    reevaluateEvents =
+    inputValues =
     {
-        PLAYER_TARGET_CHANGED = true
-    },
-    gameEvents =
-    {
-        "PLAYER_TARGET_CHANGED"
+        #LABEL#Unit# #UNIT#
+        #LABEL#Class ID# #CLASS#ID#
     }
 }
+]]
 
-function TheEyeAddon.Events.Evaluators.Unit_Class:CalculateCurrentState(inputValues)
+
+this.type = "STATE"
+reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
+this.gameEvents =
+{
+    "PLAYER_TARGET_CHANGED"
+}
+
+
+function this:CalculateCurrentState(inputValues)
     local classIndex = select(3, UnitClass(inputValues[1]))
     return classIndex == inputValues[2]
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Class:Evaluate(valueGroup)
-    return TheEyeAddon.Events.Evaluators.Unit_Class:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(valueGroup)
+    return this:CalculateCurrentState(valueGroup.inputValues)
 end

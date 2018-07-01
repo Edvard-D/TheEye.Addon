@@ -1,22 +1,26 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "UIObject_Enabled"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local select = select
-local table = table
 
 
--- inputValues = { --[[uiObjectKey]] "_" }
-
- TheEyeAddon.Events.Evaluators.UIObject_Enabled =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    customEvents =
-    {
-        "UIOBJECT_ENABLED",
-        "UIOBJECT_DISABLED"
-    }
+    inputValues = { #LABEL#UIObject Key# #UIOBJECT#KEY# }
+}
+]]
+
+
+this.type = "STATE"
+this.customEvents =
+{
+    "UIOBJECT_ENABLED",
+    "UIOBJECT_DISABLED"
 }
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:CalculateCurrentState(inputValues)
+
+function this:CalculateCurrentState(inputValues)
     local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
     if uiObject == nil then
@@ -26,12 +30,12 @@ function TheEyeAddon.Events.Evaluators.UIObject_Enabled:CalculateCurrentState(in
     end
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:GetKey(event, ...)
+function this:GetKey(event, ...)
     local uiObject = select(1, ...)
     return uiObject.key
 end
 
-function TheEyeAddon.Events.Evaluators.UIObject_Enabled:Evaluate(valueGroup, event)
+function this:Evaluate(valueGroup, event)
     if event == "UIOBJECT_ENABLED" then
         return true
     else -- UIOBJECT_DISABLED

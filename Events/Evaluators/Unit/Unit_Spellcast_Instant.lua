@@ -1,26 +1,36 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "UNIT_SPELLCAST_INSTANT"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local table = table
 
 
--- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
-TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT =
+--[[ #this#TEMPLATE#
 {
-    type = "EVENT",
-    gameEvents =
+    inputValues =
     {
-        "UNIT_SPELLCAST_START",
-        "UNIT_SPELLCAST_STOP",
-        "UNIT_SPELLCAST_SUCCEEDED"
+        #LABEL#Unit# #UNIT#
+        #LABEL#Spell ID# #SPELL#ID#
     }
 }
+]]
 
-function TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT:GetKey(event, ...)
+
+this.type = "EVENT"
+this.gameEvents =
+{
+    "UNIT_SPELLCAST_START",
+    "UNIT_SPELLCAST_STOP",
+    "UNIT_SPELLCAST_SUCCEEDED"
+}
+
+
+function this:GetKey(event, ...)
     local unit, _, spellID = ...
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT:Evaluate(valueGroup, event, ...)
+function this:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         if valueGroup.isCasting ~= true then
             return true, "UNIT_SPELLCAST_INSTANT", ...

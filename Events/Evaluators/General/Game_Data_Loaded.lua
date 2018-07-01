@@ -1,24 +1,30 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Game_Data_Loaded"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 
--- inputValues = nil
-TheEyeAddon.Events.Evaluators.Game_Data_Loaded =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    gameEvents =
-    {
-        "PLAYER_ENTERING_WORLD"
-    }
+    inputValues = nil
+}
+]]
+
+
+this.type = "STATE"
+this.gameEvents =
+{
+    "PLAYER_ENTERING_WORLD"
 }
 
-function TheEyeAddon.Events.Evaluators.Game_Data_Loaded:CalculateCurrentState()
+
+function this:CalculateCurrentState()
     return false
 end
 
-function TheEyeAddon.Events.Evaluators.Game_Data_Loaded:GetKey(event, ...)
+function this:GetKey(event, ...)
     return "default"
 end
 
-function TheEyeAddon.Events.Evaluators.Game_Data_Loaded:Evaluate()
+function this:Evaluate()
     return true
 end

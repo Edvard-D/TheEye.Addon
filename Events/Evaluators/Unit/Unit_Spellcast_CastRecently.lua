@@ -1,41 +1,52 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Unit_Spellcast_CastRecently"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local GetTime = GetTime
 local select = select
+local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
 
 
--- inputValues = { --[[unit]] "_", --[[spellID]] 0 }
-TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    gameEvents =
+    inputValues =
     {
-        "UNIT_SPELLCAST_CHANNEL_START",
-        "UNIT_SPELLCAST_CHANNEL_STOP",
-        "UNIT_SPELLCAST_START",
-        "UNIT_SPELLCAST_STOP"
-    },
-    customEvents =
-    {
-        "UNIT_SPELLCAST_TIMER_END"
-    },
-    timerDuration = 0.5
+        #LABEL#Unit# #UNIT#
+        #LABEL#Spell ID# #SPELL#ID#
+    }
 }
+]]
 
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:SetupListeningTo(valueGroup)
+this.type = "STATE"
+this.gameEvents =
+{
+    "UNIT_SPELLCAST_CHANNEL_START",
+    "UNIT_SPELLCAST_CHANNEL_STOP",
+    "UNIT_SPELLCAST_START",
+    "UNIT_SPELLCAST_STOP"
+}
+this.
+customEvents =
+{
+    "UNIT_SPELLCAST_TIMER_END"
+}
+this.timerDuration = 0.5
+
+
+function this:SetupListeningTo(valueGroup)
     TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
     {
         listeningToKey = "UNIT_SPELLCAST_INSTANT",
-        evaluator = TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently,
+        evaluator = this,
         inputValues = valueGroup.inputValues
     })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurrentState(inputValues)
+function this:CalculateCurrentState(inputValues)
     local unit = inputValues[1]
     local expectedSpellID = inputValues[2]
     local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
@@ -44,7 +55,7 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurr
         local trueStateEndTime = (startTime / 1000) + self.timerDuration
         local timerLength = trueStateEndTime - GetTime()
         if timerLength > 0 then
-            TheEyeAddon.Timers:StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
+            StartEventTimer(self.timerDuration, "UNIT_SPELLCAST_TIMER_END", unit, currentSpellID, castID)
             return true
         end
     end
@@ -52,13 +63,14 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:CalculateCurr
     return false
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event, ...)
+function this:GetKey(event, ...)
     local unit
     local spellID
 
-    if event == "UNIT_SPELLCAST_START" or
-    event == "UNIT_SPELLCAST_CHANNEL_START" or
-    event == "UNIT_SPELLCAST_INSTANT" then
+    if event == "UNIT_SPELLCAST_START"
+        or event == "UNIT_SPELLCAST_CHANNEL_START"
+        or event == "UNIT_SPELLCAST_INSTANT"
+        then
         unit, _, spellID = ...
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
         _, unit, spellID = ...
@@ -69,15 +81,15 @@ function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:GetKey(event,
     return table.concat({ unit, spellID })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spellcast_CastRecently:Evaluate(valueGroup, event, ...)
+function this:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
 
-        TheEyeAddon.Timers:StartEventTimer(
+        StartEventTimer(
             self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], castID)
         return true
     elseif event == "UNIT_SPELLCAST_INSTANT" then
-        TheEyeAddon.Timers:StartEventTimer(
+        StartEventTimer(
             self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], "INSTANT")
         return true
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
