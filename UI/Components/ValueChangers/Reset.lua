@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueChangers.Resetter = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueChangers.Resetter
+TheEyeAddon.UI.Objects.Components.ValueChangers.Reset = {}
+local this = TheEyeAddon.UI.Objects.Components.ValueChangers.Reset
 
 --[[ TEMPLATE
 nil
