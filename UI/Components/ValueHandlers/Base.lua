@@ -28,3 +28,16 @@ function this:Setup(
     instance.defaultValue = defaultValue
     instance.value = defaultValuee
 end
+
+function this:Change(value)
+    self.ValueChanger(value)
+end
+
+-- Value Changers
+function this:Reset()
+    self.value = self.defaultValue
+end
+
+function this:_Add(value)
+    self.value = self.value + value
+end
