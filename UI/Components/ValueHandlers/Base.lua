@@ -10,30 +10,30 @@ nil
 -- SETUP
 --      instance
 --      UIObject                    UIObject
---      ValueEvaluator              function(value)
---      ValueChanger                function(value)
+--      Evaluator                   ValueEvaluator
+--      Changer                     function(value)
 --      valueDefault                value
 function this:Setup(
     instance,
     UIObject,
-    ValueEvaluator,
-    ValueChanger,
+    Evaluator,
+    Changer,
     defaultValue
 )
 
     instance.UIObject = UIObject
 
-    instance.ValueEvaluator = ValueEvaluator
-    instance.ValueChanger = ValueChanger
+    instance.Evaluator = Evaluator
+    instance.Changer = Changer
     instance.defaultValue = defaultValue
     instance.value = defaultValuee
 end
 
 function this:Change(value)
-    self.ValueChanger(value)
+    self.Changer(value)
 end
 
--- Value Changers
+-- Changers
 function this:Reset()
     self.value = self.defaultValue
 end
