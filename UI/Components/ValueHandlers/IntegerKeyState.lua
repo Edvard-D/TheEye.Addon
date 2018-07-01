@@ -3,8 +3,6 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.IntegerKeyState
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 
-local Add = TheEyeAddon.UI.Objects.Components.ValueActions.Add
-
 
 --[[ #this#TEMPLATE#
 {
@@ -28,8 +26,12 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        Add,
+        this.Add,
         0,
         OnStateChange
     )
+end
+
+function this:Add(value)
+    self.value = self.value + value
 end

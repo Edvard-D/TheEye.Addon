@@ -117,7 +117,6 @@ UI\Objects\Helpers\ValueHandlers.lua
 # |	    UI\Components	    |
 # ---------------------------
 UI\Objects\Components\KeyBasedStateManager.lua
-UI\Objects\Components\ValueActions.lua
 
 
 # --- Listener Groups ---
