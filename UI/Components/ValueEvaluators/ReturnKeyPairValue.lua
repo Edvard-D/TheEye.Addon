@@ -25,12 +25,12 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        this.Return
+        this.GetKeyValue
     )
 
     instance.keyPairs = keyPairs
 end
 
-function this:Return(value)
+function this:GetKeyValue(value)
     return keyPairs[value]
 end

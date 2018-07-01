@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue
+local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnEvaluatedValue
 local inherited = TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base
 
 
@@ -14,24 +14,23 @@ local inherited = TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    Return                      function(#VALUE#) return #VALUE# end
+    ValueAction                 function(#VALUE#) return #VALUE# end
 ]]
 function this:Setup(
     instance,
     UIObject,
-    Return
+    ValueAction
 )
 
     inherited:Setup(
         instance,
         UIObject,
-        this.Execute
+        this.Evalute
     )
 
-    instance.Return = Return
+    instance.ValueAction = ValueAction
 end
 
-function this:Execute(value)
-    returnValue = Return(value)
-    return returnValue
+function this:Evalute(value)
+    return self:ValueAction(value)
 end

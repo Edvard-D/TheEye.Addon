@@ -143,8 +143,8 @@ UI\Objects\Components\ValueChangers\Reset.lua
 
 # --- Value Evaluators ---
 UI\Objects\Components\ValueEvaluators\Base.lua
+UI\Objects\Components\ValueEvaluators\ReturnEvalutedValue.lua
 UI\Objects\Components\ValueEvaluators\ReturnKeyPairValue.lua
-UI\Objects\Components\ValueEvaluators\ReturnValue.lua
 
 
 # --- Value Handlers ---
