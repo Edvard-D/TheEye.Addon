@@ -119,18 +119,6 @@ UI\Objects\Helpers\ValueHandlers.lua
 UI\Objects\Components\KeyBasedStateManager.lua
 
 
-# --- Listener Actors ---
-UI\Objects\Components\ListenerActors\Base.lua
-UI\Objects\Components\ListenerActors\ReturnKeyPairValue.lua
-UI\Objects\Components\ListenerActors\ReturnValue.lua
-
-
-# --- Listener Changers ---
-UI\Objects\Components\ListenerChangers\Base.lua
-UI\Objects\Components\ListenerChangers\Add.lua
-UI\Objects\Components\ListenerChangers\Reset.lua
-
-
 # --- Listener Groups ---
 UI\Objects\Components\ListenerGroups\Base.lua
 UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
@@ -140,6 +128,18 @@ UI\Objects\Components\ListenerGroups\ValueChanger.lua
 # --- Listeners ---
 UI\Objects\Components\Listeners\Base.lua
 UI\Objects\Components\Listeners\ValueChanger.lua
+
+
+# --- Value Changers ---
+UI\Objects\Components\ValueChangers\Base.lua
+UI\Objects\Components\ValueChangers\Add.lua
+UI\Objects\Components\ValueChangers\Reset.lua
+
+
+# --- Value Evaluators ---
+UI\Objects\Components\ValueEvaluators\Base.lua
+UI\Objects\Components\ValueEvaluators\ReturnKeyPairValue.lua
+UI\Objects\Components\ValueEvaluators\ReturnValue.lua
 
 
 # --- Value Handlers ---

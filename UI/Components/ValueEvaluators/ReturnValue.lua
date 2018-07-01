@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueActors.ReturnValue = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueActors.ReturnValue
+TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue = {}
+local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue
 
 --[[ TEMPLATE
 nil
@@ -17,7 +17,7 @@ function this:Setup(
     Return
 )
 
-    TheEyeAddon.UI.Objects.Components.ValueActors.Base:Setup(
+    TheEyeAddon.UI.Objects.Components.ValueEvaluators.Base:Setup(
         instance,
         UIObject,
         this.Execute

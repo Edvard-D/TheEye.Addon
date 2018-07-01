@@ -11,6 +11,7 @@ TheEyeAddon = {}
             TheEyeAddon.UI.Objects.Components = {}
                 TheEyeAddon.UI.Objects.Components.ListenerGroups = {}
                 TheEyeAddon.UI.Objects.Components.Listeners = {}
+                TheEyeAddon.UI.Objects.Components.ValueEvaluators = {}
                 TheEyeAddon.UI.Objects.Components.ValueChangers = {}
                 TheEyeAddon.UI.Objects.Components.ValueHandlers = {}
             TheEyeAddon.UI.Objects.Instances = {}

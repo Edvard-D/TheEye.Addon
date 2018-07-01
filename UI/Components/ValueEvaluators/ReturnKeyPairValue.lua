@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueActors.ReturnKeyPairValue = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueActors.ReturnKeyPairValue
+TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue = {}
+local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
 
 --[[ TEMPLATE
 nil
@@ -17,7 +17,7 @@ function this:Setup(
     keyPairs
 )
 
-    TheEyeAddon.UI.Objects.Components.ValueActors.ReturnValue:Setup(
+    TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue:Setup(
         instance,
         UIObject,
         this.Return -- @TODO
