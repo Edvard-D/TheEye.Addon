@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger = {}
-local this = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger
+TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener = {}
+local this = TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener
 local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
 
