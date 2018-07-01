@@ -4,6 +4,7 @@ local this = TheEyeAddon.UI.Objects.Components.Listeners.EventListener
 local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
 local RegisterListener = TheEyeAddon.Events.Coordinator.RegisterListener
+local UnregisterListener = TheEyeAddon.Events.Coordinator.UnregisterListener
 
 
 --[[ #this#TEMPLATE#
@@ -31,10 +32,14 @@ function this:Setup(
         UIObject,
         OnNotify,
         this.Register,
-        this.Unregister -- @TODO
+        this.Unregister
     )
 end
 
 function this:Register()
     RegisterListener(self.eventName, self)
+end
+
+function this:Unregister()
+    UnregisterListener(self.eventName, self)
 end
