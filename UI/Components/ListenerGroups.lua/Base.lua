@@ -41,16 +41,18 @@ end
 
 function this:Activate()
     self:OnActivate() -- must be called before activating listeners
-
-    for i=1, #Listeners do
-        Listeners[i].Activate()
+    
+    local listeners = self.Listeners
+    for i=1, #listeners do
+        listeners[i]:Activate()
     end
 end
 
 function this:Deactivate()
     self:OnDeactivate()
 
-    for i=1, #Listeners do
-        Listeners[i].Deactivate()
+    local listeners = self.Listeners
+    for i=1, #listeners do
+        listeners[i]:Deactivate()
     end
 end
