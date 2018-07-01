@@ -28,8 +28,6 @@ function this:Setup(
 )
 
     instance.UIObject = UIObject
-    instance.Activate = this.Activate
-    instance.Deactivate = this.Deactivate
     instance.OnEvaluate = OnEvaluate
     instance.OnActivate = OnActivate
     instance.OnDeactivate = OnDeactivate
@@ -40,7 +38,7 @@ function this:Setup(
 end
 
 function this:Activate()
-    self.OnActivate() -- must be called before activating listeners
+    self:OnActivate() -- must be called before activating listeners
 
     for i=1, #Listeners do
         Listeners[i].Activate()
@@ -48,7 +46,7 @@ function this:Activate()
 end
 
 function this:Deactivate()
-    self.OnDeactivate()
+    self:OnDeactivate()
 
     for i=1, #Listeners do
         Listeners[i].Deactivate()
