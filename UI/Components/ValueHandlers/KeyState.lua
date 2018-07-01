@@ -2,7 +2,8 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
-local evaluator = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
+
+local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
 
 
 --[[ #this#TEMPLATE#
@@ -31,7 +32,7 @@ function this:Setup(
     OnInvalidKey
 )
 
-    local evaluatorInstance = evaluator:Setup(
+    local evaluatorInstance = ReturnKeyPairValueSetup(
         instance.Evaluator or {},
         UIObject,
         instance.ValidKeys
