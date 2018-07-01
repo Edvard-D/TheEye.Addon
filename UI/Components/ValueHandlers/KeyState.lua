@@ -22,8 +22,8 @@ function this:Setup(
     UIObject,
     Changer,
     defaultValue,
-    OnValidState,
-    OnInvalidState
+    OnValidKey,
+    OnInvalidKey
 )
 
     local evaluator = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue:Setup(
