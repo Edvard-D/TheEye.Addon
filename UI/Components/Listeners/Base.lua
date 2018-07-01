@@ -17,25 +17,32 @@ local UnregisterListener = TheEyeAddon.Events.Evaluators.UnregisterListener
 --[[ #SETUP#
     instance
     UIObject                    UIObject
+    Register                    function()
+    Unregister                  function()
     ListenerGroup               ListenerGroup
 ]]
 function this:Setup(
     instance,
     UIObject,
+    Register,
+    Unregister,
     ListenerGroup
 )
 
     instance.UIObject = UIObject
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate
+    instance.Register = Register
+    instance.Unregister = Unregister
     instance.ListenerGroup = ListenerGroup
+
     instance.OnEvaluate = ListenerGroup.OnEvaluate
 end
 
 function this:Activate()
-    RegisterListener(instance.evaluatoryKey, instance)
+    self:Register()
 end
 
 function this:Deactivate()
-    UnregisterListener(evaluatorName, listener)
+    self:Unregister()
 end
