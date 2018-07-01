@@ -144,6 +144,7 @@ UI\Objects\Components\ValueEvaluators\ReturnValue.lua
 
 # --- Value Handlers ---
 UI\Objects\Components\ValueHandlers\Base.lua
+UI\Objects\Components\ValueHandlers\IntegerKeyState.lua
 UI\Objects\Components\ValueHandlers\KeyState.lua
 
 
