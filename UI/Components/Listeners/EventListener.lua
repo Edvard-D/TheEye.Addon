@@ -11,3 +11,24 @@ local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
     inputValues = { #EVENT#TEMPLATE#inputValues# }
 }
 ]]
+
+
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    OnNotify                    function(...)
+]]
+function this:Setup(
+    instance,
+    UIObject,
+    OnNotify
+)
+
+    inherited:Setup(
+        instance,
+        UIObject,
+        OnNotify,
+        this.Register, -- @TODO
+        this.Unregister -- @TODO
+    )
+end
