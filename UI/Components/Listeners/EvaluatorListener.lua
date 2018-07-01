@@ -10,7 +10,7 @@ local UnregisterListener = TheEyeAddon.Events.Evaluators.UnregisterListener
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    eventEvaluatorKey = #EVALUATOR#name#
+    eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
 }
 ]]
