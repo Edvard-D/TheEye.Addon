@@ -20,7 +20,7 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue:Setup(
         instance,
         UIObject,
-        this.Return -- @TODO
+        this.Return
     )
 
     instance.keyPairs = keyPairs
