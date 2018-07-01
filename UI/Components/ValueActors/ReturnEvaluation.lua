@@ -20,8 +20,12 @@ function this:Setup(
     TheEyeAddon.UI.Objects.Components.ValueActors.Base:Setup(
         instance,
         UIObject,
-        this.Execute -- @TODO
+        this.Execute
     )
 
     instance.Evaluate = Evaluate
+end
+
+function this:Execute(value)
+    evaluation = Evaluate(value)
 end
