@@ -3,6 +3,9 @@ TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener
 local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
+local RegisterListener = TheEyeAddon.Events.Evaluators.RegisterListener
+local UnregisterListener = TheEyeAddon.Events.Evaluators.UnregisterListener
+
 
 --[[ #this#TEMPLATE#
 {
@@ -34,9 +37,9 @@ function this:Setup(
 end
 
 function this:Register()
-    RegisterListener(instance.evaluatoryKey, instance)
+    RegisterListener(self.eventEvaluatorKey, self)
 end
 
 function this:Unregister()
-    UnregisterListener(evaluatorName, listener)
+    UnregisterListener(self.eventEvaluatorKey, self)
 end
