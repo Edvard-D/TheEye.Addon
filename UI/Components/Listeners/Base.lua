@@ -2,6 +2,9 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
+local RegisterListener = TheEyeAddon.Events.Evaluators.RegisterListener
+local UnregisterListener = TheEyeAddon.Events.Evaluators.UnregisterListener
+
 
 --[[ #this#TEMPLATE#
 {
@@ -30,9 +33,9 @@ function this:Setup(
 end
 
 function this:Activate()
-    TheEyeAddon.Events.Evaluators:RegisterListener(instance.evaluatoryKey, instance)
+    RegisterListener(instance.evaluatoryKey, instance)
 end
 
 function this:Deactivate()
-    TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorName, listener)
+    UnregisterListener(evaluatorName, listener)
 end
