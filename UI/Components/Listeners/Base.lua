@@ -30,8 +30,6 @@ function this:Setup(
 )
 
     instance.UIObject = UIObject
-    instance.Activate = this.Activate
-    instance.Deactivate = this.Deactivate
     instance.Register = Register
     instance.Unregister = Unregister
     instance.ListenerGroup = ListenerGroup
