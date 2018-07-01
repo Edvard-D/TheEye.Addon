@@ -7,6 +7,8 @@ local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    eventEvaluatorKey = #EVALUATOR#name#
+    inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
 }
 ]]
 
