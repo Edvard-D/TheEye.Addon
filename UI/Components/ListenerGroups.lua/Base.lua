@@ -23,12 +23,11 @@ function this:Setup(
 )
 
     instance.UIObject = UIObject
-
-    for i=1, #Listeners do
-        ListenerSetup(Listeners[i], instance)
-    end
-
     instance.OnEvaluate = OnEvaluate
     instance.OnActivate = OnActivate
     instance.OnDeactivate = OnDeactivate
+
+    for i=1, #Listeners do -- must come after value assignment
+        ListenerSetup(Listeners[i], UIObject, instance)
+    end
 end
