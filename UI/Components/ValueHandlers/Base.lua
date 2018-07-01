@@ -32,7 +32,8 @@ function this:Setup(
 end
 
 function this:Change(value)
-    self.Changer(value)
+    self.value = self.Changer(value)
+    self.OnEvaluate(self.Evaluator(self.value))
 end
 
 function this:Reset()
