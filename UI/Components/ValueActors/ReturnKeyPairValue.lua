@@ -25,3 +25,7 @@ function this:Setup(
 
     instance.keyPairs = keyPairs
 end
+
+function this:Return(value)
+    return keyPairs[value]
+end
