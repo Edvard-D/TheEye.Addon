@@ -32,7 +32,7 @@ function this:Setup(
         this.OnStateChange
     )
 
-    StateBasedValueChangerSetup:Setup(
+    instance.ListenerGroup = StateBasedValueChangerSetup:Setup(
         instance.ListenerGroup or {},
         UIObject,
         instance.ValueHandler
