@@ -9,3 +9,21 @@ local inherited = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.KeyState
     #inherited#TEMPLATE#
 }
 ]]
+
+
+--[[ SETUP
+    instance
+    UIObject                    UIObject
+]]
+function this:Setup(
+    instance,
+    UIObject
+)
+    
+    inherited:Setup(
+        instance,
+        UIObject,
+        this.Enable, -- @TODO
+        this.Disable -- @TODO
+    )
+end
