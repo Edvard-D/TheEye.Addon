@@ -17,24 +17,30 @@ local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.S
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    ValueHandler                ValueHandler
     OnNotify                    function(...)
+    ValueHandler                ValueHandler
+    ValueAction                 function(...)
 ]]
 function this:Setup(
     instance,
     UIObject,
     ValueHandler,
-    OnNotify
+    ValueAction
 )
 
     inherited:Setup(
         instance,
         UIObject,
         ListenerSetup,
-        OnNotify,
+        this.ChangeValue,
         ValueHandler.Reset,
         ValueHandler.Reset
     )
 
     instance.ValueHandler = ValueHandler
+    instance.ValueAction = ValueAction
+end
+
+function this:ChangeValue(...)
+    self.ValueHandler:ChangeValue(self:ValueAction(...))
 end

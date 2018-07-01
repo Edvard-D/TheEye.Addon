@@ -33,11 +33,11 @@ function this:Setup(
 end
 
 function this:ChangeValueByState(...)
-    local state = select(1, ...)
+    local state = select(...)
 
     if state == true then
-        self.ValueHandler:ChangeValue(self.value)
+        return value
     else
-        self.ValueHandler:ChangeValue(self.value * -1)
+        return self.value * -1
     end
 end
