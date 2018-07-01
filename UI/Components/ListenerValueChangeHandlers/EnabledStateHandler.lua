@@ -23,7 +23,13 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        this.Enable, -- @TODO
+        this.Enable,
         this.Disable -- @TODO
     )
+end
+
+function this:Enable()
+    print ("ENABLE    " .. self.UIObject.key) -- DEBUG
+    self.UIObject.Enable()
+    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_ENABLED", self.UIObject)
 end
