@@ -12,6 +12,7 @@ nil
 --      UIObject                    UIObject
 --      Changer                     function(value)
 --      valueDefault                value
+--      ValidKeys                   table { [key] = state }
 --      OnValidKey                  function()
 --      OnInvalidKey                function()
 function this:Setup(
@@ -19,6 +20,7 @@ function this:Setup(
     UIObject,
     Changer,
     defaultValue,
+    ValidKeys,
     OnValidKey,
     OnInvalidKey
 )
@@ -26,7 +28,7 @@ function this:Setup(
     local evaluator = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue:Setup(
         {},
         UIObject,
-        instance.ValidKeys
+        ValidKeys
     )
 
     this:Setup(
