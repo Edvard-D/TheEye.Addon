@@ -28,4 +28,5 @@ end
 
 function this:Execute(value)
     evaluation = Evaluate(value)
+    return evaluation
 end
