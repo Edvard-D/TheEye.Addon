@@ -116,6 +116,10 @@ UI\Objects\Helpers\ValueHandlers.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+# --- Event Coordinators ---
+UI\Objects\Components\EventCoordinators\Base.lua
+
+
 # --- Listener Groups ---
 UI\Objects\Components\ListenerGroups\Base.lua
 UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
