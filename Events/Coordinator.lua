@@ -19,7 +19,7 @@ end
 frame:SetScript("OnEvent", RelayEvent)
 
 
--- Register/Unregister
+-- Subscribe/Unregister
 local function InsertListener(eventName, listener, isGameEvent)
     if Listeners[eventName] == nil then
         Listeners[eventName] = { listener }
@@ -55,13 +55,13 @@ local function RemoveListener(eventName, listener, isGameEvent)
     end
 end
 
-local function SubscribeToEvents(events, listener, isGameEvent)
+local function RegisterListeners(events, listener, isGameEvent)
     for i=1,#events do
         InsertListener(events[i], listener, isGameEvent)
     end
 end
 
-local function UnsubscribeFromEvents(events, listener, isGameEvent)
+local function UnregisterListeners(events, listener, isGameEvent)
     for i=1,#events do
         RemoveListener(events[i], listener, isGameEvent)
     end
@@ -69,11 +69,11 @@ end
 
 function this:RegisterListener(listener)
     if listener.gameEvents ~= nil then
-        SubscribeToEvents(listener.gameEvents, listener, true)
+        RegisterListeners(listener.gameEvents, listener, true)
     end
 
     if listener.customEvents ~= nil then
-        SubscribeToEvents(listener.customEvents, listener, false)
+        UnregisterListeners(listener.customEvents, listener, false)
     end
 end
 
