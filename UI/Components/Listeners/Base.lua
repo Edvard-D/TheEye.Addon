@@ -2,9 +2,6 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Objects.Components.Listeners.Base = {}
 local this = TheEyeAddon.UI.Objects.Components.Listeners.Base
 
-local ListenerRegister = TheEyeAddon.Events.Evaluators.ListenerRegister
-local ListenerUnregister = TheEyeAddon.Events.Evaluators.ListenerUnregister
-
 
 --[[ #this#TEMPLATE#
 {
