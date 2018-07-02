@@ -39,7 +39,7 @@ function this:Setup(
 end
 
 function this:Notify(...)
-    self.OnNotify(...)
+    self:OnNotify(...)
 end
 
 function this:Activate()
