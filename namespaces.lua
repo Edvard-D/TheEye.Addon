@@ -9,6 +9,7 @@ TheEyeAddon = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Objects = {}
             TheEyeAddon.UI.Objects.Components = {}
+                TheEyeAddon.UI.Objects.Components.EventCoordinator = {}
                 TheEyeAddon.UI.Objects.Components.ListenerGroups = {}
                 TheEyeAddon.UI.Objects.Components.Listeners = {}
                 TheEyeAddon.UI.Objects.Components.ListenerValueChangeHandlers = {}
