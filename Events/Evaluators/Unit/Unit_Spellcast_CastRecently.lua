@@ -38,7 +38,7 @@ this.timerDuration = 0.5
 
 
 function this:SetupListeningTo(valueGroup)
-    TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
+    TheEyeAddon.Events.Evaluators:ValueGroupRegisterListeningTo(valueGroup,
     {
         listeningToKey = "UNIT_SPELLCAST_INSTANT",
         evaluator = this,

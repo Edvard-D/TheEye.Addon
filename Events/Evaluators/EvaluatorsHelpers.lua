@@ -1,12 +1,14 @@
 local TheEyeAddon = TheEyeAddon
+local this = TheEyeAddon.Events.Evaluators
 
-local ipairs = ipairs
+local Coordinator = TheEyeAddon.Events.Coordinator
 local pairs = pairs
 local select = select
 local table = table
 
+
 -- SETUP
-local function GetValueGroup(evaluator, inputValues)
+local function ValueGroupGet(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
         evaluator.ValueGroups = {}
     end
@@ -29,7 +31,7 @@ local function GetValueGroup(evaluator, inputValues)
     return evaluator.ValueGroups[valueGroupKey]
 end
 
-local function GetValueGroupListeners(valueGroup)
+local function ValueGroupGetListeners(valueGroup)
     if valueGroup.listeners == nil then
         valueGroup.listeners = {}
     end
@@ -37,18 +39,18 @@ local function GetValueGroupListeners(valueGroup)
     return valueGroup.listeners
 end
 
-local function IncreaseEvaluatorListenerCount(evaluator)
+local function EvaluatorIncreaseListenerCount(evaluator)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
     end
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
-        evaluator.OnEvent = TheEyeAddon.Events.Evaluators.OnEvent
-        TheEyeAddon.Events.Coordinator:RegisterListener(evaluator)
+        evaluator.OnEvent = this.OnEvent
+        Coordinator:RegisterListener(evaluator)
     end
 end
 
-local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
+local function ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
     if valueGroup.listenerCount == nil then
         valueGroup.listenerCount = 0
     end
@@ -66,25 +68,26 @@ local function IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
     end
 end
 
-local function DecreaseEvaluatorListenerCount(evaluator)
+local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        TheEyeAddon.Events.Coordinator:UnregisterListener(evaluator)
+        Coordinator:UnregisterListener(evaluator)
     end
 end
 
-local function UnregisterValueGroupListeningTo(listeningTo)
-    for i,listener in ipairs(listeningTo) do
-        TheEyeAddon.Events.Evaluators:UnregisterListener(listener.listeningToKey, listener)
+local function ValueGroupUnregisterListeningTo(listeningTo)
+    for i=1,#listeningTo do
+        local listener = listener[i]
+        this:ListenerUnregister(listener.listeningToKey, listener)
     end
     listeningTo = nil
 end
 
-local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
+local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
     valueGroup.listenerCount = evaluator.listenerCount - 1
     if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if valueGroup.ListeningTo ~= nil then
-            UnregisterValueGroupListeningTo(valueGroup.ListeningTo)
+            ValueGroupUnregisterListeningTo(valueGroup.ListeningTo)
         end
 
         table.removevalue(evaluator, valueGroup)
@@ -92,79 +95,90 @@ local function DecreaseValueGroupListenerCount(evaluator, valueGroup)
 end
 
 -- LISTENING TO: handling of Evaluators that are listening to an Evaluator
-function TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup, listener)
+function this:ValueGroupRegisterListeningTo(valueGroup, listener)
     if valueGroup.ListeningTo == nil then
         valueGroup.ListeningTo = {}
     end
 
-    listener.Notify = TheEyeAddon.Events.Evaluators.OnEventEvaluator
+    listener.Notify = this.OnEventEvaluator
     listener.valueGroup = valueGroup
     table.insert(valueGroup.ListeningTo, listener)
     
-    TheEyeAddon.Events.Evaluators:RegisterListener(listener.listeningToKey, listener)
+    this:ListenerRegister(listener.listeningToKey, listener)
 end
 
-function TheEyeAddon.Events.Evaluators:OnEventEvaluator(newState, event, ...)
+function this:OnEventEvaluator(newState, event, ...)
     self.valueGroup.evaluator:OnEvent(event, ...)
 end
 
 
 -- LISTENERS: handling of Listeners that are listening to an Evaluator
-function TheEyeAddon.Events.Evaluators:RegisterListener(evaluatorKey, listener)
-    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
-    local valueGroup = GetValueGroup(evaluator, listener.inputValues)
-    local listeners = GetValueGroupListeners(valueGroup)
+function this:ListenerRegister(evaluatorKey, listener)
+    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
+    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
+    local listeners = ValueGroupGetListeners(valueGroup)
     
     table.insert(listeners, listener)
-    IncreaseEvaluatorListenerCount(evaluator)
-    IncreaseValueGroupListenerCount(evaluator, valueGroup, listener)
+    EvaluatorIncreaseListenerCount(evaluator)
+    ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
 
-    if valueGroup.currentState == true then -- Set in IncreaseValueGroupListenerCount
+    if valueGroup.currentState == true then -- Set in ValueGroupIncreaseListenerCount
         listener:Notify(true)
     end
 end
 
-function TheEyeAddon.Events.Evaluators:UnregisterListener(evaluatorKey, listener)
-    local evaluator = TheEyeAddon.Events.Evaluators[evaluatorKey]
-    local valueGroup = GetValueGroup(evaluator, listener.inputValues)
-    local listeners = GetValueGroupListeners(valueGroup)
+function this:ListenerUnregister(evaluatorKey, listener)
+    local evaluator = this[evaluatorKey]
+    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
+    local listeners = ValueGroupGetListeners(valueGroup)
 
     table.removevalue(listeners, listener)
-    DecreaseEvaluatorListenerCount(evaluator)
-    DecreaseValueGroupListenerCount(evaluator, valueGroup)
+    EvaluatorDecreaseListenerCount(evaluator)
+    ValueGroupDecreaseListenerCount(evaluator, valueGroup)
 end
 
 
 -- EVENT EVALUATION
-local function NotifyListeners(listeners, state, ...)
-    for i,listener in ipairs(listeners) do
-        listener:Notify(state, ...)
+local function ListenersNotify(listeners, message)
+    for i=1,#listeners do
+        listeners[i]:Notify(message)
     end
 end
 
-local function EvaluateState(evaluator, valueGroup, event, ...)
+-- @TODO This differention shouldn't exist, the hierarchy of Evaluators generally
+-- needs to be reworked.
+local function EvaluateAsState(evaluator, valueGroup, event, ...)
     local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
     local evaluatedState = evaluatedValues[1]
-    
-    if (evaluator.type == "EVENT" and evaluatedState == true)
-        or (evaluator.type == "STATE" and evaluatedState ~= valueGroup.currentState) then
-
+    if valueGroup.currentState ~= evaluatedState then
         valueGroup.currentState = evaluatedState
-        NotifyListeners(valueGroup.listeners, unpack(evaluatedValues))
+        ListenersNotify(valueGroup.listeners, unpack(evaluatedValues))
     end
 end
 
-function TheEyeAddon.Events.Evaluators:OnEvent(event, ...)
+local function EvaluateAsEvent(evaluator, valueGroup, event, ...)
+    ListenersNotify(valueGroup.listeners, evaluator:Evaluate(valueGroup, event, ...))
+end
+
+local function Evaluate(evaluator, valueGroup, event, ...)
+    if evaluator.type == "STATE" then
+        EvaluateAsState(evaluator, valueGroup, event, ...)
+    else
+        EvaluateAsEvent(evaluator, valueGroup, event, ...)
+    end
+end
+
+function this:Notify(event, ...)
     if self.reevaluateEvents ~= nil and self.reevaluateEvents[event] ~= nil then
-        for k,valueGroup in pairs(self.ValueGroups) do
-            EvaluateState(self, valueGroup, event, ...)
+        for k,valueGroup in pairs(self.ValueGroups) do -- @TODO change this to an array with a lookup table
+            Evaluate(self, valueGroup, event, ...)
         end
     else
         local valueGroupKey = self:GetKey(event, ...)
         local valueGroup = self.ValueGroups[valueGroupKey]
 
         if valueGroup ~= nil then
-            EvaluateState(self, valueGroup, event, ...)
+            Evaluate(self, valueGroup, event, ...)
         end
     end
 end

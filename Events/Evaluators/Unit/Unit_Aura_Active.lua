@@ -2,7 +2,7 @@ local TheEyeAddon = TheEyeAddon
 local thisName = "Unit_Aura_Active"
 local this = TheEyeAddon.Events.Evaluators[thisName]
 
-local RegisterValueGroupListeningTo = TheEyeAddon.Events.Evaluators.RegisterValueGroupListeningTo
+local ValueGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.ValueGroupRegisterListeningTo
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID
 local unpack = unpack
@@ -52,7 +52,7 @@ local combatLogEvents =
 
 function this:SetupListeningTo(valueGroup)
     for i=1, #combatLogEvents do
-        RegisterValueGroupListeningTo(valueGroup,
+        ValueGroupRegisterListeningTo(valueGroup,
         {
             listeningToKey = "COMBAT_LOG",
             evaluator = this,
