@@ -1,7 +1,8 @@
 local TheEyeAddon = TheEyeAddon
 local this = TheEyeAddon.Events.Evaluators
 
-local Coordinator = TheEyeAddon.Events.Coordinator
+local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
+local CoordinatorUnregister = TheEyeAddon.Events.Coordinator.Unregister
 local pairs = pairs
 local select = select
 local table = table
@@ -46,7 +47,7 @@ local function EvaluatorIncreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
         evaluator.OnEvent = this.OnEvent
-        Coordinator:RegisterListener(evaluator)
+        CoordinatorRegister(evaluator)
     end
 end
 
@@ -71,7 +72,7 @@ end
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        Coordinator:UnregisterListener(evaluator)
+        CoordinatorUnregister(evaluator)
     end
 end
 
