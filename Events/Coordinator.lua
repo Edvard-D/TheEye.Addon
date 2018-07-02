@@ -1,20 +1,22 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Coordinator = { Listeners = {} }
-local Listeners = TheEyeAddon.Events.Coordinator.Listeners
+TheEyeAddon.Events.Coordinator = {}
+local this = TheEyeAddon.Events.Coordinator
+this.Listeners = {}
+local Listeners = this.Listeners
 
-local ipairs = ipairs
+local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
 
 
 -- Event Handling
-local frame = CreateFrame("Frame", nil, UIParent)
-local function OnEvent(self, eventName, ...)
-    --print ("Coordinator OnEvent    " .. eventName) -- DEBUG
-    for i,listener in ipairs(Listeners[eventName]) do
-        listener:OnEvent(eventName, ...)
+local function RelayEvent(self, eventName, ...)
+    --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    local listeners = Listeners[eventName]
+    for i=1,#listeners do
+        listeners[i]:Notify(eventName, ...)
     end
 end
-frame:SetScript("OnEvent", OnEvent)
+frame:SetScript("OnEvent", RelayEvent)
 
 
 -- Register/Unregister
@@ -53,38 +55,42 @@ local function RemoveListener(eventName, listener, isGameEvent)
     end
 end
 
-function TheEyeAddon.Events.Coordinator:RegisterListener(listener)
-    if listener.gameEvents ~= nil then
-        for i,eventName in ipairs(listener.gameEvents) do
-            InsertListener(eventName, listener, true)
-        end
-    end
-
-    if listener.customEvents ~= nil then
-        for i,eventName in ipairs(listener.customEvents) do
-            InsertListener(eventName, listener, false)
-        end
+local function SubscribeToEvents(events, listener, isGameEvent)
+    for i=1,#events do
+        InsertListener(events[i], listener, isGameEvent)
     end
 end
 
-function TheEyeAddon.Events.Coordinator:UnregisterListener(listener)
+local function UnsubscribeFromEvents(events, listener, isGameEvent)
+    for i=1,#events do
+        RemoveListener(events[i], listener, isGameEvent)
+    end
+end
+
+function this:RegisterListener(listener)
     if listener.gameEvents ~= nil then
-        for i,eventName in ipairs(listener.gameEvents) do
-            RemoveListener(eventName, listener, true)
-        end
+        SubscribeToEvents(listener.gameEvents, listener, true)
+    end
+
+    if listener.customEvents ~= nil then
+        SubscribeToEvents(listener.customEvents, listener, false)
+    end
+end
+
+function this:UnregisterListener(listener)
+    if listener.gameEvents ~= nil then
+        UnsubscribeFromEvents(listener.gameEvents, listener, true)
     end
     
     if listener.customEvents ~= nil then
-        for i,eventName in ipairs(listener.customEvents) do
-            RemoveListener(eventName, listener, false)
-        end
+        UnsubscribeFromEvents(listener.customEvents, listener, false)
     end
 end
 
 
 -- Custom Events
-function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
+function this:SendCustomEvent(eventName, ...)
     if Listeners[eventName] ~= nil then
-        OnEvent(frame, eventName, ...)
+        RelayEvent(frame, eventName, ...)
     end
 end
