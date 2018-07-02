@@ -158,7 +158,12 @@ local function EvaluateAsState(evaluator, valueGroup, event, ...)
 end
 
 local function EvaluateAsEvent(evaluator, valueGroup, event, ...)
-    ListenersNotify(valueGroup.listeners, evaluator:Evaluate(valueGroup, event, ...))
+    local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
+    local evaluatedState = evaluatedValues[1]
+    if evaluatedState == true then
+        evaluatedValues[1] = nil
+        ListenersNotifyAsEvent(valueGroup.listeners, evaluator:Evaluate(valueGroup, event, unpack(evaluatedValues))) -- @TODO possibly have event data always packed in key table?
+    end
 end
 
 local function Evaluate(evaluator, valueGroup, event, ...)
