@@ -42,5 +42,5 @@ function this:Setup(
 end
 
 function this:ChangeValue(...)
-    self.ValueHandler:ChangeValue(self:ValueAction(...))
+    self.ValueHandler:Change(self:ValueAction(...))
 end
