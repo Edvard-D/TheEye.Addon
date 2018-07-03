@@ -32,12 +32,10 @@ end
 
 function this:Enable()
     print ("ENABLE    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Enable()
     SendCustomEvent("UIOBJECT_ENABLED", self.UIObject)
 end
 
 function this:Disable()
     print ("DISABLE    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Disable()
     SendCustomEvent("UIOBJECT_DISABLED", self.UIObject)
 end
