@@ -3,7 +3,7 @@ TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
-local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup
+local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup -- @TODO this listener doesn't exist
 
 
 --[[ #this#TEMPLATE#
@@ -17,7 +17,6 @@ local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.S
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    OnNotify                    function(...)
     ValueHandler                ValueHandler
     ValueAction                 function(...)
 ]]
