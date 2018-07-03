@@ -120,6 +120,7 @@ UI\Objects\Helpers\ValueHandlers.lua
 UI\Objects\Components\ListenerGroups\Base.lua
 UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
 UI\Objects\Components\ListenerGroups\ValueChanger.lua
+UI\Objects\Components\ListenerGroups\ValueSetter.lua
 
 
 # --- Listeners ---
