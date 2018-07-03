@@ -14,22 +14,22 @@ local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
     instance
     UIObject                    UIObject
     ValueAction                 function(#VALUE#)
-    Evaluator                   ValueEvaluator
-    Notify                  function()
+    ValueEvaluator              ValueEvaluator
+    Notify                      function()
     valueDefault                #VALUE#
 ]]
 function this:Setup(
     instance,
     UIObject,
     ValueAction,
-    Evaluator,
+    ValueEvaluator,
     Notify,
     defaultValue
 )
 
     instance.UIObject = UIObject
     instance.ValueAction = ValueAction
-    instance.Evaluator = Evaluator
+    instance.ValueEvaluator = ValueEvaluator
     instance.Notify = Notify
     instance.defaultValue = defaultValue
     instance.value = defaultValuee
@@ -40,7 +40,7 @@ end
 
 function this:Change(value)
     self.value = self.ValueAction(value)
-    self.Notify(self.Evaluator:Evaluate(self.value))
+    self.Notify(self.ValueEvaluator:Evaluate(self.value))
 end
 
 function this:Reset()
