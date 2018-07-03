@@ -30,7 +30,7 @@ function this:Setup(
     OnStateChange
 )
 
-    local Evaluator = ReturnKeyPairValueSetup(
+    local ValueEvaluator = ReturnKeyPairValueSetup(
         instance.Evaluator or {},
         UIObject,
         instance.ValidKeys
@@ -40,7 +40,7 @@ function this:Setup(
         instance,
         UIObject,
         ValueAction,
-        Evaluator,
+        ValueEvaluator,
         this.Notify,
         defaultValue
     )
