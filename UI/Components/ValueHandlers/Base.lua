@@ -39,8 +39,10 @@ function this:Setup(
 end
 
 function this:Change(value)
-    self.value = self.ValueAction(value)
-    self.Notify(self.ValueEvaluator:Evaluate(self.value))
+    if self.ValueAction ~= nil then
+        self.value = self.ValueAction(value)
+    end
+    self.ValueEvaluator:Evaluate(self.value)
 end
 
 function this:Reset()
