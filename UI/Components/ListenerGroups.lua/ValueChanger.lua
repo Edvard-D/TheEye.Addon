@@ -3,7 +3,7 @@ TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
 
-local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.ValueChanger.Setup -- @TODO this listener doesn't exist
+local ListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener.Setup
 
 
 --[[ #this#TEMPLATE#
