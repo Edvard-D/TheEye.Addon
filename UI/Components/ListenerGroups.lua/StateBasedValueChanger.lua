@@ -33,7 +33,7 @@ function this:Setup(
 end
 
 function this:ChangeValueByState(...)
-    local state = select(...)
+    local state = select(...) -- @TODO fix this select since it's not certain what value "state" will be
 
     if state == true then
         return value
