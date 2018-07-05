@@ -151,6 +151,7 @@ UI\Objects\Components\ValueEvaluators\ReturnKeyPairValue.lua
 UI\Objects\Components\ValueHandlers\Base.lua
 UI\Objects\Components\ValueHandlers\IntegerKeyState.lua
 UI\Objects\Components\ValueHandlers\KeyState.lua
+UI\Objects\Components\ValueHandlers\SimpleState.lua
 
 
 
