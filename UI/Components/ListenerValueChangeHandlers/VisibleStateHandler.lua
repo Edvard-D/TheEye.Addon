@@ -29,7 +29,7 @@ function this:Setup(
         instance,
         UIObject,
         this.Show,
-        this.Hide -- @TODO
+        this.Hide
     )
     
     instance.OnEnable = this.OnEnable -- @TODO
@@ -48,4 +48,11 @@ function this:Show()
     print ("SHOW    " .. self.UIObject.key) -- DEBUG
     self.UIObject.frame = self.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
     SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
+end
+
+function this:Hide()
+    print ("HIDE    " .. self.UIObject.key) -- DEBUG
+    FrameRelease(self.UIObject.frame)
+    self.UIObject.frame = nil
+    SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
 end
