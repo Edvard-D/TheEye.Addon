@@ -40,9 +40,13 @@ end
 
 function this:Change(value)
     if self.ValueAction ~= nil then
-        self.value = self.ValueAction(value)
+        value = self.ValueAction(value)
     end
-    self:OnValueChange(self.ValueEvaluator:Evaluate(self.value))
+    value = self.ValueEvaluator:Evaluate(value)
+
+    if value ~= value then
+        self:OnValueChange()
+    end
 end
 
 function this:Reset()
