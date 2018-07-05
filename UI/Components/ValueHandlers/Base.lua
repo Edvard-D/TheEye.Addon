@@ -42,9 +42,12 @@ function this:Change(value)
     if self.ValueAction ~= nil then
         value = self.ValueAction(value)
     end
-    value = self.ValueEvaluator:Evaluate(value)
 
-    if value ~= value then
+    if self.ValueEvaluator ~= nil then
+        value = self.ValueEvaluator:Evaluate(value)
+    end
+    
+    if self.value ~= value then
         self:OnValueChange()
     end
 end
