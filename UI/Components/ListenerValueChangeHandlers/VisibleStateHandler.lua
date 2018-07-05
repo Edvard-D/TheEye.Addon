@@ -4,6 +4,8 @@ local this = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.VisibleStateH
 local inherited = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.EnabledStateReactor.Setup
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local FrameRelease = TheEyeAddon.UI.Pools.Release
 
 
 --[[ #this#TEMPLATE#
@@ -26,7 +28,7 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        this.Show, -- @TODO
+        this.Show,
         this.Hide -- @TODO
     )
     
@@ -40,4 +42,10 @@ function this:Setup(
         instance.OnEnable,
         instance.OnDisable
     )
+end
+
+function this:Show()
+    print ("SHOW    " .. self.UIObject.key) -- DEBUG
+    self.UIObject.frame = self.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
+    SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
