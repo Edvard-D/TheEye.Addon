@@ -33,7 +33,7 @@ function this:Setup(
     )
     
     instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable -- @TODO
+    instance.OnDisable = this.OnDisable
 
     instance.EnabledStateReactor = {}
     EnabledStateReactorSetup(
@@ -46,6 +46,10 @@ end
 
 function this:OnEnable()
     self:Activate()
+end
+
+function this:OnDisable()
+    self:Deactivate()
 end
 
 function this:Show()
