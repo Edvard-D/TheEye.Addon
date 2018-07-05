@@ -31,14 +31,16 @@ function this:Setup(
     
     instance.UIObject = UIObject
 
+    instance.ValueHandler = instance.ValueHandler or {}
     local ValueHandler = IntegerKeyStateSetup(
-        instance.ValueHandler or {},
+        instance.ValueHandler,
         UIObject,
         this.OnStateChange
     )
 
-    local ListenerGroup = StateBasedValueChangerSetup(
-        instance.ListenerGroup or {},
+    instance.ListenerGroup = instance.ListenerGroup or {}
+    StateBasedValueChangerSetup(
+        instance.ListenerGroup,
         UIObject,
         instance.ValueHandler
     )
@@ -46,8 +48,7 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        ValueHandler,
-        ListenerGroup
+        instance.ListenerGroup
     )
 end
 
