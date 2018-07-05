@@ -9,3 +9,25 @@ local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
     #inherited#TEMPLATE#
 }
 ]]
+
+
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    OnStateChange               function()
+]]
+function this:Setup(
+    instance,
+    UIObject,
+    OnStateChange
+)
+
+    inherited:Setup(
+        instance,
+        UIObject,
+        nil,
+        nil,
+        OnStateChange,
+        false
+    )
+end
