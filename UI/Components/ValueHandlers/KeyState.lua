@@ -50,8 +50,6 @@ function this:Setup(
 end
 
 function this:OnValueChange(state)
-    if self.state ~= state then
-        self.state = self.ValidKeys[self.value]
-        self:OnStateChange(state)
-    end
+    self.state = self.ValidKeys[self.value]
+    self:OnStateChange(state)
 end
