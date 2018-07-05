@@ -134,6 +134,7 @@ UI\Objects\Components\ListenerValueChangeHandlers\Base.lua
 UI\Objects\Components\ListenerValueChangeHandlers\EnabledStateHandler.lua
 UI\Objects\Components\ListenerValueChangeHandlers\EnabledStateReactor.lua
 UI\Objects\Components\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Objects\Components\ListenerValueChangeHandlers\VisibleStateHandler.lua
 
 
 # --- Value Changers ---
