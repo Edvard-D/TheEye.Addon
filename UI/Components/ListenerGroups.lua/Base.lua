@@ -41,7 +41,9 @@ function this:Setup(
 end
 
 function this:Activate()
-    self:OnActivate() -- must be called before activating listeners
+    if self.OnActivate ~= nil then 
+        self:OnActivate() -- must be called before activating listeners
+    end
     
     local listeners = self.Listeners
     for i=1, #listeners do
@@ -50,7 +52,9 @@ function this:Activate()
 end
 
 function this:Deactivate()
-    self:OnDeactivate()
+    if self.OnDeactivate ~= nil then
+        self:OnDeactivate()
+    end
 
     local listeners = self.Listeners
     for i=1, #listeners do
