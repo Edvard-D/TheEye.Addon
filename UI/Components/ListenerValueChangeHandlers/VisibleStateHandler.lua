@@ -11,7 +11,21 @@ local FrameRelease = TheEyeAddon.UI.Pools.Release
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    -- @TODO add DisplayData Template
+}
+
+#UIOBJECT#DisplayData#
+{
+    factory = #TheEyeAddon.UI.Factories#NAME#
+    parentKey = #UIOBJECT#key#
+    DimensionTemplate =
+    {
+        PointSettings =
+        {
+            point = #POINT#
+            relativePoint = #POINT#
+            offsetY = #INT#
+        }
+    }
 }
 ]]
 
