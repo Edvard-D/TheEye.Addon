@@ -116,6 +116,9 @@ UI\Objects\Helpers\ValueHandlers.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Objects\Components\ChildrenHandler.lua
+
+
 # --- Listener Groups ---
 UI\Objects\Components\ListenerGroups\Base.lua
 UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
