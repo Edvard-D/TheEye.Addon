@@ -13,7 +13,7 @@ local FrameRelease = TheEyeAddon.UI.Pools.Release
     #inherited#TEMPLATE#
 }
 
-#UIOBJECT#DisplayData#
+#UIOBJECT#DisplayData#TEMPLATE#
 {
     factory = #TheEyeAddon.UI.Factories#NAME#
     parentKey = #UIOBJECT#key#
