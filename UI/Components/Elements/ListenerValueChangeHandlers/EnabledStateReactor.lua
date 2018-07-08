@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReact
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
-local SimpleStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState
+local SimpleStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState.Setup
 local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter.Setup
 
 
