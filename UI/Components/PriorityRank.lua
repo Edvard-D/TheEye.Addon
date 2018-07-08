@@ -2,7 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
 
-local DynamicSortRankerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRanker.Setup
+local DynamicSortRankSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank.Setup
 local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
 
 
@@ -15,7 +15,7 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
 {
     #this#TEMPLATE#
     {
-        #TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRanker#TEMPLATE#
+        #TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank#TEMPLATE#
     }
 }
 
@@ -39,7 +39,7 @@ function this:Setup(
 )
 
     if instance.isDynamic == true then
-        DynamicSortRankerSetup:Setup(
+        DynamicSortRankSetup:Setup(
             instance,
             UIObject
         )
