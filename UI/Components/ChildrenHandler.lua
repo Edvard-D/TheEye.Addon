@@ -92,7 +92,7 @@ function this:Setup(
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.UpdateRegisteredChildren,
         UIObject,
-        this.UpdateRegisteredChildren -- @TODO
+        this.UpdateRegisteredChildren
     )
 
     -- EnabledStateReactor
@@ -120,5 +120,17 @@ function this:OnDisable()
     local listenerGroups = self.ListenerGroups
     for i=1, #listenerGroups do
         listenerGroups[i]:Deactivate()
+    end
+end
+
+
+-- UpdateRegisteredChildren
+function this:UpdateRegisteredChildren(state, event, ...)
+    local childUIObject = ...
+
+    if childUIObject.frame == nil then
+        self.ValueHandler:Remove(childUIObject)
+    else
+        self.ValueHandler:Insert(childUIObject)
     end
 end
