@@ -103,7 +103,14 @@ function this:Setup(
     EnabledStateReactorSetup(
         instance.EnabledStateReactor,
         UIObject,
-        instance.OnEnable, -- @TODO
+        instance.OnEnable,
         instance.OnDisable -- @TODO
     )
+end
+
+function this:OnEnable()
+    local listenerGroups = self.ListenerGroups
+    for i=1, #listenerGroups do
+        listenerGroups[i]:Activate()
+    end
 end
