@@ -156,6 +156,7 @@ UI\Components\Elements\ValueHandlers\SortedTable.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
 
 
+
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
