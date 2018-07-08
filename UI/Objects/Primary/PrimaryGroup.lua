@@ -1,6 +1,3 @@
-local thisKey = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" } -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
-
-
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
@@ -36,7 +33,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "Module_Enabled",
-                    inputValues = { thisKey },
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
                 },
                 {
