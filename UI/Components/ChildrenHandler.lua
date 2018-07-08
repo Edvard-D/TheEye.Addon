@@ -127,6 +127,14 @@ end
 
 
 -- Arrange
+local function GetSizeFromRects(rects)
+	local leftMin, bottomMin, rightMax, topMax = GetBoundsFromRects(rects) -- @TODO
+	local width = rightMax - leftMin
+	local height = topMax - bottomMin
+	
+	return width, height
+end
+
 function this:Arrange()
     local children = self.ValueHandler.value
     local frame = self.UIObject.frame
@@ -149,7 +157,7 @@ function this:Arrange()
 	end
 	
 	if #childRects > 0 then
-		frame:SetSizeWithEvent(GetSizeFromRects(childRects)) -- @TODO
+		frame:SetSizeWithEvent(GetSizeFromRects(childRects))
 	else
 		frame:SetSizeWithEvent(0, 0)
 	end
