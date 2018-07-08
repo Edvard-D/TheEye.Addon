@@ -184,14 +184,6 @@ UI\Factories\Icon.lua
 
 
 # ---------------------------
-# |	     UI\Templates     	|
-# ---------------------------
-UI\Templates\Default.lua
-UI\Templates\Group.lua
-
-
-
-# ---------------------------
 # |	      UI\Objects     	|
 # ---------------------------
 UI\Objects\UIParentGroup.lua
