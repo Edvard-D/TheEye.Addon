@@ -34,10 +34,15 @@ function this:Setup(
 
     instance.OnTableValuesChange = OnTableValuesChange
 
-    instance.Insert = this.Insert -- @TODO
+    instance.Insert = this.Insert
     instance.Remove = this.Remove -- @TODO
 end
 
 function this:OnTableChange()
+    self.OnTableValuesChange()
+end
+
+function this:Insert(value)
+    table.insert(self.value, value)
     self.OnTableValuesChange()
 end
