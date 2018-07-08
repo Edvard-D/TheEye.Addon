@@ -7,6 +7,7 @@ local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Objects.Components.Listene
 local select = select
 local SortedTableSetup = TheEyeAddon.UI.Objects.Components.ValueHandlers.SortedTable.Setup
 local table = table
+local unpack = unpack
 
 
 --[[ #this#TEMPLATE#
@@ -127,8 +128,30 @@ end
 
 
 -- Arrange
+local function GetBoundsFromRects(rects)
+	local leftMin = TheEyeAddon.Screen.width
+	local bottomMin = TheEyeAddon.Screen.height
+	local rightMax = 0
+	local topMax = 0
+
+	if #rects > 1 then
+		for i = 1, #rects do
+			local left, bottom, width, height = unpack(rects[i])
+
+			if width ~= nil and height ~= nil then
+				if left < leftMin then leftMin = left end
+				if bottom < bottomMin then bottomMin = bottom end
+				if width + left > rightMax then rightMax = width + left end
+				if height + bottom > topMax then topMax = height + bottom end
+			end
+		end
+	end
+
+	return leftMin, bottomMin, rightMax, topMax
+end
+
 local function GetSizeFromRects(rects)
-	local leftMin, bottomMin, rightMax, topMax = GetBoundsFromRects(rects) -- @TODO
+	local leftMin, bottomMin, rightMax, topMax = GetBoundsFromRects(rects)
 	local width = rightMax - leftMin
 	local height = topMax - bottomMin
 	
