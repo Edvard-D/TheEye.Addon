@@ -1,9 +1,9 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.ListenerValueChangeHandlers.VisibleStateHandler = {}
-local this = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.VisibleStateHandler
-local inherited = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.KeyStateFunctionCaller
+TheEyeAddon.UI.Components.VisibleState = {}
+local this = TheEyeAddon.UI.Components.VisibleState
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local EnabledStateReactorSetup = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.EnabledStateReactor.Setup
+local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local FrameRelease = TheEyeAddon.UI.Pools.Release
 

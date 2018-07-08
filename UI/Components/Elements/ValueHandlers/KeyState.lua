@@ -1,15 +1,15 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.KeyState
-local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
+TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState = {}
+local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
+local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
-local ReturnKeyPairValueSetup = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue.Setup
+local ReturnKeyPairValueSetup = TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnKeyPairValue.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    ValueEvaluator = #TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue#TEMPLATE#
+    ValueEvaluator = #TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnKeyPairValue#TEMPLATE#
     ValidKeys = { #VALUE# = true }
 }
 ]]

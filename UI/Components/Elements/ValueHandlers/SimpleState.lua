@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueHandlers.SimpleState = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.SimpleState
-local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
+TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState = {}
+local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState
+local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 
 --[[ #this#TEMPLATE#

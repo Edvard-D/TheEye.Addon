@@ -1,11 +1,11 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ListenerGroups.Base = {}
-local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
+TheEyeAddon.UI.Components.Elements.ListenerGroups.Base = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
 
 --[[ #this#TEMPLATE#
 {
-    Listeners = { #TheEyeAddon.UI.Objects.Components.Listeners#NAME#TEMPLATE# }
+    Listeners = { #TheEyeAddon.UI.Components.Elements.Listeners#NAME#TEMPLATE# }
 }
 ]]
 

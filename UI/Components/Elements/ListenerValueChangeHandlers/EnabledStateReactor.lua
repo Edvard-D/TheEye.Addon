@@ -1,10 +1,10 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.ListenerValueChangeHandlers.EnabledStateReactor = {}
-local this = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.EnabledStateReactor
-local inherited = TheEyeAddon.UI.Components.ListenerValueChangeHandlers.Base
+TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
-local SimpleStateSetup = TheEyeAddon.UI.Objects.Components.ValueHandlers.SimpleState
-local ValueSetterSetup = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueSetter.Setup
+local SimpleStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState
+local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter.Setup
 
 
 --[[ #this#TEMPLATE#

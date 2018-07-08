@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue = {}
-local this = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnKeyPairValue
-local inherited = TheEyeAddon.UI.Objects.Components.ValueEvaluators.ReturnValue
+TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnKeyPairValue = {}
+local this = TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnKeyPairValue
+local inherited = TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnValue
 
 
 --[[ #this#TEMPLATE#

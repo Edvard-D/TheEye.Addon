@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener = {}
-local this = TheEyeAddon.UI.Objects.Components.Listeners.EvaluatorListener
-local inherited = TheEyeAddon.UI.Objects.Components.Listeners.Base
+TheEyeAddon.UI.Components.Elements.Listeners.EvaluatorListener = {}
+local this = TheEyeAddon.UI.Components.Elements.Listeners.EvaluatorListener
+local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
 
 local ListenerRegister = TheEyeAddon.Events.Evaluators.ListenerRegister
 local ListenerUnregister = TheEyeAddon.Events.Evaluators.ListenerUnregister

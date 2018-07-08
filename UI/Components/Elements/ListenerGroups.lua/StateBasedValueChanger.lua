@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger = {}
-local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.StateBasedValueChanger
-local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.ValueChanger
+TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger
 
 local select = select
 

@@ -113,52 +113,55 @@ UI\Objects\Helpers\ValueHandlers.lua
 
 
 # ---------------------------
-# |	    UI\Components	    |
+# |	UI\Components\Elements  |
 # ---------------------------
-UI\Objects\Components\ChildrenHandler.lua
-
-
 # --- Listener Groups ---
-UI\Objects\Components\ListenerGroups\Base.lua
-UI\Objects\Components\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Objects\Components\ListenerGroups\StateBasedValueChanger.lua
-UI\Objects\Components\ListenerGroups\ValueChanger.lua
-UI\Objects\Components\ListenerGroups\ValueSetter.lua
+UI\Components\Elements\ListenerGroups\Base.lua
+UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Components\Elements\ListenerGroups\StateBasedValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueSetter.lua
 
 
 # --- Listeners ---
-UI\Objects\Components\Listeners\Base.lua
-UI\Objects\Components\Listeners\EvaluatorListener.lua
-UI\Objects\Components\Listeners\EventListener.lua
+UI\Components\Elements\Listeners\Base.lua
+UI\Components\Elements\Listeners\EvaluatorListener.lua
+UI\Components\Elements\Listeners\EventListener.lua
 
 
 # --- Listener Value Change Handlers ---
-UI\Objects\Components\ListenerValueChangeHandlers\Base.lua
-UI\Objects\Components\ListenerValueChangeHandlers\EnabledStateHandler.lua
-UI\Objects\Components\ListenerValueChangeHandlers\EnabledStateReactor.lua
-UI\Objects\Components\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
-UI\Objects\Components\ListenerValueChangeHandlers\VisibleStateHandler.lua
+UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
+UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
 
 
 # --- Value Changers ---
-UI\Objects\Components\ValueChangers\Base.lua
-UI\Objects\Components\ValueChangers\Add.lua
-UI\Objects\Components\ValueChangers\Reset.lua
+UI\Components\Elements\ValueChangers\Base.lua
+UI\Components\Elements\ValueChangers\Add.lua
+UI\Components\Elements\ValueChangers\Reset.lua
 
 
 # --- Value Evaluators ---
-UI\Objects\Components\ValueEvaluators\Base.lua
-UI\Objects\Components\ValueEvaluators\ReturnEvalutedValue.lua
-UI\Objects\Components\ValueEvaluators\ReturnKeyPairValue.lua
+UI\Components\Elements\ValueEvaluators\Base.lua
+UI\Components\Elements\ValueEvaluators\ReturnEvalutedValue.lua
+UI\Components\Elements\ValueEvaluators\ReturnKeyPairValue.lua
 
 
 # --- Value Handlers ---
-UI\Objects\Components\ValueHandlers\Base.lua
-UI\Objects\Components\ValueHandlers\IntegerKeyState.lua
-UI\Objects\Components\ValueHandlers\KeyState.lua
-UI\Objects\Components\ValueHandlers\SimpleState.lua
-UI\Objects\Components\ValueHandlers\SortedTable.lua
-UI\Objects\Components\ValueHandlers\TableBase.lua
+UI\Components\Elements\ValueHandlers\Base.lua
+UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\KeyState.lua
+UI\Components\Elements\ValueHandlers\SimpleState.lua
+UI\Components\Elements\ValueHandlers\SortedTable.lua
+UI\Components\Elements\ValueHandlers\TableBase.lua
+
+
+# ---------------------------
+# |	    UI\Components	    |
+# ---------------------------
+UI\Components\Children.lua
+UI\Components\EnabledState.lua
+UI\Components\VisibleState.lua
 
 
 

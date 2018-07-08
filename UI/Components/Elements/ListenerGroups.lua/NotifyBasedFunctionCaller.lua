@@ -1,9 +1,9 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Components.ListenerGroups.NotifyBasedFunctionCaller = {}
-local this = TheEyeAddon.UI.Objects.Components.ListenerGroups.NotifyBasedFunctionCaller
-local inherited = TheEyeAddon.UI.Objects.Components.ListenerGroups.Base
+TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
-local EventListenerSetup = TheEyeAddon.UI.Objects.Components.Listeners.EventListener.Setup
+local EventListenerSetup = TheEyeAddon.UI.Components.Elements.Listeners.EventListener.Setup
 
 
 --[[ #this#TEMPLATE#
