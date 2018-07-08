@@ -22,7 +22,7 @@ function this:Setup(
     OnTableValuesChange
 )
 
-    instance.OnTableChange = this.OnTableChange -- @TODO
+    instance.OnTableChange = this.OnTableChange
     inherited:Setup(
         instance,
         UIObject,
@@ -36,4 +36,8 @@ function this:Setup(
 
     instance.Insert = this.Insert -- @TODO
     instance.Remove = this.Remove -- @TODO
+end
+
+function this:OnTableChange()
+    self.OnTableValuesChange()
 end
