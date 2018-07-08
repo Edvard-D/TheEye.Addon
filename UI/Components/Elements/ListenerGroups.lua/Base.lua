@@ -5,7 +5,7 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
 --[[ #this#TEMPLATE#
 {
-    Listeners = { #TheEyeAddon.UI.Components.Elements.Listeners#NAME#TEMPLATE# }
+    Listeners = { #ARRAY#TheEyeAddon.UI.Components.Elements.Listeners#NAME#TEMPLATE# }
 }
 ]]
 
