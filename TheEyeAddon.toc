@@ -158,6 +158,7 @@ UI\Objects\Components\ValueHandlers\Base.lua
 UI\Objects\Components\ValueHandlers\IntegerKeyState.lua
 UI\Objects\Components\ValueHandlers\KeyState.lua
 UI\Objects\Components\ValueHandlers\SimpleState.lua
+UI\Objects\Components\ValueHandlers\TableBase.lua
 
 
 
