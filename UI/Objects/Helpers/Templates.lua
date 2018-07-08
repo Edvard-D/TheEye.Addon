@@ -3,6 +3,8 @@ TheEyeAddon.UI.Templates = {}
 local this = TheEyeAddon.UI.Templates
 this.TagComponents = {}
 
+local table = table
+
 
 function this:ComponentAdd(tag, component)
     if this.TagComponents[tag] == nil then
