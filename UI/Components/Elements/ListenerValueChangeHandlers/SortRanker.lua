@@ -11,6 +11,7 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
 {
     #inherited#TEMPLATE#
     ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups#NAME#TEMPLATE#
+    ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank#TEMPLATE#
 }
 ]]
 
@@ -26,7 +27,6 @@ function this:Setup(
 
     instance.OnSortRankChange = this.OnSortRankChange
 
-    instance.ValueHandler = {}
     SortRankSetup(
         instance.ValueHandler,
         UIObject,
