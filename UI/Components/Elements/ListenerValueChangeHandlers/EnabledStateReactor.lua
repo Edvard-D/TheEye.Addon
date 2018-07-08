@@ -27,13 +27,13 @@ function this:Setup(
     OnDisable
 )
 
-    instance.OnEnabedChanged = this.OnEnabledChanged
+    instance.OnEnabledChange = this.OnEnabledChange
 
     instance.ValueHandler = {}
     SimpleStateSetup(
         instance.ValueHandler,
         UIObject,
-        instance.OnEnabledChanged
+        instance.OnEnabledChange
     )
 
     instance.ListenerGroup =
@@ -60,7 +60,7 @@ function this:Setup(
     instance.OnDisable = OnDisable
 end
 
-function this:OnEnabledChanged(isEnabled)
+function this:OnEnabledChange(isEnabled)
     if isEnabled == true then
         self:OnEnable()
     else
