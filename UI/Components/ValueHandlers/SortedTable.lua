@@ -46,3 +46,8 @@ function this:SortAscending()
     table.sort(self.value, function(a,b)
         return a[self.sortValueComponentName].ValueHandler.value< b[self.sortValueComponentName].ValueHandler.value end)
 end
+
+function this:SortDescending()
+    table.sort(self.value, function(a,b)
+        return a[self.sortValueComponentName].ValueHandler.value > b[self.sortValueComponentName].ValueHandler.value end)
+end
