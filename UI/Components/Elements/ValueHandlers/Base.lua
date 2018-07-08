@@ -53,5 +53,5 @@ function this:Change(value)
 end
 
 function this:Reset()
-    self.value = self.defaultValue
+    self:Change(self.defaultValue)
 end
