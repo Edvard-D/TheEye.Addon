@@ -47,7 +47,7 @@ function this:Change(value)
         value = self.ValueEvaluator:Evaluate(value)
     end
     
-    if self.value ~= value then
+    if self.value ~= value and self.OnValueChange ~= nil then
         self:OnValueChange()
     end
 end
