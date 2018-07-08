@@ -6,7 +6,7 @@ this.TagComponents = {}
 local table = table
 
 
-function this:ComponentAdd(tag, component)
+function this:ComponentAddToTag(tag, component)
     if this.TagComponents[tag] == nil then
         this.TagComponents[tag] = {}
     end
