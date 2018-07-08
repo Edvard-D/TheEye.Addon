@@ -131,9 +131,9 @@ UI\Components\Elements\Listeners\EventListener.lua
 
 # --- Listener Value Change Handlers ---
 UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRanker.lua
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
 UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\SortRanker.lua
 
 
 # --- Value Changers ---

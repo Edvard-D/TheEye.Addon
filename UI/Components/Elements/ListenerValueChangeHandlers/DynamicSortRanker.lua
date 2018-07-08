@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.SortRanker = {}
-local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.SortRanker
+TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRanker = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRanker
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
