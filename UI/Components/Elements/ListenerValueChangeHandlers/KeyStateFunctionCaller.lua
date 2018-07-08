@@ -30,12 +30,13 @@ function this:Setup(
 )
     
     instance.UIObject = UIObject
+    instance.OnStateChange = this.OnStateChange
 
     instance.ValueHandler = instance.ValueHandler or {}
     local ValueHandler = IntegerKeyStateSetup(
         instance.ValueHandler,
         UIObject,
-        this.OnStateChange
+        instance.OnStateChange
     )
 
     instance.ListenerGroup = instance.ListenerGroup or {}
