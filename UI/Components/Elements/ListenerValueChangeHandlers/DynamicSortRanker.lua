@@ -10,7 +10,7 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups#NAME#TEMPLATE#
+    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger#TEMPLATE#
     ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank#TEMPLATE#
 }
 ]]
