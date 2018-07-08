@@ -1,6 +1,10 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "UIPARENT" },
+    Children =
+    {
+        childTags = { --[[tags]] "MODULE", },
+    },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
@@ -14,62 +18,46 @@ TheEyeAddon.UI.Objects:FormatData(
             }
         }
     },
-    ValueHandlers =
+    EnabledState =
     {
-        Enabled =
+        ValueHandler =
         {
-            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
-            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
-            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
-            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
-            validValues = { [6] = true },
+            validKeys = { [6] = true },
         },
-        Visible =
+        ListenerGroup =
         {
-            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
-            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
-            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
-            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
-            validValues = { [2] = true },
-        }
-    },
-    ListenerGroups =
-    {
-        Enabled =
-        {
-            type = "STATE",
-            valueHandlerKey = "Enabled",
-            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
-            ListeningTo =
+            Listeners =
             {
-                Addon_Loaded =
                 {
+                    eventEvaluatorKey = "Addon_Loaded",
+                    inputValues = { --[[addonName]] "TheEyeAddon" },
                     value = 2,
-                    inputValues = { --[[addonName]] "TheEyeAddon" }
                 },
-                Game_Data_Loaded =
                 {
-                    value = 4
-                    -- inputValues = nil
-                }
-            }
+                    eventEvaluatorKey = "Game_Data_Loaded",
+                    inputValues = nil,
+                    value = 4,
+                },
+            },
         },
-        Visible =
+    },
+    VisibleState =
+    {
+        ValueHandler =
         {
-            type = "STATE",
-            valueHandlerKey = "Visible",
-            OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
-            OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            ListeningTo =
+            validKeys = { [2] = true },
+        },
+        ListenerGroup =
+        {
+            Listeners =
             {
-                Unit_Spec =
                 {
+                    eventEvaluatorKey = "Unit_Spec",
+                    inputValues = { --[[unit]] "player", --[[specID]] 258 },
                     value = 2,
-                    inputValues = { --[[unit]] "player", --[[specID]] 258 }
-                }
-            }
-        }
-    }
+                },
+            },
+        },
+    },
 }
 )
