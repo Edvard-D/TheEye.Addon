@@ -16,9 +16,9 @@ TheEyeAddon.UI.Templates:ComponentAddToTag("GROUP", this)
 --[[ #this#TEMPLATE#
 {
     childTags = { #ARRAY#TAG# }
-    GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
-    sortActionName = #SORTACTION#NAME#
-    sortValueComponentName = #COMPONENT#NAME#
+    #OPTIONAL#GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
+    #OPTIONAL#sortActionName = #SORTACTION#NAME#
+    #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
 }
 ]]
 
@@ -162,9 +162,13 @@ local function GetSizeFromRects(rects)
 end
 
 function this:Arrange()
+    local groupArranger = self.GroupArranger
+    if groupArranger == nil then
+        return
+    end
+
     local children = self.ValueHandler.value
     local frame = self.UIObject.Frame
-    local groupArranger = self.GroupArranger
     local combinedOffsetX = 0
     local combinedOffsetY = 0
     local childRects = {}
