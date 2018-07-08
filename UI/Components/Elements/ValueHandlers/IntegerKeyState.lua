@@ -7,7 +7,7 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    ValidKeys = { #INT# = true }
+    validKeys = { #INT# = true }
 }
 ]]
 
