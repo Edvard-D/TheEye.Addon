@@ -3,6 +3,7 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.SortRanker = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.SortRanker
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
 
 
@@ -23,7 +24,7 @@ function this:Setup(
     UIObject
 )
 
-    instance.OnSortRankChange = this.OnEnabledChanged -- @TODO
+    instance.OnSortRankChange = this.OnSortRankChange
 
     instance.ValueHandler = {}
     SortRankSetup(
@@ -37,4 +38,8 @@ function this:Setup(
         UIObject,
         instance.ListenerGroup
     )
+end
+
+function this:OnSortRankChange()
+    SendCustomEvent("UIOBJECT_SORTRANK_CHANGED", self.UIObject)
 end
