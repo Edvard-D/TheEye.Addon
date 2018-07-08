@@ -24,7 +24,7 @@ function this:Setup(
     sortValueComponentName
 )
 
-    instance.Sort = this.Sort -- @TODO
+    instance.Sort = this.Sort
     inherited:Setup(
         instance,
         UIObject,
@@ -33,4 +33,8 @@ function this:Setup(
 
     instance.SortAction = this[sortActionName]
     instance.sortValueComponentName = sortValueComponentName
+end
+
+function this:Sort()
+    self.SortAction()
 end
