@@ -163,14 +163,14 @@ end
 
 function this:Arrange()
     local children = self.ValueHandler.value
-    local frame = self.UIObject.frame
+    local frame = self.UIObject.Frame
     local groupArranger = self.GroupArranger
     local combinedOffsetX = 0
     local combinedOffsetY = 0
     local childRects = {}
 
     for i = 1, #children do
-        local childFrame = children[i].frame
+        local childFrame = children[i].Frame
 		local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
 		
 		if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
@@ -194,7 +194,7 @@ end
 function this:UpdateRegisteredChildren(state, event, ...)
     local childUIObject = ...
 
-    if childUIObject.frame == nil then
+    if childUIObject.VisibleState.ValueHandler.value == false then
         self.ValueHandler:Remove(childUIObject)
     else
         self.ValueHandler:Insert(childUIObject)
