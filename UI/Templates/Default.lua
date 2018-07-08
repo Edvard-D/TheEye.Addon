@@ -1,4 +1,6 @@
-local TheEyeAddon = TheEyeAddon
+local EnabledStateSetup = TheEyeAddon.UI.Components.EnabledState.Setup
+
+
 table.insert(TheEyeAddon.UI.Templates, 
 {
     tags = {},
