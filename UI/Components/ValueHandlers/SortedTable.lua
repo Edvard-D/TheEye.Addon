@@ -3,6 +3,8 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.SortedTable = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.SortedTable
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.TableBase
 
+local table = table
+
 
 --[[ #this#TEMPLATE#
 {
@@ -37,4 +39,10 @@ end
 
 function this:Sort()
     self.SortAction()
+end
+
+-- Sort Actions
+function this:SortAscending()
+    table.sort(self.value, function(a,b)
+        return a[self.sortValueComponentName].ValueHandler.value< b[self.sortValueComponentName].ValueHandler.value end)
 end
