@@ -3,6 +3,8 @@ TheEyeAddon.UI.Objects.Components.ValueHandlers.TableBase = {}
 local this = TheEyeAddon.UI.Objects.Components.ValueHandlers.TableBase
 local inherited = TheEyeAddon.UI.Objects.Components.ValueHandlers.Base
 
+local table = table
+
 
 --[[ #this#TEMPLATE#
 {
@@ -35,7 +37,7 @@ function this:Setup(
     instance.OnTableValuesChange = OnTableValuesChange
 
     instance.Insert = this.Insert
-    instance.Remove = this.Remove -- @TODO
+    instance.Remove = this.Remove
 end
 
 function this:OnTableChange()
@@ -45,4 +47,11 @@ end
 function this:Insert(value)
     table.insert(self.value, value)
     self.OnTableValuesChange()
+end
+
+function this:Remove(value)
+    local wasRemoved = table.removevalue(self.value, value)
+    if wasRemoved == true then
+        self.OnTableValuesChange()
+    end
 end
