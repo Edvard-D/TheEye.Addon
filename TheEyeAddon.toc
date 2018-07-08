@@ -164,6 +164,7 @@ UI\Components\Elements\ValueHandlers\TableBase.lua
 # ---------------------------
 UI\Components\Children.lua
 UI\Components\EnabledState.lua
+UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
 
 
