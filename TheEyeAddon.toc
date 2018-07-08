@@ -104,12 +104,10 @@ UI\DimensionTemplates\Icon_Large.lua
 # |		      UI		    |
 # ---------------------------
 UI\Objects\Helpers\GroupArrangers.lua
-UI\Objects\Helpers\ListenerGroups.lua
 UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
 UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\Templates.lua
-UI\Objects\Helpers\ValueHandlers.lua
 
 
 
