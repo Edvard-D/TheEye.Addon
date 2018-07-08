@@ -104,12 +104,68 @@ UI\DimensionTemplates\Icon_Large.lua
 # |		      UI		    |
 # ---------------------------
 UI\Objects\Helpers\GroupArrangers.lua
-UI\Objects\Helpers\GroupChildren.lua
 UI\Objects\Helpers\ListenerGroups.lua
 UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
 UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\ValueHandlers.lua
+
+
+
+# ---------------------------
+# |	UI\Components\Elements  |
+# ---------------------------
+# --- Listener Groups ---
+UI\Components\Elements\ListenerGroups\Base.lua
+UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Components\Elements\ListenerGroups\StateBasedValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueSetter.lua
+
+
+# --- Listeners ---
+UI\Components\Elements\Listeners\Base.lua
+UI\Components\Elements\Listeners\EvaluatorListener.lua
+UI\Components\Elements\Listeners\EventListener.lua
+
+
+# --- Listener Value Change Handlers ---
+UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
+UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
+UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+
+
+# --- Value Changers ---
+UI\Components\Elements\ValueChangers\Base.lua
+UI\Components\Elements\ValueChangers\Add.lua
+UI\Components\Elements\ValueChangers\Reset.lua
+
+
+# --- Value Evaluators ---
+UI\Components\Elements\ValueEvaluators\Base.lua
+UI\Components\Elements\ValueEvaluators\ReturnEvalutedValue.lua
+UI\Components\Elements\ValueEvaluators\ReturnKeyPairValue.lua
+
+
+# --- Value Handlers ---
+UI\Components\Elements\ValueHandlers\Base.lua
+UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\KeyState.lua
+UI\Components\Elements\ValueHandlers\SimpleState.lua
+UI\Components\Elements\ValueHandlers\SortedTable.lua
+UI\Components\Elements\ValueHandlers\SortRank.lua
+UI\Components\Elements\ValueHandlers\TableBase.lua
+
+
+
+# ---------------------------
+# |	    UI\Components	    |
+# ---------------------------
+UI\Components\Children.lua
+UI\Components\EnabledState.lua
+UI\Components\PriorityRank.lua
+UI\Components\VisibleState.lua
 
 
 

@@ -1,23 +1,33 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "COMBAT_LOG"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
+local CombatLogEventDataFormats = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
-local ipairs = ipairs
 local pairs = pairs
 local table = table
 local UnitGUID = UnitGUID
 
 
--- inputValues = { --[[eventName]] "_", --[[sourceUnit]] "_", --[[destUnit]] "_" }
-TheEyeAddon.Events.Evaluators.COMBAT_LOG =
+--[[ #this#TEMPLATE#
 {
-    type = "EVENT",
-    gameEvents =
+    inputValues =
     {
-        "COMBAT_LOG_EVENT_UNFILTERED"
+        #LABEL#Event Name# #EVENT#COMBAT#NAME#
+        #OPTIONAL# #LABEL#Source Unit# #UNIT#
+        #OPTIONAL# #LABEL#Destination Unit# #UNIT#
     }
 }
+]]
 
-function TheEyeAddon.Events.Evaluators.COMBAT_LOG:GetKey(event)
+
+this.type = "EVENT"
+this.gameEvents =
+{
+    "COMBAT_LOG_EVENT_UNFILTERED"
+}
+
+function this:GetKey(event)
     self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
     
     local sourceGUID = self.rawEventInfo[4]
@@ -42,12 +52,13 @@ function TheEyeAddon.Events.Evaluators.COMBAT_LOG:GetKey(event)
     end
 end
 
-function TheEyeAddon.Events.Evaluators.COMBAT_LOG:Evaluate(valueGroup, event)
+function this:Evaluate(valueGroup, event)
     self.formattedEventInfo = {}
 
-    local eventDataFormat = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats[self.rawEventInfo[2]]
-    for i,valueName in ipairs(eventDataFormat.ValueNames) do
-        self.formattedEventInfo[valueName] = self.rawEventInfo[i]
+    local eventDataFormat = CombatLogEventDataFormats[self.rawEventInfo[2]]
+    local valueNames = eventDataFormat.ValueNames
+    for i=1,#valueNames do
+        self.formattedEventInfo[valueNames[i]] = self.rawEventInfo[i]
     end
 
     self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]

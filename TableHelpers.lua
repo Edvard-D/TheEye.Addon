@@ -21,8 +21,9 @@ function table.removevalue(tab, value)
             count = count + 1
             if v == value then
                 table.remove(tab, count)
-                return
+                return true
             end
         end
     end
+    return false
 end

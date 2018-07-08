@@ -1,72 +1,84 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Unit_Aura_Active"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
-local ipairs = ipairs
+local ValueGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.ValueGroupRegisterListeningTo
 local table = table
+local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID
 local unpack = unpack
 
 
--- inputValues = { --[[sourceUnit]] "_", --[[destUnit]] "_", --[[spellID]] "_" }
-TheEyeAddon.Events.Evaluators.Unit_Aura_Active =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    reevaluateEvents =
+    inputValues =
     {
-        PLAYER_TARGET_CHANGED = true
-    },
-    gameEvents =
-    {
-        "PLAYER_TARGET_CHANGED"
-    },
-    combatLogEvents =
-    {
-        "RANGE_AURA_APPLIED",
-        "RANGE_AURA_BROKEN",
-        "RANGE_AURA_BROKEN_SPELL",
-        "RANGE_AURA_REMOVED",
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_BROKEN",
-        "SPELL_AURA_BROKEN_SPELL",
-        "SPELL_AURA_REMOVED",
-        "SPELL_BUILDING_AURA_APPLIED",
-        "SPELL_BUILDING_AURA_BROKEN",
-        "SPELL_BUILDING_AURA_BROKEN_SPELL",
-        "SPELL_BUILDING_AURA_REMOVED",
-        "SPELL_PERIODIC_AURA_APPLIED",
-        "SPELL_PERIODIC_AURA_BROKEN",
-        "SPELL_PERIODIC_AURA_BROKEN_SPELL",
-        "SPELL_PERIODIC_AURA_REMOVED",
+        #OPTIONAL# #LABEL#Source Unit# #UNIT#
+        #LABEL#Destination Unit# #UNIT#
+        #LABEL#Spell ID# #SPELL#ID#
     }
 }
+]]
 
-function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:SetupListeningTo(valueGroup)
-    for i,auraName in ipairs(self.combatLogEvents) do
-        TheEyeAddon.Events.Evaluators:RegisterValueGroupListeningTo(valueGroup,
+
+this.type = "STATE"
+reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
+this.gameEvents =
+{
+    "PLAYER_TARGET_CHANGED"
+}
+local combatLogEvents =
+{
+    "RANGE_AURA_APPLIED",
+    "RANGE_AURA_BROKEN",
+    "RANGE_AURA_BROKEN_SPELL",
+    "RANGE_AURA_REMOVED",
+    "SPELL_AURA_APPLIED",
+    "SPELL_AURA_BROKEN",
+    "SPELL_AURA_BROKEN_SPELL",
+    "SPELL_AURA_REMOVED",
+    "SPELL_BUILDING_AURA_APPLIED",
+    "SPELL_BUILDING_AURA_BROKEN",
+    "SPELL_BUILDING_AURA_BROKEN_SPELL",
+    "SPELL_BUILDING_AURA_REMOVED",
+    "SPELL_PERIODIC_AURA_APPLIED",
+    "SPELL_PERIODIC_AURA_BROKEN",
+    "SPELL_PERIODIC_AURA_BROKEN_SPELL",
+    "SPELL_PERIODIC_AURA_REMOVED",
+}
+
+
+function this:SetupListeningTo(valueGroup)
+    for i=1, #combatLogEvents do
+        ValueGroupRegisterListeningTo(valueGroup,
         {
             listeningToKey = "COMBAT_LOG",
-            evaluator = TheEyeAddon.Events.Evaluators.Unit_Aura_Active,
-            inputValues = { auraName, valueGroup.inputValues[1], valueGroup.inputValues[2] }
+            evaluator = this,
+            inputValues = { combatLogEvents[i], valueGroup.inputValues[1], valueGroup.inputValues[2] }
         })
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:CalculateCurrentState(inputValues)
+function this:CalculateCurrentState(inputValues)
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
 
-    if TheEyeAddon.Auras:UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil then
+    if UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil then
         return true
     else
         return false
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:GetKey(event, ...)
+function this:GetKey(event, ...)
     local combatLogData = ...
     return table.concat({ combatLogData["sourceUnit"], combatLogData["destUnit"], combatLogData["spellID"] })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Aura_Active:Evaluate(valueGroup, event, ...)
+function this:Evaluate(valueGroup, event, ...)
     if event == "PLAYER_TARGET_CHANGED" then
-        return TheEyeAddon.Events.Evaluators.Unit_Aura_Active:CalculateCurrentState(valueGroup.inputValues)
+        return this:CalculateCurrentState(valueGroup.inputValues)
     else
         local combatLogData = ...
         

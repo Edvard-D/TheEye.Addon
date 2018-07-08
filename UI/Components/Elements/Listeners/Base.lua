@@ -1,0 +1,48 @@
+local TheEyeAddon = TheEyeAddon
+TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
+local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
+
+
+--[[ #this#TEMPLATE#
+{
+    nil
+}
+]]
+
+
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    Register                    function()
+    Unregister                  function()
+    OnNotify                    function(...)
+]]
+function this:Setup(
+    instance,
+    UIObject,
+    OnNotify,
+    Register,
+    Unregister
+)
+
+    instance.UIObject = UIObject
+    instance.OnNotify = OnNotify
+    instance.Register = Register
+    instance.Unregister = Unregister
+
+    instance.Notify = this.Notify
+    instance.Activate = this.Activate
+    instance.Deactivate = this.Deactivate
+end
+
+function this:Notify(...)
+    self:OnNotify(...)
+end
+
+function this:Activate()
+    self:Register()
+end
+
+function this:Deactivate()
+    self:Unregister()
+end

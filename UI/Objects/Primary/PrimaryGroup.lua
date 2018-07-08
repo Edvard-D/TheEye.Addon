@@ -46,7 +46,7 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             type = "STATE",
             valueHandlerKey = "Enabled",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             ListeningTo =
             {
                 Module_Enabled =
@@ -66,7 +66,7 @@ TheEyeAddon.UI.Objects:FormatData(
             type = "STATE",
             valueHandlerKey = "Visible",
             OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
             ListeningTo =
             {
@@ -79,7 +79,7 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.GroupChildren.ChildrenUpdateRegistration,
+            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenUpdateRegistration,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
@@ -94,7 +94,7 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.GroupChildren.ChildrenSortDescending,
+            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenSortDescending,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
@@ -105,7 +105,7 @@ TheEyeAddon.UI.Objects:FormatData(
         },
         {
             type = "EVENT",
-            OnEvaluate = TheEyeAddon.UI.Objects.GroupChildren.ChildrenArrange,
+            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenArrange,
             ListeningTo =
             {
                 UIOBJECT_WITHTAGS_VISIBILE_CHANGED =

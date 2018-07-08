@@ -1,28 +1,34 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Module_Enabled"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
 local select = select
 local table = table
 
 
--- inputValues = { --[[uiObjectKey]] "_" }
-TheEyeAddon.Events.Evaluators.Module_Enabled =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    reevaluateEvents =
-    {
-        ADDON_LOADED = true
-    },
-    gameEvents =
-    {
-        "ADDON_LOADED"
-    },
-    customEvents =
-    {
-        "SETTING_CHANGED"
-    }
+    inputValues = { #LABEL#UIObject Key# #UIOBJECT#KEY# }
+}
+]]
+
+
+this.type = "STATE"
+this.reevaluateEvents =
+{
+    ADDON_LOADED = true
+}
+this.gameEvents =
+{
+    "ADDON_LOADED"
+}
+this.customEvents =
+{
+    "SETTING_CHANGED"
 }
 
-function TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(inputValues)
+
+function this:CalculateCurrentState(inputValues)
     if TheEyeAddon.Settings ~= nil
             and table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
@@ -31,10 +37,10 @@ function TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(inpu
     end
 end
 
-function TheEyeAddon.Events.Evaluators.Module_Enabled:GetKey(event, ...)
+function this:GetKey(event, ...)
     return select(1, ...) -- SETTING_CHANGED: moduleKey
 end
 
-function TheEyeAddon.Events.Evaluators.Module_Enabled:Evaluate(valueGroup, event, ...)
-    return TheEyeAddon.Events.Evaluators.Module_Enabled:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(valueGroup, event, ...)
+    return this:CalculateCurrentState(valueGroup.inputValues)
 end

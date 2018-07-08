@@ -1,26 +1,28 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Coordinator = { Listeners = {} }
-local Listeners = TheEyeAddon.Events.Coordinator.Listeners
+TheEyeAddon.Events.Coordinator = {}
+local this = TheEyeAddon.Events.Coordinator
+this.Listeners = {}
+local Listeners = this.Listeners
 
-local ipairs = ipairs
+local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
 
 
 -- Event Handling
-local frame = CreateFrame("Frame", nil, UIParent)
-local function OnEvent(self, eventName, ...)
-    --print ("Coordinator OnEvent    " .. eventName) -- DEBUG
-    for i,listener in ipairs(Listeners[eventName]) do
-        listener:OnEvent(eventName, ...)
+local function RelayEvent(eventName, ...)
+    --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    local listeners = Listeners[eventName]
+    for i=1,#listeners do
+        listeners[i]:Notify(eventName, ...)
     end
 end
-frame:SetScript("OnEvent", OnEvent)
+frame:SetScript("OnEvent", RelayEvent)
 
 
--- Register/Unregister
-local function InsertListener(eventName, listener, isGameEvent)
-    if Listeners[eventName] == nil then
-        Listeners[eventName] = { listener }
+-- Register
+local function ListenerRegister(listener, eventName, isGameEvent)
+    if listeners[eventName] == nil then
+        listeners[eventName] = { listener }
         --print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
@@ -30,21 +32,39 @@ local function InsertListener(eventName, listener, isGameEvent)
         table.insert(Listeners[eventName], listener)
     end
 
-    local eventGroup = Listeners[eventName]
-    if eventGroup.listenerCount == nil then
-        eventGroup.listenerCount = 0
+    local listeners = Listeners[eventName]
+    if listeners.listenerCount == nil then
+        listeners.listenerCount = 0
     end
-    eventGroup.listenerCount = eventGroup.listenerCount + 1
+    listeners.listenerCount = listeners.listenerCount + 1
 end
 
-local function RemoveListener(eventName, listener, isGameEvent)
-    local eventGroup = Listeners[eventName]
-    table.removevalue(eventGroup, listener)
+local function ListenersRegister(listener, events, isGameEvent)
+    for i=1,#events do
+        ListenerRegister(listener, events[i], isGameEvent)
+    end
+end
+
+function this:Register(listener)
+    if listener.gameEvents ~= nil then
+        ListenersRegister(listener, listener.gameEvents, true)
+    end
+
+    if listener.customEvents ~= nil then
+        ListenersRegister(listener, listener.gameEvents, false)
+    end
+end
+
+
+-- Unregister
+local function ListenerUnregister(listener, eventName, isGameEvent)
+    local listeners = Listeners[eventName]
+    table.removevalue(listeners, listener)
     
-    eventGroup.listenerCount = eventGroup.listenerCount - 1
-    if eventGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+    listeners.listenerCount = listeners.listenerCount - 1
+    if listeners.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         Listeners[eventName] = nil
-        eventGroup = nil
+        listeners = nil
         --print ("UnregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
@@ -53,38 +73,26 @@ local function RemoveListener(eventName, listener, isGameEvent)
     end
 end
 
-function TheEyeAddon.Events.Coordinator:RegisterListener(listener)
-    if listener.gameEvents ~= nil then
-        for i,eventName in ipairs(listener.gameEvents) do
-            InsertListener(eventName, listener, true)
-        end
-    end
-
-    if listener.customEvents ~= nil then
-        for i,eventName in ipairs(listener.customEvents) do
-            InsertListener(eventName, listener, false)
-        end
+local function ListenersUnregister(listener, events, isGameEvent)
+    for i=1,#events do
+        ListenerUnregister(listener, events[i], isGameEvent)
     end
 end
 
-function TheEyeAddon.Events.Coordinator:UnregisterListener(listener)
+function this:Unregister(listener)
     if listener.gameEvents ~= nil then
-        for i,eventName in ipairs(listener.gameEvents) do
-            RemoveListener(eventName, listener, true)
-        end
+        ListenersUnregister(listener, listener.gameEvents, true)
     end
     
     if listener.customEvents ~= nil then
-        for i,eventName in ipairs(listener.customEvents) do
-            RemoveListener(eventName, listener, false)
-        end
+        ListenersUnregister(listener, listener.customEvents, false)
     end
 end
 
 
 -- Custom Events
-function TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, ...)
+function this:SendCustomEvent(eventName, ...)
     if Listeners[eventName] ~= nil then
-        OnEvent(frame, eventName, ...)
+        RelayEvent(eventName, ...)
     end
 end

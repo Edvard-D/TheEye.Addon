@@ -39,7 +39,7 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             type = "STATE",
             valueHandlerKey = "Enabled",
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             ListeningTo =
             {
                 Addon_Loaded =
@@ -59,7 +59,7 @@ TheEyeAddon.UI.Objects:FormatData(
             type = "STATE",
             valueHandlerKey = "Visible",
             OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            OnEvaluate = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
+            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
             OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
             ListeningTo =
             {

@@ -1,33 +1,40 @@
 local TheEyeAddon = TheEyeAddon
+local thisName = "Unit_Spec"
+local this = TheEyeAddon.Events.Evaluators[thisName]
 
-local GetInspectSpecialization = GetInspectSpecialization
-local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local select = select
 
 
--- inputValues = { --[[unit]] "_", --[[specID]] 0 }
---      unit: required
---      specID: required
-TheEyeAddon.Events.Evaluators.Unit_Spec =
+--[[ #this#TEMPLATE#
 {
-    type = "STATE",
-    reevaluateEvents =
+    inputValues =
     {
-        PLAYER_TARGET_CHANGED = true
-    },
-    gameEvents =
-    {
-        "ACTIVE_TALENT_GROUP_CHANGED",
-        "PLAYER_TARGET_CHANGED"
+        #LABEL#Unit# #UNIT#
+        #LABEL#Spec ID# #SPEC#ID#
     }
 }
+]]
 
-function TheEyeAddon.Events.Evaluators.Unit_Spec:CalculateCurrentState(inputValues)
+
+this.type = "STATE"
+reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
+this.gameEvents =
+{
+    "ACTIVE_TALENT_GROUP_CHANGED",
+    "PLAYER_TARGET_CHANGED"
+}
+
+
+function this:CalculateCurrentState(inputValues)
     local specID
 
     if inputValues[1] == "player" then
-        specID = GetSpecializationInfo(GetSpecialization())
+        this.playerSpec = this.playerSpec or select(1, GetSpecializationInfo(GetSpecialization()))
+        specID = this.playerSpec
     else
         specID = GetInspectSpecialization(inputValues[1])
     end
@@ -35,13 +42,13 @@ function TheEyeAddon.Events.Evaluators.Unit_Spec:CalculateCurrentState(inputValu
     return inputValues[2] == specID
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spec:GetKey(event, ...) -- doesn't get called on PLAYER_TARGET_CHANGED
-    return table.concat({ "player", select(1, GetSpecializationInfo(GetSpecialization())) })
+function this:GetKey(event, ...) -- doesn't get called on PLAYER_TARGET_CHANGED
+    return table.concat({ "player", this.playerSpec })
 end
 
-function TheEyeAddon.Events.Evaluators.Unit_Spec:Evaluate(valueGroup, event)
+function this:Evaluate(valueGroup, event)
     if self.reevaluateEvents[event] == true then
-        return TheEyeAddon.Events.Evaluators.Unit_Spec:CalculateCurrentState(valueGroup.inputValues)
+        return this:CalculateCurrentState(valueGroup.inputValues)
     else -- ACTIVE_TALENT_GROUP_CHANGED
         return true
     end
