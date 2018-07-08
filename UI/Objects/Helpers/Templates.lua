@@ -1,15 +1,15 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Templates = {}
 local this = TheEyeAddon.UI.Templates
-this.TagComponents = {}
+this.TaggedComponents = {}
 
 local table = table
 
 
 function this:ComponentAddToTag(tag, component)
-    if this.TagComponents[tag] == nil then
-        this.TagComponents[tag] = {}
+    if this.TaggedComponents[tag] == nil then
+        this.TaggedComponents[tag] = {}
     end
 
-    table.insert(this.TagComponents[tag], component)
+    table.insert(this.TaggedComponents[tag], component)
 end
