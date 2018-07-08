@@ -16,7 +16,7 @@ local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
     ValueAction                 function(#VALUE#)
     ValueEvaluator              ValueEvaluator
     OnValueChange               function(#VALUE#)
-    valueDefault                #VALUE#
+    defaultValue                #VALUE#
 ]]
 function this:Setup(
     instance,
