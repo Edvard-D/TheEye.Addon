@@ -183,6 +183,13 @@ UI\Factories\Icon.lua
 
 
 # ---------------------------
+# |	     UI\Templates     	|
+# ---------------------------
+UI\Templates\Default.lua
+
+
+
+# ---------------------------
 # |	      UI\Objects     	|
 # ---------------------------
 UI\Objects\UIParentGroup.lua
