@@ -14,12 +14,3 @@ function TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
         end
     end
 end
-
--- ChangeValue
-function TheEyeAddon.UI.Objects.ValueHandlers:OnSortRankChanged(valueChange)
-    if valueChange ~= nil then
-        self.value = self.value + valueChange
-    end
-
-    TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_SORTRANK_CHANGED", uiObject)
-end
