@@ -29,12 +29,12 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "Addon_Loaded",
+                    eventEvaluatorKey = "ADDON_LOADED",
                     inputValues = { --[[addonName]] "TheEyeAddon" },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "Game_Data_Loaded",
+                    eventEvaluatorKey = "GAMEDATA_LOADED",
                     inputValues = nil,
                     value = 4,
                 },
@@ -52,7 +52,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "Unit_Spec",
+                    eventEvaluatorKey = "UNIT_SPEC",
                     inputValues = { --[[unit]] "player", --[[specID]] 258 },
                     value = 2,
                 },

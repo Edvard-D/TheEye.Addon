@@ -69,27 +69,27 @@ Events\Evaluators\Combat\EventDataFormats.lua
 
 
 # --- General ---
-Events\Evaluators\General\Addon_Loaded.lua
-Events\Evaluators\General\Game_Data_Loaded.lua
+Events\Evaluators\General\ADDON_LOADED.lua
+Events\Evaluators\General\GAMEDATA_LOADED.lua
 
 
 # --- UIObject ---
-Events\Evaluators\UIObject\UIObject_Enabled.lua
-Events\Evaluators\UIObject\UIObject_Module_Enabled.lua
-Events\Evaluators\UIObject\UIObject_Visible.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_INITIALIZED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_SORTRANK_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_VISIBILE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_ENABLED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_ENABLED.lua
+Events\Evaluators\UIObject\UIOBJECT_VISIBLE.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 
 
 # --- Unit ---
-Events\Evaluators\Unit\Unit_Aura_Active.lua
-Events\Evaluators\Unit\Unit_CanAttack_Unit.lua
-Events\Evaluators\Unit\Unit_Class.lua
-Events\Evaluators\Unit\Unit_Spec.lua
-Events\Evaluators\Unit\Unit_Spellcast_Active.lua
-Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
+Events\Evaluators\Unit\UNIT_AURA_ACTIVE.lua
+Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT.lua
+Events\Evaluators\Unit\UNIT_CLASS.lua
+Events\Evaluators\Unit\UNIT_SPEC.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_START_RECENTLY.lua
 
 
 
