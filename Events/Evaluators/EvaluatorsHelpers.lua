@@ -8,7 +8,7 @@ local select = select
 local table = table
 
 
--- SETUP
+-- Register
 local function ValueGroupGet(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
         evaluator.ValueGroups = {}
@@ -69,6 +69,21 @@ local function ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
     end
 end
 
+function this:ListenerRegister(evaluatorKey, listener)
+    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
+    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
+    local listeners = ValueGroupGetListeners(valueGroup)
+    
+    table.insert(listeners, listener)
+    EvaluatorIncreaseListenerCount(evaluator)
+    ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
+
+    if valueGroup.currentState == true then -- Set in ValueGroupIncreaseListenerCount
+        listener:Notify(true)
+    end
+end
+
+-- Unregister
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
@@ -95,7 +110,17 @@ local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
     end
 end
 
--- LISTENING TO: handling of Evaluators that are listening to an Evaluator
+function this:ListenerUnregister(evaluatorKey, listener)
+    local evaluator = this[evaluatorKey]
+    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
+    local listeners = ValueGroupGetListeners(valueGroup)
+
+    table.removevalue(listeners, listener)
+    EvaluatorDecreaseListenerCount(evaluator)
+    ValueGroupDecreaseListenerCount(evaluator, valueGroup)
+end
+
+-- Listening To: handling of Evaluators that are listening to an Evaluator
 function this:ValueGroupRegisterListeningTo(valueGroup, listener)
     if valueGroup.ListeningTo == nil then
         valueGroup.ListeningTo = {}
@@ -112,34 +137,7 @@ function this:OnEventEvaluator(newState, event, ...)
     self.valueGroup.evaluator:OnEvent(event, ...)
 end
 
-
--- LISTENERS: handling of Listeners that are listening to an Evaluator
-function this:ListenerRegister(evaluatorKey, listener)
-    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
-    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
-    local listeners = ValueGroupGetListeners(valueGroup)
-    
-    table.insert(listeners, listener)
-    EvaluatorIncreaseListenerCount(evaluator)
-    ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
-
-    if valueGroup.currentState == true then -- Set in ValueGroupIncreaseListenerCount
-        listener:Notify(true)
-    end
-end
-
-function this:ListenerUnregister(evaluatorKey, listener)
-    local evaluator = this[evaluatorKey]
-    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
-    local listeners = ValueGroupGetListeners(valueGroup)
-
-    table.removevalue(listeners, listener)
-    EvaluatorDecreaseListenerCount(evaluator)
-    ValueGroupDecreaseListenerCount(evaluator, valueGroup)
-end
-
-
--- EVENT EVALUATION
+-- Event Evaluation
 local function ListenersNotify(listeners, message)
     for i=1,#listeners do
         listeners[i]:Notify(message)
