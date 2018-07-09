@@ -4,12 +4,12 @@ TheEyeAddon.UI.Factories.Frame = {}
 local CreateFrame = CreateFrame
 
 
-function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, parentFrame, inheritsFrom, dimensionTemplate)
-	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
+function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
+	local instance = CreateFrame(frameType, nil, UIParent, inheritsFrom)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = TheEyeAddon.UI.Factories.Frame.SetSizeWithEvent
-	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
+	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, UIParent, dimensionTemplate)
 
 	return instance
 end

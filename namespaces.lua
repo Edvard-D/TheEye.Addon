@@ -16,4 +16,3 @@ TheEyeAddon = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Objects = {}
             TheEyeAddon.UI.Objects.Instances = {}
-            TheEyeAddon.UI.Objects.Templates = {}

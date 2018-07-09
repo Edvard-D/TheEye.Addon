@@ -33,12 +33,16 @@ function this:Setup(
         instance.Sort
     )
 
-    instance.SortAction = this[sortActionName]
+    if sortActionName ~= nil then
+        instance.SortAction = this[sortActionName]
+    end
     instance.sortValueComponentName = sortValueComponentName
 end
 
 function this:Sort()
-    self.SortAction()
+    if self.SortAction ~= nil then
+        self:SortAction()
+    end
 end
 
 -- Sort Actions

@@ -1,15 +1,16 @@
-local thisKey = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" } -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
-local childrenTags = { --[[tags]] "HUD", "ICON", "PRIMARY" }
-
-
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
+    Children =
+    {
+        childTags = { --[[tags]] "HUD", "ICON", "PRIMARY" },
+        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
+        sortActionName = "SortDescending",
+        sortValueComponentName = "PriorityRank",
+    },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
-        parentKey = "GROUP_UIPARENT",
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
         DimensionTemplate =
         {
             PointSettings =
@@ -17,107 +18,49 @@ TheEyeAddon.UI.Objects:FormatData(
                 point = "TOP",
                 relativePoint = "CENTER",
                 offsetY = -50,
-            }
-        }
-    },
-    Children = {},
-    ValueHandlers =
-    {
-        Enabled =
-        {
-            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
-            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
-            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Enable,
-            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Disable,
-            validValues = { [6] = true },
+            },
         },
-        Visible =
-        {
-            Setup = TheEyeAddon.UI.Objects.ValueHandlers.SetupStateValue,
-            ChangeValue = TheEyeAddon.UI.Objects.ValueHandlers.OnStateKeyChange,
-            OnValidValue = TheEyeAddon.UI.Objects.ValueHandlers.Show,
-            OnInvalidValue = TheEyeAddon.UI.Objects.ValueHandlers.Hide,
-            validValues = { [2] = true },
-        }
     },
-    ListenerGroups =
+    EnabledState =
     {
-        Enabled =
+        ValueHandler =
         {
-            type = "STATE",
-            valueHandlerKey = "Enabled",
-            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
-            ListeningTo =
+            validKeys = { [6] = true },
+        },
+        ListenerGroup =
+        {
+            Listeners =
             {
-                Module_Enabled =
                 {
+                    eventEvaluatorKey = "Module_Enabled",
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
-                    inputValues = thisKey
                 },
-                UIObject_Visible =
                 {
+                    eventEvaluatorKey = "Module_Enabled",
+                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" },
                     value = 4,
-                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" }
-                }
-            }
+                },
+            },
         },
-        Visible =
+    },
+    VisibleState =
+    {
+        ValueHandler =
         {
-            type = "STATE",
-            valueHandlerKey = "Visible",
-            OnSetup = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            Notify = TheEyeAddon.UI.Objects.ListenerGroups.ChangeValueByState,
-            OnTeardown = TheEyeAddon.UI.Objects.ListenerGroups.ValueHandlerTriggerEvaluation,
-            ListeningTo =
+            validKeys = { [2] = true },
+        },
+        ListenerGroup =
+        {
+            Listeners =
             {
-                Unit_CanAttack_Unit =
                 {
+                    eventEvaluatorKey = "Unit_CanAttack_Unit",
+                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" },
                     value = 2,
-                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" }
-                }
-            }
+                },
+            },
         },
-        {
-            type = "EVENT",
-            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenUpdateRegistration,
-            ListeningTo =
-            {
-                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
-                {
-                    inputValues = childrenTags
-                },
-                UIObject_Visible =
-                {
-                    inputValues = thisKey
-                },
-            }
-        },
-        {
-            type = "EVENT",
-            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenSortDescending,
-            ListeningTo =
-            {
-                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
-                {
-                    inputValues = childrenTags
-                },
-            }
-        },
-        {
-            type = "EVENT",
-            Notify = TheEyeAddon.UI.Objects.GroupChildren.ChildrenArrange,
-            ListeningTo =
-            {
-                UIOBJECT_WITHTAGS_VISIBILE_CHANGED =
-                {
-                    inputValues = childrenTags
-                },
-                UIOBJECT_WITHTAGS_SORTRANK_CHANGED =
-                {
-                    inputValues = childrenTags
-                },
-            }
-        },
-    }
+    },
 }
 )

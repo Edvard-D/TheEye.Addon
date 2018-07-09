@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Children= {}
 local this = TheEyeAddon.UI.Components.Children
+this.name = "Children"
 
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
@@ -10,12 +11,14 @@ local table = table
 local unpack = unpack
 
 
+TheEyeAddon.UI.Templates:ComponentAddToTag("GROUP", this)
+
 --[[ #this#TEMPLATE#
 {
     childTags = { #ARRAY#TAG# }
-    GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
-    sortActionName = #SORTACTION#NAME#
-    sortValueComponentName = #COMPONENT#NAME#
+    #OPTIONAL#GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
+    #OPTIONAL#sortActionName = #SORTACTION#NAME#
+    #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
 }
 ]]
 
@@ -159,15 +162,19 @@ local function GetSizeFromRects(rects)
 end
 
 function this:Arrange()
-    local children = self.ValueHandler.value
-    local frame = self.UIObject.frame
     local groupArranger = self.GroupArranger
+    if groupArranger == nil then
+        return
+    end
+
+    local children = self.ValueHandler.value
+    local frame = self.UIObject.Frame
     local combinedOffsetX = 0
     local combinedOffsetY = 0
     local childRects = {}
 
     for i = 1, #children do
-        local childFrame = children[i].frame
+        local childFrame = children[i].Frame
 		local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
 		
 		if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
@@ -191,7 +198,7 @@ end
 function this:UpdateRegisteredChildren(state, event, ...)
     local childUIObject = ...
 
-    if childUIObject.frame == nil then
+    if childUIObject.VisibleState.ValueHandler.value == false then
         self.ValueHandler:Remove(childUIObject)
     else
         self.ValueHandler:Insert(childUIObject)

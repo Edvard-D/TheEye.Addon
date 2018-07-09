@@ -1,27 +1,38 @@
 local TheEyeAddon = TheEyeAddon
 
-local ipairs = ipairs
-local pairs = pairs
 local table = table
 
 
-function TheEyeAddon.UI.Objects:FormatData(uiObject)
-    uiObject.DisplayData.UIObject = uiObject
+function TheEyeAddon.UI.Objects:FormatData(UIObject)
+    UIObject.DisplayData.UIObject = UIObject
 
-    local key = table.concat(uiObject.tags, "_")
-    uiObject.key = key
-    TheEyeAddon.UI.Objects.Instances[key] = uiObject
+    local key = table.concat(UIObject.tags, "_")
+    UIObject.key = key
+    TheEyeAddon.UI.Objects.Instances[key] = UIObject
 
     local searchableTags = {}
-    for i,tag in ipairs(uiObject.tags) do
-        searchableTags[tag] = true
+    local tags = UIObject.tags
+    for i=1,#tags do
+        searchableTags[tags[i]] = true
     end
-    uiObject.tags = searchableTags
+    UIObject.tags = searchableTags
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
-    for k,uiObject in pairs(TheEyeAddon.UI.Objects.Instances) do
-        TheEyeAddon.UI.Objects.ValueHandlers:Setup(uiObject)
-        TheEyeAddon.UI.Objects.ListenerGroups:SetupGroup(uiObject, uiObject.ListenerGroups.Enabled)
+    local ComponentsAttachByTag = TheEyeAddon.UI.Templates.ComponentsAttachByTag
+    local EnabledStateSetup = TheEyeAddon.UI.Components.EnabledState.Setup
+    local pairs = pairs
+    local TaggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
+    local UIObjectHasTags = TheEyeAddon.UI.Tags.UIObjectHasTags
+
+    for instanceKey,UIObject in pairs(TheEyeAddon.UI.Objects.Instances) do
+        UIObject.EnabledState = UIObject.EnabledState or {}
+        EnabledStateSetup(UIObject.EnabledState, UIObject)
+
+        for tag,v in pairs(TaggedComponents) do
+            if tag == "DEFAULT" or UIObjectHasTags(UIObject, tag) then
+                ComponentsAttachByTag(tag, UIObject)
+            end
+        end
     end
 end
