@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Tags = {}
-this = TheEyeAddon.Tags
+local this = TheEyeAddon.Tags
 
 local ipairs = ipairs
 local table = table
