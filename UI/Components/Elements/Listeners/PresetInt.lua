@@ -15,17 +15,17 @@ local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
 --[[ #SETUP#
     instance
     uiObject                    UIObject
-    onNotify                    function(listener, ...)
+    notificationHandler         { OnNotify:function(listener, ...) }
 ]]
 function this.Setup(
     instance,
     uiObject,
-    onNotify
+    notificationHandler
 )
 
     inherited.Setup(
         instance,
         uiObject,
-        onNotify
+        notificationHandler
     )
 end

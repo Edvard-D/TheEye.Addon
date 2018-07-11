@@ -13,8 +13,8 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 --[[ #SETUP#
     instance
     uiObject                    UIObject
-    listenerSetup               function(Listener, UIObject, ListenerGroup)
-    onNotify                    function(...)
+    listenerSetup               function(listener, uiObject, listenerGroup)
+    onNotify                    function(listener, ...)
     onActivate                  function()
     onDeactivate                function()
 ]]
@@ -28,6 +28,7 @@ function this.Setup(
 )
 
     instance.UIObject = uiObject
+    instance.OnNotify = onNotify
     instance.OnActivate = onActivate
     instance.OnDeactivate = onDeactivate
     
@@ -36,7 +37,7 @@ function this.Setup(
 
     local listeners = instance.Listeners
     for i=1, #listeners do -- must come after value assignment
-        listenerSetup(listeners[i], uiObject, onNotify)
+        listenerSetup(listeners[i], uiObject, instance)
     end
 end
 
