@@ -39,7 +39,6 @@ local function ListenerRegister(listener, eventName, isGameEvent)
 end
 
 local function ListenersRegister(listener, events, isGameEvent)
-    print ("listener.name: " .. tostring(listener.name))
     for i=1,#events do
         ListenerRegister(listener, events[i], isGameEvent)
     end
