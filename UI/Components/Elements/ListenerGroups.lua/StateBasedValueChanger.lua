@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger
 
 local select = select
 
@@ -27,17 +27,18 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
+        ListenerWithIntSetup,
         ValueHandler,
         this.ChangeValueByState
     )
 end
 
-function this:ChangeValueByState(...)
-    local state = select(...) -- @TODO fix this select since it's not certain what value "state" will be
+function this:ChangeValueByState(listener, ...)
+    local state = select(2, ...)
 
     if state == true then
-        return value
+        return listener.value
     else
-        return self.value * -1
+        return listener.value * -1
     end
 end

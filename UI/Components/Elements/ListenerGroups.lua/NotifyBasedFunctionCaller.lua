@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
-local EvaluatorListenerSetup = TheEyeAddon.UI.Components.Elements.Listeners.EvaluatorListener.Setup
+local ListenerBaseSetup = TheEyeAddon.UI.Components.Elements.Listeners.Base.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -16,20 +16,26 @@ local EvaluatorListenerSetup = TheEyeAddon.UI.Components.Elements.Listeners.Eval
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    OnNotify                    function(...)
+    CalledFunction              function(...)
 ]]
 function this:Setup(
     instance,
     UIObject,
-    OnNotify
+    CalledFunction
 )
 
     inherited:Setup(
         instance,
         UIObject,
-        EvaluatorListenerSetup,
-        OnNotify,
+        ListenerBaseSetup,
+        this.OnNotify,
         nil,
         nil
     )
+
+    instance.CalledFunction = CalledFunction
+end
+
+function this.CallFunction(listener, ...)
+    self:CalledFunction(...)
 end
