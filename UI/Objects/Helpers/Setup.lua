@@ -20,18 +20,17 @@ end
 
 function TheEyeAddon.UI.Objects:Initialize()
     local ComponentsAttachByTag = TheEyeAddon.UI.Templates.ComponentsAttachByTag
-    local EnabledStateSetup = TheEyeAddon.UI.Components.EnabledState.Setup
+    local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
     local TaggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
-    local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
+    local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 
-    for instanceKey,UIObject in pairs(TheEyeAddon.UI.Objects.Instances) do
-        UIObject.EnabledState = UIObject.EnabledState or {}
-        EnabledStateSetup(UIObject.EnabledState, UIObject)
+    for instanceKey,v in pairs(instances) do
+        local uiObject = instances[instanceKey]
 
         for tag,v in pairs(TaggedComponents) do
-            if tag == "DEFAULT" or UIObjectHasTags(UIObject, tag) then
-                ComponentsAttachByTag(tag, UIObject)
+            if tag == "DEFAULT" or UIObjectHasTag(uiObject, tag) then
+                ComponentsAttachByTag(tag, uiObject)
             end
         end
     end
