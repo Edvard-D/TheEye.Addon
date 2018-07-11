@@ -7,7 +7,7 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
     uiObject.DisplayData.UIObject = uiObject
 
     local key = table.concat(uiObject.tags, "_")
-    UIObject.key = key
+    uiObject.key = key
     TheEyeAddon.UI.Objects.Instances[key] = uiObject
 
     local searchableTags = {}
