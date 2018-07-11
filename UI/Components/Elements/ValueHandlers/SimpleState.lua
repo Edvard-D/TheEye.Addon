@@ -14,19 +14,25 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 --[[ #SETUP#
     instance
     uiObject                    UIObject
-    onStateChange               function()
+    stateChangeListener         { OnStateChange(state) }
 ]]
 function this.Setup(
     instance,
     uiObject,
-    onStateChange
+    stateChangeListener
 )
 
     inherited.Setup(
         instance,
         uiObject,
         nil,
-        onStateChange,
+        this.OnValueChange,
         false
     )
+
+    instance.StateChangeListener = stateChangeListener
+end
+
+function this:OnValueChange(state)
+    self.StateChangeListener:OnStateChange(state)
 end

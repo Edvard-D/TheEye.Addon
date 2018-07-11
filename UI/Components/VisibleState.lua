@@ -49,16 +49,15 @@ function this.Setup(
         this.Hide
     )
     
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
     instance.EnabledStateReactor = {}
     EnabledStateReactorSetup(
         instance.EnabledStateReactor,
         uiObject,
-        instance.OnEnable,
-        instance.OnDisable
+        instance
     )
+
+    instance.OnEnable = this.OnEnable
+    instance.OnDisable = this.OnDisable
 end
 
 function this:OnEnable()
