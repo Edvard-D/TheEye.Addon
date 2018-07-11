@@ -34,7 +34,7 @@ function this.Setup(
     IntegerKeyStateSetup(
         instance.ValueHandler,
         uiObject,
-        instance.OnStateChange
+        instance
     )
 
     instance.ListenerGroup = instance.ListenerGroup or {}

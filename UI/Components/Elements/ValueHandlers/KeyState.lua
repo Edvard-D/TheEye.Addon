@@ -20,14 +20,14 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Components.Elements.ValueEvaluato
     uiObject                    UIObject
     valueAction                 function(#VALUE#)
     defaultValue                #VALUE#
-    onStateChange               function(#BOOL#)
+    stateChangeListener         table { OnStateChange = function(state) }
 ]]
 function this.Setup(
     instance,
     uiObject,
     valueAction,
     defaultValue,
-    onStateChange
+    stateChangeListener
 )
 
     instance.ValueEvaluator = instance.ValueEvaluator or {}
@@ -46,11 +46,11 @@ function this.Setup(
         defaultValue
     )
 
-    instance.OnStateChange = onStateChange
+    instance.StateChangeListener = stateChangeListener
     instance.state = nil
 end
 
 function this:OnValueChange(state)
     self.state = self.validKeys[self.value]
-    self:OnStateChange(state)
+    self.StateChangeListener:OnStateChange(state)
 end
