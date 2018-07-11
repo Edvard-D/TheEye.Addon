@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "COMBAT_LOG"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.COMBAT_LOG = {}
+local this = TheEyeAddon.Events.Evaluators.COMBAT_LOG
 
 local CombatLogEventDataFormats = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
@@ -21,7 +21,6 @@ local UnitGUID = UnitGUID
 ]]
 
 
-this.type = "EVENT"
 this.gameEvents =
 {
     "COMBAT_LOG_EVENT_UNFILTERED"

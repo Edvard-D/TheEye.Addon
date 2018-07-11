@@ -1,6 +1,9 @@
+-- @TODO maybe refactor to use CombatEvent?
+
 local TheEyeAddon = TheEyeAddon
-local thisName = "Unit_Spellcast_Active"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
+this.name = "UNIT_SPELLCAST_ACTIVE_CHANGED"
 
 local select = select
 local table = table
@@ -18,7 +21,6 @@ local UnitCastingInfo = UnitCastingInfo
 ]]
 
 
-this.type = "STATE"
 this.gameEvents =
 {
     "UNIT_SPELLCAST_CHANNEL_START",
@@ -45,9 +47,10 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(valueGroup, event)
-    if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then -- @TODO maybe refactor to use CombatEvent?
-        return true
-    else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
-        return false
+    local isActive = event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" -- else UNIT_SPELLCAST_STOP, UNIT_SPELLCAST_CHANNEL_STOP
+    
+    if valueGroup.currentState ~= isActive then
+        valueGroup.currentState = isActive
+        return true, this.name, isActive
     end
 end

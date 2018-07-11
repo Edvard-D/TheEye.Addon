@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "UNIT_SPELLCAST_INSTANT"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT
+this.name = "UNIT_SPELLCAST_INSTANT"
 
 local table = table
 
@@ -16,7 +17,6 @@ local table = table
 ]]
 
 
-this.type = "EVENT"
 this.gameEvents =
 {
     "UNIT_SPELLCAST_START",
@@ -33,7 +33,7 @@ end
 function this:Evaluate(valueGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         if valueGroup.isCasting ~= true then
-            return true, "UNIT_SPELLCAST_INSTANT", ...
+            return true, this.name, ...
         end
         valueGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then

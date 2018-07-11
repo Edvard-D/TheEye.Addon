@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "Addon_Loaded"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.ADDON_LOADED = {}
+local this = TheEyeAddon.Events.Evaluators.ADDON_LOADED
+this.name = "ADDON_LOADED"
 
 local select = select
 
@@ -12,7 +13,6 @@ local select = select
 ]]
 
 
-this.type = "STATE"
 this.gameEvents = 
 {
     "ADDON_LOADED"
@@ -28,5 +28,5 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate()
-    return true
+    return true, this.name, true
 end

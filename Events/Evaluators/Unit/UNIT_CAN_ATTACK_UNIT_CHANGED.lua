@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "Unit_CanAttack_Unit"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
+this.name = "UNIT_CAN_ATTACK_UNIT_CHANGED"
 
 local UnitCanAttack = UnitCanAttack
 
@@ -16,7 +17,6 @@ local UnitCanAttack = UnitCanAttack
 ]]
 
 
-this.type = "STATE"
 reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
@@ -32,5 +32,10 @@ function this:CalculateCurrentState(inputValues)
 end
 
 function this:Evaluate(valueGroup)
-    return UnitCanAttack(valueGroup.inputValues[1], valueGroup.inputValues[2])
+    local canAttack = UnitCanAttack(valueGroup.inputValues[1], valueGroup.inputValues[2])
+
+    if valueGroup.currentState ~= canAttack then
+        valueGroup.currentState = canAttack
+        return true, this.name, canAttack
+    end
 end

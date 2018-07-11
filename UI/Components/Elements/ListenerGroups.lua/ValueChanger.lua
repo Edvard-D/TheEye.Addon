@@ -3,13 +3,12 @@ TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
-local ListenerSetup = TheEyeAddon.UI.Components.Elements.Listeners.EvaluatorListener.Setup
+local PresetIntSetup = TheEyeAddon.UI.Components.Elements.Listeners.PresetInt.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    value = #INT#
 }
 ]]
 
@@ -18,7 +17,7 @@ local ListenerSetup = TheEyeAddon.UI.Components.Elements.Listeners.EvaluatorList
     instance
     UIObject                    UIObject
     ValueHandler                ValueHandler
-    ValueAction                 function(...)
+    ValueAction                 function(Listener, ...)
 ]]
 function this:Setup(
     instance,
@@ -30,7 +29,7 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        ListenerSetup,
+        PresetIntSetup,
         this.ChangeValue,
         ValueHandler.Reset,
         ValueHandler.Reset
@@ -40,6 +39,6 @@ function this:Setup(
     instance.ValueAction = ValueAction
 end
 
-function this:ChangeValue(...)
-    self.ValueHandler:Change(self:ValueAction(...))
+function this:ChangeValue(listener, ...)
+    self.ValueHandler:Change(self:ValueAction(listener, ...))
 end

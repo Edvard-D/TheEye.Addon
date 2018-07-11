@@ -41,6 +41,7 @@ Namespaces.lua
 
 Auras.lua
 TableHelpers.lua
+Tags.lua
 Timers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
@@ -69,27 +70,27 @@ Events\Evaluators\Combat\EventDataFormats.lua
 
 
 # --- General ---
-Events\Evaluators\General\Addon_Loaded.lua
-Events\Evaluators\General\Game_Data_Loaded.lua
+Events\Evaluators\General\ADDON_LOADED.lua
+Events\Evaluators\General\GAMEDATA_LOADED.lua
 
 
 # --- UIObject ---
-Events\Evaluators\UIObject\UIObject_Enabled.lua
-Events\Evaluators\UIObject\UIObject_Module_Enabled.lua
-Events\Evaluators\UIObject\UIObject_Visible.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_INITIALIZED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_SORTRANK_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITHTAGS_VISIBILE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 
 
 # --- Unit ---
-Events\Evaluators\Unit\Unit_Aura_Active.lua
-Events\Evaluators\Unit\Unit_CanAttack_Unit.lua
-Events\Evaluators\Unit\Unit_Class.lua
-Events\Evaluators\Unit\Unit_Spec.lua
-Events\Evaluators\Unit\Unit_Spellcast_Active.lua
-Events\Evaluators\Unit\Unit_Spellcast_CastRecently.lua
+Events\Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
+Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_START_RECENTLY_CHANGED.lua
 
 
 
@@ -106,7 +107,6 @@ UI\DimensionTemplates\Icon_Large.lua
 UI\Objects\Helpers\GroupArrangers.lua
 UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
-UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\Templates.lua
 
 
@@ -117,15 +117,14 @@ UI\Objects\Helpers\Templates.lua
 # --- Listener Groups ---
 UI\Components\Elements\ListenerGroups\Base.lua
 UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Components\Elements\ListenerGroups\StateBasedValueChanger.lua
+UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
 UI\Components\Elements\ListenerGroups\ValueChanger.lua
 UI\Components\Elements\ListenerGroups\ValueSetter.lua
 
 
 # --- Listeners ---
 UI\Components\Elements\Listeners\Base.lua
-UI\Components\Elements\Listeners\EvaluatorListener.lua
-UI\Components\Elements\Listeners\EventListener.lua
+UI\Components\Elements\Listeners\PresetInt.lua
 
 
 # --- Listener Value Change Handlers ---

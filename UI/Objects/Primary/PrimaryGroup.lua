@@ -32,12 +32,12 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "Module_Enabled",
+                    eventEvaluatorKey = "UIOBJECT_MODULE_ENABLED_CHANGED",
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "Module_Enabled",
+                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
                     inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" },
                     value = 4,
                 },
@@ -55,7 +55,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "Unit_CanAttack_Unit",
+                    eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" },
                     value = 2,
                 },

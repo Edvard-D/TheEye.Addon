@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "Unit_Class"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.UNIT_CLASS_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_CLASS_CHANGED
+this.name = "UNIT_CLASS_CHANGED"
 
 local select = select
 local UnitClass = UnitClass
@@ -17,7 +18,6 @@ local UnitClass = UnitClass
 ]]
 
 
-this.type = "STATE"
 reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
@@ -34,5 +34,10 @@ function this:CalculateCurrentState(inputValues)
 end
 
 function this:Evaluate(valueGroup)
-    return this:CalculateCurrentState(valueGroup.inputValues)
+    local isClass = this:CalculateCurrentState(valueGroup.inputValues)
+
+    if valueGroup.currentState == isClass then
+        valueGroup.currentState = isClass
+        return true, this.name, isClass
+    end
 end

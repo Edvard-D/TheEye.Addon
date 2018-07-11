@@ -1,8 +1,9 @@
 local TheEyeAddon = TheEyeAddon
-local thisName = "UIOBJECT_WITHTAGS_INITIALIZED"
-local this = TheEyeAddon.Events.Evaluators[thisName]
+TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBILE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBILE_CHANGED
+this.name = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED"
 
-local UIObjectHasTags = TheEyeAddon.UI.Objects.Tags.UIObjectHasTags
+local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
 
 --[[ #this#TEMPLATE#
@@ -12,13 +13,12 @@ local UIObjectHasTags = TheEyeAddon.UI.Objects.Tags.UIObjectHasTags
 ]]
 
 
-this.type = "EVENT"
-reevaluateEvents =
+this.reevaluateEvents =
 {
     UIOBJECT_HIDDEN = true,
     UIOBJECT_SHOWN = true,
 }
-customEvents =
+this.customEvents =
 {
     "UIOBJECT_HIDDEN",
     "UIOBJECT_SHOWN",
@@ -28,6 +28,6 @@ customEvents =
 function this:Evaluate(valueGroup, event, ...)
     local uiObject = ...
     local sendEvent = UIObjectHasTags(uiObject, valueGroup.inputValues, valueGroup.key)
-
-    return sendEvent, thisName, uiObject
+    
+    return sendEvent, this.name, uiObject
 end
