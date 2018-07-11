@@ -32,5 +32,5 @@ function this.Setup(
 end
 
 function this:GetKeyValue(value)
-    return keyPairs[value]
+    return self.keyPairs[value]
 end
