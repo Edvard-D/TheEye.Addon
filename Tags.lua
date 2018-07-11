@@ -1,5 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Objects.Tags = {}
+TheEyeAddon.Tags = {}
+this = TheEyeAddon.Tags
 
 local ipairs = ipairs
 local table = table
@@ -16,7 +17,7 @@ local function KeyHasTags(key, tags)
 end
 
 
-function TheEyeAddon.UI.Objects.Tags:UIObjectHasTags(uiObject, tags, tagsConcatenated)
+function this:UIObjectHasTags(uiObject, tags, tagsConcatenated)
     local tagGroup = tagGroups[tagsConcatenated]
 
     if tagGroup ~= nil and tagGroup[uiObject.key] ~= nil then

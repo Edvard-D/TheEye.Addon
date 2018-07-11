@@ -41,6 +41,7 @@ Namespaces.lua
 
 Auras.lua
 TableHelpers.lua
+Tags.lua
 Timers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
@@ -106,7 +107,6 @@ UI\DimensionTemplates\Icon_Large.lua
 UI\Objects\Helpers\GroupArrangers.lua
 UI\Objects\Helpers\Pools.lua
 UI\Objects\Helpers\Setup.lua
-UI\Objects\Helpers\Tags.lua
 UI\Objects\Helpers\Templates.lua
 
 

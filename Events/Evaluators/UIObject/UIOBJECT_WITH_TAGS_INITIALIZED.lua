@@ -3,7 +3,7 @@ TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED
 this.name = "UIOBJECT_WITH_TAGS_INITIALIZED"
 
-local UIObjectHasTags = TheEyeAddon.UI.Objects.Tags.UIObjectHasTags
+local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
 
 --[[ #this#TEMPLATE#
