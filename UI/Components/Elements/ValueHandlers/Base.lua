@@ -32,7 +32,7 @@ function this.Setup(
     instance.ValueEvaluator = valueEvaluator
     instance.OnValueChange = onValueChange
     instance.defaultValue = defaultValue
-    instance.value = defaultValuee
+    instance.value = defaultValue
 
     instance.Change = this.Change
     instance.Reset = this.Reset
