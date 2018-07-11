@@ -18,7 +18,7 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
     onActivate                  function()
     onDeactivate                function()
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     listenerSetup,

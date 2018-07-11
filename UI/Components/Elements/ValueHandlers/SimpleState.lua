@@ -16,13 +16,13 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
     uiObject                    UIObject
     onStateChange               function()
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     onStateChange
 )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         nil,

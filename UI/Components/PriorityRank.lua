@@ -34,18 +34,18 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
     instance
     uiObject                    UIObject
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject
 )
 
     if instance.isDynamic == true then
-        DynamicSortRankSetup:Setup(
+        DynamicSortRankSetup.Setup(
             instance,
             uiObject
         )
     else
-        SortRankSetup:Setup(
+        SortRankSetup.Setup(
             instance,
             uiObject,
             nil

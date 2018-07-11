@@ -19,7 +19,7 @@ local table = table
     sortActionnName             string
     sortValueComponentName      string
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     sortActionName,
@@ -27,7 +27,7 @@ function this:Setup(
 )
 
     instance.Sort = this.Sort
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         instance.Sort

@@ -16,13 +16,13 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnValue
     uiObject                    UIObject
     keyPairs                    { #VALUE# = #VALUE# }
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     keyPairs
 )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         this.GetKeyValue

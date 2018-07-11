@@ -22,7 +22,7 @@ local ReturnKeyPairValueSetup = TheEyeAddon.UI.Components.Elements.ValueEvaluato
     defaultValue                #VALUE#
     onStateChange               function(#BOOL#)
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     valueAction,
@@ -37,7 +37,7 @@ function this:Setup(
         instance.validKeys
     )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         valueAction,

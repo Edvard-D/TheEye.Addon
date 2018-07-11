@@ -20,7 +20,7 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
     instance
     uiObject                    UIObject
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject
 )
@@ -33,7 +33,7 @@ function this:Setup(
         instance.OnSortRankChange
     )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         instance.ListenerGroup

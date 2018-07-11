@@ -15,7 +15,7 @@ local this = TheEyeAddon.UI.Components.Elements.ValueEvaluators.Base
     uiObject                    UIObject
     evalute                     function(#VALUE#)
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     evalute

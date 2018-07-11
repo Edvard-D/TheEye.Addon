@@ -20,7 +20,7 @@ local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.Value
     onEnable                    function()
     onDisable                   function()
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     onEnable,
@@ -50,7 +50,7 @@ function this:Setup(
         instance.ValueHandler
     )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         instance.ListenerGroup

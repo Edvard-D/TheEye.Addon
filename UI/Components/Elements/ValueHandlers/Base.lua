@@ -18,7 +18,7 @@ local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
     onValueChange               function(#VALUE#)
     defaultValue                #VALUE#
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     valueAction,

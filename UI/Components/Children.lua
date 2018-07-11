@@ -27,7 +27,7 @@ TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
     instance
     uiObject                    UIObject
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject
 )

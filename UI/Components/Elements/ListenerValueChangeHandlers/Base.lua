@@ -15,7 +15,7 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
     uiObject                    UIObject
     listenerGroup               ListenerGroup
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     listenerGroup

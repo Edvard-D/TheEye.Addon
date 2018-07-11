@@ -18,13 +18,13 @@ local select = select
     uiObject                    UIObject
     valueHandler                ValueHandler
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     valueHandler
 )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         ListenerWithIntSetup,

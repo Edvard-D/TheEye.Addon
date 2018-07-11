@@ -37,12 +37,12 @@ TheEyeAddon.UI.Templates.ComponentAddToTag("MODULE", this)
     instance
     uiObject                    UIObject
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject
 )
     
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         this.Show,

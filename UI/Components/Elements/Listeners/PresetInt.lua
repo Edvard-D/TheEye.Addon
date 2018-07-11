@@ -17,13 +17,13 @@ local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
     uiObject                    UIObject
     onNotify                    function(listener, ...)
 ]]
-function this:Setup(
+function this.Setup(
     instance,
     uiObject,
     onNotify
 )
 
-    inherited:Setup(
+    inherited.Setup(
         instance,
         uiObject,
         onNotify
