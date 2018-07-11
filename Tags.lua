@@ -13,6 +13,17 @@ local function GetTagGroup(tagKey)
     return tagGroups[tagKey]
 end
 
+function this.UIObjectHasTag(uiObject, tag)
+    local tagGroup = GetTagGroup(tag)
+    local uiObjectKey = uiObject.key
+
+    if tagGroup[uiObjectKey] == nil then
+        tagGroup[uiObjectKey] = uiObject.key:find(tag)
+    end
+
+    return tagGroup[uiObjectKey]
+end
+
 local function KeyHasTags(key, tags)
     for i=1, #tags do
         if key:find(tags[i]) == nil then
