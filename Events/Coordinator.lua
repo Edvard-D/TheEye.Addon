@@ -8,7 +8,7 @@ local table = table
 
 
 -- Event Handling
-local function RelayEvent(eventName, ...)
+local function RelayEvent(self, eventName, ...)
     print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
     for i=1,#listeners do
