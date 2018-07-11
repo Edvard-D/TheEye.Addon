@@ -117,7 +117,7 @@ UI\Objects\Helpers\Templates.lua
 # --- Listener Groups ---
 UI\Components\Elements\ListenerGroups\Base.lua
 UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Components\Elements\ListenerGroups\StateBasedValueChanger.lua
+UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
 UI\Components\Elements\ListenerGroups\ValueChanger.lua
 UI\Components\Elements\ListenerGroups\ValueSetter.lua
 

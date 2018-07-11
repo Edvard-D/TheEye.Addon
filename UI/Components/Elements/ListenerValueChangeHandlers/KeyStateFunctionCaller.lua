@@ -4,14 +4,14 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyS
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
 local IntegerKeyStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState.Setup
-local StateBasedValueChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger.Setup
+local StateBasedIntChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
     ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState#TEMPLATE#
-    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedValueChanger#TEMPLATE#
+    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger#TEMPLATE#
 }
 ]]
 
@@ -40,7 +40,7 @@ function this:Setup(
     )
 
     instance.ListenerGroup = instance.ListenerGroup or {}
-    StateBasedValueChangerSetup(
+    StateBasedIntChangerSetup(
         instance.ListenerGroup,
         UIObject,
         instance.ValueHandler
