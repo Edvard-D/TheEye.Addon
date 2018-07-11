@@ -11,7 +11,7 @@ local table = table
 local unpack = unpack
 
 
-TheEyeAddon.UI.Templates:ComponentAddToTag("GROUP", this)
+TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
 
 --[[ #this#TEMPLATE#
 {

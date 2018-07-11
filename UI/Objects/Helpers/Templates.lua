@@ -7,7 +7,7 @@ local table = table
 local TaggedComponents = this.TaggedComponents
 
 
-function this:ComponentAddToTag(tag, component)
+function this.ComponentAddToTag(tag, component)
     if this.TaggedComponents[tag] == nil then
         this.TaggedComponents[tag] = {}
     end
@@ -15,10 +15,11 @@ function this:ComponentAddToTag(tag, component)
     table.insert(this.TaggedComponents[tag], component)
 end
 
-function this:ComponentsAttachByTag(tag, UIObject)
-    for i=1,#TaggedComponents do
-        local component = TaggedComponents[i]
-        UIObject[component.name] = UIObject[component.name] or {}
-        component:Setup(UIObject[component.name], UIObject)
+function this.ComponentsAttachByTag(tag, uiObject)
+    local componentsWithTag = TaggedComponents[tag]
+    for i=1,#componentsWithTag do
+        local component = componentsWithTag[i]
+        uiObject[component.name] = uiObject[component.name] or {}
+        component:Setup(uiObject[component.name], uiObject)
     end
 end

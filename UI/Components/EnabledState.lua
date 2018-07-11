@@ -7,7 +7,7 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
-TheEyeAddon.UI.Templates:ComponentAddToTag("DEFAULT", this)
+TheEyeAddon.UI.Templates.ComponentAddToTag("DEFAULT", this)
 
 --[[ #this#TEMPLATE#
 {
