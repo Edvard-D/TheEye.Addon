@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.Elements.Listeners.ListenerWithInt = {}
-local this = TheEyeAddon.UI.Components.Elements.Listeners.ListenerWithInt
+TheEyeAddon.UI.Components.Elements.Listeners.PresetInt = {}
+local this = TheEyeAddon.UI.Components.Elements.Listeners.PresetInt
 local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
 
 
@@ -15,7 +15,7 @@ local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
 --[[ #SETUP#
     instance
     UIObject                    UIObject
-    OnNotify                    function(#LISTENER#, ...)
+    OnNotify                    function(listener, ...)
 ]]
 function this:Setup(
     instance,

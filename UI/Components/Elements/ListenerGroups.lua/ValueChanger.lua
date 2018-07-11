@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
-local ListenerWithIntSetup = TheEyeAddon.UI.Components.Elements.Listeners.ListenerWithInt.Setup
+local PresetIntSetup = TheEyeAddon.UI.Components.Elements.Listeners.PresetInt.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -29,7 +29,7 @@ function this:Setup(
     inherited:Setup(
         instance,
         UIObject,
-        ListenerWithIntSetup,
+        PresetIntSetup,
         this.ChangeValue,
         ValueHandler.Reset,
         ValueHandler.Reset
