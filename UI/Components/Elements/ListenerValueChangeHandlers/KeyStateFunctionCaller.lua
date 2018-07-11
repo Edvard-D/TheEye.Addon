@@ -33,7 +33,7 @@ function this:Setup(
     instance.OnStateChange = this.OnStateChange
 
     instance.ValueHandler = instance.ValueHandler or {}
-    local ValueHandler = IntegerKeyStateSetup(
+    IntegerKeyStateSetup(
         instance.ValueHandler,
         UIObject,
         instance.OnStateChange
