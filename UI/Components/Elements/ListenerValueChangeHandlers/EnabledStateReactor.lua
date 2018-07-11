@@ -36,7 +36,7 @@ function this.Setup(
     {
         Listeners =
         {
-            evaluatorName = "UIObject_Visible",
+            evaluatorName = "UIOBJECT_ENABLED_CHANGED",
             inputValues = { uiObject.key }
         }
     }
