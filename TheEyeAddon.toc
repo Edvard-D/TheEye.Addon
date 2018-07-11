@@ -114,46 +114,56 @@ UI\Objects\Helpers\Templates.lua
 # ---------------------------
 # |	UI\Components\Elements  |
 # ---------------------------
-# --- Listener Groups ---
-UI\Components\Elements\ListenerGroups\Base.lua
-UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
-UI\Components\Elements\ListenerGroups\ValueChanger.lua
-UI\Components\Elements\ListenerGroups\ValueSetter.lua
-
-
-# --- Listeners ---
-UI\Components\Elements\Listeners\Base.lua
-UI\Components\Elements\Listeners\PresetInt.lua
-
-
-# --- Listener Value Change Handlers ---
-UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
-UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
-UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
-UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
-
-
 # --- Value Changers ---
 UI\Components\Elements\ValueChangers\Base.lua
+
 UI\Components\Elements\ValueChangers\Add.lua
 UI\Components\Elements\ValueChangers\Reset.lua
 
 
 # --- Value Evaluators ---
 UI\Components\Elements\ValueEvaluators\Base.lua
+
 UI\Components\Elements\ValueEvaluators\ReturnEvalutedValue.lua
+
 UI\Components\Elements\ValueEvaluators\ReturnKeyPairValue.lua
 
 
 # --- Value Handlers ---
 UI\Components\Elements\ValueHandlers\Base.lua
-UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+
 UI\Components\Elements\ValueHandlers\KeyState.lua
 UI\Components\Elements\ValueHandlers\SimpleState.lua
-UI\Components\Elements\ValueHandlers\SortedTable.lua
 UI\Components\Elements\ValueHandlers\SortRank.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
+
+UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\SortedTable.lua
+
+
+# --- Listeners ---
+UI\Components\Elements\Listeners\Base.lua
+
+UI\Components\Elements\Listeners\PresetInt.lua
+
+
+# --- Listener Groups ---
+UI\Components\Elements\ListenerGroups\Base.lua
+
+UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Components\Elements\ListenerGroups\ValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueSetter.lua
+
+UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
+
+
+# --- Listener Value Change Handlers ---
+UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+
+UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
+UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+
+UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
 
 
 
