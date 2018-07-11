@@ -45,7 +45,7 @@ function this.Setup(
         }
     }
     ValueSetterSetup(
-        ListenerGroup,
+        instance.ListenerGroup,
         uiObject,
         instance.ValueHandler
     )
