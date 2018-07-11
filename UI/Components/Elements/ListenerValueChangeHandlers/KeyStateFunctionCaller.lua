@@ -29,7 +29,6 @@ function this.Setup(
     onInvalidKey
 )
     
-    instance.OnStateChange = this.OnStateChange
     instance.ValueHandler = instance.ValueHandler or {}
     IntegerKeyStateSetup(
         instance.ValueHandler,
@@ -52,6 +51,8 @@ function this.Setup(
 
     instance.OnValidKey = onValidKey
     instance.OnInvalidKey = onInvalidKey
+    
+    instance.OnStateChange = this.OnStateChange
 end
 
 function this:OnStateChange(state)
