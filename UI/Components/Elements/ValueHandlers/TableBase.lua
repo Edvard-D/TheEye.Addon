@@ -29,7 +29,6 @@ function this.Setup(
         instance,
         uiObject,
         nil,
-        nil,
         instance.OnTableChange,
         {}
     )

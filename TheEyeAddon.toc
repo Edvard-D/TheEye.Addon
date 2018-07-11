@@ -114,14 +114,6 @@ UI\Objects\Helpers\Templates.lua
 # ---------------------------
 # |	UI\Components\Elements  |
 # ---------------------------
-# --- Value Evaluators ---
-UI\Components\Elements\ValueEvaluators\Base.lua
-
-UI\Components\Elements\ValueEvaluators\ReturnEvalutedValue.lua
-
-UI\Components\Elements\ValueEvaluators\ReturnKeyPairValue.lua
-
-
 # --- Value Handlers ---
 UI\Components\Elements\ValueHandlers\Base.lua
 
