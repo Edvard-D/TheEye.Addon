@@ -31,6 +31,8 @@ function this.Setup(
         this.Enable,
         this.Disable
     )
+
+    instance:Activate()
 end
 
 function this:Enable()
