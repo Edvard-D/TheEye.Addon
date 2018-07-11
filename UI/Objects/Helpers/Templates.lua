@@ -4,7 +4,6 @@ local this = TheEyeAddon.UI.Templates
 this.TaggedComponents = {}
 
 local table = table
-local TaggedComponents = this.TaggedComponents
 
 
 function this.ComponentAddToTag(tag, component)
@@ -16,7 +15,7 @@ function this.ComponentAddToTag(tag, component)
 end
 
 function this.ComponentsAttachByTag(tag, uiObject)
-    local componentsWithTag = TaggedComponents[tag]
+    local componentsWithTag = this.TaggedComponents[tag]
     for i=1,#componentsWithTag do
         local component = componentsWithTag[i]
         uiObject[component.name] = uiObject[component.name] or {}
