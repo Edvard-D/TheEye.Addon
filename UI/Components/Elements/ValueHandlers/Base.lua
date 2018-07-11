@@ -40,7 +40,7 @@ end
 
 function this:Change(value)
     if self.ValueAction ~= nil then
-        value = self.ValueAction(value)
+        value = self:ValueAction(value)
     end
 
     if self.ValueEvaluator ~= nil then
