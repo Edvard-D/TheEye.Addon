@@ -114,13 +114,6 @@ UI\Objects\Helpers\Templates.lua
 # ---------------------------
 # |	UI\Components\Elements  |
 # ---------------------------
-# --- Value Changers ---
-UI\Components\Elements\ValueChangers\Base.lua
-
-UI\Components\Elements\ValueChangers\Add.lua
-UI\Components\Elements\ValueChangers\Reset.lua
-
-
 # --- Value Evaluators ---
 UI\Components\Elements\ValueEvaluators\Base.lua
 
