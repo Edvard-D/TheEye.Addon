@@ -10,3 +10,22 @@ local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
     value = #INT#
 }
 ]]
+
+
+--[[ #SETUP#
+    instance
+    UIObject                    UIObject
+    OnNotify                    function(#LISTENER#, ...)
+]]
+function this:Setup(
+    instance,
+    UIObject,
+    OnNotify
+)
+
+    inherited:Setup(
+        instance,
+        UIObject,
+        OnNotify
+    )
+end
