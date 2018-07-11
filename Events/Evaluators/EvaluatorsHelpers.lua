@@ -126,15 +126,11 @@ function this:ValueGroupRegisterListeningTo(valueGroup, listener)
         valueGroup.ListeningTo = {}
     end
 
-    listener.Notify = this.OnEventEvaluator
+    listener.Notify = this.OnEvent
     listener.valueGroup = valueGroup
     table.insert(valueGroup.ListeningTo, listener)
     
     this.ListenerRegister(listener.listeningToKey, listener)
-end
-
-function this:OnEventEvaluator(newState, event, ...)
-    self.valueGroup.evaluator:OnEvent(event, ...)
 end
 
 -- Event Evaluation
