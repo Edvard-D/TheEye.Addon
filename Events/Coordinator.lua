@@ -1,8 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = {}
 local this = TheEyeAddon.Events.Coordinator
-this.Listeners = {}
-local Listeners = this.Listeners
+local Listeners = {}
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
@@ -21,8 +20,8 @@ frame:SetScript("OnEvent", RelayEvent)
 
 -- Register
 local function ListenerRegister(listener, eventName, isGameEvent)
-    if listeners[eventName] == nil then
-        listeners[eventName] = { listener }
+    if Listeners[eventName] == nil then
+        Listeners[eventName] = { listener }
         print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
