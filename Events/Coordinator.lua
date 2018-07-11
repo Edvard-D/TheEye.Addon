@@ -45,7 +45,7 @@ local function ListenersRegister(listener, events, isGameEvent)
     end
 end
 
-function this:Register(listener)
+function this.Register(listener)
     if listener.gameEvents ~= nil then
         ListenersRegister(listener, listener.gameEvents, true)
     end
@@ -79,7 +79,7 @@ local function ListenersUnregister(listener, events, isGameEvent)
     end
 end
 
-function this:Unregister(listener)
+function this.Unregister(listener)
     if listener.gameEvents ~= nil then
         ListenersUnregister(listener, listener.gameEvents, true)
     end

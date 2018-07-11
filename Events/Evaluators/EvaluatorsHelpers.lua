@@ -69,7 +69,7 @@ local function ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
     end
 end
 
-function this:ListenerRegister(evaluatorKey, listener)
+function this.ListenerRegister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
     local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
     local listeners = ValueGroupGetListeners(valueGroup)
@@ -94,7 +94,7 @@ end
 local function ValueGroupUnregisterListeningTo(listeningTo)
     for i=1,#listeningTo do
         local listener = listener[i]
-        this:ListenerUnregister(listener.listeningToKey, listener)
+        this.ListenerUnregister(listener.listeningToKey, listener)
     end
     listeningTo = nil
 end
@@ -110,7 +110,7 @@ local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
     end
 end
 
-function this:ListenerUnregister(evaluatorKey, listener)
+function this.ListenerUnregister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey]
     local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
     local listeners = ValueGroupGetListeners(valueGroup)
@@ -130,7 +130,7 @@ function this:ValueGroupRegisterListeningTo(valueGroup, listener)
     listener.valueGroup = valueGroup
     table.insert(valueGroup.ListeningTo, listener)
     
-    this:ListenerRegister(listener.listeningToKey, listener)
+    this.ListenerRegister(listener.listeningToKey, listener)
 end
 
 function this:OnEventEvaluator(newState, event, ...)
