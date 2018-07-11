@@ -15,26 +15,26 @@ local table = table
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    OnTableValuesChange         function()
+    uiObject                    UIObject
+    onTableValuesChange         function()
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    OnTableValuesChange
+    uiObject,
+    onTableValuesChange
 )
 
     instance.OnTableChange = this.OnTableChange
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         nil,
         nil,
         instance.OnTableChange,
         {}
     )
 
-    instance.OnTableValuesChange = OnTableValuesChange
+    instance.OnTableValuesChange = onTableValuesChange
 
     instance.Insert = this.Insert
     instance.Remove = this.Remove

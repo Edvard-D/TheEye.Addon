@@ -15,13 +15,13 @@ local table = table
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
     sortActionnName             string
     sortValueComponentName      string
 ]]
 function this:Setup(
     instance,
-    UIObject,
+    uiObject,
     sortActionName,
     sortValueComponentName
 )
@@ -29,7 +29,7 @@ function this:Setup(
     instance.Sort = this.Sort
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         instance.Sort
     )
 

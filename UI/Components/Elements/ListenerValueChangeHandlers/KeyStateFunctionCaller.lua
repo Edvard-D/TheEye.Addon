@@ -18,39 +18,40 @@ local StateBasedIntChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGro
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
-    OnValidKey                  function()
-    OnInvalidKey                function()
+    uiObject                    UIObject
+    onValidKey                  function()
+    onInvalidKey                function()
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    OnValidKey,
-    OnInvalidKey
+    uiObject,
+    onValidKey,
+    onInvalidKey
 )
     
-    instance.UIObject = UIObject
     instance.OnStateChange = this.OnStateChange
-
     instance.ValueHandler = instance.ValueHandler or {}
     IntegerKeyStateSetup(
         instance.ValueHandler,
-        UIObject,
+        uiObject,
         instance.OnStateChange
     )
 
     instance.ListenerGroup = instance.ListenerGroup or {}
     StateBasedIntChangerSetup(
         instance.ListenerGroup,
-        UIObject,
+        uiObject,
         instance.ValueHandler
     )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         instance.ListenerGroup
     )
+
+    instance.OnValidKey = onValidKey
+    instance.OnInvalidKey = onInvalidKey
 end
 
 function this:OnStateChange(state)

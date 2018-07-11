@@ -12,25 +12,25 @@ local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    ValueAction                 function(#VALUE#)
-    ValueEvaluator              ValueEvaluator
-    OnValueChange               function(#VALUE#)
+    uiObject                    UIObject
+    valueAction                 function(#VALUE#)
+    valueEvaluator              ValueEvaluator
+    onValueChange               function(#VALUE#)
     defaultValue                #VALUE#
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ValueAction,
-    ValueEvaluator,
-    OnValueChange,
+    uiObject,
+    valueAction,
+    valueEvaluator,
+    onValueChange,
     defaultValue
 )
 
-    instance.UIObject = UIObject
-    instance.ValueAction = ValueAction
-    instance.ValueEvaluator = ValueEvaluator
-    instance.OnValueChange = OnValueChange
+    instance.UIObject = uiObject
+    instance.ValueAction = valueAction
+    instance.ValueEvaluator = valueEvaluator
+    instance.OnValueChange = onValueChange
     instance.defaultValue = defaultValue
     instance.value = defaultValuee
 

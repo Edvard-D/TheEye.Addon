@@ -12,17 +12,17 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
-    ListenerGroup               ListenerGroup
+    uiObject                    UIObject
+    listenerGroup               ListenerGroup
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ListenerGroup
+    uiObject,
+    listenerGroup
 )
     
-    instance.UIObject = UIObject
-    instance.ListenerGroup = ListenerGroup
+    instance.UIObject = uiObject
+    instance.ListenerGroup = listenerGroup
 
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate

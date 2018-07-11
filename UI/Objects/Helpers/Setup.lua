@@ -3,34 +3,34 @@ local TheEyeAddon = TheEyeAddon
 local table = table
 
 
-function TheEyeAddon.UI.Objects:FormatData(UIObject)
-    UIObject.DisplayData.UIObject = UIObject
+function TheEyeAddon.UI.Objects:FormatData(uiObject)
+    uiObject.DisplayData.UIObject = uiObject
 
-    local key = table.concat(UIObject.tags, "_")
+    local key = table.concat(uiObject.tags, "_")
     UIObject.key = key
-    TheEyeAddon.UI.Objects.Instances[key] = UIObject
+    TheEyeAddon.UI.Objects.Instances[key] = uiObject
 
     local searchableTags = {}
-    local tags = UIObject.tags
+    local tags = uiObject.tags
     for i=1,#tags do
         searchableTags[tags[i]] = true
     end
-    UIObject.tags = searchableTags
+    uiObject.tags = searchableTags
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
-    local ComponentsAttachByTag = TheEyeAddon.UI.Templates.ComponentsAttachByTag
+    local componentsAttachByTag = TheEyeAddon.UI.Templates.ComponentsAttachByTag
     local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
-    local TaggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
-    local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
+    local taggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
+    local uiObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 
     for instanceKey,v in pairs(instances) do
         local uiObject = instances[instanceKey]
 
-        for tag,v in pairs(TaggedComponents) do
-            if tag == "DEFAULT" or UIObjectHasTag(uiObject, tag) then
-                ComponentsAttachByTag(tag, uiObject)
+        for tag,v in pairs(taggedComponents) do
+            if tag == "DEFAULT" or uiObjectHasTag(uiObject, tag) then
+                componentsAttachByTag(tag, uiObject)
             end
         end
     end

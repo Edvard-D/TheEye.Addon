@@ -15,28 +15,28 @@ local PresetIntSetup = TheEyeAddon.UI.Components.Elements.Listeners.PresetInt.Se
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    ValueHandler                ValueHandler
-    ValueAction                 function(Listener, ...)
+    uiObject                    UIObject
+    valueHandler                ValueHandler
+    valueAction                 function(Listener, ...)
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ValueHandler,
-    ValueAction
+    uiObject,
+    valueHandler,
+    valueAction
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         PresetIntSetup,
         this.ChangeValue,
-        ValueHandler.Reset,
-        ValueHandler.Reset
+        valueHandler.Reset,
+        valueHandler.Reset
     )
 
-    instance.ValueHandler = ValueHandler
-    instance.ValueAction = ValueAction
+    instance.ValueHandler = valueHandler
+    instance.ValueAction = valueAction
 end
 
 function this:ChangeValue(listener, ...)

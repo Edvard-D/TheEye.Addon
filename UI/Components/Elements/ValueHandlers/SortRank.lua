@@ -14,21 +14,21 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    OnSortRankChange            function(#INT#)
+    uiObject                    UIObject
+    onSortRankChange            function(#INT#)
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    OnSortRankChange
+    uiObject,
+    onSortRankChange
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         nil,
         nil,
-        OnSortRankChange,
+        onSortRankChange,
         instance.defaultValue
     )
 end

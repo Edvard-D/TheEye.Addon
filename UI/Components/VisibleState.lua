@@ -35,16 +35,16 @@ TheEyeAddon.UI.Templates:ComponentAddToTag("MODULE", this)
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
 ]]
 function this:Setup(
     instance,
-    UIObject
+    uiObject
 )
     
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         this.Show,
         this.Hide
     )
@@ -55,7 +55,7 @@ function this:Setup(
     instance.EnabledStateReactor = {}
     EnabledStateReactorSetup(
         instance.EnabledStateReactor,
-        UIObject,
+        uiObject,
         instance.OnEnable,
         instance.OnDisable
     )

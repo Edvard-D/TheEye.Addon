@@ -15,25 +15,25 @@ local ListenerBaseSetup = TheEyeAddon.UI.Components.Elements.Listeners.Base.Setu
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    ValueHandler                ValueHandler
+    uiObject                    UIObject
+    valueHandler                ValueHandler
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ValueHandler
+    uiObject,
+    valueHandler
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         ListenerBaseSetup,
         this.SetValue,
-        ValueHandler.Reset,
-        ValueHandler.Reset
+        valueHandler.Reset,
+        valueHandler.Reset
     )
 
-    instance.ValueHandler = ValueHandler
+    instance.ValueHandler = valueHandler
 end
 
 function this:SetValue(listener, ...)

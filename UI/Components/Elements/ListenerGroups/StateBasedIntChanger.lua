@@ -15,20 +15,20 @@ local select = select
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    ValueHandler                ValueHandler
+    uiObject                    UIObject
+    valueHandler                ValueHandler
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ValueHandler
+    uiObject,
+    valueHandler
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         ListenerWithIntSetup,
-        ValueHandler,
+        valueHandler,
         this.ChangeValueByState
     )
 end

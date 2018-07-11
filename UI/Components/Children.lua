@@ -25,21 +25,21 @@ TheEyeAddon.UI.Templates:ComponentAddToTag("GROUP", this)
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
 ]]
 function this:Setup(
     instance,
-    UIObject
+    uiObject
 )
 
-    instance.UIObject = UIObject
+    instance.UIObject = uiObject
     instance.Arrange = this.Arrange
 
     -- ValueHandler
     instance.ValueHandler = {}
     SortedTableSetup:Setup(
         instance.ValueHandler,
-        UIObject,
+        uiObject,
         instance.sortActionName,
         instance.sortValueComponentName
     )
@@ -85,19 +85,19 @@ function this:Setup(
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Arrange,
-        UIObject,
+        uiObject,
         this.Arrange
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Sort,
-        UIObject,
+        uiObject,
         instance.ValueHandler.Sort
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.UpdateRegisteredChildren,
-        UIObject,
+        uiObject,
         this.UpdateRegisteredChildren
     )
 
@@ -108,7 +108,7 @@ function this:Setup(
     instance.EnabledStateReactor = {}
     EnabledStateReactorSetup(
         instance.EnabledStateReactor,
-        UIObject,
+        uiObject,
         instance.OnEnable,
         instance.OnDisable
     )

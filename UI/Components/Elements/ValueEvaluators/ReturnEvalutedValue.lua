@@ -13,22 +13,22 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueEvaluators.Base
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
     ValueAction                 function(#VALUE#) return #VALUE# end
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    ValueAction
+    uiObject,
+    valueAction
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         this.Evalute
     )
 
-    instance.ValueAction = ValueAction
+    instance.ValueAction = valueAction
 end
 
 function this:Evalute(value)

@@ -32,22 +32,22 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
 ]]
 function this:Setup(
     instance,
-    UIObject
+    uiObject
 )
 
     if instance.isDynamic == true then
         DynamicSortRankSetup:Setup(
             instance,
-            UIObject
+            uiObject
         )
     else
         SortRankSetup:Setup(
             instance,
-            UIObject,
+            uiObject,
             nil
         )
     end

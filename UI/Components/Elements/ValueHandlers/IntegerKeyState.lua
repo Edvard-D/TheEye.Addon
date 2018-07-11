@@ -14,21 +14,21 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    OnStateChange               function(#BOOL#)
+    uiObject                    UIObject
+    onStateChange               function(#BOOL#)
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    OnStateChange
+    uiObject,
+    onStateChange
 )
 
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         this.Add,
         0,
-        OnStateChange
+        onStateChange
     )
 end
 

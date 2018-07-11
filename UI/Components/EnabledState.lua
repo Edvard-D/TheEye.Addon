@@ -18,16 +18,16 @@ TheEyeAddon.UI.Templates:ComponentAddToTag("DEFAULT", this)
 
 --[[ SETUP
     instance
-    UIObject                    UIObject
+    uiObject                    UIObject
 ]]
 function this:Setup(
     instance,
-    UIObject
+    uiObject
 )
     
     inherited:Setup(
         instance,
-        UIObject,
+        uiObject,
         this.Enable,
         this.Disable
     )

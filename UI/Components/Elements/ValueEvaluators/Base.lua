@@ -12,15 +12,15 @@ local this = TheEyeAddon.UI.Components.Elements.ValueEvaluators.Base
 
 --[[ #SETUP#
     instance
-    UIObject                    UIObject
-    Evalute                     function(#VALUE#)
+    uiObject                    UIObject
+    evalute                     function(#VALUE#)
 ]]
 function this:Setup(
     instance,
-    UIObject,
-    Evalute
+    uiObject,
+    evalute
 )
 
-    instance.UIObject = UIObject
-    instance.Evalute = Evalute
+    instance.UIObject = uiObject
+    instance.Evalute = evalute
 end
