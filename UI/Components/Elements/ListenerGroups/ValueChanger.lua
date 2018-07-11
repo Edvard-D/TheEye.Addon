@@ -31,8 +31,8 @@ function this.Setup(
         uiObject,
         PresetIntSetup,
         this.ChangeValue,
-        valueHandler.Reset,
-        valueHandler.Reset
+        this.OnActivate,
+        this.OnDeactivate
     )
 
     instance.ValueHandler = valueHandler
@@ -41,4 +41,12 @@ end
 
 function this:ChangeValue(listener, ...)
     self.ValueHandler:Change(self:ValueAction(listener, ...))
+end
+
+function this:OnActivate()
+    self.ValueHandler:Reset()
+end
+
+function this:OnDeactivate()
+    self.ValueHandler:Reset()
 end

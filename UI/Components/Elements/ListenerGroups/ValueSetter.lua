@@ -29,8 +29,8 @@ function this.Setup(
         uiObject,
         ListenerBaseSetup,
         this.SetValue,
-        valueHandler.Reset,
-        valueHandler.Reset
+        this.OnActivate,
+        this.OnDeactivate
     )
 
     instance.ValueHandler = valueHandler
@@ -38,4 +38,12 @@ end
 
 function this:SetValue(listener, ...)
     self.ValueHandler:Change(select(2, ...))
+end
+
+function this:OnActivate()
+    self.ValueHandler:Reset()
+end
+
+function this:OnDeactivate()
+    self.ValueHandler:Reset()
 end
