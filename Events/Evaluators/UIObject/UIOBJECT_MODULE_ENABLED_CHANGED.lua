@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED = {}
-local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED
+TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED_CHANGED
+this.name = "UIOBJECT_MODULE_ENABLED_CHANGED"
 
 local select = select
 local table = table
@@ -13,7 +14,6 @@ local table = table
 ]]
 
 
-this.type = "STATE"
 this.reevaluateEvents =
 {
     ADDON_LOADED = true
@@ -42,5 +42,10 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(valueGroup, event, ...)
-    return this:CalculateCurrentState(valueGroup.inputValues)
+    local isEnabled = this:CalculateCurrentState(valueGroup.inputValues)
+
+    if valueGroup.currentState ~= isEnabled then
+        valueGroup.currentState = isEnabled
+        return true, this.name, isEnabled
+    end
 end

@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE = {}
-local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE
+TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED
+this.name = "UNIT_AURA_ACTIVE_CHANGED"
 
 local ValueGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.ValueGroupRegisterListeningTo
 local table = table
@@ -20,7 +21,6 @@ local unpack = unpack
 ]]
 
 
-this.type = "STATE"
 reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
@@ -77,15 +77,17 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(valueGroup, event, ...)
+    local isActive
+
     if event == "PLAYER_TARGET_CHANGED" then
-        return this:CalculateCurrentState(valueGroup.inputValues)
+        isActive = this:CalculateCurrentState(valueGroup.inputValues)
     else
         local combatLogData = ...
-        
-        if combatLogData["suffix"] == "AURA_APPLIED" then
-            return true
-        else -- AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
-            return false
-        end
+        isActive = combatLogData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
+    end
+
+    if valueGroup.currentState ~= isActive then
+        valueGroup.currentState = isActive
+        return true, this.name, isActive
     end
 end

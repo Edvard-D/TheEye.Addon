@@ -138,37 +138,18 @@ function this:OnEventEvaluator(newState, event, ...)
 end
 
 -- Event Evaluation
-local function ListenersNotify(listeners, message)
+local function ListenersNotify(listeners, ...)
     for i=1,#listeners do
-        listeners[i]:Notify(message)
-    end
-end
-
--- @TODO This differention shouldn't exist, the hierarchy of Evaluators generally
--- needs to be reworked.
-local function EvaluateAsState(evaluator, valueGroup, event, ...)
-    local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
-    local evaluatedState = evaluatedValues[1]
-    if valueGroup.currentState ~= evaluatedState then
-        valueGroup.currentState = evaluatedState
-        ListenersNotify(valueGroup.listeners, unpack(evaluatedValues))
-    end
-end
-
-local function EvaluateAsEvent(evaluator, valueGroup, event, ...)
-    local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
-    local evaluatedState = evaluatedValues[1]
-    if evaluatedState == true then
-        evaluatedValues[1] = nil
-        ListenersNotifyAsEvent(valueGroup.listeners, evaluator:Evaluate(valueGroup, event, unpack(evaluatedValues))) -- @TODO possibly have event data always packed in key table?
+        listeners[i]:Notify(...)
     end
 end
 
 local function Evaluate(evaluator, valueGroup, event, ...)
-    if evaluator.type == "STATE" then
-        EvaluateAsState(evaluator, valueGroup, event, ...)
-    else
-        EvaluateAsEvent(evaluator, valueGroup, event, ...)
+    local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
+    local shouldSend = evaluatedValues[1]
+    if shouldSend == true then
+        evaluatedValues[1] = nil
+        ListenersNotify(valueGroup.listeners, unpack(evaluatedValues))
     end
 end
 

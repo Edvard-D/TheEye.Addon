@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UNIT_SPEC = {}
-local this = TheEyeAddon.Events.Evaluators.UNIT_SPEC
+TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED
+this.name = "UNIT_SPEC_CHANGED"
 
 local GetSpecializationInfo = GetSpecializationInfo
 local select = select
@@ -17,7 +18,6 @@ local select = select
 ]]
 
 
-this.type = "STATE"
 reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
@@ -47,9 +47,10 @@ function this:GetKey(event, ...) -- doesn't get called on PLAYER_TARGET_CHANGED
 end
 
 function this:Evaluate(valueGroup, event)
-    if self.reevaluateEvents[event] == true then
-        return this:CalculateCurrentState(valueGroup.inputValues)
-    else -- ACTIVE_TALENT_GROUP_CHANGED
-        return true
+    local isSpec = this:CalculateCurrentState(valueGroup.inputValues)
+
+    if valueGroup.currentState == isSpec then
+        valueGroup.currentState = isSpec
+        return true, this.name, isSpec
     end
 end

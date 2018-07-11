@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UIOBJECT_ENABLED = {}
-local this = TheEyeAddon.Events.Evaluators.UIOBJECT_ENABLED
+TheEyeAddon.Events.Evaluators.UIOBJECT_VISIBLE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_VISIBLE_CHANGED
+this.name = "UIOBJECT_VISIBLE_CHANGED"
 
 local select = select
 
@@ -12,11 +13,10 @@ local select = select
 ]]
 
 
-this.type = "STATE"
 this.customEvents =
 {
-    "UIOBJECT_ENABLED",
-    "UIOBJECT_DISABLED"
+    "UIOBJECT_HIDDEN",
+    "UIOBJECT_SHOWN",
 }
 
 
@@ -26,7 +26,7 @@ function this:CalculateCurrentState(inputValues)
     if uiObject == nil then
         return false
     else
-        return uiObject.ListenerGroups.Enabled.currentState
+        return uiObject.ListenerGroups.Visible.currentState
     end
 end
 
@@ -36,9 +36,10 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(valueGroup, event)
-    if event == "UIOBJECT_ENABLED" then
-        return true
-    else -- UIOBJECT_DISABLED
-        return false
+    local isVisible = event == "UIOBJECT_SHOWN" -- else UIOBJECT_HIDDEN
+
+    if valueGroup.currentState ~= isVisible then
+        valueGroup.currentState = isVisible
+        return true, this.name, isVisible
     end
 end

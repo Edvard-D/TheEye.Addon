@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED = {}
 local this = TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED
+this.name = "GAMEDATA_LOADED"
 
 
 --[[ #this#TEMPLATE#
@@ -10,7 +11,6 @@ local this = TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED
 ]]
 
 
-this.type = "STATE"
 this.gameEvents =
 {
     "PLAYER_ENTERING_WORLD"
@@ -26,5 +26,5 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate()
-    return true
+    return true, this.name, true
 end

@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_RECENTLY = {}
-local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_RECENTLY
+TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_RECENTLY_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_RECENTLY_CHANGED
+this.name = "UNIT_SPELLCAST_START_RECENTLY_CHANGED"
 
 local GetTime = GetTime
 local select = select
@@ -21,7 +22,6 @@ local unpack = unpack
 ]]
 
 
-this.type = "STATE"
 this.gameEvents =
 {
     "UNIT_SPELLCAST_CHANNEL_START",
@@ -82,16 +82,18 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(valueGroup, event, ...)
+    local spellcastStartedRecently
+
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
         local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
 
+        spellcastStartedRecently = true
         StartEventTimer(
             self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], castID)
-        return true
     elseif event == "UNIT_SPELLCAST_INSTANT" then
+        spellcastStartedRecently = true
         StartEventTimer(
             self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], "INSTANT")
-        return true
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(1, ...)
         if timerDuration == self.timerDuration then
@@ -99,10 +101,17 @@ function this:Evaluate(valueGroup, event, ...)
             local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
 
             if requiredCastID == "INSTANT" or castID == requiredCastID then
+                spellcastStartedRecently = false
+            else
                 return false
             end
         end
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
-        return false
+        spellcastStartedRecently = false
+    end
+
+    if valueGroup.currentValue ~= spellcastStartedRecently then
+        valueGroup.currentValue = spellcastStartedRecently
+        return true, this.name, spellcastStartedRecently
     end
 end

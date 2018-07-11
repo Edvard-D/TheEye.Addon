@@ -21,7 +21,6 @@ local UnitGUID = UnitGUID
 ]]
 
 
-this.type = "EVENT"
 this.gameEvents =
 {
     "COMBAT_LOG_EVENT_UNFILTERED"
