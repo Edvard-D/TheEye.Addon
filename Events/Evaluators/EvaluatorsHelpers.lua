@@ -148,7 +148,7 @@ local function Evaluate(evaluator, valueGroup, event, ...)
     local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
     local shouldSend = evaluatedValues[1]
     if shouldSend == true then
-        evaluatedValues[1] = nil
+        table.remove(evaluatedValues, 1)
         ListenersNotify(valueGroup.listeners, unpack(evaluatedValues))
     end
 end
