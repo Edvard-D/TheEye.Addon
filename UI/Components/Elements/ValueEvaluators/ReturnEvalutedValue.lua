@@ -25,12 +25,12 @@ function this.Setup(
     inherited.Setup(
         instance,
         uiObject,
-        this.Evalute
+        this.Evaluate
     )
 
     instance.ValueAction = valueAction
 end
 
-function this:Evalute(value)
+function this:Evaluate(value)
     return self:ValueAction(value)
 end
