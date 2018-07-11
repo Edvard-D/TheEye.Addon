@@ -27,7 +27,6 @@ function this.Setup(
     inherited.Setup(
         instance,
         uiObject,
-        ListenerWithIntSetup,
         valueHandler,
         this.ChangeValueByState
     )
