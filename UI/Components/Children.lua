@@ -37,7 +37,7 @@ function this:Setup(
 
     -- ValueHandler
     instance.ValueHandler = {}
-    SortedTableSetup:Setup(
+    SortedTableSetup(
         instance.ValueHandler,
         uiObject,
         instance.sortActionName,
