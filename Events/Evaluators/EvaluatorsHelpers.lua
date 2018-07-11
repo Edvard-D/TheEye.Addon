@@ -153,7 +153,7 @@ local function Evaluate(evaluator, valueGroup, event, ...)
     end
 end
 
-function this:Notify(event, ...)
+function this:OnEvent(event, ...)
     if self.reevaluateEvents ~= nil and self.reevaluateEvents[event] ~= nil then
         for k,valueGroup in pairs(self.ValueGroups) do -- @TODO change this to an array with a lookup table
             Evaluate(self, valueGroup, event, ...)

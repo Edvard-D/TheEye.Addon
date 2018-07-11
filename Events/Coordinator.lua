@@ -12,7 +12,7 @@ local function RelayEvent(self, eventName, ...)
     print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
     for i=1,#listeners do
-        listeners[i]:Notify(eventName, ...)
+        listeners[i]:OnEvent(eventName, ...)
     end
 end
 frame:SetScript("OnEvent", RelayEvent)
