@@ -23,7 +23,7 @@ function TheEyeAddon.UI.Objects:Initialize()
     local EnabledStateSetup = TheEyeAddon.UI.Components.EnabledState.Setup
     local pairs = pairs
     local TaggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
-    local UIObjectHasTags = TheEyeAddon.UI.Tags.UIObjectHasTags
+    local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
     for instanceKey,UIObject in pairs(TheEyeAddon.UI.Objects.Instances) do
         UIObject.EnabledState = UIObject.EnabledState or {}
