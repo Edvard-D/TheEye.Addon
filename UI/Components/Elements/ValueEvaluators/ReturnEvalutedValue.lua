@@ -1,5 +1,5 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnValue = {}
+TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnEvaluatedValue = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueEvaluators.ReturnEvaluatedValue
 local inherited = TheEyeAddon.UI.Components.Elements.ValueEvaluators.Base
 
