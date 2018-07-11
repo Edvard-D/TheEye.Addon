@@ -52,7 +52,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPEC",
+                    eventEvaluatorKey = "UNIT_SPEC_CHANGED",
                     inputValues = { --[[unit]] "player", --[[specID]] 258 },
                     value = 2,
                 },

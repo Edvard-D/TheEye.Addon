@@ -20,7 +20,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE",
+                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY", },
                     value = 2,
                 },
@@ -43,12 +43,12 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY",
+                    eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] 589, },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE",
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589, },
                     value = 4,
                 },
