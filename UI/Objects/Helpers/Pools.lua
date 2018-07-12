@@ -5,7 +5,7 @@ local ipairs = ipairs
 local table = table
 
 
-function TheEyeAddon.UI.Pools:Release(frame)
+function TheEyeAddon.UI.Pools.Release(frame)
 	frame:Hide()
 	frame:SetParent(nil)
 	frame.isClaimed = false
