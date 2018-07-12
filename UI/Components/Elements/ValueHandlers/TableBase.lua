@@ -49,7 +49,7 @@ function this:Insert(value)
 end
 
 function this:Remove(value)
-    local wasRemoved = table.removevalue(self.value, value)
+    local wasRemoved = table.removekeyvalue(self.value, value) -- @TODO allow use of table.removevalue too?
     if wasRemoved == true then
         self.OnTableValuesChange()
     end

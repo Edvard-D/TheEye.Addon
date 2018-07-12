@@ -106,7 +106,7 @@ local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
             ValueGroupUnregisterListeningTo(valueGroup.ListeningTo)
         end
 
-        table.removevalue(evaluator, valueGroup)
+        table.removekeyvalue(evaluator, valueGroup)
     end
 end
 
