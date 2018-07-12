@@ -36,7 +36,7 @@ end
 function this:Evaluate(valueGroup)
     local isClass = this:CalculateCurrentState(valueGroup.inputValues)
 
-    if valueGroup.currentState == isClass then
+    if valueGroup.currentState ~= isClass then
         valueGroup.currentState = isClass
         return true, this.name, isClass
     end
