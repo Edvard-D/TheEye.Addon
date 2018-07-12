@@ -91,12 +91,13 @@ local function EvaluatorDecreaseListenerCount(evaluator)
     end
 end
 
-local function ValueGroupUnregisterListeningTo(listeningTo)
+local function ValueGroupUnregisterListeningTo(valueGroup)
+    local listeningTo = valueGroup.ListeningTo
     for i=1,#listeningTo do
         local listener = listeningTo[i]
         this.ListenerUnregister(listener.listeningToKey, listener)
     end
-    listeningTo = nil
+    valueGroup.ListeningTo = nil
 end
 
 local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
