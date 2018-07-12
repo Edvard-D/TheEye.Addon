@@ -93,7 +93,7 @@ end
 
 local function ValueGroupUnregisterListeningTo(listeningTo)
     for i=1,#listeningTo do
-        local listener = listener[i]
+        local listener = listeningTo[i]
         this.ListenerUnregister(listener.listeningToKey, listener)
     end
     listeningTo = nil
