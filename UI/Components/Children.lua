@@ -109,8 +109,7 @@ function this.Setup(
     EnabledStateReactorSetup(
         instance.EnabledStateReactor,
         uiObject,
-        instance.OnEnable,
-        instance.OnDisable
+        instance
     )
 end
 
