@@ -36,8 +36,10 @@ function this.Setup(
     {
         Listeners =
         {
-            evaluatorName = "UIOBJECT_ENABLED_CHANGED",
-            inputValues = { uiObject.key }
+            {
+                eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
+                inputValues = { uiObject.key }
+            }
         }
     }
     ValueSetterSetup(
