@@ -55,6 +55,8 @@ function this.Setup(
     )
 
     instance.EnabledStateListener = enableStateListener
+
+    instance:Activate()
 end
 
 function this:OnStateChange(isEnabled)
