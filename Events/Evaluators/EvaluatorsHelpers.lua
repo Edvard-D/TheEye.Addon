@@ -121,7 +121,7 @@ function this.ListenerUnregister(evaluatorKey, listener)
 end
 
 -- Listening To: handling of Evaluators that are listening to an Evaluator
-function this:ValueGroupRegisterListeningTo(valueGroup, listener)
+function this.ValueGroupRegisterListeningTo(valueGroup, listener)
     if valueGroup.ListeningTo == nil then
         valueGroup.ListeningTo = {}
     end

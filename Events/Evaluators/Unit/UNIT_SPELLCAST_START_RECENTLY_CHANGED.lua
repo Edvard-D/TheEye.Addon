@@ -9,6 +9,7 @@ local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
+local ValueGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.ValueGroupRegisterListeningTo
 
 
 --[[ #this#TEMPLATE#
@@ -38,7 +39,7 @@ this.timerDuration = 0.5
 
 
 function this:SetupListeningTo(valueGroup)
-    TheEyeAddon.Events.Evaluators:ValueGroupRegisterListeningTo(valueGroup,
+    ValueGroupRegisterListeningTo(valueGroup,
     {
         listeningToKey = "UNIT_SPELLCAST_INSTANT",
         evaluator = this,
