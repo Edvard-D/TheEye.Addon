@@ -101,7 +101,7 @@ local function ValueGroupUnregisterListeningTo(valueGroup)
 end
 
 local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
-    valueGroup.listenerCount = evaluator.listenerCount - 1
+    valueGroup.listenerCount = valueGroup.listenerCount - 1
     if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if valueGroup.ListeningTo ~= nil then
             ValueGroupUnregisterListeningTo(valueGroup.ListeningTo)
