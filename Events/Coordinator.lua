@@ -92,6 +92,6 @@ end
 -- Custom Events
 function this.SendCustomEvent(eventName, ...)
     if Listeners[eventName] ~= nil then
-        RelayEvent(eventName, ...)
+        RelayEvent(nil, eventName, ...)
     end
 end
