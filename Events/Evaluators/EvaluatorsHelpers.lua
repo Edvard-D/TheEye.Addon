@@ -104,7 +104,7 @@ local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
     valueGroup.listenerCount = valueGroup.listenerCount - 1
     if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if valueGroup.ListeningTo ~= nil then
-            ValueGroupUnregisterListeningTo(valueGroup.ListeningTo)
+            ValueGroupUnregisterListeningTo(valueGroup)
         end
 
         table.removekeyvalue(evaluator, valueGroup)
