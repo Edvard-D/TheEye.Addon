@@ -107,7 +107,7 @@ local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
             ValueGroupUnregisterListeningTo(valueGroup)
         end
 
-        table.removekeyvalue(evaluator, valueGroup)
+        evaluator[valueGroup.key] = nil
     end
 end
 
