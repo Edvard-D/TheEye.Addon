@@ -39,8 +39,8 @@ function this.Setup(
     instance.state = nil
 end
 
-function this:OnValueChange()
-    local state = self.validKeys[self.value]
+function this:OnValueChange(value)
+    local state = self.validKeys[value]
 
     if self.state ~= state then
         self.state = state
