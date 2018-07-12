@@ -79,7 +79,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
 
     if valueGroup.currentState == true then -- Set in ValueGroupIncreaseListenerCount
-        listener:Notify(true)
+        listener:Notify(evaluatorKey, true)
     end
 end
 
