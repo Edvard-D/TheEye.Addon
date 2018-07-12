@@ -12,7 +12,12 @@ local function RelayEvent(self, eventName, ...)
     print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
     for i=1,#listeners do
-        listeners[i]:OnEvent(eventName, ...)
+        -- Nil is checked since it's possible for a listener earlier in the array to
+        -- cause a listener later in the array to be unregistered before its OnEvent
+        -- function is called.
+        if listeners[i] ~= nil then
+            listeners[i]:OnEvent(eventName, ...)
+        end
     end
 end
 frame:SetScript("OnEvent", RelayEvent)
