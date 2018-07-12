@@ -54,7 +54,7 @@ function this.Setup(
         instance.ListenerGroup
     )
 
-    instance.EnabledStateListener = enableStateListener
+    instance.EnabledStateListener = enabledStateListener
 
     instance.OnStateChange = this.OnStateChange
 
@@ -63,8 +63,8 @@ end
 
 function this:OnStateChange(isEnabled)
     if isEnabled == true then
-        self.EnableStateListener:OnEnable()
+        self.EnabledStateListener:OnEnable()
     else
-        self.EnableStateListener:OnDisable()
+        self.EnabledStateListener:OnDisable()
     end
 end
