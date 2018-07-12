@@ -11,6 +11,7 @@ local FrameRelease = TheEyeAddon.UI.Pools.Release
 
 TheEyeAddon.UI.Templates.ComponentAddToTag("ICON", this)
 TheEyeAddon.UI.Templates.ComponentAddToTag("MODULE", this)
+TheEyeAddon.UI.Templates.ComponentAddToTag("UIPARENT", this)
 
 --[[ #this#TEMPLATE#
 {
@@ -41,7 +42,7 @@ function this.Setup(
     instance,
     uiObject
 )
-    
+
     inherited.Setup(
         instance,
         uiObject,
