@@ -38,4 +38,5 @@ end
 
 function this:Deactivate()
     self.ListenerGroup:Deactivate()
+    self.ValueHandler:Deactivate()
 end
