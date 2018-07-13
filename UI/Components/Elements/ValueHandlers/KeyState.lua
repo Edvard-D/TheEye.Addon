@@ -30,6 +30,7 @@ function this.Setup(
     inherited.Setup(
         instance,
         uiObject,
+        this.OnActivate,
         valueAction,
         this.OnValueChange,
         defaultValue
@@ -39,9 +40,14 @@ function this.Setup(
     instance.state = nil
 end
 
+function this:OnActivate()
+    self:OnValueChange(self.defaultValue)
+end
+
 function this:OnValueChange(value)
     local state = self.validKeys[value]
 
+    print("OnValueChange " .. tostring(state))
     if self.state ~= state then
         self.state = state
         self.StateChangeListener:OnStateChange(self.state)

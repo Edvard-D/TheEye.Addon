@@ -26,6 +26,7 @@ function this.Setup(
         instance,
         uiObject,
         nil,
+        nil,
         this.OnValueChange,
         false
     )
