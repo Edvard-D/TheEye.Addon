@@ -19,6 +19,7 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 function this.Setup(
     instance,
     uiObject,
+    valueHandler,
     listenerGroup
 )
     
