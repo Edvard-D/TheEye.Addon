@@ -52,11 +52,11 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventName = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
                     inputValues = { instance.childTags }
                 },
                 {
-                    eventName = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
                     inputValues = { instance.childTags }
                 }
             }
@@ -66,7 +66,7 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventName = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
                     inputValues = { instance.childTags }
                 }
             }
@@ -76,7 +76,7 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventName = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
                     inputValues = { instance.childTags },
                 }
             }
