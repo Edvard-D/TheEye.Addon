@@ -15,7 +15,7 @@ TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
 
 --[[ #this#TEMPLATE#
 {
-    childTags = { #ARRAY#TAG# }
+    childTags = #ARRAY#TAG#
     #OPTIONAL#GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
@@ -53,11 +53,11 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = { instance.childTags }
+                    inputValues = instance.childTags,
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
-                    inputValues = { instance.childTags }
+                    inputValues = instance.childTags,
                 }
             }
         },
@@ -67,7 +67,7 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = { instance.childTags }
+                    inputValues = instance.childTags,
                 }
             }
         },
@@ -77,7 +77,7 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = { instance.childTags },
+                    inputValues = instance.childTags,
                 }
             }
         }
