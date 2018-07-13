@@ -162,35 +162,38 @@ local function GetSizeFromRects(rects)
 end
 
 function this:Arrange()
-    local groupArranger = self.GroupArranger
-    if groupArranger == nil then
-        return
-    end
-
-    local children = self.ValueHandler.value
     local frame = self.UIObject.Frame
-    local combinedOffsetX = 0
-    local combinedOffsetY = 0
-    local childRects = {}
 
-    for i = 1, #children do
-        local childFrame = children[i].Frame
-		local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
-		
-		if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
-			childFrame:ClearAllPoints()
-			childFrame:SetPoint(groupArranger.point, frame, groupArranger.relativePoint, combinedOffsetX, combinedOffsetY)
-		end
+    if frame ~= nil then 
+        local groupArranger = self.GroupArranger
+        if groupArranger == nil then
+            return
+        end
+        
+        local children = self.ValueHandler.value
+        local combinedOffsetX = 0
+        local combinedOffsetY = 0
+        local childRects = {}
 
-		table.insert(childRects, { childFrame:GetRect() })
-		combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(combinedOffsetX, combinedOffsetY, childFrame)
-	end
-	
-	if #childRects > 0 then
-		frame:SetSizeWithEvent(GetSizeFromRects(childRects))
-	else
-		frame:SetSizeWithEvent(0, 0)
-	end
+        for i = 1, #children do
+            local childFrame = children[i].Frame
+            local currentOffsetX, currentOffsetY = select(4, childFrame:GetPoint(1))
+            
+            if currentOffsetX ~= combinedOffsetX or currentOffsetY ~= combinedOffsetY then
+                childFrame:ClearAllPoints()
+                childFrame:SetPoint(groupArranger.point, frame, groupArranger.relativePoint, combinedOffsetX, combinedOffsetY)
+            end
+
+            table.insert(childRects, { childFrame:GetRect() })
+            combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(combinedOffsetX, combinedOffsetY, childFrame)
+        end
+        
+        if #childRects > 0 then
+            frame:SetSizeWithEvent(GetSizeFromRects(childRects))
+        else
+            frame:SetSizeWithEvent(0, 0)
+        end
+    end
 end
 
 
