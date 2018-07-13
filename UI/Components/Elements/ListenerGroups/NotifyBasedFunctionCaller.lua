@@ -40,5 +40,5 @@ function this.Setup(
 end
 
 function this:OnNotify(listener, ...)
-    self.ObjectWithFunction[self.functionName](...)
+    self.ObjectWithFunction[self.functionName](self.ObjectWithFunction, ...)
 end
