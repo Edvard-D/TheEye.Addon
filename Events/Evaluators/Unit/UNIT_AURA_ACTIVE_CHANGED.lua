@@ -21,7 +21,7 @@ local unpack = unpack
 ]]
 
 
-reevaluateEvents =
+this.reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
 }
