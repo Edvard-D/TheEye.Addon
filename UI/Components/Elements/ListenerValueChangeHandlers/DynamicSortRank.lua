@@ -36,6 +36,7 @@ function this.Setup(
     inherited.Setup(
         instance,
         uiObject,
+        instance.ValueHandler,
         instance.ListenerGroup
     )
 end

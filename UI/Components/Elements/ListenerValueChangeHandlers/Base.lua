@@ -13,6 +13,7 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 --[[ SETUP
     instance
     uiObject                    UIObject
+    valueHandler                ValueHandler
     listenerGroup               ListenerGroup
 ]]
 function this.Setup(
@@ -22,6 +23,7 @@ function this.Setup(
 )
     
     instance.UIObject = uiObject
+    instance.ValueHandler = valueHandler
     instance.ListenerGroup = listenerGroup
 
     instance.Activate = this.Activate
@@ -30,6 +32,7 @@ end
 
 function this:Activate()
     self.ListenerGroup:Activate()
+    self.ValueHandler:Activate()
 end
 
 function this:Deactivate()
