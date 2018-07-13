@@ -34,6 +34,7 @@ function this.Setup(
 
     instance.UIObject = uiObject
     instance.Arrange = this.Arrange
+    instance.UpdateRegisteredChildren = this.UpdateRegisteredChildren
 
     -- ValueHandler
     instance.ValueHandler = {}
@@ -86,19 +87,22 @@ function this.Setup(
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Arrange,
         uiObject,
-        this.Arrange
+        instance,
+        "Arrange"
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Sort,
         uiObject,
-        instance.ValueHandler.Sort
+        instance.ValueHandler,
+        "Sort"
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.UpdateRegisteredChildren,
         uiObject,
-        this.UpdateRegisteredChildren
+        instance,
+        "UpdateRegisteredChildren"
     )
 
     -- EnabledStateReactor

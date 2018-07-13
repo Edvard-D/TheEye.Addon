@@ -16,12 +16,14 @@ local ListenerBaseSetup = TheEyeAddon.UI.Components.Elements.Listeners.Base.Setu
 --[[ #SETUP#
     instance
     uiObject                    UIObject
-    calledFunction              function(...)
+    objectWithFunction
+    functionName                #STRING#
 ]]
 function this.Setup(
     instance,
     uiObject,
-    calledFunction
+    objectWithFunction,
+    functionName
 )
 
     inherited.Setup(
@@ -33,9 +35,10 @@ function this.Setup(
         nil
     )
 
-    instance.CalledFunction = calledFunction
+    instance.ObjectWithFunction = objectWithFunction
+    instance.functionName = functionName
 end
 
 function this:OnNotify(listener, ...)
-    self:CalledFunction(...)
+    self.ObjectWithFunction[self.functionName](...)
 end
