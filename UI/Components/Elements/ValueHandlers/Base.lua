@@ -34,8 +34,15 @@ function this.Setup(
     instance.defaultValue = defaultValue
     instance.value = defaultValue
 
+    instance.Activate = this.Activate
     instance.Change = this.Change
     instance.Reset = this.Reset
+end
+
+function this:Activate()
+    if self.OnActivate ~= nil then
+        self:OnActivate()
+    end
 end
 
 function this:Change(value)
@@ -54,10 +61,4 @@ end
 
 function this:Reset()
     self:Change(self.defaultValue)
-end
-
-function this:Activate()
-    if self.OnActivate ~= nil then
-        self:OnActivate()
-    end
 end
