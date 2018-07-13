@@ -191,7 +191,7 @@ end
 
 
 -- UpdateRegisteredChildren
-function this:UpdateRegisteredChildren(state, event, ...)
+function this:UpdateRegisteredChildren(event, ...)
     local childUIObject = ...
 
     if childUIObject.VisibleState.ValueHandler.value == false then
