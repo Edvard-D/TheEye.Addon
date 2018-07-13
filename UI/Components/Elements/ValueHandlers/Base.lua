@@ -53,15 +53,7 @@ function this:Change(value)
 end
 
 function this:Reset()
-    self.value = self.defaultValue
-
-    if self.ValueAction ~= nil then
-        self.value = self:ValueAction(self.value)
-    end
-    
-    if self.OnValueChange ~= nil then
-        self:OnValueChange(self.value)
-    end
+    self:Change(self.defaultValue)
 end
 
 function this:Activate()
