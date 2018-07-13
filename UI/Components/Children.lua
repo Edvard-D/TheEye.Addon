@@ -114,17 +114,14 @@ function this.Setup(
 end
 
 function this:OnEnable()
-    local listenerGroups = self.ListenerGroups
-    for i=1, #listenerGroups do
-        listenerGroups[i]:Activate()
+    for k,listenerGroup in pairs(self.ListenerGroups) do
+        listenerGroup:Activate()
     end
 end
 
 function this:OnDisable()
-    self.ValueHandler:Reset()
-    local listenerGroups = self.ListenerGroups
-    for i=1, #listenerGroups do
-        listenerGroups[i]:Deactivate()
+    for k,listenerGroup in pairs(self.ListenerGroups) do
+        listenerGroup:Deactivate()
     end
 end
 
