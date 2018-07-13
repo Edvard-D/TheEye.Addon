@@ -28,6 +28,7 @@ function this.Setup(
         uiObject,
         nil,
         nil,
+        nil,
         onSortRankChange,
         instance.defaultValue
     )

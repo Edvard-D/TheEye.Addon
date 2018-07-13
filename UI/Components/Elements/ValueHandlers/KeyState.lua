@@ -31,6 +31,7 @@ function this.Setup(
         instance,
         uiObject,
         this.OnActivate,
+        this.OnDeactivate,
         valueAction,
         this.OnValueChange,
         defaultValue
@@ -42,6 +43,13 @@ end
 
 function this:OnActivate()
     self:OnValueChange(self:ValueAction(self.defaultValue))
+end
+
+function this:OnDeactivate()
+    if self.state ~= false then
+        self.state = false
+        self.StateChangeListener:OnStateChange(false)
+    end
 end
 
 function this:OnValueChange(value)

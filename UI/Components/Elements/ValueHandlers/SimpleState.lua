@@ -27,6 +27,7 @@ function this.Setup(
         uiObject,
         nil,
         nil,
+        nil,
         this.OnValueChange,
         false
     )
