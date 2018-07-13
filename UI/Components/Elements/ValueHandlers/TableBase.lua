@@ -40,17 +40,17 @@ function this.Setup(
 end
 
 function this:OnTableChange()
-    self.OnTableValuesChange()
+    self:OnTableValuesChange()
 end
 
 function this:Insert(value)
     table.insert(self.value, value)
-    self.OnTableValuesChange()
+    self:OnTableValuesChange()
 end
 
 function this:Remove(value)
     local wasRemoved = table.removekeyvalue(self.value, value) -- @TODO allow use of table.removevalue too?
     if wasRemoved == true then
-        self.OnTableValuesChange()
+        self:OnTableValuesChange()
     end
 end
