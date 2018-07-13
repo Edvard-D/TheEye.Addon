@@ -36,6 +36,6 @@ function this.Setup(
     instance.CalledFunction = calledFunction
 end
 
-function this.CallFunction(listener, ...)
+function this:OnNotify(listener, ...)
     self:CalledFunction(...)
 end
