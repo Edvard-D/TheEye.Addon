@@ -134,6 +134,10 @@ function this.InputGroupRegisterListeningTo(inputGroup, listener)
 end
 
 -- Event Evaluation
+local function Compare(comparisonValues, value)
+    Comparisons[comaprisonValues.type](value, comparisonValues.value)
+end
+
 local function ListenersNotify(listeners, ...)
     for i=1,#listeners do
         listeners[i]:Notify(...)
