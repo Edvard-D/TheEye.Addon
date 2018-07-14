@@ -36,5 +36,9 @@ end
 
 function this:Evaluate(valueGroup)
     local isKnown = self:CalculateCurrentState(valueGroup.inputValues)
-    return true, this.name, isKnown
+
+    if self.currentState ~= isKnown then
+        self.currentState = isKnown
+        return true, this.name, isKnown
+    end
 end
