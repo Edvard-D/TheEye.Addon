@@ -40,6 +40,7 @@
 Namespaces.lua
 
 Auras.lua
+Comparisons.lua
 Events\Coordinator.lua
 TableHelpers.lua
 Tags.lua
