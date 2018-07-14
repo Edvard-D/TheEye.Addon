@@ -16,7 +16,7 @@ TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
 --[[ #this#TEMPLATE#
 {
     childTags = #ARRAY#TAG#
-    #OPTIONAL#GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
+    GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
 }
@@ -161,12 +161,8 @@ function this:Arrange()
     local frame = self.UIObject.Frame
 
     if frame ~= nil then 
-        local groupArranger = self.GroupArranger
-        if groupArranger == nil then
-            return
-        end
-        
         local children = self.ValueHandler.value
+        local groupArranger = self.GroupArranger
         local combinedOffsetX = 0
         local combinedOffsetY = 0
         local childRects = {}
