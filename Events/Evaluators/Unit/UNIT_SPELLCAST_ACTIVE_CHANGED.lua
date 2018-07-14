@@ -36,11 +36,7 @@ function this:CalculateCurrentState(inputValues)
     local unit = inputValues[1]
     local currentSpellID = select(9, UnitCastingInfo(unit)) or select(8, UnitChannelInfo(unit))
 
-    if currentSpellID == expectedSpellID then
-        return true
-    else
-        return false
-    end
+    return currentSpellID == expectedSpellID
 end
 
 function this:GetKey(event, ...)
