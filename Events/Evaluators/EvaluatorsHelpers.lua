@@ -96,7 +96,12 @@ function this.ListenerRegister(evaluatorKey, listener)
     EvaluatorIncreaseListenerCount(evaluator)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if inputGroup.currentValue == true then -- Set in InputGroupIncreaseListenerCount
+    if listener.comparisonValues ~= nil then
+        listener.comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
+    end
+
+    if (listener.comparisonValues == nil and inputGroup.currentValue == true)
+        or listener.comparisonState == true then
         listener:Notify(evaluatorKey, true)
     end
 end
@@ -134,26 +139,26 @@ function this.InputGroupRegisterListeningTo(inputGroup, listener)
 end
 
 -- Event Evaluation
-local function Compare(comparisonValues, value)
+function this.Compare(comparisonValues, value)
     Comparisons[comaprisonValues.type](value, comparisonValues.value)
+end
+
+local function ListenerNotifyAsComparison(inputGroup, listener, event)
+    local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
+    if listener.comparisonState ~= comparisonState then
+        listener.comparisonState = comparisonState
+        listener:Notify(event, comparisonState)
+    end
 end
 
 local function ListenersNotify(inputGroup, ...)
     local listeners = inputGroup.listeners
     for i=1,#listeners do
         local listener = listeners[i]
-        local shouldNotify = true
         
         if listener.comparisonValues ~= nil then
-            local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
-            if listener.comparisonState ~= comparisonState then
-                listener.comparisonState = comparisonState
-            else
-                shouldNotify = false
-            end
-        end
-
-        if shouldNotify == true then
+            ListenerNotifyAsComparison(inputGroup, listener, ...)
+        else
             listener:Notify(...)
         end
     end
