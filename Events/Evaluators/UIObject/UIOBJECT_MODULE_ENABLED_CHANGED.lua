@@ -41,11 +41,11 @@ function this:GetKey(event, ...)
     return select(1, ...) -- SETTING_CHANGED: moduleKey
 end
 
-function this:Evaluate(valueGroup, event, ...)
-    local isEnabled = this:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(inputGroup, event, ...)
+    local isEnabled = this:CalculateCurrentState(inputGroup.inputValues)
 
-    if valueGroup.currentState ~= isEnabled then
-        valueGroup.currentState = isEnabled
+    if inputGroup.currentState ~= isEnabled then
+        inputGroup.currentState = isEnabled
         return true, this.name, isEnabled
     end
 end

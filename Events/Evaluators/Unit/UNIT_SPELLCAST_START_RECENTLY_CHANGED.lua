@@ -9,7 +9,7 @@ local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
-local ValueGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.ValueGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 
 
 --[[ #this#TEMPLATE#
@@ -38,12 +38,12 @@ customEvents =
 this.timerDuration = 0.5
 
 
-function this:SetupListeningTo(valueGroup)
-    ValueGroupRegisterListeningTo(valueGroup,
+function this:SetupListeningTo(inputGroup)
+    InputGroupRegisterListeningTo(inputGroup,
     {
         listeningToKey = "UNIT_SPELLCAST_INSTANT",
         evaluator = this,
-        inputValues = valueGroup.inputValues
+        inputValues = inputGroup.inputValues
     })
 end
 
@@ -82,24 +82,24 @@ function this:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function this:Evaluate(valueGroup, event, ...)
+function this:Evaluate(inputGroup, event, ...)
     local spellcastStartedRecently
 
     if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
-        local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
+        local castID = select(7, UnitCastingInfo(inputGroup.inputValues[1]))
 
         spellcastStartedRecently = true
         StartEventTimer(
-            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], castID)
+            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", inputGroup.inputValues[1], inputGroup.inputValues[2], castID)
     elseif event == "UNIT_SPELLCAST_INSTANT" then
         spellcastStartedRecently = true
         StartEventTimer(
-            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", valueGroup.inputValues[1], valueGroup.inputValues[2], "INSTANT")
+            self.timerDuration, "UNIT_SPELLCAST_TIMER_END", inputGroup.inputValues[1], inputGroup.inputValues[2], "INSTANT")
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
         local timerDuration = select(1, ...)
         if timerDuration == self.timerDuration then
             local requiredCastID = select(4, ...)
-            local castID = select(7, UnitCastingInfo(valueGroup.inputValues[1]))
+            local castID = select(7, UnitCastingInfo(inputGroup.inputValues[1]))
 
             if requiredCastID == "INSTANT" or castID == requiredCastID then
                 spellcastStartedRecently = false
@@ -111,8 +111,8 @@ function this:Evaluate(valueGroup, event, ...)
         spellcastStartedRecently = false
     end
 
-    if valueGroup.currentState ~= spellcastStartedRecently then
-        valueGroup.currentState = spellcastStartedRecently
+    if inputGroup.currentState ~= spellcastStartedRecently then
+        inputGroup.currentState = spellcastStartedRecently
         return true, this.name, spellcastStartedRecently
     end
 end

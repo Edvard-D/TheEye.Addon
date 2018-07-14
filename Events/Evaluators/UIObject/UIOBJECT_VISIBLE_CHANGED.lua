@@ -35,11 +35,11 @@ function this:GetKey(event, ...)
     return uiObject.key
 end
 
-function this:Evaluate(valueGroup, event)
+function this:Evaluate(inputGroup, event)
     local isVisible = event == "UIOBJECT_SHOWN" -- else UIOBJECT_HIDDEN
 
-    if valueGroup.currentState ~= isVisible then
-        valueGroup.currentState = isVisible
+    if inputGroup.currentState ~= isVisible then
+        inputGroup.currentState = isVisible
         return true, this.name, isVisible
     end
 end

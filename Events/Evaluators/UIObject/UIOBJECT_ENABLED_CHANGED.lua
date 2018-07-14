@@ -35,11 +35,11 @@ function this:GetKey(event, ...)
     return uiObject.key
 end
 
-function this:Evaluate(valueGroup, event)
+function this:Evaluate(inputGroup, event)
     local isEnabled = event == "UIOBJECT_ENABLED" -- else UIOBJECT_DISABLED
 
-    if valueGroup.currentState ~= isEnabled then
-        valueGroup.currentState = isEnabled
+    if inputGroup.currentState ~= isEnabled then
+        inputGroup.currentState = isEnabled
         return true, this.name, isEnabled
     end
 end

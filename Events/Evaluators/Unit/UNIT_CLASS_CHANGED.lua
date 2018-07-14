@@ -33,11 +33,11 @@ function this:CalculateCurrentState(inputValues)
     return classIndex == inputValues[2]
 end
 
-function this:Evaluate(valueGroup)
-    local isClass = this:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(inputGroup)
+    local isClass = this:CalculateCurrentState(inputGroup.inputValues)
 
-    if valueGroup.currentState ~= isClass then
-        valueGroup.currentState = isClass
+    if inputGroup.currentState ~= isClass then
+        inputGroup.currentState = isClass
         return true, this.name, isClass
     end
 end

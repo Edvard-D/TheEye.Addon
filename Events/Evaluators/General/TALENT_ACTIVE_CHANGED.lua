@@ -34,8 +34,8 @@ function this:CalculateCurrentState(inputValues)
     return isKnown
 end
 
-function this:Evaluate(valueGroup)
-    local isKnown = self:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(inputGroup)
+    local isKnown = self:CalculateCurrentState(inputGroup.inputValues)
 
     if self.currentState ~= isKnown then
         self.currentState = isKnown

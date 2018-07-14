@@ -44,11 +44,11 @@ function this:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function this:Evaluate(valueGroup, event)
+function this:Evaluate(inputGroup, event)
     local isActive = event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" -- else UNIT_SPELLCAST_STOP, UNIT_SPELLCAST_CHANNEL_STOP
     
-    if valueGroup.currentState ~= isActive then
-        valueGroup.currentState = isActive
+    if inputGroup.currentState ~= isActive then
+        inputGroup.currentState = isActive
         return true, this.name, isActive
     end
 end

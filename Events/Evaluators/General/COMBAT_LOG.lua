@@ -34,9 +34,9 @@ function this:GetKey(event)
     local destGUID = self.rawEventInfo[8]
     local unitGUIDs = {}
 
-    for k,valueGroup in pairs(self.ValueGroups) do -- @TODO create table that stores the GUIDs for each unitID
-        local sourceUnit = valueGroup.inputValues[2]
-        local destUnit = valueGroup.inputValues[3]
+    for k,inputGroup in pairs(self.InputGroups) do -- @TODO create table that stores the GUIDs for each unitID
+        local sourceUnit = inputGroup.inputValues[2]
+        local destUnit = inputGroup.inputValues[3]
 
         if sourceUnit ~= "_" and unitGUIDs[sourceUnit] == nil then
             unitGUIDs[sourceUnit] = UnitGUID(sourceUnit)
@@ -52,7 +52,7 @@ function this:GetKey(event)
     end
 end
 
-function this:Evaluate(valueGroup, event)
+function this:Evaluate(inputGroup, event)
     self.formattedEventInfo = {}
 
     local eventDataFormat = CombatLogEventDataFormats[self.rawEventInfo[2]]
@@ -63,8 +63,8 @@ function this:Evaluate(valueGroup, event)
 
     self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]
     self.formattedEventInfo["suffix"] = eventDataFormat["suffix"]
-    self.formattedEventInfo["sourceUnit"] = valueGroup.inputValues[2]
-    self.formattedEventInfo["destUnit"] = valueGroup.inputValues[3]
+    self.formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
+    self.formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
 
     return true, self.formattedEventInfo["event"], self.formattedEventInfo
 end
