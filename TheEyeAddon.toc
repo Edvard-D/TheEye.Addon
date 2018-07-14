@@ -40,20 +40,14 @@
 Namespaces.lua
 
 Auras.lua
+Events\Coordinator.lua
 TableHelpers.lua
 Tags.lua
-Timers.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
 
 AuraFilters.lua
-
-
-
-# ---------------------------
-# |	        Events        	|
-# ---------------------------
-Events\Coordinator.lua
+Timers.lua
 
 
 

@@ -1,14 +1,16 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Timers = {}
+this = TheEyeAddon.Timers
 
 local After = C_Timer.After
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local unpack = unpack
 
 
-function TheEyeAddon.Timers:StartEventTimer(duration, eventName, ...)
+function this.StartEventTimer(duration, eventName, ...)
     local args = { duration, ... }
     After(duration, 
     function()
-        TheEyeAddon.Events.Coordinator:SendCustomEvent(eventName, unpack(args))
+        SendCustomEvent(eventName, unpack(args))
     end)
 end
