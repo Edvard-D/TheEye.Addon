@@ -20,7 +20,6 @@ this.Delegate =
 this.TopToBottom =
 {
     SetPoint = function(parentFrame, childFrame, childPointSettings, offsetX, offsetY)
-        print("offsetX: " .. tostring(offsetX) .. ", offsetY: " .. tostring(offsetY))
         childFrame:SetPoint(
             "TOP",
             parentFrame,
