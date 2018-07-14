@@ -16,9 +16,9 @@ end
 function this.UIObjectHasTag(uiObject, tag)
     local tagGroup = GetTagGroup(tag)
     local uiObjectKey = uiObject.key
-    
+
     if tagGroup[uiObjectKey] == nil then
-        tagGroup[uiObjectKey] = uiObjectKey:find(tag)
+        tagGroup[uiObjectKey] = uiObjectKey:find(tag) ~= nil
     end
 
     return tagGroup[uiObjectKey]
