@@ -64,11 +64,7 @@ end
 function this:CalculateCurrentState(inputValues)
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
 
-    if UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil then
-        return true
-    else
-        return false
-    end
+    return UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil
 end
 
 function this:GetKey(event, combatLogData)
