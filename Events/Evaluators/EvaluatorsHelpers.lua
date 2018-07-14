@@ -8,7 +8,7 @@ local select = select
 local table = table
 
 
--- Register
+-- Get
 local function ValueGroupGet(evaluator, inputValues)
     if evaluator.ValueGroups == nil then
         evaluator.ValueGroups = {}
@@ -40,6 +40,7 @@ local function ValueGroupGetListeners(valueGroup)
     return valueGroup.listeners
 end
 
+-- Listener Count
 local function EvaluatorIncreaseListenerCount(evaluator)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
@@ -69,6 +70,25 @@ local function ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
     end
 end
 
+local function EvaluatorDecreaseListenerCount(evaluator)
+    evaluator.listenerCount = evaluator.listenerCount - 1
+    if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        CoordinatorUnregister(evaluator)
+    end
+end
+
+local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
+    valueGroup.listenerCount = valueGroup.listenerCount - 1
+    if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        if valueGroup.ListeningTo ~= nil then
+            ValueGroupUnregisterListeningTo(valueGroup)
+        end
+
+        evaluator[valueGroup.key] = nil
+    end
+end
+
+-- Register/Unregister
 function this.ListenerRegister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
     local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
@@ -83,14 +103,6 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 end
 
--- Unregister
-local function EvaluatorDecreaseListenerCount(evaluator)
-    evaluator.listenerCount = evaluator.listenerCount - 1
-    if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        CoordinatorUnregister(evaluator)
-    end
-end
-
 local function ValueGroupUnregisterListeningTo(valueGroup)
     local listeningTo = valueGroup.ListeningTo
     for i=1,#listeningTo do
@@ -98,17 +110,6 @@ local function ValueGroupUnregisterListeningTo(valueGroup)
         this.ListenerUnregister(listener.listeningToKey, listener)
     end
     valueGroup.ListeningTo = nil
-end
-
-local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
-    valueGroup.listenerCount = valueGroup.listenerCount - 1
-    if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        if valueGroup.ListeningTo ~= nil then
-            ValueGroupUnregisterListeningTo(valueGroup)
-        end
-
-        evaluator[valueGroup.key] = nil
-    end
 end
 
 function this.ListenerUnregister(evaluatorKey, listener)
