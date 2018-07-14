@@ -8,6 +8,7 @@ this.name = "UNIT_SPELLCAST_ACTIVE_CHANGED"
 local select = select
 local table = table
 local UnitCastingInfo = UnitCastingInfo
+local UnitChannelInfo = UnitChannelInfo
 
 
 --[[ #this#TEMPLATE#
@@ -32,7 +33,8 @@ this.gameEvents =
 
 function this:CalculateCurrentState(inputValues)
     local expectedSpellID = inputValues[2]
-    local currentSpellID = select(9, UnitCastingInfo(inputValues[1]))
+    local unit = inputValues[1]
+    local currentSpellID = select(9, UnitCastingInfo(unit)) or select(8, UnitChannelInfo(unit))
 
     if currentSpellID == expectedSpellID then
         return true
