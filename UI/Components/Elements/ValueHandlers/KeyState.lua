@@ -38,7 +38,7 @@ function this.Setup(
     )
 
     instance.StateChangeListener = stateChangeListener
-    instance.state = nil
+    instance.state = false
 end
 
 function this:OnActivate()
@@ -53,7 +53,7 @@ function this:OnDeactivate()
 end
 
 function this:OnValueChange(value)
-    local state = self.validKeys[value]
+    local state = self.validKeys[value] or false
 
     if self.state ~= state then
         self.state = state
