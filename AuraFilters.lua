@@ -10,5 +10,9 @@ TheEyeAddon.Auras.Filters.SpellID =
     [589] = -- Shadow Word: Pain
     {
         "HARMFUL "
+    },
+    [34914] = -- Vampiric Touch
+    {
+        "HARMFUL "
     }
 }

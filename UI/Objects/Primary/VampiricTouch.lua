@@ -1,8 +1,8 @@
-local spellID = 589
+local spellID = 34914
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL-589" },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-34914" },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
@@ -34,14 +34,14 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 3,
+            defaultValue = 2,
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [0] = true, [2] = true, [6] = true, },
+            validKeys = { [0] = true, [2] = true, [6] = true, [10] = true, [14] = true, },
         },
         ListenerGroup =
         {
@@ -56,6 +56,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] spellID, },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    value = 8,
                 },
             },
         },

@@ -176,6 +176,7 @@ UI\Objects\Primary\PrimaryGroup.lua
 
 UI\Objects\Primary\MindFlay.lua
 UI\Objects\Primary\ShadowWordPain.lua
+UI\Objects\Primary\VampiricTouch.lua
 
 
 
