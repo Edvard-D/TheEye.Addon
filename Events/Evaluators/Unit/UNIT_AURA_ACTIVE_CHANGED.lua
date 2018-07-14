@@ -71,18 +71,16 @@ function this:CalculateCurrentState(inputValues)
     end
 end
 
-function this:GetKey(event, ...)
-    local combatLogData = ...
+function this:GetKey(event, combatLogData)
     return table.concat({ combatLogData["sourceUnit"], combatLogData["destUnit"], combatLogData["spellID"] })
 end
 
-function this:Evaluate(valueGroup, event, ...)
+function this:Evaluate(valueGroup, event, combatLogData)
     local isActive
 
     if event == "PLAYER_TARGET_CHANGED" then
         isActive = this:CalculateCurrentState(valueGroup.inputValues)
     else
-        local combatLogData = ...
         isActive = combatLogData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
     end
 
