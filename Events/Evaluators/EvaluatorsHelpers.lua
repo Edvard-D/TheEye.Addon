@@ -28,12 +28,27 @@ local function InputGroupGet(evaluator, inputValues)
     return evaluator.InputGroups[inputGroupKey]
 end
 
-local function InputGroupGetListeners(inputGroup)
-    if inputGroup.listeners == nil then
-        inputGroup.listeners = {}
+local function InputGroupGetComparisonGroup(inputGroup, comparisonValues)
+    local comparisonGroupKey
+    if comparisonValues ~= nil then
+        comparisonGroupKey = table.concat(comparisonValues)
+    else
+        comparisonGroupKey = "default"
     end
 
-    return inputGroup.listeners
+    if inputGroup[comparisonKey] == nil then
+        inputGroup[comparisonKey] = { comparisonValues = comparisonValues }
+    end
+
+    return inputGroup[comparisonKey]
+end
+
+local function ComparisonGroupGetListeners(comparisonGroup)
+    if comparisonGroup.listeners == nil then
+        comparisonGroup.listeners = {}
+    end
+
+    return comparisonGroup.listeners
 end
 
 -- Listener Count
@@ -88,7 +103,8 @@ end
 function this.ListenerRegister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
-    local listeners = InputGroupGetListeners(inputGroup)
+    local comparisonGroup = InputGroupGetComparisonGroup(inputGroup, listener.comparisonValues)
+    local listeners = ComparisonGroupGetListeners(comparisonGroup)
     
     table.insert(listeners, listener)
     EvaluatorIncreaseListenerCount(evaluator)
@@ -111,7 +127,8 @@ end
 function this.ListenerUnregister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
-    local listeners = InputGroupGetListeners(inputGroup)
+    local comparisonGroup = InputGroupGetComparisonGroup(inputGroup, listener.comparisonValues)
+    local listeners = ComparisonGroupGetListeners(comparisonGroup)
 
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)
