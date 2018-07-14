@@ -138,9 +138,16 @@ local function Compare(comparisonValues, value)
     Comparisons[comaprisonValues.type](value, comparisonValues.value)
 end
 
-local function ListenersNotify(listeners, ...)
+local function ListenersNotify(inputGroup, ...)
+    local listeners = inputGroup.listeners
     for i=1,#listeners do
-        listeners[i]:Notify(...)
+        local listener = listeners[i]
+        
+        if listener.comparisonValues == nil
+            or Compare(listener.comparisonValues, inputGroup.currentValue) == true then
+            
+            listener:Notify(...)
+        end
     end
 end
 
@@ -149,7 +156,7 @@ local function Evaluate(evaluator, inputGroup, event, ...)
     local shouldSend = evaluatedValues[1]
     if shouldSend == true then
         table.remove(evaluatedValues, 1)
-        ListenersNotify(inputGroup.listeners, unpack(evaluatedValues))
+        ListenersNotify(inputGroup, unpack(evaluatedValues))
     end
 end
 
