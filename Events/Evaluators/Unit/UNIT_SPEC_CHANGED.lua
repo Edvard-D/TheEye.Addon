@@ -52,8 +52,8 @@ end
 function this:Evaluate(inputGroup, event)
     local isSpec = this:CalculateCurrentState(inputGroup.inputValues)
 
-    if inputGroup.currentState ~= isSpec then
-        inputGroup.currentState = isSpec
+    if inputGroup.currentValue ~= isSpec then
+        inputGroup.currentValue = isSpec
         return true, this.name, isSpec
     end
 end

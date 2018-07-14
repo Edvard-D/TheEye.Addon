@@ -80,8 +80,8 @@ function this:Evaluate(inputGroup, event, combatLogData)
         isActive = combatLogData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
     end
 
-    if inputGroup.currentState ~= isActive then
-        inputGroup.currentState = isActive
+    if inputGroup.currentValue ~= isActive then
+        inputGroup.currentValue = isActive
         return true, this.name, isActive
     end
 end

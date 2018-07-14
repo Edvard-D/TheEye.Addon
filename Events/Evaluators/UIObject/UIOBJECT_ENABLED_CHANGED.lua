@@ -26,7 +26,7 @@ function this:CalculateCurrentState(inputValues)
     if uiObject == nil then
         return false
     else
-        return uiObject.ListenerGroups.Enabled.currentState
+        return uiObject.ListenerGroups.Enabled.currentValue
     end
 end
 
@@ -38,8 +38,8 @@ end
 function this:Evaluate(inputGroup, event)
     local isEnabled = event == "UIOBJECT_ENABLED" -- else UIOBJECT_DISABLED
 
-    if inputGroup.currentState ~= isEnabled then
-        inputGroup.currentState = isEnabled
+    if inputGroup.currentValue ~= isEnabled then
+        inputGroup.currentValue = isEnabled
         return true, this.name, isEnabled
     end
 end

@@ -111,8 +111,8 @@ function this:Evaluate(inputGroup, event, ...)
         spellcastStartedRecently = false
     end
 
-    if inputGroup.currentState ~= spellcastStartedRecently then
-        inputGroup.currentState = spellcastStartedRecently
+    if inputGroup.currentValue ~= spellcastStartedRecently then
+        inputGroup.currentValue = spellcastStartedRecently
         return true, this.name, spellcastStartedRecently
     end
 end

@@ -63,7 +63,7 @@ local function InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
         end
 
         if evaluator.CalculateCurrentState ~= nil then
-            inputGroup.currentState = evaluator:CalculateCurrentState(listener.inputValues)
+            inputGroup.currentValue = evaluator:CalculateCurrentState(listener.inputValues)
         end
     end
 end
@@ -96,7 +96,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     EvaluatorIncreaseListenerCount(evaluator)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if inputGroup.currentState == true then -- Set in InputGroupIncreaseListenerCount
+    if inputGroup.currentValue == true then -- Set in InputGroupIncreaseListenerCount
         listener:Notify(evaluatorKey, true)
     end
 end

@@ -44,8 +44,8 @@ end
 function this:Evaluate(inputGroup, event, ...)
     local isEnabled = this:CalculateCurrentState(inputGroup.inputValues)
 
-    if inputGroup.currentState ~= isEnabled then
-        inputGroup.currentState = isEnabled
+    if inputGroup.currentValue ~= isEnabled then
+        inputGroup.currentValue = isEnabled
         return true, this.name, isEnabled
     end
 end

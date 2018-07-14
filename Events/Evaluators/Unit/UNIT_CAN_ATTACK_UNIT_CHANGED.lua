@@ -34,8 +34,8 @@ end
 function this:Evaluate(inputGroup)
     local canAttack = UnitCanAttack(inputGroup.inputValues[1], inputGroup.inputValues[2])
 
-    if inputGroup.currentState ~= canAttack then
-        inputGroup.currentState = canAttack
+    if inputGroup.currentValue ~= canAttack then
+        inputGroup.currentValue = canAttack
         return true, this.name, canAttack
     end
 end

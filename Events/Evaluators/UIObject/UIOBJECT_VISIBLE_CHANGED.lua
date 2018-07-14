@@ -26,7 +26,7 @@ function this:CalculateCurrentState(inputValues)
     if uiObject == nil then
         return false
     else
-        return uiObject.ListenerGroups.Visible.currentState
+        return uiObject.ListenerGroups.Visible.currentValue
     end
 end
 
@@ -38,8 +38,8 @@ end
 function this:Evaluate(inputGroup, event)
     local isVisible = event == "UIOBJECT_SHOWN" -- else UIOBJECT_HIDDEN
 
-    if inputGroup.currentState ~= isVisible then
-        inputGroup.currentState = isVisible
+    if inputGroup.currentValue ~= isVisible then
+        inputGroup.currentValue = isVisible
         return true, this.name, isVisible
     end
 end
