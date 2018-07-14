@@ -18,7 +18,7 @@ local select = select
 ]]
 
 
-reevaluateEvents =
+this.reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
 }
