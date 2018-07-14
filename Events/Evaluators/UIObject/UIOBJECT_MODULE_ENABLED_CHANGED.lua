@@ -28,7 +28,7 @@ this.customEvents =
 }
 
 
-function this:CalculateCurrentState(inputValues)
+function this:CalculateCurrentValue(inputValues)
     if TheEyeAddon.Settings ~= nil
             and table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
@@ -42,7 +42,7 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event, ...)
-    local isEnabled = this:CalculateCurrentState(inputGroup.inputValues)
+    local isEnabled = this:CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= isEnabled then
         inputGroup.currentValue = isEnabled

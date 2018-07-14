@@ -27,7 +27,7 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentState(inputValues)
+function this:CalculateCurrentValue(inputValues)
     return UnitCanAttack(inputValues[1], inputValues[2])
 end
 

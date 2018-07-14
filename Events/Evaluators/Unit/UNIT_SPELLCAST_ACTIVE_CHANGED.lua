@@ -31,7 +31,7 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentState(inputValues)
+function this:CalculateCurrentValue(inputValues)
     local expectedSpellID = inputValues[2]
     local unit = inputValues[1]
     local currentSpellID = select(9, UnitCastingInfo(unit)) or select(8, UnitChannelInfo(unit))
