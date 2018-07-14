@@ -142,10 +142,18 @@ local function ListenersNotify(inputGroup, ...)
     local listeners = inputGroup.listeners
     for i=1,#listeners do
         local listener = listeners[i]
+        local shouldNotify = true
         
-        if listener.comparisonValues == nil
-            or Compare(listener.comparisonValues, inputGroup.currentValue) == true then
-            
+        if listener.comparisonValues ~= nil then
+            local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
+            if listener.comparisonState ~= comparisonState then
+                listener.comparisonState = comparisonState
+            else
+                shouldNotify = false
+            end
+        end
+
+        if shouldNotify == true then
             listener:Notify(...)
         end
     end
