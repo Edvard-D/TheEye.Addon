@@ -23,7 +23,6 @@ local function InputGroupGet(evaluator, inputValues)
 
     if evaluator.InputGroups[inputGroupKey] == nil then
         evaluator.InputGroups[inputGroupKey] = { key = inputGroupKey, Evaluator = evaluator }
-        return evaluator.InputGroups[inputGroupKey]
     end
     
     return evaluator.InputGroups[inputGroupKey]
