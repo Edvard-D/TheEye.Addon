@@ -25,9 +25,9 @@ this.customEvents =
 }
 
 
-function this:Evaluate(valueGroup, event, ...)
+function this:Evaluate(inputGroup, event, ...)
     local uiObject = ...
-    local sendEvent = UIObjectHasTags(uiObject, valueGroup.inputValues, valueGroup.key)
+    local sendEvent = UIObjectHasTags(uiObject, inputGroup.inputValues, inputGroup.key)
     
     return sendEvent, this.name, uiObject
 end

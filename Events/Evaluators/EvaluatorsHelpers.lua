@@ -1,6 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 local this = TheEyeAddon.Events.Evaluators
 
+local Comparisons = TheEyeAddon.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorUnregister = TheEyeAddon.Events.Coordinator.Unregister
 local pairs = pairs
@@ -8,38 +9,35 @@ local select = select
 local table = table
 
 
--- Register
-local function ValueGroupGet(evaluator, inputValues)
-    if evaluator.ValueGroups == nil then
-        evaluator.ValueGroups = {}
+-- Get
+local function InputGroupGet(evaluator, inputValues)
+    if evaluator.InputGroups == nil then
+        evaluator.InputGroups = {}
     end
 
-    local valueGroupKey
+    local inputGroupKey
     if inputValues ~= nil then
-        valueGroupKey = table.concat(inputValues)
+        inputGroupKey = table.concat(inputValues)
     else
-        valueGroupKey = "default"
+        inputGroupKey = "default"
     end
 
-    if evaluator.ValueGroups[valueGroupKey] == nil then
-        evaluator.ValueGroups[valueGroupKey] = {}
-        local valueGroup = evaluator.ValueGroups[valueGroupKey]
-        valueGroup.key = valueGroupKey
-        valueGroup.Evaluator = evaluator
-        return valueGroup
+    if evaluator.InputGroups[inputGroupKey] == nil then
+        evaluator.InputGroups[inputGroupKey] = { key = inputGroupKey, }
     end
     
-    return evaluator.ValueGroups[valueGroupKey]
+    return evaluator.InputGroups[inputGroupKey]
 end
 
-local function ValueGroupGetListeners(valueGroup)
-    if valueGroup.listeners == nil then
-        valueGroup.listeners = {}
+local function InputGroupGetListeners(inputGroup)
+    if inputGroup.listeners == nil then
+        inputGroup.listeners = {}
     end
 
-    return valueGroup.listeners
+    return inputGroup.listeners
 end
 
+-- Listener Count
 local function EvaluatorIncreaseListenerCount(evaluator)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
@@ -51,39 +49,25 @@ local function EvaluatorIncreaseListenerCount(evaluator)
     end
 end
 
-local function ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
-    if valueGroup.listenerCount == nil then
-        valueGroup.listenerCount = 0
+local function InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
+    if inputGroup.listenerCount == nil then
+        inputGroup.listenerCount = 0
     end
-    valueGroup.listenerCount = valueGroup.listenerCount + 1
-    if valueGroup.listenerCount == 1 then -- If listenerCount was 0 before
-        valueGroup.inputValues = listener.inputValues
+    inputGroup.listenerCount = inputGroup.listenerCount + 1
+    if inputGroup.listenerCount == 1 then -- If listenerCount was 0 before
+        inputGroup.Evaluator = inputGroup.Evaluator
+        inputGroup.inputValues = listener.inputValues
 
         if evaluator.SetupListeningTo ~= nil then
-            evaluator:SetupListeningTo(valueGroup)
+            evaluator:SetupListeningTo(inputGroup)
         end
 
-        if evaluator.CalculateCurrentState ~= nil then
-            valueGroup.currentState = evaluator:CalculateCurrentState(listener.inputValues)
+        if evaluator.CalculateCurrentValue ~= nil then
+            inputGroup.currentValue = evaluator:CalculateCurrentValue(listener.inputValues)
         end
     end
 end
 
-function this.ListenerRegister(evaluatorKey, listener)
-    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
-    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
-    local listeners = ValueGroupGetListeners(valueGroup)
-    
-    table.insert(listeners, listener)
-    EvaluatorIncreaseListenerCount(evaluator)
-    ValueGroupIncreaseListenerCount(evaluator, valueGroup, listener)
-
-    if valueGroup.currentState == true then -- Set in ValueGroupIncreaseListenerCount
-        listener:Notify(evaluatorKey, true)
-    end
-end
-
--- Unregister
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
@@ -91,62 +75,101 @@ local function EvaluatorDecreaseListenerCount(evaluator)
     end
 end
 
-local function ValueGroupUnregisterListeningTo(valueGroup)
-    local listeningTo = valueGroup.ListeningTo
+local function InputGroupDecreaseListenerCount(evaluator, inputGroup)
+    inputGroup.listenerCount = inputGroup.listenerCount - 1
+    if inputGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
+        if inputGroup.ListeningTo ~= nil then
+            InputGroupUnregisterListeningTo(inputGroup)
+        end
+
+        evaluator[inputGroup.key] = nil
+    end
+end
+
+-- Register/Unregister
+function this.ListenerRegister(evaluatorKey, listener)
+    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
+    local inputGroup = InputGroupGet(evaluator, listener.inputValues)
+    local listeners = InputGroupGetListeners(inputGroup)
+    
+    table.insert(listeners, listener)
+    EvaluatorIncreaseListenerCount(evaluator)
+    InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
+
+    if listener.comparisonValues ~= nil then
+        listener.comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
+    end
+
+    if (listener.comparisonValues == nil and inputGroup.currentValue == true)
+        or listener.comparisonState == true then
+        listener:Notify(evaluatorKey, true)
+    end
+end
+
+local function InputGroupUnregisterListeningTo(inputGroup)
+    local listeningTo = inputGroup.ListeningTo
     for i=1,#listeningTo do
         local listener = listeningTo[i]
         this.ListenerUnregister(listener.listeningToKey, listener)
     end
-    valueGroup.ListeningTo = nil
-end
-
-local function ValueGroupDecreaseListenerCount(evaluator, valueGroup)
-    valueGroup.listenerCount = valueGroup.listenerCount - 1
-    if valueGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        if valueGroup.ListeningTo ~= nil then
-            ValueGroupUnregisterListeningTo(valueGroup)
-        end
-
-        evaluator[valueGroup.key] = nil
-    end
+    inputGroup.ListeningTo = nil
 end
 
 function this.ListenerUnregister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey]
-    local valueGroup = ValueGroupGet(evaluator, listener.inputValues)
-    local listeners = ValueGroupGetListeners(valueGroup)
+    local inputGroup = InputGroupGet(evaluator, listener.inputValues)
+    local listeners = InputGroupGetListeners(inputGroup)
 
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)
-    ValueGroupDecreaseListenerCount(evaluator, valueGroup)
+    InputGroupDecreaseListenerCount(evaluator, inputGroup)
 end
 
 -- Listening To: handling of Evaluators that are listening to an Evaluator
-function this.ValueGroupRegisterListeningTo(valueGroup, listener)
-    if valueGroup.ListeningTo == nil then
-        valueGroup.ListeningTo = {}
+function this.InputGroupRegisterListeningTo(inputGroup, listener)
+    if inputGroup.ListeningTo == nil then
+        inputGroup.ListeningTo = {}
     end
 
     listener.Notify = this.Notify
-    listener.Evaluator = valueGroup.Evaluator
-    table.insert(valueGroup.ListeningTo, listener)
+    listener.Evaluator = inputGroup.Evaluator
+    table.insert(inputGroup.ListeningTo, listener)
     
     this.ListenerRegister(listener.listeningToKey, listener)
 end
 
 -- Event Evaluation
-local function ListenersNotify(listeners, ...)
-    for i=1,#listeners do
-        listeners[i]:Notify(...)
+function this.Compare(comparisonValues, value)
+    Comparisons[comaprisonValues.type](value, comparisonValues.value)
+end
+
+local function ListenerNotifyAsComparison(inputGroup, listener, event)
+    local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
+    if listener.comparisonState ~= comparisonState then
+        listener.comparisonState = comparisonState
+        listener:Notify(event, comparisonState)
     end
 end
 
-local function Evaluate(evaluator, valueGroup, event, ...)
-    local evaluatedValues = { evaluator:Evaluate(valueGroup, event, ...) }
+local function ListenersNotify(inputGroup, ...)
+    local listeners = inputGroup.listeners
+    for i=1,#listeners do
+        local listener = listeners[i]
+        
+        if listener.comparisonValues ~= nil then
+            ListenerNotifyAsComparison(inputGroup, listener, ...)
+        else
+            listener:Notify(...)
+        end
+    end
+end
+
+local function Evaluate(evaluator, inputGroup, event, ...)
+    local evaluatedValues = { evaluator:Evaluate(inputGroup, event, ...) }
     local shouldSend = evaluatedValues[1]
     if shouldSend == true then
         table.remove(evaluatedValues, 1)
-        ListenersNotify(valueGroup.listeners, unpack(evaluatedValues))
+        ListenersNotify(inputGroup, unpack(evaluatedValues))
     end
 end
 
@@ -156,15 +179,15 @@ end
 
 function this:OnEvent(event, ...)
     if self.reevaluateEvents ~= nil and self.reevaluateEvents[event] ~= nil then
-        for k,valueGroup in pairs(self.ValueGroups) do -- @TODO change this to an array with a lookup table
-            Evaluate(self, valueGroup, event, ...)
+        for k,inputGroup in pairs(self.InputGroups) do -- @TODO change this to an array with a lookup table
+            Evaluate(self, inputGroup, event, ...)
         end
     else
-        local valueGroupKey = self:GetKey(event, ...)
-        local valueGroup = self.ValueGroups[valueGroupKey]
+        local inputGroupKey = self:GetKey(event, ...)
+        local inputGroup = self.InputGroups[inputGroupKey]
 
-        if valueGroup ~= nil then
-            Evaluate(self, valueGroup, event, ...)
+        if inputGroup ~= nil then
+            Evaluate(self, inputGroup, event, ...)
         end
     end
 end

@@ -17,7 +17,7 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentState()
+function this:CalculateCurrentValue()
     return false
 end
 

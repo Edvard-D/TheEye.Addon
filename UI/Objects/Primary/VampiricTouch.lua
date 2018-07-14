@@ -9,8 +9,8 @@ TheEyeAddon.UI.Objects:FormatData(
         DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = spellID,
-        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default,
     },
+    -- @TODO cooldown showing remaining time
     EnabledState =
     {
         ValueHandler =
@@ -34,7 +34,7 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 2,
+            defaultValue = 3,
         },
     },
     VisibleState =

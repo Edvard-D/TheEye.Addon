@@ -28,16 +28,16 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentState(inputValues)
+function this:CalculateCurrentValue(inputValues)
     local classIndex = select(3, UnitClass(inputValues[1]))
     return classIndex == inputValues[2]
 end
 
-function this:Evaluate(valueGroup)
-    local isClass = this:CalculateCurrentState(valueGroup.inputValues)
+function this:Evaluate(inputGroup)
+    local isClass = this:CalculateCurrentValue(inputGroup.inputValues)
 
-    if valueGroup.currentState ~= isClass then
-        valueGroup.currentState = isClass
+    if inputGroup.currentValue ~= isClass then
+        inputGroup.currentValue = isClass
         return true, this.name, isClass
     end
 end

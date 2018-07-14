@@ -20,13 +20,13 @@ this.customEvents =
 }
 
 
-function this:CalculateCurrentState(inputValues)
+function this:CalculateCurrentValue(inputValues)
     local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
     if uiObject == nil then
         return false
     else
-        return uiObject.ListenerGroups.Enabled.currentState
+        return uiObject.ListenerGroups.Enabled.currentValue
     end
 end
 
@@ -35,11 +35,11 @@ function this:GetKey(event, ...)
     return uiObject.key
 end
 
-function this:Evaluate(valueGroup, event)
+function this:Evaluate(inputGroup, event)
     local isEnabled = event == "UIOBJECT_ENABLED" -- else UIOBJECT_DISABLED
 
-    if valueGroup.currentState ~= isEnabled then
-        valueGroup.currentState = isEnabled
+    if inputGroup.currentValue ~= isEnabled then
+        inputGroup.currentValue = isEnabled
         return true, this.name, isEnabled
     end
 end

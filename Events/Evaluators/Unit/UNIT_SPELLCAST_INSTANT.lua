@@ -30,16 +30,16 @@ function this:GetKey(event, ...)
     return table.concat({ unit, spellID })
 end
 
-function this:Evaluate(valueGroup, event, ...)
+function this:Evaluate(inputGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
-        if valueGroup.isCasting ~= true then
+        if inputGroup.isCasting ~= true then
             return true, this.name, ...
         end
-        valueGroup.isCasting = false
+        inputGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then
-        valueGroup.isCasting = true
+        inputGroup.isCasting = true
     else -- UNIT_SPELLCAST_STOP
-        valueGroup.isCasting = false
+        inputGroup.isCasting = false
     end
 
     return false
