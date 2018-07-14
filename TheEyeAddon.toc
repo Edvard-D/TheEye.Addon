@@ -54,17 +54,13 @@ Timers.lua
 # ---------------------------
 # |	   Events\Evaluators   	|
 # ---------------------------
+Events\CombatLogEventDataFormats.lua
 Events\Evaluators\EvaluatorsHelpers.lua
-
-
-# --- Combat ---
-Events\Evaluators\Combat\COMBAT_LOG.lua
-
-Events\Evaluators\Combat\EventDataFormats.lua
 
 
 # --- General ---
 Events\Evaluators\General\ADDON_LOADED.lua
+Events\Evaluators\General\COMBAT_LOG.lua
 Events\Evaluators\General\GAMEDATA_LOADED.lua
 
 

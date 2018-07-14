@@ -3,7 +3,7 @@ TheEyeAddon.Events.Evaluators.COMBAT_LOG = {}
 local this = TheEyeAddon.Events.Evaluators.COMBAT_LOG
 this.name = "COMBAT_LOG"
 
-local CombatLogEventDataFormats = TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats
+local CombatLogEventDataFormats = TheEyeAddon.Events.CombatLogEventDataFormats
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local pairs = pairs
 local table = table

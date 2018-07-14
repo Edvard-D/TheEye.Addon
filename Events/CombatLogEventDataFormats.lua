@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 
 
-TheEyeAddon.Events.Evaluators.CombatLogEventDataFormats =
+TheEyeAddon.Events.CombatLogEventDataFormats =
 {
     ENVIRONMENTAL_AURA_APPLIED = { prefix = "ENVIRONMENTAL", suffix = "AURA_APPLIED", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "environmentalType", "auraType", "amount" } },
     ENVIRONMENTAL_AURA_APPLIED_DOSE = { prefix = "ENVIRONMENTAL", suffix = "AURA_APPLIED_DOSE", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "environmentalType", "auraType", "amount" } },
