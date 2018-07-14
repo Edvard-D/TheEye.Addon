@@ -67,7 +67,9 @@ function this:OnEnable()
 end
 
 function this:OnDisable()
-    self:Deactivate()
+    if self.ValueHandler.state == true then
+        self:Deactivate()
+    end
 end
 
 function this:Show()
