@@ -9,7 +9,7 @@ TheEyeAddon.UI.Objects:FormatData(
         DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
         iconObjectID = spellID,
-        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
+        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default,
     },
     EnabledState =
     {
