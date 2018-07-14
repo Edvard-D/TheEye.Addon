@@ -53,10 +53,6 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = instance.childTags,
-                },
-                {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
                     inputValues = instance.childTags,
                 }
@@ -201,9 +197,11 @@ end
 function this:UpdateRegisteredChildren(event, ...)
     local childUIObject = ...
 
-    if childUIObject.VisibleState.ValueHandler.state == false then
+    if childUIObject.VisibleState.ValueHandler.state ~= true then -- false state for ValueHandlers.KeyState is nil
         self.ValueHandler:Remove(childUIObject)
     else
         self.ValueHandler:Insert(childUIObject)
     end
+
+    self:Arrange()
 end
