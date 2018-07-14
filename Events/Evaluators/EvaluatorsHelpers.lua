@@ -25,7 +25,7 @@ local function ValueGroupGet(evaluator, inputValues)
         evaluator.ValueGroups[valueGroupKey] = {}
         local valueGroup = evaluator.ValueGroups[valueGroupKey]
         valueGroup.key = valueGroupKey
-        valueGroup.evaluator = evaluator
+        valueGroup.Evaluator = evaluator
         return valueGroup
     end
     
