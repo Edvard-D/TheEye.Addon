@@ -36,11 +36,11 @@ function this.Setup(
 end
 
 function this:Enable()
-    print ("ENABLE    " .. self.UIObject.key) -- DEBUG
+    --print ("ENABLE    " .. self.UIObject.key) -- DEBUG
     SendCustomEvent("UIOBJECT_ENABLED", self.UIObject)
 end
 
 function this:Disable()
-    print ("DISABLE    " .. self.UIObject.key) -- DEBUG
+    --print ("DISABLE    " .. self.UIObject.key) -- DEBUG
     SendCustomEvent("UIOBJECT_DISABLED", self.UIObject)
 end

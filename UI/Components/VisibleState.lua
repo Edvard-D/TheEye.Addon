@@ -71,13 +71,13 @@ function this:OnDisable()
 end
 
 function this:Show()
-    print ("SHOW    " .. self.UIObject.key) -- DEBUG
+    --print ("SHOW    " .. self.UIObject.key) -- DEBUG
     self.UIObject.Frame = self.UIObject.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
     SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
 
 function this:Hide()
-    print ("HIDE    " .. self.UIObject.key) -- DEBUG
+    --print ("HIDE    " .. self.UIObject.key) -- DEBUG
     FrameRelease(self.UIObject.Frame)
     self.UIObject.Frame = nil
     SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)

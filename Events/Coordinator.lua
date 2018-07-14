@@ -9,7 +9,7 @@ local table = table
 
 -- Event Handling
 local function RelayEvent(self, eventName, ...)
-    print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
     for i=1,#listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
@@ -27,7 +27,7 @@ frame:SetScript("OnEvent", RelayEvent)
 local function ListenerRegister(listener, eventName, isGameEvent)
     if Listeners[eventName] == nil then
         Listeners[eventName] = { listener }
-        print ("RegisterEvent    " .. eventName) -- DEBUG
+        --print ("RegisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:RegisterEvent(eventName)
@@ -69,7 +69,7 @@ local function ListenerUnregister(listener, eventName, isGameEvent)
     if listeners.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         Listeners[eventName] = nil
         listeners = nil
-        print ("UnregisterEvent    " .. eventName) -- DEBUG
+        --print ("UnregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
             frame:UnregisterEvent(eventName)
