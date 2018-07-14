@@ -9,16 +9,16 @@ function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, inheritsFrom
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = TheEyeAddon.UI.Factories.Frame.SetSizeWithEvent
-	TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, UIParent, dimensionTemplate)
+	TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, UIParent, dimensionTemplate)
 
 	return instance
 end
 
-function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dimensionTemplate)
+function TheEyeAddon.UI.Factories.Frame.SetDimensions(frame, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
-		instance:SetSizeWithEvent(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
+		frame:SetSizeWithEvent(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
 		if dimensionTemplate.PointSettings ~= nil then
-			instance:SetPoint(
+			frame:SetPoint(
 				dimensionTemplate.PointSettings.point,
 				parentFrame,
 				dimensionTemplate.PointSettings.relativePoint,
@@ -26,7 +26,7 @@ function TheEyeAddon.UI.Factories.Frame:SetDimensions(instance, parentFrame, dim
 				dimensionTemplate.PointSettings.offsetY or 0)
 		end
 	else
-		instance:SetAllPoints()
+		frame:SetAllPoints()
 	end
 end
 
