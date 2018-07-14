@@ -1,3 +1,5 @@
+local spellID = 589
+
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-589" },
@@ -6,7 +8,7 @@ TheEyeAddon.UI.Objects:FormatData(
         factory = TheEyeAddon.UI.Factories.Icon,
         DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
         iconObjectType = "SPELL",
-        iconObjectID = 589,
+        iconObjectID = spellID,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default
     },
     EnabledState =
@@ -47,12 +49,12 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] 589, },
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
                     value = 2,
                 },
                 {
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589, },
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] spellID, },
                     value = 4,
                 },
             },
