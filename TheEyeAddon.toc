@@ -80,6 +80,7 @@ Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Events\Evaluators\Unit\UNIT_HEALTH_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
