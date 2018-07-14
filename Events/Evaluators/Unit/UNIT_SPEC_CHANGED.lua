@@ -3,8 +3,11 @@ TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED
 this.name = "UNIT_SPEC_CHANGED"
 
+local GetInspectSpecialization = GetInspectSpecialization
+local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local select = select
+local table = table
 
 
 --[[ #this#TEMPLATE#
