@@ -3,7 +3,7 @@ local this = TheEyeAddon.Events.Evaluators
 
 local Comparisons = TheEyeAddon.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
-local CoordinatorUnregister = TheEyeAddon.Events.Coordinator.Unregister
+local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
 local pairs = pairs
 local select = select
 local table = table
@@ -71,7 +71,7 @@ end
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        CoordinatorUnregister(evaluator)
+        CoordinatorDeregister(evaluator)
     end
 end
 
@@ -79,14 +79,14 @@ local function InputGroupDecreaseListenerCount(evaluator, inputGroup)
     inputGroup.listenerCount = inputGroup.listenerCount - 1
     if inputGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if inputGroup.ListeningTo ~= nil then
-            this.InputGroupUnregisterListeningTo(inputGroup)
+            this.InputGroupDeregisterListeningTo(inputGroup)
         end
 
         evaluator[inputGroup.key] = nil
     end
 end
 
--- Register/Unregister
+-- Register/Deregister
 function this.ListenerRegister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
@@ -108,21 +108,21 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 end
 
-function this.InputGroupUnregisterListeningTo(inputGroup)
+function this.InputGroupDeregisterListeningTo(inputGroup)
     local listeningTo = inputGroup.ListeningTo
     for i=1,#listeningTo do
         local listener = listeningTo[i]
-        this.ListenerUnregister(listener.listeningToKey, listener)
+        this.ListenerDeregister(listener.listeningToKey, listener)
     end
     inputGroup.ListeningTo = nil
 end
 
-function this.ListenerUnregister(evaluatorKey, listener)
+function this.ListenerDeregister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
 
-    print ("ListenerUnregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)

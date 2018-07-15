@@ -13,7 +13,7 @@ local function RelayEvent(self, eventName, ...)
     local listeners = Listeners[eventName]
     for i=1,#listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
-        -- cause a listener later in the array to be unregistered before its OnEvent
+        -- cause a listener later in the array to be deregistered before its OnEvent
         -- function is called.
         if listeners[i] ~= nil then
             listeners[i]:OnEvent(eventName, ...)
@@ -60,8 +60,8 @@ function this.Register(listener)
 end
 
 
--- Unregister
-local function ListenerUnregister(listener, eventName, isGameEvent)
+-- Deregister
+local function ListenerDeregister(listener, eventName, isGameEvent)
     local listeners = Listeners[eventName]
     table.removevalue(listeners, listener)
     
@@ -69,27 +69,27 @@ local function ListenerUnregister(listener, eventName, isGameEvent)
     if listeners.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         Listeners[eventName] = nil
         listeners = nil
-        --print ("UnregisterEvent    " .. eventName) -- DEBUG
+        --print ("DeregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
-            frame:UnregisterEvent(eventName)
+            frame:DeregisterEvent(eventName)
         end
     end
 end
 
-local function ListenersUnregister(listener, events, isGameEvent)
+local function ListenersDeregister(listener, events, isGameEvent)
     for i=1,#events do
-        ListenerUnregister(listener, events[i], isGameEvent)
+        ListenerDeregister(listener, events[i], isGameEvent)
     end
 end
 
-function this.Unregister(listener)
+function this.Deregister(listener)
     if listener.gameEvents ~= nil then
-        ListenersUnregister(listener, listener.gameEvents, true)
+        ListenersDeregister(listener, listener.gameEvents, true)
     end
     
     if listener.customEvents ~= nil then
-        ListenersUnregister(listener, listener.customEvents, false)
+        ListenersDeregister(listener, listener.customEvents, false)
     end
 end
 

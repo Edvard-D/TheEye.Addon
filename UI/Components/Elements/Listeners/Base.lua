@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
 
 local ListenerRegister = TheEyeAddon.Events.Evaluators.ListenerRegister
-local ListenerUnregister = TheEyeAddon.Events.Evaluators.ListenerUnregister
+local ListenerDeregister = TheEyeAddon.Events.Evaluators.ListenerDeregister
 
 
 --[[ #this#TEMPLATE#
@@ -32,7 +32,7 @@ function this.Setup(
     instance.Deactivate = this.Deactivate
     instance.Notify = this.Notify
     instance.Register = this.Register
-    instance.Unregister = this.Unregister
+    instance.Deregister = this.Deregister
 end
 
 function this:Activate()
@@ -40,7 +40,7 @@ function this:Activate()
 end
 
 function this:Deactivate()
-    self:Unregister()
+    self:Deregister()
 end
 
 function this:Notify(...)
@@ -51,6 +51,6 @@ function this:Register()
     ListenerRegister(self.eventEvaluatorKey, self)
 end
 
-function this:Unregister()
-    ListenerUnregister(self.eventEvaluatorKey, self)
+function this:Deregister()
+    ListenerDeregister(self.eventEvaluatorKey, self)
 end
