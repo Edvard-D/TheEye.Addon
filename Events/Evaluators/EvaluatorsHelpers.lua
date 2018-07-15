@@ -146,7 +146,7 @@ function this.Compare(comparisonValues, value)
 end
 
 local function ListenerNotifyAsComparison(inputGroup, listener, event)
-    local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
+    local comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
     if listener.comparisonState ~= comparisonState then
         listener.comparisonState = comparisonState
         listener:Notify(event, comparisonState)
