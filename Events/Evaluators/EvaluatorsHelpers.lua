@@ -79,7 +79,7 @@ local function InputGroupDecreaseListenerCount(evaluator, inputGroup)
     inputGroup.listenerCount = inputGroup.listenerCount - 1
     if inputGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if inputGroup.ListeningTo ~= nil then
-            InputGroupUnregisterListeningTo(inputGroup)
+            this.InputGroupUnregisterListeningTo(inputGroup)
         end
 
         evaluator[inputGroup.key] = nil
@@ -106,7 +106,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 end
 
-local function InputGroupUnregisterListeningTo(inputGroup)
+function this.InputGroupUnregisterListeningTo(inputGroup)
     local listeningTo = inputGroup.ListeningTo
     for i=1,#listeningTo do
         local listener = listeningTo[i]
