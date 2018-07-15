@@ -122,6 +122,8 @@ function this.ListenerUnregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
 
+    print ("ListenerUnregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)
     InputGroupDecreaseListenerCount(evaluator, inputGroup)
