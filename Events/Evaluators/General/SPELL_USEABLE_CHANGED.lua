@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.SPELL_USABLE_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.SPELL_USABLE_CHANGED
-this.name = "SPELL_USABLE_CHANGED"
+TheEyeAddon.Events.Evaluators.SPELL_USEABLE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.SPELL_USEABLE_CHANGED
+this.name = "SPELL_USEABLE_CHANGED"
 
 local IsUsableSpell = IsUsableSpell
 
