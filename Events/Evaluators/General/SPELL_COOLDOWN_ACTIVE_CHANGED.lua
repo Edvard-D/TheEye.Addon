@@ -39,7 +39,8 @@ function this:SetupListeningTo(inputGroup)
 end
 
 function this:CalculateCurrentValue(inputValues)
-    local isCooldownActive = not select(3, GetSpellCooldown(inputValues[1]))
+    local cooldownDuration = select(2, GetSpellCooldown(inputValues[1]))
+    local isCooldownActive = cooldownDuration ~= 0
     return isCooldownActive
 end
 
@@ -57,12 +58,12 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event)
+    local cooldownDuration = select(2, GetSpellCooldown(inputGroup.inputValues[1]))
     if event ~= "UNIT_SPELLCAST_TIMER_END" then
-        local cooldownDuration = select(2, GetSpellCooldown(inputGroup.inputValues[1]))
         StartEventTimer(cooldownDuration, "UNIT_SPELLCAST_TIMER_END", inputGroup.inputValues[1])
     end
 
-    local isCooldownActive = self:CalculateCurrentValue(inputGroup.inputValues)
+    local isCooldownActive = cooldownDuration ~= 0
     if inputGroup.currentValue ~= isCooldownActive then
         inputGroup.currentValue = isCooldownActive
         return true, this.name, isCooldownActive
