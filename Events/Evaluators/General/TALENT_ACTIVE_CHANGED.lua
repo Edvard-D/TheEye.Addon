@@ -39,8 +39,8 @@ end
 function this:Evaluate(inputGroup)
     local isActive = self:CalculateCurrentValue(inputGroup.inputValues)
 
-    if self.currentValue ~= isActive then
-        self.currentValue = isActive
+    if inputGroup.currentValue ~= isActive then
+        inputGroup.currentValue = isActive
         return true, this.name, isActive
     end
 end
