@@ -5,6 +5,7 @@ this.name = "SPELL_CHARGE_CHANGED"
 
 local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime
+local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local select = select
 local table = table
 
