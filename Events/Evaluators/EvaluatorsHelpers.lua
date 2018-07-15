@@ -140,7 +140,7 @@ end
 
 -- Event Evaluation
 function this.Compare(comparisonValues, value)
-    return Comparisons[comaprisonValues.type](value, comparisonValues.value)
+    return Comparisons[comparisonValues.type](value, comparisonValues.value)
 end
 
 local function ListenerNotifyAsComparison(inputGroup, listener, event)
