@@ -34,7 +34,7 @@ function this:SetupListeningTo(inputGroup)
         {
             listeningToKey = "COMBAT_LOG",
             evaluator = this,
-            inputValues = { "player", "_", inputGroup.inputValues[1] }
+            inputValues = { combatLogEvents[i], "player", "_" }
         })
     end
 end
