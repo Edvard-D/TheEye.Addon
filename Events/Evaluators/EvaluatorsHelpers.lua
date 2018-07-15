@@ -92,6 +92,8 @@ function this.ListenerRegister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
+    print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    
     table.insert(listeners, listener)
     EvaluatorIncreaseListenerCount(evaluator)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
