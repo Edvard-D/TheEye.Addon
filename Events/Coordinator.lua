@@ -72,7 +72,7 @@ local function ListenerDeregister(listener, eventName, isGameEvent)
         --print ("DeregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
-            frame:DeregisterEvent(eventName)
+            frame:UnregisterEvent(eventName)
         end
     end
 end
