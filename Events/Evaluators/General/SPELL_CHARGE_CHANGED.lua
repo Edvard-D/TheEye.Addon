@@ -22,7 +22,6 @@ this.customEvents =
 }
 local combatLogEvents =
 {
-    "RANGE_CAST_SUCCESS",
     "SPELL_CAST_SUCCESS",
     "SPELL_BUILDING_CAST_SUCCESS",
     "SPELL_PERIODIC_CAST_SUCCESS",
