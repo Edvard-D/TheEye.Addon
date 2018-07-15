@@ -40,7 +40,7 @@ function this:SetupListeningTo(inputGroup)
 end
 
 function this:CalculateCurrentValue(inputValues)
-    local charges = GetSpellCharges(inputGroup.inputValues[1])
+    local charges = GetSpellCharges(inputValues[1])
     return charges
 end
 
