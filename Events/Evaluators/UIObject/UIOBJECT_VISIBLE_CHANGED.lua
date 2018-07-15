@@ -23,10 +23,10 @@ this.customEvents =
 function this:CalculateCurrentValue(inputValues)
     local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
 
-    if uiObject == nil then
+    if uiObject == nil or uiObject.VisibleState == nil then
         return false
     else
-        return uiObject.ListenerGroups.Visible.currentValue
+        return uiObject.VisibleState.ValueHandler.state
     end
 end
 
