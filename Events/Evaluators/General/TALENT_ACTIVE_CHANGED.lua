@@ -37,11 +37,10 @@ function this:CalculateCurrentValue(inputValues)
 end
 
 function this:Evaluate(inputGroup)
-    local isKnown = self:CalculateCurrentValue(inputGroup.inputValues)
+    local isActive = self:CalculateCurrentValue(inputGroup.inputValues)
 
-    print("isKnown: " .. tostring(isKnown))
-    if self.currentValue ~= isKnown then
-        self.currentValue = isKnown
-        return true, this.name, isKnown
+    if self.currentValue ~= isActive then
+        self.currentValue = isActive
+        return true, this.name, isActive
     end
 end
