@@ -7,6 +7,7 @@ local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local select = select
+local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 
 
