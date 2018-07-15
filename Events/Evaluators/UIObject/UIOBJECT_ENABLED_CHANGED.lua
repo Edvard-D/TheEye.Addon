@@ -21,12 +21,12 @@ this.customEvents =
 
 
 function this:CalculateCurrentValue(inputValues)
-    local uiObject = TheEyeAddon.UI.Objects[inputValues[1]]
+    local uiObject = TheEyeAddon.UI.Objects.Instances[inputValues[1]]
 
-    if uiObject == nil or uiObject.EnabledState == nil then
+    if uiObject == nil then
         return false
     else
-        return uiObject.EnabledState.ValueHandler.state
+        return uiObject.EnabledState.ValueHandler.state or false
     end
 end
 
