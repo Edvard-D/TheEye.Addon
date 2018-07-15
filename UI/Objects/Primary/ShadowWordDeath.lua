@@ -17,7 +17,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, },
+            validKeys = { [6] = true, },
         },
         ListenerGroup =
         {
@@ -27,6 +27,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY", },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "TALENT_ACTIVE_CHANGED",
+                    inputValues = { --[[tier]] 5, --[[column]] 2, },
+                    value = 4,
                 },
             },
         },
@@ -43,17 +48,12 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [14] = true, [16] = true },
+            validKeys = { [6] = true, [8] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
-                {
-                    eventEvaluatorKey = "TALENT_ACTIVE_CHANGED",
-                    inputValues = { --[[tier]] 5, --[[column]] 2, },
-                    value = 2,
-                },
                 {
                     eventEvaluatorKey = "UNIT_HEALTH_CHANGED",
                     inputValues = { --[[unit]] "target", },
@@ -62,7 +62,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 20,
                         type = "LessThan",
                     },
-                    value = 4,
+                    value = 2,
                 },
                 {
                     eventEvaluatorKey = "SPELL_CHARGE_CHANGED",
@@ -72,15 +72,25 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan",
                     },
-                    value = 8,
+                    value = 4,
                 },
                 {
                     eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 16,
+                    value = 8,
                 },
             },
         },
     },
 }
 )
+
+--[[
+{
+    UNIT_HEALTH_CHANGED -- LessThan -- 20
+    and
+    SPELL_CHARGE_CHANGED -- GreaterThan -- 0
+}
+or
+UNIT_SPELLCAST_START_RECENTLY_CHANGED
+]]
