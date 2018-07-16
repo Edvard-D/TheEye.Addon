@@ -25,7 +25,7 @@ local function InputGroupGet(evaluator, inputValues)
     if evaluator.InputGroups[inputGroupKey] == nil then
         evaluator.InputGroups[inputGroupKey] = { key = inputGroupKey, }
     end
-    
+
     return evaluator.InputGroups[inputGroupKey]
 end
 
@@ -186,10 +186,16 @@ function this:OnEvent(event, ...)
         for k,inputGroup in pairs(self.InputGroups) do -- @TODO change this to an array with a lookup table
             Evaluate(self, inputGroup, event, ...)
         end
+    elseif self.GetKeys ~= nil then
+        local inputGroupKeys = self:GetKeys(event, ...)
+        for i=1,#inputGroupKeys do
+            local inputGroup = self.InputGroups[inputGroupKeys[i]]
+            if inputGroup ~= nil then
+                Evaluate(self, inputGroup, event, ...)
+            end
+        end
     else
-        local inputGroupKey = self:GetKey(event, ...)
-        local inputGroup = self.InputGroups[inputGroupKey]
-
+        local inputGroup = self.InputGroups[self:GetKey(event, ...)]
         if inputGroup ~= nil then
             Evaluate(self, inputGroup, event, ...)
         end
