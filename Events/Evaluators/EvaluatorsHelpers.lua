@@ -177,8 +177,8 @@ local function Evaluate(evaluator, inputGroup, event, ...)
     end
 end
 
-function this:Notify(event, ...)
-    self.evaluator:OnEvent(event, ...)
+function this:Notify(...)
+    self.evaluator:OnEvent(...)
 end
 
 function this:OnEvent(event, ...)
