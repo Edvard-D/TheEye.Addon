@@ -57,7 +57,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] spellID, },
                     comparisonValues =
                     {
-                        value = 0.75,
+                        value = TheEyeAddon.Values.cooldownEndAlertLength,
                         type = "LessThan"
                     },
                     value = 4,

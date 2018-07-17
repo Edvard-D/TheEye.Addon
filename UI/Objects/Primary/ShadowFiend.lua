@@ -63,7 +63,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                     comparisonValues =
                     {
-                        value = 0,
+                        value = TheEyeAddon.Values.cooldownEndAlertLength,
                         type = "EqualTo"
                     },
                 },

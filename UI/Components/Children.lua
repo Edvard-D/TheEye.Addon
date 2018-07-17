@@ -128,8 +128,8 @@ end
 
 -- Arrange
 local function GetBoundsFromRects(rects)
-	local leftMin = TheEyeAddon.Screen.width
-	local bottomMin = TheEyeAddon.Screen.height
+	local leftMin = TheEyeAddon.Values.screenSize.width
+	local bottomMin = TheEyeAddon.Values.screenSize.height
 	local rightMax = 0
 	local topMax = 0
 

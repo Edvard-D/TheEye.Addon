@@ -1,13 +1,17 @@
 TheEyeAddon.UI.Objects:Initialize()
 
 
-TheEyeAddon.Screen =
+-- Values
+TheEyeAddon.Values.cooldownEndAlertLength = 0.75
+
+TheEyeAddon.Values.screenSize =
 {
     width = GetScreenWidth(),
     height = GetScreenHeight(),
 }
 
 
+-- Settings
 if TheEyeAddon.Settings == nil then
     TheEyeAddon.Settings = {}
 end
