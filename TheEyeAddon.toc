@@ -65,6 +65,7 @@ Events\Evaluators\General\ADDON_LOADED.lua
 Events\Evaluators\General\COMBAT_LOG.lua
 Events\Evaluators\General\GAMEDATA_LOADED.lua
 Events\Evaluators\General\SPELL_CHARGE_CHANGED.lua
+Events\Evaluators\General\SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\General\SPELL_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\General\SPELL_USEABLE_CHANGED.lua
 Events\Evaluators\General\TALENT_ACTIVE_CHANGED.lua
