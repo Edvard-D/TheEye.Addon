@@ -1,9 +1,10 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UNIT_HEALTH_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.UNIT_HEALTH_CHANGED
+TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED
 this.name = "UNIT_HEALTH_CHANGED"
 
 local UnitHealth = UnitHealth
+local UnitHealthMax = UnitHealthMax
 
 
 --[[ #this#TEMPLATE#
@@ -19,7 +20,8 @@ this.gameEvents =
 }
 
 local function CalculateCurrentValue(inputValues)
-    return UnitHealth(inputValues[1])
+    local unit = inputValues[1]
+    return UnitHealth(unit) / UnitHealthMax(unit)
 end
 
 function this:InputGroupSetup(inputGroup)
@@ -31,10 +33,10 @@ function this:GetKey(event, unit)
 end
 
 function this:Evaluate(inputGroup, event, unit)
-    local health = CalculateCurrentValue(inputGroup.inputValues)
+    local healthPercent = CalculateCurrentValue(inputGroup.inputValues)
 
-    if inputGroup.currentValue ~= health then
-        inputGroup.currentValue = health
-        return true, this.name, health
+    if inputGroup.currentValue ~= healthPercent then
+        inputGroup.currentValue = healthPercent
+        return true, this.name, healthPercent
     end
 end

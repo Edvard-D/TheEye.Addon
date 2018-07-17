@@ -55,11 +55,11 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_HEALTH_CHANGED",
+                    eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
                     inputValues = { --[[unit]] "target", },
                     comparisonValues =
                     {
-                        value = 20,
+                        value = 0.2,
                         type = "LessThan",
                     },
                     value = 2,
