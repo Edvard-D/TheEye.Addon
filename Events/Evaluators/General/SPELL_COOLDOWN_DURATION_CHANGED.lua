@@ -8,7 +8,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRe
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
 local tostring = tostring
-local updateRate = 0.1
+local initialTimerLength = 0.01
 
 
 --[[ #this#TEMPLATE#
@@ -26,15 +26,28 @@ local combatLogEvents =
     "SPELL_CAST_SUCCESS",
 }
 
+local function NewTimerLengthGet(inputGroup, remainingTime)
+    local nextUpdatePoint = 0
+    local listeners = inputGroup.listeners
+    for i=1, #listeners do
+        listener = listeners[i]
+        if listener.comparisonValues ~= nil then
+            local value = listener.comparisonValues.value
+            if value > nextUpdatePoint and value <= remainingTime then
+                nextUpdatePoint = value
+            end
+        end
+    end
+
+    return remainingTime - nextUpdatePoint
+end
+
 local function TryStartTimer(inputGroup, remainingTime)
     if remainingTime ~= 0 then
-        local timerLength
-        if remainingTime < updateRate then
-            timerLength = remainingTime
-        else
-            timerLength = updateRate
+        local timerLength = initialTimerLength
+        if remainingTime ~= initialTimerLength then
+            timerLength = NewTimerLengthGet(inputGroup, remainingTime)
         end
-
         StartEventTimer(timerLength, "SPELL_COOLDOWN_UPDATE", inputGroup.inputValues[1])
     end
 end
@@ -85,12 +98,11 @@ function this:Evaluate(inputGroup, event)
     local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
     if event == "SPELL_CAST_SUCCESS" then
-        remainingTime = updateRate
+        remainingTime = initialTimerLength
     end
 
     TryStartTimer(inputGroup, remainingTime)
 
-    print("remainingTime: " .. tostring(remainingTime))
     if inputGroup.currentValue ~= remainingTime then
         inputGroup.currentValue = remainingTime
         return true, this.name, remainingTime
