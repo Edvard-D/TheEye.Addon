@@ -4,7 +4,6 @@ local this = TheEyeAddon.Events.Evaluators.SPELL_COOLDOWN_DURATION_CHANGED
 this.name = "SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
-local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
