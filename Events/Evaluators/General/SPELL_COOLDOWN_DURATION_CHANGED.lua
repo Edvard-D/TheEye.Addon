@@ -26,6 +26,17 @@ local combatLogEvents =
     "SPELL_CAST_SUCCESS",
 }
 
+function this:SetupListeningTo(inputGroup)
+    for i=1, #combatLogEvents do
+        InputGroupRegisterListeningTo(inputGroup,
+        {
+            listeningToKey = "COMBAT_LOG",
+            evaluator = this,
+            inputValues = { combatLogEvents[i], "player", "_" }
+        })
+    end
+end
+
 local function NewTimerLengthGet(inputGroup, remainingTime)
     local nextUpdatePoint = 0
     local listeners = inputGroup.listeners
@@ -65,17 +76,6 @@ end
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
     TryStartTimer(inputGroup, inputGroup.currentValue)
-end
-
-function this:SetupListeningTo(inputGroup)
-    for i=1, #combatLogEvents do
-        InputGroupRegisterListeningTo(inputGroup,
-        {
-            listeningToKey = "COMBAT_LOG",
-            evaluator = this,
-            inputValues = { combatLogEvents[i], "player", "_" }
-        })
-    end
 end
 
 function this:GetKey(event, ...)
