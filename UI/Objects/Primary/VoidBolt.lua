@@ -10,6 +10,7 @@ TheEyeAddon.UI.Objects:FormatData(
         iconObjectType = "SPELL",
         iconObjectID = spellID,
     },
+    -- @TODO cooldown
     EnabledState =
     {
         ValueHandler =
