@@ -62,8 +62,8 @@ local function InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
             evaluator:SetupListeningTo(inputGroup)
         end
 
-        if evaluator.CalculateCurrentValue ~= nil then
-            inputGroup.currentValue = evaluator:CalculateCurrentValue(listener.inputValues)
+        if evaluator.InputGroupSetup ~= nil then
+            evaluator:InputGroupSetup(inputGroup)
         end
     end
 end

@@ -27,6 +27,34 @@ local combatLogEvents =
     "SPELL_CAST_SUCCESS",
 }
 
+local function TryStartTimer(inputGroup, remainingTime)
+    if remainingTime ~= 0 then
+        local timerLength
+        if remainingTime < updateRate then
+            timerLength = remainingTime
+        else
+            timerLength = updateRate
+        end
+
+        StartEventTimer(timerLength, "SPELL_COOLDOWN_UPDATE", inputGroup.inputValues[1])
+    end
+end
+
+local function CalculateCurrentValue(inputValues)
+    local start, duration = GetSpellCooldown(inputValues[1])
+    local remainingTime = (start + duration) - GetTime()
+
+    if remainingTime < 0 then
+        remainingTime = 0
+    end
+    return remainingTime
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    TryStartTimer(inputGroup, inputGroup.currentValue)
+end
+
 function this:SetupListeningTo(inputGroup)
     for i=1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
@@ -36,16 +64,6 @@ function this:SetupListeningTo(inputGroup)
             inputValues = { combatLogEvents[i], "player", "_" }
         })
     end
-end
-
-function this:CalculateCurrentValue(inputValues)
-    local start, duration = GetSpellCooldown(inputValues[1])
-    local remainingTime = (start + duration) - GetTime()
-
-    if remainingTime < 0 then
-        remainingTime = 0
-    end
-    return remainingTime
 end
 
 function this:GetKey(event, ...)
@@ -65,24 +83,15 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event)
-    local remainingTime = this:CalculateCurrentValue(inputGroup.inputValues)
+    local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
     if event == "SPELL_CAST_SUCCESS" then
-        inputGroup.castTimeStamp = GetTime()
         remainingTime = updateRate
     end
-    
-    if remainingTime ~= 0 then
-        local timerLength
-        if remainingTime < updateRate then
-            timerLength = remainingTime
-        else
-            timerLength = updateRate
-        end
 
-        StartEventTimer(timerLength, "SPELL_COOLDOWN_UPDATE", inputGroup.inputValues[1])
-    end
+    TryStartTimer(inputGroup, remainingTime)
 
+    print("remainingTime: " .. tostring(remainingTime))
     if inputGroup.currentValue ~= remainingTime then
         inputGroup.currentValue = remainingTime
         return true, this.name, remainingTime
