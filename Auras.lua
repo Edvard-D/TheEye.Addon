@@ -33,7 +33,8 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         local spellID = auraValues[10]
         if spellID ~= nil then
             local sourceUnit = auraValues[7]
-            if spellID == spellIDExpected and sourceUnit == sourceUnitExpected then
+            if spellID == spellIDExpected
+                    and (sourceUnitExpected == "_" or sourceUnit == sourceUnitExpected) then
                 return auraValues
             end
         else
