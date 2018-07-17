@@ -36,7 +36,6 @@ function this:InputGroupSetup(inputGroup)
 end
 
 function this:GetKey(event, unit, powerType)
-    print("powertype: " .. tostring(powerType))
     return table.concat({ unit, powerType })
 end
 
