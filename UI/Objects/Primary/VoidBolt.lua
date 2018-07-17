@@ -1,8 +1,8 @@
-local spellID = 589
+local spellID = 205448
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL-589" },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-205448", },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
@@ -10,7 +10,6 @@ TheEyeAddon.UI.Objects:FormatData(
         iconObjectType = "SPELL",
         iconObjectID = spellID,
     },
-    -- @TODO cooldown showing remaining time
     EnabledState =
     {
         ValueHandler =
@@ -34,14 +33,14 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 7,
+            defaultValue = 4,
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true, },
+            validKeys = { [8] = true, [12] = true, [14] = true },
         },
         ListenerGroup =
         {
@@ -53,14 +52,19 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] spellID, },
+                    eventEvaluatorKey = "SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID },
                     comparisonValues =
                     {
                         value = TheEyeAddon.Values.cooldownEndAlertLength,
                         type = "LessThan"
                     },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 8,
                 },
             },
         },
