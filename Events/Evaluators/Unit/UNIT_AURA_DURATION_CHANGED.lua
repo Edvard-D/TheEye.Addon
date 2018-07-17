@@ -38,10 +38,6 @@ this.customEvents =
 }
 local combatLogEvents =
 {
-    "RANGE_AURA_APPLIED",
-    "RANGE_AURA_BROKEN",
-    "RANGE_AURA_BROKEN_SPELL",
-    "RANGE_AURA_REMOVED",
     "SPELL_AURA_APPLIED",
     "SPELL_AURA_BROKEN",
     "SPELL_AURA_BROKEN_SPELL",
