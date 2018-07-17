@@ -195,6 +195,7 @@ UI\Objects\Primary\ShadowWordVoid.lua
 UI\Objects\Primary\VampiricTouch.lua
 UI\Objects\Primary\VoidBolt.lua
 UI\Objects\Primary\VoidEruption.lua
+UI\Objects\Primary\VoidTorrent.lua
 
 
 
