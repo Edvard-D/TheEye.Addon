@@ -46,6 +46,7 @@ TableHelpers.lua
 Tags.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
+Values.lua
 
 AuraFilters.lua
 Timers.lua
