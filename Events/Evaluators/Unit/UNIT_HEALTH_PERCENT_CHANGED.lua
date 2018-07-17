@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED
-this.name = "UNIT_HEALTH_CHANGED"
+this.name = "UNIT_HEALTH_PERCENT_CHANGED"
 
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
