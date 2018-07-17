@@ -19,7 +19,7 @@ local initialTimerLength = 0.01
 
 this.customEvents =
 {
-    "SPELL_COOLDOWN_UPDATE"
+    "SPELL_COOLDOWN_TIMER_END"
 }
 local combatLogEvents =
 {
@@ -59,7 +59,7 @@ local function TryStartTimer(inputGroup, remainingTime)
         if remainingTime ~= initialTimerLength then
             timerLength = NewTimerLengthGet(inputGroup, remainingTime)
         end
-        StartEventTimer(timerLength, "SPELL_COOLDOWN_UPDATE", inputGroup.inputValues[1])
+        StartEventTimer(timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues[1])
     end
 end
 
