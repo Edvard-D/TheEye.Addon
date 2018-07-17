@@ -48,7 +48,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true, [8] = true, },
+            validKeys = { [6] = true, [8] = true, [18] = true, [22] = true, [26] = true, },
         },
         ListenerGroup =
         {
@@ -78,6 +78,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = TheEyeAddon.Values.cooldownEndAlertLength,
+                        type = "LessThan"
+                    },
+                    value = 16,
                 },
             },
         },
