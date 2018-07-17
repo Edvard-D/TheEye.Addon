@@ -15,7 +15,7 @@ function this.LessThan(value1, value2)
     return value1 < value2
 end
 
-function this.GreatThanEqualTo(value1, value2)
+function this.GreaterThanEqualTo(value1, value2)
     return value1 >= value2
 end
 
