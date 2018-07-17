@@ -114,7 +114,6 @@ function this:GetKey(event, ...)
     local destUnit
     local spellID
 
-    print("event: " .. event)
     if event == "AURA_DURATION_TIMER_END" then
         sourceUnit, destUnit, spellID = select(2, ...)
     else
