@@ -7,6 +7,7 @@ local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local select = select
+local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 
 
@@ -22,7 +23,6 @@ this.customEvents =
 }
 local combatLogEvents =
 {
-    "RANGE_CAST_SUCCESS",
     "SPELL_CAST_SUCCESS",
     "SPELL_BUILDING_CAST_SUCCESS",
     "SPELL_PERIODIC_CAST_SUCCESS",
@@ -34,7 +34,7 @@ function this:SetupListeningTo(inputGroup)
         {
             listeningToKey = "COMBAT_LOG",
             evaluator = this,
-            inputValues = { "player", "_", inputGroup.inputValues[1] }
+            inputValues = { combatLogEvents[i], "player", "_" }
         })
     end
 end

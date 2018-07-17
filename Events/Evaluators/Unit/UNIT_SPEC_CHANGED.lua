@@ -32,7 +32,7 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local specID
 
     if inputValues[1] == "player" then
@@ -45,12 +45,16 @@ function this:CalculateCurrentValue(inputValues)
     return inputValues[2] == specID
 end
 
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+end
+
 function this:GetKey(event, ...) -- doesn't get called on PLAYER_TARGET_CHANGED
     return table.concat({ "player", this.playerSpec })
 end
 
 function this:Evaluate(inputGroup, event)
-    local isSpec = this:CalculateCurrentValue(inputGroup.inputValues)
+    local isSpec = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= isSpec then
         inputGroup.currentValue = isSpec

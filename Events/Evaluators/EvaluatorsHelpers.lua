@@ -3,7 +3,7 @@ local this = TheEyeAddon.Events.Evaluators
 
 local Comparisons = TheEyeAddon.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
-local CoordinatorUnregister = TheEyeAddon.Events.Coordinator.Unregister
+local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
 local pairs = pairs
 local select = select
 local table = table
@@ -25,7 +25,7 @@ local function InputGroupGet(evaluator, inputValues)
     if evaluator.InputGroups[inputGroupKey] == nil then
         evaluator.InputGroups[inputGroupKey] = { key = inputGroupKey, }
     end
-    
+
     return evaluator.InputGroups[inputGroupKey]
 end
 
@@ -62,8 +62,8 @@ local function InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
             evaluator:SetupListeningTo(inputGroup)
         end
 
-        if evaluator.CalculateCurrentValue ~= nil then
-            inputGroup.currentValue = evaluator:CalculateCurrentValue(listener.inputValues)
+        if evaluator.InputGroupSetup ~= nil then
+            evaluator:InputGroupSetup(inputGroup)
         end
     end
 end
@@ -71,7 +71,7 @@ end
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        CoordinatorUnregister(evaluator)
+        CoordinatorDeregister(evaluator)
     end
 end
 
@@ -79,18 +79,20 @@ local function InputGroupDecreaseListenerCount(evaluator, inputGroup)
     inputGroup.listenerCount = inputGroup.listenerCount - 1
     if inputGroup.listenerCount == 0 then -- If the listenerCount was greater than 0 before
         if inputGroup.ListeningTo ~= nil then
-            this.InputGroupUnregisterListeningTo(inputGroup)
+            this.InputGroupDeregisterListeningTo(inputGroup)
         end
 
         evaluator[inputGroup.key] = nil
     end
 end
 
--- Register/Unregister
+-- Register/Deregister
 function this.ListenerRegister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
+    
+    print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
     
     table.insert(listeners, listener)
     EvaluatorIncreaseListenerCount(evaluator)
@@ -106,19 +108,21 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 end
 
-function this.InputGroupUnregisterListeningTo(inputGroup)
+function this.InputGroupDeregisterListeningTo(inputGroup)
     local listeningTo = inputGroup.ListeningTo
     for i=1,#listeningTo do
         local listener = listeningTo[i]
-        this.ListenerUnregister(listener.listeningToKey, listener)
+        this.ListenerDeregister(listener.listeningToKey, listener)
     end
     inputGroup.ListeningTo = nil
 end
 
-function this.ListenerUnregister(evaluatorKey, listener)
+function this.ListenerDeregister(evaluatorKey, listener)
     local evaluator = this[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
+
+    print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)
@@ -144,7 +148,7 @@ function this.Compare(comparisonValues, value)
 end
 
 local function ListenerNotifyAsComparison(inputGroup, listener, event)
-    local comparisonState = Compare(listener.comparisonValues, inputGroup.currentValue)
+    local comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
     if listener.comparisonState ~= comparisonState then
         listener.comparisonState = comparisonState
         listener:Notify(event, comparisonState)
@@ -173,8 +177,8 @@ local function Evaluate(evaluator, inputGroup, event, ...)
     end
 end
 
-function this:Notify(event, ...)
-    self.evaluator:OnEvent(event, ...)
+function this:Notify(...)
+    self.evaluator:OnEvent(...)
 end
 
 function this:OnEvent(event, ...)
@@ -182,10 +186,16 @@ function this:OnEvent(event, ...)
         for k,inputGroup in pairs(self.InputGroups) do -- @TODO change this to an array with a lookup table
             Evaluate(self, inputGroup, event, ...)
         end
+    elseif self.GetKeys ~= nil then
+        local inputGroupKeys = self:GetKeys(event, ...)
+        for i=1,#inputGroupKeys do
+            local inputGroup = self.InputGroups[inputGroupKeys[i]]
+            if inputGroup ~= nil then
+                Evaluate(self, inputGroup, event, ...)
+            end
+        end
     else
-        local inputGroupKey = self:GetKey(event, ...)
-        local inputGroup = self.InputGroups[inputGroupKey]
-
+        local inputGroup = self.InputGroups[self:GetKey(event, ...)]
         if inputGroup ~= nil then
             Evaluate(self, inputGroup, event, ...)
         end

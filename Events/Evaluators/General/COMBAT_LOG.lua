@@ -27,12 +27,14 @@ this.gameEvents =
     "COMBAT_LOG_EVENT_UNFILTERED"
 }
 
-function this:GetKey(event)
+function this:GetKeys(event)
     self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
     
+    local event = self.rawEventInfo[2]
     local sourceGUID = self.rawEventInfo[4]
     local destGUID = self.rawEventInfo[8]
     local unitGUIDs = {}
+    local validKeys = {}
 
     for k,inputGroup in pairs(self.InputGroups) do -- @TODO create table that stores the GUIDs for each unitID
         local sourceUnit = inputGroup.inputValues[2]
@@ -45,11 +47,14 @@ function this:GetKey(event)
             unitGUIDs[destUnit] = UnitGUID(destUnit)
         end
 
-        if (sourceUnit == "_" or sourceGUID == unitGUIDs[sourceUnit]) and
-        (destUnit == "_" or destGUID == unitGUIDs[destUnit]) then
-            return table.concat({ self.rawEventInfo[2], sourceUnit, destUnit })
+        if event == inputGroup.inputValues[1]
+            and (sourceUnit == "_" or sourceGUID == unitGUIDs[sourceUnit])
+            and (destUnit == "_" or destGUID == unitGUIDs[destUnit]) then
+            table.insert(validKeys, table.concat({ event, sourceUnit, destUnit }))
         end
     end
+
+    return validKeys
 end
 
 function this:Evaluate(inputGroup, event)

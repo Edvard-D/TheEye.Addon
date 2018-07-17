@@ -27,12 +27,16 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     return UnitCanAttack(inputValues[1], inputValues[2])
 end
 
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+end
+
 function this:Evaluate(inputGroup)
-    local canAttack = UnitCanAttack(inputGroup.inputValues[1], inputGroup.inputValues[2])
+    local canAttack = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= canAttack then
         inputGroup.currentValue = canAttack

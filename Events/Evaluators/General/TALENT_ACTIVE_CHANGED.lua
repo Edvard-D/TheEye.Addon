@@ -31,13 +31,19 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local isSelected, _, _, _, _, _, _, isKnown = select(4, GetTalentInfo(inputValues[1], inputValues[2], GetActiveSpecGroup()))
-    return isSelected or isKnown
+    return isSelected == true
+        or isKnown == true
+        or false
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
 function this:Evaluate(inputGroup)
-    local isActive = self:CalculateCurrentValue(inputGroup.inputValues)
+    local isActive = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= isActive then
         inputGroup.currentValue = isActive
