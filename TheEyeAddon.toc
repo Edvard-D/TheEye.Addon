@@ -180,6 +180,7 @@ UI\Objects\UIParentGroup.lua
 # --- HUD: Primary ---
 UI\Objects\Primary\PrimaryGroup.lua
 
+UI\Objects\Primary\MindBlast.lua
 UI\Objects\Primary\MindFlay.lua
 UI\Objects\Primary\ShadowFiend.lua
 UI\Objects\Primary\ShadowWordDeath.lua
