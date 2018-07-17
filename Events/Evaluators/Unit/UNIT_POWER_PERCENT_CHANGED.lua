@@ -5,6 +5,7 @@ this.name = "UNIT_POWER_PERCENT_CHANGED"
 
 local table = table
 local UnitPower = UnitPower
+local UnitPowerMax = UnitPowerMax
 
 
 --[[ #this#TEMPLATE#
@@ -24,7 +25,9 @@ this.gameEvents =
 }
 
 local function CalculateCurrentValue(inputValues)
-    return UnitPower(inputValues[1], inputValues[2])
+    local unit = inputValues[1]
+    local powertype = inputValues[2]
+    return UnitPower(unit, powertype) / UnitPowerMax(unit, powertype)
 end
 
 function this:InputGroupSetup(inputGroup)
