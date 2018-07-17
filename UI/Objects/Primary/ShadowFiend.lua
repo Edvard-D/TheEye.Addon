@@ -60,12 +60,12 @@ TheEyeAddon.UI.Objects:FormatData(
                 {
                     eventEvaluatorKey = "SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
-                    value = 4,
                     comparisonValues =
                     {
                         value = TheEyeAddon.Values.cooldownEndAlertLength,
-                        type = "EqualTo"
+                        type = "LessThan"
                     },
+                    value = 4,
                 },
             },
         },
