@@ -4,6 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
 this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
+local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
@@ -66,30 +67,8 @@ function this:SetupListeningTo(inputGroup)
     end
 end
 
-local function NewTimerLengthGet(inputGroup, remainingTime)
-    local nextUpdatePoint = 0
-    local listeners = inputGroup.listeners
-    for i=1, #listeners do
-        listener = listeners[i]
-        if listener.comparisonValues ~= nil then
-            local value = listener.comparisonValues.value
-            if value > nextUpdatePoint and value <= remainingTime then
-                nextUpdatePoint = value
-            end
-        end
-    end
-
-    return remainingTime - nextUpdatePoint
-end
-
-local function TryStartTimer(inputGroup, remainingTime)
-    if remainingTime ~= 0 then
-        local timerLength = initialTimerLength
-        timerLength = NewTimerLengthGet(inputGroup, remainingTime)
-        
-        StartEventTimer(timerLength, "AURA_DURATION_TIMER_END",
-            inputGroup.inputValues[1], inputGroup.inputValues[2], inputGroup.inputValues[3])
-    end
+local function TimerStart(inputGroup, remainingTime)
+    InputGroupCooldownTimerStart(inputGroup, remainingTime, "AURA_DURATION_TIMER_END", inputGroup.inputValues)
 end
 
 local function CalculateCurrentValue(inputValues)
@@ -106,7 +85,7 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-    TryStartTimer(inputGroup, inputGroup.currentValue)
+    TimerStart(inputGroup, inputGroup.currentValue)
 end
 
 function this:GetKey(event, ...)
@@ -115,7 +94,10 @@ function this:GetKey(event, ...)
     local spellID
 
     if event == "AURA_DURATION_TIMER_END" then
-        sourceUnit, destUnit, spellID = select(2, ...)
+        local inputValues = select(2, ...)
+        sourceUnit = inputValues[1]
+        destUnit = inputValues[2]
+        spellID = inputValues[3]
     else
         local combatLogData = ...
         sourceUnit = combatLogData["sourceUnit"]
@@ -128,7 +110,7 @@ end
 
 function this:Evaluate(inputGroup, event)
     local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
-    TryStartTimer(inputGroup, remainingTime)
+    TimerStart(inputGroup, remainingTime)
 
     if inputGroup.currentValue ~= remainingTime then
         inputGroup.currentValue = remainingTime
