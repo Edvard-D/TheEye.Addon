@@ -94,13 +94,3 @@ TheEyeAddon.UI.Objects:FormatData(
     },
 }
 )
-
---[[
-{
-    UNIT_HEALTH_CHANGED -- LessThan -- 20
-    and
-    SPELL_CHARGE_CHANGED -- GreaterThan -- 0
-}
-or
-UNIT_SPELLCAST_START_RECENTLY_CHANGED
-]]
