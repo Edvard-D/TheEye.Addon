@@ -185,6 +185,7 @@ UI\Objects\UIParentGroup.lua
 # --- HUD: Primary ---
 UI\Objects\Primary\PrimaryGroup.lua
 
+UI\Objects\Primary\DarkVoid.lua
 UI\Objects\Primary\Mindbender.lua
 UI\Objects\Primary\MindBlast.lua
 UI\Objects\Primary\MindFlay.lua

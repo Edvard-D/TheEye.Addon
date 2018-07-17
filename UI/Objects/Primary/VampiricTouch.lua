@@ -34,7 +34,7 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 9,
+            defaultValue = 10,
         },
     },
     VisibleState =
