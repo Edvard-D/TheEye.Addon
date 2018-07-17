@@ -4,6 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.SPELL_COOLDOWN_DURATION_CHANGED
 this.name = "SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
+local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
@@ -37,29 +38,11 @@ function this:SetupListeningTo(inputGroup)
     end
 end
 
-local function NewTimerLengthGet(inputGroup, remainingTime)
-    local nextUpdatePoint = 0
-    local listeners = inputGroup.listeners
-    for i=1, #listeners do
-        listener = listeners[i]
-        if listener.comparisonValues ~= nil then
-            local value = listener.comparisonValues.value
-            if value > nextUpdatePoint and value <= remainingTime then
-                nextUpdatePoint = value
-            end
-        end
-    end
-
-    return remainingTime - nextUpdatePoint
-end
-
-local function TryStartTimer(inputGroup, remainingTime)
-    if remainingTime ~= 0 then
-        local timerLength = initialTimerLength
-        if remainingTime ~= initialTimerLength then
-            timerLength = NewTimerLengthGet(inputGroup, remainingTime)
-        end
-        StartEventTimer(timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues[1])
+local function TimerStart(inputGroup, remainingTime)
+    if remainingTime == initialTimerLength then
+        StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+    else
+        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 
@@ -75,7 +58,7 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-    TryStartTimer(inputGroup, inputGroup.currentValue)
+    TimerStart(inputGroup, inputGroup.currentValue)
 end
 
 function this:GetKey(event, ...)
@@ -88,23 +71,23 @@ function this:GetKey(event, ...)
             spellID = combatLogData["spellID"]
         end
     else
-        spellID = select(2, ...)
+        local inputValues = select(2, ...)
+        spellID = inputValues[1]
     end
 
     return tostring(spellID)
 end
 
 function this:Evaluate(inputGroup, event)
-    local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
-
     if event == "SPELL_CAST_SUCCESS" then
-        remainingTime = initialTimerLength
-    end
-
-    TryStartTimer(inputGroup, remainingTime)
-
-    if inputGroup.currentValue ~= remainingTime then
-        inputGroup.currentValue = remainingTime
-        return true, this.name, remainingTime
+        TimerStart(inputGroup, initialTimerLength)
+    else
+        local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
+        TimerStart(inputGroup, remainingTime)
+    
+        if inputGroup.currentValue ~= remainingTime then
+            inputGroup.currentValue = remainingTime
+            return true, this.name, remainingTime
+        end
     end
 end

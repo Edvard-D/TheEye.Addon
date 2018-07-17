@@ -14,3 +14,25 @@ function this.StartEventTimer(duration, eventName, ...)
         SendCustomEvent(eventName, unpack(args))
     end)
 end
+
+local function NewCooldownTimerGetLength(inputGroup, remainingTime)
+    local nextUpdatePoint = 0
+    local listeners = inputGroup.listeners
+    for i=1, #listeners do
+        listener = listeners[i]
+        if listener.comparisonValues ~= nil then
+            local value = listener.comparisonValues.value
+            if value > nextUpdatePoint and value <= remainingTime then
+                nextUpdatePoint = value
+            end
+        end
+    end
+
+    return remainingTime - nextUpdatePoint
+end
+
+function this.InputGroupCooldownTimerStart(inputGroup, remainingTime, eventName, ...)
+    if remainingTime ~= 0 then
+        this.StartEventTimer(NewCooldownTimerGetLength(inputGroup, remainingTime), eventName, ...)
+    end
+end
