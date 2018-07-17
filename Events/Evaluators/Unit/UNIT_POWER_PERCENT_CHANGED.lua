@@ -21,7 +21,7 @@ local UnitPowerMax = UnitPowerMax
 
 this.gameEvents =
 {
-    "UNIT_POWER"
+    "UNIT_POWER_UPDATE"
 }
 
 local function CalculateCurrentValue(inputValues)
