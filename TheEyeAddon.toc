@@ -189,6 +189,7 @@ UI\Objects\Primary\ShadowFiend.lua
 UI\Objects\Primary\ShadowWordDeath.lua
 UI\Objects\Primary\ShadowWordPain.lua
 UI\Objects\Primary\VampiricTouch.lua
+UI\Objects\Primary\VoidEruption.lua
 
 
 
