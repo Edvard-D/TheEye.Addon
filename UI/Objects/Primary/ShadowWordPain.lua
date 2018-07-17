@@ -41,7 +41,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = true, [2] = true, [6] = true, },
+            validKeys = { [2] = true, [4] = true, [6] = true, },
         },
         ListenerGroup =
         {
@@ -53,8 +53,13 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 0.75,
+                        type = "LessThan"
+                    },
                     value = 4,
                 },
             },
