@@ -31,12 +31,16 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local expectedSpellID = inputValues[2]
     local unit = inputValues[1]
     local currentSpellID = select(9, UnitCastingInfo(unit)) or select(8, UnitChannelInfo(unit))
 
     return currentSpellID == expectedSpellID
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
 function this:GetKey(event, ...)

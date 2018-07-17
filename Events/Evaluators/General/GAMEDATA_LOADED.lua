@@ -17,8 +17,8 @@ this.gameEvents =
 }
 
 
-function this:CalculateCurrentValue()
-    return false
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = false
 end
 
 function this:GetKey(event, ...)

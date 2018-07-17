@@ -47,7 +47,7 @@ function this:SetupListeningTo(inputGroup)
     })
 end
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local unit = inputValues[1]
     local expectedSpellID = inputValues[2]
     local _, _, _, startTime, _, _, castID, _, currentSpellID = UnitCastingInfo(unit)
@@ -62,6 +62,10 @@ function this:CalculateCurrentValue(inputValues)
     end
 
     return false
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
 function this:GetKey(event, ...)

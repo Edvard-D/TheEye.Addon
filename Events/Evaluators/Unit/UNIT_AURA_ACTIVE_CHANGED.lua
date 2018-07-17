@@ -61,10 +61,14 @@ function this:SetupListeningTo(inputGroup)
     end
 end
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
 
     return UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
 function this:GetKey(event, combatLogData)
@@ -75,7 +79,7 @@ function this:Evaluate(inputGroup, event, combatLogData)
     local isActive
 
     if event == "PLAYER_TARGET_CHANGED" then
-        isActive = this:CalculateCurrentValue(inputGroup.inputValues)
+        isActive = CalculateCurrentValue(inputGroup.inputValues)
     else
         isActive = combatLogData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
     end

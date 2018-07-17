@@ -21,12 +21,16 @@ this.gameEvents =
     "SPELL_UPDATE_USABLE",
 }
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     return IsUsableSpell(inputValues[1])
 end
 
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+end
+
 function this:Evaluate(inputGroup, event)
-    local isUseable = self:CalculateCurrentValue(inputGroup.inputValues)
+    local isUseable = CalculateCurrentValue(inputGroup.inputValues)
     if inputGroup.currentValue ~= isUseable then
         inputGroup.currentValue = isUseable
         return true, this.name, isUseable
