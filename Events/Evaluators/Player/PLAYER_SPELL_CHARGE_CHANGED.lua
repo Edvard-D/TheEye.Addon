@@ -28,6 +28,7 @@ local combatLogEvents =
     "SPELL_PERIODIC_CAST_SUCCESS",
 }
 
+
 function this:SetupListeningTo(inputGroup)
     for i=1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
