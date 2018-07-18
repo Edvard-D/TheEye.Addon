@@ -7,6 +7,7 @@ local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local select = select
+local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Events.Helpers.Player.SpellChargeCooldownRemainingTimeGet
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 
@@ -44,6 +45,11 @@ local function CalculateCurrentValue(inputValues)
     return charges
 end
 
+local function TimerStart(inputValues)
+    local remainingTime = SpellChargeCooldownRemainingTimeGet(inputValues)
+    StartEventTimer(remainingTime, "UNIT_SPELLCAST_TIMER_END", inputValues[1])
+end
+
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
@@ -63,9 +69,7 @@ end
 
 function this:Evaluate(inputGroup, event)
     if event ~= "UNIT_SPELLCAST_TIMER_END" then
-        local cooldownStart, cooldownDuration = select(3, GetSpellCharges(inputGroup.inputValues[1]))
-        local remainingTime = (cooldownStart + cooldownDuration) - GetTime()
-        StartEventTimer(remainingTime, "UNIT_SPELLCAST_TIMER_END", inputGroup.inputValues[1])
+        TimerStart(inputGroup.inputValues)
     end
 
     local charges = CalculateCurrentValue(inputGroup.inputValues)
