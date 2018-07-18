@@ -39,9 +39,13 @@ function this:SetupListeningTo(inputGroup)
     end
 end
 
-function this:CalculateCurrentValue(inputValues)
+local function CalculateCurrentValue(inputValues)
     local charges = GetSpellCharges(inputValues[1])
     return charges
+end
+
+function this:InputGroupSetup(inputGroup)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
 function this:GetKey(event, ...)
@@ -64,7 +68,7 @@ function this:Evaluate(inputGroup, event)
         StartEventTimer(remainingTime, "UNIT_SPELLCAST_TIMER_END", inputGroup.inputValues[1])
     end
 
-    local charges = self:CalculateCurrentValue(inputGroup.inputValues)
+    local charges = CalculateCurrentValue(inputGroup.inputValues)
     if inputGroup.currentValue ~= charges then
         inputGroup.currentValue = charges
         return true, this.name, charges
