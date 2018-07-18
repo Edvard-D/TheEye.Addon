@@ -68,11 +68,16 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event)
+    local charges = CalculateCurrentValue(inputGroup.inputValues)
     if event ~= "UNIT_SPELLCAST_TIMER_END" then
-        TimerStart(inputGroup.inputValues)
+        if charges == 1 then
+            charges = 0
+        else
+            TimerStart(inputGroup.inputValues)
+        end
     end
 
-    local charges = CalculateCurrentValue(inputGroup.inputValues)
+    print("charges: " .. tostring(charges))
     if inputGroup.currentValue ~= charges then
         inputGroup.currentValue = charges
         return true, this.name, charges
