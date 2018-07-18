@@ -57,6 +57,7 @@ Timers.lua
 # |	   Events\Helpers   	|
 # ---------------------------
 Events\Helpers\Core.lua
+Events\Helpers\Player.lua
 
 
 
