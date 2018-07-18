@@ -70,7 +70,7 @@ end
 function this:Evaluate(inputGroup, event)
     local charges = CalculateCurrentValue(inputGroup.inputValues)
     if event ~= "UNIT_SPELLCAST_TIMER_END" then
-        if charges == 1 then
+        if inputGroup.currentValue == charges and charges == 1 then
             charges = 0
         else
             TimerStart(inputGroup.inputValues)
