@@ -3,6 +3,7 @@
 TheEyeAddon = {}
     TheEyeAddon.Events = {}
         TheEyeAddon.Events.Evaluators = {}
+        TheEyeAddon.Events.Helpers = {}
     TheEyeAddon.UI = {}
         TheEyeAddon.UI.Components = {}
             TheEyeAddon.UI.Components.Elements = {}

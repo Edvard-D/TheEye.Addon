@@ -5,7 +5,7 @@ this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
 local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID

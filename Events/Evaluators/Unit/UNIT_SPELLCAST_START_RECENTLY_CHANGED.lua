@@ -9,7 +9,7 @@ local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local unpack = unpack
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 
 
 --[[ #this#TEMPLATE#

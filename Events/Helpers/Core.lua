@@ -1,9 +1,11 @@
 local TheEyeAddon = TheEyeAddon
-local this = TheEyeAddon.Events.Evaluators
+TheEyeAddon.Events.Helpers.Core = {}
+local this = TheEyeAddon.Events.Helpers.Core
 
 local Comparisons = TheEyeAddon.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
+local Evaluators = TheEyeAddon.Events.Evaluators
 local pairs = pairs
 local select = select
 local table = table
@@ -88,11 +90,11 @@ end
 
 -- Register/Deregister
 function this.ListenerRegister(evaluatorKey, listener)
-    local evaluator = this[evaluatorKey] -- Key assigned during Evaluator declaration
+    local evaluator = Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    --print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
     
     table.insert(listeners, listener)
     EvaluatorIncreaseListenerCount(evaluator)
@@ -118,11 +120,11 @@ function this.InputGroupDeregisterListeningTo(inputGroup)
 end
 
 function this.ListenerDeregister(evaluatorKey, listener)
-    local evaluator = this[evaluatorKey]
+    local evaluator = Evaluators[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
 
-    print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    --print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
     table.removevalue(listeners, listener)
     EvaluatorDecreaseListenerCount(evaluator)

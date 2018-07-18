@@ -3,7 +3,7 @@ TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED
 this.name = "UNIT_AURA_ACTIVE_CHANGED"
 
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID
 local unpack = unpack
