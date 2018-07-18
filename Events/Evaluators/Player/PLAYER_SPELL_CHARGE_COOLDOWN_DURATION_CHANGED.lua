@@ -3,10 +3,9 @@ TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED
 this.name = "PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED"
 
-local GetSpellCharges = GetSpellCharges
-local GetTime = GetTime
 local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
+local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Events.Helpers.Player.SpellChargeCooldownRemainingTimeGet
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
 local tostring = tostring
@@ -47,18 +46,8 @@ local function TimerStart(inputGroup, remainingTime)
     end
 end
 
-local function CalculateCurrentValue(inputValues)
-    local start, duration = select(3, GetSpellCharges(inputValues[1]))
-    local remainingTime = (start + duration) - GetTime()
-
-    if remainingTime < 0 or remainingTime > 600 then
-        remainingTime = 0
-    end
-    return remainingTime
-end
-
 function this:InputGroupSetup(inputGroup)
-    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    inputGroup.currentValue = SpellChargeCooldownRemainingTimeGet(inputGroup.inputValues)
     TimerStart(inputGroup, inputGroup.currentValue)
 end
 
@@ -83,7 +72,7 @@ function this:Evaluate(inputGroup, event)
     if event == "SPELL_CAST_SUCCESS" then
         TimerStart(inputGroup, initialTimerLength)
     else
-        local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
+        local remainingTime = SpellChargeCooldownRemainingTimeGet(inputGroup.inputValues)
         TimerStart(inputGroup, remainingTime)
     
         if inputGroup.currentValue ~= remainingTime then
