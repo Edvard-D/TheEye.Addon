@@ -48,10 +48,10 @@ local function TimerStart(inputGroup, remainingTime)
 end
 
 local function CalculateCurrentValue(inputValues)
-    local start, duration = select(2, GetSpellCharges(inputValues[1]))
+    local start, duration = select(3, GetSpellCharges(inputValues[1]))
     local remainingTime = (start + duration) - GetTime()
 
-    if remainingTime < 0 then
+    if remainingTime < 0 or remainingTime > 600 then
         remainingTime = 0
     end
     return remainingTime
