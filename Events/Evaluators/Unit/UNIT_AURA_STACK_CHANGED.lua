@@ -75,6 +75,8 @@ local function CalculateCurrentValue(inputValues)
     if auraValues ~= nil then
         local stackCount = auraValues[3]
         return stackCount
+    else
+        return 0
     end
 end
 
