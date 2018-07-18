@@ -9,14 +9,14 @@ TheEyeAddon.Auras.Filters.SpellID =
 {
     [589] = -- Shadow Word: Pain
     {
-        "HARMFUL ", "NOT_CANCELABLE "
+        "HARMFUL "
     },
     [34914] = -- Vampiric Touch
     {
-        "HARMFUL ", "NOT_CANCELABLE "
+        "HARMFUL "
     },
     [194249] = -- Voidform
     {
-        "HELPFUL ", "NOT_CANCELABLE "
+        "HELPFUL " -- @TODO figure out why using NOT_CANCELABLE caused this aura to not be found
     }
 }
