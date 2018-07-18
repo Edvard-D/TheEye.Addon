@@ -68,8 +68,8 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "AURA_STACK_CHANGED",
-                    inputValues = { --[[spellID]] 194249, },
+                    eventEvaluatorKey = "UNIT_AURA_STACK_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
                     comparisonValues =
                     {
                         value = 9,
