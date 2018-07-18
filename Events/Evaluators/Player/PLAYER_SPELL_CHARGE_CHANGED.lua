@@ -4,7 +4,6 @@ local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_CHANGED
 this.name = "PLAYER_SPELL_CHARGE_CHANGED"
 
 local GetSpellCharges = GetSpellCharges
-local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local select = select
 local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Events.Helpers.Player.SpellChargeCooldownRemainingTimeGet
