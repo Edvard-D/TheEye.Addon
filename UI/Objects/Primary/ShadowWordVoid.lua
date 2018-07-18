@@ -47,7 +47,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [6] = true, [8] = true, [10] = true, [14] = true, },
+            validKeys = { [2] = true, [6] = true, [8] = true, [10] = true, [14] = true, [16] = true, [14] = true, [18] = true, [22] = true, [24] = true, [26] = true, [28] = true, [30] = true, },
         },
         ListenerGroup =
         {
@@ -72,6 +72,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "LessThan"
                     },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "GreaterThan",
+                    },
+                    value = 16,
                 },
             },
         },
