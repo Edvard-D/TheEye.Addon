@@ -56,7 +56,6 @@ Timers.lua
 # ---------------------------
 # |	   Events\Helpers   	|
 # ---------------------------
-Events\CombatLogEventDataFormats.lua
 Events\Helpers\Core.lua
 
 
