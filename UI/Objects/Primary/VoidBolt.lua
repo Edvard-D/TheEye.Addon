@@ -53,7 +53,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "SPELL_COOLDOWN_DURATION_CHANGED",
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID },
                     comparisonValues =
                     {

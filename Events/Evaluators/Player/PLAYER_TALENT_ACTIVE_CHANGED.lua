@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.TALENT_ACTIVE_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.TALENT_ACTIVE_CHANGED
-this.name = "TALENT_ACTIVE_CHANGED"
+TheEyeAddon.Events.Evaluators.PLAYER_TALENT_ACTIVE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.PLAYER_TALENT_ACTIVE_CHANGED
+this.name = "PLAYER_TALENT_ACTIVE_CHANGED"
 
 local GetActiveSpecGroup = GetActiveSpecGroup
 local GetTalentInfo = GetTalentInfo

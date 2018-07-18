@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.SPELL_CHARGE_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.SPELL_CHARGE_CHANGED
-this.name = "SPELL_CHARGE_CHANGED"
+TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_CHANGED
+this.name = "PLAYER_SPELL_CHARGE_CHANGED"
 
 local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime

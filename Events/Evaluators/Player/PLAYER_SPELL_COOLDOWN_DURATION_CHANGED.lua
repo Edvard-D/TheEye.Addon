@@ -1,9 +1,9 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.SPELL_CHARGE_COOLDOWN_DURATION_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.SPELL_CHARGE_COOLDOWN_DURATION_CHANGED
-this.name = "SPELL_CHARGE_COOLDOWN_DURATION_CHANGED"
+TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
+this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
-local GetSpellCharges = GetSpellCharges
+local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
 local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Evaluators.InputGroupRegisterListeningTo
@@ -21,7 +21,7 @@ local initialTimerLength = 0.01
 
 this.customEvents =
 {
-    "SPELL_CHARGE_COOLDOWN_TIMER_END"
+    "SPELL_COOLDOWN_TIMER_END"
 }
 local combatLogEvents =
 {
@@ -41,17 +41,17 @@ end
 
 local function TimerStart(inputGroup, remainingTime)
     if remainingTime == initialTimerLength then
-        StartEventTimer(remainingTime, "SPELL_CHARGE_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_CHARGE_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 
 local function CalculateCurrentValue(inputValues)
-    local start, duration = select(3, GetSpellCharges(inputValues[1]))
+    local start, duration = GetSpellCooldown(inputValues[1])
     local remainingTime = (start + duration) - GetTime()
 
-    if remainingTime < 0 or remainingTime > 600 then
+    if remainingTime < 0 then
         remainingTime = 0
     end
     return remainingTime

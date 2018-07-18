@@ -29,7 +29,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "TALENT_ACTIVE_CHANGED",
+                    eventEvaluatorKey = "PLAYER_TALENT_ACTIVE_CHANGED",
                     inputValues = { --[[tier]] 5, --[[column]] 2, },
                     value = 4,
                 },
@@ -65,7 +65,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "SPELL_CHARGE_CHANGED",
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
@@ -80,7 +80,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 8,
                 },
                 {
-                    eventEvaluatorKey = "SPELL_COOLDOWN_DURATION_CHANGED",
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {

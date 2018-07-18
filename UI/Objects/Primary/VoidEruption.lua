@@ -57,7 +57,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "TALENT_ACTIVE_CHANGED",
+                    eventEvaluatorKey = "PLAYER_TALENT_ACTIVE_CHANGED",
                     inputValues = { --[[tier]] 7, --[[column]] 1, },
                     value = 8,
                 },
