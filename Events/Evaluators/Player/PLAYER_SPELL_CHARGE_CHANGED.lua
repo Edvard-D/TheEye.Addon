@@ -77,7 +77,6 @@ function this:Evaluate(inputGroup, event)
         end
     end
 
-    print("charges: " .. tostring(charges))
     if inputGroup.currentValue ~= charges then
         inputGroup.currentValue = charges
         return true, this.name, charges
