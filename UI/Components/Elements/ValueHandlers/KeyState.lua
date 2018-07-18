@@ -55,9 +55,9 @@ end
 function this:OnValueChange(value)
     local state = self.validKeys[value] or false
 
-    --if self.UIObject.key == "HUD_ICON_PRIMARY_SPELL-32379" then
+    if self.UIObject.key == "HUD_ICON_PRIMARY_SPELL-228260" then
         print (self.UIObject.key .. "    OnValueChange value: " .. tostring(value)) -- @DEBUG
-    --end
+    end
     
     if self.state ~= state then
         self.state = state
