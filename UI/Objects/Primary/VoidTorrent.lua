@@ -1,8 +1,8 @@
-local spellID = 205065
+local spellID = 263165
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL-205065", },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-263165", },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
