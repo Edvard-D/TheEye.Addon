@@ -11,6 +11,7 @@ TheEyeAddon.UI.Objects:FormatData(
         iconObjectID = spellID,
     },
     -- @TODO cooldown
+    -- @TODO show charges
     EnabledState =
     {
         ValueHandler =

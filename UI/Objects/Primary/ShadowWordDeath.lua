@@ -10,9 +10,9 @@ TheEyeAddon.UI.Objects:FormatData(
         iconObjectType = "SPELL",
         iconObjectID = spellID,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default,
-        -- @TODO show charges
     },
     -- @TODO cooldown
+        -- @TODO show charges
     EnabledState =
     {
         ValueHandler =
