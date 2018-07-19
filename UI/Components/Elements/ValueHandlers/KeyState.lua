@@ -55,7 +55,7 @@ end
 function this:OnValueChange(value)
     local state = self.validKeys[value] or false
 
-    if self.UIObject.key == "HUD_ICON_PRIMARY_SPELL-228260" then
+    if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
         print (self.UIObject.key .. "    OnValueChange value: " .. tostring(value)) -- @DEBUG
     end
     
