@@ -26,6 +26,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY", },
                     value = 2,
                 },
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 23126, },
+                    value = 4,
+                },
             },
         },
     },
