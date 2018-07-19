@@ -1,12 +1,10 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "MODULE", "PRIMARY" },
+    tags = { "GROUP", "HUD", },
     Children =
     {
-        childTags = { --[[tags]] "HUD", "ICON", "PRIMARY" },
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
-        sortActionName = "SortDescending",
-        sortValueComponentName = "PriorityRank",
+        childTags = { --[[tags]] "HUD", "MODULE", },
+        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.Delegate,
     },
     DisplayData =
     {
@@ -17,7 +15,8 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 point = "TOP",
                 relativePoint = "CENTER",
-            },
+                offsetY = -50,
+            }
         },
     },
     EnabledState =
@@ -32,12 +31,12 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_MODULE_ENABLED_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD" },
+                    inputValues = { --[[uiObjectKey]] "UIPARENT" },
                     value = 4,
                 },
             },
@@ -47,7 +46,18 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = true },
+            validKeys = { [2] = true },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
+                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" },
+                    value = 2,
+                },
+            },
         },
     },
 }
