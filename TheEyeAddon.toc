@@ -95,6 +95,7 @@ Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
 Events\Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
