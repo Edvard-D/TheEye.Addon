@@ -113,18 +113,18 @@ function this.Setup(
         uiObject,
         instance
     )
+
+    instance.ListenerGroups.UpdateRegisteredChildren:Activate()
 end
 
 function this:OnEnable()
-    for k,listenerGroup in pairs(self.ListenerGroups) do
-        listenerGroup:Activate()
+    self.ListenerGroups.Arrange:Activate()
+    self.ListenerGroups.Sort:Activate()
     end
-end
 
 function this:OnDisable()
-    for k,listenerGroup in pairs(self.ListenerGroups) do
-        listenerGroup:Deactivate()
-    end
+    self.ListenerGroups.Arrange:Deactivate()
+    self.ListenerGroups.Sort:Deactivate()
 end
 
 
