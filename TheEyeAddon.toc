@@ -83,6 +83,7 @@ Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_ENABLED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_RESIZED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 
@@ -196,6 +197,20 @@ UI\Objects\HUD\HUDGroup.lua
 UI\Objects\HUD\Primary\PrimaryGroup.lua
 
 UI\Objects\HUD\Primary\DarkAscension.lua
+UI\Objects\HUD\Primary\DarkVoid.lua
+UI\Objects\HUD\Primary\Mindbender.lua
+UI\Objects\HUD\Primary\MindBlast.lua
+UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\Psyfiend.lua
+UI\Objects\HUD\Primary\ShadowCrash.lua
+UI\Objects\HUD\Primary\ShadowFiend.lua
+UI\Objects\HUD\Primary\ShadowWordDeath.lua
+UI\Objects\HUD\Primary\ShadowWordPain.lua
+UI\Objects\HUD\Primary\ShadowWordVoid.lua
+UI\Objects\HUD\Primary\VampiricTouch.lua
+UI\Objects\HUD\Primary\VoidBolt.lua
+UI\Objects\HUD\Primary\VoidEruption.lua
+UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
 
