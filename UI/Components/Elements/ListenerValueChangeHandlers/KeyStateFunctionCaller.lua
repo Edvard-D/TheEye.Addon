@@ -29,19 +29,19 @@ function this.Setup(
     onInvalidKey
 )
     
-    instance.ValueHandler = instance.ValueHandler or {}
     IntegerKeyStateSetup(
         instance.ValueHandler,
         uiObject,
         instance
     )
 
-    instance.ListenerGroup = instance.ListenerGroup or {}
-    StateBasedIntChangerSetup(
-        instance.ListenerGroup,
-        uiObject,
-        instance.ValueHandler
-    )
+    if instance.ListenerGroup ~= nil then
+        StateBasedIntChangerSetup(
+            instance.ListenerGroup,
+            uiObject,
+            instance.ValueHandler
+        )
+    end
 
     inherited.Setup(
         instance,

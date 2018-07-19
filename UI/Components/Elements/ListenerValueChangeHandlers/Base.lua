@@ -32,11 +32,15 @@ function this.Setup(
 end
 
 function this:Activate()
-    self.ListenerGroup:Activate()
+    if self.ListenerGroup ~= nil then
+        self.ListenerGroup:Activate()
+    end
     self.ValueHandler:Activate()
 end
 
 function this:Deactivate()
-    self.ListenerGroup:Deactivate()
+    if self.ListenerGroup ~= nil then
+        self.ListenerGroup:Deactivate()
+    end
     self.ValueHandler:Deactivate()
 end
