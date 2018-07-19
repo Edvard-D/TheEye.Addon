@@ -120,7 +120,7 @@ end
 function this:OnEnable()
     self.ListenerGroups.Arrange:Activate()
     self.ListenerGroups.Sort:Activate()
-    end
+end
 
 function this:OnDisable()
     self.ListenerGroups.Arrange:Deactivate()
@@ -172,12 +172,12 @@ function this:Arrange()
         for i = 1, #children do
             local childUIObject = children[i]
             local childFrame = childUIObject.Frame
-                local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
-                childFrame:ClearAllPoints()
-                groupArranger.SetPoint(frame, childFrame, childPointSettings, combinedOffsetX, combinedOffsetY)
+            local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
+            childFrame:ClearAllPoints()
+            groupArranger.SetPoint(frame, childFrame, childPointSettings, combinedOffsetX, combinedOffsetY)
 
-                table.insert(childRects, { childFrame:GetRect() })
-                combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(childFrame, combinedOffsetX, combinedOffsetY)
+            table.insert(childRects, { childFrame:GetRect() })
+            combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(childFrame, combinedOffsetX, combinedOffsetY)
         end
         
         if #childRects > 0 then
@@ -190,9 +190,7 @@ end
 
 
 -- UpdateRegisteredChildren
-function this:UpdateRegisteredChildren(event, ...)
-    local childUIObject = ...
-
+function this:UpdateRegisteredChildren(event, childUIObject)
     if childUIObject.VisibleState.ValueHandler.state == false then -- false state for ValueHandlers.KeyState is nil
         self.ValueHandler:Remove(childUIObject)
     else
