@@ -13,6 +13,7 @@ local unpack = unpack
 
 TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
 TheEyeAddon.UI.Templates.ComponentAddToTag("MODULE", this)
+TheEyeAddon.UI.Templates.ComponentAddToTag("UIPARENT", this)
 
 --[[ #this#TEMPLATE#
 {
