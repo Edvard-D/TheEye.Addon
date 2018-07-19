@@ -113,10 +113,10 @@ UI\DimensionTemplates\Icon_Large.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
-UI\Objects\Helpers\GroupArrangers.lua
-UI\Objects\Helpers\Pools.lua
-UI\Objects\Helpers\Setup.lua
-UI\Objects\Helpers\Templates.lua
+UI\Helpers\GroupArrangers.lua
+UI\Helpers\Pools.lua
+UI\Helpers\Setup.lua
+UI\Helpers\Templates.lua
 
 
 
