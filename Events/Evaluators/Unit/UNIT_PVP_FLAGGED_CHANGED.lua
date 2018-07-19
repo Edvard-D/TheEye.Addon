@@ -1,4 +1,3 @@
--- @TODO figure out what event fires when the player's PvP flag changes
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED
@@ -22,10 +21,15 @@ this.reevaluateEvents =
 this.gameEvents = 
 {
     "PLAYER_TARGET_CHANGED",
+    "PLAYER_FLAGS_CHANGED",
 }
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = UnitIsPVP(inputGroup.inputValues[1])
+end
+
+function this:GetKey(event, unit)
+    return unit
 end
 
 function this:Evaluate(inputGroup, event)
