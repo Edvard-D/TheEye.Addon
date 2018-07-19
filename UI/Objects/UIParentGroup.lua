@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "GROUP", "UIPARENT" },
+    tags = { "UIPARENT" },
     Children =
     {
         childTags = { --[[tags]] "GROUP", },

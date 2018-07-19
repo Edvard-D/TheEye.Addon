@@ -37,7 +37,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" },
+                    inputValues = { --[[uiObjectKey]] "UIPARENT" },
                     value = 4,
                 },
             },
