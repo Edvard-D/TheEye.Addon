@@ -15,7 +15,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 point = "TOP",
                 relativePoint = "CENTER",
-                offsetY = -175,
+                offsetY = -30,
             }
         },
     },
