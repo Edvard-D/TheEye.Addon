@@ -105,15 +105,9 @@ Events\Evaluators\Unit\UNIT_SPELLCAST_START_RECENTLY_CHANGED.lua
 
 
 # ---------------------------
-# |	 UI\DimensionTemplates	|
-# ---------------------------
-UI\DimensionTemplates\Icon_Large.lua
-
-
-
-# ---------------------------
 # |		      UI		    |
 # ---------------------------
+UI\Helpers\DimensionTemplates.lua
 UI\Helpers\GroupArrangers.lua
 UI\Helpers\Pools.lua
 UI\Helpers\Setup.lua

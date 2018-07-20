@@ -12,7 +12,6 @@ TheEyeAddon = {}
                 TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers = {}
                 TheEyeAddon.UI.Components.Elements.ValueEvaluators = {}
                 TheEyeAddon.UI.Components.Elements.ValueHandlers = {}
-        TheEyeAddon.UI.DimensionTemplates = {}
         TheEyeAddon.UI.Factories = {}
         TheEyeAddon.UI.Fonts = {}
         TheEyeAddon.UI.Objects = {}
