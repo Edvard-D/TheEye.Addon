@@ -76,6 +76,7 @@ Events\Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
 Events\Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
+Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 
 # --- UIObject ---
