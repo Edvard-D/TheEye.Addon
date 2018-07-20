@@ -194,7 +194,7 @@ UI\Objects\HUD\HUDGroup.lua
 
 
 # --- HUD: Primary ---
-UI\Objects\HUD\Primary\PrimaryGroup.lua
+UI\Objects\HUD\Primary\PrimaryModule.lua
 
 UI\Objects\HUD\Primary\DarkAscension.lua
 UI\Objects\HUD\Primary\DarkVoid.lua
