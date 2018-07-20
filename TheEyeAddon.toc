@@ -187,6 +187,10 @@ UI\Objects\UIParentGroup.lua
 UI\Objects\HUD\HUDGroup.lua
 
 
+# --- HUD: Active ---
+UI\Objects\HUD\Active\ActiveModule.lua
+
+
 # --- HUD: Primary ---
 UI\Objects\HUD\Primary\DarkAscension.lua
 UI\Objects\HUD\Primary\DarkVoid.lua
