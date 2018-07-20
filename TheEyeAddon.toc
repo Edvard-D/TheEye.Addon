@@ -188,13 +188,12 @@ UI\Objects\HUD\HUDGroup.lua
 
 
 # --- HUD: Primary ---
-UI\Objects\HUD\Primary\PrimaryModule.lua
-
 UI\Objects\HUD\Primary\DarkAscension.lua
 UI\Objects\HUD\Primary\DarkVoid.lua
 UI\Objects\HUD\Primary\Mindbender.lua
 UI\Objects\HUD\Primary\MindBlast.lua
 UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\PrimaryModule.lua
 UI\Objects\HUD\Primary\Psyfiend.lua
 UI\Objects\HUD\Primary\ShadowCrash.lua
 UI\Objects\HUD\Primary\ShadowFiend.lua
