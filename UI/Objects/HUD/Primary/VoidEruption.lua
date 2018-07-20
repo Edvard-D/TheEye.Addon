@@ -40,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [16] = true, [20] = true, [22] = true }
+            validKeys = { [20] = true, [22] = true, [24] = true, [28] = true, [30] = true, [68] = true, [70] = true, [80] = true, [84] = true, [86] = true, [88] = true, [92] = true, [94] = true, }
         },
         ListenerGroup =
         {
@@ -80,6 +80,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
                     value = 32,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 21637, },
+                    value = 64,
                 },
             },
         },
