@@ -189,6 +189,7 @@ UI\Objects\HUD\HUDGroup.lua
 
 # --- HUD: Active ---
 UI\Objects\HUD\Active\ActiveModule.lua
+UI\Objects\HUD\Active\ShadowFiend.lua
 UI\Objects\HUD\Active\Voidform.lua
 
 
@@ -201,7 +202,7 @@ UI\Objects\HUD\Primary\MindFlay.lua
 UI\Objects\HUD\Primary\PrimaryModule.lua
 UI\Objects\HUD\Primary\Psyfiend.lua
 UI\Objects\HUD\Primary\ShadowCrash.lua
-UI\Objects\HUD\Primary\ShadowFiend.lua
+UI\Objects\HUD\Primary\Shadowfiend.lua
 UI\Objects\HUD\Primary\ShadowWordDeath.lua
 UI\Objects\HUD\Primary\ShadowWordPain.lua
 UI\Objects\HUD\Primary\ShadowWordVoid.lua
