@@ -6,7 +6,7 @@ TheEyeAddon.UI.Objects:FormatData(
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
+        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
         iconObjectType = "SPELL",
         iconObjectID = spellID,
         fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default,
