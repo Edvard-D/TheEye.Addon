@@ -3,6 +3,8 @@ TheEyeAddon.UI.DimensionTemplates = {}
 local this = TheEyeAddon.UI.DimensionTemplates
 
 
+this.Icon = {}
+
 this.Icon.Large =
 {
     width = 50,
