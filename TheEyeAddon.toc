@@ -190,6 +190,7 @@ UI\Objects\HUD\HUDGroup.lua
 
 # --- HUD: Active ---
 UI\Objects\HUD\Active\ActiveModule.lua
+UI\Objects\HUD\Active\Mindbender.lua
 UI\Objects\HUD\Active\ShadowFiend.lua
 UI\Objects\HUD\Active\Voidform.lua
 
