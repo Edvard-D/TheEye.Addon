@@ -172,12 +172,14 @@ function this:Arrange()
         for i = 1, #children do
             local childUIObject = children[i]
             local childFrame = childUIObject.Frame
-            local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
-            childFrame:ClearAllPoints()
-            groupArranger.SetPoint(frame, childFrame, childPointSettings, combinedOffsetX, combinedOffsetY)
+            if childFrame ~= nil then
+                local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
+                childFrame:ClearAllPoints()
+                groupArranger.SetPoint(frame, childFrame, childPointSettings, combinedOffsetX, combinedOffsetY)
 
-            table.insert(childRects, { childFrame:GetRect() })
-            combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(childFrame, combinedOffsetX, combinedOffsetY)
+                table.insert(childRects, { childFrame:GetRect() })
+                combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(childFrame, combinedOffsetX, combinedOffsetY)
+            end
         end
         
         if #childRects > 0 then
