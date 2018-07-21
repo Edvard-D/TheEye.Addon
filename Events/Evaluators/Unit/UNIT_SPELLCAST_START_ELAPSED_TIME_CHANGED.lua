@@ -69,6 +69,7 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    TimerStart(inputGroup, inputGroup.currentValue)
 end
 
 function this:GetKey(event, ...)
