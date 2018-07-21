@@ -3,7 +3,7 @@ local spellID = 193223
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-193223", },
-    -- @TODO Insanity percent below 50%
+    -- @TODO Remaining time
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
