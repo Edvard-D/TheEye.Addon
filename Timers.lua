@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Timers = {}
-this = TheEyeAddon.Timers
+local this = TheEyeAddon.Timers
 
 local After = C_Timer.After
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
