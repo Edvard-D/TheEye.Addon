@@ -33,7 +33,8 @@ end
 function this:Evaluate(inputGroup, event, ...)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         if inputGroup.isCasting ~= true then
-            return true, this.name, ...
+            local castTimestamp = GetTime()
+            return true, this.name, castTimestamp, ...
         end
         inputGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then

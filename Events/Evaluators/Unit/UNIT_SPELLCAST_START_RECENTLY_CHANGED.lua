@@ -74,9 +74,10 @@ function this:GetKey(event, ...)
 
     if event == "UNIT_SPELLCAST_START"
         or event == "UNIT_SPELLCAST_CHANNEL_START"
-        or event == "UNIT_SPELLCAST_INSTANT"
         then
         unit, _, spellID = ...
+    elseif event == "UNIT_SPELLCAST_INSTANT" then
+        _, unit, _, spellID = ...
     elseif event == "UNIT_SPELLCAST_TIMER_END" then
         _, unit, spellID = ...
     else -- UNIT_SPELLCAST_STOP / UNIT_SPELLCAST_CHANNEL_STOP
