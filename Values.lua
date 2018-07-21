@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Values = {}
-this = TheEyeAddon.Values
+local this = TheEyeAddon.Values
 
 
 this.castStartHideDelay = 0.5
