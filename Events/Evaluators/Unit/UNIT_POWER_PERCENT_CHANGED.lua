@@ -20,10 +20,16 @@ local UnitPowerMax = UnitPowerMax
 ]]
 
 
+this.reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
 this.gameEvents =
 {
+    "PLAYER_TARGET_CHANGED",
     "UNIT_POWER_UPDATE"
 }
+
 
 local function CalculateCurrentValue(inputValues)
     local unit = inputValues[1]

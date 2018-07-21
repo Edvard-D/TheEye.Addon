@@ -14,8 +14,13 @@ local UnitHealthMax = UnitHealthMax
 ]]
 
 
+this.reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
 this.gameEvents =
 {
+    "PLAYER_TARGET_CHANGED",
     "UNIT_HEALTH"
 }
 

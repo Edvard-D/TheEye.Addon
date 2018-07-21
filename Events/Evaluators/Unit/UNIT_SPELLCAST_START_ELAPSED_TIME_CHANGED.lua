@@ -22,9 +22,13 @@ local UnitCastingInfo = UnitCastingInfo
 }
 ]]
 
-
+this.reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
 this.gameEvents =
 {
+    "PLAYER_TARGET_CHANGED",
     "UNIT_SPELLCAST_CHANNEL_START",
     "UNIT_SPELLCAST_CHANNEL_STOP",
     "UNIT_SPELLCAST_START",
@@ -96,7 +100,7 @@ function this:Evaluate(inputGroup, event, ...)
     if event == "UNIT_SPELLCAST_INSTANT" then
         local spellID, castTimestamp = ...
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues, spellID, castTimestamp)
-    else -- UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
+    else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end
 
