@@ -77,7 +77,9 @@ function this:GetKey(event, ...)
     local unit
 
     if event == "UNIT_SPELLCAST_START_ELAPSED_TIMER_END" then
-        _, unit, spellID = ...
+        local inputValues = select(2, ...)
+        unit = inputValues[1]
+        spellID = inputValues[2]
     elseif event == "UNIT_SPELLCAST_INSTANT" then
         _, unit, _, spellID = ...
     else
