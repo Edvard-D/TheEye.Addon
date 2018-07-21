@@ -6,7 +6,7 @@ this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
-local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
@@ -44,7 +44,7 @@ local function TimerStart(inputGroup, remainingTime)
     if remainingTime == initialTimerLength then
         StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupDurationTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 

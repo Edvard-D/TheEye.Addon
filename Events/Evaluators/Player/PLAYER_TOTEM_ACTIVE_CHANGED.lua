@@ -3,7 +3,7 @@ TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED
 this.name = "PLAYER_TOTEM_ACTIVE_CHANGED"
 
-local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
 local GetTotemInfo = GetTotemInfo
 local select = select
 
@@ -63,7 +63,7 @@ function this:Evaluate(inputGroup, event, ...)
     if event == "PLAYER_TOTEM_UPDATE" then
         totemSlot = ...
         isActive, totemName, _, remainingTime = GetTotemInfo(totemSlot)
-        InputGroupCooldownTimerStart(inputGroup, remainingTime, "PLAYER_TOTEM_TIMER_END", totemName)
+        InputGroupDurationTimerStart(inputGroup, remainingTime, "PLAYER_TOTEM_TIMER_END", totemName)
     else -- PLAYER_TOTEM_TIMER_END
         isActive = false
     end

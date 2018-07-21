@@ -16,7 +16,7 @@ function this.StartEventTimer(duration, eventName, ...)
     end)
 end
 
-local function NewCooldownTimerGetLength(inputGroup, remainingTime)
+local function NewDurationTimerGetLength(inputGroup, remainingTime)
     local nextUpdatePoint = 0
     local listeners = inputGroup.listeners
     for i=1, #listeners do
@@ -32,9 +32,9 @@ local function NewCooldownTimerGetLength(inputGroup, remainingTime)
     return remainingTime - nextUpdatePoint
 end
 
-function this.InputGroupCooldownTimerStart(inputGroup, remainingTime, eventName, ...)
+function this.InputGroupDurationTimerStart(inputGroup, remainingTime, eventName, ...)
     if remainingTime ~= 0 then
-        this.StartEventTimer(NewCooldownTimerGetLength(inputGroup, remainingTime), eventName, ...)
+        this.StartEventTimer(NewDurationTimerGetLength(inputGroup, remainingTime), eventName, ...)
     end
 end
 
