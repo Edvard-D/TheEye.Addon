@@ -22,7 +22,7 @@ local function NewCooldownTimerGetLength(inputGroup, remainingTime)
         listener = listeners[i]
         if listener.comparisonValues ~= nil then
             local value = listener.comparisonValues.value
-            if value > nextUpdatePoint and value <= remainingTime then
+            if value > nextUpdatePoint and value < remainingTime then
                 nextUpdatePoint = value
             end
         end
