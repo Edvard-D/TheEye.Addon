@@ -192,6 +192,7 @@ UI\Objects\HUD\HUDGroup.lua
 # --- HUD: Active ---
 UI\Objects\HUD\Active\ActiveModule.lua
 UI\Objects\HUD\Active\Dispersion.lua
+UI\Objects\HUD\Active\HeroLust.lua
 UI\Objects\HUD\Active\Mindbender.lua
 UI\Objects\HUD\Active\Psyfiend.lua
 UI\Objects\HUD\Active\ShadowFiend.lua
