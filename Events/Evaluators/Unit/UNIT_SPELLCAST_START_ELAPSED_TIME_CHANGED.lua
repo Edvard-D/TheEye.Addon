@@ -49,19 +49,20 @@ local function TimerStart(inputGroup, elapsedTime)
     InputGroupElapsedTimerStart(inputGroup, elapsedTime, "UNIT_SPELLCAST_START_ELAPSED_TIMER_END", inputGroup.inputValues)
 end
 
-local function CalculateCurrentValue(inputValues, startTime)
-    local _
+local function CalculateCurrentValue(inputValues, spellID, startTime)
     local elapsedTime = math.huge
     local expectedSpellID = inputValues[2]
-    local spellID
     local unit = inputValues[1]
 
-    if startTime == nil then
-        startTime, _, _, _, _, spellID = select(4, UnitCastingInfo(unit))
+    local retrievedStartTime, _, _, _, _, retrievedSpellID = select(4, UnitCastingInfo(unit))
+    if retrievedStartTime ~= nil then
+        retrievedStartTime = retrievedStartTime / 1000
     end
+    startTime = startTime or retrievedStartTime
+    spellID = spellID or retrievedSpellID
 
     if spellID == expectedSpellID then
-        elapsedTime = GetTime() - (startTime / 1000)
+        elapsedTime = GetTime() - startTime
     end
 
     return elapsedTime
@@ -81,7 +82,7 @@ function this:GetKey(event, ...)
         unit = inputValues[1]
         spellID = inputValues[2]
     elseif event == "UNIT_SPELLCAST_INSTANT" then
-        _, unit, _, spellID = ...
+        spellID, _, unit = ...
     else
         unit, _, spellID = ...
     end
@@ -93,8 +94,8 @@ function this:Evaluate(inputGroup, event, ...)
     local elapsedTime
 
     if event == "UNIT_SPELLCAST_INSTANT" then
-        local castTimestamp = ...
-        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, castTimestamp)
+        local spellID, castTimestamp = ...
+        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, spellID, castTimestamp)
     else -- UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end
