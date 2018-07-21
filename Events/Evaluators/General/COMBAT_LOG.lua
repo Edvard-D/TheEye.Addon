@@ -64,11 +64,17 @@ function this:Evaluate(inputGroup, event)
     for i=1,#valueNames do
         self.formattedEventInfo[valueNames[i]] = self.rawEventInfo[i]
     end
-
+ 
     self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]
     self.formattedEventInfo["suffix"] = eventDataFormat["suffix"]
     self.formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
     self.formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
+
+    -- @DEBUG
+    --[[print (self.formattedEventInfo["event"]
+        .. ", sourceUnit: " .. self.formattedEventInfo["sourceUnit"]
+        .. ", destUnit: " .. self.formattedEventInfo["destUnit"]
+        .. ", spellID: " .. tostring(self.formattedEventInfo["spellID"]))]]
 
     return true, self.formattedEventInfo["event"], self.formattedEventInfo
 end
