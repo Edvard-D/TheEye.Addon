@@ -52,7 +52,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "PLAYER_TOTEM_ACTIVE_CHAGNED",
+                    eventEvaluatorKey = "PLAYER_TOTEM_ACTIVE_CHANGED",
                     inputValues = { --[[totemName]] "Mindbender", },
                     value = 2,
                 },
