@@ -46,7 +46,7 @@ function this:SetupListeningTo(inputGroup)
 end
 
 local function TimerStart(inputGroup, elapsedTime)
-    InputGroupElapsedTimerStart(inputGroup, remainingTime, "UNIT_SPELLCAST_START_ELAPSED_TIMER_END", inputGroup.inputValues)
+    InputGroupElapsedTimerStart(inputGroup, elapsedTime, "UNIT_SPELLCAST_START_ELAPSED_TIMER_END", inputGroup.inputValues)
 end
 
 local function CalculateCurrentValue(inputValues, startTime)
