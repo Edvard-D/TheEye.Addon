@@ -3,6 +3,7 @@ TheEyeAddon.Timers = {}
 local this = TheEyeAddon.Timers
 
 local After = C_Timer.After
+local math = math
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local unpack = unpack
 
@@ -34,5 +35,12 @@ end
 function this.InputGroupCooldownTimerStart(inputGroup, remainingTime, eventName, ...)
     if remainingTime ~= 0 then
         this.StartEventTimer(NewCooldownTimerGetLength(inputGroup, remainingTime), eventName, ...)
+    end
+end
+
+function this.InputGroupElapsedTimerStart(inputGroup, elapsedTime, eventName, ...)
+    local timerLength = NewElapsedTimerGetLength(inputGroup, elapsedTime) -- @TODO
+    if timerLength ~= nil then
+        this.StartEventTimer(timerLength, eventName, ...)
     end
 end
