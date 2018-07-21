@@ -41,7 +41,7 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 6,
+            defaultValue = 7,
         },
     },
     VisibleState = -- @TODO possibly change so it's visible when there's one stack currently and the cooldown for two is about to end
