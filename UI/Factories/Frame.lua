@@ -2,6 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Frame = {}
 
 local CreateFrame = CreateFrame
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
 function TheEyeAddon.UI.Factories.Frame:Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
@@ -36,6 +37,6 @@ function TheEyeAddon.UI.Factories.Frame:SetSizeWithEvent(width, height)
 
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
-		TheEyeAddon.Events.Coordinator:SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
+		SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
 	end
 end
