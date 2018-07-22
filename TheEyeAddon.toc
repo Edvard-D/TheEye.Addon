@@ -42,6 +42,7 @@ Namespaces.lua
 Auras.lua
 Comparisons.lua
 Events\Coordinator.lua
+GarbageCollector.lua
 TableHelpers.lua
 Tags.lua
 TypeHelpers.lua
