@@ -33,6 +33,7 @@ local function RelayUpdate(self, elapsedTime)
     end
 end
 frame:SetScript("OnUpdate", RelayUpdate)
+frame.timeSinceUpdate = 0
 
 
 -- Register
