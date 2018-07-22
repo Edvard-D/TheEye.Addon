@@ -148,7 +148,6 @@ end
 function this:OnEvent(_, elapsedTime)
     for i = #displayUpdateRequests, 1, -1 do
         displayUpdateRequests[i]:DisplayUpdate()
-        print(tostring(i))
         table.remove(displayUpdateRequests, i)
     end
 end
