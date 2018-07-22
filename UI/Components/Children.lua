@@ -2,6 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Children= {}
 local this = TheEyeAddon.UI.Components.Children
 
+local displayUpdateRequests = {}
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
@@ -10,6 +11,13 @@ local select = select
 local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
 local table = table
 local unpack = unpack
+
+
+this.customEvents =
+{
+    "UPDATE"
+}
+TheEyeAddon.Events.Coordinator.Register(this)
 
 
 --[[ #this#TEMPLATE#
@@ -33,6 +41,7 @@ function this.Setup(
 
     instance.UIObject = uiObject
     instance.DisplayUpdate = this.DisplayUpdate
+    instance.RequestDisplayUpdate = this.RequestDisplayUpdate
     instance.RegisteredChildrenUpdate = this.RegisteredChildrenUpdate
 
     -- ValueHandler
@@ -87,7 +96,7 @@ function this.Setup(
         instance.ListenerGroups.DisplayUpdate,
         uiObject,
         instance,
-        "DisplayUpdate"
+        "RequestDisplayUpdate"
     )
 
     NotifyBasedFunctionCallerSetup(
@@ -130,6 +139,20 @@ end
 
 
 -- DisplayUpdate
+function this:RequestDisplayUpdate()
+    if table.hasvalue(displayUpdateRequests, self) == false then
+        table.insert(displayUpdateRequests, self)
+    end
+end
+
+function this:OnEvent(_, elapsedTime)
+    for i = #displayUpdateRequests, 1, -1 do
+        displayUpdateRequests[i]:DisplayUpdate()
+        print(tostring(i))
+        table.remove(displayUpdateRequests, i)
+    end
+end
+
 local function BoundsCalculate(childUIObjects)
     local leftMin = screenWidth
     local bottomMin = screenHeight
