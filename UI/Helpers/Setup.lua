@@ -18,19 +18,25 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
     uiObject.tags = searchableTags
 end
 
+local function UIObjectSetup(uiObject)
+    local pairs = pairs
+    uiObject.AddElement = TheEyeAddon.UI.Objects.AddElement
+    uiObject.elementCount = 0
+
+    for componentKey,_ in pairs(uiObject) do
+        local component = components[componentKey]
+        if component ~= nil then
+            component.Setup(uiObject[componentKey], uiObject)
+        end
+    end
+end
+
 function TheEyeAddon.UI.Objects:Initialize()
     local components = TheEyeAddon.UI.Components
     local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
 
-    for instanceKey,v in pairs(instances) do
-        local uiObject = instances[instanceKey]
-
-        for componentKey,v in pairs(uiObject) do
-            local component = components[componentKey]
-            if component ~= nil then
-                component.Setup(uiObject[componentKey], uiObject)
-            end
-        end
+    for instanceKey,_ in pairs(instances) do
+        UIObjectSetup(instances[instanceKey])
     end
 end
