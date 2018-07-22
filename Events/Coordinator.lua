@@ -16,8 +16,9 @@ local function RelayEvent(self, eventName, ...)
         -- Nil is checked since it's possible for a listener earlier in the array to
         -- cause a listener later in the array to be deregistered before its OnEvent
         -- function is called.
-        if listeners[i] ~= nil then
-            listeners[i]:OnEvent(eventName, ...)
+        local listener = listeners[i]
+        if listener ~= nil and listener.isListening == true then
+            listener:OnEvent(eventName, ...)
         end
     end
 end
@@ -46,7 +47,10 @@ local function ListenerRegister(listener, eventName, isGameEvent)
             frame:RegisterEvent(eventName)
         end
     else
-        table.insert(Listeners[eventName], listener)
+        if listener.isListening == nil then
+            table.insert(Listeners[eventName], listener)
+        end
+        listener.isListening = true
     end
 
     local listeners = Listeners[eventName]
@@ -76,12 +80,11 @@ end
 -- Deregister
 local function ListenerDeregister(listener, eventName, isGameEvent)
     local listeners = Listeners[eventName]
-    table.removevalue(listeners, listener)
     
+    listener.isListening = false
+
     listeners.listenerCount = listeners.listenerCount - 1
     if listeners.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        Listeners[eventName] = nil
-        listeners = nil
         --print ("DeregisterEvent    " .. eventName) -- DEBUG
 
         if isGameEvent == true then
