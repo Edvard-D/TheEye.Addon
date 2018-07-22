@@ -5,6 +5,8 @@ this.name = "Children"
 
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local screenWidth = TheEyeAddon.Values.screenSize.width
+local screenHeight = TheEyeAddon.Values.screenSize.height
 local select = select
 local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
 local table = table
@@ -134,8 +136,8 @@ end
 
 -- Arrange
 local function GetBoundsFromRects(rects)
-	local leftMin = TheEyeAddon.Values.screenSize.width
-	local bottomMin = TheEyeAddon.Values.screenSize.height
+    local leftMin = screenWidth
+    local bottomMin = screenHeight
 	local rightMax = 0
 	local topMax = 0
 
