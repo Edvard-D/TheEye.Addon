@@ -22,7 +22,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY", },
+                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_ACTIVE", },
                     value = 2,
                 },
                 {
