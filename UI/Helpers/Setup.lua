@@ -19,6 +19,7 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
 end
 
 local function UIObjectSetup(uiObject)
+    local components = TheEyeAddon.UI.Components
     local pairs = pairs
     uiObject.AddElement = TheEyeAddon.UI.Objects.AddElement
     uiObject.elementCount = 0
@@ -32,7 +33,6 @@ local function UIObjectSetup(uiObject)
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
-    local components = TheEyeAddon.UI.Components
     local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
 
