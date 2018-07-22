@@ -1,7 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Pools = {}
 
-local ipairs = ipairs
 local table = table
 
 
@@ -14,7 +13,8 @@ end
 
 function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, template, dimensionTemplate)
 	local instance = nil
-	for i,frame in ipairs(self.Instances) do
+	for i=1, #self.Instances do
+		local frame = self.Instances[i]
 		if frame.isClaimed == false then
 			instance = frame
 			break

@@ -2,7 +2,6 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Auras = { }
 local this = TheEyeAddon.Auras
 
-local ipairs = ipairs
 local select = select
 local table = table
 local UnitAura = UnitAura
@@ -17,8 +16,8 @@ local function AuraFiltersGet(subTableKey, filtersKey, sourceUnit)
 
     local retrievedFilters = TheEyeAddon.Auras.Filters[subTableKey][filtersKey]
     if retrievedFilters ~= nil then
-        for i,v in ipairs(retrievedFilters) do
-            table.insert(filters, v)
+        for i=1, #retrievedFilters do
+            table.insert(filters, retrievedFilters[i])
         end
     end
 
