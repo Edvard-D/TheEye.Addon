@@ -88,9 +88,9 @@ function this:Evaluate(inputGroup, event, ...)
     end
 
     elapsedTime = CalculateCurrentValue(inputGroup)
-    TimerStart(inputGroup, elapsedTime)
 
     if inputGroup.currentValue ~= elapsedTime then
+        TimerStart(inputGroup, elapsedTime)
         inputGroup.currentValue = elapsedTime
         return true, this.name, elapsedTime
     end

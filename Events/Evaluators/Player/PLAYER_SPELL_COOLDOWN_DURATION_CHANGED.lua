@@ -85,9 +85,9 @@ function this:Evaluate(inputGroup, event)
         TimerStart(inputGroup, initialTimerLength)
     else
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
-        TimerStart(inputGroup, remainingTime)
     
         if inputGroup.currentValue ~= remainingTime then
+            TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
             return true, this.name, remainingTime
         end
