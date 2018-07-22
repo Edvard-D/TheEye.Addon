@@ -3,7 +3,7 @@ TheEyeAddon.UI.Factories.Frame = {}
 local this = TheEyeAddon.UI.Factories.Frame
 
 local CreateFrame = CreateFrame
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Events.Coordinators.OnEvent.SendCustomEvent
 
 
 function this:Create(uiObject, frameType, inheritsFrom, dimensionTemplate)

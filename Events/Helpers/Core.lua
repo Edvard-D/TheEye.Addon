@@ -3,8 +3,8 @@ TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
 local Comparisons = TheEyeAddon.Comparisons
-local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
-local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
+local CoordinatorRegister = TheEyeAddon.Events.Coordinators.OnEvent.Register
+local CoordinatorDeregister = TheEyeAddon.Events.Coordinators.OnEvent.Deregister
 local Evaluators = TheEyeAddon.Events.Evaluators
 local pairs = pairs
 local select = select
