@@ -2,7 +2,7 @@ local pairs = pairs
 local table = table
 
 
-function table.hasvalue(tab, value)
+function table.haskeyvalue(tab, value)
     if tab ~= nil then
         for k,v in pairs(tab) do
             if v == value then

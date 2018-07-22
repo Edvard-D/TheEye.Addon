@@ -140,7 +140,7 @@ end
 
 -- DisplayUpdate
 function this:RequestDisplayUpdate()
-    if table.hasvalue(displayUpdateRequests, self) == false then
+    if table.haskeyvalue(displayUpdateRequests, self) == false then
         table.insert(displayUpdateRequests, self)
     end
 end

@@ -30,7 +30,7 @@ this.customEvents =
 
 local function CalculateCurrentValue(inputValues)
     if TheEyeAddon.Settings ~= nil
-            and table.hasvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
+            and table.haskeyvalue(TheEyeAddon.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
     else
         return false
