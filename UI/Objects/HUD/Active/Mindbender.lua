@@ -1,16 +1,47 @@
-local spellID = 15407
+local spellID = 200174
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL-15407", },
+    tags = { "HUD", "ICON", "ACTIVE", "SPELL-200174", },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
+        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
         iconObjectType = "SPELL",
         iconObjectID = spellID,
     },
     EnabledState =
+    {
+        ValueHandler =
+        {
+            validKeys = { [6] = true, },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_ACTIVE", },
+                    value = 2,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 21719, },
+                    value = 4,
+                },
+            },
+        },
+    },
+    PriorityRank =
+    {
+        isDynamic = false,
+        ValueHandler =
+        {
+            defaultValue = 3,
+        },
+    },
+    VisibleState =
     {
         ValueHandler =
         {
@@ -21,40 +52,9 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY", },
+                    eventEvaluatorKey = "PLAYER_TOTEM_ACTIVE_CHANGED",
+                    inputValues = { --[[totemName]] "Mindbender", },
                     value = 2,
-                },
-            },
-        },
-    },
-    PriorityRank =
-    {
-        isDynamic = false,
-        ValueHandler =
-        {
-            defaultValue = 1,
-        },
-    },
-    VisibleState =
-    {
-        ValueHandler =
-        {
-            validKeys = { [0] = true, [4] = true, [6] = true, },
-        },
-        ListenerGroup =
-        {
-            Listeners =
-            {
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 2,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 4,
                 },
             },
         },

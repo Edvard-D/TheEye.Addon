@@ -27,7 +27,7 @@ end
 
 
 function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
-    for i=1,40 do -- 40 is the maximum number of auras that can be on a unit
+    for i = 1,40 do -- 40 is the maximum number of auras that can be on a unit
         local filterTable = AuraFiltersGet("SpellID", spellIDExpected, sourceUnitExpected)
         local auraValues = { UnitAura(destUnit, i, table.concat(filterTable or {})) }
         local spellID = auraValues[10]

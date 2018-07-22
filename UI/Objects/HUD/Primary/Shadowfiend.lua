@@ -1,12 +1,12 @@
-local spellID = 211522
+local spellID = 34433
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "PRIMARY", "SPELL-211522", },
+    tags = { "HUD", "ICON", "PRIMARY", "SPELL-34433", },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon_Large,
+        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
         iconObjectType = "SPELL",
         iconObjectID = spellID,
     },
@@ -15,7 +15,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [14] = true, },
+            validKeys = { [2] = true, },
         },
         ListenerGroup =
         {
@@ -23,18 +23,13 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY", },
+                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY", },
                     value = 2,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] 763, },
+                    inputValues = { --[[talentID]] 21719, },
                     value = 4,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_PVP_FLAGGED_CHANGED",
-                    inputValues = { --[[unit]] "player" },
-                    value = 8,
                 },
             },
         },
@@ -44,22 +39,27 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 8,
+            defaultValue = 13,
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true },
+            validKeys = { [2] = true, [4] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_RECENTLY_CHANGED",
+                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = TheEyeAddon.Values.castStartHideDelay,
+                        type = "LessThan"
+                    },
                     value = 2,
                 },
                 {

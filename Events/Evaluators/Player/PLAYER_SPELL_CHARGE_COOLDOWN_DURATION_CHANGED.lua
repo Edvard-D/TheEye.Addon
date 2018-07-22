@@ -4,7 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION
 this.name = "PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED"
 
 local initialTimerLength = 0.01
-local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local select = select
 local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Events.Helpers.Player.SpellChargeCooldownRemainingTimeGet
@@ -28,7 +28,7 @@ local combatLogEvents =
 }
 
 function this:SetupListeningTo(inputGroup)
-    for i=1, #combatLogEvents do
+    for i = 1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
         {
             listeningToKey = "COMBAT_LOG",
@@ -42,7 +42,7 @@ local function TimerStart(inputGroup, remainingTime)
     if remainingTime == initialTimerLength then
         StartEventTimer(remainingTime, "SPELL_CHARGE_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_CHARGE_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupDurationTimerStart(inputGroup, remainingTime, "SPELL_CHARGE_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 

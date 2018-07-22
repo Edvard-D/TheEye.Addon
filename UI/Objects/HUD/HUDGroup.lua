@@ -1,12 +1,10 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "GROUP", "HUD", "MODULE", "PRIMARY" },
+    tags = { "GROUP", "HUD", },
     Children =
     {
-        childTags = { --[[tags]] "HUD", "ICON", "PRIMARY" },
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
-        sortActionName = "SortDescending",
-        sortValueComponentName = "PriorityRank",
+        childTags = { --[[tags]] "HUD", "MODULE", },
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     DisplayData =
     {
@@ -17,8 +15,8 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 point = "TOP",
                 relativePoint = "CENTER",
-                offsetY = -50,
-            },
+                offsetY = -75,
+            }
         },
     },
     EnabledState =
@@ -32,13 +30,13 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_MODULE_ENABLED_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
+                    eventEvaluatorKey = "UIOBJECT_MODULE_SETTING_CHANGED",
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_UIPARENT" },
+                    inputValues = { --[[uiObjectKey]] "UIPARENT" },
                     value = 4,
                 },
             },
@@ -48,7 +46,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true },
+            validKeys = { [6] = true },
         },
         ListenerGroup =
         {
@@ -58,6 +56,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
+                    inputValues = { --[[unit]] "target" },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "GreaterThan"
+                    },
+                    value = 4,
                 },
             },
         },

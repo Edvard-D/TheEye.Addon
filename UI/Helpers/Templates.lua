@@ -16,7 +16,7 @@ end
 
 function this.ComponentsAttachByTag(tag, uiObject)
     local componentsWithTag = this.TaggedComponents[tag]
-    for i=1,#componentsWithTag do
+    for i = 1, #componentsWithTag do
         local component = componentsWithTag[i]
         uiObject[component.name] = uiObject[component.name] or {}
         component.Setup(uiObject[component.name], uiObject)

@@ -1,10 +1,10 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "GROUP", "UIPARENT" },
+    tags = { "UIPARENT" },
     Children =
     {
-        childTags = { --[[tags]] "MODULE", },
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.Delegate,
+        childTags = { --[[tags]] "GROUP", },
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     DisplayData =
     {
@@ -15,7 +15,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 point = "CENTER",
                 relativePoint = "CENTER",
-                offsetY = -100,
+                offsetY = -200,
             }
         }
     },

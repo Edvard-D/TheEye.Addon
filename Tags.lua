@@ -25,7 +25,7 @@ function this.UIObjectHasTag(uiObject, tag)
 end
 
 local function KeyHasTags(key, tags)
-    for i=1, #tags do
+    for i = 1, #tags do
         if key:find(tags[i]) == nil then
             return false
         end

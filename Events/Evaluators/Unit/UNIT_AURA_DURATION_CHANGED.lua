@@ -4,7 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
 this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
-local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local table = table
@@ -53,7 +53,7 @@ local combatLogEvents =
 }
 
 function this:SetupListeningTo(inputGroup)
-    for i=1, #combatLogEvents do
+    for i = 1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
         {
             listeningToKey = "COMBAT_LOG",
@@ -64,7 +64,7 @@ function this:SetupListeningTo(inputGroup)
 end
 
 local function TimerStart(inputGroup, remainingTime)
-    InputGroupCooldownTimerStart(inputGroup, remainingTime, "AURA_DURATION_TIMER_END", inputGroup.inputValues)
+    InputGroupDurationTimerStart(inputGroup, remainingTime, "AURA_DURATION_TIMER_END", inputGroup.inputValues)
 end
 
 local function CalculateCurrentValue(inputValues)

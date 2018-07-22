@@ -71,18 +71,21 @@ Events\Evaluators\General\GAMEDATA_LOADED.lua
 
 
 # --- Player ---
+Events\Evaluators\Player\PLAYER_ITEM_EQUIPPED_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_CHARGE_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
 Events\Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
 Events\Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
+Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_MODULE_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_RESIZED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 
@@ -99,24 +102,19 @@ Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
-Events\Evaluators\Unit\UNIT_SPELLCAST_START_RECENTLY_CHANGED.lua
-
-
-
-# ---------------------------
-# |	 UI\DimensionTemplates	|
-# ---------------------------
-UI\DimensionTemplates\Icon_Large.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
 
 
 
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
-UI\Objects\Helpers\GroupArrangers.lua
-UI\Objects\Helpers\Pools.lua
-UI\Objects\Helpers\Setup.lua
-UI\Objects\Helpers\Templates.lua
+UI\Helpers\ChildArrangers.lua
+UI\Helpers\DimensionTemplates.lua
+UI\Helpers\Pools.lua
+UI\Helpers\Setup.lua
+UI\Helpers\Templates.lua
 
 
 
@@ -189,25 +187,38 @@ UI\Factories\Icon.lua
 # ---------------------------
 UI\Objects\UIParentGroup.lua
 
+UI\Objects\HUD\HUDGroup.lua
+
+
+# --- HUD: Active ---
+UI\Objects\HUD\Active\ActiveModule.lua
+UI\Objects\HUD\Active\Dispersion.lua
+UI\Objects\HUD\Active\HeroLust.lua
+UI\Objects\HUD\Active\Mindbender.lua
+UI\Objects\HUD\Active\Psyfiend.lua
+UI\Objects\HUD\Active\Sephuz.lua
+UI\Objects\HUD\Active\ShadowFiend.lua
+UI\Objects\HUD\Active\SurrenderToMadness.lua
+UI\Objects\HUD\Active\Voidform.lua
+
 
 # --- HUD: Primary ---
-UI\Objects\Primary\PrimaryGroup.lua
-
-UI\Objects\Primary\DarkAscension.lua
-UI\Objects\Primary\DarkVoid.lua
-UI\Objects\Primary\Mindbender.lua
-UI\Objects\Primary\MindBlast.lua
-UI\Objects\Primary\MindFlay.lua
-UI\Objects\Primary\Psyfiend.lua
-UI\Objects\Primary\ShadowCrash.lua
-UI\Objects\Primary\ShadowFiend.lua
-UI\Objects\Primary\ShadowWordDeath.lua
-UI\Objects\Primary\ShadowWordPain.lua
-UI\Objects\Primary\ShadowWordVoid.lua
-UI\Objects\Primary\VampiricTouch.lua
-UI\Objects\Primary\VoidBolt.lua
-UI\Objects\Primary\VoidEruption.lua
-UI\Objects\Primary\VoidTorrent.lua
+UI\Objects\HUD\Primary\DarkAscension.lua
+UI\Objects\HUD\Primary\DarkVoid.lua
+UI\Objects\HUD\Primary\Mindbender.lua
+UI\Objects\HUD\Primary\MindBlast.lua
+UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\PrimaryModule.lua
+UI\Objects\HUD\Primary\Psyfiend.lua
+UI\Objects\HUD\Primary\ShadowCrash.lua
+UI\Objects\HUD\Primary\Shadowfiend.lua
+UI\Objects\HUD\Primary\ShadowWordDeath.lua
+UI\Objects\HUD\Primary\ShadowWordPain.lua
+UI\Objects\HUD\Primary\ShadowWordVoid.lua
+UI\Objects\HUD\Primary\VampiricTouch.lua
+UI\Objects\HUD\Primary\VoidBolt.lua
+UI\Objects\HUD\Primary\VoidEruption.lua
+UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
 

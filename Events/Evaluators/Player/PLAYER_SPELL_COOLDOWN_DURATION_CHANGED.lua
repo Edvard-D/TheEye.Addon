@@ -1,3 +1,4 @@
+-- @TODO add coverage for cooldowns being reset
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
@@ -5,7 +6,7 @@ this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
-local InputGroupCooldownTimerStart = TheEyeAddon.Timers.InputGroupCooldownTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
 local select = select
@@ -29,7 +30,7 @@ local combatLogEvents =
 }
 
 function this:SetupListeningTo(inputGroup)
-    for i=1, #combatLogEvents do
+    for i = 1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
         {
             listeningToKey = "COMBAT_LOG",
@@ -43,7 +44,7 @@ local function TimerStart(inputGroup, remainingTime)
     if remainingTime == initialTimerLength then
         StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupCooldownTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupDurationTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 

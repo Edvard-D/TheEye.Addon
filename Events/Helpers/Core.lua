@@ -112,7 +112,7 @@ end
 
 function this.InputGroupDeregisterListeningTo(inputGroup)
     local listeningTo = inputGroup.ListeningTo
-    for i=1,#listeningTo do
+    for i = 1, #listeningTo do
         local listener = listeningTo[i]
         this.ListenerDeregister(listener.listeningToKey, listener)
     end
@@ -159,7 +159,7 @@ end
 
 local function ListenersNotify(inputGroup, ...)
     local listeners = inputGroup.listeners
-    for i=1,#listeners do
+    for i = 1, #listeners do
         local listener = listeners[i]
         
         if listener.comparisonValues ~= nil then
@@ -190,7 +190,7 @@ function this:OnEvent(event, ...)
         end
     elseif self.GetKeys ~= nil then
         local inputGroupKeys = self:GetKeys(event, ...)
-        for i=1,#inputGroupKeys do
+        for i = 1, #inputGroupKeys do
             local inputGroup = self.InputGroups[inputGroupKeys[i]]
             if inputGroup ~= nil then
                 Evaluate(self, inputGroup, event, ...)

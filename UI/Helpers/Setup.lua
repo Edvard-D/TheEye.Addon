@@ -12,7 +12,7 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
 
     local searchableTags = {}
     local tags = uiObject.tags
-    for i=1,#tags do
+    for i = 1, #tags do
         searchableTags[tags[i]] = true
     end
     uiObject.tags = searchableTags

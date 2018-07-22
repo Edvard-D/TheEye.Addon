@@ -23,8 +23,13 @@ local UnitChannelInfo = UnitChannelInfo
 ]]
 
 
+this.reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
 this.gameEvents =
 {
+    "PLAYER_TARGET_CHANGED",
     "UNIT_SPELLCAST_CHANNEL_START",
     "UNIT_SPELLCAST_CHANNEL_STOP",
     "UNIT_SPELLCAST_START",
@@ -67,7 +72,7 @@ function this:Evaluate(inputGroup, event)
     if event == "UNIT_SPELLCAST_CHANNEL_STOP" or event == "UNIT_SPELLCAST_STOP" then
         StartEventTimer(0.01, "SPELLCAST_END_DELAY", inputGroup.inputValues)
     else
-        local isActive = event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" -- else UNIT_SPELLCAST_STOP, UNIT_SPELLCAST_CHANNEL_STOP
+        local isActive = CalculateCurrentValue(inputGroup.inputValues)
         if inputGroup.currentValue ~= isActive then
             inputGroup.currentValue = isActive
             return true, this.name, isActive

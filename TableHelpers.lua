@@ -16,7 +16,7 @@ end
 
 function table.removevalue(tab, value)
     if tab ~= nil then
-        for i=1,#tab do
+        for i = 1, #tab do
             if tab[i] == value then
                 table.remove(tab, i)
                 return true

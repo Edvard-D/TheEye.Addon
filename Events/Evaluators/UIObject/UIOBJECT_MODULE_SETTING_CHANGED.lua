@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_ENABLED_CHANGED
-this.name = "UIOBJECT_MODULE_ENABLED_CHANGED"
+TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED
+this.name = "UIOBJECT_MODULE_SETTING_CHANGED"
 
 local select = select
 local table = table

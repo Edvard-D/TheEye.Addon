@@ -61,14 +61,20 @@ function this:Evaluate(inputGroup, event)
 
     local eventDataFormat = this.EventDataFormats[self.rawEventInfo[2]]
     local valueNames = eventDataFormat.ValueNames
-    for i=1,#valueNames do
+    for i = 1, #valueNames do
         self.formattedEventInfo[valueNames[i]] = self.rawEventInfo[i]
     end
-
+ 
     self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]
     self.formattedEventInfo["suffix"] = eventDataFormat["suffix"]
     self.formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
     self.formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
+
+    -- @DEBUG
+    --[[print (self.formattedEventInfo["event"]
+        .. ", sourceUnit: " .. self.formattedEventInfo["sourceUnit"]
+        .. ", destUnit: " .. self.formattedEventInfo["destUnit"]
+        .. ", spellID: " .. tostring(self.formattedEventInfo["spellID"]))]]
 
     return true, self.formattedEventInfo["event"], self.formattedEventInfo
 end
@@ -103,6 +109,7 @@ this.EventDataFormats =
     ENVIRONMENTAL_RESURRECT = { prefix = "ENVIRONMENTAL", suffix = "RESURRECT", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "environmentalType" } },
     ENVIRONMENTAL_STOLEN = { prefix = "ENVIRONMENTAL", suffix = "STOLEN", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "environmentalType", "extraSpellID", "extraSpellName", "extraSchool", "auraType" } },
     ENVIRONMENTAL_SUMMON = { prefix = "ENVIRONMENTAL", suffix = "SUMMON", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "environmentalType" } },
+    PARTY_KILL = { prefix = "PARTY", suffix = "KILL", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags" } },
     RANGE_AURA_APPLIED = { prefix = "RANGE", suffix = "AURA_APPLIED", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "spellID", "spellName", "spellSchool", "auraType", "amount" } },
     RANGE_AURA_APPLIED_DOSE = { prefix = "RANGE", suffix = "AURA_APPLIED_DOSE", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "spellID", "spellName", "spellSchool", "auraType", "amount" } },
     RANGE_AURA_BROKEN = { prefix = "RANGE", suffix = "AURA_BROKEN", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "spellID", "spellName", "spellSchool", "auraType" } },
@@ -238,4 +245,7 @@ this.EventDataFormats =
     SWING_RESURRECT = { prefix = "SWING", suffix = "RESURRECT", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags" } },
     SWING_STOLEN = { prefix = "SWING", suffix = "STOLEN", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "extraSpellID", "extraSpellName", "extraSchool", "auraType" } },
     SWING_SUMMON = { prefix = "SWING", suffix = "SUMMON", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags" } },
+    UNIT_DIED = { prefix = "UNIT", suffix = "DIED", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "recapID", "unconsciousOnDeath" } },
+    UNIT_DESTROYED = { prefix = "UNIT", suffix = "DESTROYED", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "recapID", "unconsciousOnDeath" } },
+    UNIT_DISSIPATES = { prefix = "UNIT", suffix = "DISSIPATES", ValueNames = { "timestamp", "event", "hideCaster", "sourceGUID", "sourceName", "sourceFlags", "sourceRaidFlags", "destGUID", "destName", "destFlags", "destRaidFlags", "recapID", "unconsciousOnDeath" } },
 }
