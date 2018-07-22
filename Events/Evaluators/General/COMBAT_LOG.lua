@@ -4,6 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.COMBAT_LOG
 this.name = "COMBAT_LOG"
 
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
+local formattedEventInfo = {}
 local pairs = pairs
 local table = table
 local UnitGUID = UnitGUID
@@ -26,16 +27,13 @@ this.gameEvents =
     "COMBAT_LOG_EVENT_UNFILTERED"
 }
 
-function this:GetKeys(event)
-    self.rawEventInfo = { CombatLogGetCurrentEventInfo() }
-    
-    local event = self.rawEventInfo[2]
-    local sourceGUID = self.rawEventInfo[4]
-    local destGUID = self.rawEventInfo[8]
-    local unitGUIDs = {}
-    local validKeys = {}
 
-    for k,inputGroup in pairs(self.InputGroups) do -- @TODO create table that stores the GUIDs for each unitID
+function this:GetKeys(event)
+    local unitGUIDs = {} -- @TODO create table that stores the GUIDs for each unitID
+    local validKeys = {}
+    local _, subEvent, _, sourceGUID, _, _, _, destGUID = CombatLogGetCurrentEventInfo()
+
+    for k,inputGroup in pairs(self.InputGroups) do
         local sourceUnit = inputGroup.inputValues[2]
         local destUnit = inputGroup.inputValues[3]
 
@@ -46,10 +44,11 @@ function this:GetKeys(event)
             unitGUIDs[destUnit] = UnitGUID(destUnit)
         end
 
-        if event == inputGroup.inputValues[1]
+        if subEvent == inputGroup.inputValues[1]
             and (sourceUnit == "_" or sourceGUID == unitGUIDs[sourceUnit])
-            and (destUnit == "_" or destGUID == unitGUIDs[destUnit]) then
-            table.insert(validKeys, table.concat({ event, sourceUnit, destUnit }))
+            and (destUnit == "_" or destGUID == unitGUIDs[destUnit])
+            then
+            table.insert(validKeys, table.concat({ subEvent, sourceUnit, destUnit }))
         end
     end
 
@@ -57,26 +56,29 @@ function this:GetKeys(event)
 end
 
 function this:Evaluate(inputGroup, event)
-    self.formattedEventInfo = {}
-
-    local eventDataFormat = this.EventDataFormats[self.rawEventInfo[2]]
+    -- @TODO rework this so formatting is handled by a function in the corresponding
+    --  "EventDataFormats." This would allow the data values to be assigned directly to
+    --  a table instead of having to create a new one every time.
+    local rawEventInfo = { CombatLogGetCurrentEventInfo() }
+    local eventDataFormat = this.EventDataFormats[rawEventInfo[2]]
     local valueNames = eventDataFormat.ValueNames
+
     for i = 1, #valueNames do
-        self.formattedEventInfo[valueNames[i]] = self.rawEventInfo[i]
+        formattedEventInfo[valueNames[i]] = rawEventInfo[i]
     end
  
-    self.formattedEventInfo["prefix"] = eventDataFormat["prefix"]
-    self.formattedEventInfo["suffix"] = eventDataFormat["suffix"]
-    self.formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
-    self.formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
+    formattedEventInfo["prefix"] = eventDataFormat["prefix"]
+    formattedEventInfo["suffix"] = eventDataFormat["suffix"]
+    formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
+    formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
 
     -- @DEBUG
-    --[[print (self.formattedEventInfo["event"]
-        .. ", sourceUnit: " .. self.formattedEventInfo["sourceUnit"]
-        .. ", destUnit: " .. self.formattedEventInfo["destUnit"]
-        .. ", spellID: " .. tostring(self.formattedEventInfo["spellID"]))]]
+    --[[print (formattedEventInfo["event"]
+        .. ", sourceUnit: " .. formattedEventInfo["sourceUnit"]
+        .. ", destUnit: " .. formattedEventInfo["destUnit"]
+        .. ", spellID: " .. tostring(formattedEventInfo["spellID"]))]]
 
-    return true, self.formattedEventInfo["event"], self.formattedEventInfo
+    return true, formattedEventInfo["event"], formattedEventInfo
 end
 
 
