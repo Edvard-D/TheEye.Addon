@@ -14,7 +14,9 @@ this.Delegate =
                 childPointSettings.point,
                 parentFrame,
                 childPointSettings.relativePoint,
-                childPointSettings.offsetX or 0, childPointSettings.offsetY or 0)
+                childPointSettings.offsetX or 0,
+                childPointSettings.offsetY or 0
+            )
         end
     end,
 }
@@ -22,7 +24,6 @@ this.Delegate =
 this.TopToBottom =
 {
     Arrange = function(parentFrame, childUIObjects)
-        local combinedOffsetX = 0
         local combinedOffsetY = 0
 
         for i = 1, #childUIObjects do
@@ -33,7 +34,9 @@ this.TopToBottom =
                     "TOP",
                     parentFrame,
                     "TOP",
-                    combinedOffsetX, combinedOffsetY)
+                    0,
+                    combinedOffsetY
+                )
                 
                 combinedOffsetY = combinedOffsetY - childFrame:GetHeight()
             end
