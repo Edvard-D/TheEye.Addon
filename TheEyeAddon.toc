@@ -114,7 +114,6 @@ UI\Helpers\ChildArrangers.lua
 UI\Helpers\DimensionTemplates.lua
 UI\Helpers\Pools.lua
 UI\Helpers\Setup.lua
-UI\Helpers\Templates.lua
 
 
 

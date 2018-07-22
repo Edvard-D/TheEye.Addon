@@ -1,18 +1,12 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.VisibleState = {}
 local this = TheEyeAddon.UI.Components.VisibleState
-this.name = "VisibleState"
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local FrameRelease = TheEyeAddon.UI.Pools.Release
 
-
-TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
-TheEyeAddon.UI.Templates.ComponentAddToTag("ICON", this)
-TheEyeAddon.UI.Templates.ComponentAddToTag("MODULE", this)
-TheEyeAddon.UI.Templates.ComponentAddToTag("UIPARENT", this)
 
 --[[ #this#TEMPLATE#
 {
@@ -72,13 +66,13 @@ function this:OnDisable()
 end
 
 function this:Show()
-    print ("SHOW    " .. self.UIObject.key) -- DEBUG
+    --print ("SHOW    " .. self.UIObject.key) -- DEBUG
     self.UIObject.Frame = self.UIObject.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
     SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
 
 function this:Hide()
-    print ("HIDE    " .. self.UIObject.key) -- DEBUG
+    --print ("HIDE    " .. self.UIObject.key) -- DEBUG
     FrameRelease(self.UIObject.Frame)
     self.UIObject.Frame = nil
     SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)

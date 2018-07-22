@@ -19,18 +19,17 @@ function TheEyeAddon.UI.Objects:FormatData(uiObject)
 end
 
 function TheEyeAddon.UI.Objects:Initialize()
-    local componentsAttachByTag = TheEyeAddon.UI.Templates.ComponentsAttachByTag
+    local components = TheEyeAddon.UI.Components
     local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
-    local taggedComponents = TheEyeAddon.UI.Templates.TaggedComponents
-    local uiObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 
     for instanceKey,v in pairs(instances) do
         local uiObject = instances[instanceKey]
 
-        for tag,v in pairs(taggedComponents) do
-            if tag == "DEFAULT" or uiObjectHasTag(uiObject, tag) then
-                componentsAttachByTag(tag, uiObject)
+        for componentKey,v in pairs(uiObject) do
+            local component = components[componentKey]
+            if component ~= nil then
+                component.Setup(uiObject[componentKey], uiObject)
             end
         end
     end

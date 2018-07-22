@@ -1,13 +1,10 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
-this.name = "PriorityRank"
 
 local DynamicSortRankSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank.Setup
 local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
 
-
-TheEyeAddon.UI.Templates.ComponentAddToTag("ICON", this)
 
 --[[ #this#TEMPLATE#
 {

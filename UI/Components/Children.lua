@@ -1,7 +1,6 @@
 local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Children= {}
 local this = TheEyeAddon.UI.Components.Children
-this.name = "Children"
 
 local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
@@ -12,10 +11,6 @@ local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.Sorted
 local table = table
 local unpack = unpack
 
-
-TheEyeAddon.UI.Templates.ComponentAddToTag("GROUP", this)
-TheEyeAddon.UI.Templates.ComponentAddToTag("MODULE", this)
-TheEyeAddon.UI.Templates.ComponentAddToTag("UIPARENT", this)
 
 --[[ #this#TEMPLATE#
 {
@@ -135,54 +130,39 @@ end
 
 
 -- DisplayUpdate
-local function GetBoundsFromRects(rects)
+local function BoundsCalculate(childUIObjects)
     local leftMin = screenWidth
     local bottomMin = screenHeight
 	local rightMax = 0
 	local topMax = 0
 
-    for i = 1, #rects do
-        local left, bottom, width, height = unpack(rects[i])
+    for i = 1, #childUIObjects do
+        local childFrame = childUIObjects[i].Frame
+        if childFrame ~= nil then
+            local left, bottom, width, height = childFrame:GetRect()
 
-        if width ~= nil and height ~= nil then
-            if left < leftMin then leftMin = left end
-            if bottom < bottomMin then bottomMin = bottom end
-            if width + left > rightMax then rightMax = width + left end
-            if height + bottom > topMax then topMax = height + bottom end
+            if width ~= nil and height ~= nil then
+                if left < leftMin then leftMin = left end
+                if bottom < bottomMin then bottomMin = bottom end
+                if width + left > rightMax then rightMax = width + left end
+                if height + bottom > topMax then topMax = height + bottom end
+            end
         end
     end
 
 	return leftMin, bottomMin, rightMax, topMax
 end
 
-local function GetSizeFromRects(rects)
-	local leftMin, bottomMin, rightMax, topMax = GetBoundsFromRects(rects)
+local function SizeCalculate(childUIObjects)
+	local leftMin, bottomMin, rightMax, topMax = BoundsCalculate(childUIObjects)
 	local width = rightMax - leftMin
 	local height = topMax - bottomMin
 	
 	return width, height
 end
 
-local function ChildRectsGet(childUIObjects)
-    local childRects = {}
-
-    for i = 1, #childUIObjects do
-        local childFrame = childUIObjects[i].Frame
-        if childFrame ~= nil then
-            table.insert(childRects, { childFrame:GetRect() })
-        end
-    end
-
-    return childRects
-end
-        
 local function ResizeToFitChildren(parentFrame, childUIObjects)
-    local childRects = ChildRectsGet(childUIObjects)
-    if #childRects > 0 then
-        parentFrame:SetSizeWithEvent(GetSizeFromRects(childRects))
-    else
-        parentFrame:SetSizeWithEvent(0, 0)
-    end
+    parentFrame:SetSizeWithEvent(SizeCalculate(childUIObjects))
 end
 
 function this:DisplayUpdate()
