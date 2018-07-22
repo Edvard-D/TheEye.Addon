@@ -111,19 +111,11 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 end
 
-function this.InputGroupDeregisterListeningTo(inputGroup)
-    local listeningTo = inputGroup.ListeningTo
-    for i = 1, #listeningTo do
-        local listener = listeningTo[i]
-        this.ListenerDeregister(listener.listeningToKey, listener)
-    end
-end
-
 function this.ListenerDeregister(evaluatorKey, listener)
     local evaluator = Evaluators[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
-
+    
     --print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
     listener.isListening = false
@@ -144,6 +136,14 @@ function this.InputGroupRegisterListeningTo(inputGroup, listener)
     end
 
     this.ListenerRegister(listener.listeningToKey, listener)
+end
+
+function this.InputGroupDeregisterListeningTo(inputGroup)
+    local listeningTo = inputGroup.ListeningTo
+    for i = 1, #listeningTo do
+        local listener = listeningTo[i]
+        this.ListenerDeregister(listener.listeningToKey, listener)
+    end
 end
 
 -- Event Evaluation
