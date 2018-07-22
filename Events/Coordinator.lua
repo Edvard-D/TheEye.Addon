@@ -7,7 +7,7 @@ local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
 
 
--- Event Handling
+-- OnEvent
 local function RelayEvent(self, eventName, ...)
     --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
@@ -21,6 +21,13 @@ local function RelayEvent(self, eventName, ...)
     end
 end
 frame:SetScript("OnEvent", RelayEvent)
+
+
+-- OnUpdate
+local function RelayUpdate(self, elapsedTime)
+    SendCustomEvent("FRAME_UPDATE", elapsedTime)
+end
+frame:SetScript("OnUpdate", RelayUpdate)
 
 
 -- Register
