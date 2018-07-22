@@ -2,6 +2,16 @@ local pairs = pairs
 local table = table
 
 
+function table.hasvalue(tab, value)
+    for i=1, #tab do
+        if tab[i] == value then
+            return true
+        end
+    end
+
+    return false
+end
+
 function table.haskeyvalue(tab, value)
     if tab ~= nil then
         for k,v in pairs(tab) do
