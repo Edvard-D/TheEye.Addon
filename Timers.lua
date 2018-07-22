@@ -4,7 +4,7 @@ local this = TheEyeAddon.Timers
 
 local After = C_Timer.After
 local math = math
-local SendCustomEvent = TheEyeAddon.Events.Coordinators.OnEvent.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local unpack = unpack
 
 

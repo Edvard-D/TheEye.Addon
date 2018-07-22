@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank =
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
-local SendCustomEvent = TheEyeAddon.Events.Coordinators.OnEvent.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
 
 

@@ -1,13 +1,13 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Coordinators.OnEvents = {}
-local this = TheEyeAddon.Events.Coordinators.OnEvents
+TheEyeAddon.Events.Coordinator = {}
+local this = TheEyeAddon.Events.Coordinator
+local Listeners = {}
 
 local frame = CreateFrame("Frame", nil, UIParent)
-local Listeners = {}
 local table = table
 
 
--- OnEvent
+-- Event Handling
 local function RelayEvent(self, eventName, ...)
     --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
