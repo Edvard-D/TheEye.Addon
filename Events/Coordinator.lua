@@ -25,7 +25,7 @@ frame:SetScript("OnEvent", RelayEvent)
 
 -- OnUpdate
 local function RelayUpdate(self, elapsedTime)
-    SendCustomEvent("FRAME_UPDATE", elapsedTime)
+    this.SendCustomEvent("FRAME_UPDATE", elapsedTime)
 end
 frame:SetScript("OnUpdate", RelayUpdate)
 
