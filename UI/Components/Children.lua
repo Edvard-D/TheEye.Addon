@@ -199,7 +199,8 @@ end
 
 -- RegisteredChildrenUpdate
 function this:RegisteredChildrenUpdate(event, childUIObject)
-    if childUIObject.VisibleState.ValueHandler.state == false then -- false state for ValueHandlers.KeyState is nil
+    -- False state for ValueHandlers.KeyState is nil.
+    if childUIObject.VisibleState.ValueHandler.state == false then
         self.ValueHandler:Remove(childUIObject)
     else
         self.ValueHandler:Insert(childUIObject)
