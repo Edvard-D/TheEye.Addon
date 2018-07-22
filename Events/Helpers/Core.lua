@@ -92,7 +92,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     
     --print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
-    if table.hasvalue(listeners, listener) == false then
+    if listener.isListening == nil then
         table.insert(listeners, listener)
     end
 
