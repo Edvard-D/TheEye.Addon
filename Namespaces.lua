@@ -4,7 +4,6 @@ TheEyeAddon =
 {
     Events =
     {
-        Coordinators = {},
         Evaluators = {},
         Helpers = {},
     },
