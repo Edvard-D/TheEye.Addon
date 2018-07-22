@@ -30,7 +30,7 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_MODULE_ENABLED_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_MODULE_SETTING_CHANGED",
                     inputValues = { --[[uiObjectKey]] "GROUP_HUD" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
                     value = 2,
                 },

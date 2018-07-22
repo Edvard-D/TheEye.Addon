@@ -82,7 +82,7 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_MODULE_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_RESIZED.lua
