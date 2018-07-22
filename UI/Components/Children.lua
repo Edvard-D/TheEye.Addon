@@ -183,10 +183,6 @@ local function SizeCalculate(childUIObjects)
 	return width, height
 end
 
-local function ResizeToFitChildren(parentFrame, childUIObjects)
-    parentFrame:SetSizeWithEvent(SizeCalculate(childUIObjects))
-end
-
 function this:DisplayUpdate()
     local frame = self.UIObject.Frame
     
@@ -194,7 +190,7 @@ function this:DisplayUpdate()
         local childUIObjects = self.ValueHandler.value
         
         self.ChildArranger.Arrange(frame, childUIObjects)
-        ResizeToFitChildren(frame, childUIObjects)
+        frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
 end
 
