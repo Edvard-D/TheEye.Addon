@@ -37,8 +37,8 @@ function this.Setup(
 )
 
     instance.UIObject = uiObject
-    instance.Arrange = this.Arrange
-    instance.UpdateRegisteredChildren = this.UpdateRegisteredChildren
+    instance.DisplayUpdate = this.DisplayUpdate
+    instance.RegisteredChildrenUpdate = this.RegisteredChildrenUpdate
 
     -- ValueHandler
     instance.ValueHandler = {}
@@ -52,7 +52,7 @@ function this.Setup(
     -- ListenerGroups
     instance.ListenerGroups =
     {
-        Arrange =
+        DisplayUpdate =
         {
             Listeners =
             {
@@ -76,7 +76,7 @@ function this.Setup(
                 }
             }
         },
-        UpdateRegisteredChildren =
+        RegisteredChildrenUpdate =
         {
             Listeners =
             {
@@ -89,10 +89,10 @@ function this.Setup(
     }
 
     NotifyBasedFunctionCallerSetup(
-        instance.ListenerGroups.Arrange,
+        instance.ListenerGroups.DisplayUpdate,
         uiObject,
         instance,
-        "Arrange"
+        "DisplayUpdate"
     )
 
     NotifyBasedFunctionCallerSetup(
@@ -103,10 +103,10 @@ function this.Setup(
     )
 
     NotifyBasedFunctionCallerSetup(
-        instance.ListenerGroups.UpdateRegisteredChildren,
+        instance.ListenerGroups.RegisteredChildrenUpdate,
         uiObject,
         instance,
-        "UpdateRegisteredChildren"
+        "RegisteredChildrenUpdate"
     )
 
     -- EnabledStateReactor
@@ -120,37 +120,37 @@ function this.Setup(
         instance
     )
 
-    instance.ListenerGroups.UpdateRegisteredChildren:Activate()
+    instance.ListenerGroups.RegisteredChildrenUpdate:Activate()
 end
 
 function this:OnEnable()
-    self.ListenerGroups.Arrange:Activate()
+    self.ListenerGroups.DisplayUpdate:Activate()
     self.ListenerGroups.Sort:Activate()
 end
 
 function this:OnDisable()
-    self.ListenerGroups.Arrange:Deactivate()
+    self.ListenerGroups.DisplayUpdate:Deactivate()
     self.ListenerGroups.Sort:Deactivate()
 end
 
 
--- Arrange
+-- DisplayUpdate
 local function GetBoundsFromRects(rects)
     local leftMin = screenWidth
     local bottomMin = screenHeight
 	local rightMax = 0
 	local topMax = 0
 
-		for i = 1, #rects do
-			local left, bottom, width, height = unpack(rects[i])
+    for i = 1, #rects do
+        local left, bottom, width, height = unpack(rects[i])
 
-			if width ~= nil and height ~= nil then
-				if left < leftMin then leftMin = left end
-				if bottom < bottomMin then bottomMin = bottom end
-				if width + left > rightMax then rightMax = width + left end
-				if height + bottom > topMax then topMax = height + bottom end
-			end
-		end
+        if width ~= nil and height ~= nil then
+            if left < leftMin then leftMin = left end
+            if bottom < bottomMin then bottomMin = bottom end
+            if width + left > rightMax then rightMax = width + left end
+            if height + bottom > topMax then topMax = height + bottom end
+        end
+    end
 
 	return leftMin, bottomMin, rightMax, topMax
 end
@@ -163,40 +163,42 @@ local function GetSizeFromRects(rects)
 	return width, height
 end
 
-function this:Arrange()
+local function ChildRectsGet(childUIObjects)
+    local childRects = {}
+
+    for i = 1, #childUIObjects do
+        local childFrame = childUIObjects[i].Frame
+        if childFrame ~= nil then
+            table.insert(childRects, { childFrame:GetRect() })
+        end
+    end
+
+    return childRects
+end
+        
+local function ResizeToFitChildren(parentFrame, childUIObjects)
+    local childRects = ChildRectsGet(childUIObjects)
+    if #childRects > 0 then
+        parentFrame:SetSizeWithEvent(GetSizeFromRects(childRects))
+    else
+        parentFrame:SetSizeWithEvent(0, 0)
+    end
+end
+
+function this:DisplayUpdate()
     local frame = self.UIObject.Frame
     
     if frame ~= nil then
-        local children = self.ValueHandler.value
-        local groupArranger = self.GroupArranger
-        local combinedOffsetX = 0
-        local combinedOffsetY = 0
-        local childRects = {}
-
-        for i = 1, #children do
-            local childUIObject = children[i]
-            local childFrame = childUIObject.Frame
-            if childFrame ~= nil then
-                local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
-                childFrame:ClearAllPoints()
-                groupArranger.SetPoint(frame, childFrame, childPointSettings, combinedOffsetX, combinedOffsetY)
-
-                table.insert(childRects, { childFrame:GetRect() })
-                combinedOffsetX, combinedOffsetY = groupArranger.UpdateOffset(childFrame, combinedOffsetX, combinedOffsetY)
-            end
-        end
+        local childUIObjects = self.ValueHandler.value
         
-        if #childRects > 0 then
-            frame:SetSizeWithEvent(GetSizeFromRects(childRects))
-        else
-            frame:SetSizeWithEvent(0, 0)
-        end
+        self.ChildArranger.Arrange(frame, childUIObjects)
+        ResizeToFitChildren(frame, childUIObjects)
     end
 end
 
 
--- UpdateRegisteredChildren
-function this:UpdateRegisteredChildren(event, childUIObject)
+-- RegisteredChildrenUpdate
+function this:RegisteredChildrenUpdate(event, childUIObject)
     if childUIObject.VisibleState.ValueHandler.state == false then -- false state for ValueHandlers.KeyState is nil
         self.ValueHandler:Remove(childUIObject)
     else

@@ -110,8 +110,8 @@ Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
 # ---------------------------
 # |		      UI		    |
 # ---------------------------
+UI\Helpers\ChildArrangers.lua
 UI\Helpers\DimensionTemplates.lua
-UI\Helpers\GroupArrangers.lua
 UI\Helpers\Pools.lua
 UI\Helpers\Setup.lua
 UI\Helpers\Templates.lua

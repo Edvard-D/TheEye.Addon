@@ -4,7 +4,7 @@ TheEyeAddon.UI.Objects:FormatData(
     Children =
     {
         childTags = { --[[tags]] "HUD", "ICON", "PRIMARY" },
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.TopToBottom,
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
     },

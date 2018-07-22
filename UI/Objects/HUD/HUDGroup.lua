@@ -4,7 +4,7 @@ TheEyeAddon.UI.Objects:FormatData(
     Children =
     {
         childTags = { --[[tags]] "HUD", "MODULE", },
-        GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers.Delegate,
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     DisplayData =
     {
