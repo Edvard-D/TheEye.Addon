@@ -21,7 +21,7 @@ local function NewDurationTimerGetLength(inputGroup, remainingTime)
     local listeners = inputGroup.listeners
     for i = 1, #listeners do
         listener = listeners[i]
-        if listener.comparisonValues ~= nil then
+        if listener.isListening == true and listener.comparisonValues ~= nil then
             local value = listener.comparisonValues.value
             if value > nextUpdatePoint and value < remainingTime then
                 nextUpdatePoint = value
@@ -43,7 +43,7 @@ local function NewElapsedTimerGetLength(inputGroup, elapsedTime)
     local listeners = inputGroup.listeners
     for i = 1, #listeners do
         listener = listeners[i]
-        if listener.comparisonValues ~= nil then
+        if listener.isListening == true and listener.comparisonValues ~= nil then
             local value = listener.comparisonValues.value
             if value < nextUpdatePoint and value > elapsedTime then
                 nextUpdatePoint = value
