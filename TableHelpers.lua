@@ -39,3 +39,9 @@ function table.removekeyvalue(tab, value)
     end
     return false
 end
+
+function table.cleararray(tab)
+    for i = 1, #tab do
+        tab[i] = nil
+    end
+end
