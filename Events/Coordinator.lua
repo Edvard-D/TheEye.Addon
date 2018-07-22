@@ -5,6 +5,7 @@ local Listeners = {}
 
 local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
+local updateInterval = 0.1
 
 
 -- OnEvent
@@ -25,7 +26,11 @@ frame:SetScript("OnEvent", RelayEvent)
 
 -- OnUpdate
 local function RelayUpdate(self, elapsedTime)
-    this.SendCustomEvent("FRAME_UPDATE", elapsedTime)
+    self.timeSinceUpdate = self.timeSinceUpdate + elapsedTime
+    if self.timeSinceUpdate >= updateInterval then
+        this.SendCustomEvent("UPDATE")
+        self.timeSinceUpdate = 0
+    end
 end
 frame:SetScript("OnUpdate", RelayUpdate)
 
