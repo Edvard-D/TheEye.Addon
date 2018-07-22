@@ -55,6 +55,10 @@ function this.Setup(
             Listeners =
             {
                 {
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_RESIZED",
+                    inputValues = instance.childTags,
+                },
+                {
                     eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
                     inputValues = instance.childTags,
                 }
@@ -161,8 +165,8 @@ end
 
 function this:Arrange()
     local frame = self.UIObject.Frame
-
-    if frame ~= nil then 
+    
+    if frame ~= nil then
         local children = self.ValueHandler.value
         local groupArranger = self.GroupArranger
         local combinedOffsetX = 0
@@ -198,6 +202,4 @@ function this:UpdateRegisteredChildren(event, childUIObject)
     else
         self.ValueHandler:Insert(childUIObject)
     end
-
-    self:Arrange()
 end
