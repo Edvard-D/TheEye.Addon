@@ -61,7 +61,7 @@ function this:Evaluate(inputGroup, event)
 
     local eventDataFormat = this.EventDataFormats[self.rawEventInfo[2]]
     local valueNames = eventDataFormat.ValueNames
-    for i=1,#valueNames do
+    for i = 1, #valueNames do
         self.formattedEventInfo[valueNames[i]] = self.rawEventInfo[i]
     end
  

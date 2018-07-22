@@ -29,7 +29,7 @@ this.customEvents =
 
 
 local function CalculateCurrentValue(inputValues)
-    for i=1,4 do
+    for i = 1,4 do
         local _, totemName = GetTotemInfo(i)
         if totemName == inputValues[1] then
             return true

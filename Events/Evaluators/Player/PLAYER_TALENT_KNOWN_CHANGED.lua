@@ -39,7 +39,7 @@ local function CalculateCurrentValue(inputValues)
     end
 
     local pvpTalents = GetAllSelectedPvpTalentIDs()
-    for i=1,#pvpTalents do
+    for i = 1, #pvpTalents do
         if pvpTalents[i] == talentID then
             return true
         end

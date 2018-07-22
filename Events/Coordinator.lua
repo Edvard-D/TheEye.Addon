@@ -11,7 +11,7 @@ local table = table
 local function RelayEvent(self, eventName, ...)
     --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
     local listeners = Listeners[eventName]
-    for i=1,#listeners do
+    for i = 1, #listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
         -- cause a listener later in the array to be deregistered before its OnEvent
         -- function is called.
@@ -44,7 +44,7 @@ local function ListenerRegister(listener, eventName, isGameEvent)
 end
 
 local function ListenersRegister(listener, events, isGameEvent)
-    for i=1,#events do
+    for i = 1, #events do
         ListenerRegister(listener, events[i], isGameEvent)
     end
 end
@@ -78,7 +78,7 @@ local function ListenerDeregister(listener, eventName, isGameEvent)
 end
 
 local function ListenersDeregister(listener, events, isGameEvent)
-    for i=1,#events do
+    for i = 1, #events do
         ListenerDeregister(listener, events[i], isGameEvent)
     end
 end

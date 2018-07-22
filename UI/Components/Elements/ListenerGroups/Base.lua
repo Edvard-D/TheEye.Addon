@@ -36,7 +36,7 @@ function this.Setup(
     instance.Deactivate = this.Deactivate
 
     local listeners = instance.Listeners
-    for i=1, #listeners do -- must come after value assignment
+    for i = 1, #listeners do -- must come after value assignment
         listenerSetup(listeners[i], uiObject, instance)
     end
 end
@@ -47,7 +47,7 @@ function this:Activate()
     end
     
     local listeners = self.Listeners
-    for i=1, #listeners do
+    for i = 1, #listeners do
         listeners[i]:Activate()
     end
 end
@@ -58,7 +58,7 @@ function this:Deactivate()
     end
 
     local listeners = self.Listeners
-    for i=1, #listeners do
+    for i = 1, #listeners do
         listeners[i]:Deactivate()
     end
 end

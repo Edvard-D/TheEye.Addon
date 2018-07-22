@@ -30,7 +30,7 @@ local combatLogEvents =
 
 
 function this:SetupListeningTo(inputGroup)
-    for i=1, #combatLogEvents do
+    for i = 1, #combatLogEvents do
         InputGroupRegisterListeningTo(inputGroup,
         {
             listeningToKey = "COMBAT_LOG",
