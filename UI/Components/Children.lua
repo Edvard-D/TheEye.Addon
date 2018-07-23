@@ -3,7 +3,6 @@ TheEyeAddon.UI.Components.Children= {}
 local this = TheEyeAddon.UI.Components.Children
 
 local displayUpdateRequests = {}
-local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
@@ -11,13 +10,6 @@ local select = select
 local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
 local table = table
 local unpack = unpack
-
-
-this.customEvents =
-{
-    "UPDATE"
-}
-TheEyeAddon.Events.Coordinator.Register(this)
 
 
 --[[ #this#TEMPLATE#
@@ -41,7 +33,6 @@ function this.Setup(
 
     instance.UIObject = uiObject
     instance.DisplayUpdate = this.DisplayUpdate
-    instance.RequestDisplayUpdate = this.RequestDisplayUpdate
     instance.RegisteredChildrenUpdate = this.RegisteredChildrenUpdate
 
     -- ValueHandler
@@ -96,7 +87,7 @@ function this.Setup(
         instance.ListenerGroups.DisplayUpdate,
         uiObject,
         instance,
-        "RequestDisplayUpdate"
+        "DisplayUpdate"
     )
 
     NotifyBasedFunctionCallerSetup(
@@ -113,45 +104,13 @@ function this.Setup(
         "RegisteredChildrenUpdate"
     )
 
-    -- EnabledStateReactor
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateReactor = {}
-    EnabledStateReactorSetup(
-        instance.EnabledStateReactor,
-        uiObject,
-        instance
-    )
-
     instance.ListenerGroups.RegisteredChildrenUpdate:Activate()
-end
-
-function this:OnEnable()
-    self.ListenerGroups.DisplayUpdate:Activate()
-    self.ListenerGroups.Sort:Activate()
-end
-
-function this:OnDisable()
-    self.ListenerGroups.DisplayUpdate:Deactivate()
-    self.ListenerGroups.Sort:Deactivate()
+    instance.ListenerGroups.DisplayUpdate:Activate()
+    instance.ListenerGroups.Sort:Activate()
 end
 
 
 -- DisplayUpdate
-function this:RequestDisplayUpdate()
-    if table.haskeyvalue(displayUpdateRequests, self) == false then
-        table.insert(displayUpdateRequests, self)
-    end
-end
-
-function this:OnEvent(_, elapsedTime)
-    for i = #displayUpdateRequests, 1, -1 do
-        displayUpdateRequests[i]:DisplayUpdate()
-        table.remove(displayUpdateRequests, i)
-    end
-end
-
 local function BoundsCalculate(childUIObjects)
     local leftMin = screenWidth
     local bottomMin = screenHeight
@@ -178,17 +137,17 @@ end
 local function SizeCalculate(childUIObjects)
 	local leftMin, bottomMin, rightMax, topMax = BoundsCalculate(childUIObjects)
 	local width = rightMax - leftMin
-	local height = topMax - bottomMin
-	
+    local height = topMax - bottomMin
+    
 	return width, height
 end
 
 function this:DisplayUpdate()
     local frame = self.UIObject.Frame
-    
+
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-        
+
         self.ChildArranger.Arrange(frame, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
