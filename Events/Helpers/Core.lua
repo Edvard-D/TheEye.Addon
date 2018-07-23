@@ -188,7 +188,6 @@ function this:Notify(...)
 end
 
 function this:OnEvent(event, ...)
-    print(event)
     if self.reevaluateEvents ~= nil and self.reevaluateEvents[event] ~= nil then
         for k,inputGroup in pairs(self.InputGroups) do -- @TODO change this to an array with a lookup table
             Evaluate(self, inputGroup, event, ...)
