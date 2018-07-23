@@ -17,6 +17,7 @@ local function RelayEvent(self, eventName, ...)
         -- cause a listener later in the array to be deregistered before its OnEvent
         -- function is called.
         local listener = listeners[i]
+        
         if listener ~= nil and listener.isListening == true then
             listener:OnEvent(eventName, ...)
         end
@@ -40,24 +41,23 @@ frame.timeSinceUpdate = 0
 -- Register
 local function ListenerRegister(listener, eventName, isGameEvent)
     if Listeners[eventName] == nil then
-        Listeners[eventName] = { listener }
-        --print ("RegisterEvent    " .. eventName) -- DEBUG
-
-        if isGameEvent == true then
-            frame:RegisterEvent(eventName)
-        end
-    else
-        if listener.isListening == nil then
-            table.insert(Listeners[eventName], listener)
-        end
-        listener.isListening = true
+        Listeners[eventName] = {}
     end
 
     local listeners = Listeners[eventName]
+    if listener.isListening == nil then
+        table.insert(listeners, listener)
+    end
+
     if listeners.listenerCount == nil then
         listeners.listenerCount = 0
     end
+    
     listeners.listenerCount = listeners.listenerCount + 1
+    if listeners.listenerCount == 1 and isGameEvent == true then
+        --print ("RegisterEvent    " .. eventName) -- DEBUG
+        frame:RegisterEvent(eventName)
+    end
 end
 
 local function ListenersRegister(listener, events, isGameEvent)
@@ -74,22 +74,19 @@ function this.Register(listener)
     if listener.customEvents ~= nil then
         ListenersRegister(listener, listener.customEvents, false)
     end
+
+    listener.isListening = true
 end
 
 
 -- Deregister
 local function ListenerDeregister(listener, eventName, isGameEvent)
     local listeners = Listeners[eventName]
-    
-    listener.isListening = false
 
     listeners.listenerCount = listeners.listenerCount - 1
-    if listeners.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        --print ("DeregisterEvent    " .. eventName) -- DEBUG
-
-        if isGameEvent == true then
-            frame:UnregisterEvent(eventName)
-        end
+    if listeners.listenerCount == 0 and isGameEvent == true then
+        --print ("UnregisterEvent    " .. eventName) -- DEBUG
+        frame:UnregisterEvent(eventName)
     end
 end
 
@@ -107,6 +104,8 @@ function this.Deregister(listener)
     if listener.customEvents ~= nil then
         ListenersDeregister(listener, listener.customEvents, false)
     end
+    
+    listener.isListening = false
 end
 
 
