@@ -3,7 +3,6 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "UIPARENT" },
     Children =
     {
-        childTags = { --[[tags]] "GROUP", },
         ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     DisplayData =

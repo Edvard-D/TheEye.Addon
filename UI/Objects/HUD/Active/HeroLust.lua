@@ -1,3 +1,5 @@
+local parentKey = "HUD_MODULE_ACTIVE"
+
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "HEROLUST", },
@@ -21,11 +23,15 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_ACTIVE", },
+                    inputValues = { --[[uiObjectKey]] parentKey },
                     value = 2,
                 },
             },
         },
+    },
+    Parent =
+    {
+        key = parentKey,
     },
     PriorityRank =
     {

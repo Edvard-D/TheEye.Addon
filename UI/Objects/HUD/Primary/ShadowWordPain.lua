@@ -1,3 +1,4 @@
+local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 589
 
 TheEyeAddon.UI.Objects:FormatData(
@@ -23,7 +24,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY", },
+                    inputValues = { --[[uiObjectKey]] parentKey, },
                     value = 2,
                 },
                 {
@@ -33,6 +34,10 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
+    },
+    Parent =
+    {
+        key = parentKey,
     },
     PriorityRank =
     {

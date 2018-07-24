@@ -1,9 +1,10 @@
+local parentKey = "GROUP_HUD"
+
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "MODULE", "ACTIVE" },
     Children =
     {
-        childTags = { --[[tags]] "HUD", "ICON", "ACTIVE" },
         ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
@@ -39,11 +40,15 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "GROUP_HUD" },
+                    inputValues = { --[[uiObjectKey]] parentKey },
                     value = 4,
                 },
             },
         },
+    },
+    Parent =
+    {
+        key = parentKey,
     },
     VisibleState =
     {
