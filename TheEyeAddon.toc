@@ -165,7 +165,7 @@ UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
-UI\Components\Children.lua
+UI\Components\Child.lua
 UI\Components\EnabledState.lua
 UI\Components\Parent.lua
 UI\Components\PriorityRank.lua
