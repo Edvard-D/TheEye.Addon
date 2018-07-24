@@ -5,7 +5,7 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "GROUP", "HUD", },
     Child =
     {
-        key = parentKey,
+        parentKey = parentKey,
     },
     DisplayData =
     {

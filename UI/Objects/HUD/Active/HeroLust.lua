@@ -5,7 +5,7 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "HUD", "ICON", "ACTIVE", "HEROLUST", },
     Child =
     {
-        key = parentKey,
+        parentKey = parentKey,
     },
     -- @TODO change icon based on active aura
     DisplayData =

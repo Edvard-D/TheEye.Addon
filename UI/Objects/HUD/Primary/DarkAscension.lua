@@ -6,7 +6,7 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-280711", },
     Child =
     {
-        key = parentKey,
+        parentKey = parentKey,
     },
     DisplayData =
     {

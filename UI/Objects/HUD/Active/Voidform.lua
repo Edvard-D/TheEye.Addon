@@ -6,7 +6,7 @@ TheEyeAddon.UI.Objects:FormatData(
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-194249", },
     Child =
     {
-        key = parentKey,
+        parentKey = parentKey,
     },
     -- @TODO Insanity percent below 50%
     DisplayData =

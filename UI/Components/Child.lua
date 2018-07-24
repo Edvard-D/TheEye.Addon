@@ -5,7 +5,7 @@ local this = TheEyeAddon.UI.Components.Child
 
 --[[ #this#TEMPLATE#
 {
-    key = #UIOBJECT#KEY#
+    parentKey = #UIOBJECT#KEY#
 }
 ]]
 
