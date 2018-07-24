@@ -19,11 +19,7 @@ this.customEvents =
 
 
 local function CalculateCurrentValue(uiObject)
-    if uiObject == nil then
-        return false
-    else
-        return uiObject.VisibleState.ValueHandler.state or false
-    end
+    return uiObject.VisibleState.ValueHandler.state or false
 end
 
 function this:InputGroupSetup(inputGroup)
