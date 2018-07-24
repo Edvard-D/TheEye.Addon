@@ -4,6 +4,10 @@ local spellID = 263346
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-263346", },
+    Child =
+    {
+        key = parentKey,
+    },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
@@ -33,10 +37,6 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-    },
-    Parent =
-    {
-        key = parentKey,
     },
     PriorityRank =
     {

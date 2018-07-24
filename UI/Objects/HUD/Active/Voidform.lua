@@ -4,6 +4,10 @@ local spellID = 194249
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-194249", },
+    Child =
+    {
+        key = parentKey,
+    },
     -- @TODO Insanity percent below 50%
     DisplayData =
     {
@@ -29,10 +33,6 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-    },
-    Parent =
-    {
-        key = parentKey,
     },
     PriorityRank =
     {

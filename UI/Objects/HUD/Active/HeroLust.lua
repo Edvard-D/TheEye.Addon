@@ -3,6 +3,10 @@ local parentKey = "HUD_MODULE_ACTIVE"
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "HEROLUST", },
+    Child =
+    {
+        key = parentKey,
+    },
     -- @TODO change icon based on active aura
     DisplayData =
     {
@@ -28,10 +32,6 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-    },
-    Parent =
-    {
-        key = parentKey,
     },
     PriorityRank =
     {

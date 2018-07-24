@@ -4,6 +4,10 @@ local spellID = 193223
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-193223", },
+    Child =
+    {
+        key = parentKey,
+    },
     -- @TODO Remaining time
     DisplayData =
     {
@@ -29,10 +33,6 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-    },
-    Parent =
-    {
-        key = parentKey,
     },
     PriorityRank =
     {

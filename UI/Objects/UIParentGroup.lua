@@ -1,10 +1,6 @@
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "UIPARENT" },
-    Children =
-    {
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
-    },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
@@ -40,6 +36,10 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
+    },
+    Parent =
+    {
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     VisibleState =
     {
