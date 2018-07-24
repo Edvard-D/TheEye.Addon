@@ -2,14 +2,11 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Children= {}
 local this = TheEyeAddon.UI.Components.Children
 
-local displayUpdateRequests = {}
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
-local select = select
 local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
 local table = table
-local unpack = unpack
 
 
 --[[ #this#TEMPLATE#
