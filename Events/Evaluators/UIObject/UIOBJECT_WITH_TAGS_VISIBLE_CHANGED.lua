@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBILE_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBILE_CHANGED
-this.name = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED"
+TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED
+this.name = "UIOBJECT_WITH_TAGS_VISIBLE_CHANGED"
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
