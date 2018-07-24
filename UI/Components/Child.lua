@@ -27,7 +27,7 @@ function this.Setup(
 
     -- EnabledStateReactor
     instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable -- @TODO
+    instance.OnDisable = this.OnDisable
 
     instance.EnabledStateReactor = {}
     EnabledStateReactorSetup(
@@ -39,4 +39,8 @@ end
 
 function this:OnEnable()
     UIObjectInstances[self.parentKey].Parent:ChildRegister(self)
+end
+
+function this:OnDisable()
+    UIObjectInstances[self.parentKey].Parent:ChildDeregister(self)
 end
