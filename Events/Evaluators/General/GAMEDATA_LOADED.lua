@@ -25,7 +25,7 @@ function this:GetKey(event)
     return "default"
 end
 
-function this:Evaluate()
+function this:Evaluate(inputGroup)
     inputGroup.currentValue = true
     return true, this.name, inputGroup.currentValue
 end

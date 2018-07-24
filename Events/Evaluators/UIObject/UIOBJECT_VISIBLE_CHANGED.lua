@@ -23,7 +23,7 @@ local function CalculateCurrentValue(uiObject)
 end
 
 function this:InputGroupSetup(inputGroup)
-    local uiObject = TheEyeAddon.UI.Objects.Instances[inputValues[1]]
+    local uiObject = TheEyeAddon.UI.Objects.Instances[inputGroup.inputValues[1]]
     inputGroup.currentValue = CalculateCurrentValue(uiObject)
 end
 
