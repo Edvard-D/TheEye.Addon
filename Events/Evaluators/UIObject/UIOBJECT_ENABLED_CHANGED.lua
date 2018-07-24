@@ -3,8 +3,6 @@ TheEyeAddon.Events.Evaluators.UIOBJECT_ENABLED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_ENABLED_CHANGED
 this.name = "UIOBJECT_ENABLED_CHANGED"
 
-local select = select
-
 
 --[[ #this#TEMPLATE#
 {
@@ -20,9 +18,7 @@ this.customEvents =
 }
 
 
-local function CalculateCurrentValue(inputValues)
-    local uiObject = TheEyeAddon.UI.Objects.Instances[inputValues[1]]
-
+local function CalculateCurrentValue(uiObject)
     if uiObject == nil then
         return false
     else
@@ -31,16 +27,16 @@ local function CalculateCurrentValue(inputValues)
 end
 
 function this:InputGroupSetup(inputGroup)
-    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    local uiObject = TheEyeAddon.UI.Objects.Instances[inputGroup.inputValues[1]]
+    inputGroup.currentValue = CalculateCurrentValue(uiObject)
 end
 
-function this:GetKey(event, ...)
-    local uiObject = select(1, ...)
+function this:GetKey(event, uiObject)
     return uiObject.key
 end
 
-function this:Evaluate(inputGroup, event)
-    local isEnabled = event == "UIOBJECT_ENABLED" -- else UIOBJECT_DISABLED
+function this:Evaluate(inputGroup, event, uiObject)
+    local isEnabled = CalculateCurrentValue(uiObject)
 
     if inputGroup.currentValue ~= isEnabled then
         inputGroup.currentValue = isEnabled
