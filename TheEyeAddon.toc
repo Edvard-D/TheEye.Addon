@@ -55,7 +55,7 @@ Timers.lua
 
 
 # ---------------------------
-# |	   Events\Helpers   	|
+# |	    Events\Helpers   	|
 # ---------------------------
 Events\Helpers\Core.lua
 Events\Helpers\Player.lua
@@ -174,7 +174,7 @@ UI\Components\VisibleState.lua
 
 
 # ---------------------------
-# |		  UI\Factories		|
+# |	     UI\Factories		|
 # ---------------------------
 UI\Factories\FontString.lua
 UI\Factories\Frame.lua
