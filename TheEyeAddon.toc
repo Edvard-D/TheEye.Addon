@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-## Author: EdvardXYZ
+## Author: Edvard-D aka Alaror
 ## Version: 80000.0.1
 
 
