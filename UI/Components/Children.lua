@@ -29,8 +29,9 @@ function this.Setup(
 )
 
     instance.UIObject = uiObject
+    instance.ChildRegister = this.ChildRegister
+    instance.ChildDeregister = this.ChildDeregister
     instance.DisplayUpdate = this.DisplayUpdate
-    instance.RegisteredChildrenUpdate = this.RegisteredChildrenUpdate
 
     -- ValueHandler
     instance.ValueHandler = {}
@@ -68,16 +69,6 @@ function this.Setup(
                 }
             }
         },
-        RegisteredChildrenUpdate =
-        {
-            Listeners =
-            {
-                {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = instance.childTags,
-                }
-            }
-        }
     }
 
     NotifyBasedFunctionCallerSetup(
@@ -94,16 +85,18 @@ function this.Setup(
         "Sort"
     )
 
-    NotifyBasedFunctionCallerSetup(
-        instance.ListenerGroups.RegisteredChildrenUpdate,
-        uiObject,
-        instance,
-        "RegisteredChildrenUpdate"
-    )
-
-    instance.ListenerGroups.RegisteredChildrenUpdate:Activate()
     instance.ListenerGroups.DisplayUpdate:Activate()
     instance.ListenerGroups.Sort:Activate()
+end
+
+
+-- Child Registration
+function this:ChildRegister(childUIObject)
+    self.ValueHandler:Insert(childUIObject)
+end
+
+function this:ChildDeregister(childUIObject)
+    self.ValueHandler:Remove(childUIObject)
 end
 
 
@@ -147,16 +140,5 @@ function this:DisplayUpdate()
 
         self.ChildArranger.Arrange(frame, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
-    end
-end
-
-
--- RegisteredChildrenUpdate
-function this:RegisteredChildrenUpdate(event, childUIObject)
-    -- False state for ValueHandlers.KeyState is nil.
-    if childUIObject.VisibleState.ValueHandler.state == false then
-        self.ValueHandler:Remove(childUIObject)
-    else
-        self.ValueHandler:Insert(childUIObject)
     end
 end
