@@ -18,12 +18,12 @@ this.customEvents =
 
 
 function this:GetKey(event, childUIObject)
-    local parentComponent = childUIObject.Parent
-    if parentComponent == nil then
+    local childComponent = childUIObject.Child
+    if childComponent == nil then
         return nil
     end
 
-    return parentComponent.key
+    return childComponent.parentKey
 end
 
 function this:Evaluate(inputGroup, event, childUIObject)
