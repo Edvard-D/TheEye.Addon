@@ -87,7 +87,7 @@ Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_RESIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
 

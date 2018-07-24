@@ -50,7 +50,7 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_RESIZED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SIZE_CHANGED",
                     inputValues = instance.childTags,
                 },
                 {
@@ -93,6 +93,7 @@ end
 -- Child Registration
 function this:ChildRegister(childUIObject)
     self.ValueHandler:Insert(childUIObject)
+
 end
 
 function this:ChildDeregister(childUIObject)

@@ -1,7 +1,7 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_RESIZED = {}
-local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_RESIZED
-this.name = "UIOBJECT_WITH_TAGS_RESIZED"
+TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_SIZE_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_SIZE_CHANGED
+this.name = "UIOBJECT_WITH_TAGS_SIZE_CHANGED"
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
