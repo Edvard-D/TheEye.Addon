@@ -53,10 +53,6 @@ function this.Setup(
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
                     inputValues = { --[[parentKey]] uiObject.key },
                 },
-                {
-                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_VISIBLE_CHANGED",
-                    inputValues = { --[[parentKey]] uiObject.key },
-                }
             }
         },
         Sort =
@@ -93,10 +89,12 @@ end
 -- Child Registration
 function this:ChildRegister(childUIObject)
     self.ValueHandler:Insert(childUIObject)
+    self:DisplayUpdate()
 end
 
 function this:ChildDeregister(childUIObject)
     self.ValueHandler:Remove(childUIObject)
+    self:DisplayUpdate()
 end
 
 
@@ -137,7 +135,6 @@ function this:DisplayUpdate()
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-
         self.ChildArranger.Arrange(frame, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
