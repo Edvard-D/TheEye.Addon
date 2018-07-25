@@ -33,7 +33,6 @@ function this.Setup(
         instance,
         uiObject,
         listener,
-        instance.OnStateChange,
         stateListener,
         "OnShow",
         "OnHide"
