@@ -2,7 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Child = {}
 local this = TheEyeAddon.UI.Components.Child
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 
@@ -25,22 +25,22 @@ function this.Setup(
 
     instance.UIObject = uiObject
 
-    -- EnabledStateReactor
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
+    -- VisibleStateFunctionCaller
+    instance.OnShow = this.OnShow
+    instance.OnHide = this.OnHide
 
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateReactor,
+    instance.VisibleStateFunctionCaller = {}
+    VisibleStateFunctionCallerSetup(
+        instance.VisibleStateFunctionCaller,
         uiObject,
         instance
     )
 end
 
-function this:OnEnable()
-    UIObjectInstances[self.parentKey].Parent:ChildRegister(self)
+function this:OnShow()
+    UIObjectInstances[self.parentKey].Parent:ChildRegister(self.UIObject)
 end
 
-function this:OnDisable()
-    UIObjectInstances[self.parentKey].Parent:ChildDeregister(self)
+function this:OnHide()
+    UIObjectInstances[self.parentKey].Parent:ChildDeregister(self.UIObject)
 end
