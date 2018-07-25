@@ -18,7 +18,7 @@ end
 
 function this.SetDimensions(frame, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
-		frame:SetSizeWithEvent(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
+		frame:SetSize(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
 		if dimensionTemplate.PointSettings ~= nil then
 			frame:SetPoint(
 				dimensionTemplate.PointSettings.point,
