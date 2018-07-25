@@ -3,7 +3,7 @@ TheEyeAddon.UI.Components.VisibleState = {}
 local this = TheEyeAddon.UI.Components.VisibleState
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
+local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 local FrameRelease = TheEyeAddon.UI.Pools.Release
 
@@ -45,13 +45,13 @@ function this.Setup(
         this.Hide
     )
     
-    -- EnabledStateReactor
+    -- EnabledStateFunctionCaller
     instance.OnEnable = this.OnEnable
     instance.OnDisable = this.OnDisable
 
-    instance.EnabledStateReactor = {}
-    EnabledStateReactorSetup(
-        instance.EnabledStateReactor,
+    instance.EnabledStateFunctionCaller = {}
+    EnabledStateFunctionCallerSetup(
+        instance.EnabledStateFunctionCaller,
         uiObject,
         instance
     )

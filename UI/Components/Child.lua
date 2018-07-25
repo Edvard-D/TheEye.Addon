@@ -2,7 +2,7 @@ local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Child = {}
 local this = TheEyeAddon.UI.Components.Child
 
-local EnabledStateReactorSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor.Setup
+local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 
@@ -29,8 +29,8 @@ function this.Setup(
     instance.OnEnable = this.OnEnable
     instance.OnDisable = this.OnDisable
 
-    instance.EnabledStateReactor = {}
-    EnabledStateReactorSetup(
+    instance.EnabledStateFunctionCaller = {}
+    EnabledStateFunctionCallerSetup(
         instance.EnabledStateReactor,
         uiObject,
         instance
