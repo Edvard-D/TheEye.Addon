@@ -68,5 +68,5 @@ function this.Setup(
 end
 
 function this:OnStateChange(state)
-    self.StateListener[self.stateFunctionNames[state]](self.stateListener)
+    self.StateListener[self.stateFunctionNames[state]](self.StateListener)
 end
