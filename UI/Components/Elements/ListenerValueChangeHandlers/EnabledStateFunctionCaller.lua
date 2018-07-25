@@ -3,9 +3,6 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunct
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
-local SimpleStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState.Setup
-local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter.Setup
-
 
 --[[ #this#TEMPLATE#
 {
