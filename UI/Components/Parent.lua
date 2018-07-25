@@ -50,12 +50,12 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SIZE_CHANGED",
-                    inputValues = instance.childTags,
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
+                    inputValues = { --[[parentKey]] uiObject.key },
                 },
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = instance.childTags,
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_VISIBLE_CHANGED",
+                    inputValues = { --[[parentKey]] uiObject.key },
                 }
             }
         },
@@ -64,8 +64,8 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
-                    inputValues = instance.childTags,
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED",
+                    inputValues = { --[[parentKey]] uiObject.key },
                 }
             }
         },
