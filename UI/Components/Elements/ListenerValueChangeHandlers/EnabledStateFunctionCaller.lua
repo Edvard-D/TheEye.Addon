@@ -17,15 +17,15 @@ local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.Value
 --[[ SETUP
     instance
     uiObject                    UIObject
-    enabledStateListener        { function OnEnable(), function OnDisable() }
+    stateListener               { function OnEnable(), function OnDisable() }
 ]]
 function this.Setup(
     instance,
     uiObject,
-    enabledStateListener
+    stateListener
 )
 
-    instance.EnabledStateListener = enabledStateListener
+    instance.StateListener = stateListener
     instance.OnStateChange = this.OnStateChange
 
     listener =
@@ -47,8 +47,8 @@ end
 
 function this:OnStateChange(isEnabled)
     if isEnabled == true then
-        self.EnabledStateListener:OnEnable()
+        self.StateListener:OnEnable()
     else
-        self.EnabledStateListener:OnDisable()
+        self.StateListener:OnDisable()
     end
 end
