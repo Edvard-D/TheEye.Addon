@@ -29,8 +29,8 @@ function this.Setup(
 )
 
     instance.UIObject = uiObject
-    instance.ChildRegister = this.ChildRegister
     instance.ChildDeregister = this.ChildDeregister
+    instance.ChildRegister = this.ChildRegister
     instance.DisplayUpdate = this.DisplayUpdate
 
     -- ValueHandler
