@@ -210,6 +210,10 @@ UI\Objects\HUD\Active\SurrenderToMadness.lua
 UI\Objects\HUD\Active\Voidform.lua
 
 
+# --- HUD: Cooldown ---
+UI\Objects\HUD\Active\CooldownModule.lua
+
+
 # --- HUD: Primary ---
 UI\Objects\HUD\Primary\DarkAscension.lua
 UI\Objects\HUD\Primary\DarkVoid.lua
