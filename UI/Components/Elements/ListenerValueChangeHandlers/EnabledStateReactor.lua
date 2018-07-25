@@ -38,7 +38,8 @@ function this.Setup(
         {
             {
                 eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
-                inputValues = { uiObject.key }
+                inputValues = { uiObject.key },
+                isInternal = true,
             }
         }
     }

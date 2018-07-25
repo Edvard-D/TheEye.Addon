@@ -10,6 +10,7 @@ local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
 {
     eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
+    #OPTIONAL#isInternal = #BOOL#
 }
 ]]
 
