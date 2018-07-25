@@ -21,10 +21,11 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = false
 end
 
-function this:GetKey(event, ...)
+function this:GetKey(event)
     return "default"
 end
 
-function this:Evaluate()
-    return true, this.name, true
+function this:Evaluate(inputGroup)
+    inputGroup.currentValue = true
+    return true, this.name, inputGroup.currentValue
 end

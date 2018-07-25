@@ -1,8 +1,13 @@
+local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 8092
 
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-8092", },
+    Child =
+    {
+        parentKey = parentKey,
+    },
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Icon,
@@ -24,7 +29,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY", },
+                    inputValues = { --[[uiObjectKey]] parentKey, },
                     value = 2,
                 },
                 {

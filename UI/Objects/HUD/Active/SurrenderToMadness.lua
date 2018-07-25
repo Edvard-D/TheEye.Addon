@@ -1,8 +1,13 @@
+local parentKey = "HUD_MODULE_ACTIVE"
 local spellID = 193223
 
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-193223", },
+    Child =
+    {
+        parentKey = parentKey,
+    },
     -- @TODO Remaining time
     DisplayData =
     {
@@ -23,7 +28,7 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_ACTIVE", },
+                    inputValues = { --[[uiObjectKey]] parentKey },
                     value = 2,
                 },
             },

@@ -1,10 +1,11 @@
+local parentKey = "UIPARENT"
+
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "GROUP", "HUD", },
-    Children =
+    Child =
     {
-        childTags = { --[[tags]] "HUD", "MODULE", },
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        parentKey = parentKey,
     },
     DisplayData =
     {
@@ -36,11 +37,15 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "UIPARENT" },
+                    inputValues = { --[[uiObjectKey]] parentKey },
                     value = 4,
                 },
             },
         },
+    },
+    Parent =
+    {
+        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     VisibleState =
     {

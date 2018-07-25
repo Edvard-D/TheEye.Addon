@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-## Author: EdvardXYZ
+## Author: Edvard-D aka Alaror
 ## Version: 80000.0.1
 
 
@@ -55,7 +55,7 @@ Timers.lua
 
 
 # ---------------------------
-# |	   Events\Helpers   	|
+# |	    Events\Helpers   	|
 # ---------------------------
 Events\Helpers\Core.lua
 Events\Helpers\Player.lua
@@ -84,11 +84,15 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_RESIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBILE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 
 
 # --- Unit ---
@@ -154,23 +158,26 @@ UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
 UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateReactor.lua
+UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
 
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
-UI\Components\Children.lua
+UI\Components\Child.lua
 UI\Components\EnabledState.lua
+UI\Components\Parent.lua
 UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
 
 
 
 # ---------------------------
-# |		  UI\Factories		|
+# |	     UI\Factories		|
 # ---------------------------
 UI\Factories\FontString.lua
 UI\Factories\Frame.lua

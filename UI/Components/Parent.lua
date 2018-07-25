@@ -1,15 +1,12 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.Children= {}
-local this = TheEyeAddon.UI.Components.Children
+TheEyeAddon.UI.Components.Parent = {}
+local this = TheEyeAddon.UI.Components.Parent
 
-local displayUpdateRequests = {}
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
-local select = select
 local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
 local table = table
-local unpack = unpack
 
 
 --[[ #this#TEMPLATE#
@@ -32,8 +29,9 @@ function this.Setup(
 )
 
     instance.UIObject = uiObject
+    instance.ChildDeregister = this.ChildDeregister
+    instance.ChildRegister = this.ChildRegister
     instance.DisplayUpdate = this.DisplayUpdate
-    instance.RegisteredChildrenUpdate = this.RegisteredChildrenUpdate
 
     -- ValueHandler
     instance.ValueHandler = {}
@@ -52,13 +50,9 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_RESIZED",
-                    inputValues = instance.childTags,
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
+                    inputValues = { --[[parentKey]] uiObject.key },
                 },
-                {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = instance.childTags,
-                }
             }
         },
         Sort =
@@ -66,21 +60,11 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED",
-                    inputValues = instance.childTags,
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED",
+                    inputValues = { --[[parentKey]] uiObject.key },
                 }
             }
         },
-        RegisteredChildrenUpdate =
-        {
-            Listeners =
-            {
-                {
-                    eventEvaluatorKey = "UIOBJECT_WITH_TAGS_VISIBILE_CHANGED",
-                    inputValues = instance.childTags,
-                }
-            }
-        }
     }
 
     NotifyBasedFunctionCallerSetup(
@@ -97,16 +81,20 @@ function this.Setup(
         "Sort"
     )
 
-    NotifyBasedFunctionCallerSetup(
-        instance.ListenerGroups.RegisteredChildrenUpdate,
-        uiObject,
-        instance,
-        "RegisteredChildrenUpdate"
-    )
-
-    instance.ListenerGroups.RegisteredChildrenUpdate:Activate()
     instance.ListenerGroups.DisplayUpdate:Activate()
     instance.ListenerGroups.Sort:Activate()
+end
+
+
+-- Child Registration
+function this:ChildRegister(childUIObject)
+    self.ValueHandler:Insert(childUIObject)
+    self:DisplayUpdate()
+end
+
+function this:ChildDeregister(childUIObject)
+    self.ValueHandler:Remove(childUIObject)
+    self:DisplayUpdate()
 end
 
 
@@ -147,19 +135,7 @@ function this:DisplayUpdate()
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-
         self.ChildArranger.Arrange(frame, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
-    end
-end
-
-
--- RegisteredChildrenUpdate
-function this:RegisteredChildrenUpdate(event, childUIObject)
-    -- False state for ValueHandlers.KeyState is nil.
-    if childUIObject.VisibleState.ValueHandler.state == false then
-        self.ValueHandler:Remove(childUIObject)
-    else
-        self.ValueHandler:Insert(childUIObject)
     end
 end

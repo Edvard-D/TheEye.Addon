@@ -1,6 +1,6 @@
 local TheEyeAddon = TheEyeAddon
-TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor = {}
-local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateReactor
+TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
 local SimpleStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SimpleState.Setup
@@ -17,12 +17,18 @@ local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.Value
 --[[ SETUP
     instance
     uiObject                    UIObject
-    enabledStateListener         { function OnEnable(), function OnDisable() }
+    listener                    #LISTENER#
+    stateListener               { function #trueFunctionName#(), function #falseFunctionName#() }
+    trueFunctionName            #STRING#
+    falseFunctionName           #STRING#
 ]]
 function this.Setup(
     instance,
     uiObject,
-    enabledStateListener
+    listener,
+    stateListener,
+    trueFunctionName,
+    falseFunctionName
 )
 
     instance.ValueHandler = {}
@@ -36,10 +42,7 @@ function this.Setup(
     {
         Listeners =
         {
-            {
-                eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
-                inputValues = { uiObject.key }
-            }
+            listener
         }
     }
     ValueSetterSetup(
@@ -55,17 +58,15 @@ function this.Setup(
         instance.ListenerGroup
     )
 
-    instance.EnabledStateListener = enabledStateListener
-
     instance.OnStateChange = this.OnStateChange
-
-    instance:Activate()
+    instance.StateListener = stateListener
+    instance.stateFunctionNames =
+    {
+        [true] = trueFunctionName,
+        [false] = falseFunctionName
+    }
 end
 
-function this:OnStateChange(isEnabled)
-    if isEnabled == true then
-        self.EnabledStateListener:OnEnable()
-    else
-        self.EnabledStateListener:OnDisable()
-    end
+function this:OnStateChange(state)
+    self.StateListener[self.stateFunctionNames[state]](self.StateListener)
 end
