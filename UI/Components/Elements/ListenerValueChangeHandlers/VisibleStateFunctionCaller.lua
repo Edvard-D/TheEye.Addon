@@ -9,3 +9,33 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
     #inherited#TEMPLATE#
 }
 ]]
+
+
+--[[ SETUP
+    instance
+    uiObject                    UIObject
+    stateListener               { function OnShow(), function OnHide() }
+]]
+function this.Setup(
+    instance,
+    uiObject,
+    stateListener
+)
+
+    listener =
+    {
+        eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
+        inputValues = { uiObject.key },
+        isInternal = true,
+    }
+
+    inherited.Setup(
+        instance,
+        uiObject,
+        listener,
+        instance.OnStateChange,
+        stateListener,
+        "OnShow",
+        "OnHide"
+    )
+end
