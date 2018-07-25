@@ -3,6 +3,7 @@ TheEyeAddon.UI.Factories.Frame = {}
 local this = TheEyeAddon.UI.Factories.Frame
 
 local CreateFrame = CreateFrame
+local minSize = 0.0001
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
@@ -18,7 +19,7 @@ end
 
 function this.SetDimensions(frame, parentFrame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
-		frame:SetSize(dimensionTemplate.width or 0, dimensionTemplate.height or 0)
+		frame:SetSize(dimensionTemplate.width or minSize, dimensionTemplate.height or minSize)
 		if dimensionTemplate.PointSettings ~= nil then
 			frame:SetPoint(
 				dimensionTemplate.PointSettings.point,
@@ -33,8 +34,8 @@ function this.SetDimensions(frame, parentFrame, dimensionTemplate)
 end
 
 function this:SetSizeWithEvent(width, height)
-	if width < 0.0001 then width = 0.0001 end
-	if height < 0.0001 then height = 0.0001 end
+	if width < minSize then width = minSize end
+	if height < minSize then height = minSize end
 
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
