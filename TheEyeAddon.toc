@@ -193,9 +193,9 @@ UI\Factories\Icon.lua
 # ---------------------------
 # |	      UI\Objects     	|
 # ---------------------------
-UI\Objects\UIParentGroup.lua
-
 UI\Objects\HUD\HUDGroup.lua
+UI\Objects\HUD\HUDLeft.lua
+UI\Objects\UIParentGroup.lua
 
 
 # --- HUD: Active ---
