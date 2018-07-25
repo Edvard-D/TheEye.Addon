@@ -3,6 +3,8 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunct
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
+local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+
 
 --[[ #this#TEMPLATE#
 {
@@ -37,4 +39,23 @@ function this.Setup(
         "OnShow",
         "OnHide"
     )
+
+    -- EnabledStateFunctionCaller
+    instance.OnEnable = this.OnEnable
+    instance.OnDisable = this.OnDisable
+
+    instance.EnabledStateFunctionCaller = {}
+    EnabledStateFunctionCallerSetup(
+        instance.EnabledStateFunctionCaller,
+        uiObject,
+        instance
+    )
+end
+
+function this:OnEnable()
+    self:Activate()
+end
+
+function this:OnDisable()
+    self:Deactivate()
 end
