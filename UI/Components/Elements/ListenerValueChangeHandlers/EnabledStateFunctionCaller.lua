@@ -25,9 +25,6 @@ function this.Setup(
     stateListener
 )
 
-    instance.StateListener = stateListener
-    instance.OnStateChange = this.OnStateChange
-
     listener =
     {
         eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
@@ -39,16 +36,11 @@ function this.Setup(
         instance,
         uiObject,
         listener,
-        instance.OnStateChange
+        instance.OnStateChange,
+        stateListener,
+        "OnEnable",
+        "OnDisable"
     )
 
     instance:Activate()
-end
-
-function this:OnStateChange(isEnabled)
-    if isEnabled == true then
-        self.StateListener:OnEnable()
-    else
-        self.StateListener:OnDisable()
-    end
 end
