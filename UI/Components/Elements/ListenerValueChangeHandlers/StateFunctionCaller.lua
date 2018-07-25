@@ -18,7 +18,7 @@ local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.Value
     instance
     uiObject                    UIObject
     listener                    #LISTENER#
-    stateListener               { function On#trueFunctionName#(), function On#falseFunctionName#() }
+    stateListener               { function #trueFunctionName#(), function #falseFunctionName#() }
     trueFunctionName            #STRING#
     falseFunctionName           #STRRING#
 ]]
