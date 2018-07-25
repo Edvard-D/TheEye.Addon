@@ -18,7 +18,6 @@ local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.Value
     instance
     uiObject                    UIObject
     listener                    #LISTENER#
-    onStateChange               function(#BOOL#)
     stateListener               { function On#trueFunctionName#(), function On#falseFunctionName#() }
     trueFunctionName            #STRING#
     falseFunctionName           #STRRING#
@@ -27,7 +26,6 @@ function this.Setup(
     instance,
     uiObject,
     listener,
-    onStateChange,
     stateListener,
     trueFunctionName,
     falseFunctionName
@@ -60,7 +58,7 @@ function this.Setup(
         instance.ListenerGroup
     )
 
-    instance.OnStateChange = onStateChange
+    instance.OnStateChange = this.OnStateChange
     instance.StateListener = stateListener
     instance.stateFunctionNames =
     {
