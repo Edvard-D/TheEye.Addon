@@ -1,4 +1,4 @@
-local parentKey = "GROUP_HUD"
+local parentKey = "GROUP_HUD_LEFT"
 
 TheEyeAddon.UI.Objects:FormatData(
 {
@@ -10,16 +10,6 @@ TheEyeAddon.UI.Objects:FormatData(
     DisplayData =
     {
         factory = TheEyeAddon.UI.Factories.Group,
-        DimensionTemplate =
-        {
-            PointSettings =
-            {
-                point = "TOPRIGHT",
-                relativePoint = "TOP",
-                offsetX = -32.5,
-                offsetY = -5,
-            },
-        },
     },
     EnabledState =
     {
@@ -49,6 +39,14 @@ TheEyeAddon.UI.Objects:FormatData(
         ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
+    },
+    PriorityRank =
+    {
+        isDynamic = false,
+        ValueHandler =
+        {
+            defaultValue = 1,
+        },
     },
     VisibleState =
     {
