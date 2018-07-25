@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED
 this.name = "UIOBJECT_WITH_TAGS_INITIALIZED"

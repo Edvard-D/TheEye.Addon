@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Cooldown = {}
 
 local Pool = TheEyeAddon.UI.Pools:Create()

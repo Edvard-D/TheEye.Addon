@@ -1,6 +1,4 @@
--- @TODO maybe refactor to use CombatEvent?
-
-local TheEyeAddon = TheEyeAddon
+-- @REFACTOR maybe refactor to use CombatEvent?
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
 this.name = "UNIT_SPELLCAST_ACTIVE_CHANGED"

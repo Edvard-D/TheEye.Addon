@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED
 this.name = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED"

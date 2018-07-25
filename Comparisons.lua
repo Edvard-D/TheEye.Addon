@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Comparisons = {}
 this = TheEyeAddon.Comparisons
 

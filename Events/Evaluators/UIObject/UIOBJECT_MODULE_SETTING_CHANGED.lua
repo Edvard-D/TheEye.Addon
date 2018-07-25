@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED
 this.name = "UIOBJECT_MODULE_SETTING_CHANGED"

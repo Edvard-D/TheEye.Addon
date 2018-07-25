@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.ChildArrangers = {}
 local this = TheEyeAddon.UI.ChildArrangers
 

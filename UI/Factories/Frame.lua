@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Frame = {}
 local this = TheEyeAddon.UI.Factories.Frame
 

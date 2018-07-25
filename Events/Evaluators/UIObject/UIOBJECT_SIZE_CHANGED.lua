@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UIOBJECT_SIZE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_SIZE_CHANGED
 this.name = "UIOBJECT_SIZE_CHANGED"

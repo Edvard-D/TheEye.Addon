@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base

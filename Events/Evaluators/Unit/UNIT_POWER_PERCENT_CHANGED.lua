@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_POWER_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_POWER_PERCENT_CHANGED
 this.name = "UNIT_POWER_PERCENT_CHANGED"

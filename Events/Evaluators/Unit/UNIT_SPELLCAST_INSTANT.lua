@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT
 this.name = "UNIT_SPELLCAST_INSTANT"

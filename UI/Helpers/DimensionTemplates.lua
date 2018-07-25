@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.DimensionTemplates = {}
 local this = TheEyeAddon.UI.DimensionTemplates
 

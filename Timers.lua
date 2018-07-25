@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Timers = {}
 local this = TheEyeAddon.Timers
 

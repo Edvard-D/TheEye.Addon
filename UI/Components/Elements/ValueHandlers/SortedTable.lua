@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.TableBase

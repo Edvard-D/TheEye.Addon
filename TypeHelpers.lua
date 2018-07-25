@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.TypeHelpers = {}
 
 local setmetatable = setmetatable

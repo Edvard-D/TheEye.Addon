@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Coordinator = {}
 local this = TheEyeAddon.Events.Coordinator
 local Listeners = {}

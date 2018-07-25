@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED
 this.name = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED"

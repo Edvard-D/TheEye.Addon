@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.PLAYER_TALENT_KNOWN_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_TALENT_KNOWN_CHANGED
 this.name = "PLAYER_TALENT_KNOWN_CHANGED"

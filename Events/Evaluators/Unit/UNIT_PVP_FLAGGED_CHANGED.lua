@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED
 this.name = "UNIT_PVP_FLAGGED_CHANGED"

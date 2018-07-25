@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
 

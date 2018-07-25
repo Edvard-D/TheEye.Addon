@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED
 this.name = "UNIT_AURA_STACK_CHANGED"

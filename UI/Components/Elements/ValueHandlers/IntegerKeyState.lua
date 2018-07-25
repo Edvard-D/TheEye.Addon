@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState

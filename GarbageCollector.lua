@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.GarbageCollector = {}
 local this = TheEyeAddon.GarbageCollector
 

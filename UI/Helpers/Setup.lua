@@ -1,5 +1,3 @@
-local TheEyeAddon = TheEyeAddon
-
 local table = table
 
 

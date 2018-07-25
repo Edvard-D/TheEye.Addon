@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.UI.Factories.Group = {}
 
 local Pool = TheEyeAddon.UI.Pools:Create()

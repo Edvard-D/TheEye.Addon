@@ -1,4 +1,3 @@
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.ADDON_LOADED = {}
 local this = TheEyeAddon.Events.Evaluators.ADDON_LOADED
 this.name = "ADDON_LOADED"

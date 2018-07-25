@@ -1,6 +1,5 @@
 -- @TODO How to account for spells cast by units other than "player" prior to them being
 --       watched by this evaluator?
-local TheEyeAddon = TheEyeAddon
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED
 this.name = "UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED"
