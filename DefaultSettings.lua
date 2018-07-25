@@ -1,0 +1,4 @@
+TheEyeAddon.Settings =
+{
+    DisabledUIModules = {}
+}

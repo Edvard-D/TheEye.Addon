@@ -41,6 +41,7 @@ Namespaces.lua
 
 Auras.lua
 Comparisons.lua
+DefaultSettings.lua
 Events\Coordinator.lua
 GarbageCollector.lua
 TableHelpers.lua
