@@ -1,9 +1,237 @@
-## Interface: 70300
+# ---------------------------
+# |		  STYLE GUIDE		|
+# ---------------------------
+# Add a space after hashtags.
+#
+# Sections
+#	Signified by a large header.
+#	Name in all caps.
+#	Add 3 lines between sections.
+#
+# Subsections
+#	Signified by a small header.
+#	Add 2 lines between sections.
+#	Order: Types > Dimension Templates > Factories.
+#	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
+#	Alphabetically organize files in the same section that can be loaded in any order.
+
+
+
+# ---------------------------
+# |		   SETTINGS			|
+# ---------------------------
+## Interface: 80000
 ## Title: TheEye.Addon
-## Author: EdvardXYZ
-## Version: 80000.0.1
+## Version: 0.1.0
+## Author: Edvard-D aka Alaror
+## X-Website: TheEye.Site
 
-theeyeaddon.lua
 
-Classes/UIElements/uielements.lua
-Classes/UIElements/uielementbase.lua
+
+# ---------------------------
+# |	    SAVED VARIABLES		|
+# ---------------------------
+## SavedVariablesPerCharacter: TheEyeAddon.Settings
+
+
+
+# ---------------------------
+# |			CORE			|
+# ---------------------------
+Namespaces.lua
+
+Auras.lua
+Comparisons.lua
+DefaultSettings.lua
+Events\Coordinator.lua
+GarbageCollector.lua
+TableHelpers.lua
+Tags.lua
+TypeHelpers.lua
+UI\Fonts\Templates.lua
+Values.lua
+
+AuraFilters.lua
+Timers.lua
+
+
+
+# ---------------------------
+# |	    Events\Helpers   	|
+# ---------------------------
+Events\Helpers\Core.lua
+Events\Helpers\Player.lua
+
+
+
+# ---------------------------
+# |	   Events\Evaluators   	|
+# ---------------------------
+# --- General ---
+Events\Evaluators\General\ADDON_LOADED.lua
+Events\Evaluators\General\COMBAT_LOG.lua
+Events\Evaluators\General\GAMEDATA_LOADED.lua
+
+
+# --- Player ---
+Events\Evaluators\Player\PLAYER_ITEM_EQUIPPED_CHANGED.lua
+Events\Evaluators\Player\PLAYER_SPELL_CHARGE_CHANGED.lua
+Events\Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
+Events\Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
+Events\Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
+Events\Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
+Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
+
+
+# --- UIObject ---
+Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
+
+
+# --- Unit ---
+Events\Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
+Events\Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
+Events\Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
+Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Events\Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
+Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+
+
+
+# ---------------------------
+# |		      UI		    |
+# ---------------------------
+UI\Helpers\ChildArrangers.lua
+UI\Helpers\DimensionTemplates.lua
+UI\Helpers\Pools.lua
+UI\Helpers\Setup.lua
+
+
+
+# ---------------------------
+# |	UI\Components\Elements  |
+# ---------------------------
+# --- Value Handlers ---
+UI\Components\Elements\ValueHandlers\Base.lua
+
+UI\Components\Elements\ValueHandlers\KeyState.lua
+UI\Components\Elements\ValueHandlers\SimpleState.lua
+UI\Components\Elements\ValueHandlers\SortRank.lua
+UI\Components\Elements\ValueHandlers\TableBase.lua
+
+UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\SortedTable.lua
+
+
+# --- Listeners ---
+UI\Components\Elements\Listeners\Base.lua
+
+UI\Components\Elements\Listeners\PresetInt.lua
+
+
+# --- Listener Groups ---
+UI\Components\Elements\ListenerGroups\Base.lua
+
+UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Components\Elements\ListenerGroups\ValueChanger.lua
+UI\Components\Elements\ListenerGroups\ValueSetter.lua
+
+UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
+
+
+# --- Listener Value Change Handlers ---
+UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+
+UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
+UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
+
+UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
+
+
+
+# ---------------------------
+# |	    UI\Components	    |
+# ---------------------------
+UI\Components\Child.lua
+UI\Components\EnabledState.lua
+UI\Components\Parent.lua
+UI\Components\PriorityRank.lua
+UI\Components\VisibleState.lua
+
+
+
+# ---------------------------
+# |	     UI\Factories		|
+# ---------------------------
+UI\Factories\FontString.lua
+UI\Factories\Frame.lua
+UI\Factories\Texture.lua
+
+UI\Factories\Cooldown.lua
+UI\Factories\Group.lua
+UI\Factories\Icon.lua
+
+
+
+# ---------------------------
+# |	      UI\Objects     	|
+# ---------------------------
+UI\Objects\UIParentGroup.lua
+
+UI\Objects\HUD\HUDGroup.lua
+
+
+# --- HUD: Active ---
+UI\Objects\HUD\Active\ActiveModule.lua
+UI\Objects\HUD\Active\Dispersion.lua
+UI\Objects\HUD\Active\HeroLust.lua
+UI\Objects\HUD\Active\Mindbender.lua
+UI\Objects\HUD\Active\Psyfiend.lua
+UI\Objects\HUD\Active\Sephuz.lua
+UI\Objects\HUD\Active\ShadowFiend.lua
+UI\Objects\HUD\Active\SurrenderToMadness.lua
+UI\Objects\HUD\Active\Voidform.lua
+
+
+# --- HUD: Primary ---
+UI\Objects\HUD\Primary\DarkAscension.lua
+UI\Objects\HUD\Primary\DarkVoid.lua
+UI\Objects\HUD\Primary\Mindbender.lua
+UI\Objects\HUD\Primary\MindBlast.lua
+UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\PrimaryModule.lua
+UI\Objects\HUD\Primary\Psyfiend.lua
+UI\Objects\HUD\Primary\ShadowCrash.lua
+UI\Objects\HUD\Primary\Shadowfiend.lua
+UI\Objects\HUD\Primary\ShadowWordDeath.lua
+UI\Objects\HUD\Primary\ShadowWordPain.lua
+UI\Objects\HUD\Primary\ShadowWordVoid.lua
+UI\Objects\HUD\Primary\VampiricTouch.lua
+UI\Objects\HUD\Primary\VoidBolt.lua
+UI\Objects\HUD\Primary\VoidEruption.lua
+UI\Objects\HUD\Primary\VoidTorrent.lua
+
+
+
+# ---------------------------
+# |			FINAL			|
+# ---------------------------
+Initializer.lua

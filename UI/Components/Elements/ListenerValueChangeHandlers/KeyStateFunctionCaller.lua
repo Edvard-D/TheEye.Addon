@@ -1,0 +1,64 @@
+TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
+
+local IntegerKeyStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState.Setup
+local StateBasedIntChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger.Setup
+
+
+--[[ #this#TEMPLATE#
+{
+    #inherited#TEMPLATE#
+    ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState#TEMPLATE#
+    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger#TEMPLATE#
+}
+]]
+
+
+--[[ SETUP
+    instance
+    uiObject                    UIObject
+    onValidKey                  function()
+    onInvalidKey                function()
+]]
+function this.Setup(
+    instance,
+    uiObject,
+    onValidKey,
+    onInvalidKey
+)
+    
+    IntegerKeyStateSetup(
+        instance.ValueHandler,
+        uiObject,
+        instance
+    )
+
+    if instance.ListenerGroup ~= nil then
+        StateBasedIntChangerSetup(
+            instance.ListenerGroup,
+            uiObject,
+            instance.ValueHandler
+        )
+    end
+
+    inherited.Setup(
+        instance,
+        uiObject,
+        instance.ValueHandler,
+        instance.ListenerGroup
+    )
+
+    instance.OnValidKey = onValidKey
+    instance.OnInvalidKey = onInvalidKey
+    
+    instance.OnStateChange = this.OnStateChange
+end
+
+function this:OnStateChange(state)
+    if state == true then
+        self:OnValidKey()
+    else
+        self:OnInvalidKey()
+    end
+end
