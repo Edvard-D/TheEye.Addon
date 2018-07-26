@@ -8,3 +8,31 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
     #inherited#TEMPLATE#
 }
 ]]
+
+
+--[[ #SETUP#
+    instance
+    uiObject                    UIObject
+    valueChangeListener         { function #valueChangeFunctionName#(#VALUE#) }
+    valueChangeFunctionName     #STRING#
+]]
+function this.Setup(
+    instance,
+    uiObject,
+    valueChangeListener,
+    valueChangeFunctionName
+)
+
+    inherited.Setup(
+        instance,
+        uiObject,
+        nil,
+        nil,
+        nil,
+        this.OnValueChange, -- @TODO
+        false
+    )
+
+    instance.ValueChangeListener = valueChangeListener
+    instance.valueChangeFunctionName = valueChangeFunctionName
+end
