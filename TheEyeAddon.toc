@@ -133,6 +133,7 @@ UI\Components\Elements\ValueHandlers\KeyState.lua
 UI\Components\Elements\ValueHandlers\SimpleState.lua
 UI\Components\Elements\ValueHandlers\SortRank.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
+UI\Components\Elements\ValueHandlers\ValueChangeNotifiers\Base.lua
 
 UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
 UI\Components\Elements\ValueHandlers\SortedTable.lua
