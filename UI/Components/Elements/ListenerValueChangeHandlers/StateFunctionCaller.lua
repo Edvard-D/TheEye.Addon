@@ -2,7 +2,7 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCall
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
-local StateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifiers.State.Setup
+local ValueChangeNotifierSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifier.Setup
 local ValueSetterSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter.Setup
 
 
@@ -31,10 +31,11 @@ function this.Setup(
 )
 
     instance.ValueHandler = {}
-    StateSetup(
+    ValueChangeNotifierSetup(
         instance.ValueHandler,
         uiObject,
-        instance
+        instance,
+        "OnStateChange"
     )
 
     instance.ListenerGroup =

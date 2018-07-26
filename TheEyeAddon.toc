@@ -132,12 +132,10 @@ UI\Components\Elements\ValueHandlers\Base.lua
 UI\Components\Elements\ValueHandlers\KeyState.lua
 UI\Components\Elements\ValueHandlers\SortRank.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
-UI\Components\Elements\ValueHandlers\ValueChangeNotifiers\Base.lua
+UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
 
 UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
 UI\Components\Elements\ValueHandlers\SortedTable.lua
-UI\Components\Elements\ValueHandlers\ValueChangeNotifiers\Number.lua
-UI\Components\Elements\ValueHandlers\ValueChangeNotifiers\State.lua
 
 
 # --- Listeners ---
