@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifiers.Base = {}
-local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifiers.Base
+TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifier = {}
+local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifier
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 
