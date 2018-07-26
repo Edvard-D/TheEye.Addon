@@ -3,14 +3,18 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Dyna
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
 
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
-local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
+local ValueChangeNotifierSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifier.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
     ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueChanger#TEMPLATE#
-    ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank#TEMPLATE#
+    ValueHandler =
+    {
+        #TheEyeAddon.UI.Components.Elements.ValueHandlers.ValueChangeNotifier#TEMPLATE#
+        defaultValue = #NUMBER#
+    }
 }
 ]]
 
@@ -25,11 +29,12 @@ function this.Setup(
 )
 
     instance.OnSortRankChange = this.OnSortRankChange
-
-    SortRankSetup(
+    ValueChangeNotifierSetup(
         instance.ValueHandler,
         uiObject,
-        instance.OnSortRankChange
+        instance,
+        "OnSortRankChange",
+        instance.ValueHandler.defaultValue
     )
 
     inherited.Setup(
