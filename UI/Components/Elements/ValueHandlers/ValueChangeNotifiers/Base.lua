@@ -29,10 +29,14 @@ function this.Setup(
         nil,
         nil,
         nil,
-        this.OnValueChange, -- @TODO
+        this.OnValueChange,
         false
     )
 
     instance.ValueChangeListener = valueChangeListener
     instance.valueChangeFunctionName = valueChangeFunctionName
+end
+
+function this:OnValueChange(value)
+    self.ValueChangeListener[self.valueChangeFunctionName](self.ValueChangeListener, value)
 end
