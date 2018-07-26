@@ -35,7 +35,8 @@ function this.Setup(
         instance.ValueHandler,
         uiObject,
         instance,
-        "OnStateChange"
+        "OnStateChange",
+        false
     )
 
     instance.ListenerGroup =
