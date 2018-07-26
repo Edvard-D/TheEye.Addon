@@ -80,15 +80,15 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event)
+    local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
+    
     if event == "SPELL_CAST_SUCCESS" then
         TimerStart(inputGroup, initialTimerLength)
-    else
-        local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
-    
-        if inputGroup.currentValue ~= remainingTime then
-            TimerStart(inputGroup, remainingTime)
-            inputGroup.currentValue = remainingTime
-            return true, this.name, remainingTime
-        end
+    end
+
+    if inputGroup.currentValue ~= remainingTime then
+        TimerStart(inputGroup, remainingTime)
+        inputGroup.currentValue = remainingTime
+        return true, this.name, remainingTime
     end
 end
