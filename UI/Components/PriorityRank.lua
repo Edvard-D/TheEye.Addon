@@ -2,7 +2,7 @@ TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
 
 local DynamicSortRankSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank.Setup
-local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.Setup
+local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.StaticValue.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -22,7 +22,7 @@ local SortRankSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank.
 {
     #this#TEMPLATE#
     {
-        ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.SortRank#TEMPLATE#
+        ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.StaticValue#TEMPLATE#
     }
 }
 ]]
@@ -43,10 +43,9 @@ function this.Setup(
             uiObject
         )
     else
-        SortRankSetup(
+        StaticValueSetup(
             instance.ValueHandler,
-            uiObject,
-            nil
+            uiObject
         )
     end
 end
