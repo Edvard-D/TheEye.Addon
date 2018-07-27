@@ -166,6 +166,10 @@ UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lu
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
+# --- Other ---
+UI\Components\Elements\Frame.lua
+
+
 
 # ---------------------------
 # |	     UI\Factories		|
