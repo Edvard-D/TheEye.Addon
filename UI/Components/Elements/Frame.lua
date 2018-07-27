@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.Frame = {}
-local this = TheEyeAddon.UI.Components.Frame
+TheEyeAddon.UI.Components.Elements.Frame = {}
+local this = TheEyeAddon.UI.Components.Elements.Frame
 
 
 --[[ #this#TEMPLATE#
