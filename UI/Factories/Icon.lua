@@ -4,6 +4,7 @@ local this = TheEyeAddon.UI.Factories.Icon
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
 local Pool = TheEyeAddon.UI.Pools:Create()
+local select = select
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 
 
@@ -19,7 +20,7 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 			return
 		end
 	elseif iconObjectType == "ITEM" then
-		local _, _, _, _, _, _, _, _, _, fileID = GetItemInfo(iconObjectID)
+		local fileID = select(10, GetItemInfo(iconObjectID))
 		if fileID == nil then
 			error("Could not find an item with an ID of " ..
 			tostring(iconObjectID) ..
