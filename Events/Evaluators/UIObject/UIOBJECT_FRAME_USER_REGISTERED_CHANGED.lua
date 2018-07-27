@@ -21,11 +21,11 @@ function this:GetKey(event, uiObject)
     return uiObject.key
 end
 
-function this:Evaluate(inputGroup, event, uiObject, userName)
+function this:Evaluate(inputGroup, event)
     isRegistered = false
     if event == "UIOBJECT_FRAME_USER_REGISTERED" then
         isRegistered = true
     end
     
-    return true, this.name, isRegistered, userName
+    return true, this.name, isRegistered
 end
