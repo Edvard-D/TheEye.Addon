@@ -37,7 +37,7 @@ function this:Claim(uiObject, frameType, template, dimensionTemplate)
 	return instance
 end
 
-function this:Create()
+function this.Create()
 	local instance = { Claim = this.Claim, Instances = {} }
     table.insert(this, instance)
     return instance

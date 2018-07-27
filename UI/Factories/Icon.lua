@@ -3,7 +3,7 @@ local this = TheEyeAddon.UI.Factories.Icon
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
-local Pool = TheEyeAddon.UI.Pools:Create()
+local Pool = TheEyeAddon.UI.Pools.Create()
 local select = select
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 

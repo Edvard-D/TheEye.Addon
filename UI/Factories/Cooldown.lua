@@ -1,7 +1,7 @@
 TheEyeAddon.UI.Factories.Cooldown = {}
 local this = TheEyeAddon.UI.Factories.Cooldown
 
-local Pool = TheEyeAddon.UI.Pools:Create()
+local Pool = TheEyeAddon.UI.Pools.Create()
 
 
 function this.Claim(uiObject, displayData, start, duration)
