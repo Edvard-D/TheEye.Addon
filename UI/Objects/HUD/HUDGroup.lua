@@ -32,7 +32,6 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     Group =
     {
-        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
         DisplayData =
         {
             DimensionTemplate =
@@ -45,6 +44,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 }
             },
         },
+        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
     },
     VisibleState =
     {

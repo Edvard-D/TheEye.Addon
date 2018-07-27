@@ -40,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
     },
