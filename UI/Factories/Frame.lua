@@ -6,15 +6,8 @@ local minSize = 0.0001
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
-function this.Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
-	local parentFrame = UIParent
-	if dimensionTemplate ~= nil
-		and dimensionTemplate.PointSettings ~= nil
-		and dimensionTemplate.PointSettings.parentFrame ~= nil
-		then
-		parentFrame = dimensionTemplate.PointSettings.parentFrame
-	end
-	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
+function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensionTemplate)
+	local instance = CreateFrame(frameType, nil, parentFrame or UIParent, inheritsFrom)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
@@ -29,7 +22,7 @@ function this.SetDimensions(frame, dimensionTemplate)
 		if dimensionTemplate.PointSettings ~= nil then
 			frame:SetPoint(
 				dimensionTemplate.PointSettings.point,
-				dimensionTemplate.PointSettings.parentFrame or UIParent,
+				frame:GetParent(),
 				dimensionTemplate.PointSettings.relativePoint,
 				dimensionTemplate.PointSettings.offsetX or 0,
 				dimensionTemplate.PointSettings.offsetY or 0)

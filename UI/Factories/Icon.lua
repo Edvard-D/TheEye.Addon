@@ -40,8 +40,8 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function this.Claim(uiObject, displayData)
-	local instance = Pool:Claim(uiObject, "Frame", nil, displayData.DimensionTemplate)
+function this.Claim(uiObject, parentFrame, displayData)
+	local instance = Pool:Claim(uiObject, "Frame", parentFrame, nil, displayData.DimensionTemplate)
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
 	instance.texture = TextureCreate(instance.texture, instance, "BACKGROUND", iconTextureFileID)
