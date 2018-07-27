@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.Group = {}
 local this = TheEyeAddon.UI.Components.Group
-local inherited = TheEyeAddon.UI.Components.Frame
+local inherited = TheEyeAddon.UI.Components.Elements.Frame
 
 local GroupFactory = TheEyeAddon.UI.Factories.Group
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup

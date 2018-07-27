@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.Icon = {}
 local this = TheEyeAddon.UI.Components.Icon
-local inherited = TheEyeAddon.UI.Components.Frame
+local inherited = TheEyeAddon.UI.Components.Elements.Frame
 
 local IconFactory = TheEyeAddon.UI.Factories.Icon
 
