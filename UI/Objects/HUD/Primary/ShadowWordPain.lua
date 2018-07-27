@@ -8,13 +8,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
-    },
     -- @TODO cooldown showing remaining time
     EnabledState =
     {
@@ -37,6 +30,15 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
             },
+        },
+    },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
         },
     },
     PriorityRank =
