@@ -16,6 +16,7 @@ local table = table
 }
 ]]
 
+
 this.customEvents =
 {
     "UNIT_SPELLCAST_TIMER_END",

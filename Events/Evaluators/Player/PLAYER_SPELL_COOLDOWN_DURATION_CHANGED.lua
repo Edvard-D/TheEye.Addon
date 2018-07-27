@@ -19,6 +19,7 @@ local initialTimerLength = 0.01
 }
 ]]
 
+
 this.customEvents =
 {
     "SPELL_COOLDOWN_TIMER_END"
@@ -27,6 +28,7 @@ local combatLogEvents =
 {
     "SPELL_CAST_SUCCESS",
 }
+
 
 function this:SetupListeningTo(inputGroup)
     for i = 1, #combatLogEvents do

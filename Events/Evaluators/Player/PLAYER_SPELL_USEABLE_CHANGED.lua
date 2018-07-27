@@ -11,6 +11,7 @@ local IsUsableSpell = IsUsableSpell
 }
 ]]
 
+
 this.reevaluateEvents =
 {
     SPELL_UPDATE_USABLE = true,
@@ -19,6 +20,7 @@ this.gameEvents =
 {
     "SPELL_UPDATE_USABLE",
 }
+
 
 local function CalculateCurrentValue(inputValues)
     return IsUsableSpell(inputValues[1])
