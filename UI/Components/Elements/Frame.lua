@@ -40,6 +40,7 @@ function this.Setup(
     instance.Factory = factory
 
     instance.OnUserRegisteredChanged = this.OnUserRegisteredChanged
+    instance.userCount = 0
 
     -- NotifyBasedFunctionCaller
     instance.NotifyBasedFunctionCaller =
@@ -62,22 +63,16 @@ function this.Setup(
     instance.NotifyBasedFunctionCaller:Activate()
 end
 
-local function UserRegister(self, userName)
-    if self.Users == nil then
-        self.Users = { userCount = 0 }
-    end
-
-    table.insert(self.Users, user)
-    self.Users.userCount = self.Users.userCount + 1
-    if self.Users.userCount == 1 then
+local function UserRegister(self)
+    self.userCount = self.userCount + 1
+    if self.userCount == 1 then
         self.UIObject.frame = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
     end
 end
 
-local function UserDeregister(self, userName)
-    table.removevalue(self.Users, user)
-    self.Users.userCount = self.Users.userCount - 1
-    if self.Users.userCount == 0 then
+local function UserDeregister(self)
+    self.userCount = self.userCount - 1
+    if self.userCount == 0 then
         self.UIObject.frame:Release()
         self.UIObject.frame = nil
     end
