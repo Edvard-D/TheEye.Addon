@@ -190,6 +190,7 @@ UI\Factories\Icon.lua
 UI\Components\Child.lua
 UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
+UI\Components\Icon.lua
 UI\Components\Parent.lua
 UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
