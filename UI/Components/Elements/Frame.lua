@@ -80,10 +80,10 @@ local function UserDeregister(self)
     end
 end
 
-function this:OnUserRegisteredChanged(isRegistered, userName)
+function this:OnUserRegisteredChanged(event, isRegistered)
     if isRegistered == true then
-        UserRegister(self, userName)
+        UserRegister(self)
     else
-        UserDeregister(self, userName)
+        UserDeregister(self)
     end
 end
