@@ -11,18 +11,18 @@ function this.Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
-	this.SetDimensions(instance, UIParent, dimensionTemplate)
+	this.SetDimensions(instance, dimensionTemplate)
 
 	return instance
 end
 
-function this.SetDimensions(frame, parentFrame, dimensionTemplate)
+function this.SetDimensions(frame, dimensionTemplate)
 	if dimensionTemplate ~= nil then
 		frame:SetSize(dimensionTemplate.width or minSize, dimensionTemplate.height or minSize)
 		if dimensionTemplate.PointSettings ~= nil then
 			frame:SetPoint(
 				dimensionTemplate.PointSettings.point,
-				parentFrame,
+				dimensionTemplate.PointSettings.parentFrame or UIParent,
 				dimensionTemplate.PointSettings.relativePoint,
 				dimensionTemplate.PointSettings.offsetX or 0,
 				dimensionTemplate.PointSettings.offsetY or 0)
