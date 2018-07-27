@@ -4,9 +4,9 @@ local this = TheEyeAddon.UI.Components.Elements.Frame
 
 --[[ #this#TEMPLATE#
 {
-    DisplayData =
+    #OPTIONAL#DisplayData =
     {
-        DimensionTemplate =
+        #OPTIONAL#DimensionTemplate =
         {
             #OPTIONAL#PointSettings =
             {
@@ -18,8 +18,6 @@ local this = TheEyeAddon.UI.Components.Elements.Frame
             #OPTIONAL#width = #NUMBER#
             #OPTIONAL#height = #NUMBER#
         }
-        iconObjectType = 
-        iconObjectID = 
     }
 }
 ]]
