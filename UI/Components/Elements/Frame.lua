@@ -1,6 +1,8 @@
 TheEyeAddon.UI.Components.Elements.Frame = {}
 local this = TheEyeAddon.UI.Components.Elements.Frame
 
+local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+
 
 --[[ #this#TEMPLATE#
 {
