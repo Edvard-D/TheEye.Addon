@@ -66,11 +66,9 @@ end
 function this:Show()
     --print ("SHOW    " .. self.UIObject.key) -- DEBUG
     SendCustomEvent("UIOBJECT_FRAME_USER_REGISTERED", self.UIObject)
-    SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
 
 function this:Hide()
     --print ("HIDE    " .. self.UIObject.key) -- DEBUG
     SendCustomEvent("UIOBJECT_FRAME_USER_DEREGISTERED", self.UIObject)
-    SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
 end
