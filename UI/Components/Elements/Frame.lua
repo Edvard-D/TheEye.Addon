@@ -2,6 +2,7 @@ TheEyeAddon.UI.Components.Elements.Frame = {}
 local this = TheEyeAddon.UI.Components.Elements.Frame
 
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
