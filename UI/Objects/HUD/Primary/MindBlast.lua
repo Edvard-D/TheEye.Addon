@@ -8,7 +8,19 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    -- @TODO cooldown
+    Cooldown =
+    {
+        Listener =
+        {
+            eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+            inputValues = { --[[spellID]] spellID },
+            comparisonValues =
+            {
+                value = TheEyeAddon.Values.cooldownEndAlertLength,
+                type = "LessThan"
+            },
+        }
+    },
     -- @TODO show charges
     EnabledState =
     {
@@ -54,7 +66,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [4] = true, [6] = true, [10] = true, [14] = true,  },
+            validKeys = { [4] = true, [6] = true, [10] = true, [14] = true, },
         },
         ListenerGroup =
         {
