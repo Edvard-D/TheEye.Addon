@@ -42,6 +42,8 @@ function this.Setup(
     instance.OnUserRegisteredChanged = this.OnUserRegisteredChanged
     instance.userCount = 0
 
+    uiObject.DisplayData = instance.DisplayData
+
     -- NotifyBasedFunctionCaller
     instance.NotifyBasedFunctionCaller =
     {
