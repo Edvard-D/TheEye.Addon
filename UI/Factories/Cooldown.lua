@@ -5,6 +5,10 @@ local Pool = TheEyeAddon.UI.Pools.Create()
 
 
 function this.Claim(uiObject, displayData)
-	local instance = Pool:Claim(uiObject, "Cooldown", "CooldownFrameTemplate", displayData)	
+	local dimensionTemplate = nil
+	if displayData ~= nil then
+		dimensionTemplate = displayData.DimensionTemplate
+	end
+	local instance = Pool:Claim(uiObject, "Cooldown", parentFrame, "CooldownFrameTemplate", dimensionTemplate)	
 	return instance
 end
