@@ -1,8 +1,10 @@
 TheEyeAddon.UI.Factories.Icon = {}
+local this = TheEyeAddon.UI.Factories.Icon
 
 local GetItemInfo = GetItemInfo
 local GetSpellTexture = GetSpellTexture
 local Pool = TheEyeAddon.UI.Pools:Create()
+local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 
 
 local function GetIconTextureFileID(iconObjectType, iconObjectID)
@@ -37,11 +39,11 @@ local function GetIconTextureFileID(iconObjectType, iconObjectID)
 end
 
 
-function TheEyeAddon.UI.Factories.Icon:Claim(uiObject, displayData)
+function this.Claim(uiObject, displayData)
 	local instance = Pool:Claim(uiObject, "Frame", nil, displayData.DimensionTemplate)
 
 	local iconTextureFileID = GetIconTextureFileID(displayData.iconObjectType, displayData.iconObjectID)
-	instance.texture = TheEyeAddon.UI.Factories.Texture:Create(instance.texture, instance, "BACKGROUND", iconTextureFileID)
+	instance.texture = TextureCreate(instance.texture, instance, "BACKGROUND", iconTextureFileID)
 	
 	return instance
 end

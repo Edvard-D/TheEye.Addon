@@ -6,7 +6,7 @@ local minSize = 0.0001
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
-function this:Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
+function this.Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
 	local instance = CreateFrame(frameType, nil, UIParent, inheritsFrom)
 
 	instance.UIObject = uiObject

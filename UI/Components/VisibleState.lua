@@ -66,7 +66,7 @@ end
 
 function this:Show()
     --print ("SHOW    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Frame = self.UIObject.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
+    self.UIObject.Frame = self.UIObject.DisplayData.factory.Claim(self.UIObject, self.UIObject.DisplayData)
     SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
 
