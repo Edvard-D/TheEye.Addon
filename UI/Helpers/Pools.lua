@@ -26,7 +26,7 @@ function this:Claim(uiObject, frameType, template, dimensionTemplate)
 		instance.UIObject = uiObject
 		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, dimensionTemplate)
 	else
-		instance = TheEyeAddon.UI.Factories.Frame:Create(uiObject, "Frame", nil, dimensionTemplate)
+		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, "Frame", nil, dimensionTemplate)
 		instance.Release = this.Release
 		table.insert(self.Instances, instance)
 	end
