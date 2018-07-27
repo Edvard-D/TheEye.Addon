@@ -7,10 +7,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Group,
-    },
     EnabledState =
     {
         ValueHandler =
@@ -34,9 +30,9 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
-    Parent =
+    Group =
     {
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
     },

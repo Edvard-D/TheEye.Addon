@@ -7,18 +7,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Group,
-        DimensionTemplate =
-        {
-            PointSettings =
-            {
-                point = "TOP",
-                relativePoint = "TOP",
-            },
-        },
-    },
     EnabledState =
     {
         ValueHandler =
@@ -44,6 +32,17 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     Parent =
     {
+        DisplayData =
+        {
+            DimensionTemplate =
+            {
+                PointSettings =
+                {
+                    point = "TOP",
+                    relativePoint = "TOP",
+                },
+            },
+        },
         ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",

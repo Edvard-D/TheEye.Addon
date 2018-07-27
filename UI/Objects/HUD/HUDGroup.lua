@@ -7,19 +7,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Group,
-        DimensionTemplate =
-        {
-            PointSettings =
-            {
-                point = "TOP",
-                relativePoint = "CENTER",
-                offsetY = -75,
-            }
-        },
-    },
     EnabledState =
     {
         ValueHandler =
@@ -43,9 +30,21 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
-    Parent =
+    Group =
     {
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        DisplayData =
+        {
+            DimensionTemplate =
+            {
+                PointSettings =
+                {
+                    point = "TOP",
+                    relativePoint = "CENTER",
+                    offsetY = -75,
+                }
+            },
+        },
     },
     VisibleState =
     {
