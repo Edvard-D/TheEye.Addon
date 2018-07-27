@@ -69,6 +69,7 @@ local function UserRegister(self)
     self.userCount = self.userCount + 1
     if self.userCount == 1 then
         self.UIObject.frame = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
+        SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
     end
 end
 
@@ -77,6 +78,7 @@ local function UserDeregister(self)
     if self.userCount == 0 then
         self.UIObject.frame:Release()
         self.UIObject.frame = nil
+        SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
     end
 end
 
