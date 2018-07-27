@@ -11,7 +11,7 @@ function this:Release()
 	self.UIObject = nil
 end
 
-function this:Claim(uiObject, frameType, parentFrame, template, dimensionTemplate)
+function this:Claim(uiObject, frameType, parentFrame, template, displayData)
 	local instance = nil
 	for i=1, #self.Instances do
 		local frame = self.Instances[i]
@@ -21,6 +21,11 @@ function this:Claim(uiObject, frameType, parentFrame, template, dimensionTemplat
 		end
 	end
 	
+	local dimensionTemplate
+	if displayData ~= nil then
+		dimensionTemplate = displayData.DimensionTemplate
+	end
+
 	if instance ~= nil then
 		instance:SetParent(parentFrame or UIParent)
 		instance.UIObject = uiObject
