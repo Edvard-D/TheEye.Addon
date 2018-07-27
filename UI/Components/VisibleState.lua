@@ -65,13 +65,13 @@ end
 
 function this:Show()
     --print ("SHOW    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Frame = self.UIObject.DisplayData.factory.Claim(self.UIObject, nil, self.UIObject.DisplayData)
+    self.UIObject.frame = self.UIObject.DisplayData.factory.Claim(self.UIObject, nil, self.UIObject.DisplayData)
     SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
 end
 
 function this:Hide()
     --print ("HIDE    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Frame:Release()
-    self.UIObject.Frame = nil
+    self.UIObject.frame:Release()
+    self.UIObject.frame = nil
     SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
 end

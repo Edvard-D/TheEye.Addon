@@ -130,7 +130,7 @@ local function SizeCalculate(childUIObjects)
 end
 
 function this:DisplayUpdate()
-    local frame = self.UIObject.Frame
+    local frame = self.UIObject.frame
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
