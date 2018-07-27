@@ -7,7 +7,14 @@ local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
 function this.Create(uiObject, frameType, inheritsFrom, dimensionTemplate)
-	local instance = CreateFrame(frameType, nil, UIParent, inheritsFrom)
+	local parentFrame = UIParent
+	if dimensionTemplate ~= nil
+		and dimensionTemplate.PointSettings ~= nil
+		and dimensionTemplate.PointSettings.parentFrame ~= nil
+		then
+		parentFrame = dimensionTemplate.PointSettings.parentFrame
+	end
+	local instance = CreateFrame(frameType, nil, parentFrame, inheritsFrom)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
