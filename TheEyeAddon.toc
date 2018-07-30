@@ -41,17 +41,23 @@ Namespaces.lua
 
 Auras.lua
 Comparisons.lua
-DefaultSettings.lua
 Events\Coordinator.lua
 GarbageCollector.lua
 TableHelpers.lua
 Tags.lua
 TypeHelpers.lua
 UI\Fonts\Templates.lua
-Values.lua
 
-AuraFilters.lua
 Timers.lua
+
+
+
+# ---------------------------
+# |	        Values         	|
+# ---------------------------
+Values\AuraFilters.lua
+Values\DefaultSettings.lua
+Values\Values.lua
 
 
 
