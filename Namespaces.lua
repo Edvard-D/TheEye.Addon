@@ -27,4 +27,5 @@ TheEyeAddon =
             Instances = {},
         },
     },
+    Values = {}
 }

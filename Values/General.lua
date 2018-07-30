@@ -1,4 +1,3 @@
-TheEyeAddon.Values = {}
 local this = TheEyeAddon.Values
 
 

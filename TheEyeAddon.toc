@@ -57,7 +57,7 @@ Timers.lua
 # ---------------------------
 Values\AuraFilters.lua
 Values\DefaultSettings.lua
-Values\Values.lua
+Values\General.lua
 
 
 
