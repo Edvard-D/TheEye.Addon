@@ -1,5 +1,5 @@
-TheEyeAddon.Comparisons = {}
-this = TheEyeAddon.Comparisons
+TheEyeAddon.Helpers.Comparisons = {}
+this = TheEyeAddon.Helpers.Comparisons
 
 
 function this.EqualTo(value, comparisonValues)

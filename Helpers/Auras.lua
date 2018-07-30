@@ -1,5 +1,5 @@
-TheEyeAddon.Auras = {}
-local this = TheEyeAddon.Auras
+TheEyeAddon.Helpers.Auras = {}
+local this = TheEyeAddon.Helpers.Auras
 
 local auraFilters = TheEyeAddon.Values.auraFilters
 local select = select

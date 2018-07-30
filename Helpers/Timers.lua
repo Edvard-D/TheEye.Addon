@@ -1,5 +1,5 @@
-TheEyeAddon.Timers = {}
-local this = TheEyeAddon.Timers
+TheEyeAddon.Helpers.Timers = {}
+local this = TheEyeAddon.Helpers.Timers
 
 local After = C_Timer.After
 local math = math
@@ -22,8 +22,7 @@ local function NewDurationTimerGetLength(inputGroup, remainingTime)
         local listener = listeners[i]
         local comparisonValues = listener.comparisonValues
         if listener.isListening == true and comparisonValues ~= nil then
-            for i = 1, #comparisonValues do
-                local value = comparisonValues[i]
+            for k,value in pairs(comparisonValues) do
                 if type(value) == "number"
                     and value > nextUpdatePoint
                     and value < remainingTime
@@ -50,8 +49,7 @@ local function NewElapsedTimerGetLength(inputGroup, elapsedTime)
         local listener = listeners[i]
         local comparisonValues = listener.comparisonValues
         if listener.isListening == true and comparisonValues ~= nil then
-            for i = 1, #comparisonValues do
-                local value = comparisonValues[i]
+            for k,value in pairs(comparisonValues) do
                 if type(value) == "number"
                     and value < nextUpdatePoint
                     and value > elapsedTime

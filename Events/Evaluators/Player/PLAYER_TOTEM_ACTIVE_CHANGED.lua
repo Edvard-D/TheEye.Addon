@@ -2,7 +2,7 @@ TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED
 this.name = "PLAYER_TOTEM_ACTIVE_CHANGED"
 
-local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local GetTotemInfo = GetTotemInfo
 local select = select
 

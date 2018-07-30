@@ -35,20 +35,13 @@
 
 
 # ---------------------------
-# |			CORE			|
+# |			 CORE			|
 # ---------------------------
 Namespaces.lua
 
-Auras.lua
-Comparisons.lua
 Events\Coordinator.lua
 GarbageCollector.lua
-TableHelpers.lua
-Tags.lua
-TypeHelpers.lua
 UI\Fonts\Templates.lua
-
-Timers.lua
 
 
 
@@ -58,6 +51,18 @@ Timers.lua
 Values\AuraFilters.lua
 Values\DefaultSettings.lua
 Values\General.lua
+Helpers\TypeHelpers.lua
+
+
+
+# ---------------------------
+# |	        Helpers        	|
+# ---------------------------
+Helpers\Auras.lua
+Helpers\Comparisons.lua
+Helpers\TableHelpers.lua
+Helpers\Tags.lua
+Helpers\Timers.lua
 
 
 

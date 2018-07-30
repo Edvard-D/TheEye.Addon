@@ -4,7 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
 this.name = "UNIT_SPELLCAST_ACTIVE_CHANGED"
 
 local select = select
-local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local UnitChannelInfo = UnitChannelInfo

@@ -1,7 +1,7 @@
 TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
-local Comparisons = TheEyeAddon.Comparisons
+local Comparisons = TheEyeAddon.Helpers.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
 local Evaluators = TheEyeAddon.Events.Evaluators

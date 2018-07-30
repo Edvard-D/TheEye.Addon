@@ -5,9 +5,9 @@ this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
-local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
-local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local select = select
 local tostring = tostring
 local initialTimerLength = 0.01
