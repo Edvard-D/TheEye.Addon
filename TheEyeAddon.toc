@@ -51,7 +51,6 @@ UI\Fonts\Templates.lua
 Values\AuraFilters.lua
 Values\DefaultSettings.lua
 Values\General.lua
-Helpers\TypeHelpers.lua
 
 
 
