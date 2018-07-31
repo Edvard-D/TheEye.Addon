@@ -59,7 +59,7 @@ Values\General.lua
 # ---------------------------
 Helpers\Auras.lua
 Helpers\Comparisons.lua
-Helpers\TableHelpers.lua
+Helpers\Table.lua
 Helpers\Tags.lua
 Helpers\Timers.lua
 
