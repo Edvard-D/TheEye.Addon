@@ -15,6 +15,14 @@ function this.StartEventTimer(duration, eventName, ...)
     end)
 end
 
+local function ValueCalculate(value)
+    if type(value) == "function" then
+        value = value()
+    end
+
+    return value
+end
+
 local function NewDurationTimerGetLength(inputGroup, remainingTime)
     local nextUpdatePoint = 0
     local listeners = inputGroup.listeners
@@ -23,6 +31,7 @@ local function NewDurationTimerGetLength(inputGroup, remainingTime)
         local comparisonValues = listener.comparisonValues
         if listener.isListening == true and comparisonValues ~= nil then
             for k,value in pairs(comparisonValues) do
+                value = ValueCalculate(value)
                 if type(value) == "number"
                     and value > nextUpdatePoint
                     and value < remainingTime
@@ -50,6 +59,7 @@ local function NewElapsedTimerGetLength(inputGroup, elapsedTime)
         local comparisonValues = listener.comparisonValues
         if listener.isListening == true and comparisonValues ~= nil then
             for k,value in pairs(comparisonValues) do
+                value = ValueCalculate(value)
                 if type(value) == "number"
                     and value < nextUpdatePoint
                     and value > elapsedTime
