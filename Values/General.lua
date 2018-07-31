@@ -4,13 +4,14 @@ local this = TheEyeAddon.Values
 this.castStartHideDelay = 0.5
 this.cooldownEndAlertLength = 0.75
 
-function this.CooldownAlertLengthGet()
-    local cooldownEndAlertLength = select(2, GetSpellCooldown(61304)) -- GCD
-    if cooldownEndAlertLength == 0 then
-        cooldownEndAlertLength = 0.75
+function this.ReadySoonAlertLengthGet()
+    local readySoonAlertLength = 0.75
+    local gcdLength = 1.5 / ((UnitSpellHaste("player") / 100) + 1)
+    if gcdLength > readySoonAlertLength then
+        readySoonAlertLength = gcdLength
     end
 
-    return cooldownEndAlertLength
+    return readySoonAlertLength
 end
 
 this.screenSize =
