@@ -54,7 +54,7 @@ function this.Setup(
         instance,
         uiObject,
         this.OnValidKey,
-        this.OnInvalidKey -- @TODO
+        this.OnInvalidKey
     )
     
     -- EnabledStateFunctionCaller
@@ -95,4 +95,10 @@ function this:OnValidKey(state)
     end
     
     self.frame:SetCooldown(startTime, duration)
+end
+
+function this:OnInvalidKey(state)
+    SendCustomEvent("UIOBJECT_FRAME_USER_DEREGISTERED", self.UIObject)
+    self.frame:Release()
+    self.frame = nil
 end
