@@ -88,7 +88,7 @@ function this:OnValidKey(state)
     self.frame:SetDrawEdge(false)
 
     -- @REFACTOR This data should probably be passed by Event Evaluators
-    if auraFilters[instance.spellID] == nil then
+    if auraFilters[self.spellID] == nil then
         startTime, duration = GetSpellCooldown(self.spellID)
     else
         -- @TODO
