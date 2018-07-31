@@ -3,7 +3,10 @@ local this = TheEyeAddon.UI.Components.ReadySoonAlert
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local auraFilters = TheEyeAddon.Values.auraFilters
+local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+local GetSpellCooldown = GetSpellCooldown
+local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
@@ -50,7 +53,7 @@ function this.Setup(
     inherited.Setup(
         instance,
         uiObject,
-        this.OnValidKey, -- @TODO
+        this.OnValidKey,
         this.OnInvalidKey -- @TODO
     )
     
@@ -72,4 +75,24 @@ end
 
 function this:OnDisable()
     self:Deactivate()
+end
+
+function this:OnValidKey(state)
+    local startTime = 0
+    local duration = 0
+
+    SendCustomEvent("UIOBJECT_FRAME_USER_REGISTERED", self.UIObject)
+    self.frame = CooldownClaim(uiObject, self.UIObject.frame, nil)
+    self.frame:SetAllPoints()
+    self.frame:SetDrawBling(false)
+    self.frame:SetDrawEdge(false)
+
+    -- @REFACTOR This data should probably be passed by Event Evaluators
+    if auraFilters[instance.spellID] == nil then
+        startTime, duration = GetSpellCooldown(self.spellID)
+    else
+        -- @TODO
+    end
+    
+    self.frame:SetCooldown(startTime, duration)
 end
