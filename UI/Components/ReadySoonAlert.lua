@@ -55,7 +55,7 @@ function this.Setup(
     )
     
     -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable -- @TODO
+    instance.OnEnable = this.OnEnable
     instance.OnDisable = this.OnDisable -- @TODO
 
     instance.EnabledStateFunctionCaller = {}
@@ -64,4 +64,8 @@ function this.Setup(
         uiObject,
         instance
     )
+end
+
+function this:OnEnable()
+    self:Activate()
 end
