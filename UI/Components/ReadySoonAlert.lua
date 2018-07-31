@@ -56,7 +56,7 @@ function this.Setup(
     
     -- EnabledStateFunctionCaller
     instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable -- @TODO
+    instance.OnDisable = this.OnDisable
 
     instance.EnabledStateFunctionCaller = {}
     EnabledStateFunctionCallerSetup(
@@ -68,4 +68,8 @@ end
 
 function this:OnEnable()
     self:Activate()
+end
+
+function this:OnDisable()
+    self:Deactivate()
 end
