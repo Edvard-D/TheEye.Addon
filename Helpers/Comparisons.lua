@@ -31,3 +31,7 @@ end
 function this.LessThanEqualTo(value, comparisonValues)
     return value <= ValueGet(comparisonValues.value)
 end
+
+function this.Between(value, comparisonValues)
+    return value > ValueGet(comparisonValues.floor) and value < ValueGet(comparisonValues.ceiling)
+end
