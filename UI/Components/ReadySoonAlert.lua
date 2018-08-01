@@ -78,22 +78,11 @@ function this:OnDisable()
 end
 
 function this:OnValidKey(state)
-    local startTime = 0
-    local duration = 0
-
     SendCustomEvent("UIOBJECT_FRAME_USER_REGISTERED", self.UIObject)
     self.frame = CooldownClaim(uiObject, self.UIObject.frame, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
     self.frame:SetDrawEdge(false)
-
-    -- @REFACTOR This data should probably be passed by Event Evaluators
-    if auraFilters[self.spellID] == nil then
-        startTime, duration = GetSpellCooldown(self.spellID)
-    else
-        -- @TODO
-    end
-    
     self.frame:SetCooldown(GetTime(), TheEyeAddon.Values.ReadySoonAlertLengthGet())
 end
 
