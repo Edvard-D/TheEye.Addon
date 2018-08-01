@@ -94,7 +94,7 @@ function this:OnValidKey(state)
         -- @TODO
     end
     
-    self.frame:SetCooldown(startTime, duration)
+    self.frame:SetCooldown(GetTime(), TheEyeAddon.Values.ReadySoonAlertLengthGet())
 end
 
 function this:OnInvalidKey(state)
