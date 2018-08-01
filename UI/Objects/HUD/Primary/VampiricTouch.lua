@@ -8,7 +8,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    -- @TODO cooldown showing remaining time
     EnabledState =
     {
         ValueHandler =
@@ -43,6 +42,10 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             value = 11,
         },
+    },
+    ReadySoonAlert =
+    {
+        spellID = spellID
     },
     VisibleState =
     {

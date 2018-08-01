@@ -8,19 +8,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    Cooldown =
-    {
-        Listener =
-        {
-            eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-            inputValues = { --[[spellID]] spellID },
-            comparisonValues =
-            {
-                value = TheEyeAddon.Values.cooldownEndAlertLength,
-                type = "LessThan"
-            },
-        }
-    },
     -- @TODO show charges
     EnabledState =
     {
@@ -61,6 +48,10 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             value = 7,
         },
+    },
+    ReadySoonAlert =
+    {
+        spellID = spellID
     },
     VisibleState = -- @TODO possibly change so it's visible when there's one stack currently and the cooldown for two is about to end
     {
