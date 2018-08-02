@@ -79,6 +79,7 @@ end
 
 function this:OnValidKey(state)
     SendCustomEvent("UIOBJECT_FRAME_USER_REGISTERED", self.UIObject)
+    SendCustomEvent("UIOBJECT_READY_SOON_ALERT_SHOWN", self.UIObject)
     self.frame = CooldownClaim(uiObject, self.UIObject.frame, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
@@ -88,6 +89,7 @@ end
 
 function this:OnInvalidKey(state)
     SendCustomEvent("UIOBJECT_FRAME_USER_DEREGISTERED", self.UIObject)
+    SendCustomEvent("UIOBJECT_READY_SOON_ALERT_HIDDEN", self.UIObject)
     self.frame:Release()
     self.frame = nil
 end
