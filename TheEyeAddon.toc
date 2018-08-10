@@ -36,23 +36,33 @@
 
 
 # ---------------------------
-# |			CORE			|
+# |			 CORE			|
 # ---------------------------
 Namespaces.lua
 
-Auras.lua
-Comparisons.lua
-DefaultSettings.lua
 Events\Coordinator.lua
 GarbageCollector.lua
-TableHelpers.lua
-Tags.lua
-TypeHelpers.lua
 UI\Fonts\Templates.lua
-Values.lua
 
-AuraFilters.lua
-Timers.lua
+
+
+# ---------------------------
+# |	        Values         	|
+# ---------------------------
+Values\AuraFilters.lua
+Values\DefaultSettings.lua
+Values\General.lua
+
+
+
+# ---------------------------
+# |	        Helpers        	|
+# ---------------------------
+Helpers\Auras.lua
+Helpers\Comparisons.lua
+Helpers\Table.lua
+Helpers\Tags.lua
+Helpers\Timers.lua
 
 
 
@@ -85,8 +95,11 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_FRAME_USER_REGISTERED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_FRAME_VISIBLE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_READY_SOON_ALERT_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
@@ -131,9 +144,9 @@ UI\Helpers\Setup.lua
 UI\Components\Elements\ValueHandlers\Base.lua
 
 UI\Components\Elements\ValueHandlers\KeyState.lua
-UI\Components\Elements\ValueHandlers\SimpleState.lua
-UI\Components\Elements\ValueHandlers\SortRank.lua
+UI\Components\Elements\ValueHandlers\StaticValue.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
+UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
 
 UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
 UI\Components\Elements\ValueHandlers\SortedTable.lua
@@ -166,15 +179,8 @@ UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lu
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
-
-# ---------------------------
-# |	    UI\Components	    |
-# ---------------------------
-UI\Components\Child.lua
-UI\Components\EnabledState.lua
-UI\Components\Parent.lua
-UI\Components\PriorityRank.lua
-UI\Components\VisibleState.lua
+# --- Other ---
+UI\Components\Elements\Frame.lua
 
 
 
@@ -192,11 +198,24 @@ UI\Factories\Icon.lua
 
 
 # ---------------------------
+# |	    UI\Components	    |
+# ---------------------------
+UI\Components\Child.lua
+UI\Components\EnabledState.lua
+UI\Components\Group.lua
+UI\Components\Icon.lua
+UI\Components\PriorityRank.lua
+UI\Components\ReadySoonAlert.lua
+UI\Components\VisibleState.lua
+
+
+
+# ---------------------------
 # |	      UI\Objects     	|
 # ---------------------------
-UI\Objects\UIParentGroup.lua
-
 UI\Objects\HUD\HUDGroup.lua
+UI\Objects\HUD\HUDLeft.lua
+UI\Objects\UIParentGroup.lua
 
 
 # --- HUD: Active ---
@@ -209,6 +228,10 @@ UI\Objects\HUD\Active\Sephuz.lua
 UI\Objects\HUD\Active\ShadowFiend.lua
 UI\Objects\HUD\Active\SurrenderToMadness.lua
 UI\Objects\HUD\Active\Voidform.lua
+
+
+# --- HUD: Cooldown ---
+UI\Objects\HUD\Cooldown\CooldownModule.lua
 
 
 # --- HUD: Primary ---

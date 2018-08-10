@@ -1,16 +1,17 @@
 TheEyeAddon.UI.Pools = {}
+local this = TheEyeAddon.UI.Pools
 
 local table = table
 
 
-function TheEyeAddon.UI.Pools.Release(frame)
-	frame:Hide()
-	frame:SetParent(nil)
-	frame.isClaimed = false
-	frame.UIObject = nil
+function this:Release()
+	self:Hide()
+	self:SetParent(nil)
+	self.isClaimed = false
+	self.UIObject = nil
 end
 
-function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, template, dimensionTemplate)
+function this:Claim(uiObject, frameType, parentFrame, template, displayData)
 	local instance = nil
 	for i=1, #self.Instances do
 		local frame = self.Instances[i]
@@ -20,12 +21,18 @@ function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, template, dimensionTemp
 		end
 	end
 	
+	local dimensionTemplate
+	if displayData ~= nil then
+		dimensionTemplate = displayData.DimensionTemplate
+	end
+
 	if instance ~= nil then
-		instance:SetParent(UIParent)
+		instance:SetParent(parentFrame or UIParent)
 		instance.UIObject = uiObject
-		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, UIParent, dimensionTemplate)
+		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, dimensionTemplate)
 	else
-		instance = TheEyeAddon.UI.Factories.Frame:Create(uiObject, "Frame", nil, dimensionTemplate)
+		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, frameType, parentFrame, template, dimensionTemplate)
+		instance.Release = this.Release
 		table.insert(self.Instances, instance)
 	end
 
@@ -35,8 +42,8 @@ function TheEyeAddon.UI.Pools:Claim(uiObject, frameType, template, dimensionTemp
 	return instance
 end
 
-function TheEyeAddon.UI.Pools:Create()
-	local instance = { Claim = TheEyeAddon.UI.Pools.Claim, Instances = {} }
-    table.insert(TheEyeAddon.UI.Pools, instance)
+function this.Create()
+	local instance = { Claim = this.Claim, Instances = {} }
+    table.insert(this, instance)
     return instance
 end

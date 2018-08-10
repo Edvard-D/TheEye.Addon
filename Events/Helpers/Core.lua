@@ -1,7 +1,7 @@
 TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
-local Comparisons = TheEyeAddon.Comparisons
+local Comparisons = TheEyeAddon.Helpers.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
 local Evaluators = TheEyeAddon.Events.Evaluators
@@ -151,7 +151,7 @@ end
 
 -- Event Evaluation
 function this.Compare(comparisonValues, value)
-    return Comparisons[comparisonValues.type](value, comparisonValues.value)
+    return Comparisons[comparisonValues.type](value, comparisonValues)
 end
 
 local function ListenerNotifyAsComparison(inputGroup, listener, event)
@@ -162,28 +162,25 @@ local function ListenerNotifyAsComparison(inputGroup, listener, event)
     end
 end
 
-local function ListenersNotify(inputGroup, ...)
-    local listeners = inputGroup.listeners
-    for i = 1, #listeners do
-        local listener = listeners[i]
+local function ListenersNotify(inputGroup, shouldSend, ...)
+    if shouldSend == true then
+        local listeners = inputGroup.listeners
+        for i = 1, #listeners do
+            local listener = listeners[i]
 
-        if listener.isListening == true then
-            if listener.comparisonValues ~= nil then
-                ListenerNotifyAsComparison(inputGroup, listener, ...)
-            else
-                listener:Notify(...)
+            if listener.isListening == true then
+                if listener.comparisonValues ~= nil then
+                    ListenerNotifyAsComparison(inputGroup, listener, ...)
+                else
+                    listener:Notify(...)
+                end
             end
         end
     end
 end
 
 local function Evaluate(evaluator, inputGroup, event, ...)
-    local evaluatedValues = { evaluator:Evaluate(inputGroup, event, ...) }
-    local shouldSend = evaluatedValues[1]
-    if shouldSend == true then
-        table.remove(evaluatedValues, 1)
-        ListenersNotify(inputGroup, unpack(evaluatedValues))
-    end
+    ListenersNotify(inputGroup, evaluator:Evaluate(inputGroup, event, ...))
 end
 
 function this:Notify(...)

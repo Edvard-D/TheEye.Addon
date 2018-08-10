@@ -1,10 +1,7 @@
 -- Allowed filters: HELPFUL, HARMFUL, CANCELABLE, NOT_CANCELABLE
 -- All filters must have a space after them
 
-TheEyeAddon.Auras.Filters = {}
-
-
-TheEyeAddon.Auras.Filters.SpellID =
+TheEyeAddon.Values.auraFilters =
 {
     [589] = -- Shadow Word: Pain
     {

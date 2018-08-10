@@ -37,9 +37,9 @@ function this.Setup(
 end
 
 function this:OnShow()
-    UIObjectInstances[self.parentKey].Parent:ChildRegister(self.UIObject)
+    UIObjectInstances[self.parentKey].Group:ChildRegister(self.UIObject)
 end
 
 function this:OnHide()
-    UIObjectInstances[self.parentKey].Parent:ChildDeregister(self.UIObject)
+    UIObjectInstances[self.parentKey].Group:ChildDeregister(self.UIObject)
 end

@@ -1,8 +1,8 @@
-local parentKey = "GROUP_HUD_LEFT"
+local parentKey = "GROUP_HUD"
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "MODULE", "ACTIVE" },
+    tags = { "GROUP", "HUD", "LEFT" },
     Child =
     {
         parentKey = parentKey,
@@ -11,38 +11,38 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true },
+            validKeys = { [2] = true },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_MODULE_SETTING_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "#SELF#UIOBJECT#KEY#" },
-                    value = 2,
-                },
-                {
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
                     inputValues = { --[[uiObjectKey]] parentKey },
-                    value = 4,
+                    value = 2,
                 },
             },
         },
     },
     Group =
     {
+        DisplayData =
+        {
+            DimensionTemplate =
+            {
+                PointSettings =
+                {
+                    point = "TOPRIGHT",
+                    relativePoint = "TOP",
+                    offsetX = -32.5,
+                    offsetY = -5,
+                },
+            },
+        },
         childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
-    },
-    PriorityRank =
-    {
-        isDynamic = false,
-        ValueHandler =
-        {
-            value = 2,
-        },
     },
     VisibleState =
     {

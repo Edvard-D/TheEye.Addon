@@ -40,9 +40,9 @@ function this:SetValue(listener, ...)
 end
 
 function this:OnActivate()
-    self.ValueHandler:Reset()
+    self.ValueHandler:Activate()
 end
 
 function this:OnDeactivate()
-    self.ValueHandler:Reset()
+    self.ValueHandler:Deactivate()
 end

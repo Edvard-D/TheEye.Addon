@@ -4,7 +4,6 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
-local FrameRelease = TheEyeAddon.UI.Pools.Release
 
 
 --[[ #this#TEMPLATE#
@@ -66,13 +65,10 @@ end
 
 function this:Show()
     --print ("SHOW    " .. self.UIObject.key) -- DEBUG
-    self.UIObject.Frame = self.UIObject.DisplayData.factory:Claim(self.UIObject, self.UIObject.DisplayData)
-    SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
+    SendCustomEvent("UIOBJECT_FRAME_USER_REGISTERED", self.UIObject)
 end
 
 function this:Hide()
     --print ("HIDE    " .. self.UIObject.key) -- DEBUG
-    FrameRelease(self.UIObject.Frame)
-    self.UIObject.Frame = nil
-    SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
+    SendCustomEvent("UIOBJECT_FRAME_USER_DEREGISTERED", self.UIObject)
 end

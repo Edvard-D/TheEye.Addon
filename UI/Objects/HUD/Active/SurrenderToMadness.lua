@@ -9,13 +9,6 @@ TheEyeAddon.UI.Objects:FormatData(
         parentKey = parentKey,
     },
     -- @TODO Remaining time
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
-    },
     EnabledState =
     {
         ValueHandler =
@@ -34,12 +27,21 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
+        },
+    },
     PriorityRank =
     {
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 5,
+            value = 5,
         },
     },
     VisibleState =

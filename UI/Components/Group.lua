@@ -1,6 +1,8 @@
-TheEyeAddon.UI.Components.Parent = {}
-local this = TheEyeAddon.UI.Components.Parent
+TheEyeAddon.UI.Components.Group = {}
+local this = TheEyeAddon.UI.Components.Group
+local inherited = TheEyeAddon.UI.Components.Elements.Frame
 
+local GroupFactory = TheEyeAddon.UI.Factories.Group
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
@@ -10,8 +12,8 @@ local table = table
 
 --[[ #this#TEMPLATE#
 {
-    childTags = #ARRAY#TAG#
-    GroupArranger = TheEyeAddon.UI.Objects.GroupArrangers#NAME#
+    #inherited#TEMPLATE#
+    childArranger = TheEyeAddon.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
 }
@@ -27,7 +29,12 @@ function this.Setup(
     uiObject
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance,
+        uiObject,
+        GroupFactory
+    )
+
     instance.ChildDeregister = this.ChildDeregister
     instance.ChildRegister = this.ChildRegister
     instance.DisplayUpdate = this.DisplayUpdate
@@ -130,11 +137,11 @@ local function SizeCalculate(childUIObjects)
 end
 
 function this:DisplayUpdate()
-    local frame = self.UIObject.Frame
+    local frame = self.UIObject.frame
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-        self.ChildArranger.Arrange(frame, childUIObjects)
+        self.childArranger.Arrange(frame, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
 end

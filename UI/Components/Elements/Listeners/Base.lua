@@ -33,6 +33,13 @@ function this.Setup(
     instance.Notify = this.Notify
     instance.Register = this.Register
     instance.Deregister = this.Deregister
+
+    local inputValues = instance.inputValues
+    for i=1, #inputValues do
+        if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
+            inputValues[i] = uiObject.key
+        end
+    end
 end
 
 function this:Activate()

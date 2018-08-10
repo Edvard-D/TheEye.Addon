@@ -1,5 +1,5 @@
-TheEyeAddon.Timers = {}
-local this = TheEyeAddon.Timers
+TheEyeAddon.Helpers.Timers = {}
+local this = TheEyeAddon.Helpers.Timers
 
 local After = C_Timer.After
 local math = math
@@ -15,15 +15,29 @@ function this.StartEventTimer(duration, eventName, ...)
     end)
 end
 
+local function ValueCalculate(value)
+    if type(value) == "function" then
+        value = value()
+    end
+
+    return value
+end
+
 local function NewDurationTimerGetLength(inputGroup, remainingTime)
     local nextUpdatePoint = 0
     local listeners = inputGroup.listeners
     for i = 1, #listeners do
-        listener = listeners[i]
-        if listener.isListening == true and listener.comparisonValues ~= nil then
-            local value = listener.comparisonValues.value
-            if value > nextUpdatePoint and value < remainingTime then
-                nextUpdatePoint = value
+        local listener = listeners[i]
+        local comparisonValues = listener.comparisonValues
+        if listener.isListening == true and comparisonValues ~= nil then
+            for k,value in pairs(comparisonValues) do
+                value = ValueCalculate(value)
+                if type(value) == "number"
+                    and value > nextUpdatePoint
+                    and value < remainingTime
+                    then
+                    nextUpdatePoint = value
+                end
             end
         end
     end
@@ -41,11 +55,17 @@ local function NewElapsedTimerGetLength(inputGroup, elapsedTime)
     local nextUpdatePoint = math.huge
     local listeners = inputGroup.listeners
     for i = 1, #listeners do
-        listener = listeners[i]
-        if listener.isListening == true and listener.comparisonValues ~= nil then
-            local value = listener.comparisonValues.value
-            if value < nextUpdatePoint and value > elapsedTime then
-                nextUpdatePoint = value
+        local listener = listeners[i]
+        local comparisonValues = listener.comparisonValues
+        if listener.isListening == true and comparisonValues ~= nil then
+            for k,value in pairs(comparisonValues) do
+                value = ValueCalculate(value)
+                if type(value) == "number"
+                    and value < nextUpdatePoint
+                    and value > elapsedTime
+                    then
+                    nextUpdatePoint = value
+                end
             end
         end
     end

@@ -1,10 +1,9 @@
 TheEyeAddon.UI.Factories.Group = {}
+local this = TheEyeAddon.UI.Factories.Group
 
-local Pool = TheEyeAddon.UI.Pools:Create()
+local Pool = TheEyeAddon.UI.Pools.Create()
 
 
-function TheEyeAddon.UI.Factories.Group:Claim(uiObject, displayData)
-	local instance = Pool:Claim(uiObject, "Frame", nil, displayData.DimensionTemplate)
-	
-	return instance
+function this.Claim(uiObject, parentFrame, displayData)
+	return Pool:Claim(uiObject, "Frame", parentFrame, nil, displayData)
 end
