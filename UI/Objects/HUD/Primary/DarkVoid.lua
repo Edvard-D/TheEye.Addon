@@ -56,26 +56,16 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [4] = true, [6] = true, [8] = true, [14] = true },
+            validKeys = { },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
+                    eventEvaluatorKey = "UIOBJECT_READY_SOON_ALERT_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", },
                     value = 2,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 4,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
@@ -85,7 +75,22 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "EqualTo",
                     },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = TheEyeAddon.Values.castStartHideDelay,
+                        type = "LessThan"
+                    },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    value = 16,
                 },
             },
         },

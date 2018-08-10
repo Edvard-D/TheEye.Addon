@@ -57,29 +57,24 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [8] = true, [14] = true, [18] = true, [22] = true, [26] = true, [30] = true },
+            validKeys = { },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
-                    inputValues = { --[[unit]] "target", },
-                    comparisonValues =
-                    {
-                        value = 0.2,
-                        type = "LessThan",
-                    },
+                    eventEvaluatorKey = "UIOBJECT_READY_SOON_ALERT_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
                         value = 0,
-                        type = "GreaterThan",
+                        type = "EqualTo",
                     },
                     value = 4,
                 },
@@ -94,14 +89,24 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 8,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                    eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
+                    inputValues = { --[[unit]] "target", },
+                    comparisonValues =
+                    {
+                        value = 0.2,
+                        type = "LessThan",
+                    },
+                    value = 16,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
                         value = 0,
-                        type = "EqualTo",
+                        type = "GreaterThan",
                     },
-                    value = 16,
+                    value = 32,
                 },
             },
         },

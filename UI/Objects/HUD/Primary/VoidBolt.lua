@@ -12,7 +12,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, },
+            validKeys = { [6] = true, },
         },
         ListenerGroup =
         {
@@ -22,6 +22,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
                     inputValues = { --[[uiObjectKey]] parentKey, },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 4,
                 },
             },
         },
@@ -51,22 +56,12 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true, [10] = true, [12] = true, [14] = true },
+            validKeys = { [2] = true, [4] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
-                    value = 2,
-                },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID },
@@ -75,12 +70,17 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "EqualTo",
                     },
-                    value = 4,
+                    value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
-                    value = 8,
+                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = TheEyeAddon.Values.castStartHideDelay,
+                        type = "LessThan"
+                    },
+                    value = 4,
                 },
             },
         },

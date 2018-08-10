@@ -61,20 +61,15 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true },
+            validKeys = { },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
+                    eventEvaluatorKey = "UIOBJECT_READY_SOON_ALERT_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", },
                     value = 2,
                 },
                 {
@@ -86,6 +81,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "EqualTo",
                     },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = TheEyeAddon.Values.castStartHideDelay,
+                        type = "LessThan"
+                    },
+                    value = 8,
                 },
             },
         },
