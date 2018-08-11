@@ -201,6 +201,7 @@ UI\Factories\Icon.lua
 # |	    UI\Components	    |
 # ---------------------------
 UI\Components\Child.lua
+UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
 UI\Components\Group.lua
 UI\Components\Icon.lua
