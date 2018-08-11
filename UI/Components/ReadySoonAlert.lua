@@ -11,6 +11,7 @@ local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    spellID = #SPELL#ID#
 }
 ]]
 
