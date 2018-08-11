@@ -5,7 +5,6 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 local auraFilters = TheEyeAddon.Values.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-local GetSpellCooldown = GetSpellCooldown
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
