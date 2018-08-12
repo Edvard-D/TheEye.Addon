@@ -95,14 +95,8 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_COOLDOWN_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_FRAME_CLAIMED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_FRAME_USER_REGISTERED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_FRAME_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
@@ -179,7 +173,7 @@ UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\FrameClaimedStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\FrameModifier.lua
