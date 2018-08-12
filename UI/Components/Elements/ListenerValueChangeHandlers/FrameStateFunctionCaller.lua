@@ -30,6 +30,7 @@ function this.Setup(
         eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
         inputValues = { uiObject.key, "Frame" },
         priority = priority,
+        isInternal = true
     }
 
     inherited.Setup(

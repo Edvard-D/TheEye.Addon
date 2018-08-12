@@ -28,6 +28,7 @@ function this.Setup(
         eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
         inputValues = { uiObject.key, "EnabledState" },
         priority = priority,
+        isInternal = true
     }
 
     inherited.Setup(

@@ -96,7 +96,12 @@ function this.ListenerRegister(evaluatorKey, listener)
             listener.priority = math.huge
         end
 
-        table.insert(listeners, listener)
+        if listener.isInternal == true then
+            table.insert(listeners, 1, listener)
+        else
+            table.insert(listeners, listener)
+        end
+
         table.sort(listeners, function(a,b)
             return a.priority < b.priority end)
     end
