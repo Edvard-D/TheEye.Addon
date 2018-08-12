@@ -77,7 +77,7 @@ function this:OnValidKey(state)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
     self.frame:SetDrawEdge(false)
-    local startTime, duration = GetSpellCooldown(instance.spellID)
+    local startTime, duration = GetSpellCooldown(self.spellID)
     self.frame:SetCooldown(startTime, duration)
 end
 
