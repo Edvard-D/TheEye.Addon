@@ -73,7 +73,6 @@ function this:OnDisable()
 end
 
 function this:OnValidKey(state)
-    SendCustomEvent("UIOBJECT_COOLDOWN_SHOWN", self.UIObject)
     self.frame = CooldownClaim(uiObject, self.UIObject.Frame.instance, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
@@ -83,7 +82,6 @@ function this:OnValidKey(state)
 end
 
 function this:OnInvalidKey(state)
-    SendCustomEvent("UIOBJECT_COOLDOWN_HIDDEN", self.UIObject)
     self.frame:Release()
     self.frame = nil
 end
