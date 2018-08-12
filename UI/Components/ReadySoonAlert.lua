@@ -12,6 +12,8 @@ local ReadySoonAlertLengthGet = TheEyeAddon.Values.ReadySoonAlertLengthGet
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    ValueHandler = nil
+    ListenerGroup = nil
     spellID = #SPELL#ID#
 }
 ]]
@@ -27,9 +29,8 @@ function this.Setup(
 )
 
     -- StateHandler
-    instance.StateHandler = {}
-    instance.StateHandler.ValueHandler = { validKeys = { [2] = true } }
-    instance.StateHandler.ListenerGroup =
+    instance.ValueHandler = { validKeys = { [2] = true } }
+    instance.ListenerGroup =
     {
         Listeners =
         {
@@ -45,11 +46,11 @@ function this.Setup(
         },
     }
     if auraFilters[instance.spellID] == nil then
-        instance.StateHandler.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
-        instance.StateHandler.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
+        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
+        instance.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
     else
-        instance.StateHandler.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
-        instance.StateHandler.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
+        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
+        instance.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
     end
     
     instance.name = this.name

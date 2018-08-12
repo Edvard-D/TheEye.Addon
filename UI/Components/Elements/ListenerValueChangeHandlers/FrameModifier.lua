@@ -1,19 +1,19 @@
 TheEyeAddon.UI.Components.FrameModifier = {}
 local this = TheEyeAddon.UI.Components.FrameModifier
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
-local KeyStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#
 {
-    nil
+    #inherited#TEMPLATE#
 }
 ]]
 
 
 --[[ SETUP
-    instance                    { #name#STRING#, KeyStateFunctionHandler StateHandler, function Modify(frame), function Demodify(frame) }
+    instance                    { #name#STRING#, function Modify(frame), function Demodify(frame) }
     uiObject                    UIObject
 ]]
 function this.Setup(
@@ -35,8 +35,8 @@ function this.Setup(
     )
 
     -- StateHandler
-    KeyStateFunctionCallerSetup(
-        instance.StateHandler,
+    inherited.Setup(
+        instance,
         uiObject,
         this.OnValidKey,
         this.OnInvalidKey
