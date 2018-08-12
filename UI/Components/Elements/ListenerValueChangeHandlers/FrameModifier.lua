@@ -45,7 +45,7 @@ function this.Setup(
 end
 
 function this:OnClaim()
-    if self.StateHandler.state == true then
+    if self.state == true then
         self:Modify(self.UIObject.Frame.instance)
     end
 end
