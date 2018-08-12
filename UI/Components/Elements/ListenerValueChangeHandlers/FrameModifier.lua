@@ -13,7 +13,7 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 --[[ SETUP
     instance
     uiObject                    UIObject
-    modifyListener              { function OnModify(), function OnDemodify() }
+    modifyListener              { function Modify(), function Demodify() }
 ]]
 function this.Setup(
     instance,
@@ -31,9 +31,9 @@ function this.Setup(
 end
 
 function this:OnClaim()
-    self.modifyListener:OnModify(self.UIObject.frame)
+    self.modifyListener:Modify(self.UIObject.frame)
 end
 
 function this:OnRelease()
-    self.modifyListener:OnDemodify(self.UIObject.frame)
+    self.modifyListener:Demodify(self.UIObject.frame)
 end
