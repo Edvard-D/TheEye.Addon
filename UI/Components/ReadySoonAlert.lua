@@ -64,14 +64,18 @@ function this.Setup(
 end
 
 function this:Modify(frame)
-    self.frame = CooldownClaim(self.UIObject, frame, nil)
-    self.frame:SetAllPoints()
-    self.frame:SetDrawBling(false)
-    self.frame:SetDrawEdge(false)
-    self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
+    if self.frame == nil then
+        self.frame = CooldownClaim(self.UIObject, frame, nil)
+        self.frame:SetAllPoints()
+        self.frame:SetDrawBling(false)
+        self.frame:SetDrawEdge(false)
+        self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
+    end
 end
 
 function this:Demodify()
-    self.frame:Release()
-    self.frame = nil
+    if self.frame ~= nil then
+        self.frame:Release()
+        self.frame = nil
+    end
 end
