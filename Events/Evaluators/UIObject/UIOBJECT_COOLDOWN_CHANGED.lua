@@ -18,7 +18,7 @@ this.customEvents =
 
 
 local function CalculateCurrentValue(uiObject)
-    return uiObject.ReadySoonAlert.ValueHandler.state or false
+    return uiObject.Cooldown.ValueHandler.state or false
 end
 
 function this:InputGroupSetup(inputGroup)
