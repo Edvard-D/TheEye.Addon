@@ -92,11 +92,13 @@ function this.ListenerRegister(evaluatorKey, listener)
     --print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
 
     if listener.isListening == nil then
-        if listener.isInternal == true then
-            table.insert(listeners, 1, listener)
-        else
-            table.insert(listeners, listener)
+        if listener.priority == nil then
+            listener.priority = math.huge
         end
+
+        table.insert(listeners, listener)
+        table.sort(listeners, function(a,b)
+            return a.priority < b.priority end)
     end
 
     listener.isListening = true

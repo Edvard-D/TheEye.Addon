@@ -52,7 +52,8 @@ function this.Setup(
     EnabledStateFunctionCallerSetup(
         instance.EnabledStateFunctionCaller,
         uiObject,
-        instance
+        instance,
+        1
     )
 end
 

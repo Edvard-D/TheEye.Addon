@@ -31,7 +31,8 @@ function this.Setup(
     FrameStateFunctionCallerSetup(
         instance.FrameStateFunctionCaller,
         uiObject,
-        instance
+        instance,
+        1
     )
 
     -- StateHandler

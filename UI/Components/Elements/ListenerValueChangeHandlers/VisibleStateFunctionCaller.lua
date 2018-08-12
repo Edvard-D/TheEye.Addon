@@ -16,18 +16,20 @@ local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
     instance
     uiObject                    UIObject
     stateListener               { function OnShow(), function OnHide() }
+    priority                    #INT#
 ]]
 function this.Setup(
     instance,
     uiObject,
-    stateListener
+    stateListener,
+    priority
 )
 
     listener =
     {
         eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
         inputValues = { uiObject.key, "VisibleState" },
-        isInternal = true,
+        priority = priority,
     }
 
     inherited.Setup(
@@ -47,7 +49,8 @@ function this.Setup(
     EnabledStateFunctionCallerSetup(
         instance.EnabledStateFunctionCaller,
         uiObject,
-        instance
+        instance,
+        priority
     )
 end
 
