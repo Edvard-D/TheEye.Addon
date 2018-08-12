@@ -52,6 +52,7 @@ function this.Setup(
         instance.StateHandler.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
     end
     
+    instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
 
