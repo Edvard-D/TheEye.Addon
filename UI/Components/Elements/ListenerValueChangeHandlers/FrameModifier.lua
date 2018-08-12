@@ -12,7 +12,7 @@ local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Listene
 
 
 --[[ SETUP
-    instance
+    instance                    { function Modify(frame), function Demodify(frame) }
     uiObject                    UIObject
 ]]
 function this.Setup(
