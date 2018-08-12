@@ -25,8 +25,8 @@ function this.Setup(
 
     listener =
     {
-        eventEvaluatorKey = "UIOBJECT_FRAME_VISIBLE_CHANGED",
-        inputValues = { uiObject.key },
+        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+        inputValues = { uiObject.key, "VisibleState" },
         isInternal = true,
     }
 

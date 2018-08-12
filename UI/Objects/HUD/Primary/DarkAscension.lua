@@ -19,8 +19,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
                 {
@@ -93,8 +93,8 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 16,
                 },
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_ICON_PRIMARY_SPELL-228260" },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] "HUD_ICON_PRIMARY_SPELL-228260", --[[componentName]] "VisibleState" },
                     value = 32,
                 },
             },

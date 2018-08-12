@@ -23,8 +23,8 @@ function this.Setup(
 
     listener =
     {
-        eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
-        inputValues = { uiObject.key },
+        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+        inputValues = { uiObject.key, "EnabledState" },
         isInternal = true,
     }
 

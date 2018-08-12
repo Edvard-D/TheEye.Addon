@@ -1,4 +1,3 @@
--- @REFACTOR Convert event evaluators related to specific component states to use this event evaluator 
 TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED
 this.name = "UIOBJECT_COMPONENT_STATE_CHANGED"
