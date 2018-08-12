@@ -42,8 +42,6 @@ function this.Setup(
     instance.UIObject = uiObject
     instance.Factory = factory
 
-    instance.OnModifierRegisteredChanged = this.OnModifierRegisteredChanged
-
     uiObject.DisplayData = instance.DisplayData
 
     -- VisibleStateFunctionCaller
