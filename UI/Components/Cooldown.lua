@@ -74,7 +74,7 @@ end
 
 function this:OnValidKey(state)
     SendCustomEvent("UIOBJECT_COOLDOWN_SHOWN", self.UIObject)
-    self.frame = CooldownClaim(uiObject, self.UIObject.frame, nil)
+    self.frame = CooldownClaim(uiObject, self.UIObject.Frame.instance, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
     self.frame:SetDrawEdge(false)

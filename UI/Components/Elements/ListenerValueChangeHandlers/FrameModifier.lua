@@ -46,24 +46,24 @@ end
 
 function this:OnClaim()
     if self.StateHandler.state == true then
-        self:Modify(self.UIObject.frame)
+        self:Modify(self.UIObject.Frame.instance)
     end
 end
 
 function this:OnRelease()
-    self:Demodify(self.UIObject.frame)
+    self:Demodify(self.UIObject.Frame.instance)
 end
 
 function this:OnValidKey()
     self.state = true
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
-    if self.UIObject.frame ~= nil then
-        self:Modify(self.UIObject.frame)
+    if self.UIObject.Frame.instance ~= nil then
+        self:Modify(self.UIObject.Frame.instance)
     end
 end
 
 function this:OnInvalidKey()
     self.state = false
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
-    self:Demodify(self.UIObject.frame)
+    self:Demodify(self.UIObject.Frame.instance)
 end

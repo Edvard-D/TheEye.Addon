@@ -43,6 +43,7 @@ function this.Setup(
     instance.Factory = factory
 
     uiObject.DisplayData = instance.DisplayData
+    uiObject.Frame = instance
 
     -- VisibleStateFunctionCaller
     instance.OnShow = this.OnShow
@@ -59,13 +60,13 @@ end
 
 function this:OnShow()
     self.state = true
-    self.UIObject.frame = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
+    self.instance = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
 end
 
 function this:OnHide()
     self.state = false
-    self.UIObject.frame:Release()
-    self.UIObject.frame = nil
+    self.instance:Release()
+    self.instance = nil
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
 end

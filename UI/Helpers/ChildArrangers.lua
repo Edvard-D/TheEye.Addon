@@ -6,7 +6,7 @@ this.Delegate =
 {
     Arrange = function(parentFrame, childUIObjects)
         for i = 1, #childUIObjects do
-            local childFrame = childUIObjects[i].frame
+            local childFrame = childUIObjects[i].Frame.instance
             local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
             childFrame:ClearAllPoints()
             childFrame:SetPoint(
@@ -26,7 +26,7 @@ this.TopToBottom =
         local combinedOffsetY = 0
 
         for i = 1, #childUIObjects do
-            local childFrame = childUIObjects[i].frame
+            local childFrame = childUIObjects[i].Frame.instance
             if childFrame ~= nil then
                 childFrame:ClearAllPoints()
                 childFrame:SetPoint(
