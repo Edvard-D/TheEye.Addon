@@ -1,11 +1,12 @@
 TheEyeAddon.UI.Components.FrameModifier = {}
 local this = TheEyeAddon.UI.Components.FrameModifier
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller
+
+local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#
 {
-    #inherited#TEMPLATE#
+    nil
 }
 ]]
 
@@ -13,27 +14,30 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 --[[ SETUP
     instance
     uiObject                    UIObject
-    modifyListener              { function Modify(), function Demodify() }
 ]]
 function this.Setup(
     instance,
-    uiObject,
-    modifyListener
+    uiObject
 )
 
-    inherited.Setup(
-        instance,
+    instance.UIObject = uiObject
+
+    -- FrameStateFunctionCaller
+    instance.OnClaim = this.OnClaim
+    instance.OnRelease = this.OnRelease
+
+    instance.FrameStateFunctionCaller = {}
+    FrameStateFunctionCallerSetup(
+        instance.FrameStateFunctionCaller,
         uiObject,
         instance
     )
-
-    instance.modifyListener = modifyListener
 end
 
 function this:OnClaim()
-    self.modifyListener:Modify(self.UIObject.frame)
+    self:Modify(self.UIObject.frame)
 end
 
 function this:OnRelease()
-    self.modifyListener:Demodify(self.UIObject.frame)
+    self:Demodify(self.UIObject.frame)
 end
