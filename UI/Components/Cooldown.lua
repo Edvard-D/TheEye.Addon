@@ -1,16 +1,17 @@
 TheEyeAddon.UI.Components.Cooldown = {}
 local this = TheEyeAddon.UI.Components.Cooldown
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+this.name = "Cooldown"
+local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local GetSpellCooldown = GetSpellCooldown
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    ValueHandler = nil
+    ListenerGroup = nil
     spellID = #SPELL#ID#
 }
 ]]
@@ -26,7 +27,6 @@ function this.Setup(
 )
 
     instance.ValueHandler = { validKeys = { [2] = true } }
-
     instance.ListenerGroup =
     {
         Listeners =
@@ -44,44 +44,31 @@ function this.Setup(
         },
     }
 
+    instance.name = this.name
+    instance.Modify = this.Modify
+    instance.Demodify = this.Demodify
+
     inherited.Setup(
         instance,
-        uiObject,
-        this.OnValidKey,
-        this.OnInvalidKey
-    )
-    
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
-        uiObject,
-        instance,
-        1
+        uiObject
     )
 end
 
-function this:OnEnable()
-    self:Activate()
+
+function this:Modify(frame)
+    if self.frame == nil then
+        self.frame = CooldownClaim(self.UIObject, frame, nil)
+        self.frame:SetAllPoints()
+        self.frame:SetDrawBling(false)
+        self.frame:SetDrawEdge(false)
+        local startTime, duration = GetSpellCooldown(self.spellID)
+        self.frame:SetCooldown(startTime, duration)
+    end
 end
 
-function this:OnDisable()
-    self:Deactivate()
-end
-
-function this:OnValidKey(state)
-    self.frame = CooldownClaim(uiObject, self.UIObject.Frame.instance, nil)
-    self.frame:SetAllPoints()
-    self.frame:SetDrawBling(false)
-    self.frame:SetDrawEdge(false)
-    local startTime, duration = GetSpellCooldown(self.spellID)
-    self.frame:SetCooldown(startTime, duration)
-end
-
-function this:OnInvalidKey(state)
-    self.frame:Release()
-    self.frame = nil
+function this:Demodify()
+    if self.frame ~= nil then
+        self.frame:Release()
+        self.frame = nil
+    end
 end
