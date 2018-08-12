@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Components.ReadySoonAlert = {}
+TheEyeAddon.UI.Components.Cooldown = {}
 local this = TheEyeAddon.UI.Components.Cooldown
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
