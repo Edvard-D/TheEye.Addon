@@ -54,6 +54,7 @@ function this:OnRelease()
 end
 
 function this:OnValidKey()
+    self.state = true
     SendCustomEvent("UIOBJECT_COMPONENT_ENABLED", self.UIObject, self.name)
     if self.UIObject.frame ~= nil then
         self:Modify(self.UIObject.frame)
@@ -61,6 +62,7 @@ function this:OnValidKey()
 end
 
 function this:OnInvalidKey()
+    self.state = false
     SendCustomEvent("UIOBJECT_COMPONENT_DISABLED", self.UIObject, self.name)
     self:Demodify(self.UIObject.frame)
 end
