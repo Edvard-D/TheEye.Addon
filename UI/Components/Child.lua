@@ -38,7 +38,6 @@ function this.Setup(
 end
 
 function this:OnShow()
-    print(self.UIObject.key .. "    Child.OnShow")
     UIObjectInstances[self.parentKey].Group:ChildRegister(self.UIObject)
 end
 
