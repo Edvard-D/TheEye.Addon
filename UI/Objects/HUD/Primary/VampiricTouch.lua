@@ -58,8 +58,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_READY_SOON_ALERT_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
                     value = 2,
                 },
                 {

@@ -63,13 +63,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID },
-                    comparisonValues =
-                    {
-                        value = 0,
-                        type = "EqualTo",
-                    },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
                     value = 2,
                 },
                 {

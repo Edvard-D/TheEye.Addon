@@ -1,11 +1,12 @@
 TheEyeAddon.UI.Components.ReadySoonAlert = {}
 local this = TheEyeAddon.UI.Components.ReadySoonAlert
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+this.name = "ReadySoonAlert"
+local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local auraFilters = TheEyeAddon.Values.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local GetTime = GetTime
+local ReadySoonAlertLengthGet = TheEyeAddon.Values.ReadySoonAlertLengthGet
 
 
 --[[ #this#TEMPLATE#
@@ -25,9 +26,10 @@ function this.Setup(
     uiObject
 )
 
-    instance.ValueHandler = { validKeys = { [2] = true } }
-
-    instance.ListenerGroup =
+    -- StateHandler
+    instance.StateHandler = {}
+    instance.StateHandler.ValueHandler = { validKeys = { [2] = true } }
+    instance.StateHandler.ListenerGroup =
     {
         Listeners =
         {
@@ -43,51 +45,31 @@ function this.Setup(
         },
     }
     if auraFilters[instance.spellID] == nil then
-        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
-        instance.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
+        instance.StateHandler.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
+        instance.StateHandler.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
     else
-        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
-        instance.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
+        instance.StateHandler.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
+        instance.StateHandler.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
     end
+    
+    instance.Modify = this.Modify
+    instance.Demodify = this.Demodify
 
     inherited.Setup(
         instance,
-        uiObject,
-        this.OnValidKey,
-        this.OnInvalidKey
-    )
-    
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
-        uiObject,
-        instance
+        uiObject
     )
 end
 
-function this:OnEnable()
-    self:Activate()
-end
-
-function this:OnDisable()
-    self:Deactivate()
-end
-
-function this:OnValidKey(state)
-    SendCustomEvent("UIOBJECT_READY_SOON_ALERT_SHOWN", self.UIObject)
-    self.frame = CooldownClaim(uiObject, self.UIObject.frame, nil)
+function this:Modify(frame)
+    self.frame = CooldownClaim(self.UIObject, frame, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
     self.frame:SetDrawEdge(false)
-    self.frame:SetCooldown(GetTime(), TheEyeAddon.Values.ReadySoonAlertLengthGet())
+    self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
 end
 
-function this:OnInvalidKey(state)
-    SendCustomEvent("UIOBJECT_READY_SOON_ALERT_HIDDEN", self.UIObject)
+function this:Demodify()
     self.frame:Release()
     self.frame = nil
 end
