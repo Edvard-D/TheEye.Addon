@@ -100,7 +100,6 @@ Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_FRAME_CLAIMED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_FRAME_USER_REGISTERED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_FRAME_VISIBLE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_READY_SOON_ALERT_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
