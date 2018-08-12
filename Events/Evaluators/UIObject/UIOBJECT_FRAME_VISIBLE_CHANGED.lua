@@ -33,7 +33,6 @@ end
 function this:Evaluate(inputGroup, event, uiObject)
     local isVisible = CalculateCurrentValue(uiObject)
 
-    print("isVisible: " .. tostring(isVisible))
     if inputGroup.currentValue ~= isVisible then
         inputGroup.currentValue = isVisible
         return true, this.name, isVisible
