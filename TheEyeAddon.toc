@@ -96,6 +96,7 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_COOLDOWN_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_FRAME_CLAIMED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_FRAME_USER_REGISTERED_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_FRAME_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_READY_SOON_ALERT_CHANGED.lua
