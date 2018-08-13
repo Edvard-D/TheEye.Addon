@@ -235,6 +235,7 @@ UI\Objects\HUD\Cooldown\CooldownModule.lua
 UI\Objects\HUD\Cooldown\DarkAscension.lua
 UI\Objects\HUD\Cooldown\DarkVoid.lua
 UI\Objects\HUD\Cooldown\Dispersion.lua
+UI\Objects\HUD\Cooldown\Fade.lua
 UI\Objects\HUD\Cooldown\Mindbender.lua
 UI\Objects\HUD\Cooldown\MindBomb.lua
 UI\Objects\HUD\Cooldown\PsychicHorror.lua
