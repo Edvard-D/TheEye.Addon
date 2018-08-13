@@ -58,6 +58,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] spellID },
                     value = 2,
                 },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249 }, -- Voidform
+                    value = 4,
+                },
             },
         },
     },
