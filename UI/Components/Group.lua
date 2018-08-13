@@ -141,7 +141,7 @@ function this:DisplayUpdate()
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-        self.childArranger.Arrange(frame, childUIObjects)
+        self.childArranger.Arrange(frame, self, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
 end
