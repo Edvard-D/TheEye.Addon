@@ -272,6 +272,7 @@ UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
 # --- HUD: Secondary ---
+UI\Objects\HUD\Secondary\LeapOfFaith.lua
 UI\Objects\HUD\Secondary\Mindbender.lua
 UI\Objects\HUD\Secondary\MindBomb.lua
 UI\Objects\HUD\Secondary\PsychicHorror.lua
