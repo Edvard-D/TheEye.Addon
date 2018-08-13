@@ -48,7 +48,10 @@ function this.Setup(
 end
 
 local function CallModify(self)
-    if self.state == true and self.UIObject.Frame.instance ~= nil then
+    if self.state == true
+        and self.UIObject.Frame ~= nil
+        and self.UIObject.Frame.instance ~= nil
+        then
         self:Modify(self.UIObject.Frame.instance)
     end
 end
