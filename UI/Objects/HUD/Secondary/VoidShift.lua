@@ -25,7 +25,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] 128, }, -- @TOOOOOOOOOODOOOOOOOOOOOOOOOOOOOOOOO
+                    inputValues = { --[[talentID]] 128, },
                     value = 4,
                 },
             },
