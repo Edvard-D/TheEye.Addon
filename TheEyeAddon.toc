@@ -238,6 +238,7 @@ UI\Objects\HUD\Cooldown\Dispersion.lua
 UI\Objects\HUD\Cooldown\Mindbender.lua
 UI\Objects\HUD\Cooldown\ShadowCrash.lua
 UI\Objects\HUD\Cooldown\Shadowfiend.lua
+UI\Objects\HUD\Cooldown\Silence.lua
 UI\Objects\HUD\Cooldown\VoidTorrent.lua
 
 
