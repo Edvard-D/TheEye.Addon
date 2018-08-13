@@ -18,5 +18,9 @@ TheEyeAddon.Values.auraFilters =
     [194249] = -- Voidform
     {
         "HELPFUL " -- @TODO figure out why using NOT_CANCELABLE caused this aura to not be found
-    }
+    },
+    [232698] = -- Shadowform
+    {
+        "HELPFUL"
+    },
 }

@@ -264,6 +264,7 @@ UI\Objects\HUD\Primary\PrimaryModule.lua
 UI\Objects\HUD\Primary\Psyfiend.lua
 UI\Objects\HUD\Primary\ShadowCrash.lua
 UI\Objects\HUD\Primary\Shadowfiend.lua
+UI\Objects\HUD\Primary\Shadowform.lua
 UI\Objects\HUD\Primary\ShadowWordDeath.lua
 UI\Objects\HUD\Primary\ShadowWordPain.lua
 UI\Objects\HUD\Primary\ShadowWordVoid.lua
