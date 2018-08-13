@@ -30,7 +30,7 @@ function this.Setup(
         {
             {
                 eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                inputValues = { --[[spellID]] instance.spellID },
+                inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
                 comparisonValues =
                 {
                     value = TheEyeAddon.Values.castStartHideDelay,
