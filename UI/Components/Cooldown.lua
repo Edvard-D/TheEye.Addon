@@ -47,6 +47,7 @@ function this.Setup(
     instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
+    instance.SortValueGet = this.SortValueGet
 
     inherited.Setup(
         instance,
@@ -71,4 +72,10 @@ function this:Demodify()
         self.frame:Release()
         self.frame = nil
     end
+end
+
+function this:SortValueGet()
+    local startTime, duration = GetSpellCooldown(self.spellID)
+    local remainingTime = (startTime + duration) - GetTime()
+    return remainingTime
 end
