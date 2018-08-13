@@ -271,6 +271,10 @@ UI\Objects\HUD\Primary\VoidEruption.lua
 UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
+# --- HUD: Secondary ---
+UI\Objects\HUD\Secondary\SecondaryModule.lua
+
+
 
 # ---------------------------
 # |			FINAL			|
