@@ -1,14 +1,17 @@
-local parentKey = "HUD_MODULE_ACTIVE"
-local spellID = 194249
+local parentKey = "HUD_MODULE_COOLDOWN"
+local spellID = 108968
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "ACTIVE", "SPELL-194249", },
+    tags = { "HUD", "ICON", "COOLDOWN", "SPELL-108968", },
     Child =
     {
         parentKey = parentKey,
     },
-    -- @TODO Insanity percent below 50%
+    Cooldown =
+    {
+        spellID = spellID
+    },
     EnabledState =
     {
         ValueHandler =
@@ -31,32 +34,24 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Small,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
-        },
-    },
-    PriorityRank =
-    {
-        isDynamic = false,
-        ValueHandler =
-        {
-            value = 7,
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, },
+            validKeys = { [2] = true },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "Cooldown" },
                     value = 2,
                 },
             },

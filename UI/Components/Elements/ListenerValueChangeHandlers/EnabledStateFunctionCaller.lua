@@ -14,18 +14,21 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
     instance
     uiObject                    UIObject
     stateListener               { function OnEnable(), function OnDisable() }
+    priority                    #INT#
 ]]
 function this.Setup(
     instance,
     uiObject,
-    stateListener
+    stateListener,
+    priority
 )
 
     listener =
     {
-        eventEvaluatorKey = "UIOBJECT_ENABLED_CHANGED",
-        inputValues = { uiObject.key },
-        isInternal = true,
+        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+        inputValues = { uiObject.key, "EnabledState" },
+        priority = priority,
+        isInternal = true
     }
 
     inherited.Setup(

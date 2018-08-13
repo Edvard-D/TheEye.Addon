@@ -112,7 +112,7 @@ local function BoundsCalculate(childUIObjects)
 	local topMax = 0
 
     for i = 1, #childUIObjects do
-        local childFrame = childUIObjects[i].Frame
+        local childFrame = childUIObjects[i].Frame.instance
         if childFrame ~= nil then
             local left, bottom, width, height = childFrame:GetRect()
 
@@ -137,11 +137,11 @@ local function SizeCalculate(childUIObjects)
 end
 
 function this:DisplayUpdate()
-    local frame = self.UIObject.frame
+    local frame = self.UIObject.Frame.instance
 
     if frame ~= nil then
         local childUIObjects = self.ValueHandler.value
-        self.childArranger.Arrange(frame, childUIObjects)
+        self.childArranger.Arrange(frame, self, childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
     end
 end

@@ -32,7 +32,8 @@ function this.Setup(
     VisibleStateFunctionCallerSetup(
         instance.VisibleStateFunctionCaller,
         uiObject,
-        instance
+        instance,
+        2
     )
 end
 

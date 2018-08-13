@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller = {}
-local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller
+TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller = {}
+local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
 
@@ -13,7 +13,7 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 --[[ SETUP
     instance
     uiObject                    UIObject
-    stateListener               { function OnShow(), function OnHide() }
+    stateListener               { function OnClaim(), function OnRelease() }
     priority                    #INT#
 ]]
 function this.Setup(
@@ -26,7 +26,7 @@ function this.Setup(
     listener =
     {
         eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-        inputValues = { uiObject.key, "VisibleState" },
+        inputValues = { uiObject.key, "Frame" },
         priority = priority,
         isInternal = true
     }
@@ -36,8 +36,8 @@ function this.Setup(
         uiObject,
         listener,
         stateListener,
-        "OnShow",
-        "OnHide"
+        "OnClaim",
+        "OnRelease"
     )
     
     instance:Activate()

@@ -1,8 +1,10 @@
 TheEyeAddon.UI.Components.Elements.Frame = {}
 local this = TheEyeAddon.UI.Components.Elements.Frame
+this.name = "Frame"
 
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -40,53 +42,31 @@ function this.Setup(
     instance.UIObject = uiObject
     instance.Factory = factory
 
-    instance.OnUserRegisteredChanged = this.OnUserRegisteredChanged
-    instance.userCount = 0
-
     uiObject.DisplayData = instance.DisplayData
+    uiObject.Frame = instance
 
-    -- NotifyBasedFunctionCaller
-    instance.NotifyBasedFunctionCaller =
-    {
-        Listeners =
-        {
-            {
-                eventEvaluatorKey = "UIOBJECT_FRAME_USER_REGISTERED_CHANGED",
-                inputValues = { --[[uiObjectKey]] uiObject.key },
-                isInternal = true
-            }
-        }
-    }
-    NotifyBasedFunctionCallerSetup(
-        instance.NotifyBasedFunctionCaller,
+    -- VisibleStateFunctionCaller
+    instance.OnShow = this.OnShow
+    instance.OnHide = this.OnHide
+
+    instance.VisibleStateFunctionCaller = {}
+    VisibleStateFunctionCallerSetup(
+        instance.VisibleStateFunctionCaller,
         uiObject,
         instance,
-        "OnUserRegisteredChanged"
+        1
     )
-    instance.NotifyBasedFunctionCaller:Activate()
 end
 
-local function UserRegister(self)
-    self.userCount = self.userCount + 1
-    if self.userCount == 1 then
-        self.UIObject.frame = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
-        SendCustomEvent("UIOBJECT_SHOWN", self.UIObject)
-    end
+function this:OnShow()
+    self.state = true
+    self.instance = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
 end
 
-local function UserDeregister(self)
-    self.userCount = self.userCount - 1
-    if self.userCount == 0 then
-        self.UIObject.frame:Release()
-        self.UIObject.frame = nil
-        SendCustomEvent("UIOBJECT_HIDDEN", self.UIObject)
-    end
-end
-
-function this:OnUserRegisteredChanged(event, isRegistered)
-    if isRegistered == true then
-        UserRegister(self)
-    else
-        UserDeregister(self)
-    end
+function this:OnHide()
+    self.state = false
+    self.instance:Release()
+    self.instance = nil
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
 end

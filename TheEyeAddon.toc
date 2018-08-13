@@ -94,13 +94,9 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 
 # --- UIObject ---
-Events\Evaluators\UIObject\UIOBJECT_ENABLED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_FRAME_USER_REGISTERED_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_FRAME_VISIBLE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_READY_SOON_ALERT_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_VISIBLE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
@@ -176,7 +172,10 @@ UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
+
+UI\Components\Elements\ListenerValueChangeHandlers\FrameModifier.lua
 
 
 # --- Other ---
@@ -201,6 +200,7 @@ UI\Factories\Icon.lua
 # |	    UI\Components	    |
 # ---------------------------
 UI\Components\Child.lua
+UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
 UI\Components\Group.lua
 UI\Components\Icon.lua
@@ -224,7 +224,6 @@ UI\Objects\HUD\Active\Dispersion.lua
 UI\Objects\HUD\Active\HeroLust.lua
 UI\Objects\HUD\Active\Mindbender.lua
 UI\Objects\HUD\Active\Psyfiend.lua
-UI\Objects\HUD\Active\Sephuz.lua
 UI\Objects\HUD\Active\ShadowFiend.lua
 UI\Objects\HUD\Active\SurrenderToMadness.lua
 UI\Objects\HUD\Active\Voidform.lua
@@ -232,6 +231,25 @@ UI\Objects\HUD\Active\Voidform.lua
 
 # --- HUD: Cooldown ---
 UI\Objects\HUD\Cooldown\CooldownModule.lua
+UI\Objects\HUD\Cooldown\DarkAscension.lua
+UI\Objects\HUD\Cooldown\DarkVoid.lua
+UI\Objects\HUD\Cooldown\Dispersion.lua
+UI\Objects\HUD\Cooldown\Fade.lua
+UI\Objects\HUD\Cooldown\GladiatorsMedallion.lua
+UI\Objects\HUD\Cooldown\LeapOfFaith.lua
+UI\Objects\HUD\Cooldown\MassDispel.lua
+UI\Objects\HUD\Cooldown\Mindbender.lua
+UI\Objects\HUD\Cooldown\MindBomb.lua
+UI\Objects\HUD\Cooldown\PsychicHorror.lua
+UI\Objects\HUD\Cooldown\PsychicScream.lua
+UI\Objects\HUD\Cooldown\Psyfiend.lua
+UI\Objects\HUD\Cooldown\ShadowCrash.lua
+UI\Objects\HUD\Cooldown\Shadowfiend.lua
+UI\Objects\HUD\Cooldown\Silence.lua
+UI\Objects\HUD\Cooldown\SurrenderToMadness.lua
+UI\Objects\HUD\Cooldown\VampiricEmbrace.lua
+UI\Objects\HUD\Cooldown\VoidShift.lua
+UI\Objects\HUD\Cooldown\VoidTorrent.lua
 
 
 # --- HUD: Primary ---

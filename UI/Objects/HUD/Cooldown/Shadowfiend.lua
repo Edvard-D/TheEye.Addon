@@ -1,12 +1,16 @@
-local parentKey = "HUD_MODULE_ACTIVE"
+local parentKey = "HUD_MODULE_COOLDOWN"
 local spellID = 34433
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "ACTIVE", "SPELL-34433", },
+    tags = { "HUD", "ICON", "COOLDOWN", "SPELL-34433", },
     Child =
     {
         parentKey = parentKey,
+    },
+    Cooldown =
+    {
+        spellID = spellID
     },
     EnabledState =
     {
@@ -35,33 +39,35 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Small,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
-        },
-    },
-    PriorityRank =
-    {
-        isDynamic = false,
-        ValueHandler =
-        {
-            value = 3,
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, },
+            validKeys = { [2] = true },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "Cooldown" },
+                    value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-34433", --[[componentName]] "VisibleState" },
+                    value = 4,
+                },
+                {
                     eventEvaluatorKey = "PLAYER_TOTEM_ACTIVE_CHANGED",
                     inputValues = { --[[totemName]] "Shadowfiend", },
-                    value = 2,
+                    value = 8,
                 },
             },
         },

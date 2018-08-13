@@ -9,7 +9,7 @@ local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
 {
     eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
-    #OPTIONAL#isInternal = #BOOL#
+    #OPTIONAL#priority = #INT#
 }
 ]]
 
@@ -34,10 +34,13 @@ function this.Setup(
     instance.Register = this.Register
     instance.Deregister = this.Deregister
 
-    local inputValues = instance.inputValues
-    for i=1, #inputValues do
-        if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
-            inputValues[i] = uiObject.key
+    if instance.inputValues ~= nil then
+        local inputValues = instance.inputValues
+        for i=1, #inputValues do
+            if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
+                inputValues[i] = uiObject.key
+                instance.isInternal = true
+            end
         end
     end
 end

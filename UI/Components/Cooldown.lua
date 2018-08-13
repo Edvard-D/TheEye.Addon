@@ -1,12 +1,10 @@
-TheEyeAddon.UI.Components.ReadySoonAlert = {}
-local this = TheEyeAddon.UI.Components.ReadySoonAlert
-this.name = "ReadySoonAlert"
+TheEyeAddon.UI.Components.Cooldown = {}
+local this = TheEyeAddon.UI.Components.Cooldown
+this.name = "Cooldown"
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
-local auraFilters = TheEyeAddon.Values.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
-local GetTime = GetTime
-local ReadySoonAlertLengthGet = TheEyeAddon.Values.ReadySoonAlertLengthGet
+local GetSpellCooldown = GetSpellCooldown
 
 
 --[[ #this#TEMPLATE#
@@ -28,34 +26,28 @@ function this.Setup(
     uiObject
 )
 
-    -- StateHandler
     instance.ValueHandler = { validKeys = { [2] = true } }
     instance.ListenerGroup =
     {
         Listeners =
         {
             {
+                eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                inputValues = { --[[spellID]] instance.spellID },
                 comparisonValues =
                 {
-                    floor = 0,
-                    ceiling = TheEyeAddon.Values.ReadySoonAlertLengthGet,
-                    type = "Between",
+                    value = 0,
+                    type = "GreaterThan",
                 },
                 value = 2,
             },
         },
     }
-    if auraFilters[instance.spellID] == nil then
-        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
-        instance.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
-    else
-        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
-        instance.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
-    end
-    
+
     instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
+    instance.SortValueGet = this.SortValueGet
 
     inherited.Setup(
         instance,
@@ -63,13 +55,15 @@ function this.Setup(
     )
 end
 
+
 function this:Modify(frame)
     if self.frame == nil then
         self.frame = CooldownClaim(self.UIObject, frame, nil)
         self.frame:SetAllPoints()
         self.frame:SetDrawBling(false)
         self.frame:SetDrawEdge(false)
-        self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
+        local startTime, duration = GetSpellCooldown(self.spellID)
+        self.frame:SetCooldown(startTime, duration)
     end
 end
 
@@ -78,4 +72,10 @@ function this:Demodify()
         self.frame:Release()
         self.frame = nil
     end
+end
+
+function this:SortValueGet()
+    local startTime, duration = GetSpellCooldown(self.spellID)
+    local remainingTime = (startTime + duration) - GetTime()
+    return remainingTime
 end

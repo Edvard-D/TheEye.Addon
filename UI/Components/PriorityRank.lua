@@ -48,4 +48,10 @@ function this.Setup(
             uiObject
         )
     end
+
+    instance.SortValueGet = this.SortValueGet
+end
+
+function this:SortValueGet()
+    return self.ValueHandler.value
 end
