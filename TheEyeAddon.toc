@@ -283,6 +283,7 @@ UI\Objects\HUD\Secondary\PsychicScream.lua
 UI\Objects\HUD\Secondary\SecondaryModule.lua
 UI\Objects\HUD\Secondary\Silence.lua
 UI\Objects\HUD\Secondary\SurrenderToMadness.lua
+UI\Objects\HUD\Secondary\VampiricEmbrace.lua
 UI\Objects\HUD\Secondary\VoidShift.lua
 
 
