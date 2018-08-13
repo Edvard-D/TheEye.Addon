@@ -35,7 +35,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Small,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
