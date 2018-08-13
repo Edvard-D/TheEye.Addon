@@ -232,6 +232,7 @@ UI\Objects\HUD\Active\Voidform.lua
 
 # --- HUD: Cooldown ---
 UI\Objects\HUD\Cooldown\CooldownModule.lua
+UI\Objects\HUD\Cooldown\Dispersion.lua
 UI\Objects\HUD\Cooldown\Mindbender.lua
 
 
