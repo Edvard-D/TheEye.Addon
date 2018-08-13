@@ -234,6 +234,7 @@ UI\Objects\HUD\Active\Voidform.lua
 UI\Objects\HUD\Cooldown\CooldownModule.lua
 UI\Objects\HUD\Cooldown\Dispersion.lua
 UI\Objects\HUD\Cooldown\Mindbender.lua
+UI\Objects\HUD\Cooldown\ShadowCrash.lua
 UI\Objects\HUD\Cooldown\Shadowfiend.lua
 
 
