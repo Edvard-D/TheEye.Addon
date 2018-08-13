@@ -274,6 +274,7 @@ UI\Objects\HUD\Primary\VoidTorrent.lua
 # --- HUD: Secondary ---
 UI\Objects\HUD\Secondary\Mindbender.lua
 UI\Objects\HUD\Secondary\SecondaryModule.lua
+UI\Objects\HUD\Secondary\SurrenderToMadness.lua
 
 
 
