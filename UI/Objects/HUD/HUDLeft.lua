@@ -41,6 +41,7 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
         childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        childPadding = 5,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
     },
