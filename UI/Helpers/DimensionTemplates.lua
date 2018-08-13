@@ -15,3 +15,9 @@ this.Icon.Medium =
     width = 37.5,
     height = 37.5,
 }
+
+this.Icon.Small =
+{
+    width = 30,
+    height = 30,
+}
