@@ -20,8 +20,10 @@ local function UIObjectSetup(uiObject)
 
     for componentKey,_ in pairs(uiObject) do
         local component = components[componentKey]
-        if component ~= nil then
-            component.Setup(uiObject[componentKey], uiObject)
+        local componentInstance = uiObject[componentKey]
+        if component ~= nil and componentInstance.wasSetup == nil then
+            component.Setup(componentInstance, uiObject)
+            componentInstance.wasSetup = true
         end
     end
 end
