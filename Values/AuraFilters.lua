@@ -7,6 +7,10 @@ TheEyeAddon.Values.auraFilters =
     {
         "HARMFUL "
     },
+    [47585] = -- Dispersion
+    {
+        "HELPFUL"
+    },
     [34914] = -- Vampiric Touch
     {
         "HARMFUL "
