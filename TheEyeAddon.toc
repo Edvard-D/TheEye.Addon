@@ -199,6 +199,7 @@ UI\Factories\Icon.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Components\CastStartAlert.lua
 UI\Components\Child.lua
 UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
