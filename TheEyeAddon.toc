@@ -224,7 +224,6 @@ UI\Objects\HUD\Active\Dispersion.lua
 UI\Objects\HUD\Active\HeroLust.lua
 UI\Objects\HUD\Active\Mindbender.lua
 UI\Objects\HUD\Active\Psyfiend.lua
-UI\Objects\HUD\Active\SephuzsSecret.lua
 UI\Objects\HUD\Active\ShadowFiend.lua
 UI\Objects\HUD\Active\SurrenderToMadness.lua
 UI\Objects\HUD\Active\Voidform.lua
