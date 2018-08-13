@@ -21,7 +21,7 @@ this.customEvents =
 
 
 local function CalculateCurrentValue(uiObject, componentName)
-    return uiObject[componentName].state or false
+    return (uiObject[componentName] ~= nil and uiObject[componentName].state) or false
 end
 
 function this:InputGroupSetup(inputGroup)

@@ -172,7 +172,6 @@ UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
-
 UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 

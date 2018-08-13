@@ -2,8 +2,6 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctio
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-
 
 --[[ #this#TEMPLATE#
 {
@@ -41,24 +39,6 @@ function this.Setup(
         "OnClaim",
         "OnRelease"
     )
-
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
-        uiObject,
-        instance,
-        priority
-    )
-end
-
-function this:OnEnable()
-    self:Activate()
-end
-
-function this:OnDisable()
-    self:Deactivate()
+    
+    instance:Activate()
 end

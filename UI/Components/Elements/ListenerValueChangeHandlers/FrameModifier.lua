@@ -2,7 +2,6 @@ TheEyeAddon.UI.Components.FrameModifier = {}
 local this = TheEyeAddon.UI.Components.FrameModifier
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
@@ -44,48 +43,36 @@ function this.Setup(
         this.OnValidKey,
         this.OnInvalidKey
     )
-
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
-        uiObject,
-        instance,
-        priority
-    )
+    
+    instance:Activate()
 end
 
-function this:OnEnable()
-    self:Activate()
-end
-
-function this:OnDisable()
-    self:Deactivate()
-end
-
-function this:OnClaim()
-    if self.state == true then
+local function CallModify(self)
+    if self.state == true and self.UIObject.Frame.instance ~= nil then
         self:Modify(self.UIObject.Frame.instance)
     end
 end
 
-function this:OnRelease()
+local function CallDemodify(self)
     self:Demodify(self.UIObject.Frame.instance)
+end
+
+function this:OnClaim()
+    CallModify(self)
+end
+
+function this:OnRelease()
+    CallDemodify(self)
 end
 
 function this:OnValidKey()
     self.state = true
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
-    if self.UIObject.Frame.instance ~= nil then
-        self:Modify(self.UIObject.Frame.instance)
-    end
+    CallModify(self)
 end
 
 function this:OnInvalidKey()
     self.state = false
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
-    self:Demodify(self.UIObject.Frame.instance)
+    CallDemodify(self)
 end
