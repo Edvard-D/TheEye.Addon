@@ -60,9 +60,14 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-200174", --[[componentName]] "VisibleState" },
+                    value = 4,
+                },
+                {
                     eventEvaluatorKey = "PLAYER_TOTEM_ACTIVE_CHANGED",
                     inputValues = { --[[totemName]] "Mindbender", },
-                    value = 4,
+                    value = 8,
                 },
             },
         },
