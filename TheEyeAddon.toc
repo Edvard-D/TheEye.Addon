@@ -279,6 +279,7 @@ UI\Objects\HUD\Secondary\Dispersion.lua
 UI\Objects\HUD\Secondary\Fade.lua
 UI\Objects\HUD\Secondary\GladiatorsMedallion.lua
 UI\Objects\HUD\Secondary\LeapOfFaith.lua
+UI\Objects\HUD\Secondary\MassDispel.lua
 UI\Objects\HUD\Secondary\Mindbender.lua
 UI\Objects\HUD\Secondary\MindBomb.lua
 UI\Objects\HUD\Secondary\PsychicHorror.lua
