@@ -63,6 +63,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     },
                     value = 2,
                 },
+                -- @TODO Don't show unless doing PvE content in a group
             },
         },
     },
