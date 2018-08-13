@@ -39,6 +39,7 @@ function this.Setup(
         for i=1, #inputValues do
             if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
                 inputValues[i] = uiObject.key
+                instance.isInternal = true
             end
         end
     end
