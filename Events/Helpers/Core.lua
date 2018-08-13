@@ -96,14 +96,10 @@ function this.ListenerRegister(evaluatorKey, listener)
             listener.priority = math.huge
         end
 
-        if listener.isInternal == true then
-            table.insert(listeners, 1, listener)
-        else
             table.insert(listeners, listener)
-        end
-
         table.sort(listeners, function(a,b)
-            return a.priority < b.priority end)
+            return (a.isInternal and not b.isInternal)
+                or (a.isInternal == b.isInternal and a.priority < b.priority) end)
     end
 
     listener.isListening = true
