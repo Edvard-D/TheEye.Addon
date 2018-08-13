@@ -47,7 +47,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true },
+            validKeys = { [6] = true },
         },
         ListenerGroup =
         {
@@ -63,7 +63,17 @@ TheEyeAddon.UI.Objects:FormatData(
                     },
                     value = 2,
                 },
-                -- @TODO Don't show unless doing PvE content in a group
+                {
+                    eventEvaluatorKey = "UNIT_THREAT_SITUATION_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[otherUnit]] "_", },
+                    comparisonValues =
+                    {
+                        value = 1,
+                        type = "GreaterThanEqualTo",
+                    },
+                    value = 4,
+                },
+                -- @TODO Don't show unless doing content in a group
             },
         },
     },
