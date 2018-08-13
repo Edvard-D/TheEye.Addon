@@ -32,6 +32,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[talentID]] 763, },
                     value = 4,
                 },
+                -- @DEBUG Enable when the ability is enabled, not just when PvP flagged
                 {
                     eventEvaluatorKey = "UNIT_PVP_FLAGGED_CHANGED",
                     inputValues = { --[[unit]] "player" },
@@ -65,7 +66,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { },
+            validKeys = { [2] = true, [4] = true, [10] = true, },
         },
         ListenerGroup =
         {

@@ -59,9 +59,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     VisibleState =
     {
-        ValueHandler =
+        ValueHandler = -- @DEBUG
         {
-            validKeys = { },
+            validKeys = { [2] = true, [8] = true, [24] = true, [40] = true, [42] = true, [50] = true, [56] = true, [58] = true, },
         },
         ListenerGroup =
         {
@@ -78,12 +78,12 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
                         value = 0,
-                        type = "GreaterThan",
+                        type = "EqualTo",
                     },
                     value = 8,
                 },
@@ -91,6 +91,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
                     value = 16,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "GreaterThan",
+                    },
+                    value = 32,
                 },
             },
         },

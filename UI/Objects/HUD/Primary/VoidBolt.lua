@@ -60,7 +60,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, },
+            validKeys = { [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, },
         },
         ListenerGroup =
         {
@@ -75,6 +75,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
                     inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "EqualTo"
+                    },
+                    value = 8,
                 },
             },
         },

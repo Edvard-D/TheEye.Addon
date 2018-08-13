@@ -60,7 +60,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { },
+            validKeys = { [2] = true, [18] = true, [20] = true, [22] = true, [24] = true, [26] = true, },
         },
         ListenerGroup =
         {
