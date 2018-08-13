@@ -4,6 +4,10 @@ local spellID = 32379
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-32379", },
+    CastStartAlert =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
@@ -57,7 +61,10 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { },
+            validKeys =
+            {
+                [2] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true, [62] = true,
+            },
         },
         ListenerGroup =
         {
@@ -65,8 +72,13 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastStartAlert" },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 4,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
@@ -75,16 +87,6 @@ TheEyeAddon.UI.Objects:FormatData(
                     {
                         value = 0,
                         type = "EqualTo",
-                    },
-                    value = 4,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
                     },
                     value = 8,
                 },
