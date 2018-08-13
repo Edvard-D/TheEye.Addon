@@ -64,6 +64,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-193223", --[[componentName]] "VisibleState" },
                     value = 4,
                 },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player",  --[[destUnit]] "player", --[[spellID]] spellID, },
+                    value = 8,
+                },
             },
         },
     },
