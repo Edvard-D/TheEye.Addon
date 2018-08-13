@@ -4,7 +4,7 @@ this.name = "UNIT_AURA_STACK_CHANGED"
 
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local table = table
-local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID
+local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
 local unpack = unpack
 
 

@@ -4,16 +4,13 @@ local spellID = 228260
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-228260", },
+    CastStartAlert =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
-    },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
     },
     EnabledState =
     {
@@ -26,11 +23,20 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
             },
+        },
+    },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
         },
     },
     PriorityRank =
@@ -38,7 +44,7 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 10,
+            value = 10,
         },
     },
     VisibleState =
@@ -47,9 +53,9 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [20] = true, [22] = true, [24] = true, [28] = true, [30] = true, [68] = true,
-                [70] = true, [80] = true, [84] = true, [86] = true, [88] = true, [92] = true,
-                [94] = true, [116] = true, [124] = true,
+                [2] = true, [6] = true, [16] = true, [18] = true, [20] = true, [24] = true, [26] = true,
+                [30] = true, [58] = true, [72] = true, [74] = true, [78] = true, [88] = true, [90] = true,
+                [94] = true, [106] = true, [122] = true,
             }
         },
         ListenerGroup =
@@ -57,18 +63,13 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastStartAlert" },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
                     value = 4,
                 },
                 {
@@ -76,7 +77,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
                     comparisonValues =
                     {
-                        value = 0.9,
+                        value = 0.6,
                         type = "GreaterThanEqualTo"
                     },
                     value = 8,
@@ -86,7 +87,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
                     comparisonValues =
                     {
-                        value = 0.6,
+                        value = 0.9,
                         type = "GreaterThanEqualTo"
                     },
                     value = 16,

@@ -8,13 +8,6 @@ TheEyeAddon.UI.Objects:FormatData(
         parentKey = parentKey,
     },
     -- @TODO change icon based on active aura
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
-        iconObjectType = "SPELL",
-        iconObjectID = 2825,
-    },
     EnabledState =
     {
         ValueHandler =
@@ -26,11 +19,20 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
             },
+        },
+    },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            iconObjectType = "SPELL",
+            iconObjectID = 2825,
         },
     },
     PriorityRank =
@@ -38,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 5,
+            value = 5,
         },
     },
     VisibleState =

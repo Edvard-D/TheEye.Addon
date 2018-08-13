@@ -3,11 +3,11 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
 this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
-local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
-local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
-local UnitAuraGetBySpellID = TheEyeAddon.Auras.UnitAuraGetBySpellID
+local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
 local unpack = unpack
 
 

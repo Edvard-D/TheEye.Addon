@@ -26,7 +26,7 @@ this.reevaluateEvents =
 }
 this.gameEvents =
 {
-    "ACTIVE_TALENT_GROUP_CHANGED",
+    "PLAYER_SPECIALIZATION_CHANGED",
     "PLAYER_TARGET_CHANGED"
 }
 
@@ -35,7 +35,7 @@ local function CalculateCurrentValue(inputValues)
     local specID
 
     if inputValues[1] == "player" then
-        this.playerSpec = this.playerSpec or select(1, GetSpecializationInfo(GetSpecialization()))
+        this.playerSpec = select(1, GetSpecializationInfo(GetSpecialization()))
         specID = this.playerSpec
     else
         specID = GetInspectSpecialization(inputValues[1])

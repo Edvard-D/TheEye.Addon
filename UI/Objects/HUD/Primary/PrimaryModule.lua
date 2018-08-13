@@ -7,18 +7,6 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Group,
-        DimensionTemplate =
-        {
-            PointSettings =
-            {
-                point = "TOP",
-                relativePoint = "TOP",
-            },
-        },
-    },
     EnabledState =
     {
         ValueHandler =
@@ -31,20 +19,31 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_MODULE_SETTING_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_PRIMARY" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
+                    inputValues = { --[[uiObjectKey]] "#SELF#UIOBJECT#KEY#" },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 4,
                 },
             },
         },
     },
-    Parent =
+    Group =
     {
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        DisplayData =
+        {
+            DimensionTemplate =
+            {
+                PointSettings =
+                {
+                    point = "TOP",
+                    relativePoint = "TOP",
+                },
+            },
+        },
+        childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
     },

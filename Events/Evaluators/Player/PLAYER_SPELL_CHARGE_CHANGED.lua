@@ -6,7 +6,7 @@ local GetSpellCharges = GetSpellCharges
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local select = select
 local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Events.Helpers.Player.SpellChargeCooldownRemainingTimeGet
-local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 
 
@@ -15,6 +15,7 @@ local table = table
     inputValues = { #LABEL#SpellID# #INT#, }
 }
 ]]
+
 
 this.customEvents =
 {

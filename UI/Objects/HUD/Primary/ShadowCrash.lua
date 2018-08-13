@@ -4,16 +4,13 @@ local spellID = 205385
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205385", },
+    CastStartAlert =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
-    },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
     },
     EnabledState =
     {
@@ -26,8 +23,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
                 {
@@ -38,43 +35,56 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
+        },
+    },
     PriorityRank =
     {
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 3,
+            value = 3,
         },
+    },
+    ReadySoonAlert =
+    {
+        spellID = spellID
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true },
+            validKeys = { [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastStartAlert" },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 4,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
                     inputValues = { --[[spellID]] spellID },
                     comparisonValues =
                     {
-                        value = TheEyeAddon.Values.cooldownEndAlertLength,
-                        type = "LessThan"
+                        value = 0,
+                        type = "EqualTo",
                     },
-                    value = 4,
+                    value = 8,
                 },
             },
         },

@@ -1,7 +1,8 @@
 TheEyeAddon.UI.Factories.Texture = {}
+local this = TheEyeAddon.UI.Factories.Texture
 
 
-function TheEyeAddon.UI.Factories.Texture:Create(instance, parentFrame, layer, fileID)
+function this.Create(instance, parentFrame, layer, fileID)
 	instance = instance or parentFrame:CreateTexture(nil, layer)
 	
 	instance:SetTexture(fileID)

@@ -2,8 +2,6 @@ TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunct
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-
 
 --[[ #this#TEMPLATE#
 {
@@ -16,18 +14,21 @@ local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
     instance
     uiObject                    UIObject
     stateListener               { function OnShow(), function OnHide() }
+    priority                    #INT#
 ]]
 function this.Setup(
     instance,
     uiObject,
-    stateListener
+    stateListener,
+    priority
 )
 
     listener =
     {
-        eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-        inputValues = { uiObject.key },
-        isInternal = true,
+        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+        inputValues = { uiObject.key, "VisibleState" },
+        priority = priority,
+        isInternal = true
     }
 
     inherited.Setup(
@@ -38,23 +39,6 @@ function this.Setup(
         "OnShow",
         "OnHide"
     )
-
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
-
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
-        uiObject,
-        instance
-    )
-end
-
-function this:OnEnable()
-    self:Activate()
-end
-
-function this:OnDisable()
-    self:Deactivate()
+    
+    instance:Activate()
 end

@@ -2,8 +2,6 @@ local table = table
 
 
 function TheEyeAddon.UI.Objects:FormatData(uiObject)
-    uiObject.DisplayData.UIObject = uiObject
-
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEyeAddon.UI.Objects.Instances[key] = uiObject
@@ -19,13 +17,13 @@ end
 local function UIObjectSetup(uiObject)
     local components = TheEyeAddon.UI.Components
     local pairs = pairs
-    uiObject.AddElement = TheEyeAddon.UI.Objects.AddElement
-    uiObject.elementCount = 0
 
     for componentKey,_ in pairs(uiObject) do
         local component = components[componentKey]
-        if component ~= nil then
-            component.Setup(uiObject[componentKey], uiObject)
+        local componentInstance = uiObject[componentKey]
+        if component ~= nil and componentInstance.wasSetup == nil then
+            component.Setup(componentInstance, uiObject)
+            componentInstance.wasSetup = true
         end
     end
 end

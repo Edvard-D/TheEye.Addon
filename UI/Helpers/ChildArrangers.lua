@@ -4,9 +4,9 @@ local this = TheEyeAddon.UI.ChildArrangers
 
 this.Delegate =
 {
-    Arrange = function(parentFrame, childUIObjects)
+    Arrange = function(parentFrame, groupInstance, childUIObjects)
         for i = 1, #childUIObjects do
-            local childFrame = childUIObjects[i].Frame
+            local childFrame = childUIObjects[i].Frame.instance
             local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
             childFrame:ClearAllPoints()
             childFrame:SetPoint(
@@ -22,11 +22,11 @@ this.Delegate =
 
 this.TopToBottom =
 {
-    Arrange = function(parentFrame, childUIObjects)
+    Arrange = function(parentFrame, groupInstance, childUIObjects)
         local combinedOffsetY = 0
 
         for i = 1, #childUIObjects do
-            local childFrame = childUIObjects[i].Frame
+            local childFrame = childUIObjects[i].Frame.instance
             if childFrame ~= nil then
                 childFrame:ClearAllPoints()
                 childFrame:SetPoint(
@@ -37,7 +37,7 @@ this.TopToBottom =
                     combinedOffsetY
                 )
                 
-                combinedOffsetY = combinedOffsetY - childFrame:GetHeight()
+                combinedOffsetY = combinedOffsetY - childFrame:GetHeight() - (groupInstance.childPadding or 0)
             end
         end
     end,

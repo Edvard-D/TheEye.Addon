@@ -5,9 +5,9 @@ this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
-local InputGroupDurationTimerStart = TheEyeAddon.Timers.InputGroupDurationTimerStart
+local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
-local StartEventTimer = TheEyeAddon.Timers.StartEventTimer
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local select = select
 local tostring = tostring
 local initialTimerLength = 0.01
@@ -19,25 +19,16 @@ local initialTimerLength = 0.01
 }
 ]]
 
+
+this.gameEvents =
+{
+    "UNIT_SPELLCAST_SUCCEEDED"
+}
 this.customEvents =
 {
-    "SPELL_COOLDOWN_TIMER_END"
-}
-local combatLogEvents =
-{
-    "SPELL_CAST_SUCCESS",
+    "SPELL_COOLDOWN_TIMER_END",
 }
 
-function this:SetupListeningTo(inputGroup)
-    for i = 1, #combatLogEvents do
-        InputGroupRegisterListeningTo(inputGroup,
-        {
-            listeningToKey = "COMBAT_LOG",
-            evaluator = this,
-            inputValues = { combatLogEvents[i], "player", "_" }
-        })
-    end
-end
 
 local function TimerStart(inputGroup, remainingTime)
     if remainingTime == initialTimerLength then
@@ -48,8 +39,8 @@ local function TimerStart(inputGroup, remainingTime)
 end
 
 local function CalculateCurrentValue(inputValues)
-    local start, duration = GetSpellCooldown(inputValues[1])
-    local remainingTime = (start + duration) - GetTime()
+    startTime, duration = GetSpellCooldown(inputValues[1])
+    local remainingTime = (startTime + duration) - GetTime()
 
     if remainingTime < 0 then
         remainingTime = 0
@@ -60,18 +51,19 @@ end
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
     TimerStart(inputGroup, inputGroup.currentValue)
+    inputGroup.isGCD = true
 end
 
 function this:GetKey(event, ...)
     local spellID = nil
 
-    if event == "SPELL_CAST_SUCCESS" then
-        local combatLogData = ...
+    if event == "UNIT_SPELLCAST_SUCCEEDED" then
+        local unit = ...
 
-        if combatLogData["sourceUnit"] == "player" then
-            spellID = combatLogData["spellID"]
+        if unit == "player" then
+            spellID = select(3, ...)
         end
-    else
+    else -- SPELL_COOLDOWN_TIMER_END
         local inputValues = select(2, ...)
         spellID = inputValues[1]
     end
@@ -80,15 +72,17 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event)
-    local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
-    
-    if event == "SPELL_CAST_SUCCESS" then
+    if event == "UNIT_SPELLCAST_SUCCEEDED" then
         TimerStart(inputGroup, initialTimerLength)
-    end
+        inputGroup.isGCD = false
+    else
+        local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-    if inputGroup.currentValue ~= remainingTime then
-        TimerStart(inputGroup, remainingTime)
-        inputGroup.currentValue = remainingTime
-        return true, this.name, remainingTime
+        if inputGroup.currentValue ~= remainingTime and inputGroup.isGCD == false then
+            if remainingTime == 0 then inputGroup.isGCD = true end
+            TimerStart(inputGroup, remainingTime)
+            inputGroup.currentValue = remainingTime
+            return true, this.name, remainingTime
+        end
     end
 end

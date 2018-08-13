@@ -4,18 +4,14 @@ local spellID = 205351
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205351", },
+    CastStartAlert =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
-    },
-    -- @TODO cooldown
     -- @TODO show charges
     EnabledState =
     {
@@ -28,8 +24,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
                 {
@@ -40,48 +36,61 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
+        },
+    },
     PriorityRank =
     {
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 8,
+            value = 8,
         },
+    },
+    ReadySoonAlert =
+    {
+        spellID = spellID
     },
     VisibleState =
     {
-        ValueHandler =
+        ValueHandler = -- @DEBUG
         {
-            validKeys = { [2] = true, [6] = true, [8] = true, [10] = true, [14] = true, [16] = true, [14] = true, [18] = true, [22] = true, [24] = true, [26] = true, [28] = true, [30] = true, },
+            validKeys = { [2] = true, [8] = true, [24] = true, [40] = true, [42] = true, [50] = true, [56] = true, [58] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastStartAlert" },
+                    value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
+                        value = 0,
+                        type = "EqualTo",
                     },
-                    value = 2,
+                    value = 8,
                 },
                 {
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 4,
-                },
-                {
-                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.cooldownEndAlertLength,
-                        type = "LessThan"
-                    },
-                    value = 8,
+                    value = 16,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
@@ -91,7 +100,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan",
                     },
-                    value = 16,
+                    value = 32,
                 },
             },
         },

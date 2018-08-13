@@ -1,4 +1,4 @@
-local parentKey = "GROUP_HUD"
+local parentKey = "GROUP_HUD_LEFT"
 
 TheEyeAddon.UI.Objects:FormatData(
 {
@@ -6,20 +6,6 @@ TheEyeAddon.UI.Objects:FormatData(
     Child =
     {
         parentKey = parentKey,
-    },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Group,
-        DimensionTemplate =
-        {
-            PointSettings =
-            {
-                point = "TOPRIGHT",
-                relativePoint = "TOP",
-                offsetX = -32.5,
-                offsetY = -5,
-            },
-        },
     },
     EnabledState =
     {
@@ -33,22 +19,30 @@ TheEyeAddon.UI.Objects:FormatData(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_MODULE_SETTING_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_MODULE_ACTIVE" }, -- @TODO have Setup auto populate fields with some special character, like "#thisKey"
+                    inputValues = { --[[uiObjectKey]] "#SELF#UIOBJECT#KEY#" },
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 4,
                 },
             },
         },
     },
-    Parent =
+    Group =
     {
-        ChildArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",
+    },
+    PriorityRank =
+    {
+        isDynamic = false,
+        ValueHandler =
+        {
+            value = 2,
+        },
     },
     VisibleState =
     {

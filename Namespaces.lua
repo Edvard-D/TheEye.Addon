@@ -7,6 +7,7 @@ TheEyeAddon =
         Evaluators = {},
         Helpers = {},
     },
+    Helpers = {},
     UI =
     {
         Components =
@@ -27,4 +28,5 @@ TheEyeAddon =
             Instances = {},
         },
     },
+    Values = {},
 }

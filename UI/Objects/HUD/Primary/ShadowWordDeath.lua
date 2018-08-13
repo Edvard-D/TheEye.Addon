@@ -4,20 +4,15 @@ local spellID = 32379
 TheEyeAddon.UI.Objects:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-32379", },
+    CastStartAlert =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
     },
-    DisplayData =
-    {
-        factory = TheEyeAddon.UI.Factories.Icon,
-        DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
-        iconObjectType = "SPELL",
-        iconObjectID = spellID,
-        fontTemplate = TheEyeAddon.UI.Fonts.Templates.Icon.default,
-    },
-    -- @TODO cooldown
-        -- @TODO show charges
+    -- @TODO show charges
     EnabledState =
     {
         ValueHandler =
@@ -29,8 +24,8 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_VISIBLE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] parentKey, },
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
                 {
@@ -41,24 +36,60 @@ TheEyeAddon.UI.Objects:FormatData(
             },
         },
     },
+    Icon =
+    {
+        DisplayData =
+        {
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            iconObjectType = "SPELL",
+            iconObjectID = spellID,
+        },
+    },
     PriorityRank =
     {
         isDynamic = false,
         ValueHandler =
         {
-            defaultValue = 7,
+            value = 7,
         },
+    },
+    ReadySoonAlert =
+    {
+        spellID = spellID
     },
     VisibleState = -- @TODO possibly change so it's visible when there's one stack currently and the cooldown for two is about to end
     {
         ValueHandler =
         {
-            validKeys = { [8] = true, [14] = true, [18] = true, [22] = true, [26] = true, [30] = true },
+            validKeys =
+            {
+                [2] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true, [62] = true,
+            },
         },
         ListenerGroup =
         {
             Listeners =
             {
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastStartAlert" },
+                    value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "EqualTo",
+                    },
+                    value = 8,
+                },
                 {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
                     inputValues = { --[[unit]] "target", },
@@ -67,7 +98,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0.2,
                         type = "LessThan",
                     },
-                    value = 2,
+                    value = 16,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
@@ -77,27 +108,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan",
                     },
-                    value = 4,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.castStartHideDelay,
-                        type = "LessThan"
-                    },
-                    value = 8,
-                },
-                {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = TheEyeAddon.Values.cooldownEndAlertLength,
-                        type = "LessThan"
-                    },
-                    value = 16,
+                    value = 32,
                 },
             },
         },
