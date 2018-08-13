@@ -16,7 +16,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, },
+            validKeys = { [6] = true, },
         },
         ListenerGroup =
         {
@@ -26,6 +26,11 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
                     inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 128, },
+                    value = 4,
                 },
             },
         },

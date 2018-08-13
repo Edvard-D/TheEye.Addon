@@ -1,22 +1,18 @@
-local parentKey = "HUD_MODULE_COOLDOWN"
-local spellID = 208683
+local parentKey = "HUD_MODULE_SECONDARY"
+local spellID = 200174
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "COOLDOWN", "SPELL-208683", },
+    tags = { "HUD", "ICON", "SECONDARY", "SPELL-200174", },
     Child =
     {
         parentKey = parentKey,
-    },
-    Cooldown =
-    {
-        spellID = spellID
     },
     EnabledState =
     {
         ValueHandler =
         {
-            validKeys = { [14] = true, },
+            validKeys = { [6] = true, },
         },
         ListenerGroup =
         {
@@ -29,13 +25,8 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] 3476, },
+                    inputValues = { --[[talentID]] 21719, },
                     value = 4,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_PVP_FLAGGED_CHANGED",
-                    inputValues = { --[[unit]] "player" },
-                    value = 8,
                 },
             },
         },
@@ -44,9 +35,17 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Small,
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
+        },
+    },
+    PriorityRank =
+    {
+        isDynamic = false,
+        ValueHandler =
+        {
+            value = 10,
         },
     },
     VisibleState =
@@ -60,9 +59,19 @@ TheEyeAddon.UI.Objects:FormatData(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "Cooldown" },
+                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "EqualTo",
+                    },
                     value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-200174", --[[componentName]] "VisibleState" },
+                    value = 4,
                 },
             },
         },

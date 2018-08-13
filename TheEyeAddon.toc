@@ -120,6 +120,7 @@ Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+Events\Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
 
 
 
@@ -270,6 +271,22 @@ UI\Objects\HUD\Primary\VampiricTouch.lua
 UI\Objects\HUD\Primary\VoidBolt.lua
 UI\Objects\HUD\Primary\VoidEruption.lua
 UI\Objects\HUD\Primary\VoidTorrent.lua
+
+
+# --- HUD: Secondary ---
+UI\Objects\HUD\Secondary\Dispersion.lua
+UI\Objects\HUD\Secondary\Fade.lua
+UI\Objects\HUD\Secondary\GladiatorsMedallion.lua
+UI\Objects\HUD\Secondary\LeapOfFaith.lua
+UI\Objects\HUD\Secondary\Mindbender.lua
+UI\Objects\HUD\Secondary\MindBomb.lua
+UI\Objects\HUD\Secondary\PsychicHorror.lua
+UI\Objects\HUD\Secondary\PsychicScream.lua
+UI\Objects\HUD\Secondary\SecondaryModule.lua
+UI\Objects\HUD\Secondary\Silence.lua
+UI\Objects\HUD\Secondary\SurrenderToMadness.lua
+UI\Objects\HUD\Secondary\VampiricEmbrace.lua
+UI\Objects\HUD\Secondary\VoidShift.lua
 
 
 
