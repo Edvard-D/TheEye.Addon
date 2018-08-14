@@ -19,6 +19,10 @@ TheEyeAddon.Values.auraFilters =
     {
         "HELPFUL " -- @TODO figure out why using NOT_CANCELABLE caused this aura to not be found
     },
+    [211681] = -- Power Word: Fortitude
+    {
+        "HELPFUL"
+    },
     [232698] = -- Shadowform
     {
         "HELPFUL"

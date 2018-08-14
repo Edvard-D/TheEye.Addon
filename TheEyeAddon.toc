@@ -282,6 +282,7 @@ UI\Objects\HUD\Secondary\LeapOfFaith.lua
 UI\Objects\HUD\Secondary\MassDispel.lua
 UI\Objects\HUD\Secondary\Mindbender.lua
 UI\Objects\HUD\Secondary\MindBomb.lua
+UI\Objects\HUD\Secondary\PowerWordFortitude.lua
 UI\Objects\HUD\Secondary\PsychicHorror.lua
 UI\Objects\HUD\Secondary\PsychicScream.lua
 UI\Objects\HUD\Secondary\SecondaryModule.lua
