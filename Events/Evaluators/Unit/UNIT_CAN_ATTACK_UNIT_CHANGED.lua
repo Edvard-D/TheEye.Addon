@@ -1,4 +1,5 @@
--- @DEBUG Doesn't account for situations where a targeted unit changes from friendly to hostile
+-- @DEBUG Doesn't account for situations where a targeted unit changes from friendly to hostile,
+--  but isn't in combat
 TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
 this.name = "UNIT_CAN_ATTACK_UNIT_CHANGED"
@@ -19,11 +20,13 @@ local UnitCanAttack = UnitCanAttack
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true
+    PLAYER_TARGET_CHANGED = true,
+    UNIT_THREAT_SITUATION_UPDATE = true,
 }
 this.gameEvents =
 {
-    "PLAYER_TARGET_CHANGED"
+    "PLAYER_TARGET_CHANGED",
+    "UNIT_THREAT_SITUATION_UPDATE",
 }
 
 
