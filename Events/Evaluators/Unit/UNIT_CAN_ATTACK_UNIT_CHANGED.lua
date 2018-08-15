@@ -1,3 +1,4 @@
+-- @DEBUG Doesn't account for situations where a targeted unit changes from friendly to hostile
 TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
 this.name = "UNIT_CAN_ATTACK_UNIT_CHANGED"
