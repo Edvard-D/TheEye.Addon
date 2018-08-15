@@ -60,7 +60,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [8] = true, [10] = true, [18] = true, [26] = true, }
+            validKeys = { [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, }
         },
         ListenerGroup =
         {
@@ -85,16 +85,6 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "EqualTo",
                     },
                     value = 8,
-                },
-                {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
-                    value = 16,
-                },
-                {
-                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObjectKey]] "HUD_ICON_PRIMARY_SPELL-228260", --[[componentName]] "VisibleState" },
-                    value = 32,
                 },
             },
         },
