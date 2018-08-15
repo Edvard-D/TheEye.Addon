@@ -12,11 +12,11 @@ local UnitThreatSituation = UnitThreatSituation
 ]]
 
 
-local reevaluateEvents =
+this.reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true,
 }
-local gameEvents =
+this.gameEvents =
 {
     "PLAYER_TARGET_CHANGED",
     "UNIT_THREAT_SITUATION_UPDATE",
