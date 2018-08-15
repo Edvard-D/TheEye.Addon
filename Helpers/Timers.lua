@@ -8,11 +8,13 @@ local unpack = unpack
 
 
 function this.StartEventTimer(duration, eventName, ...)
-    local args = { duration, ... } -- @TODO remove duration
-    After(duration, 
-    function()
-        SendCustomEvent(eventName, unpack(args))
-    end)
+    if duration > 0 then
+        local args = { duration, ... } -- @TODO remove duration
+        After(duration, 
+        function()
+            SendCustomEvent(eventName, unpack(args))
+        end)
+    end
 end
 
 local function ValueCalculate(value)
