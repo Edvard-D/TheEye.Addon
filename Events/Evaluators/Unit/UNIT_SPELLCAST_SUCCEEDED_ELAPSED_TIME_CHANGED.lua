@@ -60,7 +60,7 @@ local function CalculateCurrentValue(inputGroup)
 end
 
 function this:InputGroupSetup(inputGroup)
-    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    inputGroup.currentValue = CalculateCurrentValue(inputGroup)
     TimerStart(inputGroup, inputGroup.currentValue)
 end
 
