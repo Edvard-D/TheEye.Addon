@@ -2,6 +2,8 @@ TheEyeAddon.Events.Evaluators.UNIT_IN_COMBAT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_IN_COMBAT_CHANGED
 this.name = "UNIT_IN_COMBAT_CHANGED"
 
+local UnitThreatSituation = UnitThreatSituation
+
 
 --[[ #this#TEMPLATE#
 {
