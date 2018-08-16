@@ -1,5 +1,7 @@
 local this = TheEyeAddon.Values
 
+local UnitSpellHaste = UnitSpellHaste
+
 
 function this.ReadySoonAlertLengthGet()
     local readySoonAlertLength = 0.75
