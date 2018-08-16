@@ -48,16 +48,27 @@ function this.Setup(
 end
 
 local function CallModify(self)
-    if self.state == true
+    if self.state ~= true
+        and self.ValueHandler.state == true
         and self.UIObject.Frame ~= nil
         and self.UIObject.Frame.instance ~= nil
         then
         self:Modify(self.UIObject.Frame.instance)
+        self.state = true
+        SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
     end
 end
 
 local function CallDemodify(self)
-    self:Demodify(self.UIObject.Frame.instance)
+    if self.state ~= false
+        and self.ValueHandler.state == false
+        and self.UIObject.Frame ~= nil
+        and self.UIObject.Frame.instance ~= nil
+        then
+        self:Demodify(self.UIObject.Frame.instance)
+        self.state = false
+        SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
+    end
 end
 
 function this:OnClaim()
@@ -69,13 +80,9 @@ function this:OnRelease()
 end
 
 function this:OnValidKey()
-    self.state = true
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
     CallModify(self)
 end
 
 function this:OnInvalidKey()
-    self.state = false
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
     CallDemodify(self)
 end
