@@ -27,7 +27,7 @@ function table.removevalue(tab, value)
     if tab ~= nil then
         for i = 1, #tab do
             if tab[i] == value then
-                tab[i] = nil
+                table.remove(tab, i)
                 return true
             end
         end
@@ -41,7 +41,7 @@ function table.removekeyvalue(tab, value)
         for k,v in pairs(tab) do
             count = count + 1
             if v == value then
-                tab[k] = nil
+                table.remove(tab, count)
                 return true
             end
         end
