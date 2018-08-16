@@ -1,5 +1,4 @@
 local pairs = pairs
-local table = table
 
 
 function table.hasvalue(tab, value)
@@ -28,7 +27,7 @@ function table.removevalue(tab, value)
     if tab ~= nil then
         for i = 1, #tab do
             if tab[i] == value then
-                table.remove(tab, i)
+                tab[i] = nil
                 return true
             end
         end
@@ -42,7 +41,7 @@ function table.removekeyvalue(tab, value)
         for k,v in pairs(tab) do
             count = count + 1
             if v == value then
-                table.remove(tab, count)
+                tab[k] = nil
                 return true
             end
         end
