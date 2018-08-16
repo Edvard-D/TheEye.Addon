@@ -41,6 +41,8 @@ function this.Setup(
 
     instance.UIObject = uiObject
     instance.Factory = factory
+    instance.ModifierAdd = this.ModifierAdd
+    instance.ModifierRemove = this.ModifierRemove
 
     uiObject.DisplayData = instance.DisplayData
     uiObject.Frame = instance
@@ -62,11 +64,44 @@ function this:OnShow()
     self.state = true
     self.instance = self.Factory.Claim(self.UIObject, nil, self.DisplayData)
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
+
+    if self.modifiers ~= nil then
+        local modifiers = self.modifiers
+        for i=1,#modifiers do
+            modifiers[i]:Modify(self.instance)
+        end
+    end
 end
 
 function this:OnHide()
+    if self.modifiers ~= nil then
+        local modifiers = self.modifiers
+        for i=1,#modifiers do
+            modifiers[i]:Demodify(self.instance)
+        end
+    end
+
     self.state = false
     self.instance:Release()
     self.instance = nil
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
+end
+
+function this:ModifierAdd(modifier)
+    if self.modifiers == nil then
+        self.modifiers = {}
+    end
+    table.insert(self.modifiers, modifier)
+
+    if self.instance ~= nil then
+        modifier:Modify(self.instance)
+    end
+end
+
+function this:ModifierRemove(modifier)
+    table.removevalue(self.modifiers, modifier)
+
+    if self.instance ~= nil then
+        modifier:Demodify(self.instance)
+    end
 end

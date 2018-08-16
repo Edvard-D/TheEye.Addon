@@ -56,14 +56,8 @@ end
 
 function this:Modify(frame)
     frame.texture:SetDesaturated(1)
-    if self.frame == nil then
-        -- @TODO Display model
-    end
 end
 
 function this:Demodify(frame)
     frame.texture:SetDesaturated(nil)
-    if self.frame ~= nil then
-        -- @TODO Destroy model
-    end
 end

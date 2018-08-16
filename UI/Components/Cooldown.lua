@@ -57,21 +57,17 @@ end
 
 
 function this:Modify(frame)
-    if self.frame == nil then
-        self.frame = CooldownClaim(self.UIObject, frame, nil)
-        self.frame:SetAllPoints()
-        self.frame:SetDrawBling(false)
-        self.frame:SetDrawEdge(false)
-        local startTime, duration = GetSpellCooldown(self.spellID)
-        self.frame:SetCooldown(startTime, duration)
-    end
+    self.frame = CooldownClaim(self.UIObject, frame, nil)
+    self.frame:SetAllPoints()
+    self.frame:SetDrawBling(false)
+    self.frame:SetDrawEdge(false)
+    local startTime, duration = GetSpellCooldown(self.spellID)
+    self.frame:SetCooldown(startTime, duration)
 end
 
 function this:Demodify()
-    if self.frame ~= nil then
-        self.frame:Release()
-        self.frame = nil
-    end
+    self.frame:Release()
+    self.frame = nil
 end
 
 function this:SortValueGet()
