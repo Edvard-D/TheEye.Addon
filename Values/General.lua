@@ -1,7 +1,6 @@
 local this = TheEyeAddon.Values
 
 
-this.castStartHideDelay = 0.5
 this.cooldownEndAlertLength = 0.75
 
 function this.ReadySoonAlertLengthGet()

@@ -3,6 +3,8 @@ local this = TheEyeAddon.UI.Components.CastStartAlert
 this.name = "CastStartAlert"
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
+local castStartHideDelay = 0.5
+
 
 --[[ #this#TEMPLATE#
 {
@@ -33,7 +35,7 @@ function this.Setup(
                 inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
                 comparisonValues =
                 {
-                    value = TheEyeAddon.Values.castStartHideDelay,
+                    value = castStartHideDelay,
                     type = "LessThan",
                 },
                 value = 2,
