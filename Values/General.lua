@@ -1,8 +1,6 @@
 local this = TheEyeAddon.Values
 
 
-this.cooldownEndAlertLength = 0.75
-
 function this.ReadySoonAlertLengthGet()
     local readySoonAlertLength = 0.75
     local gcdLength = 1.5 / ((UnitSpellHaste("player") / 100) + 1)
