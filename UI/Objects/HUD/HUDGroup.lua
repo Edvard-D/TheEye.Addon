@@ -62,7 +62,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_IN_COMBAT_CHANGED",
+                    eventEvaluatorKey = "UNIT_AFFECTING_COMBAT_CHANGED",
                     inputValues = { --[[unit]] "player" },
                     value = 4,
                 },

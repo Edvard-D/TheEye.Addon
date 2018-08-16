@@ -1,6 +1,6 @@
-TheEyeAddon.Events.Evaluators.UNIT_IN_COMBAT_CHANGED = {}
-local this = TheEyeAddon.Events.Evaluators.UNIT_IN_COMBAT_CHANGED
-this.name = "UNIT_IN_COMBAT_CHANGED"
+TheEyeAddon.Events.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED
+this.name = "UNIT_AFFECTING_COMBAT_CHANGED"
 
 local UnitAffectingCombat = UnitAffectingCombat
 
@@ -46,7 +46,7 @@ end
 
 function this:Evaluate(inputGroup, event)
     local inCombat = CalculateCurrentValue(inputGroup.inputValues)
-    
+
     if inputGroup.currentValue ~= inCombat then
         inputGroup.currentValue = inCombat
         return true, this.name, inCombat
