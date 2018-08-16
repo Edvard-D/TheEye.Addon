@@ -52,7 +52,7 @@ end
     depends on the FrameModifier's state to be true. Right now the order of events is:
     * FrameModifier.state = true
     * VisibleState has valid key
-    * Frame claimed calling OnClaim
+    * Frame claimed calls OnClaim
     * FrameModifier calls Modify
 ]]
 local function CallModify(self)
