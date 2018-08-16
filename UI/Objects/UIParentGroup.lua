@@ -17,7 +17,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
-                    eventEvaluatorKey = "GAMEDATA_LOADED",
+                    eventEvaluatorKey = "GAMEDATA_LOADED_CHANGED",
                     inputValues = nil,
                     value = 4,
                 },

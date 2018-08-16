@@ -1,6 +1,6 @@
-TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED = {}
-local this = TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED
-this.name = "GAMEDATA_LOADED"
+TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED_CHANGED = {}
+local this = TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED_CHANGED
+this.name = "GAMEDATA_LOADED_CHANGED"
 
 
 --[[ #this#TEMPLATE#

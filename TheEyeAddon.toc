@@ -80,7 +80,7 @@ Events\Helpers\Player.lua
 # --- General ---
 Events\Evaluators\General\ADDON_LOADED.lua
 Events\Evaluators\General\COMBAT_LOG.lua
-Events\Evaluators\General\GAMEDATA_LOADED.lua
+Events\Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
 
 
 # --- Player ---
