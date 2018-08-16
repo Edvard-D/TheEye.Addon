@@ -12,7 +12,8 @@ this.name = "GAMEDATA_LOADED"
 
 this.gameEvents =
 {
-    "PLAYER_ENTERING_WORLD"
+    "PLAYER_ENTERING_WORLD",
+    "PLAYER_LEAVING_WORLD",
 }
 
 
@@ -24,7 +25,7 @@ function this:GetKey(event)
     return "default"
 end
 
-function this:Evaluate(inputGroup)
-    inputGroup.currentValue = true
+function this:Evaluate(inputGroup, event)
+    inputGroup.currentValue = event == "PLAYER_ENTERING_WORLD" -- else PLAYER_LEAVING_WORLD
     return true, this.name, inputGroup.currentValue
 end
