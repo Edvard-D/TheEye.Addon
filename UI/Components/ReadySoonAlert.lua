@@ -1,3 +1,4 @@
+-- @REFACTOR Rename to CastSoonAlert
 TheEyeAddon.UI.Components.ReadySoonAlert = {}
 local this = TheEyeAddon.UI.Components.ReadySoonAlert
 this.name = "ReadySoonAlert"
