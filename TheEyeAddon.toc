@@ -177,11 +177,11 @@ UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lu
 UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\FrameModifier.lua
 
 
 # --- Other ---
 UI\Components\Elements\Frame.lua
+UI\Components\Elements\FrameModifier.lua
 
 
 
