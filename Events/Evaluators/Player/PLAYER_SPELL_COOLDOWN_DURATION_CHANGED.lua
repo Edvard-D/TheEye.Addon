@@ -39,7 +39,7 @@ local function TimerStart(inputGroup, remainingTime)
 end
 
 local function CalculateCurrentValue(inputValues)
-    startTime, duration = GetSpellCooldown(inputValues[1])
+    local startTime, duration = GetSpellCooldown(inputValues[1])
     local remainingTime = (startTime + duration) - GetTime()
 
     if remainingTime < 0 then
@@ -55,7 +55,7 @@ function this:InputGroupSetup(inputGroup)
 end
 
 function this:GetKey(event, ...)
-    local spellID = nil
+    local spellID
 
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         local unit = ...
