@@ -63,7 +63,7 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [4] = true, [16] = true, [18] = true, [20] = true, [22] = true, [24] = true, [26] = true, [28] = true,
+                [4] = true, [16] = true, [18] = true, [20] = true, [22] = true, [26] = true, [28] = true,
                 [30] = true, [48] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true,
                 [60] = true, [62] = true,
             },
