@@ -9,9 +9,6 @@ function this:Release()
 	self:SetParent(nil)
 	self.isClaimed = false
 	self.UIObject = nil
-	if self.texture ~= nil then
-		self.texture:SetDesaturated(nil)
-	end
 end
 
 function this:Claim(uiObject, frameType, parentFrame, template, displayData)
