@@ -64,7 +64,7 @@ function this:Change(value)
         value = self:ValueAction(value)
     end
     
-    if self:ValueGet() ~= value then
+    if self[self.valueKey] ~= value then
         self[self.valueKey] = value
         
         if self.OnValueChange ~= nil then
