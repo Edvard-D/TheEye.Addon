@@ -63,8 +63,13 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED",
-                    inputValues = { --[[parentKey]] instance.UIObject.key },
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED",
+                    inputValues =
+                    {
+                        --[[parentKey]] instance.UIObject.key,
+                        --[[componentKey]] "PriorityRank",
+                        --[[valueKey]] "value",
+                    },
                 }
             }
         },
