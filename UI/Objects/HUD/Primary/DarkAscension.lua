@@ -60,7 +60,12 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, }
+            validKeys =
+            {
+                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true,
+                [34] = true, [36] = true, [38] = true, [40] = true, [42] = true, 
+                [50] = true, [52] = true, [54] = true, [56] = true, [58] = true, 
+            }
         },
         ListenerGroup =
         {
@@ -85,6 +90,21 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "EqualTo",
                     },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_POWER_PERCENT_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
+                    comparisonValues =
+                    {
+                        value = 0.8,
+                        type = "GreaterThan"
+                    },
+                    value = 16,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 32,
                 },
             },
         },
