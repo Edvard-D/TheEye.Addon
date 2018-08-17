@@ -13,10 +13,11 @@ local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
     instance
     uiObject                    UIObject
     onActivate                  function()
-    onDeactivate                  function()
+    onDeactivate                function()
     valueAction                 function(#VALUE#)
     onValueChange               function(#VALUE#)
     defaultValue                #VALUE#
+    valueKey                    #VALUE#
 ]]
 function this.Setup(
     instance,
@@ -25,7 +26,8 @@ function this.Setup(
     onDeactivate,
     valueAction,
     onValueChange,
-    defaultValue
+    defaultValue,
+    valueKey
 )
 
     instance.UIObject = uiObject
@@ -34,7 +36,8 @@ function this.Setup(
     instance.ValueAction = valueAction
     instance.OnValueChange = onValueChange
     instance.defaultValue = defaultValue
-    instance.value = defaultValue
+    instance.valueKey = valueKey
+    instance[valueKey] = defaultValue
 
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate
@@ -49,7 +52,7 @@ function this:Activate()
 end
 
 function this:Deactivate()
-    self.value = self.defaultValue
+    self[self.valueKey] = self.defaultValue
     if self.OnDeactivate ~= nil then
         self:OnDeactivate()
     end
@@ -60,8 +63,8 @@ function this:Change(value)
         value = self:ValueAction(value)
     end
     
-    if self.value ~= value then
-        self.value = value
+    if self[self.valueKey] ~= value then
+        self[self.valueKey] = value
         
         if self.OnValueChange ~= nil then
             self:OnValueChange(value)

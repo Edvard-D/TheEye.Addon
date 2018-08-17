@@ -32,7 +32,8 @@ function this.Setup(
         nil,
         nil,
         this.OnValueChange,
-        defaultValue
+        defaultValue,
+        "value"
     )
 
     instance.ValueChangeListener = valueChangeListener

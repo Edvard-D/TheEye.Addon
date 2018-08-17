@@ -33,7 +33,8 @@ function this.Setup(
         this.OnDeactivate,
         valueAction,
         this.OnValueChange,
-        defaultValue
+        defaultValue,
+        "key"
     )
 
     instance.StateChangeListener = stateChangeListener
@@ -51,11 +52,11 @@ function this:OnDeactivate()
     end
 end
 
-function this:OnValueChange(value)
-    local state = self.validKeys[value] or false
+function this:OnValueChange(key)
+    local state = self.validKeys[key] or false
 
     if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
-        --print (self.UIObject.key .. "    OnValueChange value: " .. tostring(value)) -- @DEBUG
+        --print (self.UIObject.key .. "    OnValueChange key: " .. tostring(key)) -- @DEBUG
     end
     
     if self.state ~= state then

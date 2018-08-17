@@ -32,5 +32,5 @@ function this.Setup(
 end
 
 function this:Add(value)
-    return self.value + value
+    return self[self.valueKey] + value
 end

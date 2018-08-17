@@ -27,6 +27,7 @@ function this.Setup(
         nil,
         nil,
         nil,
-        instance.value
+        instance.value,
+        "value"
     )
 end

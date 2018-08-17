@@ -31,7 +31,8 @@ function this.Setup(
         nil,
         nil,
         instance.OnTableChange,
-        {}
+        {},
+        "table"
     )
 
     instance.OnTableValuesChange = onTableValuesChange
@@ -44,13 +45,13 @@ function this:OnTableChange()
     self:OnTableValuesChange()
 end
 
-function this:Insert(value)
-    table.insert(self.value, value)
+function this:Insert(element)
+    table.insert(self["table"], element)
     self:OnTableValuesChange()
 end
 
-function this:Remove(value)
-    local wasRemoved = table.removevalue(self.value, value)
+function this:Remove(element)
+    local wasRemoved = table.removevalue(self["table"], element)
     if wasRemoved == true then
         self:OnTableValuesChange()
     end

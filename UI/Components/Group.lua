@@ -47,6 +47,7 @@ function this.Setup(
         instance.sortActionName,
         instance.sortValueComponentName
     )
+    instance.childUIObjects = instance.ValueHandler[instance.ValueHandler.valueKey]
 
     -- ListenerGroups
     instance.ListenerGroups =
@@ -140,8 +141,7 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
 
     if frame ~= nil then
-        local childUIObjects = self.ValueHandler.value
-        self.childArranger.Arrange(frame, self, childUIObjects)
-        frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
+        self.childArranger.Arrange(frame, self, self.childUIObjects)
+        frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end
 end
