@@ -10,8 +10,8 @@ local table = table
     inputValues =
     {
         #LABEL#UIObject Key# #UIOBJECT#KEY#
-        #LABEL#Component Name# #COMPONENT#NAME#
-        #LABEL#Value Name# #VALUE#NAME#
+        #LABEL#Component Key# #COMPONENT#KEY#
+        #LABEL#Value Key# #VALUE#KEY#
     }
 }
 ]]
@@ -23,10 +23,10 @@ this.customEvents =
 }
 
 
-local function CalculateCurrentValue(component, valueName)
+local function CalculateCurrentValue(component, valueKey)
     if component == nil then return nil end
     
-    return component.ValueHandler[valueName]
+    return component.ValueHandler[valueKey]
 end
 
 function this:InputGroupSetup(inputGroup)
@@ -37,12 +37,12 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(component, inputGroup.inputValues[3])
 end
 
-function this:GetKey(event, uiObject, component, valueName)
-    return table.concat({ uiObject.key, component.key, valueName })
+function this:GetKey(event, uiObject, component, valueKey)
+    return table.concat({ uiObject.key, component.key, valueKey })
 end
 
-function this:Evaluate(inputGroup, event, uiObject, component, valueName)
-    local value = CalculateCurrentValue(component, valueName)
+function this:Evaluate(inputGroup, event, uiObject, component, valueKey)
+    local value = CalculateCurrentValue(component, valueKey)
 
     if inputGroup.currentValue ~= value then
         inputGroup.currentValue = value

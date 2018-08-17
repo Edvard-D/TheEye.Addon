@@ -10,8 +10,8 @@ local table = table
     inputValues =
     {
         #LABEL#Parent UIObject Key# #UIOBJECT#KEY#
-        #LABEL#Component Name# #COMPONENT#NAME#
-        #LABEL#Value Name# #VALUE#NAME#
+        #LABEL#Component Key# #COMPONENT#KEY#
+        #LABEL#Value Key# #VALUE#KEY#
     }
 }
 ]]
@@ -23,14 +23,14 @@ this.customEvents =
 }
 
 
-function this:GetKey(event, childUIObject, component, valueName)
+function this:GetKey(event, childUIObject, component, valueKey)
     if childUIObject.Child == nil then return nil end
     if component == nil then return nil end
-    if component.ValueHandler[valueName] == nil then return nil end
+    if component.ValueHandler[valueKey] == nil then return nil end
 
-    return table.concat({ childUIObject.Child.parentKey, component.key, valueName })
+    return table.concat({ childUIObject.Child.parentKey, component.key, valueKey })
 end
 
-function this:Evaluate(inputGroup, event, childUIObject, component, valueName)
-    return true, this.name, component.ValueHandler[valueName]
+function this:Evaluate(inputGroup, event, childUIObject, component, valueKey)
+    return true, this.name, component.ValueHandler[valueKey]
 end
