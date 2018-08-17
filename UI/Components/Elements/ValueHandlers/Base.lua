@@ -43,6 +43,7 @@ function this.Setup(
     instance.Deactivate = this.Deactivate
     instance.Change = this.Change
     instance.Reset = this.Reset
+    instance.ValueGet = this.ValueGet
 end
 
 function this:Activate()
@@ -63,7 +64,7 @@ function this:Change(value)
         value = self:ValueAction(value)
     end
     
-    if self[self.valueKey] ~= value then
+    if self:ValueGet() ~= value then
         self[self.valueKey] = value
         
         if self.OnValueChange ~= nil then
@@ -74,4 +75,8 @@ end
 
 function this:Reset()
     self:Change(self.defaultValue)
+end
+
+function this:ValueGet()
+    return self[self.valueKey]
 end
