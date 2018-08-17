@@ -27,11 +27,6 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
                     value = 2,
                 },
-                {
-                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] 23126, },
-                    value = 4,
-                },
             },
         },
     },
@@ -46,10 +41,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     PriorityRank =
     {
-        isDynamic = false,
         ValueHandler =
         {
-            value = 12,
+            validKeys = { [0] = 3, }
         },
     },
     ReadySoonAlert =
@@ -60,7 +54,12 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [8] = true, [10] = true, },
+            validKeys =
+            {
+                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, [18] = true, [20] = true, [22] = true,
+                [26] = true, [34] = true, [36] = true, [38] = true, [40] = true, [42] = true, [50] = true,
+                [54] = true, [58] = true,
+            },
         },
         ListenerGroup =
         {
@@ -85,6 +84,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "EqualTo"
                     },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 23126, }, -- Misery
+                    value = 16,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-34914", --[[componentName]] "VisibleState" }, -- Vampiric Touch
+                    value = 32,
                 },
             },
         },

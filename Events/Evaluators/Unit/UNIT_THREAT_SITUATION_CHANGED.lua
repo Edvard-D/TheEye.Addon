@@ -18,10 +18,12 @@ local UnitThreatSituation = UnitThreatSituation
 
 this.reevaluateEvents =
 {
-    UNIT_THREAT_SITUATION_UPDATE = true
+    PLAYER_TARGET_CHANGED = true,
+    UNIT_THREAT_SITUATION_UPDATE = true,
 }
 this.gameEvents =
 {
+    "PLAYER_TARGET_CHANGED",
     "UNIT_THREAT_SITUATION_UPDATE",
 }
 

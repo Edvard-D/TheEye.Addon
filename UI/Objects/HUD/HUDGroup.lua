@@ -50,7 +50,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true },
+            validKeys = { [30] = true },
         },
         ListenerGroup =
         {
@@ -62,6 +62,21 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 2,
                 },
                 {
+                    eventEvaluatorKey = "UNIT_AFFECTING_COMBAT_CHANGED",
+                    inputValues = { --[[unit]] "player" },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
+                    inputValues = { --[[unit]] "player" },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "GreaterThan"
+                    },
+                    value = 8,
+                },
+                {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
                     inputValues = { --[[unit]] "target" },
                     comparisonValues =
@@ -69,7 +84,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan"
                     },
-                    value = 4,
+                    value = 16,
                 },
             },
         },

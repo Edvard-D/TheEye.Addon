@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-## Version: 0.2.0
+## Version: 0.2.1
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -80,7 +80,7 @@ Events\Helpers\Player.lua
 # --- General ---
 Events\Evaluators\General\ADDON_LOADED.lua
 Events\Evaluators\General\COMBAT_LOG.lua
-Events\Evaluators\General\GAMEDATA_LOADED.lua
+Events\Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
 
 
 # --- Player ---
@@ -95,8 +95,10 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
@@ -107,6 +109,7 @@ Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 
 
 # --- Unit ---
+Events\Evaluators\Unit\UNIT_AFFECTING_COMBAT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
@@ -137,15 +140,20 @@ UI\Helpers\Setup.lua
 # ---------------------------
 # |	UI\Components\Elements  |
 # ---------------------------
+UI\Components\Elements\Base.lua
+
+
 # --- Value Handlers ---
 UI\Components\Elements\ValueHandlers\Base.lua
 
 UI\Components\Elements\ValueHandlers\KeyState.lua
+UI\Components\Elements\ValueHandlers\KeyValue.lua
 UI\Components\Elements\ValueHandlers\StaticValue.lua
 UI\Components\Elements\ValueHandlers\TableBase.lua
 UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
 
 UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\IntegerKeyValue.lua
 UI\Components\Elements\ValueHandlers\SortedTable.lua
 
 
@@ -168,19 +176,19 @@ UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
 # --- Listener Value Change Handlers ---
 UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
 UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
 UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\FrameModifier.lua
 
 
 # --- Other ---
 UI\Components\Elements\Frame.lua
+UI\Components\Elements\FrameModifier.lua
 
 
 
@@ -282,6 +290,7 @@ UI\Objects\HUD\Secondary\LeapOfFaith.lua
 UI\Objects\HUD\Secondary\MassDispel.lua
 UI\Objects\HUD\Secondary\Mindbender.lua
 UI\Objects\HUD\Secondary\MindBomb.lua
+UI\Objects\HUD\Secondary\PowerWordFortitude.lua
 UI\Objects\HUD\Secondary\PsychicHorror.lua
 UI\Objects\HUD\Secondary\PsychicScream.lua
 UI\Objects\HUD\Secondary\SecondaryModule.lua

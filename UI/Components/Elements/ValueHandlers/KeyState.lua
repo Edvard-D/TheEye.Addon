@@ -13,14 +13,12 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     valueAction                 function(#VALUE#)
     defaultValue                #VALUE#
     stateChangeListener         table { OnStateChange = function(state) }
 ]]
 function this.Setup(
     instance,
-    uiObject,
     valueAction,
     defaultValue,
     stateChangeListener
@@ -28,12 +26,12 @@ function this.Setup(
 
     inherited.Setup(
         instance,
-        uiObject,
         this.OnActivate,
         this.OnDeactivate,
         valueAction,
         this.OnValueChange,
-        defaultValue
+        defaultValue,
+        "key"
     )
 
     instance.StateChangeListener = stateChangeListener
@@ -51,15 +49,19 @@ function this:OnDeactivate()
     end
 end
 
-function this:OnValueChange(value)
-    local state = self.validKeys[value] or false
+function this:OnValueChange(key)
+    local state = self.validKeys[key] or false
 
     if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
-        --print (self.UIObject.key .. "    OnValueChange value: " .. tostring(value)) -- @DEBUG
+        --print (self.UIObject.key .. "    " .. self.Component.key .. "    OnValueChange key: " .. tostring(key)) -- @DEBUG
     end
     
     if self.state ~= state then
         self.state = state
         self.StateChangeListener:OnStateChange(self.state)
     end
+end
+
+function this:ValueGet()
+    return self.state
 end

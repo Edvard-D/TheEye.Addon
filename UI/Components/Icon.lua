@@ -19,16 +19,13 @@ local IconFactory = TheEyeAddon.UI.Factories.Icon
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         IconFactory
     )
 end

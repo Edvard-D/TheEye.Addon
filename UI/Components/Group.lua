@@ -22,16 +22,13 @@ local table = table
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         GroupFactory
     )
 
@@ -43,10 +40,10 @@ function this.Setup(
     instance.ValueHandler = {}
     SortedTableSetup(
         instance.ValueHandler,
-        uiObject,
         instance.sortActionName,
         instance.sortValueComponentName
     )
+    instance.childUIObjects = instance.ValueHandler[instance.ValueHandler.valueKey]
 
     -- ListenerGroups
     instance.ListenerGroups =
@@ -57,7 +54,7 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
-                    inputValues = { --[[parentKey]] uiObject.key },
+                    inputValues = { --[[parentKey]] instance.UIObject.key },
                 },
             }
         },
@@ -66,8 +63,13 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED",
-                    inputValues = { --[[parentKey]] uiObject.key },
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED",
+                    inputValues =
+                    {
+                        --[[parentKey]] instance.UIObject.key,
+                        --[[componentKey]] "PriorityRank",
+                        --[[valueKey]] "value",
+                    },
                 }
             }
         },
@@ -75,14 +77,12 @@ function this.Setup(
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.DisplayUpdate,
-        uiObject,
         instance,
         "DisplayUpdate"
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Sort,
-        uiObject,
         instance.ValueHandler,
         "Sort"
     )
@@ -140,8 +140,7 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
 
     if frame ~= nil then
-        local childUIObjects = self.ValueHandler.value
-        self.childArranger.Arrange(frame, self, childUIObjects)
-        frame:SetSizeWithEvent(SizeCalculate(childUIObjects))
+        self.childArranger.Arrange(frame, self, self.childUIObjects)
+        frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end
 end

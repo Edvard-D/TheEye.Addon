@@ -13,18 +13,15 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     stateChangeListener         function(#BOOL#)
 ]]
 function this.Setup(
     instance,
-    uiObject,
     stateChangeListener
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         this.Add,
         0,
         stateChangeListener
@@ -32,5 +29,5 @@ function this.Setup(
 end
 
 function this:Add(value)
-    return self.value + value
+    return self[self.valueKey] + value
 end

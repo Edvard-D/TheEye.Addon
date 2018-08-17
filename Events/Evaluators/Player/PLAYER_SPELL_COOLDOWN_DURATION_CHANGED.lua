@@ -5,12 +5,12 @@ this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
+local initialTimerLength = 0.01
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local select = select
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local tostring = tostring
-local initialTimerLength = 0.01
 
 
 --[[ #this#TEMPLATE#
@@ -20,9 +20,14 @@ local initialTimerLength = 0.01
 ]]
 
 
+this.reevaluateEvents =
+{
+    SPELL_UPDATE_USABLE = true,
+}
 this.gameEvents =
 {
-    "UNIT_SPELLCAST_SUCCEEDED"
+    "UNIT_SPELLCAST_SUCCEEDED",
+    "SPELL_UPDATE_USABLE",
 }
 this.customEvents =
 {
@@ -38,28 +43,39 @@ local function TimerStart(inputGroup, remainingTime)
     end
 end
 
-local function CalculateCurrentValue(inputValues)
-    startTime, duration = GetSpellCooldown(inputValues[1])
+local function RemainingTimeCalculate(startTime, duration)
     local remainingTime = (startTime + duration) - GetTime()
 
     if remainingTime < 0 then
         remainingTime = 0
     end
+
     return remainingTime
 end
 
+local function CalculateCurrentValue(inputValues)
+    local startTime, duration = GetSpellCooldown(inputValues[1])
+    return RemainingTimeCalculate(startTime, duration)
+end
+
 function this:InputGroupSetup(inputGroup)
+    local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-    TimerStart(inputGroup, inputGroup.currentValue)
-    inputGroup.isGCD = true
+
+    if inputGroup.currentValue == RemainingTimeCalculate(gcdStartTime, gcdDuration) then
+        inputGroup.currentValue = 0
+        inputGroup.isGCD = true
+    else
+        inputGroup.isGCD = false
+        TimerStart(inputGroup, inputGroup.currentValue)
+    end
 end
 
 function this:GetKey(event, ...)
-    local spellID = nil
+    local spellID
 
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         local unit = ...
-
         if unit == "player" then
             spellID = select(3, ...)
         end
@@ -76,10 +92,15 @@ function this:Evaluate(inputGroup, event)
         TimerStart(inputGroup, initialTimerLength)
         inputGroup.isGCD = false
     else
+        local gcdDuration = select(2, GetSpellCooldown(61304))
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if inputGroup.currentValue ~= remainingTime and inputGroup.isGCD == false then
-            if remainingTime == 0 then inputGroup.isGCD = true end
+        if inputGroup.currentValue ~= remainingTime
+            and (gcdDuration == 0 or inputGroup.isGCD == false)
+            then
+            if remainingTime == 0 then
+                inputGroup.isGCD = true
+            end
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
             return true, this.name, remainingTime

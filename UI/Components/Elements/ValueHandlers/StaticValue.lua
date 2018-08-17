@@ -13,20 +13,18 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         nil,
         nil,
         nil,
         nil,
-        instance.value
+        instance.value,
+        "value"
     )
 end

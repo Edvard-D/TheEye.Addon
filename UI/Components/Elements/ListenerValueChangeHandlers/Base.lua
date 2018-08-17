@@ -1,28 +1,30 @@
 TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 
 --[[ #this#TEMPLATE#
 {
-    nil
+    #inherited#TEMPLATE#
 }
 ]]
 
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
     valueHandler                ValueHandler
     listenerGroup               ListenerGroup
 ]]
 function this.Setup(
     instance,
-    uiObject,
     valueHandler,
     listenerGroup
 )
-    
-    instance.UIObject = uiObject
+
+    inherited.Setup(
+        instance
+    )
+
     instance.ValueHandler = valueHandler
     instance.ListenerGroup = listenerGroup
 

@@ -1,45 +1,51 @@
 TheEyeAddon.UI.Components.Elements.ValueHandlers.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 
 --[[ #this#TEMPLATE#
 {
-    nil
+    #inherited#TEMPLATE#
 }
 ]]
 
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     onActivate                  function()
-    onDeactivate                  function()
+    onDeactivate                function()
     valueAction                 function(#VALUE#)
     onValueChange               function(#VALUE#)
     defaultValue                #VALUE#
+    valueKey                    #VALUE#
 ]]
 function this.Setup(
     instance,
-    uiObject,
     onActivate,
     onDeactivate,
     valueAction,
     onValueChange,
-    defaultValue
+    defaultValue,
+    valueKey
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
+
     instance.OnActivate = onActivate
     instance.OnDeactivate = onDeactivate
     instance.ValueAction = valueAction
     instance.OnValueChange = onValueChange
     instance.defaultValue = defaultValue
-    instance.value = defaultValue
+    instance.valueKey = valueKey
+    instance[valueKey] = defaultValue
 
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate
     instance.Change = this.Change
     instance.Reset = this.Reset
+    instance.ValueGet = this.ValueGet
 end
 
 function this:Activate()
@@ -49,7 +55,7 @@ function this:Activate()
 end
 
 function this:Deactivate()
-    self.value = self.defaultValue
+    self[self.valueKey] = self.defaultValue
     if self.OnDeactivate ~= nil then
         self:OnDeactivate()
     end
@@ -60,8 +66,8 @@ function this:Change(value)
         value = self:ValueAction(value)
     end
     
-    if self.value ~= value then
-        self.value = value
+    if self[self.valueKey] ~= value then
+        self[self.valueKey] = value
         
         if self.OnValueChange ~= nil then
             self:OnValueChange(value)
@@ -71,4 +77,8 @@ end
 
 function this:Reset()
     self:Change(self.defaultValue)
+end
+
+function this:ValueGet()
+    return self[self.valueKey]
 end

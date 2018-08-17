@@ -2,13 +2,16 @@ TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED
 this.name = "UIOBJECT_COMPONENT_STATE_CHANGED"
 
+local table = table
+local type = type
+
 
 --[[ #this#TEMPLATE#
 {
     inputValues =
     {
         #LABEL#UIObject Key# #UIOBJECT#KEY#
-        #LABEL#Component Name# #COMPONENT#NAME#
+        #LABEL#Component Key# #COMPONENT#KEY#
     }
 }
 ]]
@@ -20,22 +23,36 @@ this.customEvents =
 }
 
 
-local function CalculateCurrentValue(uiObject, componentName)
-    return (uiObject ~= nil and uiObject[componentName] ~= nil and uiObject[componentName].state) or false
+local function CalculateCurrentValue(component)
+    if component == nil then return nil end
+
+    return component.state
 end
 
 function this:InputGroupSetup(inputGroup)
     local uiObject = TheEyeAddon.UI.Objects.Instances[inputGroup.inputValues[1]]
-    inputGroup.currentValue = CalculateCurrentValue(uiObject, inputGroup.inputValues[2])
+    if uiObject == nil then return end
+
+    local component = uiObject[inputGroup.inputValues[2]]
+    inputGroup.currentValue = CalculateCurrentValue(uiObject, component)
 end
 
-function this:GetKey(event, uiObject, componentName)
-    return table.concat({ uiObject.key, componentName})
+function this:GetKey(event, uiObject, ...)
+    local componentKey
+    local value = ...
+    if type(value) == "string" then
+        componentKey = value
+    else
+        local component = value
+        componentKey = component.key
+    end
+
+    return table.concat({ uiObject.key, componentKey })
 end
 
-function this:Evaluate(inputGroup, event, uiObject, componentName)
-    local state = CalculateCurrentValue(uiObject, componentName)
-
+function this:Evaluate(inputGroup, event, uiObject, component)
+    local state = CalculateCurrentValue(component)
+    
     if inputGroup.currentValue ~= state then
         inputGroup.currentValue = state
         return true, this.name, state

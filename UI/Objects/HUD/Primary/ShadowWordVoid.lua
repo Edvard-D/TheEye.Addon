@@ -47,10 +47,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     PriorityRank =
     {
-        isDynamic = false,
         ValueHandler =
         {
-            value = 8,
+            validKeys = { [0] = 5, }
         },
     },
     ReadySoonAlert =
@@ -61,7 +60,12 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler = -- @DEBUG
         {
-            validKeys = { [2] = true, [8] = true, [24] = true, [40] = true, [42] = true, [50] = true, [56] = true, [58] = true, },
+            validKeys =
+            {
+                [4] = true, [16] = true, [18] = true, [20] = true, [22] = true, [26] = true, [28] = true,
+                [30] = true, [48] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true,
+                [60] = true, [62] = true,
+            },
         },
         ListenerGroup =
         {
@@ -78,19 +82,9 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = 0,
-                        type = "EqualTo",
-                    },
-                    value = 8,
-                },
-                {
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
-                    value = 16,
+                    value = 8,
                 },
                 {
                     eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
@@ -98,6 +92,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     comparisonValues =
                     {
                         value = 0,
+                        type = "GreaterThan",
+                    },
+                    value = 16,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 1,
                         type = "GreaterThan",
                     },
                     value = 32,

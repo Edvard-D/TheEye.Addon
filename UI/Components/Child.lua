@@ -1,5 +1,6 @@
 TheEyeAddon.UI.Components.Child = {}
 local this = TheEyeAddon.UI.Components.Child
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
@@ -8,6 +9,7 @@ local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 --[[ #this#TEMPLATE#
 {
+    #inherited#TEMPLATE#
     parentKey = #UIOBJECT#KEY#
 }
 ]]
@@ -15,14 +17,14 @@ local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
 
     -- VisibleStateFunctionCaller
     instance.OnShow = this.OnShow
@@ -31,7 +33,6 @@ function this.Setup(
     instance.VisibleStateFunctionCaller = {}
     VisibleStateFunctionCallerSetup(
         instance.VisibleStateFunctionCaller,
-        uiObject,
         instance,
         2
     )

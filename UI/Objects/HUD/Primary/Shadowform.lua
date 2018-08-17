@@ -37,10 +37,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     PriorityRank =
     {
-        isDynamic = false,
         ValueHandler =
         {
-            value = math.huge,
+            validKeys = { [0] = math.huge, }
         },
     },
     VisibleState =

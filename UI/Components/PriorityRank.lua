@@ -1,28 +1,20 @@
 TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
+local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.IntegerKeyValueEventSender
 
-local DynamicSortRankSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank.Setup
-local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.StaticValue.Setup
+local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#
 {
-    isDynamic = #BOOL#
-}
-
-#isDynamic#TRUE#
-{
-    #this#TEMPLATE#
+    #inherited#TEMPLATE#
+    ValueHandler =
     {
-        #TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank#TEMPLATE#
-    }
-}
-
-#isDynamic#FALSE#
-{
-    #this#TEMPLATE#
-    {
-        ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.StaticValue#TEMPLATE#
+        validKeys =
+        {
+            [0] = #INT#
+            #INT# = #INT#
+        }
     }
 }
 ]]
@@ -30,26 +22,35 @@ local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.Static
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
-    if instance.isDynamic == true then
-        DynamicSortRankSetup(
-            instance,
-            uiObject
-        )
-    else
-        StaticValueSetup(
-            instance.ValueHandler,
-            uiObject
-        )
-    end
+    inherited.Setup(
+        instance
+    )
 
     instance.SortValueGet = this.SortValueGet
+
+    -- EnabledStateFunctionCaller
+    instance.OnEnable = this.OnEnable
+    instance.OnDisable = this.OnDisable
+
+    instance.EnabledStateFunctionCaller = {}
+    EnabledStateFunctionCallerSetup(
+        instance.EnabledStateFunctionCaller,
+        instance,
+        2
+    )
+end
+
+function this:OnEnable()
+    self:Activate()
+end
+
+function this:OnDisable()
+    self:Deactivate()
 end
 
 function this:SortValueGet()

@@ -45,8 +45,8 @@ local function CalculateCurrentValue(inputValues)
     return charges
 end
 
-local function TimerStart(inputValues)
-    local remainingTime = SpellChargeCooldownRemainingTimeGet(inputValues)
+local function TimerStart(inputValues, remainingTime)
+    remainingTime = remainingTime or SpellChargeCooldownRemainingTimeGet(inputValues)
     StartEventTimer(remainingTime, "UNIT_SPELLCAST_TIMER_END", inputValues[1])
 end
 
@@ -71,11 +71,9 @@ end
 function this:Evaluate(inputGroup, event)
     local charges = CalculateCurrentValue(inputGroup.inputValues)
     if event ~= "UNIT_SPELLCAST_TIMER_END" then
-        if inputGroup.currentValue == charges and charges == 1 then
-            charges = 0
-        else
-            TimerStart(inputGroup.inputValues)
-        end
+        TimerStart(inputGroup.inputValues, 0.01)
+    else
+        TimerStart(inputGroup.inputValues)
     end
 
     if inputGroup.currentValue ~= charges then

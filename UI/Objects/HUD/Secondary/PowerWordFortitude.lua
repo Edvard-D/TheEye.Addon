@@ -1,9 +1,9 @@
 local parentKey = "HUD_MODULE_SECONDARY"
-local spellID = 73325
+local spellID = 211681
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "SECONDARY", "SPELL-73325", },
+    tags = { "HUD", "ICON", "SECONDARY", "SPELL-211681", },
     Child =
     {
         parentKey = parentKey,
@@ -30,7 +30,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Small,
+            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -39,27 +39,22 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 1, }
+            validKeys = { [0] = 6, }
         },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true },
+            validKeys = { [0] = true },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = 0,
-                        type = "EqualTo",
-                    },
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "_", --[[destUnit]] "player", --[[spellID]] spellID },
                     value = 2,
                 },
             },
