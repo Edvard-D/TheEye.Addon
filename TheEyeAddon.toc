@@ -139,6 +139,9 @@ UI\Helpers\Setup.lua
 # ---------------------------
 # |	UI\Components\Elements  |
 # ---------------------------
+UI\Components\Elements\Base.lua
+
+
 # --- Value Handlers ---
 UI\Components\Elements\ValueHandlers\Base.lua
 
