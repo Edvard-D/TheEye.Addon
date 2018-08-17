@@ -1,17 +1,17 @@
 TheEyeAddon.UI.Components.Elements.ValueHandlers.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 
 --[[ #this#TEMPLATE#
 {
-    nil
+    #inherited#TEMPLATE#
 }
 ]]
 
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     onActivate                  function()
     onDeactivate                function()
     valueAction                 function(#VALUE#)
@@ -21,7 +21,6 @@ local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 ]]
 function this.Setup(
     instance,
-    uiObject,
     onActivate,
     onDeactivate,
     valueAction,
@@ -30,7 +29,10 @@ function this.Setup(
     valueKey
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
+
     instance.OnActivate = onActivate
     instance.OnDeactivate = onDeactivate
     instance.ValueAction = valueAction

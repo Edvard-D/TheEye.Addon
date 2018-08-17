@@ -15,16 +15,13 @@ local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 --[[ SETUP
     instance                    { #name#STRING#, function Modify(frame), function Demodify(frame) }
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         this.OnValidKey,
         this.OnInvalidKey
     )
@@ -36,7 +33,6 @@ function this.Setup(
     instance.EnabledStateFunctionCaller = {}
     EnabledStateFunctionCallerSetup(
         instance.EnabledStateFunctionCaller,
-        uiObject,
         instance,
         1
     )
@@ -53,11 +49,11 @@ end
 function this:OnValidKey()
     self.UIObject.Frame:ModifierAdd(self)
     self.state = true
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end
 
 function this:OnInvalidKey()
     self.UIObject.Frame:ModifierRemove(self)
     self.state = false
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.name)
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end

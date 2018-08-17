@@ -19,4 +19,7 @@ function this.Setup(
 )
 
     instance.UIObject = Objects.currentUIObject
+    if instance ~= Objects.currentComponent then
+        instance.Component = Objects.currentComponent
+    end
 end

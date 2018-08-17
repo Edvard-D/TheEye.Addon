@@ -21,17 +21,14 @@ local ValueChangeNotifierSetup = TheEyeAddon.UI.Components.Elements.ValueHandler
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     instance.OnSortRankChange = this.OnSortRankChange
     ValueChangeNotifierSetup(
         instance.ValueHandler,
-        uiObject,
         instance,
         "OnSortRankChange",
         instance.ValueHandler.defaultValue
@@ -39,7 +36,6 @@ function this.Setup(
 
     inherited.Setup(
         instance,
-        uiObject,
         instance.ValueHandler,
         instance.ListenerGroup
     )

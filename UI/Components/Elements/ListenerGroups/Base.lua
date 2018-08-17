@@ -1,9 +1,11 @@
 TheEyeAddon.UI.Components.Elements.ListenerGroups.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 
 --[[ #this#TEMPLATE#
 {
+    #inherited#TEMPLATE#
     Listeners = { #ARRAY#TheEyeAddon.UI.Components.Elements.Listeners#NAME#TEMPLATE# }
 }
 ]]
@@ -11,7 +13,6 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     listenerSetup               function(listener, uiObject, listenerGroup)
     onNotify                    function(listener, ...)
     onActivate                  function()
@@ -19,14 +20,16 @@ local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
 ]]
 function this.Setup(
     instance,
-    uiObject,
     listenerSetup,
     onNotify,
     onActivate,
     onDeactivate
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
+
     instance.OnNotify = onNotify
     instance.OnActivate = onActivate
     instance.OnDeactivate = onDeactivate
@@ -36,7 +39,9 @@ function this.Setup(
 
     local listeners = instance.Listeners
     for i = 1, #listeners do -- must come after value assignment
-        listenerSetup(listeners[i], uiObject, instance)
+        listenerSetup(listeners[i],
+            instance
+        )
     end
 end
 

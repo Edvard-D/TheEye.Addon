@@ -12,13 +12,11 @@ local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
     stateListener               { function OnClaim(), function OnRelease() }
     priority                    #INT#
 ]]
 function this.Setup(
     instance,
-    uiObject,
     stateListener,
     priority
 )
@@ -33,7 +31,6 @@ function this.Setup(
 
     inherited.Setup(
         instance,
-        uiObject,
         listener,
         stateListener,
         "OnClaim",

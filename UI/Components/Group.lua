@@ -22,16 +22,13 @@ local table = table
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         GroupFactory
     )
 
@@ -43,7 +40,6 @@ function this.Setup(
     instance.ValueHandler = {}
     SortedTableSetup(
         instance.ValueHandler,
-        uiObject,
         instance.sortActionName,
         instance.sortValueComponentName
     )
@@ -58,7 +54,7 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
-                    inputValues = { --[[parentKey]] uiObject.key },
+                    inputValues = { --[[parentKey]] instance.UIObject.key },
                 },
             }
         },
@@ -68,7 +64,7 @@ function this.Setup(
             {
                 {
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED",
-                    inputValues = { --[[parentKey]] uiObject.key },
+                    inputValues = { --[[parentKey]] instance.UIObject.key },
                 }
             }
         },
@@ -76,14 +72,12 @@ function this.Setup(
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.DisplayUpdate,
-        uiObject,
         instance,
         "DisplayUpdate"
     )
 
     NotifyBasedFunctionCallerSetup(
         instance.ListenerGroups.Sort,
-        uiObject,
         instance.ValueHandler,
         "Sort"
     )

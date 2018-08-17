@@ -1,5 +1,6 @@
 TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local DynamicSortRankSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.DynamicSortRank.Setup
 local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.StaticValue.Setup
@@ -7,6 +8,7 @@ local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.Static
 
 --[[ #this#TEMPLATE#
 {
+    #inherited#TEMPLATE#
     isDynamic = #BOOL#
 }
 
@@ -30,22 +32,22 @@ local StaticValueSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.Static
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
+
+    inherited.Setup(
+        instance
+    )
 
     if instance.isDynamic == true then
         DynamicSortRankSetup(
-            instance,
-            uiObject
+            instance
         )
     else
         StaticValueSetup(
-            instance.ValueHandler,
-            uiObject
+            instance.ValueHandler
         )
     end
 

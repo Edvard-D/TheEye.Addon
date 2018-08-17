@@ -1,6 +1,5 @@
 TheEyeAddon.UI.Components.VisibleState = {}
 local this = TheEyeAddon.UI.Components.VisibleState
-this.name = "VisibleState"
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
@@ -30,16 +29,13 @@ local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     inherited.Setup(
         instance,
-        uiObject,
         this.Show,
         this.Hide
     )
@@ -51,7 +47,6 @@ function this.Setup(
     instance.EnabledStateFunctionCaller = {}
     EnabledStateFunctionCallerSetup(
         instance.EnabledStateFunctionCaller,
-        uiObject,
         instance,
         1
     )
@@ -66,13 +61,13 @@ function this:OnDisable()
 end
 
 function this:Show()
-    --print ("SHOW    " .. self.UIObject.key) -- DEBUG
+    --print (self.UIObject.key .. "    Show") -- DEBUG
     self.state = true
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end
 
 function this:Hide()
-    --print ("HIDE    " .. self.UIObject.key) -- DEBUG
+    --print (self.UIObject.key .. "    Hide") -- DEBUG
     self.state = false
-    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, this.name)
+    SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end

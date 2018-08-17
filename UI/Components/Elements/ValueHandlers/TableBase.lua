@@ -14,19 +14,16 @@ local table = table
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     onTableValuesChange         function()
 ]]
 function this.Setup(
     instance,
-    uiObject,
     onTableValuesChange
 )
 
     instance.OnTableChange = this.OnTableChange
     inherited.Setup(
         instance,
-        uiObject,
         nil,
         nil,
         nil,

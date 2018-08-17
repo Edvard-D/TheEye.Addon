@@ -1,7 +1,6 @@
 -- @REFACTOR Rename to CastSoonAlert
 TheEyeAddon.UI.Components.ReadySoonAlert = {}
 local this = TheEyeAddon.UI.Components.ReadySoonAlert
-this.name = "ReadySoonAlert"
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local auraFilters = TheEyeAddon.Values.auraFilters
@@ -22,11 +21,9 @@ local ReadySoonAlertLengthGet = TheEyeAddon.Values.ReadySoonAlertLengthGet
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     -- StateHandler
@@ -54,17 +51,16 @@ function this.Setup(
         instance.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
     end
     
-    instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
 
     inherited.Setup(
-        instance,
-        uiObject
+        instance
     )
 end
 
 function this:Modify(frame)
+    print("YEEEEEEP")
     self.frame = CooldownClaim(self.UIObject, frame, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)

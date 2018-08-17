@@ -1,6 +1,5 @@
 TheEyeAddon.UI.Components.CastStartAlert = {}
 local this = TheEyeAddon.UI.Components.CastStartAlert
-this.name = "CastStartAlert"
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local castStartHideDelay = 0.5
@@ -18,11 +17,9 @@ local castStartHideDelay = 0.5
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     instance.ValueHandler = { validKeys = { [2] = true } }
@@ -43,13 +40,11 @@ function this.Setup(
         },
     }
 
-    instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
 
     inherited.Setup(
-        instance,
-        uiObject
+        instance
     )
 end
 

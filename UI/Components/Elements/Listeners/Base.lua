@@ -1,5 +1,6 @@
 TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local ListenerRegister = TheEyeAddon.Events.Helpers.Core.ListenerRegister
 local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
@@ -7,6 +8,7 @@ local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
 
 --[[ #this#TEMPLATE#
 {
+    #inherited#TEMPLATE#
     eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
     #OPTIONAL#priority = #INT#
@@ -16,16 +18,17 @@ local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     notificationHandler         { OnNotify:function(listener, ...) }
 ]]
 function this.Setup(
     instance,
-    uiObject,
     notificationHandler
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
+
     instance.NotificationHandler = notificationHandler
 
     instance.Activate = this.Activate
@@ -38,7 +41,7 @@ function this.Setup(
         local inputValues = instance.inputValues
         for i=1, #inputValues do
             if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
-                inputValues[i] = uiObject.key
+                inputValues[i] = instance.UIObject.key
                 instance.isInternal = true
             end
         end

@@ -1,6 +1,7 @@
 TheEyeAddon.UI.Components.Elements.Frame = {}
 local this = TheEyeAddon.UI.Components.Elements.Frame
 this.name = "Frame"
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
@@ -9,6 +10,7 @@ local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
 
 --[[ #this#TEMPLATE#
 {
+    #inherited#TEMPLATE#
     #OPTIONAL#DisplayData =
     {
         #OPTIONAL#DimensionTemplate =
@@ -30,22 +32,23 @@ local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
     factory                     UI.Factories
 ]]
 function this.Setup(
     instance,
-    uiObject,
     factory
 )
 
-    instance.UIObject = uiObject
+    inherited.Setup(
+        instance
+    )
+
     instance.Factory = factory
     instance.ModifierAdd = this.ModifierAdd
     instance.ModifierRemove = this.ModifierRemove
 
-    uiObject.DisplayData = instance.DisplayData
-    uiObject.Frame = instance
+    instance.UIObject.DisplayData = instance.DisplayData
+    instance.UIObject.Frame = instance
 
     -- VisibleStateFunctionCaller
     instance.OnShow = this.OnShow
@@ -54,7 +57,6 @@ function this.Setup(
     instance.VisibleStateFunctionCaller = {}
     VisibleStateFunctionCallerSetup(
         instance.VisibleStateFunctionCaller,
-        uiObject,
         instance,
         1
     )

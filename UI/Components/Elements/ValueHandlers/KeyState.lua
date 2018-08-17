@@ -13,14 +13,12 @@ local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     valueAction                 function(#VALUE#)
     defaultValue                #VALUE#
     stateChangeListener         table { OnStateChange = function(state) }
 ]]
 function this.Setup(
     instance,
-    uiObject,
     valueAction,
     defaultValue,
     stateChangeListener
@@ -28,7 +26,6 @@ function this.Setup(
 
     inherited.Setup(
         instance,
-        uiObject,
         this.OnActivate,
         this.OnDeactivate,
         valueAction,
@@ -56,7 +53,7 @@ function this:OnValueChange(key)
     local state = self.validKeys[key] or false
 
     if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
-        --print (self.UIObject.key .. "    OnValueChange key: " .. tostring(key)) -- @DEBUG
+        --print (self.UIObject.key .. "    " .. self.Component.key .. "    OnValueChange key: " .. tostring(key)) -- @DEBUG
     end
     
     if self.state ~= state then

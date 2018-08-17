@@ -14,13 +14,11 @@ local table = table
 
 --[[ #SETUP#
     instance
-    uiObject                    UIObject
     sortActionnName             string
     sortValueComponentName      string
 ]]
 function this.Setup(
     instance,
-    uiObject,
     sortActionName,
     sortValueComponentName
 )
@@ -28,7 +26,6 @@ function this.Setup(
     instance.Sort = this.Sort
     inherited.Setup(
         instance,
-        uiObject,
         instance.Sort
     )
 

@@ -1,6 +1,5 @@
 TheEyeAddon.UI.Components.Cooldown = {}
 local this = TheEyeAddon.UI.Components.Cooldown
-this.name = "Cooldown"
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
@@ -19,11 +18,9 @@ local GetSpellCooldown = GetSpellCooldown
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
 ]]
 function this.Setup(
-    instance,
-    uiObject
+    instance
 )
 
     instance.ValueHandler = { validKeys = { [2] = true } }
@@ -44,14 +41,12 @@ function this.Setup(
         },
     }
 
-    instance.name = this.name
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
     instance.SortValueGet = this.SortValueGet
 
     inherited.Setup(
-        instance,
-        uiObject
+        instance
     )
 end
 

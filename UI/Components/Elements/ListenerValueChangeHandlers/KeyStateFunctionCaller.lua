@@ -17,34 +17,29 @@ local StateBasedIntChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGro
 
 --[[ SETUP
     instance
-    uiObject                    UIObject
     onValidKey                  function()
     onInvalidKey                function()
 ]]
 function this.Setup(
     instance,
-    uiObject,
     onValidKey,
     onInvalidKey
 )
     
     IntegerKeyStateSetup(
         instance.ValueHandler,
-        uiObject,
         instance
     )
 
     if instance.ListenerGroup ~= nil then
         StateBasedIntChangerSetup(
             instance.ListenerGroup,
-            uiObject,
             instance.ValueHandler
         )
     end
 
     inherited.Setup(
         instance,
-        uiObject,
         instance.ValueHandler,
         instance.ListenerGroup
     )
