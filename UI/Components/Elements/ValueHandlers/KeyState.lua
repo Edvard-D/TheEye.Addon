@@ -64,3 +64,7 @@ function this:OnValueChange(key)
         self.StateChangeListener:OnStateChange(self.state)
     end
 end
+
+function this:ValueGet()
+    return self.state
+end
