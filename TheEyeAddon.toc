@@ -153,6 +153,7 @@ UI\Components\Elements\ValueHandlers\TableBase.lua
 UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
 
 UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Components\Elements\ValueHandlers\IntegerKeyValue.lua
 UI\Components\Elements\ValueHandlers\SortedTable.lua
 
 
