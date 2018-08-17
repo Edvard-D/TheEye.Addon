@@ -178,6 +178,7 @@ UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\DynamicSortRank.lua
 UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Components\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
 UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
 UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
