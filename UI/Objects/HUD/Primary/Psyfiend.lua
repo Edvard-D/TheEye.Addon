@@ -52,10 +52,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     PriorityRank =
     {
-        isDynamic = false,
         ValueHandler =
         {
-            value = 5,
+            validKeys = { [0] = 5, }
         },
     },
     ReadySoonAlert =

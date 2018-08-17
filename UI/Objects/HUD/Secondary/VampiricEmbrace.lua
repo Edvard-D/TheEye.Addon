@@ -37,10 +37,9 @@ TheEyeAddon.UI.Objects:FormatData(
     },
     PriorityRank =
     {
-        isDynamic = false,
         ValueHandler =
         {
-            value = 8,
+            validKeys = { [0] = 8, }
         },
     },
     VisibleState =
