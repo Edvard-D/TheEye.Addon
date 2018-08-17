@@ -2,6 +2,8 @@ TheEyeAddon.UI.Components.PriorityRank = {}
 local this = TheEyeAddon.UI.Components.PriorityRank
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.IntegerKeyValueEventSender
 
+local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+
 
 --[[ #this#TEMPLATE#
 {
@@ -30,6 +32,25 @@ function this.Setup(
     )
 
     instance.SortValueGet = this.SortValueGet
+
+    -- EnabledStateFunctionCaller
+    instance.OnEnable = this.OnEnable
+    instance.OnDisable = this.OnDisable
+
+    instance.EnabledStateFunctionCaller = {}
+    EnabledStateFunctionCallerSetup(
+        instance.EnabledStateFunctionCaller,
+        instance,
+        2
+    )
+end
+
+function this:OnEnable()
+    self:Activate()
+end
+
+function this:OnDisable()
+    self:Deactivate()
 end
 
 function this:SortValueGet()
