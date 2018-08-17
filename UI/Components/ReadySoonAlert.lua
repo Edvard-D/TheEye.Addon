@@ -60,7 +60,6 @@ function this.Setup(
 end
 
 function this:Modify(frame)
-    print("YEEEEEEP")
     self.frame = CooldownClaim(self.UIObject, frame, nil)
     self.frame:SetAllPoints()
     self.frame:SetDrawBling(false)
