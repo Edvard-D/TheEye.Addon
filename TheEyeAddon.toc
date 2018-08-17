@@ -95,6 +95,7 @@ Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 # --- UIObject ---
 Events\Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
+Events\Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
