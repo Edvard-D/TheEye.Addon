@@ -26,5 +26,5 @@ function this:GetKey(event, childUIObject)
 end
 
 function this:Evaluate(inputGroup, event, childUIObject)
-    return true, this.key, childUIObject
+    return true, this.key
 end

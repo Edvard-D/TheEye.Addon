@@ -42,6 +42,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= canAttack then
         inputGroup.currentValue = canAttack
-        return true, this.key, canAttack
+        return true, this.key
     end
 end

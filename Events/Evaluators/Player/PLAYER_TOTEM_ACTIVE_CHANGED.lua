@@ -68,6 +68,6 @@ function this:Evaluate(inputGroup, event, ...)
 
     if inputGroup.currentValue ~= isActive then
         inputGroup.currentValue = isActive
-        return true, this.key, isActive
+        return true, this.key
     end
 end

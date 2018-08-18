@@ -80,11 +80,11 @@ function this:GetKeys()
 
     if #validKeys > 0 then
         FormatData(rawEventData)
-end
+    end
 
     return validKeys
-    end
- 
+end
+
 function this:Evaluate(inputGroup)
     -- @DEBUG
     --[[print (formattedEventInfo["event"]
@@ -94,7 +94,7 @@ function this:Evaluate(inputGroup)
     formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
     formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
 
-    return true, formattedEventInfo["event"], formattedEventInfo
+    return true, formattedEventInfo["event"]
 end
 
 

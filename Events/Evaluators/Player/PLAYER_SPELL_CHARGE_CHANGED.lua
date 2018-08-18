@@ -60,8 +60,8 @@ function this:GetKey(event, ...)
     if event == "UNIT_SPELLCAST_TIMER_END" then
         spellID = select(2, ...)
     else
-        local combatLogData = ...
-        spellID = combatLogData["spellID"]
+        local inputGroup = ...
+        spellID = inputGroup.eventData["spellID"]
     end
 
     return table.concat({ spellID })
@@ -77,6 +77,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= charges then
         inputGroup.currentValue = charges
-        return true, this.key, charges
+        return true, this.key
     end
 end

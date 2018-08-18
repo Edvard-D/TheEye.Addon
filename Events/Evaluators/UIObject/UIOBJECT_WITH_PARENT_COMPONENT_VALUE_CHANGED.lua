@@ -31,5 +31,5 @@ function this:GetKey(event, childUIObject, component, valueKey)
 end
 
 function this:Evaluate(inputGroup, event, childUIObject, component, valueKey)
-    return true, this.key, component.ValueHandler[valueKey]
+    return true, this.key
 end

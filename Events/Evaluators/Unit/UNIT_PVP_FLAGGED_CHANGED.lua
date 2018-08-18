@@ -34,6 +34,6 @@ function this:Evaluate(inputGroup, event)
     local pvpEnabled = UnitIsPVP(inputGroup.inputValues[1])
     if inputGroup.currentValue ~= pvpEnabled then
         inputGroup.currentValue = pvpEnabled
-        return true, this.key, pvpEnabled
+        return true, this.key
     end
 end

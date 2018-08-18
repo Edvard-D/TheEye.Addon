@@ -45,6 +45,6 @@ function this:Evaluate(inputGroup, event, uiObject, component, valueKey)
 
     if inputGroup.currentValue ~= value then
         inputGroup.currentValue = value
-        return true, this.key, value
+        return true, this.key
     end
 end

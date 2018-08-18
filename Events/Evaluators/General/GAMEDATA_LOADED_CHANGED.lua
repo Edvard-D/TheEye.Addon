@@ -26,5 +26,5 @@ end
 
 function this:Evaluate(inputGroup, event)
     inputGroup.currentValue = event == "PLAYER_ENTERING_WORLD" -- else PLAYER_LEAVING_WORLD
-    return true, this.key, inputGroup.currentValue
+    return true, this.key
 end

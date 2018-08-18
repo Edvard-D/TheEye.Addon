@@ -56,6 +56,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= isSpec then
         inputGroup.currentValue = isSpec
-        return true, this.key, isSpec
+        return true, this.key
     end
 end

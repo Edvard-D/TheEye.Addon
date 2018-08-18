@@ -49,6 +49,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= threatSituation then
         inputGroup.currentValue = threatSituation
-        return true, this.key, threatSituation
+        return true, this.key
     end
 end

@@ -102,7 +102,7 @@ function this:Evaluate(inputGroup, event)
             end
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
-            return true, this.key, remainingTime
+            return true, this.key
         end
     end
 end

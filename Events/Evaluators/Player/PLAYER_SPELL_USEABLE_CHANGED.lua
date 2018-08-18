@@ -33,6 +33,6 @@ function this:Evaluate(inputGroup, event)
     local isUseable = CalculateCurrentValue(inputGroup.inputValues)
     if inputGroup.currentValue ~= isUseable then
         inputGroup.currentValue = isUseable
-        return true, this.key, isUseable
+        return true, this.key
     end
 end

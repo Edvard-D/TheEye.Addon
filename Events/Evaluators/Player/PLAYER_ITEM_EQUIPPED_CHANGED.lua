@@ -37,6 +37,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isEquipped then
         inputGroup.currentValue = isEquipped
-        return true, this.key, isEquipped
+        return true, this.key
     end
 end

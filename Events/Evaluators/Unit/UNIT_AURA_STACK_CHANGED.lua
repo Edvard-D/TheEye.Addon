@@ -82,15 +82,16 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
-function this:GetKey(event, combatLogData)
-    return table.concat({ combatLogData["sourceUnit"], combatLogData["destUnit"], combatLogData["spellID"] })
+function this:GetKey(event, inputGroup)
+    local eventData = inputGroup.eventData
+    return table.concat({ eventData["sourceUnit"], eventData["destUnit"], eventData["spellID"] })
 end
 
-function this:Evaluate(inputGroup, event, combatLogData)
+function this:Evaluate(inputGroup)
     local stackCount = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= stackCount then
         inputGroup.currentValue = stackCount
-        return true, this.key, stackCount
+        return true, this.key
     end
 end

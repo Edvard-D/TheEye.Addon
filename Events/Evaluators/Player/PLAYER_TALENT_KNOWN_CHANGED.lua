@@ -55,6 +55,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isKnown then
         inputGroup.currentValue = isKnown
-        return true, this.key, isKnown
+        return true, this.key
     end
 end

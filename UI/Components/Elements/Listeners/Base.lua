@@ -57,13 +57,12 @@ function this:Deactivate()
     self:Deregister()
 end
 
-function this:Notify(event, ...)
+function this:Notify(event, inputGroup)
     if self.comparisonValues == nil then
-        self.NotificationHandler:OnNotify(self, event, ...)
+        self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue)
     else
-        local currentValue = ...
         local comparisonState = Comparisons[self.comparisonValues.type](
-            currentValue, self.comparisonValues)
+            inputGroup.currentValue, self.comparisonValues)
         if (self.comparisonState ~= comparisonState and self.comparisonState ~= nil)
             or (self.comparisonState == nil and comparisonState == true)
             then

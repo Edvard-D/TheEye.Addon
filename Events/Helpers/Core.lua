@@ -147,14 +147,14 @@ function this.InputGroupDeregisterListeningTo(inputGroup)
 end
 
 -- Event Evaluation
-local function ListenersNotify(inputGroup, shouldSend, ...)
+local function ListenersNotify(inputGroup, shouldSend, event)
     if shouldSend == true then
         local listeners = inputGroup.listeners
         for i = 1, #listeners do
             local listener = listeners[i]
 
             if listener.isListening == true then
-                listener:Notify(...)
+                listener:Notify(event, inputGroup)
             end
         end
     end

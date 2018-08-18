@@ -21,21 +21,15 @@ this.customEvents =
 {
     "SPELL_CHARGE_COOLDOWN_TIMER_END"
 }
-local combatLogEvents =
-{
-    "SPELL_CAST_SUCCESS",
-}
 
 
 function this:SetupListeningTo(inputGroup)
-    for i = 1, #combatLogEvents do
-        InputGroupRegisterListeningTo(inputGroup,
-        {
-            listeningToKey = "COMBAT_LOG",
-            evaluator = this,
-            inputValues = { combatLogEvents[i], "player", "_" }
-        })
-    end
+    InputGroupRegisterListeningTo(inputGroup,
+    {
+        listeningToKey = "COMBAT_LOG",
+        evaluator = this,
+        inputValues = { "SPELL_CAST_SUCCESS", "player", "_" }
+    })
 end
 
 local function TimerStart(inputGroup, remainingTime)
@@ -55,10 +49,10 @@ function this:GetKey(event, ...)
     local spellID = nil
 
     if event == "SPELL_CAST_SUCCESS" then
-        local combatLogData = ...
+        local inputGroup = ...
 
-        if combatLogData["sourceUnit"] == "player" then
-            spellID = combatLogData["spellID"]
+        if inputGroup.eventData["sourceUnit"] == "player" then
+            spellID = inputGroup.eventData["spellID"]
         end
     else
         local inputValues = select(2, ...)
@@ -77,7 +71,7 @@ function this:Evaluate(inputGroup, event)
         if inputGroup.currentValue ~= remainingTime then
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
-            return true, this.key, remainingTime
+            return true, this.key
         end
     end
 end

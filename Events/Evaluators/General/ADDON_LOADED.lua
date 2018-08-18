@@ -25,6 +25,7 @@ function this:GetKey(event, ...)
     return select(1, ...)
 end
 
-function this:Evaluate()
-    return true, this.key, true
+function this:Evaluate(inputGroup)
+    inputGroup.currentValue = true
+    return true, this.key
 end

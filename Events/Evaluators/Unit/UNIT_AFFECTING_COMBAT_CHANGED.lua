@@ -48,6 +48,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= inCombat then
         inputGroup.currentValue = inCombat
-        return true, this.key, inCombat
+        return true, this.key
     end
 end

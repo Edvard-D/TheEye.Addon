@@ -84,7 +84,9 @@ function this:GetKey(event, ...)
         unit = inputValues[1]
         spellID = inputValues[2]
     elseif event == "UNIT_SPELLCAST_INSTANT" then
-        spellID, _, unit = ...
+        local eventInputGroup = ...
+        unit = eventInputGroup.inputValues[1]
+        spellID = eventInputGroup.inputValues[2]
     else
         unit, _, spellID = ...
     end
@@ -96,15 +98,18 @@ function this:Evaluate(inputGroup, event, ...)
     local elapsedTime
 
     if event == "UNIT_SPELLCAST_INSTANT" then
-        local spellID, castTimestamp = ...
-        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, spellID, castTimestamp)
+        local eventInputGroup = ...
+        print("eventInputGroup.castTimestamp: " .. tostring(eventInputGroup.castTimestamp))
+        elapsedTime = CalculateCurrentValue(
+            inputGroup.inputValues, eventInputGroup.inputValues[2], eventInputGroup.castTimestamp)
     else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end
 
     if inputGroup.currentValue ~= elapsedTime then
+        print("elapsedTime: " .. tostring(elapsedTime))
         TimerStart(inputGroup, elapsedTime)
         inputGroup.currentValue = elapsedTime
-        return true, this.key, elapsedTime
+        return true, this.key
     end
 end

@@ -48,6 +48,6 @@ function this:Evaluate(inputGroup, event, unit)
 
     if inputGroup.currentValue ~= powerPercent then
         inputGroup.currentValue = powerPercent
-        return true, this.key, powerPercent
+        return true, this.key
     end
 end

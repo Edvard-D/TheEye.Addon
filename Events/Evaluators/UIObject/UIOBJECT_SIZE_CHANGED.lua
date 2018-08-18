@@ -20,5 +20,5 @@ function this:GetKey(event, uiObject)
 end
 
 function this:Evaluate(inputGroup, uiObject)
-    return true, this.key, uiObject
+    return true, this.key
 end

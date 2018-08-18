@@ -72,7 +72,7 @@ function this:Evaluate(inputGroup, event)
         local isActive = CalculateCurrentValue(inputGroup.inputValues)
         if inputGroup.currentValue ~= isActive then
             inputGroup.currentValue = isActive
-            return true, this.key, isActive
+            return true, this.key
         end
     end
 end

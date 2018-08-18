@@ -40,6 +40,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isClass then
         inputGroup.currentValue = isClass
-        return true, this.key, isClass
+        return true, this.key
     end
 end

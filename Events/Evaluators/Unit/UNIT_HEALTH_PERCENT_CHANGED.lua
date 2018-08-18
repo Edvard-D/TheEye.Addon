@@ -47,6 +47,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= healthPercent then
         inputGroup.currentValue = healthPercent
-        return true, this.key, healthPercent
+        return true, this.key
     end
 end
