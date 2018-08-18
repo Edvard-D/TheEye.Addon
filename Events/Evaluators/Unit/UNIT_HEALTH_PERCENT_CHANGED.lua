@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_HEALTH_PERCENT_CHANGED
-this.name = "UNIT_HEALTH_PERCENT_CHANGED"
 
 local math = math
 local UnitHealth = UnitHealth
@@ -48,6 +47,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= healthPercent then
         inputGroup.currentValue = healthPercent
-        return true, this.name, healthPercent
+        return true, this.key, healthPercent
     end
 end

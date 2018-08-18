@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED
-this.name = "UIOBJECT_MODULE_SETTING_CHANGED"
 
 local select = select
 local table = table
@@ -49,6 +48,6 @@ function this:Evaluate(inputGroup, event, ...)
 
     if inputGroup.currentValue ~= isEnabled then
         inputGroup.currentValue = isEnabled
-        return true, this.name, isEnabled
+        return true, this.key, isEnabled
     end
 end

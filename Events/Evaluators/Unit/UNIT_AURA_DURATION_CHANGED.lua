@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
-this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
@@ -112,6 +111,6 @@ function this:Evaluate(inputGroup, event)
     if inputGroup.currentValue ~= remainingTime then
         TimerStart(inputGroup, remainingTime)
         inputGroup.currentValue = remainingTime
-        return true, this.name, remainingTime
+        return true, this.key, remainingTime
     end
 end

@@ -1,8 +1,7 @@
 -- @DEBUG Doesn't account for situations where a targeted unit changes from friendly to hostile,
---  but isn't in combat
+--  but isn't in combat.
 TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
-this.name = "UNIT_CAN_ATTACK_UNIT_CHANGED"
 
 local UnitCanAttack = UnitCanAttack
 
@@ -43,6 +42,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= canAttack then
         inputGroup.currentValue = canAttack
-        return true, this.name, canAttack
+        return true, this.key, canAttack
     end
 end

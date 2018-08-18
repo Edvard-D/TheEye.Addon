@@ -39,12 +39,13 @@ local function InputGroupGetListeners(inputGroup)
 end
 
 -- Listener Count
-local function EvaluatorIncreaseListenerCount(evaluator)
+local function EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
     end
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
+        evaluator.key = evaluatorKey
         evaluator.OnEvent = this.OnEvent
         CoordinatorRegister(evaluator)
     end
@@ -85,7 +86,7 @@ end
 
 -- Register/Deregister
 function this.ListenerRegister(evaluatorKey, listener)
-    local evaluator = Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
+    local evaluator = Evaluators[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
@@ -103,7 +104,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 
     listener.isListening = true
-    EvaluatorIncreaseListenerCount(evaluator)
+    EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
     if listener.comparisonValues ~= nil then

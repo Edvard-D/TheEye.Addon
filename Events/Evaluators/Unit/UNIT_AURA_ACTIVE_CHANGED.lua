@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED
-this.name = "UNIT_AURA_ACTIVE_CHANGED"
 
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local table = table
@@ -81,6 +80,6 @@ function this:Evaluate(inputGroup, event, combatLogData)
 
     if inputGroup.currentValue ~= isActive then
         inputGroup.currentValue = isActive
-        return true, this.name, isActive
+        return true, this.key, isActive
     end
 end

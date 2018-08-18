@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_SORTRANK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_SORTRANK_CHANGED
-this.name = "UIOBJECT_WITH_TAGS_SORTRANK_CHANGED"
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
@@ -24,5 +23,5 @@ this.customEvents =
 
 function this:Evaluate(inputGroup, event, uiObject)
     local sendEvent = UIObjectHasTags(uiObject, inputGroup.inputValues, inputGroup.key)
-    return sendEvent, this.name, uiObject
+    return sendEvent, this.key, uiObject
 end

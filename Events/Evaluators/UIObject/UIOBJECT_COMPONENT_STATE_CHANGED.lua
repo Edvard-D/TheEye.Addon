@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_COMPONENT_STATE_CHANGED
-this.name = "UIOBJECT_COMPONENT_STATE_CHANGED"
 
 local table = table
 local type = type
@@ -55,6 +54,6 @@ function this:Evaluate(inputGroup, event, uiObject, component)
     
     if inputGroup.currentValue ~= state then
         inputGroup.currentValue = state
-        return true, this.name, state
+        return true, this.key, state
     end
 end

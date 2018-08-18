@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT
-this.name = "UNIT_SPELLCAST_INSTANT"
 
 local GetTime = GetTime
 local select = select
@@ -43,7 +42,7 @@ function this:Evaluate(inputGroup, event, ...)
     elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
         if inputGroup.isCasting ~= true then
             local castTimestamp = GetTime()
-            return true, this.name, inputGroup.inputValues[2], castTimestamp, ...
+            return true, this.key, inputGroup.inputValues[2], castTimestamp, ...
         end
         inputGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then

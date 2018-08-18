@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPEC_CHANGED
-this.name = "UNIT_SPEC_CHANGED"
 
 local GetInspectSpecialization = GetInspectSpecialization
 local GetSpecialization = GetSpecialization
@@ -57,6 +56,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= isSpec then
         inputGroup.currentValue = isSpec
-        return true, this.name, isSpec
+        return true, this.key, isSpec
     end
 end

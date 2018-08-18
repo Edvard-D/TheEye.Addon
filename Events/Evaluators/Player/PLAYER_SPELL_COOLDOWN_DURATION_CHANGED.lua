@@ -1,7 +1,6 @@
 -- @TODO add coverage for cooldowns being reset
 TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
-this.name = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
@@ -103,7 +102,7 @@ function this:Evaluate(inputGroup, event)
             end
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
-            return true, this.name, remainingTime
+            return true, this.key, remainingTime
         end
     end
 end

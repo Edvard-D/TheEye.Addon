@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_SPELL_USEABLE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_USEABLE_CHANGED
-this.name = "PLAYER_SPELL_USEABLE_CHANGED"
 
 local IsUsableSpell = IsUsableSpell
 
@@ -34,6 +33,6 @@ function this:Evaluate(inputGroup, event)
     local isUseable = CalculateCurrentValue(inputGroup.inputValues)
     if inputGroup.currentValue ~= isUseable then
         inputGroup.currentValue = isUseable
-        return true, this.name, isUseable
+        return true, this.key, isUseable
     end
 end

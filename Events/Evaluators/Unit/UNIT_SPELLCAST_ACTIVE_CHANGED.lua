@@ -1,7 +1,6 @@
 -- @REFACTOR maybe refactor to use CombatEvent?
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
-this.name = "UNIT_SPELLCAST_ACTIVE_CHANGED"
 
 local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
@@ -73,7 +72,7 @@ function this:Evaluate(inputGroup, event)
         local isActive = CalculateCurrentValue(inputGroup.inputValues)
         if inputGroup.currentValue ~= isActive then
             inputGroup.currentValue = isActive
-            return true, this.name, isActive
+            return true, this.key, isActive
         end
     end
 end

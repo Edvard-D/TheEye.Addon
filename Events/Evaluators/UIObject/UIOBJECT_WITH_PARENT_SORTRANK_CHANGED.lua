@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED
-this.name = "UIOBJECT_WITH_PARENT_SORTRANK_CHANGED"
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
@@ -28,5 +27,5 @@ function this:GetKey(event, childUIObject)
 end
 
 function this:Evaluate(inputGroup, event, childUIObject)
-    return true, this.name, childUIObject
+    return true, this.key, childUIObject
 end

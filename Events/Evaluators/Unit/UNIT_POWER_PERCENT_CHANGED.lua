@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_POWER_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_POWER_PERCENT_CHANGED
-this.name = "UNIT_POWER_PERCENT_CHANGED"
 
 local powerTypes = TheEyeAddon.Values.powerTypes
 local table = table
@@ -49,6 +48,6 @@ function this:Evaluate(inputGroup, event, unit)
 
     if inputGroup.currentValue ~= powerPercent then
         inputGroup.currentValue = powerPercent
-        return true, this.name, powerPercent
+        return true, this.key, powerPercent
     end
 end

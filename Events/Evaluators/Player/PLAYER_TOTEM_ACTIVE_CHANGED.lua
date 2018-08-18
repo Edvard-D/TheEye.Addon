@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_TOTEM_ACTIVE_CHANGED
-this.name = "PLAYER_TOTEM_ACTIVE_CHANGED"
 
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local GetTotemInfo = GetTotemInfo
@@ -69,6 +68,6 @@ function this:Evaluate(inputGroup, event, ...)
 
     if inputGroup.currentValue ~= isActive then
         inputGroup.currentValue = isActive
-        return true, this.name, isActive
+        return true, this.key, isActive
     end
 end

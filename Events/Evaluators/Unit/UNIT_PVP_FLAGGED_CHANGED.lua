@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_PVP_FLAGGED_CHANGED
-this.name = "UNIT_PVP_FLAGGED_CHANGED"
 
 local IsWarModeActive = C_PvP.IsWarModeActive
 local UnitIsPVP = UnitIsPVP
@@ -35,6 +34,6 @@ function this:Evaluate(inputGroup, event)
     local pvpEnabled = UnitIsPVP(inputGroup.inputValues[1])
     if inputGroup.currentValue ~= pvpEnabled then
         inputGroup.currentValue = pvpEnabled
-        return true, this.name, pvpEnabled
+        return true, this.key, pvpEnabled
     end
 end

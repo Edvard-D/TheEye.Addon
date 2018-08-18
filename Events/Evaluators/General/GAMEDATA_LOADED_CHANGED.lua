@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.GAMEDATA_LOADED_CHANGED
-this.name = "GAMEDATA_LOADED_CHANGED"
 
 
 --[[ #this#TEMPLATE#
@@ -27,5 +26,5 @@ end
 
 function this:Evaluate(inputGroup, event)
     inputGroup.currentValue = event == "PLAYER_ENTERING_WORLD" -- else PLAYER_LEAVING_WORLD
-    return true, this.name, inputGroup.currentValue
+    return true, this.key, inputGroup.currentValue
 end

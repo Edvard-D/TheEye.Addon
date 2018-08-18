@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED
-this.name = "PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED"
 
 local initialTimerLength = 0.01
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
@@ -78,7 +77,7 @@ function this:Evaluate(inputGroup, event)
         if inputGroup.currentValue ~= remainingTime then
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
-            return true, this.name, remainingTime
+            return true, this.key, remainingTime
         end
     end
 end

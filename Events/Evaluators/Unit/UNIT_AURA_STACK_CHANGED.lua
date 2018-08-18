@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED
-this.name = "UNIT_AURA_STACK_CHANGED"
 
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local table = table
@@ -92,6 +91,6 @@ function this:Evaluate(inputGroup, event, combatLogData)
 
     if inputGroup.currentValue ~= stackCount then
         inputGroup.currentValue = stackCount
-        return true, this.name, stackCount
+        return true, this.key, stackCount
     end
 end
