@@ -8,6 +8,7 @@ this.name = "UNIT_COUNT_IN_RANGE_OF_UNIT_CHANGED"
     inputValues =
     {
         #LABEL#Unit# #UNIT#
+        #LABEL#Hostility# #HOSTILITY#
         #LABEL#Range# #INT#
     }
 }
