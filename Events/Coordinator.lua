@@ -9,7 +9,13 @@ local updateInterval = 0.1
 
 -- OnEvent
 local function RelayEvent(self, eventName, ...)
-    --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    --[[if eventName ~= "UPDATE"
+        and eventName ~= "COMBAT_LOG_EVENT_UNFILTERED"
+        and eventName ~= "UNIT_COMBAT"
+        and eventName ~= "UNIT_HEALTH"
+        then
+        print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    end]]
     local listeners = Listeners[eventName]
     for i = 1, #listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
