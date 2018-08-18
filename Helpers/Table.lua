@@ -54,3 +54,9 @@ function table.cleararray(tab)
         tab[i] = nil
     end
 end
+
+function table.clear(tab)
+    for k,v in pairs(tab) do
+        tab[k] = nil
+    end
+end
