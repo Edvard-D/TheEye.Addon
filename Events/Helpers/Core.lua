@@ -1,7 +1,6 @@
 TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
-local Comparisons = TheEyeAddon.Helpers.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
 local Evaluators = TheEyeAddon.Events.Evaluators
@@ -107,14 +106,8 @@ function this.ListenerRegister(evaluatorKey, listener)
     EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if listener.comparisonValues ~= nil then
-        listener.comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
-    end
-
-    if (listener.comparisonValues == nil and inputGroup.currentValue == true)
-        or listener.comparisonState == true
-        then
-        listener:Notify(evaluatorKey, true)
+    if listener.comparisonValues ~= nil or inputGroup.currentValue == true then
+        listener:Notify(evaluatorKey, inputGroup)
     end
 end
 
@@ -154,18 +147,6 @@ function this.InputGroupDeregisterListeningTo(inputGroup)
 end
 
 -- Event Evaluation
-function this.Compare(comparisonValues, value)
-    return Comparisons[comparisonValues.type](value, comparisonValues)
-end
-
-local function ListenerNotifyAsComparison(inputGroup, listener, event)
-    local comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
-    if listener.comparisonState ~= comparisonState then
-        listener.comparisonState = comparisonState
-        listener:Notify(event, comparisonState)
-    end
-end
-
 local function ListenersNotify(inputGroup, shouldSend, ...)
     if shouldSend == true then
         local listeners = inputGroup.listeners
@@ -173,11 +154,7 @@ local function ListenersNotify(inputGroup, shouldSend, ...)
             local listener = listeners[i]
 
             if listener.isListening == true then
-                if listener.comparisonValues ~= nil then
-                    ListenerNotifyAsComparison(inputGroup, listener, ...)
-                else
-                    listener:Notify(...)
-                end
+                listener:Notify(...)
             end
         end
     end
