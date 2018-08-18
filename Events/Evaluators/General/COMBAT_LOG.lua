@@ -26,10 +26,32 @@ this.gameEvents =
 }
 
 
-function this:GetKeys(event)
+function this:InputGroupSetup(inputGroup)
+    inputGroup.eventData = formattedEventInfo
+end
+
+local function FormatData(rawEventData, sourceUnit, destUnit)
+    -- @TODO rework this so formatting is handled by a function in the corresponding
+    --  "EventDataFormats." This would allow the data values to be assigned directly to
+    --  a table instead of having to create a new one every time.
+    local eventDataFormat = this.EventDataFormats[rawEventData[2]]
+    local valueNames = eventDataFormat.ValueNames
+
+    for i = 1, #valueNames do
+        formattedEventInfo[valueNames[i]] = rawEventData[i]
+    end
+ 
+    formattedEventInfo["prefix"] = eventDataFormat["prefix"]
+    formattedEventInfo["suffix"] = eventDataFormat["suffix"]
+end
+
+function this:GetKeys()
     local unitGUIDs = {} -- @TODO create table that stores the GUIDs for each unitID
     local validKeys = {}
-    local _, subEvent, _, sourceGUID, _, _, _, destGUID = CombatLogGetCurrentEventInfo()
+    local rawEventData = { CombatLogGetCurrentEventInfo() }
+    local subEvent = rawEventData[2]
+    local sourceGUID = rawEventData[4]
+    local destGUID = rawEventData[8]
 
     for k,inputGroup in pairs(self.InputGroups) do
         local sourceUnit = inputGroup.inputValues[2]
@@ -50,31 +72,21 @@ function this:GetKeys(event)
         end
     end
 
-    return validKeys
+    if #validKeys > 0 then
+        FormatData(rawEventData, sourceUnit, destUnit)
 end
 
-function this:Evaluate(inputGroup, event)
-    -- @TODO rework this so formatting is handled by a function in the corresponding
-    --  "EventDataFormats." This would allow the data values to be assigned directly to
-    --  a table instead of having to create a new one every time.
-    local rawEventInfo = { CombatLogGetCurrentEventInfo() }
-    local eventDataFormat = this.EventDataFormats[rawEventInfo[2]]
-    local valueNames = eventDataFormat.ValueNames
-
-    for i = 1, #valueNames do
-        formattedEventInfo[valueNames[i]] = rawEventInfo[i]
+    return validKeys
     end
  
-    formattedEventInfo["prefix"] = eventDataFormat["prefix"]
-    formattedEventInfo["suffix"] = eventDataFormat["suffix"]
-    formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
-    formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
-
+function this:Evaluate(inputGroup)
     -- @DEBUG
     --[[print (formattedEventInfo["event"]
         .. ", sourceUnit: " .. formattedEventInfo["sourceUnit"]
         .. ", destUnit: " .. formattedEventInfo["destUnit"]
         .. ", spellID: " .. tostring(formattedEventInfo["spellID"]))]]
+    formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
+    formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
 
     return true, formattedEventInfo["event"], formattedEventInfo
 end
