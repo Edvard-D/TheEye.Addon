@@ -12,3 +12,13 @@ this.name = "UNIT_COUNT_IN_RANGE_OF_UNIT_CHANGED"
     }
 }
 ]]
+
+
+this.reevaluateEvents =
+{
+    PLAYER_TARGET_CHANGED = true
+}
+this.gameEvents =
+{
+    "PLAYER_TARGET_CHANGED"
+}
