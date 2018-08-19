@@ -42,6 +42,7 @@ Namespaces.lua
 
 Events\Coordinator.lua
 GarbageCollector.lua
+SlashCommands.lua
 UI\Fonts\Templates.lua
 
 
