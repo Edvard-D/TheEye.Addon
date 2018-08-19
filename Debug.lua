@@ -44,12 +44,12 @@ function this.Disable()
     end
 end
 
-function this.LogEntryAdd(fileName, functionName, uiObject, component, ...)
+function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     if isEnabled == true then
         local logEntry =
         {
-            ["fileName"] = fileName,
-            ["functionName"] = functionName,
+            ["namespace"] = namespace,
+            ["action"] = action,
             ["UIObject"] = uiObject,
             ["Component"] = component,
             ["values"] = { ... },
@@ -59,7 +59,7 @@ function this.LogEntryAdd(fileName, functionName, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
     else
-        print("ERROR: " .. fileName .. " function " .. functionName
+        print("ERROR: " .. namespace .. " action " .. action
             .. " calling LogEntryAdd while logging has been turned off. Add a state check.")
     end
 end
@@ -83,8 +83,8 @@ end
 local function LogEntryFormat(entryPosition, logEntry)
     local formattedLogEntry = {}
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
-    table.insert(formattedLogEntry, LogValueFormat(logEntry.fileName))
-    table.insert(formattedLogEntry, LogValueFormat(logEntry.functionName))
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.namespace))
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.action))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.UIObject.key))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.Component.key))
 
