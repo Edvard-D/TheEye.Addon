@@ -40,6 +40,8 @@
 # ---------------------------
 Namespaces.lua
 
+Debug.lua
+
 Events\Coordinator.lua
 GarbageCollector.lua
 SlashCommands.lua
