@@ -19,6 +19,7 @@ function this:GetKey(event, uiObject)
     return uiObject.key
 end
 
-function this:Evaluate(inputGroup, uiObject)
+function this:Evaluate(inputGroup, event, uiObject)
+    inputGroup.currentValue = uiObject
     return true, this.key
 end

@@ -25,5 +25,6 @@ function this:GetKey(event, childUIObject)
 end
 
 function this:Evaluate(inputGroup, event, childUIObject)
+    inputGroup.currentValue = childUIObject
     return true, this.key
 end

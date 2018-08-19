@@ -43,7 +43,7 @@ function this:GetKey(event, ...)
     return select(1, ...) -- SETTING_CHANGED: moduleKey
 end
 
-function this:Evaluate(inputGroup, event, ...)
+function this:Evaluate(inputGroup)
     local isEnabled = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= isEnabled then
