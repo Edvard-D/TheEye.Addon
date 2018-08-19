@@ -23,6 +23,12 @@ function table.haskeyvalue(tab, value)
     return false
 end
 
+function table.insertarray(toTab, fromTab)
+    for i = 1, #fromTab do
+        table.insert(toTab, fromTab[i])
+    end
+end
+
 function table.removevalue(tab, value)
     if tab ~= nil then
         for i = 1, #tab do
