@@ -2,7 +2,7 @@ local pairs = pairs
 
 
 function table.hasvalue(tab, value)
-    for i=1, #tab do
+    for i = 1, #tab do
         if tab[i] == value then
             return true
         end
@@ -56,7 +56,7 @@ function table.removekeyvalue(tab, value)
 end
 
 function table.cleararray(tab)
-    for i=#tab, -1 do
+    for i = #tab, 1, -1 do
         tab[i] = nil
     end
 end
