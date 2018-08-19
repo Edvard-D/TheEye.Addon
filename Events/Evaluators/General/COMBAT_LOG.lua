@@ -86,11 +86,6 @@ function this:GetKeys()
 end
 
 function this:Evaluate(inputGroup)
-    -- @DEBUG
-    --[[print (formattedEventInfo["event"]
-        .. ", sourceUnit: " .. formattedEventInfo["sourceUnit"]
-        .. ", destUnit: " .. formattedEventInfo["destUnit"]
-        .. ", spellID: " .. tostring(formattedEventInfo["spellID"]))]]
     formattedEventInfo["sourceUnit"] = inputGroup.inputValues[2]
     formattedEventInfo["destUnit"] = inputGroup.inputValues[3]
 

@@ -2,6 +2,7 @@ TheEyeAddon.UI.Components.VisibleState = {}
 local this = TheEyeAddon.UI.Components.VisibleState
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
+local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
 
@@ -61,13 +62,15 @@ function this:OnDisable()
 end
 
 function this:Show()
-    --print (self.UIObject.key .. "    Show") -- DEBUG
+    DebugLogEntryAdd("TheEyeAddon.UI.Components.VisibleState", "Show",
+        self.UIObject, self.Component)
     self.state = true
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end
 
 function this:Hide()
-    --print (self.UIObject.key .. "    Hide") -- DEBUG
+    DebugLogEntryAdd("TheEyeAddon.UI.Components.VisibleState", "Hide",
+        self.UIObject, self.Component)
     self.state = false
     SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self)
 end
