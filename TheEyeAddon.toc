@@ -119,7 +119,7 @@ Events\Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
-Events\Evaluators\Unit\UNIT_COUNT_IN_RANGE_OF_UNIT_CHANGED.lua
+Events\Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
@@ -273,6 +273,7 @@ UI\Objects\HUD\Primary\DarkVoid.lua
 UI\Objects\HUD\Primary\Mindbender.lua
 UI\Objects\HUD\Primary\MindBlast.lua
 UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\MindSear.lua
 UI\Objects\HUD\Primary\PrimaryModule.lua
 UI\Objects\HUD\Primary\Psyfiend.lua
 UI\Objects\HUD\Primary\ShadowCrash.lua
