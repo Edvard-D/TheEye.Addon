@@ -108,6 +108,7 @@ function this.LogsGet()
         table.insertarray(formattedLogs, LogEntryFormat(i, logs[i]))
     end
 
+    editBox:SetText("")
     editBox:SetText(table.concat(formattedLogs))
     frame:Show()
     editBox:HighlightText()
