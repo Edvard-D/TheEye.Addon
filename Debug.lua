@@ -266,7 +266,7 @@ local function LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     return formattedLogEntry
 end
 
-function this.LogsGet()
+local function LogsFormat(logs)
     local formattedLogs = {}
     local markerEntryPosition = 0
     local markerBreakTag = "`MARKER_BREAK`\n"
@@ -300,8 +300,12 @@ function this.LogsGet()
         end
     end
 
+    return formattedLogs
+end
+
+function this.LogsGet()
     editBox:SetText("")
-    editBox:SetText(table.concat(formattedLogs))
+    editBox:SetText(table.concat(LogsFormat(logs)))
     frame:Show()
     editBox:HighlightText()
     editBox:SetFocus(true)
