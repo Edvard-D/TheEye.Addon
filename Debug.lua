@@ -304,11 +304,16 @@ local function LogsFormat(logs)
 end
 
 function this.LogsGet()
+    if isEnabled == true then
     editBox:SetText("")
     editBox:SetText(table.concat(LogsFormat(logs)))
     frame:Show()
     editBox:HighlightText()
     editBox:SetFocus(true)
+    else
+        this.Enable()
+        print("No logs exist as debug logging was disabled. Debug logs have now been enabled.")
+    end
 end
 
 function this.LogsClear()
