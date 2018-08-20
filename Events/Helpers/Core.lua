@@ -151,6 +151,8 @@ end
 
 -- Event Evaluation
 local function ListenersNotify(inputGroup, shouldSend, event)
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+    
     if shouldSend == true then
         local listeners = inputGroup.listeners
         for i = 1, #listeners do
