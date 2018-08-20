@@ -18,7 +18,6 @@ function this.Initialize()
     frame = CreateFrame("Frame", nil, UIParent,"BasicFrameTemplate")
     frame:SetSize(500, 300)
     frame:SetPoint("TOP")
-    frame:Hide()
 
     frame.ScrollFrame = CreateFrame("ScrollFrame", nil, frame, "InputScrollFrameTemplate")
     frame.ScrollFrame:SetPoint("TOPLEFT", 8, -30)
@@ -38,7 +37,7 @@ function this.Initialize()
 
     this.MarkerSetup()
     this.FiltersSetup()
-    this.Enable()
+    this.Disable()
 end
 
 function this.Enable()
@@ -50,6 +49,7 @@ end
 function this.Disable()
     if isEnable ~= false then
         isEnabled = false
+        this.LogsClear()
     end
 end
 
