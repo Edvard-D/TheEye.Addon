@@ -99,7 +99,6 @@ function this:Evaluate(inputGroup, event, ...)
 
     if event == "UNIT_SPELLCAST_INSTANT" then
         local eventInputGroup = ...
-        print("eventInputGroup.castTimestamp: " .. tostring(eventInputGroup.castTimestamp))
         elapsedTime = CalculateCurrentValue(
             inputGroup.inputValues, eventInputGroup.inputValues[2], eventInputGroup.castTimestamp)
     else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
@@ -107,7 +106,6 @@ function this:Evaluate(inputGroup, event, ...)
     end
 
     if inputGroup.currentValue ~= elapsedTime then
-        print("elapsedTime: " .. tostring(elapsedTime))
         TimerStart(inputGroup, elapsedTime)
         inputGroup.currentValue = elapsedTime
         return true, this.key
