@@ -30,6 +30,14 @@ function table.insertarray(toTab, fromTab)
     end
 end
 
+function table.insertarrayuniques(toTab, fromTab)
+    for i = 1, #fromTab do
+        if table.hasvalue(toTab, fromTab[i]) == false then
+            table.insert(toTab, fromTab[i])
+        end
+    end
+end
+
 function table.removevalue(tab, value)
     if tab ~= nil then
         for i = 1, #tab do
