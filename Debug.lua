@@ -82,15 +82,19 @@ local function LogEntryFormat(entryPosition, logEntry)
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.namespace))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.action))
+    if logEntry.UIObject ~= nil then
     table.insert(formattedLogEntry, LogValueFormat(logEntry.UIObject.key))
+    end
+    if logEntry.Component ~= nil then
     table.insert(formattedLogEntry, LogValueFormat(logEntry.Component.key))
+    end
 
     local values = logEntry.values
     for i = 1, #values do
         if i ~= #values then
-            table.insert(formattedLogEntry, LogValueFormat(values[i]))
+            table.insert(formattedLogEntry, LogValueFormat(tostring(values[i])))
         else
-            table.insert(formattedLogEntry, values[i])
+            table.insert(formattedLogEntry, tostring(values[i]))
         end
     end
 
