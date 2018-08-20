@@ -292,7 +292,7 @@ function this.LogsGet()
     editBox:SetFocus(true)
     else
         this.Enable()
-        print("No logs exist as debug logging was disabled. Debug logs have now been enabled.")
+        print("No logs exist as debug logging was disabled. Debug logging have now been enabled.")
     end
 end
 
