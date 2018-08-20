@@ -2,11 +2,38 @@ TheEyeAddon.Debug = {}
 local this = TheEyeAddon.Debug
 
 local editBox
+local filters
 local frame
+local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 local isEnabled
-local logs
+local logs = {}
+local pairs = pairs
 local table = table
+local tostring = tostring
 
+
+--[[ Filters with multiple values using the same key will pass if any value for that key matches. Filters with
+    multiple keys will pass if all of the keys have at least one valid value. Filters should be formatted as below:
+    
+    filters =
+    {
+        {
+            {
+                key = "namespace",
+                value ="TheEyeAddon.UI.Components",
+            },
+            {
+                key = "UIObject",
+                value ="UIPARENT",
+            },
+        }
+    }
+    ]]
+local function FiltersSetup()
+    filters =
+    {
+    }
+end
 
 function this.Initialize()
     frame = CreateFrame("Frame", nil, UIParent,"BasicFrameTemplate")
@@ -29,6 +56,7 @@ function this.Initialize()
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsClear")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
+    FiltersSetup()
     this.Enable()
 end
 
@@ -44,8 +72,63 @@ function this.Disable()
     end
 end
 
+local function IsFilterElementValid(filterElement, namespace, action, uiObject, component)
+    if filterElement.key == "namespace" then
+        if namespace:find(filterElement.value) ~= nil then
+            return true
+        end
+    elseif filterElement.key == "action" then
+        if action:find(filterElement.value) ~= nil then
+            return true
+        end
+    elseif filterElement.key == "UIObject" then
+        if uiObject ~= nil and UIObjectHasTag(uiObject, filterElement.value) == true then
+            return true
+        end
+    elseif filterElement.key == "Component" then
+        if component ~= nil and component.key:find(filterElement.value) ~= nil then
+            return true
+        end
+    else
+        print("No filterElement valid check setup for filterElement key \"" .. tostring(filter.key) .. "\".")
+    end
+
+    return false
+end
+
+local function IsFilterValid(filter, namespace, action, uiObject, component)
+    local filterKeyStates = {}
+    for i = 1, #filter do
+        local filterElement = filter[i]
+        if filterKeyStates[filterElement.key] == nil then
+            filterKeyStates[filterElement.key] = false
+        end
+        if IsFilterElementValid(filterElement, namespace, action, uiObject, component) == true then
+            filterKeyStates[filterElement.key] = true
+        end
+    end
+
+    for k,v in pairs(filterKeyStates) do
+        if v == false then
+            return false
+        end
+    end
+
+    return true
+end
+
+local function IsLogEntryValid(namespace, action, uiObject, component)
+    for i = 1, #filters do
+        if IsFilterValid(filters[i], namespace, action, uiObject, component) == true then
+            return true
+        end
+    end
+
+    return false
+end
+
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if isEnabled == true then
+    if isEnabled == true and IsLogEntryValid(namespace, action, uiObject, component) == true then
         local logEntry =
         {
             ["namespace"] = namespace,
@@ -83,10 +166,10 @@ local function LogEntryFormat(entryPosition, logEntry)
     table.insert(formattedLogEntry, LogValueFormat(logEntry.namespace))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.action))
     if logEntry.UIObject ~= nil then
-    table.insert(formattedLogEntry, LogValueFormat(logEntry.UIObject.key))
+        table.insert(formattedLogEntry, LogValueFormat(logEntry.UIObject.key))
     end
     if logEntry.Component ~= nil then
-    table.insert(formattedLogEntry, LogValueFormat(logEntry.Component.key))
+        table.insert(formattedLogEntry, LogValueFormat(logEntry.Component.key))
     end
 
     local values = logEntry.values
