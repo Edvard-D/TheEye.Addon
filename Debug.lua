@@ -260,13 +260,35 @@ end
 function this.LogsGet()
     local formattedLogs = {}
     local markerEntryPosition = 0
+    local markerBreakTag = "`MARKER_BREAK`\n"
+    local markerBreakText = {}
+    local largestLogEntryLength = 0
+
     for i = 1, #logs do
         if i - 1 > 0 and logs[i].marker ~= logs[i - 1].marker then
-            table.insert(formattedLogs, "\n")
+            table.insert(formattedLogs, markerBreakTag)
             markerEntryPosition = 0
         end
+        
         markerEntryPosition = markerEntryPosition + 1
-        table.insertarray(formattedLogs, LogEntryFormat(i, markerEntryPosition, logs[i]))
+        local formattedLogEntry = LogEntryFormat(i, markerEntryPosition, logs[i])
+        if #formattedLogEntry > largestLogEntryLength then
+            largestLogEntryLength = #formattedLogEntry
+        end
+
+        table.insertarray(formattedLogs, formattedLogEntry)
+    end
+
+    for i = 1, largestLogEntryLength - 2 do
+        table.insert(markerBreakText, "`\t")
+    end
+    table.insert(markerBreakText, "`\n")
+    markerBreakText = table.concat(markerBreakText)
+
+    for i = 1, #formattedLogs do
+        if formattedLogs[i] == markerBreakTag then
+            formattedLogs[i] = markerBreakText
+        end
     end
 
     editBox:SetText("")
