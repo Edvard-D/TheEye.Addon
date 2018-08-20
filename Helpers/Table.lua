@@ -57,9 +57,11 @@ function table.removekeyvalue(tab, value)
 end
 
 function table.cleararray(tab)
+    if tab ~= nil then
     for i = #tab, 1, -1 do
         tab[i] = nil
     end
+end
 end
 
 function table.clear(tab)
