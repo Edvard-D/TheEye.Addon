@@ -55,6 +55,7 @@ end
 
 function this:Deactivate()
     self:Deregister()
+    self.comparisonState = nil
 end
 
 function this:Notify(event, inputGroup)
