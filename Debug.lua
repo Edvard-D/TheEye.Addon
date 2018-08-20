@@ -4,12 +4,12 @@ local this = TheEyeAddon.Debug
 local editBox
 local filters
 local frame
-local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 local isEnabled
 local logs = {}
 local pairs = pairs
 local table = table
 local tostring = tostring
+local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 
 
 --[[ Filters with multiple values using the same key will pass if any value for that key matches. Filters with
