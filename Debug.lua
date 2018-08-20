@@ -60,11 +60,20 @@ function this.MarkerSetup()
     {
         ValueHandler =
         {
-            validKeys = { }
+            validKeys = { [2] = true, }
         },
         ListenerGroup =
         {
-            Listeners = { }
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObjectKey]] "GROUP_HUD", --[[componentName]] "VisibleState" },
+                    value = 2,
+                    isInternal = true,
+                    priority = -math.huge,
+                },
+            }
         }
     }
     TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
