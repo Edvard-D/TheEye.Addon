@@ -13,7 +13,7 @@ end
 
 function this:Claim(uiObject, frameType, parentFrame, template, displayData)
 	local instance = nil
-	for i=1, #self.Instances do
+	for i = 1, #self.Instances do
 		local frame = self.Instances[i]
 		if frame.isClaimed == false then
 			instance = frame
