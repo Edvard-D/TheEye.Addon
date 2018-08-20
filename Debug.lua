@@ -7,6 +7,7 @@ local frame
 local isEnabled
 local logs = {}
 local marker
+this.markerTag = "LOAD"
 local pairs = pairs
 local table = table
 local tostring = tostring
@@ -68,8 +69,14 @@ function this.MarkerSetup()
     }
     TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
         functionCaller,
-        this.MarkerIncrease,
-        this.MarkerIncrease
+        function()
+            this.markerTag = "HUD_ACTIVE"
+            this.MarkerIncrease()
+        end,
+        function()
+            this.markerTag = "HUD_INACTIVE"
+            this.MarkerIncrease()
+        end
     )
     functionCaller:Activate()
 
@@ -192,6 +199,7 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         local logEntry =
         {
             ["marker"] = marker,
+            ["markerTag"] = this.markerTag,
             ["namespace"] = namespace,
             ["action"] = action,
             ["UIObject"] = uiObject,
@@ -217,6 +225,7 @@ local function LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     local formattedLogEntry = {}
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.marker))
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.markerTag))
     table.insert(formattedLogEntry, LogValueFormat(markerEntryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.namespace))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.action))
