@@ -144,14 +144,6 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     end
 end
 
-function this.LogsClear()
-    for i = #logs, 1, -1 do
-        logs[i] = nil
-    end
-    editBox:SetText("")
-    frame:Hide()
-end
-
 local function LogValueFormat(logValue)
     if logValue == nil then 
         return "\t"
@@ -196,4 +188,13 @@ function this.LogsGet()
     frame:Show()
     editBox:HighlightText()
     editBox:SetFocus(true)
+end
+
+function this.LogsClear()
+    for i = #logs, 1, -1 do
+        logs[i] = nil
+    end
+    editBox:SetText("")
+    frame:Hide()
+    this.MarkerReset()
 end
