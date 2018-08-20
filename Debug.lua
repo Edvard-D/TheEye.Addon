@@ -58,9 +58,6 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
             logs = {}
         end
         table.insert(logs, logEntry)
-    else
-        print("ERROR: " .. namespace .. " action " .. action
-            .. " calling LogEntryAdd while logging has been turned off. Add a state check.")
     end
 end
 
