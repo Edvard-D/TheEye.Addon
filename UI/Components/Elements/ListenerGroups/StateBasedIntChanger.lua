@@ -28,9 +28,7 @@ function this.Setup(
     )
 end
 
-function this:ChangeValueByState(listener, ...)
-    local state = select(2, ...)
-
+function this:ChangeValueByState(listener, event, state)
     if state == true then
         return listener.value
     else
