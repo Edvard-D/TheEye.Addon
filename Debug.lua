@@ -123,26 +123,6 @@ filters =
 function this.FiltersSetup()
     filters =
     {
-        {
-            {
-                key = "namespace",
-                value ="TheEyeAddon.UI.Components",
-            },
-            {
-                key = "UIObject",
-                value ="HUD_MODULE_PRIMARY",
-            },
-        },
-        {
-            {
-                key = "namespace",
-                value ="TheEyeAddon.UI.Components.Elements.ValueHandlers",
-            },
-            {
-                key = "UIObject",
-                value ="PRIMARY",
-            },
-        },
     }
 end
 
