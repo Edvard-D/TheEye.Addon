@@ -154,6 +154,14 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
         if component ~= nil and component.key:find(filterElement.value) ~= nil then
             return true
         end
+    elseif filterElement.key == "values" then
+        local values = ...
+        for i = 1, #values do
+            local value = tostring(values[i])
+            if component ~= nil and value:find(filterElement.value) ~= nil then
+                return true
+        end
+        end
     else
         print("No filterElement valid check setup for filterElement key \"" .. tostring(filter.key) .. "\".")
     end
@@ -161,14 +169,14 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
     return false
 end
 
-local function IsFilterValid(filter, namespace, action, uiObject, component)
+local function IsFilterValid(filter, namespace, action, uiObject, component, ...)
     local filterKeyStates = {}
     for i = 1, #filter do
         local filterElement = filter[i]
         if filterKeyStates[filterElement.key] == nil then
             filterKeyStates[filterElement.key] = false
         end
-        if IsFilterElementValid(filterElement, namespace, action, uiObject, component) == true then
+        if IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...) == true then
             filterKeyStates[filterElement.key] = true
         end
     end
@@ -182,9 +190,9 @@ local function IsFilterValid(filter, namespace, action, uiObject, component)
     return true
 end
 
-local function IsLogEntryValid(namespace, action, uiObject, component)
+local function IsLogEntryValid(namespace, action, uiObject, component, ...)
     for i = 1, #filters do
-        if IsFilterValid(filters[i], namespace, action, uiObject, component) == true then
+        if IsFilterValid(filters[i], namespace, action, uiObject, component, ...) == true then
             return true
         end
     end
