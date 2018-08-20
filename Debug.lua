@@ -35,7 +35,7 @@ function this.Initialize()
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsClear")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
-    this.MarkerReset()
+    this.MarkerSetup()
     this.FiltersSetup()
     this.Enable()
 end
@@ -54,6 +54,28 @@ end
 
 
 -- Markers
+function this.MarkerSetup()
+    local functionCaller =
+    {
+        ValueHandler =
+        {
+            validKeys = { }
+        },
+        ListenerGroup =
+        {
+            Listeners = { }
+        }
+    }
+    TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
+        functionCaller,
+        this.MarkerIncrease,
+        this.MarkerIncrease
+    )
+    functionCaller:Activate()
+
+    this.MarkerReset()
+end
+
 function this.MarkerIncrease()
     marker = marker + 1
 end
