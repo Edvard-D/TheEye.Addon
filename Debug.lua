@@ -146,7 +146,7 @@ function this.FiltersSetup()
     }
 end
 
-local function IsFilterElementValid(filterElement, namespace, action, uiObject, component)
+local function IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...)
     if filterElement.key == "namespace" then
         if namespace:find(filterElement.value) ~= nil then
             return true
