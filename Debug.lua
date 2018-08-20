@@ -6,6 +6,7 @@ local filters
 local frame
 local isEnabled
 local logs = {}
+local marker
 local pairs = pairs
 local table = table
 local tostring = tostring
@@ -32,6 +33,16 @@ local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 local function FiltersSetup()
     filters =
     {
+        {
+            {
+                key = "namespace",
+                value ="TheEyeAddon.UI.Components",
+            },
+            {
+                key = "UIObject",
+                value ="8092",
+            },
+        }
     }
 end
 
@@ -53,9 +64,11 @@ function this.Initialize()
     TheEyeAddon.SlashCommands.HandlerRegister(this, "Debug")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Enable")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Disable")
+    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsClear")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
+    this.MarkerReset()
     FiltersSetup()
     this.Enable()
 end
@@ -131,6 +144,7 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     if isEnabled == true and IsLogEntryValid(namespace, action, uiObject, component) == true then
         local logEntry =
         {
+            ["marker"] = marker,
             ["namespace"] = namespace,
             ["action"] = action,
             ["UIObject"] = uiObject,
@@ -144,6 +158,14 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     end
 end
 
+function this.MarkerIncrease()
+    marker = marker + 1
+end
+
+function this.MarkerReset()
+    marker = 1
+end
+
 local function LogValueFormat(logValue)
     if logValue == nil then 
         return "\t"
@@ -152,9 +174,11 @@ local function LogValueFormat(logValue)
     end
 end
 
-local function LogEntryFormat(entryPosition, logEntry)
+local function LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     local formattedLogEntry = {}
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.marker))
+    table.insert(formattedLogEntry, LogValueFormat(markerEntryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.namespace))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.action))
     if logEntry.UIObject ~= nil then
@@ -179,8 +203,14 @@ end
 
 function this.LogsGet()
     local formattedLogs = {}
+    local markerEntryPosition = 0
     for i = 1, #logs do
-        table.insertarray(formattedLogs, LogEntryFormat(i, logs[i]))
+        if i - 1 > 0 and logs[i].marker ~= logs[i - 1].marker then
+            table.insert(formattedLogs, "\n")
+            markerEntryPosition = 0
+        end
+        markerEntryPosition = markerEntryPosition + 1
+        table.insertarray(formattedLogs, LogEntryFormat(i, markerEntryPosition, logs[i]))
     end
 
     editBox:SetText("")
