@@ -13,39 +13,6 @@ local tostring = tostring
 local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
 
 
---[[ Filters with multiple values using the same key will pass if any value for that key matches. Filters with
-    multiple keys will pass if all of the keys have at least one valid value. Filters should be formatted as below:
-    
-    filters =
-    {
-        {
-            {
-                key = "namespace",
-                value ="TheEyeAddon.UI.Components",
-            },
-            {
-                key = "UIObject",
-                value ="UIPARENT",
-            },
-        }
-    }
-    ]]
-local function FiltersSetup()
-    filters =
-    {
-        {
-            {
-                key = "namespace",
-                value ="TheEyeAddon.UI.Components",
-            },
-            {
-                key = "UIObject",
-                value ="8092",
-            },
-        }
-    }
-end
-
 function this.Initialize()
     frame = CreateFrame("Frame", nil, UIParent,"BasicFrameTemplate")
     frame:SetSize(500, 300)
@@ -69,7 +36,7 @@ function this.Initialize()
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
     this.MarkerReset()
-    FiltersSetup()
+    this.FiltersSetup()
     this.Enable()
 end
 
@@ -83,6 +50,62 @@ function this.Disable()
     if isEnable ~= false then
         isEnabled = false
     end
+end
+
+
+-- Markers
+function this.MarkerIncrease()
+    marker = marker + 1
+end
+
+function this.MarkerReset()
+    marker = 1
+end
+
+
+-- Filters
+--[[
+Filters with multiple values using the same key will pass if any value for that key matches. Filters with
+multiple keys will pass if all of the keys have at least one valid value. Filters should be formatted as below:
+
+filters =
+{
+    {
+        {
+            key = "namespace",
+            value ="TheEyeAddon.UI.Components",
+        },
+        {
+            key = "UIObject",
+            value ="UIPARENT",
+        },
+    },
+}
+]]
+function this.FiltersSetup()
+    filters =
+    {
+        {
+            {
+                key = "namespace",
+                value ="TheEyeAddon.UI.Components",
+            },
+            {
+                key = "UIObject",
+                value ="HUD_MODULE_PRIMARY",
+            },
+        },
+        {
+            {
+                key = "namespace",
+                value ="TheEyeAddon.UI.Components.Elements.ValueHandlers",
+            },
+            {
+                key = "UIObject",
+                value ="PRIMARY",
+            },
+        },
+    }
 end
 
 local function IsFilterElementValid(filterElement, namespace, action, uiObject, component)
@@ -140,6 +163,8 @@ local function IsLogEntryValid(namespace, action, uiObject, component)
     return false
 end
 
+
+-- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     if isEnabled == true and IsLogEntryValid(namespace, action, uiObject, component) == true then
         local logEntry =
@@ -156,14 +181,6 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
     end
-end
-
-function this.MarkerIncrease()
-    marker = marker + 1
-end
-
-function this.MarkerReset()
-    marker = 1
 end
 
 local function LogValueFormat(logValue)
