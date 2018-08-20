@@ -90,8 +90,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerRegister",
-        listener.UIObject, listener.Component)
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerRegister", listener.UIObject, listener.Component)
 
     if listener.isListening == nil then
         if listener.priority == nil then
@@ -118,8 +117,7 @@ function this.ListenerDeregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerDeregister",
-        listener.UIObject, listener.Component)
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerDeregister", listener.UIObject, listener.Component)
 
     listener.isListening = false
     EvaluatorDecreaseListenerCount(evaluator)

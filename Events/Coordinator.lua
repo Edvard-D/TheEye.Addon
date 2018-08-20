@@ -55,8 +55,7 @@ local function ListenerRegister(listener, eventName, isGameEvent)
     
     listeners.listenerCount = listeners.listenerCount + 1
     if listeners.listenerCount == 1 and isGameEvent == true then
-        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "RegisterEvent",
-            nil, nil, eventName)
+        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "RegisterEvent", nil, nil, eventName)
         frame:RegisterEvent(eventName)
     end
 end
@@ -86,8 +85,7 @@ local function ListenerDeregister(listener, eventName, isGameEvent)
 
     listeners.listenerCount = listeners.listenerCount - 1
     if listeners.listenerCount == 0 and isGameEvent == true then
-        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "UnregisterEvent",
-            nil, nil, eventName)
+        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "UnregisterEvent", nil, nil, eventName)
         frame:UnregisterEvent(eventName)
     end
 end
