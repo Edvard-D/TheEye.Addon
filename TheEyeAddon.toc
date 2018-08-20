@@ -40,6 +40,8 @@
 # ---------------------------
 Namespaces.lua
 
+Helpers\Tags.lua
+
 Debug.lua
 
 Events\Coordinator.lua
@@ -64,7 +66,6 @@ Values\General.lua
 Helpers\Auras.lua
 Helpers\Comparisons.lua
 Helpers\Table.lua
-Helpers\Tags.lua
 Helpers\Timers.lua
 
 
