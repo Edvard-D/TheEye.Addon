@@ -276,7 +276,7 @@ local function LogsFormat(logs)
         end
         
         markerEntryPosition = markerEntryPosition + 1
-        local formattedLogEntry = LogEntryFormat(i, markerEntryPosition, logs[i])
+        local formattedLogEntry = this.LogEntryFormat(i, markerEntryPosition, logs[i])
         if #formattedLogEntry > largestLogEntryLength then
             largestLogEntryLength = #formattedLogEntry
         end
