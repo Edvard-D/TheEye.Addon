@@ -56,7 +56,7 @@ function this:SetupListeningTo(inputGroup)
         {
             listeningToKey = "COMBAT_LOG",
             evaluator = this,
-            inputValues = { combatLogEvents[i], "_", inputGroup.inputValues[2] }
+            inputValues = { combatLogEvents[i], "_", "_" }
         })
     end
 
