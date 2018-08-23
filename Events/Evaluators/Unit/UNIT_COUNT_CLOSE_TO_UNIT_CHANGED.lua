@@ -213,17 +213,19 @@ local function UnitCountsReevaluate(unitCount)
     return math.floor(unitCount / #inputGroup.unitCounts)
 end
 
--- @TODO Rework how the inputValue[1] (aka unit) being friendly is handled. Basing it entirely
---  off of melee swing damage isn't ideal since it's very likely for enemies to be near the unit
---  without attacking the unit directly. Checking if the unit is performing combat swings on
---  enemies would likely address part of this, since it's very likely the the unit the player is
---  basing it off of is "target," and that target is a melee player character.
---
---  The melee swing events should be used to create a list of valid enemies to cross reference with
---  the spell event list. Enemies that have been involved in some type of melee interaction means
---  they're close to the unit. Other enemies that have been damaged by the same AoE spell as the
---  enemy involved in the melee interaction are likely "close to" that enemy. As such, it can be
---  inferred that all those other enemies are also close to the melee unit.
+--[[
+@TODO Rework how the inputValue[1] (aka unit) being friendly is handled. Basing it entirely
+off of melee swing damage isn't ideal since it's very likely for enemies to be near the unit
+without attacking the unit directly. Checking if the unit is performing combat swings on
+enemies would likely address part of this, since it's very likely the the unit the player is
+basing it off of is "target," and that target is a melee player character.
+
+The melee swing events should be used to create a list of valid enemies to cross reference with
+the spell event list. Enemies that have been involved in some type of melee interaction means
+they're close to the unit. Other enemies that have been damaged by the same AoE spell as the
+enemy involved in the melee interaction are likely "close to" that enemy. As such, it can be
+inferred that all those other enemies are also close to the melee unit.
+]]
 function this:Evaluate(inputGroup, event, ...)
     local unitCount = inputGroup.currentValue
 
