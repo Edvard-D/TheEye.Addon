@@ -1,4 +1,7 @@
-TheEyeAddon.Settings =
+TheEyeAddon.Settings.Account.Default =
 {
-    DisabledUIModules = {}
+}
+
+TheEyeAddon.Settings.Character.Default =
+{
 }

@@ -31,7 +31,15 @@
 # ---------------------------
 # |	    SAVED VARIABLES		|
 # ---------------------------
-## SavedVariablesPerCharacter: TheEyeAddon.Settings
+# Setting versions should be increased only when the setting data structure changes in some way.
+# The version number should reflect the version in which the setting data structure. If data 
+# needs to be moved within or removed from players' current saved settings, a dataVersionConverter
+# should be created. See Settings.lua for more information on this.
+## X-AccountSettingsVersion: 0.2.1
+## X-CharacterSettingsVersion: 0.2.1
+## SavedVariables: TheEyeAddonAccountSettings
+## SavedVariablesPerCharacter: TheEyeAddonCharacterSettings
+
 
 
 
@@ -40,6 +48,7 @@
 # ---------------------------
 Namespaces.lua
 
+Settings.lua
 Helpers\Tags.lua
 
 Debug.lua
