@@ -31,6 +31,8 @@ function this.Initialize()
     TheEyeAddon.SlashCommands.HandlerRegister(this, "Debug")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Enable")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Disable")
+    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "PrintEnable")
+    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "PrintDisable")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsClear")
     TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
@@ -50,6 +52,18 @@ function this.Disable()
     if isEnable ~= false then
         isEnabled = false
         this.LogsClear()
+    end
+end
+
+function this.PrintEnable()
+    if isPrintEnabled ~= true then
+        TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = true
+    end
+end
+
+function this.PrintDisable()
+    if isPrintEnabled ~= false then
+        TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = false
     end
 end
 
@@ -149,7 +163,7 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
             local value = tostring(values[i])
             if component ~= nil and value:find(filterElement.value) ~= nil then
                 return true
-        end
+            end
         end
     else
         print("No filterElement valid check setup for filterElement key \"" .. tostring(filter.key) .. "\".")
@@ -207,6 +221,16 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
             logs = {}
         end
         table.insert(logs, logEntry)
+
+        if TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled == true then
+            local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
+            table.remove(formattedLogEntry, 1)
+            table.remove(formattedLogEntry, 1)
+
+            local logEntryString = table.concat(formattedLogEntry)
+            logEntryString = string.gsub(logEntryString, " __  __ ", " __ ")
+            print(logEntryString)
+        end
     end
 end
 
@@ -218,7 +242,7 @@ local function LogValueFormat(logValue)
     end
 end
 
-local function LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
+function this.LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     local formattedLogEntry = {}
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.marker))

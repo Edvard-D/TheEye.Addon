@@ -22,6 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
+# NOTE: INCREASE ACCOUNT SETTINGS VERSION
 ## Version: 0.2.1
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
