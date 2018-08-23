@@ -38,7 +38,7 @@ this.reevaluateEvents =
 }
 this.gameEvents =
 {
-    "PLAYER_TARGET_CHANGED"
+    "PLAYER_TARGET_CHANGED",
 }
 local combatLogEvents =
 {
