@@ -43,29 +43,21 @@ function this.Initialize()
 end
 
 function this.Enable()
-    if isEnable ~= true then
         isEnabled = true
     end
-end
 
 function this.Disable()
-    if isEnable ~= false then
         isEnabled = false
         this.LogsClear()
     end
-end
 
 function this.PrintEnable()
-    if isPrintEnabled ~= true then
         TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = true
     end
-end
 
 function this.PrintDisable()
-    if isPrintEnabled ~= false then
         TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = false
     end
-end
 
 
 -- Markers
