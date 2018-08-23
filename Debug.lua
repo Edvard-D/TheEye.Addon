@@ -4,7 +4,6 @@ local this = TheEyeAddon.Debug
 local editBox
 local filters
 local frame
-local isEnabled
 local logs = {}
 local marker
 this.markerTag = "LOAD"
@@ -18,6 +17,7 @@ function this.Initialize()
     frame = CreateFrame("Frame", nil, UIParent,"BasicFrameTemplate")
     frame:SetSize(500, 300)
     frame:SetPoint("TOP")
+    frame:Hide()
 
     frame.ScrollFrame = CreateFrame("ScrollFrame", nil, frame, "InputScrollFrameTemplate")
     frame.ScrollFrame:SetPoint("TOPLEFT", 8, -30)
@@ -39,25 +39,23 @@ function this.Initialize()
 
     this.MarkerSetup()
     this.FiltersSetup()
-    this.Disable()
 end
 
 function this.Enable()
-        isEnabled = true
-    end
+    TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled = true
+end
 
 function this.Disable()
-        isEnabled = false
-        this.LogsClear()
-    end
+    TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled = false
+end
 
 function this.PrintEnable()
-        TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = true
-    end
+    TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = true
+end
 
 function this.PrintDisable()
-        TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = false
-    end
+    TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = false
+end
 
 
 -- Markers
@@ -198,7 +196,10 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if isEnabled == true and IsLogEntryValid(namespace, action, uiObject, component) == true then
+    if TheEyeAddon.Settings.Account.Saved ~= nil
+        and TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled == true
+        and IsLogEntryValid(namespace, action, uiObject, component) == true
+        then
         local logEntry =
         {
             ["marker"] = marker,
@@ -300,12 +301,12 @@ local function LogsFormat(logs)
 end
 
 function this.LogsGet()
-    if isEnabled == true then
-    editBox:SetText("")
-    editBox:SetText(table.concat(LogsFormat(logs)))
-    frame:Show()
-    editBox:HighlightText()
-    editBox:SetFocus(true)
+    if TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled == true then
+        editBox:SetText("")
+        editBox:SetText(table.concat(LogsFormat(logs)))
+        frame:Show()
+        editBox:HighlightText()
+        editBox:SetFocus(true)
     else
         this.Enable()
         print("No logs exist as debug logging was disabled. Debug logging have now been enabled.")
