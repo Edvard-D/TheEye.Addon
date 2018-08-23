@@ -78,6 +78,7 @@ function this:InputGroupSetup(inputGroup)
             SWING_DAMAGE = {},
         },
     }
+    inputGroup.reevaluateResults = {}
 end
 
 local function CurrentEventTryAddData(inputGroup, eventData)
@@ -234,14 +235,18 @@ function this:Evaluate(inputGroup, event, ...)
         unitCount = 0
     else -- combatLogEvents
         local eventInputGroup = ...
-        local eventData = eventInputGroup.currentValue
+        local eventData = eventInputGroup.eventData
 
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
             local currentEvent = inputGroup.events.current
-            if currentEvent.timestamp == eventData.timestamp then
+            if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
             else
-                local reevaluateTimestamp = inputGroup.reevaluateResults[#inputGroup.reevaluateResults].timestamp
+                local reevaluateTimestamp
+                if reevaluateResults ~= nil and #reevaluateResults > 0 then
+                    reevaluateTimestamp = inputGroup.reevaluateResults[#inputGroup.reevaluateResults].timestamp
+                end
+
                 if reevaluateTimestamp == nil
                     or GetTime() - reevaluateTimestamp > reevaluateRate
                     then
