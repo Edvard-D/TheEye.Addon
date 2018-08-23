@@ -229,14 +229,14 @@ inferred that all those other enemies are also close to the melee unit.
 function this:Evaluate(inputGroup, event, ...)
     local unitCount = inputGroup.currentValue
 
-    if event == "UNIT_CAN_ATTACK_UNIT_CHANGED" or "PLAYER_TARGET_CHANGED" then
+    if event == "UNIT_CAN_ATTACK_UNIT_CHANGED" or event == "PLAYER_TARGET_CHANGED" then
         table.cleararray(inputGroup.unevaluatedEvents)
         unitCount = 0
     else -- combatLogEvents
         local eventInputGroup = ...
         local eventData = eventInputGroup.currentValue
 
-        if event == "SPELL_DAMAGE" or "SWING_DAMAGE" then
+        if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
             local currentEvent = inputGroup.events.current
             if currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
