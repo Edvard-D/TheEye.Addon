@@ -86,7 +86,6 @@ local function CurrentEventTryAddData(inputGroup, eventData)
     end
     local currentEvent = inputGroup.events.current
 
-    print("destUnit hostility (should return 0 for not hostile, >0 for hostile): " .. tostring(bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE)))
     if (eventData.event == "SWING_DAMAGE"
             and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) == 0 -- @TODO Check that this works
             and eventData.destGUID == UnitGUID(inputGroup.inputValues[1])) -- @TODO Create table that stores the GUIDs for each unitID
