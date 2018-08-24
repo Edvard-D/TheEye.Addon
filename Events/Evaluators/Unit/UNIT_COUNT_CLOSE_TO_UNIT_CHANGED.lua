@@ -28,17 +28,12 @@ local unpack = unpack
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true,
     SPELL_DAMAGE = true,
     SWING_DAMAGE = true,
-    UNIT_CAN_ATTACK_UNIT_CHANGED = true,
+    UNIT_AFFECTING_COMBAT_CHANGED = true,
     UNIT_DESTROYED = true,
     UNIT_DIED = true,
     UNIT_DISSIPATES = true,
-}
-this.gameEvents =
-{
-    "PLAYER_TARGET_CHANGED",
 }
 local combatLogEvents =
 {
@@ -62,9 +57,9 @@ function this:SetupListeningTo(inputGroup)
 
     InputGroupRegisterListeningTo(inputGroup,
     {
-        listeningToKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
+        listeningToKey = "UNIT_AFFECTING_COMBAT_CHANGED",
         evaluator = this,
-        inputValues = { "player", inputGroup.inputValues[1] }
+        inputValues = { "player", }
     })
 end
 
@@ -232,16 +227,16 @@ inferred that all those other enemies are also close to the melee unit.
 ]]
 function this:Evaluate(inputGroup, event, ...)
     local unitCount = inputGroup.currentValue
+    local eventInputGroup = ...
 
-    if event == "UNIT_CAN_ATTACK_UNIT_CHANGED" or event == "PLAYER_TARGET_CHANGED" then
+    if event == "UNIT_AFFECTING_COMBAT_CHANGED" and eventInputGroup.currentValue == false then
         table.cleararray(inputGroup.unevaluatedEvents)
         unitCount = 0
     else -- combatLogEvents
-        local eventInputGroup = ...
-        local eventData = eventInputGroup.eventData
-
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
+        local eventData = eventInputGroup.eventData
             local currentEvent = inputGroup.events.current
+
             if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
             else
