@@ -172,34 +172,38 @@ local function GUIDInfoGetFromPendingEvents(inputGroup)
     return guids, highestGUIDWeight
 end
 
-local function UnitCountsReevaluate(inputGroup, unitCount)
+local function UnitCountsReevaluate(inputGroup)
     local currentTime = GetTime()
+    local unitCount = 0
 
-    if inputGroup.evaluatedUnitCounts == nil then
-        inputGroup.evaluatedUnitCounts = {}
-    end
-    table.insert(inputGroup.evaluatedUnitCounts,
-    {
-        timestamp = currentTime,
-        unitCount = unitCount + 0.5,
-    })
-
-    for i = #inputGroup.evaluatedUnitCounts, 1, -1 do
-        if currentTime - inputGroup.evaluatedUnitCounts[i].timestamp > reevaluateMaxTimestampElapsedTime then
-            inputGroup.evaluatedUnitCounts[i] = nil
-        else
-            unitCount = unitCount + inputGroup.evaluatedUnitCounts[i]
+    if #inputGroup.evaluatedUnitCounts > 0 then
+        for i = #inputGroup.evaluatedUnitCounts, 1, -1 do
+            if currentTime - inputGroup.evaluatedUnitCounts[i].timestamp > reevaluateMaxTimestampElapsedTime then
+                table.remove(inputGroup.evaluatedUnitCounts, i)
+            else
+                unitCount = unitCount + inputGroup.evaluatedUnitCounts[i].unitCount
+            end
         end
     end
 
     return math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
 end
 
+local function EvaluationAdd(inputGroup, unitCount)
+    if inputGroup.evaluatedUnitCounts == nil then
+        inputGroup.evaluatedUnitCounts = {}
+    end
+    table.insert(inputGroup.evaluatedUnitCounts,
+    {
+        timestamp = GetTime(),
+        unitCount = unitCount + 0.5,
+    })
+end
+
 local function UnitCountGetFromPendingEvents(inputGroup)
     local unitCount = 0
     local guids, highestGUIDWeight = GUIDInfoGetFromPendingEvents(inputGroup)
     
-    print("UnitCountGetFromPendingEvents #guids: " .. tostring(#guids))
     if #guids > 0 then
         for i = 1, #guids do
             unitCount = unitCount + (guids[i].weight / highestGUIDWeight)
@@ -209,7 +213,8 @@ local function UnitCountGetFromPendingEvents(inputGroup)
         inputGroup.events.pending.SWING_DAMAGE = {}
     end
 
-    return UnitCountsReevaluate(inputGroup, unitCount)
+    EvaluationAdd(inputGroup, unitCount)
+    return UnitCountsReevaluate(inputGroup)
 end
 
 --[[
