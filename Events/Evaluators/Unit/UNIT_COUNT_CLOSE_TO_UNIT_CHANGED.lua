@@ -172,7 +172,7 @@ local function UnitCountsReevaluate(inputGroup)
     local currentTime = GetTime()
     local unitCount = 0
 
-    if #inputGroup.evaluatedUnitCounts > 0 then
+    if inputGroup.evaluatedUnitCounts ~= nil and #inputGroup.evaluatedUnitCounts > 0 then
         for i = #inputGroup.evaluatedUnitCounts, 1, -1 do
             if currentTime - inputGroup.evaluatedUnitCounts[i].timestamp > reevaluateMaxTimestampElapsedTime then
                 table.remove(inputGroup.evaluatedUnitCounts, i)
@@ -180,20 +180,25 @@ local function UnitCountsReevaluate(inputGroup)
                 unitCount = unitCount + inputGroup.evaluatedUnitCounts[i].unitCount
             end
         end
+
+        unitCount = math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
     end
 
-    return math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
+    return unitCount
 end
 
 local function EvaluationAdd(inputGroup, unitCount)
+    if unitCount > 0 then
     if inputGroup.evaluatedUnitCounts == nil then
         inputGroup.evaluatedUnitCounts = {}
     end
+        
     table.insert(inputGroup.evaluatedUnitCounts,
     {
         timestamp = GetTime(),
         unitCount = math.floor(unitCount + 0.5),
     })
+end
 end
 
 local function UnitCountGetFromPendingEvents(inputGroup)
