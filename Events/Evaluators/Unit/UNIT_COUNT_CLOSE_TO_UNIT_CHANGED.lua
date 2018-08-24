@@ -146,7 +146,6 @@ end
 
 local function GUIDInfoGetFromPendingEvents(inputGroup)
     local guids = GUIDsGetFromPendingEvents(inputGroup)
-    local guidWeights = {}
     local highestGUIDWeight = 0
 
     for i = 1, #guids do
@@ -158,19 +157,19 @@ local function GUIDInfoGetFromPendingEvents(inputGroup)
                 weightedValue = weightedValue * playerInitiatedMultiplier
             end
 
-            if guidWeights[guid] == nil then
-                guidWeights[guid] = weightedValue
+            if guids[i].weight == nil then
+                guids[i].weight = weightedValue
             else
-                guidWeights[guid] = guidWeights[guid] + weightedValue
+                guids[i].weight = guids[i].weight + weightedValue
             end
 
-            if guidWeights[guid] > highestGUIDWeight then
-                highestGUIDWeight = guidWeights[guid]
+            if guids[i].weight > highestGUIDWeight then
+                highestGUIDWeight = guids[i].weight
             end
         end
     end
 
-    return guids, guidWeights, highestGUIDWeight
+    return guids, highestGUIDWeight
 end
 
 local function UnitCountsReevaluate(inputGroup, unitCount)
@@ -198,12 +197,12 @@ end
 
 local function UnitCountGetFromPendingEvents(inputGroup)
     local unitCount = 0
-    local guids, guidWeights, highestGUIDWeight = GUIDInfoGetFromPendingEvents(inputGroup)
+    local guids, highestGUIDWeight = GUIDInfoGetFromPendingEvents(inputGroup)
     
     print("UnitCountGetFromPendingEvents #guids: " .. tostring(#guids))
     if #guids > 0 then
         for i = 1, #guids do
-            unitCount = unitCount + (guidWeights[guids[i]] / highestGUIDWeight)
+            unitCount = unitCount + (guids[i].weight / highestGUIDWeight)
         end
 
         inputGroup.events.pending.SPELL_DAMAGE = {}
