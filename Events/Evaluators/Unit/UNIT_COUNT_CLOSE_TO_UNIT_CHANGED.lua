@@ -108,7 +108,7 @@ local function CurrentEventEvaluateForPending(inputGroup, eventData)
     if currentEvent.event == "SWING_DAMAGE" then
         table.insert(inputGroup.events.pending.SWING_DAMAGE, currentEvent)
     elseif #currentEvent.destGUIDs > 1
-        and table.hasvalue(currentEvent.destGUIDs, UnitGUID(inputGroup.inputValues[1]) == true) -- @TODO Create table that stores the GUIDs for each unitID
+        and table.hasvalue(currentEvent.destGUIDs, UnitGUID(inputGroup.inputValues[1])) == true -- @TODO Create table that stores the GUIDs for each unitID
         then
         table.insert(inputGroup.events.pending.SPELL_DAMAGE, currentEvent)
     else
