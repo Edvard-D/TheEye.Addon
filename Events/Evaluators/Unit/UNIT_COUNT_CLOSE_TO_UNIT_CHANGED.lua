@@ -116,7 +116,7 @@ local function CurrentEventEvaluateForPending(inputGroup, eventData)
     end
 end
 
-local function GUIDsGetFromPendingEvents()
+local function GUIDsGetFromPendingEvents(inputGroup)
     local guids = {}
 
     if inputGroup.inputValues[2] == COMBATLOG_OBJECT_REACTION_HOSTILE then
@@ -144,8 +144,8 @@ local function GUIDsGetFromPendingEvents()
     return guids
 end
 
-local function GUIDInfoGetFromPendingEvents()
-    local guids = GUIDsGetFromPendingEvents()
+local function GUIDInfoGetFromPendingEvents(inputGroup)
+    local guids = GUIDsGetFromPendingEvents(inputGroup)
     local guidWeights = {}
     local highestGUIDWeight = 0
 
@@ -173,23 +173,7 @@ local function GUIDInfoGetFromPendingEvents()
     return guids, guidWeights, highestGUIDWeight
 end
 
-local function UnitCountGetFromPendingEvents(inputGroup)
-    local unitCount = 0
-    local guids, guidWeights, highestGUIDWeight = GUIDInfoGetFromPendingEvents()
-    
-    if #guids > 0 then
-        for i = 1, #guids do
-            unitCount = unitCount + (guidWeights[guids[i]] / highestGUIDWeight)
-        end
-
-        inputGroup.events.pending.SPELL_DAMAGE = {}
-        inputGroup.events.pending.SWING_DAMAGE = {}
-    end
-
-    return UnitCountsReevaluate(unitCount)
-end
-
-local function UnitCountsReevaluate(unitCount)
+local function UnitCountsReevaluate(inputGroup, unitCount)
     local currentTime = GetTime()
 
     if inputGroup.evaluatedUnitCounts == nil then
@@ -210,6 +194,23 @@ local function UnitCountsReevaluate(unitCount)
     end
 
     return math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
+end
+
+local function UnitCountGetFromPendingEvents(inputGroup)
+    local unitCount = 0
+    local guids, guidWeights, highestGUIDWeight = GUIDInfoGetFromPendingEvents(inputGroup)
+    
+    print("UnitCountGetFromPendingEvents #guids: " .. tostring(#guids))
+    if #guids > 0 then
+        for i = 1, #guids do
+            unitCount = unitCount + (guidWeights[guids[i]] / highestGUIDWeight)
+        end
+
+        inputGroup.events.pending.SPELL_DAMAGE = {}
+        inputGroup.events.pending.SWING_DAMAGE = {}
+    end
+
+    return UnitCountsReevaluate(inputGroup, unitCount)
 end
 
 --[[
