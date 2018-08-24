@@ -152,7 +152,7 @@ local function GUIDInfoGetFromPendingEvents(inputGroup)
     for i = 1, #guids do
         local guidData = guids[i]
         local guid = guidData.guid
-        if inputGroup.invalidGUIDs[guid] ~= true then
+        if inputGroup.invalidGUIDs == nil or inputGroup.invalidGUIDs[guid] ~= true then
             local weightedValue = 1
             if guidData.wasPlayerInitiated == true then
                 weightedValue = weightedValue * playerInitiatedMultiplier
