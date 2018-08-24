@@ -8,7 +8,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroup
 local math = math
 local playerInitiatedMultiplier = 3
 local reevaluateRate = 0.5
-local reevaluateMaxTimestamp = 2.5
+local reevaluateMaxTimestampElapsedTime = 2.5
 local table = table
 local UnitCanAttack = UnitCanAttack
 local UnitGUID = UnitGUID
@@ -78,7 +78,6 @@ function this:InputGroupSetup(inputGroup)
             SWING_DAMAGE = {},
         },
     }
-    inputGroup.reevaluateResults = {}
 end
 
 local function CurrentEventTryAddData(inputGroup, eventData)
@@ -194,24 +193,24 @@ end
 local function UnitCountsReevaluate(unitCount)
     local currentTime = GetTime()
 
-    if inputGroup.unitCounts == nil then
-        inputGroup.unitCounts = {}
+    if inputGroup.evaluatedUnitCounts == nil then
+        inputGroup.evaluatedUnitCounts = {}
     end
-    table.insert(inputGroup.unitCounts,
+    table.insert(inputGroup.evaluatedUnitCounts,
     {
         timestamp = currentTime,
         unitCount = unitCount + 0.5,
     })
 
-    for i = #inputGroup.unitCounts, 1, -1 do
-        if currentTime - inputGroup.unitCounts[i].timestamp > reevaluateMaxTimestamp then
-            inputGroup.unitCounts[i] = nil
+    for i = #inputGroup.evaluatedUnitCounts, 1, -1 do
+        if currentTime - inputGroup.evaluatedUnitCounts[i].timestamp > reevaluateMaxTimestampElapsedTime then
+            inputGroup.evaluatedUnitCounts[i] = nil
         else
-            unitCount = unitCount + inputGroup.unitCounts[i]
+            unitCount = unitCount + inputGroup.evaluatedUnitCounts[i]
         end
     end
 
-    return math.floor(unitCount / #inputGroup.unitCounts)
+    return math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
 end
 
 --[[
@@ -242,13 +241,13 @@ function this:Evaluate(inputGroup, event, ...)
             if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
             else
-                local reevaluateTimestamp
-                if reevaluateResults ~= nil and #reevaluateResults > 0 then
-                    reevaluateTimestamp = inputGroup.reevaluateResults[#inputGroup.reevaluateResults].timestamp
+                local lastEvaluationTimestamp
+                if inputGroup.evaluatedUnitCounts ~= nil and #inputGroup.evaluatedUnitCounts > 0 then
+                    lastEvaluationTimestamp = inputGroup.evaluatedUnitCounts[#inputGroup.evaluatedUnitCounts].timestamp
                 end
 
-                if reevaluateTimestamp == nil
-                    or GetTime() - reevaluateTimestamp > reevaluateRate
+                if lastEvaluationTimestamp == nil
+                    or GetTime() - lastEvaluationTimestamp > reevaluateRate
                     then
                     CurrentEventEvaluateForPending(inputGroup, eventData)
                 else
