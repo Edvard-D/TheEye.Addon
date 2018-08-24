@@ -196,7 +196,7 @@ local function EvaluationAdd(inputGroup, unitCount)
     table.insert(inputGroup.evaluatedUnitCounts,
     {
         timestamp = GetTime(),
-        unitCount = unitCount + 0.5,
+        unitCount = math.floor(unitCount + 0.5),
     })
 end
 
