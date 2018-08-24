@@ -239,9 +239,10 @@ function this:Evaluate(inputGroup, event, ...)
         table.cleararray(inputGroup.unevaluatedEvents)
         unitCount = 0
     else -- combatLogEvents
+        local currentEvent = inputGroup.events.current
+        
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
         local eventData = eventInputGroup.eventData
-            local currentEvent = inputGroup.events.current
 
             if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
