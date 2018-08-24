@@ -240,6 +240,8 @@ function this:Evaluate(inputGroup, event, ...)
             if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
                 CurrentEventTryAddData(inputGroup, eventData)
             else
+                CurrentEventEvaluateForPending(inputGroup, eventData)
+
                 local lastEvaluationTimestamp
                 if inputGroup.evaluatedUnitCounts ~= nil and #inputGroup.evaluatedUnitCounts > 0 then
                     lastEvaluationTimestamp = inputGroup.evaluatedUnitCounts[#inputGroup.evaluatedUnitCounts].timestamp
@@ -248,8 +250,6 @@ function this:Evaluate(inputGroup, event, ...)
                 if lastEvaluationTimestamp == nil
                     or GetTime() - lastEvaluationTimestamp > reevaluateRate
                     then
-                    CurrentEventEvaluateForPending(inputGroup, eventData)
-                else
                     unitCount = UnitCountGetFromPendingEvents(inputGroup)
                 end
 
