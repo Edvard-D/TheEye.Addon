@@ -163,6 +163,7 @@ local function GUIDInfoGetFromPendingEvents(inputGroup)
             end
         end
     end
+    inputGroup.invalidGUIDs = nil
 
     return guids, highestGUIDWeight
 end
