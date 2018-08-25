@@ -159,7 +159,7 @@ end
 local function GroupedUnitRemove(groupedUnits, guid)
     if groupedUnits ~= nil and groupedUnits[guid] ~= nil then
         groupedUnits[guid] = nil
-        table.remove(groupedUnits.guids, guid)
+        table.removevalue(groupedUnits.guids, guid)
     end
 end
 
@@ -284,12 +284,15 @@ inferred that all those other enemies are also close to the melee unit.
 function this:Evaluate(inputGroup, event, ...)
     local eventInputGroup = ...
 
-    if event == "UNIT_AFFECTING_COMBAT_CHANGED" and eventInputGroup.currentValue == false then
-        table.cleararray(inputGroup.unevaluatedEvents)
+    if event == "UNIT_AFFECTING_COMBAT_CHANGED" then
+        if eventInputGroup.currentValue == false then
+            table.cleararray(inputGroup.unevaluatedEvents)
+        end
     else -- combatLogEvents
+        local eventData = eventInputGroup.eventData
+
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
             local currentEvent = inputGroup.events.current
-            local eventData = eventInputGroup.eventData
 
             if currentEvent ~= nil and currentEvent.timestamp ~= eventData.timestamp then
                 CurrentEventEvaluateForPending(inputGroup)
@@ -303,7 +306,7 @@ function this:Evaluate(inputGroup, event, ...)
 
             CurrentEventTryAddData(inputGroup, eventData)
         else -- UNIT_DESTROYED, UNIT_DIED, UNIT_DISSIPATES
-            GroupedUnitRemove(inputGroup.groupedUnits, event.destGUID)
+            GroupedUnitRemove(inputGroup.groupedUnits, eventData.destGUID)
         end
     end
 
