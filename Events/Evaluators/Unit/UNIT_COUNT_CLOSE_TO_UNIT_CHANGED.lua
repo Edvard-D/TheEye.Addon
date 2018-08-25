@@ -65,6 +65,11 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = 0
+    inputGroup.lastUpdateTimestamp = 0
+    inputGroup.groupedUnits =
+    {
+        guids = {},
+    }
     inputGroup.events =
     {
         pending =
@@ -75,148 +80,193 @@ function this:InputGroupSetup(inputGroup)
     }
 end
 
+
+-- Current/Pending Events
+local function EventIsValid(inputGroup, eventData)
+    if (eventData.event == "SWING_DAMAGE"
+        and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) == 0
+        and eventData.destGUID == UnitGUID(inputGroup.inputValues[1])) -- @TODO Create table that stores the GUIDs for each unitID
+    or (eventData.event == "SPELL_DAMAGE"
+        and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) > 0)
+    then
+        return true
+    end
+end
+
 local function CurrentEventTryAddData(inputGroup, eventData)
     if inputGroup.events.current == nil then
-        inputGroup.events.current = { destGUIDs = {} }
+        inputGroup.events.current = { destGUIDs = {}, }
     end
     local currentEvent = inputGroup.events.current
 
-    if (eventData.event == "SWING_DAMAGE"
-            and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) == 0 -- @TODO Check that this works
-            and eventData.destGUID == UnitGUID(inputGroup.inputValues[1])) -- @TODO Create table that stores the GUIDs for each unitID
-        or (eventData.event == "SPELL_DAMAGE"
-            and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) > 0)
-        then
+    if EventIsValid(inputGroup, eventData) then
         if currentEvent.event == nil then
+            currentEvent.sourceGUID = eventData.sourceGUID
             currentEvent.event = eventData.event
             currentEvent.timestamp = eventData.timestamp
-            currentEvent.sourceGUID = eventData.sourceGUID
         end
         table.insert(currentEvent.destGUIDs, eventData.destGUID)
     end
 end
 
-local function CurrentEventEvaluateForPending(inputGroup, eventData)
+local function CurrentEventEvaluateForPending(inputGroup)
     local currentEvent = inputGroup.events.current
 
     if currentEvent.event == "SWING_DAMAGE" then
         table.insert(inputGroup.events.pending.SWING_DAMAGE, currentEvent)
-    elseif #currentEvent.destGUIDs > 1
+    elseif #currentEvent.destGUIDs > 1 -- SPELL_DAMAGE
         and table.hasvalue(currentEvent.destGUIDs, UnitGUID(inputGroup.inputValues[1])) == true -- @TODO Create table that stores the GUIDs for each unitID
         then
+        currentEvent.wasInitiatorPlayer = currentEvent.sourceGUID == UnitGUID("player") -- @TODO Create table that stores the GUIDs for each unitID
         table.insert(inputGroup.events.pending.SPELL_DAMAGE, currentEvent)
-    else
-        inputGroup.events.current = nil
-        CurrentEventTryAddData(inputGroup, eventData)
     end
 end
 
-local function GUIDsGetFromPendingEvents(inputGroup)
-    local guids = {}
-
+local function PendingEventsGet(inputGroup)
     if inputGroup.inputValues[2] == COMBATLOG_OBJECT_REACTION_HOSTILE then
-        local pendingEvents = inputGroup.events.pending.SPELL_DAMAGE
-
-        for i = 1, #pendingEvents do
-            local event = pendingEvents[i]
-
-            local wasPlayerInitiated
-            if event.sourceGUID == UnitGUID("player") then -- @TODO Create table that stores the GUIDs for each unitID
-                wasPlayerInitiated = true
-            end
-
-            for i2 = 1, #event.destGUIDs do
-                table.insert(guids, { wasPlayerInitiated = wasPlayerInitiated, guid = event.destGUIDs[i2] })
-            end
-        end
+        return inputGroup.events.pending.SPELL_DAMAGE
     else
-        local pendingEvents = inputGroup.events.pending.SWING_DAMAGE
-        for i = 1, #pendingEvents do
-            table.insert(guids, { guid = pendingEvents[i].sourceGUID })
-        end
+        return inputGroup.events.pending.SWING_DAMAGE
     end
-
-    return guids
 end
 
-local function GUIDInfoGetFromPendingEvents(inputGroup)
-    local guids = GUIDsGetFromPendingEvents(inputGroup)
-    local highestGUIDWeight = 0
+local function PendingEventsReset(inputGroup)
+    inputGroup.events.pending.SPELL_DAMAGE = {}
+    inputGroup.events.pending.SWING_DAMAGE = {}
+    inputGroup.events.current = nil
+end
+
+
+-- GroupedUnits
+local function GroupedUnitAddEventData(groupedUnits, guid, eventData)    
+    if groupedUnits[guid] == nil then
+        groupedUnits[guid] =
+        {
+            guid = guid,
+            events = {},
+        }
+        table.insert(groupedUnits.guids, guid)
+    end
+
+    table.insert(groupedUnits[guid].events,
+        {
+            timestamp = eventData.timestamp,
+            wasInitiatorPlayer = eventData.wasInitiatorPlayer,
+        }
+    )
+end
+
+local function GroupedUnitRemove(groupedUnits, guid)
+    if groupedUnits ~= nil and groupedUnits[guid] ~= nil then
+        groupedUnits[guid] = nil
+        table.remove(groupedUnits.guids, guid)
+    end
+end
+
+local function GroupedUnitRemoveOldEventData(groupedUnits, guid)
+    local currentTime = GetTime()
+    local groupedUnit = groupedUnits[guid]
+    local oldestTimestamp = groupedUnit.events[1].timestamp
+
+    if currentTime - oldestTimestamp > reevaluateMaxTimestampElapsedTime then
+        local events = groupedUnit.events
+        for i = #events, 1, -1 do
+            if currentTime - events[i].timestamp > reevaluateMaxTimestampElapsedTime then
+                table.remove(events, i)
+            end
+        end
+
+        if #events == 0 then
+            GroupedUnitRemove(groupedUnits, guid)
+        end
+    end
+end
+
+local function GroupedUnitsRemoveOldEventData(groupedUnits)
+    local guids = groupedUnits.guids
+    for i = #guids, 1, -1 do
+        GroupedUnitRemoveOldEventData(groupedUnits, guids[i])
+    end
+end
+
+local function GroupedUnitsUpdateWithPendingEvents(groupedUnits, pendingEvents)
+    if #pendingEvents > 0 then
+        for i = 1, #pendingEvents do
+            local pendingEvent = pendingEvents[i]
+
+            if pendingEvent.event == "SPELL_DAMAGE" then
+                local destGUIDs = pendingEvent.destGUIDs
+                for j = 1, #destGUIDs do
+                    GroupedUnitAddEventData(groupedUnits, destGUIDs[j], pendingEvent)
+                end
+            else
+                GroupedUnitAddEventData(groupedUnits, pendingEvent.sourceGUID, pendingEvent)
+            end
+        end
+    end
+end
+
+local function EventWeightGet(event)
+    local weightedValue = 1
+
+    if event.wasInitiatorPlayer == true then
+        weightedValue = weightedValue * playerInitiatedMultiplier
+    end
+
+    return weightedValue
+end
+
+local function GroupedUnitWeightGet(groupedUnit)
+    local events = groupedUnit.events
+    local weight = 0
+
+    for i = 1, #events do
+        weight = weight + EventWeightGet(events[i])
+    end
+
+    return weight
+end
+
+local function GroupedUnitsWeightsUpdate(groupedUnits)
+    local guids = groupedUnits.guids
+    local highestWeight = 0
 
     for i = 1, #guids do
-        local guidData = guids[i]
-        local guid = guidData.guid
-        if inputGroup.invalidGUIDs == nil or inputGroup.invalidGUIDs[guid] ~= true then
-            local weightedValue = 1
-            if guidData.wasPlayerInitiated == true then
-                weightedValue = weightedValue * playerInitiatedMultiplier
-            end
+        local groupedUnit = groupedUnits[guids[i]]
 
-            if guids[i].weight == nil then
-                guids[i].weight = weightedValue
-            else
-                guids[i].weight = guids[i].weight + weightedValue
-            end
-
-            if guids[i].weight > highestGUIDWeight then
-                highestGUIDWeight = guids[i].weight
-            end
+        groupedUnit.weight = GroupedUnitWeightGet(groupedUnit)
+        if groupedUnit.weight > highestWeight then
+            highestWeight = groupedUnit.weight
         end
     end
-    inputGroup.invalidGUIDs = nil
 
-    return guids, highestGUIDWeight
+    groupedUnits.highestWeight = highestWeight
 end
 
-local function UnitCountsReevaluate(inputGroup)
-    local currentTime = GetTime()
+local function GroupedUnitsUpdate(inputGroup)
+    local groupedUnits = inputGroup.groupedUnits
+
+    GroupedUnitsUpdateWithPendingEvents(groupedUnits, PendingEventsGet(inputGroup))
+    GroupedUnitsRemoveOldEventData(groupedUnits)
+    GroupedUnitsWeightsUpdate(groupedUnits)
+end
+
+local function GroupedUnitCountGetWeighted(inputGroup)
+    local groupedUnits = inputGroup.groupedUnits
     local unitCount = 0
-
-    if inputGroup.evaluatedUnitCounts ~= nil and #inputGroup.evaluatedUnitCounts > 0 then
-        for i = #inputGroup.evaluatedUnitCounts, 1, -1 do
-            if currentTime - inputGroup.evaluatedUnitCounts[i].timestamp > reevaluateMaxTimestampElapsedTime then
-                table.remove(inputGroup.evaluatedUnitCounts, i)
-            else
-                unitCount = unitCount + inputGroup.evaluatedUnitCounts[i].unitCount
-            end
-        end
-
-        unitCount = math.floor(unitCount / #inputGroup.evaluatedUnitCounts)
-    end
-
-    return unitCount
-end
-
-local function EvaluationAdd(inputGroup, unitCount)
-    if unitCount > 0 then
-    if inputGroup.evaluatedUnitCounts == nil then
-        inputGroup.evaluatedUnitCounts = {}
-    end
-        
-    table.insert(inputGroup.evaluatedUnitCounts,
-    {
-        timestamp = GetTime(),
-        unitCount = math.floor(unitCount + 0.5),
-    })
-end
-end
-
-local function UnitCountGetFromPendingEvents(inputGroup)
-    local unitCount = 0
-    local guids, highestGUIDWeight = GUIDInfoGetFromPendingEvents(inputGroup)
     
-    if #guids > 0 then
-        for i = 1, #guids do
-            unitCount = unitCount + (guids[i].weight / highestGUIDWeight)
-        end
+    if groupedUnits ~= nil then
+        local guids = groupedUnits.guids
+        local highestWeight = groupedUnits.highestWeight
 
-        inputGroup.events.pending.SPELL_DAMAGE = {}
-        inputGroup.events.pending.SWING_DAMAGE = {}
+        for i = 1, #guids do
+            unitCount = unitCount + (groupedUnits[guids[i]].weight / highestWeight)
+        end
     end
 
-    EvaluationAdd(inputGroup, unitCount)
-    return UnitCountsReevaluate(inputGroup)
+    return math.floor(unitCount + 0.5)
 end
+
 
 --[[
 @TODO Rework how the inputValue[1] (aka unit) being friendly is handled. Basing it entirely
@@ -232,45 +282,32 @@ enemy involved in the melee interaction are likely "close to" that enemy. As suc
 inferred that all those other enemies are also close to the melee unit.
 ]]
 function this:Evaluate(inputGroup, event, ...)
-    local unitCount = inputGroup.currentValue
     local eventInputGroup = ...
 
     if event == "UNIT_AFFECTING_COMBAT_CHANGED" and eventInputGroup.currentValue == false then
         table.cleararray(inputGroup.unevaluatedEvents)
-        unitCount = 0
     else -- combatLogEvents
-        local currentEvent = inputGroup.events.current
-        
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
-        local eventData = eventInputGroup.eventData
+            local currentEvent = inputGroup.events.current
+            local eventData = eventInputGroup.eventData
 
-            if currentEvent == nil or currentEvent.timestamp == eventData.timestamp then
-                CurrentEventTryAddData(inputGroup, eventData)
-            else
-                CurrentEventEvaluateForPending(inputGroup, eventData)
+            if currentEvent ~= nil and currentEvent.timestamp ~= eventData.timestamp then
+                CurrentEventEvaluateForPending(inputGroup)
 
-                local lastEvaluationTimestamp
-                if inputGroup.evaluatedUnitCounts ~= nil and #inputGroup.evaluatedUnitCounts > 0 then
-                    lastEvaluationTimestamp = inputGroup.evaluatedUnitCounts[#inputGroup.evaluatedUnitCounts].timestamp
+                if eventData.timestamp - inputGroup.lastUpdateTimestamp > reevaluateRate then
+                    GroupedUnitsUpdate(inputGroup)
+                    inputGroup.lastUpdateTimestamp = eventData.timestamp
+                    PendingEventsReset(inputGroup)
                 end
-
-                if lastEvaluationTimestamp == nil
-                    or GetTime() - lastEvaluationTimestamp > reevaluateRate
-                    then
-                    unitCount = UnitCountGetFromPendingEvents(inputGroup)
-                end
-
-                inputGroup.events.current = nil
-                CurrentEventTryAddData(inputGroup, eventData)
             end
-        elseif currentEvent ~= nil then -- UNIT_DESTROYED, UNIT_DIED, UNIT_DISSIPATES
-            if inputGroup.invalidGUIDs == nil then
-                inputGroup.invalidGUIDs = {}
-            end
-            inputGroup.invalidGUIDs[event.destGUID] = true
+
+            CurrentEventTryAddData(inputGroup, eventData)
+        else -- UNIT_DESTROYED, UNIT_DIED, UNIT_DISSIPATES
+            GroupedUnitRemove(inputGroup.groupedUnits, event.destGUID)
         end
     end
 
+    local unitCount = GroupedUnitCountGetWeighted(inputGroup)
     if inputGroup.currentValue ~= unitCount then
         inputGroup.currentValue = unitCount
         return true, this.name, unitCount
