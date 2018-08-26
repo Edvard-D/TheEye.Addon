@@ -111,7 +111,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
                     comparisonValues =
                     {
-                        value = 4,
+                        value = 5,
                         type = "LessThanEqualTo"
                     },
                     value = 64,
