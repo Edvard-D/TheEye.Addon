@@ -345,6 +345,6 @@ function this:Evaluate(inputGroup, event, ...)
     unitCount = GroupedUnitCountGetWeighted(inputGroup)
     if inputGroup.currentValue ~= unitCount then
         inputGroup.currentValue = unitCount
-        return true, this.name, unitCount
+        return true, this.name
     end
 end
