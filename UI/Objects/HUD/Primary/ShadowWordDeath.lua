@@ -49,7 +49,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 4, [2] = 13, [10] = 13, [12] = 13, }
+            validKeys = { [0] = 4, [4] = 13, [10] = 13, [12] = 13, }
         },
         ListenerGroup =
         {
@@ -58,7 +58,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 inputValues = { --[[spellID]] spellID, },
                 comparisonValues =
                 {
-                    value = 2,
+                    value = 1,
                     type = "EqualTo",
                 },
                 value = 2,
@@ -68,7 +68,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 inputValues = { --[[spellID]] spellID, },
                 comparisonValues =
                 {
-                    value = 1,
+                    value = 2,
                     type = "EqualTo",
                 },
                 value = 4,
@@ -90,8 +90,10 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [66] = true, [114] = true, [116] = true, [118] = true, [120] = true, [122] = true,
-                [126] = true, 
+                [130] = true, [132] = true, [134] = true, [154] = true, [156] = true, [158] = true, [170] = true,
+                [172] = true, [174] = true, [204] = true, [206] = true, [218] = true, [220] = true, [222] = true,
+                [232] = true, [234] = true, [236] = true, [238] = true, [280] = true, [282] = true, [284] = true,
+                [286] = true,
             },
         },
         ListenerGroup =
@@ -109,22 +111,22 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = 0,
-                        type = "EqualTo",
-                    },
-                    value = 8,
-                },
-                {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
                     inputValues = { --[[unit]] "target", },
                     comparisonValues =
                     {
                         value = 0.2,
                         type = "LessThan",
+                    },
+                    value = 8,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 1,
+                        type = "EqualTo",
                     },
                     value = 16,
                 },
@@ -133,19 +135,14 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
-                        value = 0,
-                        type = "GreaterThan",
+                        value = 2,
+                        type = "EqualTo",
                     },
                     value = 32,
                 },
                 {
-                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
-                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
-                    comparisonValues =
-                    {
-                        value = 4,
-                        type = "LessThanEqualTo"
-                    },
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
                     value = 64,
                 },
                 {
@@ -153,8 +150,8 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
                     comparisonValues =
                     {
-                        value = 4,
-                        type = "LessThanEqualTo"
+                        value = 2,
+                        type = "EqualTo"
                     },
                     value = 128,
                 },
