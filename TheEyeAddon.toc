@@ -299,6 +299,7 @@ UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
 # --- HUD: Secondary ---
+UI\Objects\HUD\Secondary\DarkAscension.lua
 UI\Objects\HUD\Secondary\Dispersion.lua
 UI\Objects\HUD\Secondary\Fade.lua
 UI\Objects\HUD\Secondary\GladiatorsMedallion.lua
