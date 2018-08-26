@@ -3,12 +3,13 @@ TheEyeAddon.Events.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED
 
 local bit = bit
-local eventMaxElapsedTime = 5
 local GetTime = GetTime
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local math = math
+local meleeEventMaxElapsedTime = 5
 local playerInitiatedMultiplier = 3
 local reevaluateRate = 0.5
+local spellEventMaxElapsedTime = 3
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitCanAttack = UnitCanAttack
@@ -212,7 +213,7 @@ end
 
 
 -- Units
-local function UnitAddEventData(units, guid, eventData)
+local function UnitAddEventData(units, guid, eventData, eventMaxElapsedTime)
     if units[guid] == nil then
         units[guid] =
         {
@@ -225,6 +226,7 @@ local function UnitAddEventData(units, guid, eventData)
     local event =
     {
         timestamp = eventData.timestamp,
+        eventMaxElapsedTime = eventMaxElapsedTime,
     }
     table.insert(units[guid].events, event)
 
@@ -242,6 +244,7 @@ local function EventsRemoveOld(events)
     if #events > 0 then
         local currentTime = GetTime()
         local oldestTimestamp = events[1].timestamp
+        local eventMaxElapsedTime = events[1].eventMaxElapsedTime
 
         if currentTime - oldestTimestamp > eventMaxElapsedTime then
             for i = #events, 1, -1 do
@@ -283,14 +286,14 @@ local function UnitsUpdateWithPendingEvents(inputGroup)
                 local destGUIDs = pendingEvent.destGUIDs
 
                 for j = 1, #destGUIDs do
-                    local unitEvent = UnitAddEventData(groupedUnits, destGUIDs[j], pendingEvent)
+                    local unitEvent = UnitAddEventData(groupedUnits, destGUIDs[j], pendingEvent, spellEventMaxElapsedTime)
                     unitEvent.wasInitiatorPlayer = pendingEvent.wasInitiatorPlayer
                 end
             else -- SWING_DAMAGE
                 if pendingEvent.sourceGUID == inputValueUnitGUID then
-                    UnitAddEventData(meleeUnits, pendingEvent.destGUID, pendingEvent)
+                    UnitAddEventData(meleeUnits, pendingEvent.destGUID, pendingEvent, meleeEventMaxElapsedTime)
                 else
-                    UnitAddEventData(meleeUnits, pendingEvent.sourceGUID, pendingEvent)
+                    UnitAddEventData(meleeUnits, pendingEvent.sourceGUID, pendingEvent, meleeEventMaxElapsedTime)
                 end
             end
         end
