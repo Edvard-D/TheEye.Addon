@@ -49,7 +49,11 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 4, [2] = 12, [4] = 12, [12] = 12, }
+            validKeys =
+            {
+                [0] = 4, [2] = 4, [8] = 4, [10] = 12, 
+                [4] = 12, [6] = 12, [12] = 12, [14] = 12,
+            }
         },
         ListenerGroup =
         {
