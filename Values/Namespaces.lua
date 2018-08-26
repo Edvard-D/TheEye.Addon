@@ -2,10 +2,7 @@
 -- are part of the program hierarchy but don't have a dedicated file.
 TheEyeAddon =
 {
-    Events =
-    {
-        Evaluators = {},
-    },
+    Evaluators = {},
     Helpers = {},
     Managers = {},
     UI =

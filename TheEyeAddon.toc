@@ -43,7 +43,6 @@
 
 
 
-
 # ---------------------------
 # |			 CORE			|
 # ---------------------------
@@ -93,56 +92,56 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	   Events\Evaluators   	|
+# |	   Evaluators   	|
 # ---------------------------
 # --- General ---
-Events\Evaluators\General\ADDON_LOADED.lua
-Events\Evaluators\General\COMBAT_LOG.lua
-Events\Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
+Evaluators\General\ADDON_LOADED.lua
+Evaluators\General\COMBAT_LOG.lua
+Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
 
 
 # --- Player ---
-Events\Evaluators\Player\PLAYER_ITEM_EQUIPPED_CHANGED.lua
-Events\Evaluators\Player\PLAYER_SPELL_CHARGE_CHANGED.lua
-Events\Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
-Events\Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
-Events\Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
-Events\Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
-Events\Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
+Evaluators\Player\PLAYER_ITEM_EQUIPPED_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_CHARGE_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
+Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
+Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 
 
 # --- UIObject ---
-Events\Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
-Events\Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 
 
 # --- Unit ---
-Events\Evaluators\Unit\UNIT_AFFECTING_COMBAT_CHANGED.lua
-Events\Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
-Events\Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
-Events\Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
-Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
-Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
-Events\Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
-Events\Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
-Events\Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
-Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
-Events\Evaluators\Unit\UNIT_SPEC_CHANGED.lua
-Events\Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
-Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
-Events\Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
-Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
-Events\Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
+Evaluators\Unit\UNIT_AFFECTING_COMBAT_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
+Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
+Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
+Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
+Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
+Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
+Evaluators\Unit\UNIT_SPEC_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
+Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
 
 
 
