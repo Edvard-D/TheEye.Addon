@@ -229,14 +229,20 @@ UI\Components\VisibleState.lua
 
 
 # ---------------------------
-# |	      UI\Objects     	|
+# |	      UI\Objects      	|
 # ---------------------------
-UI\Objects\HUD\HUDGroup.lua
-UI\Objects\HUD\HUDLeft.lua
 UI\Objects\UIParentGroup.lua
 
 
-# --- HUD: Active ---
+
+# ---------------------------
+# |	    UI\Objects\HUD     	|
+# ---------------------------
+UI\Objects\HUD\HUDGroup.lua
+UI\Objects\HUD\HUDLeft.lua
+
+
+# --- Active ---
 UI\Objects\HUD\Active\ActiveModule.lua
 UI\Objects\HUD\Active\Dispersion.lua
 UI\Objects\HUD\Active\HeroLust.lua
@@ -247,7 +253,7 @@ UI\Objects\HUD\Active\SurrenderToMadness.lua
 UI\Objects\HUD\Active\Voidform.lua
 
 
-# --- HUD: Cooldown ---
+# --- Cooldown ---
 UI\Objects\HUD\Cooldown\CooldownModule.lua
 UI\Objects\HUD\Cooldown\DarkAscension.lua
 UI\Objects\HUD\Cooldown\DarkVoid.lua
@@ -270,7 +276,7 @@ UI\Objects\HUD\Cooldown\VoidShift.lua
 UI\Objects\HUD\Cooldown\VoidTorrent.lua
 
 
-# --- HUD: Primary ---
+# --- Primary ---
 UI\Objects\HUD\Primary\DarkAscension.lua
 UI\Objects\HUD\Primary\DarkVoid.lua
 UI\Objects\HUD\Primary\Mindbender.lua
@@ -291,7 +297,7 @@ UI\Objects\HUD\Primary\VoidEruption.lua
 UI\Objects\HUD\Primary\VoidTorrent.lua
 
 
-# --- HUD: Secondary ---
+# --- Secondary ---
 UI\Objects\HUD\Secondary\DarkAscension.lua
 UI\Objects\HUD\Secondary\Dispersion.lua
 UI\Objects\HUD\Secondary\Fade.lua
