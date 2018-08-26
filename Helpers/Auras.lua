@@ -30,10 +30,13 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         local filterTable = AuraFiltersGet(spellIDExpected, sourceUnitExpected)
         local auraValues = { UnitAura(destUnit, i, table.concat(filterTable or {})) }
         local spellID = auraValues[10]
+        
         if spellID ~= nil then
             local sourceUnit = auraValues[7]
             if spellID == spellIDExpected
-                    and (sourceUnitExpected == "_" or sourceUnit == sourceUnitExpected) then
+                and (sourceUnitExpected == "_" or sourceUnit == sourceUnitExpected)
+                then
+                
                 return auraValues
             end
         else
