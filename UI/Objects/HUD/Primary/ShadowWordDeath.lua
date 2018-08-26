@@ -97,9 +97,10 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [130] = true, [132] = true, [134] = true, [140] = true, [142] = true, [152] = true, [154] = true,
-                [156] = true, [158] = true, [170] = true, [172] = true, [174] = true, [232] = true, [234] = true,
-                [236] = true, [238] = true, [280] = true, [282] = true, [284] = true, [286] = true,
+                [130] = true, [132] = true, [134] = true, [140] = true, [142] = true, [152] = true,
+                [154] = true, [156] = true, [158] = true, [168] = true, [170] = true, [172] = true,
+                [174] = true, [222] = true, [232] = true, [234] = true, [236] = true, [238] = true,
+                [254] = true, [280] = true, [282] = true, [284] = true, [286] = true,
             },
         },
         ListenerGroup =
