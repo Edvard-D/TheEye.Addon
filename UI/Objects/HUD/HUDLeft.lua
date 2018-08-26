@@ -1,6 +1,6 @@
 local parentKey = "GROUP_HUD"
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "GROUP", "HUD", "LEFT" },
     Child =
@@ -40,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-        childArranger = TheEyeAddon.UI.ChildArrangers.TopToBottom,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
         childPadding = 5,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",

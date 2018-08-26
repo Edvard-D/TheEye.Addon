@@ -1,4 +1,5 @@
-local this = TheEyeAddon.UI.Objects
+TheEyeAddon.Managers.UI = {}
+local this = TheEyeAddon.Managers.UI
 
 local table = table
 

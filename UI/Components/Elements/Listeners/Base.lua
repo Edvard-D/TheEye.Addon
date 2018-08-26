@@ -3,8 +3,8 @@ local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local Comparisons = TheEyeAddon.Helpers.Comparisons
-local ListenerRegister = TheEyeAddon.Events.Helpers.Core.ListenerRegister
-local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
+local ListenerRegister = TheEyeAddon.Managers.Evaluators.ListenerRegister
+local ListenerDeregister = TheEyeAddon.Managers.Evaluators.ListenerDeregister
 
 
 --[[ #this#TEMPLATE#

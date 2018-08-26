@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Pools = {}
-local this = TheEyeAddon.UI.Pools
+TheEyeAddon.Managers.FramePools = {}
+local this = TheEyeAddon.Managers.FramePools
 
 local table = table
 

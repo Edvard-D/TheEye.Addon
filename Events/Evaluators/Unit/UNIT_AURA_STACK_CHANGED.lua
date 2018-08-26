@@ -1,7 +1,7 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_STACK_CHANGED
 
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
 local unpack = unpack

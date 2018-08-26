@@ -4,7 +4,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED
 
 local bit = bit
 local GetTime = GetTime
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
 local math = math
 local meleeEventMaxElapsedTime = 5
 local playerInitiatedMultiplier = 3

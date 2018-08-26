@@ -1,5 +1,5 @@
-TheEyeAddon.UI.ChildArrangers = {}
-local this = TheEyeAddon.UI.ChildArrangers
+TheEyeAddon.Helpers.ChildArrangers = {}
+local this = TheEyeAddon.Helpers.ChildArrangers
 
 
 this.Delegate =

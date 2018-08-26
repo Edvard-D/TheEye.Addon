@@ -5,7 +5,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME
 
 local GetTime = GetTime
 local InputGroupElapsedTimerStart = TheEyeAddon.Helpers.Timers.InputGroupElapsedTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
 local math = math
 local select = select
 local table = table

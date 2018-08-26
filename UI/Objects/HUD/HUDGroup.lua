@@ -1,6 +1,6 @@
 local parentKey = "UIPARENT"
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "GROUP", "HUD", },
     Child =
@@ -44,7 +44,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 }
             },
         },
-        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =
     {

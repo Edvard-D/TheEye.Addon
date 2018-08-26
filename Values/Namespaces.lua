@@ -5,7 +5,6 @@ TheEyeAddon =
     Events =
     {
         Evaluators = {},
-        Helpers = {},
     },
     Helpers = {},
     Managers = {},
@@ -23,7 +22,6 @@ TheEyeAddon =
             },
         },
         Factories = {},
-        Fonts = {},
         Objects =
         {
             Instances = {},

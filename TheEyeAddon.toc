@@ -47,17 +47,12 @@
 # ---------------------------
 # |			 CORE			|
 # ---------------------------
-Namespaces.lua
+Values\Namespaces.lua
 
 Managers\Settings.lua
 Helpers\Tags.lua
 
 Managers\Debug.lua
-
-Managers\Events.lua
-Managers\GarbageCollector.lua
-Managers\SlashCommands.lua
-UI\Fonts\Templates.lua
 
 
 
@@ -66,7 +61,22 @@ UI\Fonts\Templates.lua
 # ---------------------------
 Values\AuraFilters.lua
 Values\DefaultSettings.lua
+Values\DimensionTemplates.lua
+Values\FontTemplates.lua
 Values\General.lua
+
+
+
+# ---------------------------
+# |	       Managers        	|
+# ---------------------------
+Managers\Events.lua
+
+Managers\Evaluators.lua
+Managers\FramePools.lua
+Managers\GarbageCollector.lua
+Managers\SlashCommands.lua
+Managers\UI.lua
 
 
 
@@ -74,17 +84,11 @@ Values\General.lua
 # |	        Helpers        	|
 # ---------------------------
 Helpers\Auras.lua
+Helpers\ChildArrangers.lua
 Helpers\Comparisons.lua
+Helpers\Player.lua
 Helpers\Table.lua
 Helpers\Timers.lua
-
-
-
-# ---------------------------
-# |	    Events\Helpers   	|
-# ---------------------------
-Events\Helpers\Core.lua
-Events\Helpers\Player.lua
 
 
 
@@ -139,16 +143,6 @@ Events\Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
 Events\Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
 Events\Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
-
-
-
-# ---------------------------
-# |		      UI		    |
-# ---------------------------
-UI\Helpers\ChildArrangers.lua
-UI\Helpers\DimensionTemplates.lua
-UI\Helpers\Pools.lua
-UI\Helpers\Setup.lua
 
 
 
@@ -321,4 +315,4 @@ UI\Objects\HUD\Secondary\VoidShift.lua
 # ---------------------------
 # |			FINAL			|
 # ---------------------------
-Initializer.lua
+Managers\Initializer.lua

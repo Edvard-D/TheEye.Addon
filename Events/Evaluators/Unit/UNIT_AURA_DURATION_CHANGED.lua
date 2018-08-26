@@ -3,7 +3,7 @@ local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
 
 local GetTime = GetTime
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID

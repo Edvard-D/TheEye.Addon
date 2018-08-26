@@ -1,5 +1,5 @@
-TheEyeAddon.Events.Helpers.Player = {}
-local this = TheEyeAddon.Events.Helpers.Player
+TheEyeAddon.Helpers.Player = {}
+local this = TheEyeAddon.Helpers.Player
 
 local GetSpellCharges = GetSpellCharges
 local GetTime = GetTime

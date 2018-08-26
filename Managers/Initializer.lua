@@ -1,5 +1,5 @@
 TheEyeAddon.Managers.Debug:Initialize()
 TheEyeAddon.Managers.SlashCommands:Initialize()
 TheEyeAddon.Managers.GarbageCollector:Initialize()
-TheEyeAddon.UI.Objects:Initialize()
+TheEyeAddon.Managers.UI:Initialize()
 TheEyeAddon.Managers.Settings.Initialize()
