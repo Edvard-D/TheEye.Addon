@@ -90,7 +90,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
+    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
 
     if listener.isListening == nil then
         if listener.priority == nil then
@@ -117,7 +117,7 @@ function this.ListenerDeregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
+    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
 
     listener.isListening = false
     EvaluatorDecreaseListenerCount(evaluator)
@@ -149,7 +149,7 @@ end
 
 -- Event Evaluation
 local function ListenersNotify(inputGroup, shouldSend, event)
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
     
     if shouldSend == true then
         local listeners = inputGroup.listeners
