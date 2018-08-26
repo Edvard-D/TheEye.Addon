@@ -1,4 +1,4 @@
-TheEyeAddon.Settings.Account.Default =
+TheEyeAddon.Managers.Settings.Account.Default =
 {
     Debug =
     {
@@ -7,6 +7,6 @@ TheEyeAddon.Settings.Account.Default =
     },
 }
 
-TheEyeAddon.Settings.Character.Default =
+TheEyeAddon.Managers.Settings.Character.Default =
 {
 }

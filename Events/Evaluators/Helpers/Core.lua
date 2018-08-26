@@ -1,9 +1,9 @@
 TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
-local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
-local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
-local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
+local CoordinatorRegister = TheEyeAddon.Managers.Events.Register
+local CoordinatorDeregister = TheEyeAddon.Managers.Events.Deregister
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local Evaluators = TheEyeAddon.Events.Evaluators
 local pairs = pairs
 local select = select

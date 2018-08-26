@@ -2,7 +2,7 @@ TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
-local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 
 
 --[[ #this#TEMPLATE#

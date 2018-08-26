@@ -8,6 +8,7 @@ TheEyeAddon =
         Helpers = {},
     },
     Helpers = {},
+    Managers = {},
     UI =
     {
         Components =

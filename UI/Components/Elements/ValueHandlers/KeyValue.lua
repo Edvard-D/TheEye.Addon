@@ -2,8 +2,8 @@ TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
-local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#

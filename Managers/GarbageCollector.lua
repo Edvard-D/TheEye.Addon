@@ -1,5 +1,5 @@
-TheEyeAddon.GarbageCollector = {}
-local this = TheEyeAddon.GarbageCollector
+TheEyeAddon.Managers.GarbageCollector = {}
+local this = TheEyeAddon.Managers.GarbageCollector
 
 local collectgarbage = collectgarbage
 local shouldCollectGarbage = false
@@ -18,7 +18,7 @@ this.customEvents =
 
 
 function this:Initialize()
-    TheEyeAddon.Events.Coordinator.Register(this)
+    TheEyeAddon.Managers.Events.Register(this)
 end
 
 function this:OnEvent(event)

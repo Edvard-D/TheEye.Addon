@@ -1,5 +1,5 @@
-TheEyeAddon.Debug = {}
-local this = TheEyeAddon.Debug
+TheEyeAddon.Managers.Debug = {}
+local this = TheEyeAddon.Managers.Debug
 
 local editBox
 local filters
@@ -28,33 +28,33 @@ function this.Initialize()
     editBox:SetAllPoints(true)
     editBox:SetWidth(frame.ScrollFrame:GetWidth())
 
-    TheEyeAddon.SlashCommands.HandlerRegister(this, "Debug")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Enable")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "Disable")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "PrintEnable")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "PrintDisable")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsClear")
-    TheEyeAddon.SlashCommands.FunctionRegister("Debug", "LogsGet")
+    TheEyeAddon.Managers.SlashCommands.HandlerRegister(this, "Debug")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "Enable")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "Disable")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "PrintEnable")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "PrintDisable")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "LogsClear")
+    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
     this.MarkerSetup()
     this.FiltersSetup()
 end
 
 function this.Enable()
-    TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled = true
+    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled = true
 end
 
 function this.Disable()
-    TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled = false
+    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled = false
 end
 
 function this.PrintEnable()
-    TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = true
+    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled = true
 end
 
 function this.PrintDisable()
-    TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled = false
+    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled = false
 end
 
 
@@ -198,8 +198,8 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if TheEyeAddon.Settings.Account.Saved ~= nil
-        and TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled == true
+    if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
+        and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true
         and IsLogEntryValid(namespace, action, uiObject, component) == true
         then
         local logEntry =
@@ -217,7 +217,7 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
 
-        if TheEyeAddon.Settings.Account.Saved.Debug.isPrintEnabled == true then
+        if TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true then
             local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
             table.remove(formattedLogEntry, 1)
             table.remove(formattedLogEntry, 1)
@@ -303,7 +303,7 @@ local function LogsFormat(logs)
 end
 
 function this.LogsGet()
-    if TheEyeAddon.Settings.Account.Saved.Debug.isLoggingEnabled == true then
+    if TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true then
         editBox:SetText("")
         editBox:SetText(table.concat(LogsFormat(logs)))
         frame:Show()

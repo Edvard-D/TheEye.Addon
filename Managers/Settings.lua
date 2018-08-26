@@ -1,5 +1,5 @@
-TheEyeAddon.Settings = {}
-local this = TheEyeAddon.Settings
+TheEyeAddon.Managers.Settings = {}
+local this = TheEyeAddon.Managers.Settings
 
 this.Account =
 {
@@ -77,7 +77,7 @@ dataVersionConverters.Character =
 
 function this.Initialize()
     this.gameEvents = { "ADDON_LOADED" }
-    TheEyeAddon.Events.Coordinator.Register(this)
+    TheEyeAddon.Managers.Events.Register(this)
 end
 
 local function SettingsAssignUnassigned(fromSettings, toSettings)

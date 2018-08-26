@@ -49,14 +49,14 @@
 # ---------------------------
 Namespaces.lua
 
-Settings.lua
+Managers\Settings.lua
 Helpers\Tags.lua
 
-Debug.lua
+Managers\Debug.lua
 
 Events\Coordinator.lua
-GarbageCollector.lua
-SlashCommands.lua
+Managers\GarbageCollector.lua
+Managers\SlashCommands.lua
 UI\Fonts\Templates.lua
 
 
