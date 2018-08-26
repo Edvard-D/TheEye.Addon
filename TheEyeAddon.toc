@@ -54,7 +54,7 @@ Helpers\Tags.lua
 
 Managers\Debug.lua
 
-Events\Coordinator.lua
+Managers\Events.lua
 Managers\GarbageCollector.lua
 Managers\SlashCommands.lua
 UI\Fonts\Templates.lua
