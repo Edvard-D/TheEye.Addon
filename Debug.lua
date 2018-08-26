@@ -112,7 +112,7 @@ multiple keys will pass if all of the keys have at least one valid value. Filter
 
 filters =
 {
-    {
+        {
         {
             key = "namespace",
             value ="TheEyeAddon.UI.Components",
@@ -149,10 +149,12 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
         end
     elseif filterElement.key == "values" then
         local values = ...
-        for i = 1, #values do
-            local value = tostring(values[i])
-            if component ~= nil and value:find(filterElement.value) ~= nil then
-                return true
+        if values ~= nil then
+            for i = 1, #values do
+                local value = tostring(values[i])
+                if value ~= nil and value:find(filterElement.value) ~= nil then
+                    return true
+                end
             end
         end
     else
