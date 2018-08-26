@@ -22,8 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-# NOTE: INCREASE ACCOUNT SETTINGS VERSION
-## Version: 0.2.1
+## Version: 0.3.0
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -36,7 +35,7 @@
 # The version number should reflect the version in which the setting data structure. If data 
 # needs to be moved within or removed from players' current saved settings, a dataVersionConverter
 # should be created. See Settings.lua for more information on this.
-## X-AccountSettingsVersion: 0.2.1
+## X-AccountSettingsVersion: 0.3.0
 ## X-CharacterSettingsVersion: 0.2.1
 ## SavedVariables: TheEyeAddonAccountSettings
 ## SavedVariablesPerCharacter: TheEyeAddonCharacterSettings
