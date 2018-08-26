@@ -51,8 +51,8 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [0] = 4, [2] = 4, [8] = 4, [10] = 12, 
-                [4] = 12, [6] = 12, [12] = 12, [14] = 12,
+                [0] = 4, [2] = 4, [8] = 4,
+                [4] = 11, [6] = 11, [10] = 11, [12] = 11, [14] = 11,
             }
         },
         ListenerGroup =
@@ -68,22 +68,22 @@ TheEyeAddon.UI.Objects:FormatData(
                     type = "EqualTo",
                 },
                 value = 2,
-            },
-            {
-                eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
-                inputValues = { --[[spellID]] spellID, },
-                comparisonValues =
-                {
-                    value = 2,
-                    type = "EqualTo",
                 },
-                value = 4,
-            },
-            {
-                eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
-                value = 8,
-            },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 2,
+                        type = "EqualTo",
+                    },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 8,
+                },
             }
         },
     },
