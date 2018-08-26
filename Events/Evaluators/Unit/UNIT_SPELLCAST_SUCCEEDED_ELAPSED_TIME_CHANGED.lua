@@ -71,6 +71,10 @@ function this:GetKey(event, ...)
         local inputValues = select(2, ...)
         unit = inputValues[1]
         spellID = inputValues[2]
+    elseif event == "UNIT_SPELLCAST_INSTANT" then
+        local eventInputGroup = ...
+        unit = eventInputGroup.inputValues[1]
+        spellID = eventInputGroup.inputValues[2]
     else -- UNIT_SPELLCAST_SUCCEEDED
         unit, _, spellID = ...
     end
