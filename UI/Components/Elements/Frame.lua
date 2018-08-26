@@ -69,7 +69,7 @@ function this:OnShow()
 
     if self.modifiers ~= nil then
         local modifiers = self.modifiers
-        for i=1,#modifiers do
+        for i = 1, #modifiers do
             modifiers[i]:Modify(self.instance)
         end
     end
@@ -78,7 +78,7 @@ end
 function this:OnHide()
     if self.modifiers ~= nil then
         local modifiers = self.modifiers
-        for i=1,#modifiers do
+        for i = 1, #modifiers do
             modifiers[i]:Demodify(self.instance)
         end
     end

@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_DURATION_CHANGED
-this.name = "UNIT_AURA_DURATION_CHANGED"
 
 local GetTime = GetTime
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
@@ -97,10 +96,11 @@ function this:GetKey(event, ...)
         destUnit = inputValues[2]
         spellID = inputValues[3]
     else
-        local combatLogData = ...
-        sourceUnit = combatLogData["sourceUnit"]
-        destUnit = combatLogData["destUnit"]
-        spellID = combatLogData["spellID"]
+        local inputGroup = ...
+        local eventData = inputGroup.eventData
+        sourceUnit = eventData["sourceUnit"]
+        destUnit = eventData["destUnit"]
+        spellID = eventData["spellID"]
     end
 
     return table.concat({ sourceUnit, destUnit, spellID })
@@ -112,6 +112,6 @@ function this:Evaluate(inputGroup, event)
     if inputGroup.currentValue ~= remainingTime then
         TimerStart(inputGroup, remainingTime)
         inputGroup.currentValue = remainingTime
-        return true, this.name, remainingTime
+        return true, this.key
     end
 end

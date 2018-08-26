@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_CLASS_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_CLASS_CHANGED
-this.name = "UNIT_CLASS_CHANGED"
 
 local select = select
 local UnitClass = UnitClass
@@ -41,6 +40,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isClass then
         inputGroup.currentValue = isClass
-        return true, this.name, isClass
+        return true, this.key
     end
 end

@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED
-this.name = "PLAYER_ITEM_EQUIPPED_CHANGED"
 
 local IsEquippedItem = IsEquippedItem
 
@@ -38,6 +37,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isEquipped then
         inputGroup.currentValue = isEquipped
-        return true, this.name, isEquipped
+        return true, this.key
     end
 end

@@ -22,6 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
+# NOTE: INCREASE ACCOUNT SETTINGS VERSION
 ## Version: 0.2.1
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
@@ -31,7 +32,15 @@
 # ---------------------------
 # |	    SAVED VARIABLES		|
 # ---------------------------
-## SavedVariablesPerCharacter: TheEyeAddon.Settings
+# Setting versions should be increased only when the setting data structure changes in some way.
+# The version number should reflect the version in which the setting data structure. If data 
+# needs to be moved within or removed from players' current saved settings, a dataVersionConverter
+# should be created. See Settings.lua for more information on this.
+## X-AccountSettingsVersion: 0.2.1
+## X-CharacterSettingsVersion: 0.2.1
+## SavedVariables: TheEyeAddonAccountSettings
+## SavedVariablesPerCharacter: TheEyeAddonCharacterSettings
+
 
 
 
@@ -40,8 +49,14 @@
 # ---------------------------
 Namespaces.lua
 
+Settings.lua
+Helpers\Tags.lua
+
+Debug.lua
+
 Events\Coordinator.lua
 GarbageCollector.lua
+SlashCommands.lua
 UI\Fonts\Templates.lua
 
 
@@ -61,7 +76,6 @@ Values\General.lua
 Helpers\Auras.lua
 Helpers\Comparisons.lua
 Helpers\Table.lua
-Helpers\Tags.lua
 Helpers\Timers.lua
 
 
@@ -115,6 +129,7 @@ Events\Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
 Events\Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Events\Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Events\Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
@@ -268,6 +283,7 @@ UI\Objects\HUD\Primary\DarkVoid.lua
 UI\Objects\HUD\Primary\Mindbender.lua
 UI\Objects\HUD\Primary\MindBlast.lua
 UI\Objects\HUD\Primary\MindFlay.lua
+UI\Objects\HUD\Primary\MindSear.lua
 UI\Objects\HUD\Primary\PrimaryModule.lua
 UI\Objects\HUD\Primary\Psyfiend.lua
 UI\Objects\HUD\Primary\ShadowCrash.lua

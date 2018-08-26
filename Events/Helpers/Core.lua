@@ -1,9 +1,9 @@
 TheEyeAddon.Events.Helpers.Core = {}
 local this = TheEyeAddon.Events.Helpers.Core
 
-local Comparisons = TheEyeAddon.Helpers.Comparisons
 local CoordinatorRegister = TheEyeAddon.Events.Coordinator.Register
 local CoordinatorDeregister = TheEyeAddon.Events.Coordinator.Deregister
+local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
 local Evaluators = TheEyeAddon.Events.Evaluators
 local pairs = pairs
 local select = select
@@ -39,12 +39,13 @@ local function InputGroupGetListeners(inputGroup)
 end
 
 -- Listener Count
-local function EvaluatorIncreaseListenerCount(evaluator)
+local function EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     if evaluator.listenerCount == nil then 
         evaluator.listenerCount = 0
     end
     evaluator.listenerCount = evaluator.listenerCount + 1
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
+        evaluator.key = evaluatorKey
         evaluator.OnEvent = this.OnEvent
         CoordinatorRegister(evaluator)
     end
@@ -85,11 +86,11 @@ end
 
 -- Register/Deregister
 function this.ListenerRegister(evaluatorKey, listener)
-    local evaluator = Evaluators[evaluatorKey] -- Key assigned during Evaluator declaration
+    local evaluator = Evaluators[evaluatorKey]
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    --print ("ListenerRegister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerRegister", listener.UIObject, listener.Component)
 
     if listener.isListening == nil then
         if listener.priority == nil then
@@ -103,17 +104,11 @@ function this.ListenerRegister(evaluatorKey, listener)
     end
 
     listener.isListening = true
-    EvaluatorIncreaseListenerCount(evaluator)
+    EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if listener.comparisonValues ~= nil then
-        listener.comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
-    end
-
-    if (listener.comparisonValues == nil and inputGroup.currentValue == true)
-        or listener.comparisonState == true
-        then
-        listener:Notify(evaluatorKey, true)
+    if listener.comparisonValues ~= nil or inputGroup.currentValue == true then
+        listener:Notify(evaluatorKey, inputGroup)
     end
 end
 
@@ -122,7 +117,7 @@ function this.ListenerDeregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    --print ("ListenerDeregister evaluatorKey: " .. evaluatorKey) -- @DEBUG
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenerDeregister", listener.UIObject, listener.Component)
 
     listener.isListening = false
     EvaluatorDecreaseListenerCount(evaluator)
@@ -153,30 +148,16 @@ function this.InputGroupDeregisterListeningTo(inputGroup)
 end
 
 -- Event Evaluation
-function this.Compare(comparisonValues, value)
-    return Comparisons[comparisonValues.type](value, comparisonValues)
-end
-
-local function ListenerNotifyAsComparison(inputGroup, listener, event)
-    local comparisonState = this.Compare(listener.comparisonValues, inputGroup.currentValue)
-    if listener.comparisonState ~= comparisonState then
-        listener.comparisonState = comparisonState
-        listener:Notify(event, comparisonState)
-    end
-end
-
-local function ListenersNotify(inputGroup, shouldSend, ...)
+local function ListenersNotify(inputGroup, shouldSend, event)
+    DebugLogEntryAdd("TheEyeAddon.Events.Helpers.Core", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+    
     if shouldSend == true then
         local listeners = inputGroup.listeners
         for i = 1, #listeners do
             local listener = listeners[i]
 
             if listener.isListening == true then
-                if listener.comparisonValues ~= nil then
-                    ListenerNotifyAsComparison(inputGroup, listener, ...)
-                else
-                    listener:Notify(...)
-                end
+                listener:Notify(event, inputGroup)
             end
         end
     end

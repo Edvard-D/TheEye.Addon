@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED
-this.name = "UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED"
 
 local GetTime = GetTime
 local InputGroupElapsedTimerStart = TheEyeAddon.Helpers.Timers.InputGroupElapsedTimerStart
@@ -85,7 +84,9 @@ function this:GetKey(event, ...)
         unit = inputValues[1]
         spellID = inputValues[2]
     elseif event == "UNIT_SPELLCAST_INSTANT" then
-        spellID, _, unit = ...
+        local eventInputGroup = ...
+        unit = eventInputGroup.inputValues[1]
+        spellID = eventInputGroup.inputValues[2]
     else
         unit, _, spellID = ...
     end
@@ -97,8 +98,9 @@ function this:Evaluate(inputGroup, event, ...)
     local elapsedTime
 
     if event == "UNIT_SPELLCAST_INSTANT" then
-        local spellID, castTimestamp = ...
-        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, spellID, castTimestamp)
+        local eventInputGroup = ...
+        elapsedTime = CalculateCurrentValue(
+            inputGroup.inputValues, eventInputGroup.inputValues[2], eventInputGroup.castTimestamp)
     else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end
@@ -106,6 +108,6 @@ function this:Evaluate(inputGroup, event, ...)
     if inputGroup.currentValue ~= elapsedTime then
         TimerStart(inputGroup, elapsedTime)
         inputGroup.currentValue = elapsedTime
-        return true, this.name, elapsedTime
+        return true, this.key
     end
 end

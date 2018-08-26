@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_THREAT_SITUATION_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_THREAT_SITUATION_CHANGED
-this.name = "UNIT_THREAT_SITUATION_CHANGED"
 
 local UnitThreatSituation = UnitThreatSituation
 
@@ -50,6 +49,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= threatSituation then
         inputGroup.currentValue = threatSituation
-        return true, this.name, threatSituation
+        return true, this.key
     end
 end

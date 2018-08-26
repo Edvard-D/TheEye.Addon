@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED
-this.name = "UIOBJECT_WITH_TAGS_INITIALIZED"
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
@@ -26,5 +25,6 @@ customEvents =
 
 function this:Evaluate(inputGroup, event, uiObject)
     local sendEvent = UIObjectHasTags(uiObject, inputGroup.inputValues, inputGroup.key)
-    return sendEvent, this.name, uiObject
+    inputGroup.currentValue = uiObject
+    return sendEvent, this.key
 end

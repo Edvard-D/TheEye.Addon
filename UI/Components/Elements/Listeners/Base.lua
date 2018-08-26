@@ -2,6 +2,7 @@ TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
 local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
+local Comparisons = TheEyeAddon.Helpers.Comparisons
 local ListenerRegister = TheEyeAddon.Events.Helpers.Core.ListenerRegister
 local ListenerDeregister = TheEyeAddon.Events.Helpers.Core.ListenerDeregister
 
@@ -39,7 +40,7 @@ function this.Setup(
 
     if instance.inputValues ~= nil then
         local inputValues = instance.inputValues
-        for i=1, #inputValues do
+        for i = 1, #inputValues do
             if inputValues[i] == "#SELF#UIOBJECT#KEY#" then
                 inputValues[i] = instance.UIObject.key
                 instance.isInternal = true
@@ -54,10 +55,22 @@ end
 
 function this:Deactivate()
     self:Deregister()
+    self.comparisonState = nil
 end
 
-function this:Notify(...)
-    self.NotificationHandler:OnNotify(self, ...)
+function this:Notify(event, inputGroup)
+    if self.comparisonValues == nil then
+        self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue)
+    else
+        local comparisonState = Comparisons[self.comparisonValues.type](
+            inputGroup.currentValue, self.comparisonValues)
+        if (self.comparisonState ~= comparisonState and self.comparisonState ~= nil)
+            or (self.comparisonState == nil and comparisonState == true)
+            then
+            self.comparisonState = comparisonState
+            self.NotificationHandler:OnNotify(self, event, comparisonState)
+        end
+    end
 end
 
 function this:Register()

@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED
-this.name = "UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED"
 
 local table = table
 
@@ -32,5 +31,6 @@ function this:GetKey(event, childUIObject, component, valueKey)
 end
 
 function this:Evaluate(inputGroup, event, childUIObject, component, valueKey)
-    return true, this.name, component.ValueHandler[valueKey]
+    inputGroup.currentValue = component.ValueHandler[valueKey]
+    return true, this.key
 end

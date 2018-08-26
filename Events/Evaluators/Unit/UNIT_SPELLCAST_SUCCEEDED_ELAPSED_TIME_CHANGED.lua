@@ -2,7 +2,6 @@
 --       watched by this evaluator.
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED
-this.name = "UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED"
 
 local GetTime = GetTime
 local InputGroupElapsedTimerStart = TheEyeAddon.Helpers.Timers.InputGroupElapsedTimerStart
@@ -91,6 +90,6 @@ function this:Evaluate(inputGroup, event, ...)
     if inputGroup.currentValue ~= elapsedTime then
         TimerStart(inputGroup, elapsedTime)
         inputGroup.currentValue = elapsedTime
-        return true, this.name, elapsedTime
+        return true, this.key
     end
 end

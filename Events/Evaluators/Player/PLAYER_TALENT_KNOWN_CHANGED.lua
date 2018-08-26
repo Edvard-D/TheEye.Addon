@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_TALENT_KNOWN_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_TALENT_KNOWN_CHANGED
-this.name = "PLAYER_TALENT_KNOWN_CHANGED"
 
 local GetAllSelectedPvpTalentIDs = C_SpecializationInfo.GetAllSelectedPvpTalentIDs
 local GetTalentInfoByID = GetTalentInfoByID
@@ -56,6 +55,6 @@ function this:Evaluate(inputGroup)
 
     if inputGroup.currentValue ~= isKnown then
         inputGroup.currentValue = isKnown
-        return true, this.name, isKnown
+        return true, this.key
     end
 end

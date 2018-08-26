@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.ADDON_LOADED = {}
 local this = TheEyeAddon.Events.Evaluators.ADDON_LOADED
-this.name = "ADDON_LOADED"
 
 local select = select
 
@@ -26,6 +25,7 @@ function this:GetKey(event, ...)
     return select(1, ...)
 end
 
-function this:Evaluate()
-    return true, this.name, true
+function this:Evaluate(inputGroup)
+    inputGroup.currentValue = true
+    return true, this.key
 end

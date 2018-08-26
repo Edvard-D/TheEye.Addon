@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UIOBJECT_SIZE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UIOBJECT_SIZE_CHANGED
-this.name = "UIOBJECT_SIZE_CHANGED"
 
 
 --[[ #this#TEMPLATE#
@@ -20,6 +19,7 @@ function this:GetKey(event, uiObject)
     return uiObject.key
 end
 
-function this:Evaluate(inputGroup, uiObject)
-    return true, this.name, uiObject
+function this:Evaluate(inputGroup, event, uiObject)
+    inputGroup.currentValue = uiObject
+    return true, this.key
 end

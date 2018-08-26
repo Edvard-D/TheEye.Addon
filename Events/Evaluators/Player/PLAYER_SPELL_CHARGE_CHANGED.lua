@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.PLAYER_SPELL_CHARGE_CHANGED
-this.name = "PLAYER_SPELL_CHARGE_CHANGED"
 
 local GetSpellCharges = GetSpellCharges
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
@@ -61,8 +60,8 @@ function this:GetKey(event, ...)
     if event == "UNIT_SPELLCAST_TIMER_END" then
         spellID = select(2, ...)
     else
-        local combatLogData = ...
-        spellID = combatLogData["spellID"]
+        local inputGroup = ...
+        spellID = inputGroup.eventData["spellID"]
     end
 
     return table.concat({ spellID })
@@ -78,6 +77,6 @@ function this:Evaluate(inputGroup, event)
 
     if inputGroup.currentValue ~= charges then
         inputGroup.currentValue = charges
-        return true, this.name, charges
+        return true, this.key
     end
 end

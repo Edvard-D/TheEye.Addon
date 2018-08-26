@@ -2,6 +2,7 @@ TheEyeAddon.Events.Coordinator = {}
 local this = TheEyeAddon.Events.Coordinator
 local Listeners = {}
 
+local DebugLogEntryAdd = TheEyeAddon.Debug.LogEntryAdd
 local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
 local updateInterval = 0.1
@@ -9,7 +10,7 @@ local updateInterval = 0.1
 
 -- OnEvent
 local function RelayEvent(self, eventName, ...)
-    --print ("Coordinator RelayEvent    " .. eventName) -- DEBUG
+    DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "RelayEvent", nil, nil, eventName)
     local listeners = Listeners[eventName]
     for i = 1, #listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
@@ -54,7 +55,7 @@ local function ListenerRegister(listener, eventName, isGameEvent)
     
     listeners.listenerCount = listeners.listenerCount + 1
     if listeners.listenerCount == 1 and isGameEvent == true then
-        --print ("RegisterEvent    " .. eventName) -- DEBUG
+        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "RegisterEvent", nil, nil, eventName)
         frame:RegisterEvent(eventName)
     end
 end
@@ -84,7 +85,7 @@ local function ListenerDeregister(listener, eventName, isGameEvent)
 
     listeners.listenerCount = listeners.listenerCount - 1
     if listeners.listenerCount == 0 and isGameEvent == true then
-        --print ("UnregisterEvent    " .. eventName) -- DEBUG
+        DebugLogEntryAdd("TheEyeAddon.Events.Coordinator", "UnregisterEvent", nil, nil, eventName)
         frame:UnregisterEvent(eventName)
     end
 end

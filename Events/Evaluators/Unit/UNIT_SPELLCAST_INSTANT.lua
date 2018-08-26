@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_SPELLCAST_INSTANT
-this.name = "UNIT_SPELLCAST_INSTANT"
 
 local GetTime = GetTime
 local select = select
@@ -32,6 +31,10 @@ this.gameEvents =
 }
 
 
+function this:InputGroupSetup(inputGroup)
+    inputGroup.castTimestamp = 0
+end
+
 function this:GetKey(event, ...)
     local unit, _, spellID = ...
     return table.concat({ unit, spellID })
@@ -42,8 +45,8 @@ function this:Evaluate(inputGroup, event, ...)
         inputGroup.isCasting = select(9, UnitCastingInfo(inputGroup.inputValues[1])) == inputGroup.inputValues[2]
     elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
         if inputGroup.isCasting ~= true then
-            local castTimestamp = GetTime()
-            return true, this.name, inputGroup.inputValues[2], castTimestamp, ...
+            inputGroup.castTimestamp = GetTime()
+            return true, this.key
         end
         inputGroup.isCasting = false
     elseif event == "UNIT_SPELLCAST_START" then

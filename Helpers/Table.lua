@@ -1,8 +1,9 @@
 local pairs = pairs
+local table = table
 
 
 function table.hasvalue(tab, value)
-    for i=1, #tab do
+    for i = 1, #tab do
         if tab[i] == value then
             return true
         end
@@ -21,6 +22,20 @@ function table.haskeyvalue(tab, value)
     end
 
     return false
+end
+
+function table.insertarray(toTab, fromTab)
+    for i = 1, #fromTab do
+        table.insert(toTab, fromTab[i])
+    end
+end
+
+function table.insertarrayuniques(toTab, fromTab)
+    for i = 1, #fromTab do
+        if table.hasvalue(toTab, fromTab[i]) == false then
+            table.insert(toTab, fromTab[i])
+        end
+    end
 end
 
 function table.removevalue(tab, value)
@@ -50,7 +65,15 @@ function table.removekeyvalue(tab, value)
 end
 
 function table.cleararray(tab)
-    for i=#tab, -1 do
+    if tab ~= nil then
+    for i = #tab, 1, -1 do
         tab[i] = nil
+    end
+end
+end
+
+function table.clear(tab)
+    for k,v in pairs(tab) do
+        tab[k] = nil
     end
 end

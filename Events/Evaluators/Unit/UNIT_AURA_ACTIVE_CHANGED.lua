@@ -1,6 +1,5 @@
 TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED = {}
 local this = TheEyeAddon.Events.Evaluators.UNIT_AURA_ACTIVE_CHANGED
-this.name = "UNIT_AURA_ACTIVE_CHANGED"
 
 local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroupRegisterListeningTo
 local table = table
@@ -66,21 +65,22 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
-function this:GetKey(event, combatLogData)
-    return table.concat({ combatLogData["sourceUnit"], combatLogData["destUnit"], combatLogData["spellID"] })
+function this:GetKey(event, eventInputGroup)
+    local eventData = eventInputGroup.eventData
+    return table.concat({ eventData["sourceUnit"], eventData["destUnit"], eventData["spellID"] })
 end
 
-function this:Evaluate(inputGroup, event, combatLogData)
+function this:Evaluate(inputGroup, event, eventInputGroup)
     local isActive
 
     if event == "PLAYER_TARGET_CHANGED" then
         isActive = CalculateCurrentValue(inputGroup.inputValues)
     else
-        isActive = combatLogData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
+        isActive = eventInputGroup.eventData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
     end
-
+    
     if inputGroup.currentValue ~= isActive then
         inputGroup.currentValue = isActive
-        return true, this.name, isActive
+        return true, this.key
     end
 end
