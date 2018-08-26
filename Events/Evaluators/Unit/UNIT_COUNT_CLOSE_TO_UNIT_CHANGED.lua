@@ -9,6 +9,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Events.Helpers.Core.InputGroup
 local math = math
 local playerInitiatedMultiplier = 3
 local reevaluateRate = 0.5
+local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitCanAttack = UnitCanAttack
 local UnitGUID = UnitGUID
@@ -34,6 +35,10 @@ this.reevaluateEvents =
     UNIT_DESTROYED = true,
     UNIT_DIED = true,
     UNIT_DISSIPATES = true,
+}
+this.customEvents =
+{
+    "UNIT_COUNT_CLOSE_TO_UNIT_EVALUATE_TIMER_END",
 }
 local combatLogEvents =
 {
@@ -63,9 +68,12 @@ function this:SetupListeningTo(inputGroup)
     })
 end
 
+local function TimerStart(inputGroup)
+    StartEventTimer(reevaluateRate, "UNIT_COUNT_CLOSE_TO_UNIT_EVALUATE_TIMER_END", inputGroup.inputValues)
+end
+
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = 0
-    inputGroup.lastUpdateTimestamp = 0
     inputGroup.groupedUnits =
     {
         guids = {},
@@ -79,6 +87,12 @@ function this:InputGroupSetup(inputGroup)
         pending = {},
         current = { destGUIDs = {}, }
     }
+
+    TimerStart(inputGroup)
+end
+
+function this:GetKey(event, duration, inputValues) -- only called on UNIT_COUNT_CLOSE_TO_UNIT_EVALUATE_TIMER_END
+    return table.concat(inputValues)
 end
 
 
@@ -139,11 +153,6 @@ local function CurrentEventEvaluateForPending(inputGroup)
         currentEvent.wasInitiatorPlayer = currentEvent.sourceGUID == UnitGUID("player") -- @TODO Create table that stores the GUIDs for each unitID
         table.insert(inputGroup.events.pending, currentEvent)
     end
-end
-
-local function EventsReset(inputGroup)
-    inputGroup.events.pending = {}
-    inputGroup.events.current = { destGUIDs = {}, }
 end
 
 
@@ -302,12 +311,13 @@ end
 
 function this:Evaluate(inputGroup, event, ...)
     local eventInputGroup = ...
+    local unitCount
 
     if event == "UNIT_AFFECTING_COMBAT_CHANGED" then
         if eventInputGroup.currentValue == false then
             table.cleararray(inputGroup.unevaluatedEvents)
         end
-    else -- combatLogEvents
+    elseif event ~= "UNIT_COUNT_CLOSE_TO_UNIT_EVALUATE_TIMER_END" then -- combatLogEvents
         local eventData = eventInputGroup.eventData
         
         if event == "SPELL_DAMAGE" or event == "SWING_DAMAGE" then
@@ -315,12 +325,7 @@ function this:Evaluate(inputGroup, event, ...)
             
             if currentEvent ~= nil and currentEvent.timestamp ~= eventData.timestamp then
                 CurrentEventEvaluateForPending(inputGroup)
-
-                if eventData.timestamp - inputGroup.lastUpdateTimestamp > reevaluateRate then
-                    UnitsUpdate(inputGroup)
-                    inputGroup.lastUpdateTimestamp = eventData.timestamp
-                    EventsReset(inputGroup)
-                end
+                inputGroup.events.current = { destGUIDs = {}, }
             end
 
             CurrentEventTryAddData(inputGroup, eventData)
@@ -328,9 +333,13 @@ function this:Evaluate(inputGroup, event, ...)
             UnitRemove(inputGroup.meleeUnits, eventData.destGUID)
             UnitRemove(inputGroup.groupedUnits, eventData.destGUID)
         end
+    else -- UNIT_COUNT_CLOSE_TO_UNIT_EVALUATE_TIMER_END
+        UnitsUpdate(inputGroup)
+        TimerStart(inputGroup)
+        inputGroup.events.pending = {}
     end
 
-    local unitCount = GroupedUnitCountGetWeighted(inputGroup)
+    unitCount = GroupedUnitCountGetWeighted(inputGroup)
     if inputGroup.currentValue ~= unitCount then
         inputGroup.currentValue = unitCount
         return true, this.name, unitCount
