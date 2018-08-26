@@ -4,7 +4,7 @@ this.name = "Frame"
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 
 
@@ -69,7 +69,7 @@ function this:OnShow()
 
     if self.modifiers ~= nil then
         local modifiers = self.modifiers
-        for i=1,#modifiers do
+        for i = 1, #modifiers do
             modifiers[i]:Modify(self.instance)
         end
     end
@@ -78,7 +78,7 @@ end
 function this:OnHide()
     if self.modifiers ~= nil then
         local modifiers = self.modifiers
-        for i=1,#modifiers do
+        for i = 1, #modifiers do
             modifiers[i]:Demodify(self.instance)
         end
     end

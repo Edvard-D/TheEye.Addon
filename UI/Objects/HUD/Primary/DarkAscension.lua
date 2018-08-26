@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 280711
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-280711", },
     CastStartAlert =
@@ -39,7 +39,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -61,9 +61,8 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true,
-                [34] = true, [36] = true, [38] = true, [40] = true, [42] = true, 
-                [50] = true, [52] = true, [54] = true, [56] = true, [58] = true, 
+                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, [20] = true, [22] = true,
+                [24] = true, [26] = true, [86] = true, [88] = true, [90] = true, 
             }
         },
         ListenerGroup =
@@ -95,15 +94,25 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
                     comparisonValues =
                     {
-                        value = 0.75,
-                        type = "GreaterThan"
+                        value = 0.3,
+                        type = "LessThan"
                     },
                     value = 16,
                 },
                 {
+                    eventEvaluatorKey = "UNIT_POWER_PERCENT_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
+                    comparisonValues =
+                    {
+                        value = 0.75,
+                        type = "GreaterThan"
+                    },
+                    value = 32,
+                },
+                {
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
-                    value = 32,
+                    value = 64,
                 },
             },
         },

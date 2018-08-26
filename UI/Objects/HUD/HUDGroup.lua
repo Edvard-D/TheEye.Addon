@@ -1,6 +1,6 @@
 local parentKey = "UIPARENT"
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "GROUP", "HUD", },
     Child =
@@ -44,27 +44,22 @@ TheEyeAddon.UI.Objects:FormatData(
                 }
             },
         },
-        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [30] = true },
+            validKeys = { [14] = true, },
         },
         ListenerGroup =
         {
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
-                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target" },
-                    value = 2,
-                },
-                {
                     eventEvaluatorKey = "UNIT_AFFECTING_COMBAT_CHANGED",
                     inputValues = { --[[unit]] "player" },
-                    value = 4,
+                    value = 2,
                 },
                 {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
@@ -74,7 +69,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan"
                     },
-                    value = 8,
+                    value = 4,
                 },
                 {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
@@ -84,7 +79,7 @@ TheEyeAddon.UI.Objects:FormatData(
                         value = 0,
                         type = "GreaterThan"
                     },
-                    value = 16,
+                    value = 8,
                 },
             },
         },

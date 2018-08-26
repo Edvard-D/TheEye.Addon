@@ -3,7 +3,7 @@ local this = TheEyeAddon.Helpers.Timers
 
 local After = C_Timer.After
 local math = math
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 local unpack = unpack
 
 

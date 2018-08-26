@@ -2,6 +2,8 @@ TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+
 
 --[[ #this#TEMPLATE#
 {
@@ -51,10 +53,8 @@ end
 
 function this:OnValueChange(key)
     local state = self.validKeys[key] or false
-
-    if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
-        --print (self.UIObject.key .. "    " .. self.Component.key .. "    OnValueChange key: " .. tostring(key)) -- @DEBUG
-    end
+    
+    --DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState", "OnValueChange", self.UIObject, self.Component, key, state)
     
     if self.state ~= state then
         self.state = state

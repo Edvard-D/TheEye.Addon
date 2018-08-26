@@ -1,4 +1,12 @@
-TheEyeAddon.Settings =
+TheEyeAddon.Managers.Settings.Account.Default =
 {
-    DisabledUIModules = {}
+    Debug =
+    {
+        isLoggingEnabled = false,
+        isPrintEnabled = false,
+    },
+}
+
+TheEyeAddon.Managers.Settings.Character.Default =
+{
 }

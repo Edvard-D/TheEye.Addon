@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 205351
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205351", },
     CastStartAlert =
@@ -40,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -62,9 +62,9 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [4] = true, [16] = true, [18] = true, [20] = true, [22] = true, [26] = true, [28] = true,
-                [30] = true, [48] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true,
-                [60] = true, [62] = true,
+                [68] = true, [80] = true, [82] = true, [84] = true, [86] = true, [90] = true, [92] = true,
+                [94] = true, [112] = true, [114] = true, [116] = true, [118] = true, [120] = true, [122] = true,
+                [124] = true, [126] = true, 
             },
         },
         ListenerGroup =
@@ -105,6 +105,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "GreaterThan",
                     },
                     value = 32,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 5,
+                        type = "LessThanEqualTo"
+                    },
+                    value = 64,
                 },
             },
         },

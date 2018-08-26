@@ -1,4 +1,4 @@
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "UIPARENT" },
     EnabledState =
@@ -38,7 +38,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
             },
         },
-        childArranger = TheEyeAddon.UI.ChildArrangers.Delegate,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =
     {

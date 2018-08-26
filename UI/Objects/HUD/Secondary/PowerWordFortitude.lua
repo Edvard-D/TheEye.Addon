@@ -1,9 +1,9 @@
 local parentKey = "HUD_MODULE_SECONDARY"
-local spellID = 211681
+local spellID = 21562
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
-    tags = { "HUD", "ICON", "SECONDARY", "SPELL-211681", },
+    tags = { "HUD", "ICON", "SECONDARY", "SPELL-21562", },
     Child =
     {
         parentKey = parentKey,
@@ -30,7 +30,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },

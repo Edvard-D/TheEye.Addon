@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 205385
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205385", },
     CastStartAlert =
@@ -39,7 +39,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -48,18 +48,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 8, [2] = 12 }
-        },
-        ListenerGroup =
-        {
-            Listeners =
-            {
-                {
-                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
-                    value = 2,
-                },
-            },
+            validKeys = { [0] = 7, }
         },
     },
     ReadySoonAlert =

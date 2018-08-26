@@ -2,7 +2,8 @@ TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue = {}
 local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue
 local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
 
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
@@ -39,20 +40,14 @@ function this.Setup(
     instance.ValueGet = this.ValueGet
 end
 
-function this:OnActivate()
-    self:OnValueChange(self.defaultKey)
-end
-
 function this:OnDeactivate()
     self:OnValueChange(self.defaultKey)
 end
 
-function this:OnValueChange(value)
-    local value = self.validKeys[value]
+function this:OnValueChange(key)
+    local value = self.validKeys[key]
 
-    if TheEyeAddon.Tags.UIObjectHasTag(self.UIObject, "HUD") == true then
-        --print (self.UIObject.key .. "    OnValueChange value: " .. tostring(value)) -- @DEBUG
-    end
+    --DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue", "OnValueChange", self.UIObject, self.Component, key, value)
     
     if self.value ~= value then
         self.value = value

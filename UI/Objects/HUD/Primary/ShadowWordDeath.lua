@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 32379
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-32379", },
     CastStartAlert =
@@ -40,7 +40,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -49,7 +49,42 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 4, }
+            validKeys =
+            {
+                [0] = 4, [2] = 4, [8] = 4,
+                [4] = 11, [6] = 11, [10] = 11, [12] = 11, [14] = 11,
+            }
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                inputValues = { --[[spellID]] spellID, },
+                comparisonValues =
+                {
+                    value = 1,
+                    type = "EqualTo",
+                },
+                value = 2,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 2,
+                        type = "EqualTo",
+                    },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    value = 8,
+                },
+            }
         },
     },
     ReadySoonAlert =
@@ -62,7 +97,10 @@ TheEyeAddon.UI.Objects:FormatData(
         {
             validKeys =
             {
-                [2] = true, [50] = true, [52] = true, [54] = true, [56] = true, [58] = true, [62] = true,
+                [130] = true, [132] = true, [134] = true, [140] = true, [142] = true, [152] = true,
+                [154] = true, [156] = true, [158] = true, [168] = true, [170] = true, [172] = true,
+                [174] = true, [222] = true, [232] = true, [234] = true, [236] = true, [238] = true,
+                [254] = true, [280] = true, [282] = true, [284] = true, [286] = true,
             },
         },
         ListenerGroup =
@@ -80,22 +118,22 @@ TheEyeAddon.UI.Objects:FormatData(
                     value = 4,
                 },
                 {
-                    eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED",
-                    inputValues = { --[[spellID]] spellID, },
-                    comparisonValues =
-                    {
-                        value = 0,
-                        type = "EqualTo",
-                    },
-                    value = 8,
-                },
-                {
                     eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
                     inputValues = { --[[unit]] "target", },
                     comparisonValues =
                     {
                         value = 0.2,
                         type = "LessThan",
+                    },
+                    value = 8,
+                },
+                {
+                    eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                    inputValues = { --[[spellID]] spellID, },
+                    comparisonValues =
+                    {
+                        value = 1,
+                        type = "EqualTo",
                     },
                     value = 16,
                 },
@@ -104,10 +142,25 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[spellID]] spellID, },
                     comparisonValues =
                     {
-                        value = 0,
-                        type = "GreaterThan",
+                        value = 2,
+                        type = "EqualTo",
                     },
                     value = 32,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 64,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 2,
+                        type = "LessThanEqualTo"
+                    },
+                    value = 128,
                 },
             },
         },

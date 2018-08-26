@@ -3,7 +3,7 @@ local this = TheEyeAddon.UI.Components.FrameModifier
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-local SendCustomEvent = TheEyeAddon.Events.Coordinator.SendCustomEvent
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#

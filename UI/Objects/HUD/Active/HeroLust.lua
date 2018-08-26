@@ -1,6 +1,6 @@
 local parentKey = "HUD_MODULE_ACTIVE"
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "HEROLUST", },
     Child =
@@ -30,7 +30,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Medium,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
             iconObjectType = "SPELL",
             iconObjectID = 2825,
         },

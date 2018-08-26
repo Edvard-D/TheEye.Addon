@@ -16,7 +16,7 @@ local function AuraFiltersGet(spellID, sourceUnit)
 
     local retrievedFilters = auraFilters[spellID]
     if retrievedFilters ~= nil then
-        for i=1, #retrievedFilters do
+        for i = 1, #retrievedFilters do
             table.insert(filters, retrievedFilters[i])
         end
     end
@@ -26,14 +26,17 @@ end
 
 
 function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
-    for i = 1,40 do -- 40 is the maximum number of auras that can be on a unit
+    for i = 1, 40 do -- 40 is the maximum number of auras that can be on a unit
         local filterTable = AuraFiltersGet(spellIDExpected, sourceUnitExpected)
         local auraValues = { UnitAura(destUnit, i, table.concat(filterTable or {})) }
         local spellID = auraValues[10]
+        
         if spellID ~= nil then
             local sourceUnit = auraValues[7]
             if spellID == spellIDExpected
-                    and (sourceUnitExpected == "_" or sourceUnit == sourceUnitExpected) then
+                and (sourceUnitExpected == "_" or sourceUnit == sourceUnitExpected)
+                then
+                
                 return auraValues
             end
         else

@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 205448
 
-TheEyeAddon.UI.Objects:FormatData(
+TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205448", },
     CastStartAlert =
@@ -39,7 +39,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         DisplayData =
         {
-            DimensionTemplate = TheEyeAddon.UI.DimensionTemplates.Icon.Large,
+            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
             iconObjectType = "SPELL",
             iconObjectID = spellID,
         },
@@ -48,7 +48,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 6, }
+            validKeys = { [0] = 12, }
         },
     },
     ReadySoonAlert =
@@ -59,7 +59,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, },
+            validKeys = { [18] = true, [20] = true, [22] = true, [24] = true, [26] = true, },
         },
         ListenerGroup =
         {
@@ -84,6 +84,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "EqualTo"
                     },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 9,
+                        type = "LessThanEqualTo"
+                    },
+                    value = 16,
                 },
             },
         },
