@@ -344,7 +344,6 @@ function this:Evaluate(inputGroup, event, ...)
 
     unitCount = GroupedUnitCountGetWeighted(inputGroup)
     if inputGroup.currentValue ~= unitCount then
-        print("unitCount: " .. tostring(unitCount))
         inputGroup.currentValue = unitCount
         return true, this.name
     end
