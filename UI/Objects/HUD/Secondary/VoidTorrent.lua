@@ -1,9 +1,9 @@
 local parentKey = "HUD_MODULE_SECONDARY"
-local spellID = 280711
+local spellID = 263165
 
 TheEyeAddon.UI.Objects:FormatData(
 {
-    tags = { "HUD", "ICON", "SECONDARY", "SPELL-280711", },
+    tags = { "HUD", "ICON", "SECONDARY", "SPELL-263165", },
     Child =
     {
         parentKey = parentKey,
@@ -12,7 +12,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true, },
+            validKeys = { [14] = true, },
         },
         ListenerGroup =
         {
@@ -25,8 +25,13 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] 21978, },
+                    inputValues = { --[[talentID]] 21720, },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 8,
                 },
             },
         },
@@ -44,7 +49,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 13, }
+            validKeys = { [0] = 12, }
         },
     },
     VisibleState =
@@ -69,7 +74,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-280711", --[[componentName]] "VisibleState" },
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-263165", --[[componentName]] "VisibleState" },
                     value = 4,
                 },
             },
