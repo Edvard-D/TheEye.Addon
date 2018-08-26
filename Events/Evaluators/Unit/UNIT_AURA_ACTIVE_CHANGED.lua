@@ -56,9 +56,7 @@ function this:SetupListeningTo(inputGroup)
 end
 
 local function CalculateCurrentValue(inputValues)
-    local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
-
-    return UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected) ~= nil
+    return UnitAuraGetBySpellID(unpack(inputValues)) ~= nil
 end
 
 function this:InputGroupSetup(inputGroup)
