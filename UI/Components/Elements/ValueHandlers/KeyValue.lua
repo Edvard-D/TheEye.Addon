@@ -51,7 +51,7 @@ end
 function this:OnValueChange(value)
     local value = self.validKeys[value]
 
-    DebugLogEntryAdd("TheEyeAddon.UI.Components.KeyState", "OnValueChange", self.UIObject, self.Component, value)
+    DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState", "OnValueChange", self.UIObject, self.Component, value)
     
     if self.value ~= value then
         self.value = value

@@ -54,7 +54,7 @@ end
 function this:OnValueChange(key)
     local state = self.validKeys[key] or false
     
-    DebugLogEntryAdd("TheEyeAddon.UI.Components.KeyState", "OnValueChange", self.UIObject, self.Component, key)
+    DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState", "OnValueChange", self.UIObject, self.Component, key)
     
     if self.state ~= state then
         self.state = state
