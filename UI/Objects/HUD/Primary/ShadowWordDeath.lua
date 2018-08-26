@@ -49,7 +49,35 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 4, }
+            validKeys = { [0] = 4, [2] = 13, [12] = 13, }
+        },
+        ListenerGroup =
+        {
+            {
+                eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                inputValues = { --[[spellID]] spellID, },
+                comparisonValues =
+                {
+                    value = 2,
+                    type = "EqualTo",
+                },
+                value = 2,
+            },
+            {
+                eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
+                inputValues = { --[[spellID]] spellID, },
+                comparisonValues =
+                {
+                    value = 1,
+                    type = "EqualTo",
+                },
+                value = 4,
+            },
+            {
+                eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                value = 8,
+            },
         },
     },
     ReadySoonAlert =
