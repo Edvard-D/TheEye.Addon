@@ -40,10 +40,6 @@ function this.Setup(
     instance.ValueGet = this.ValueGet
 end
 
-function this:OnActivate()
-    self:OnValueChange(self.defaultKey)
-end
-
 function this:OnDeactivate()
     self:OnValueChange(self.defaultKey)
 end
