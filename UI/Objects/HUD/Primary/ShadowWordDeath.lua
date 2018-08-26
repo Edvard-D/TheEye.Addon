@@ -49,7 +49,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 4, [2] = 13, [12] = 13, }
+            validKeys = { [0] = 4, [2] = 13, [10] = 13, [12] = 13, }
         },
         ListenerGroup =
         {
@@ -147,6 +147,16 @@ TheEyeAddon.UI.Objects:FormatData(
                         type = "LessThanEqualTo"
                     },
                     value = 64,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 4,
+                        type = "LessThanEqualTo"
+                    },
+                    value = 128,
                 },
             },
         },
