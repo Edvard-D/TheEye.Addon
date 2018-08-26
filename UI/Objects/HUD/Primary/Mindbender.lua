@@ -90,7 +90,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
                     comparisonValues =
                     {
-                        value = 7,
+                        value = 6,
                         type = "GreaterThanEqualTo"
                     },
                     value = 16,
