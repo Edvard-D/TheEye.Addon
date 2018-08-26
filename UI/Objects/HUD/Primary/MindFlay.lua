@@ -50,7 +50,7 @@ TheEyeAddon.UI.Objects:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = true, [2] = true, [6] = true, },
+            validKeys = { [8] = true, [10] = true, [14] = true, },
         },
         ListenerGroup =
         {
@@ -65,6 +65,16 @@ TheEyeAddon.UI.Objects:FormatData(
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] spellID, },
                     value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityFlag]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 2,
+                        type = "LessThanEqualTo"
+                    },
+                    value = 8,
                 },
             },
         },
