@@ -112,7 +112,7 @@ TheEyeAddon.UI.Objects:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
-                    inputValues = { --[[unit]] "target", --[[hostilityFlag]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
                     comparisonValues =
                     {
                         value = 4,

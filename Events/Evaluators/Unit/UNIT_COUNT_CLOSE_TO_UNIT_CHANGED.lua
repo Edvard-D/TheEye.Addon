@@ -22,7 +22,7 @@ local unpack = unpack
     inputValues =
     {
         #LABEL#Unit# #UNIT#
-        #LABEL#Reaction Mask# #MASK#REACTION#
+        #LABEL#Hostility Mask# #MASK#HOSTILITY#
     }
 }
 ]]
