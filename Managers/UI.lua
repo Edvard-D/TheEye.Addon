@@ -36,7 +36,7 @@ local function UIObjectSetup(uiObject)
     end
 end
 
-function this:Initialize()
+function this.Initialize()
     local instances = TheEyeAddon.UI.Objects.Instances
     local pairs = pairs
 

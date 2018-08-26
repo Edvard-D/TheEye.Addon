@@ -17,7 +17,7 @@ this.customEvents =
 }
 
 
-function this:Initialize()
+function this.Initialize()
     TheEyeAddon.Managers.Events.Register(this)
 end
 
