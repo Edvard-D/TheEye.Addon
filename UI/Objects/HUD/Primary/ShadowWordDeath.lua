@@ -158,7 +158,7 @@ TheEyeAddon.UI.Objects:FormatData(
                     comparisonValues =
                     {
                         value = 2,
-                        type = "EqualTo"
+                        type = "LessThanEqualTo"
                     },
                     value = 128,
                 },
