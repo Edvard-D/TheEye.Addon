@@ -52,7 +52,7 @@ TheEyeAddon.Managers.UI:FormatData(
             validKeys =
             {
                 [0] = 7, [2] = 7, [8] = 7,
-                [4] = 12, [6] = 12, [10] = 12, [12] = 12, [14] = 12,
+                [4] = 13, [6] = 13, [10] = 13, [12] = 13, [14] = 13,
             }
         },
         ListenerGroup =

@@ -43,7 +43,7 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 14, }
+            validKeys = { [0] = 15, }
         },
     },
     VisibleState =

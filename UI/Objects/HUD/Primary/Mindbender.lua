@@ -48,7 +48,7 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 11, }
+            validKeys = { [0] = 12, }
         },
     },
     ReadySoonAlert =
