@@ -59,7 +59,11 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true, [16] = true, [18] = true, [26] = true, },
+            validKeys =
+            {
+                [2] = true, [4] = true, [6] = true, [16] = true, [18] = true, [26] = true, [34] = true,
+                [42] = true,
+            },
         },
         ListenerGroup =
         {
@@ -89,6 +93,11 @@ TheEyeAddon.Managers.UI:FormatData(
                         type = "EqualTo",
                     },
                     value = 16,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 32,
                 },
             },
         },
