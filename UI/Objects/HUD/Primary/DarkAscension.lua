@@ -104,7 +104,7 @@ TheEyeAddon.Managers.UI:FormatData(
                     inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
                     comparisonValues =
                     {
-                        value = 0.75,
+                        value = 0.78,
                         type = "GreaterThan"
                     },
                     value = 32,
