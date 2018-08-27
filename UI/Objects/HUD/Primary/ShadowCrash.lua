@@ -48,7 +48,27 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [0] = 8, }
+            validKeys =
+            {
+                [0] = 5,
+                [2] = 9,
+            },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 3,
+                        type = "GreaterThanEqualTo"
+                    },
+                    value = 2,
+                },
+            },
         },
     },
     ReadySoonAlert =
