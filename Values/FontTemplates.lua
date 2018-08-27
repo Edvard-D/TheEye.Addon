@@ -1,8 +1,9 @@
 TheEyeAddon.Values.FontTemplates = {}
+local this = TheEyeAddon.Values.FontTemplates
 
 
-TheEyeAddon.Values.FontTemplates.Icon = {}
-local Icon = TheEyeAddon.Values.FontTemplates.Icon
+this.Icon = {}
+local Icon = this.Icon
 
 Icon.default =
 {
