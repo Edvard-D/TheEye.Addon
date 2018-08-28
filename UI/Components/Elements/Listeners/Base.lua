@@ -13,6 +13,12 @@ local ListenerDeregister = TheEyeAddon.Managers.Evaluators.ListenerDeregister
     eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
     #OPTIONAL#priority = #INT#
+    #OPTIONAL#isInternal = #BOOL#
+    #OPTIONAL#comparisonValues =
+    {
+        type = TheEyeAddon.Helpers.Comparisons#NAME#
+        TheEyeAddon.Helpers.Comparisons#NAME#TEMPLATE#
+    }
 }
 ]]
 
