@@ -42,8 +42,8 @@ function this:Claim(uiObject, frameType, parentFrame, template, displayData)
 	return instance
 end
 
-function this.Create()
+function this.Create(poolKey)
 	local instance = { Claim = this.Claim, Instances = {} }
-    table.insert(this, instance)
+	this[poolKey] = instance
     return instance
 end
