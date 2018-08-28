@@ -21,3 +21,9 @@ this.Icon.Small =
     width = 30,
     height = 30,
 }
+
+this.Icon.Context =
+{
+    width = 25,
+    height = 25,
+}
