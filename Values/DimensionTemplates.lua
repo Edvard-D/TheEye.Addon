@@ -24,6 +24,12 @@ this.Icon.Small =
 
 this.Icon.Context =
 {
+    PointSettings =
+    {
+        point = "RIGHT",
+        relativePoint = "RIGHT",
+        offsetX = 6.25,
+    },
     width = 25,
     height = 25,
 }
