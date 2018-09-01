@@ -30,7 +30,7 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Group =
+    Frame =
     {
         DisplayData =
         {
@@ -45,6 +45,9 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
             },
         },
+    },
+    Group =
+    {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",

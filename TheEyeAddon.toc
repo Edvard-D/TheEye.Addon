@@ -112,14 +112,14 @@ Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 # --- UIObject ---
 Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
-Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
-Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
-Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 
@@ -194,7 +194,6 @@ UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lu
 
 
 # --- Other ---
-UI\Components\Elements\Frame.lua
 UI\Components\Elements\FrameModifier.lua
 
 
@@ -202,13 +201,12 @@ UI\Components\Elements\FrameModifier.lua
 # ---------------------------
 # |	     UI\Factories		|
 # ---------------------------
-UI\Factories\FontString.lua
-UI\Factories\Frame.lua
 UI\Factories\Texture.lua
+UI\Factories\FontString.lua
+
+UI\Factories\Frame.lua
 
 UI\Factories\Cooldown.lua
-UI\Factories\Group.lua
-UI\Factories\Icon.lua
 
 
 
@@ -219,6 +217,7 @@ UI\Components\CastStartAlert.lua
 UI\Components\Child.lua
 UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
+UI\Components\Frame.lua
 UI\Components\Group.lua
 UI\Components\Icon.lua
 UI\Components\PriorityRank.lua

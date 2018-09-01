@@ -30,7 +30,7 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Group =
+    Frame =
     {
         DisplayData =
         {
@@ -41,9 +41,12 @@ TheEyeAddon.Managers.UI:FormatData(
                     point = "TOP",
                     relativePoint = "CENTER",
                     offsetY = -75,
-                }
+                },
             },
         },
+    },
+    Group =
+    {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =

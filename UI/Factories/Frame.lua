@@ -11,8 +11,9 @@ function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensionTe
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
-	this.SetDimensions(instance, dimensionTemplate)
 
+	this.SetDimensions(instance, dimensionTemplate)
+	
 	return instance
 end
 
@@ -39,6 +40,6 @@ function this:SetSizeWithEvent(width, height)
 
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
-		SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
+		SendCustomEvent("UIOBJECT_FRAME_DIMENSIONS_CHANGED" , self.UIObject)
 	end
 end

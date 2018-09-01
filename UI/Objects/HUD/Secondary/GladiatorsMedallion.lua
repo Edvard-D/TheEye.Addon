@@ -36,14 +36,17 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Icon =
+    Frame =
     {
         DisplayData =
         {
             DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
         },
+    },
+    Icon =
+    {
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {

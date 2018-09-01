@@ -55,19 +55,21 @@ function this.Setup(
     instance.Demodify = this.Demodify
 
     inherited.Setup(
-        instance
+        instance,
+        "cooldown",
+        "creator"
     )
 end
 
 function this:Modify(frame)
-    self.frame = CooldownClaim(self.UIObject, frame, nil)
-    self.frame:SetAllPoints()
-    self.frame:SetDrawBling(false)
-    self.frame:SetDrawEdge(false)
-    self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
+    frame.cooldown = CooldownClaim(self.UIObject, frame, nil)
+    frame.cooldown:SetAllPoints()
+    frame.cooldown:SetDrawBling(false)
+    frame.cooldown:SetDrawEdge(false)
+    frame.cooldown:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
 end
 
-function this:Demodify()
-    self.frame:Release()
-    self.frame = nil
+function this:Demodify(frame)
+    frame.cooldown:Release()
+    frame.cooldown = nil
 end

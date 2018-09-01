@@ -24,7 +24,7 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Group =
+    Frame =
     {
         DisplayData =
         {
@@ -38,6 +38,9 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
             },
         },
+    },
+    Group =
+    {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =
