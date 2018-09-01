@@ -6,7 +6,6 @@ local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 
-
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
