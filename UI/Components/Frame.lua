@@ -2,8 +2,8 @@ TheEyeAddon.UI.Components.Frame = {}
 local this = TheEyeAddon.UI.Components.Frame
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
+local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local PoolManager = TheEyeAddon.Managers.FramePools.Create("Frame")
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 
@@ -55,7 +55,7 @@ end
 
 function this:OnShow()
     self.state = true
-    self.instance = PoolManager:Claim(self.UIObject, "Frame", nil, nil, self.Dimensions)
+    self.instance = FrameClaim(self.UIObject, "Frame", nil, nil, self.Dimensions)
     
     if self.modifiers ~= nil then
         local modifiers = self.modifiers

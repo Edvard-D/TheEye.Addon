@@ -1,6 +1,7 @@
 TheEyeAddon.Managers.FramePools = {}
 local this = TheEyeAddon.Managers.FramePools
 
+local pools = {}
 local table = table
 
 
@@ -11,10 +12,20 @@ function this:Release()
 	self.UIObject = nil
 end
 
-function this:Claim(uiObject, frameType, parentFrame, template, dimensions)
+local function PoolGet(frameType)
+	if pools[frameType] == nil then
+		pools[frameType] = {}
+	end
+
+	return pools[frameType]
+end
+
+function this.FrameClaim(uiObject, frameType, parentFrame, template, dimensions)
 	local instance = nil
-	for i = 1, #self.Instances do
-		local frame = self.Instances[i]
+	local pool = PoolGet(frameType)
+
+	for i = 1, #pool do
+		local frame = pool[i]
 		if frame.isClaimed == false then
 			instance = frame
 			break
@@ -28,17 +39,11 @@ function this:Claim(uiObject, frameType, parentFrame, template, dimensions)
 	else
 		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, frameType, parentFrame, template, dimensions)
 		instance.Release = this.Release
-		table.insert(self.Instances, instance)
+		table.insert(pool, instance)
 	end
 
 	instance.isClaimed = true
 	instance:Show()
 
 	return instance
-end
-
-function this.Create(poolKey)
-	local instance = { Claim = this.Claim, Instances = {} }
-	this[poolKey] = instance
-    return instance
 end
