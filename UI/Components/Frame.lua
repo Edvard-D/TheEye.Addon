@@ -41,7 +41,7 @@ function this.Setup(
     instance.ModifierRemove = this.ModifierRemove
 
     -- VisibleStateFunctionCaller
-    instance.OnShow = this.OnShow -- @DEEEEEEEBUUUUUUG Problem because this listens to VisibleState????
+    instance.OnShow = this.OnShow
     instance.OnHide = this.OnHide
 
     instance.VisibleStateFunctionCaller = {}
