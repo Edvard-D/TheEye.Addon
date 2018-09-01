@@ -10,20 +10,6 @@ local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 {
     #inherited#TEMPLATE#
 }
-
-#UIOBJECT#TEMPLATE#DisplayData#
-{
-    factory = #TheEyeAddon.UI.Factories#NAME#
-    DimensionTemplate =
-    {
-        PointSettings =
-        {
-            point = #POINT#
-            relativePoint = #POINT#
-            offsetY = #INT#
-        }
-    }
-}
 ]]
 
 
