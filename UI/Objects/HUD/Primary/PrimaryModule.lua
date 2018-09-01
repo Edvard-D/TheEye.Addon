@@ -32,15 +32,12 @@ TheEyeAddon.Managers.UI:FormatData(
     },
     Frame =
     {
-        DisplayData =
+        Dimensions =
         {
-            DimensionTemplate =
+            PointSettings =
             {
-                PointSettings =
-                {
-                    point = "TOP",
-                    relativePoint = "TOP",
-                },
+                point = "TOP",
+                relativePoint = "TOP",
             },
         },
     },

@@ -8,7 +8,7 @@ this.Delegate =
         for i = 1, #childUIObjects do
             local childUIObject = childUIObjects[i]
             local childFrame = childUIObject.Frame.instance
-            local childPointSettings = childUIObject.Frame.DisplayData.DimensionTemplate.PointSettings
+            local childPointSettings = childUIObject.Frame.Dimensions.PointSettings
             childFrame:ClearAllPoints()
             childFrame:SetPoint(
                 childPointSettings.point,

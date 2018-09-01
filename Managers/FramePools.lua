@@ -11,7 +11,7 @@ function this:Release()
 	self.UIObject = nil
 end
 
-function this:Claim(uiObject, frameType, parentFrame, template, displayData)
+function this:Claim(uiObject, frameType, parentFrame, template, dimensions)
 	local instance = nil
 	for i = 1, #self.Instances do
 		local frame = self.Instances[i]
@@ -20,18 +20,13 @@ function this:Claim(uiObject, frameType, parentFrame, template, displayData)
 			break
 		end
 	end
-	
-	local dimensionTemplate
-	if displayData ~= nil then
-		dimensionTemplate = displayData.DimensionTemplate
-	end
 
 	if instance ~= nil then
 		instance:SetParent(parentFrame or UIParent)
 		instance.UIObject = uiObject
-		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, dimensionTemplate)
+		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, dimensions)
 	else
-		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, frameType, parentFrame, template, dimensionTemplate)
+		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, frameType, parentFrame, template, dimensions)
 		instance.Release = this.Release
 		table.insert(self.Instances, instance)
 	end

@@ -33,10 +33,7 @@ TheEyeAddon.Managers.UI:FormatData(
     },
     Frame =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
-        },
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
     },
     Icon =
     {

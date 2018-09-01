@@ -26,16 +26,13 @@ TheEyeAddon.Managers.UI:FormatData(
     },
     Frame =
     {
-        DisplayData =
+        Dimensions =
         {
-            DimensionTemplate =
+            PointSettings =
             {
-                PointSettings =
-                {
-                    point = "CENTER",
-                    relativePoint = "CENTER",
-                    offsetY = -200,
-                },
+                point = "CENTER",
+                relativePoint = "CENTER",
+                offsetY = -200,
             },
         },
     },

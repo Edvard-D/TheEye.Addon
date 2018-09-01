@@ -11,18 +11,17 @@ local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.Liste
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-        #OPTIONAL#DimensionTemplate =
+    #OPTIONAL#Dimensions =
+    {
+        #OPTIONAL#PointSettings =
         {
-            #OPTIONAL#PointSettings =
-            {
-                #OPTIONAL#point = #POINT#
-                #OPTIONAL#relativePoint = #RELATIVEPOINT#
-                #OPTIONAL#offsetX = #NUMBER#
-                #OPTIONAL#offsetY = #NUMBER#
-            }
-            #OPTIONAL#width = #NUMBER#
-            #OPTIONAL#height = #NUMBER#
+            #OPTIONAL#point = #POINT#
+            #OPTIONAL#relativePoint = #RELATIVEPOINT#
+            #OPTIONAL#offsetX = #NUMBER#
+            #OPTIONAL#offsetY = #NUMBER#
         }
+        #OPTIONAL#width = #NUMBER#
+        #OPTIONAL#height = #NUMBER#
     }
 ]]
 
@@ -56,7 +55,7 @@ end
 
 function this:OnShow()
     self.state = true
-    self.instance = PoolManager:Claim(self.UIObject, "Frame", nil, nil, self.DisplayData)
+    self.instance = PoolManager:Claim(self.UIObject, "Frame", nil, nil, self.Dimensions)
     
     if self.modifiers ~= nil then
         local modifiers = self.modifiers
