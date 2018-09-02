@@ -1,12 +1,11 @@
 -- @REFACTOR Rename to CastSoonAlert
-TheEyeAddon.UI.Components.ReadySoonAlert = {}
-local this = TheEyeAddon.UI.Components.ReadySoonAlert
+TheEyeAddon.UI.Components.CastSoonAlert = {}
+local this = TheEyeAddon.UI.Components.CastSoonAlert
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local auraFilters = TheEyeAddon.Values.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local GetTime = GetTime
-local ReadySoonAlertLengthGet = TheEyeAddon.Values.ReadySoonAlertLengthGet
 
 
 --[[ #this#TEMPLATE#
@@ -36,7 +35,7 @@ function this.Setup(
                 comparisonValues =
                 {
                     floor = 0,
-                    ceiling = TheEyeAddon.Values.ReadySoonAlertLengthGet,
+                    ceiling = this.AlertLengthGet,
                     type = "Between",
                 },
                 value = 2,
@@ -55,19 +54,31 @@ function this.Setup(
     instance.Demodify = this.Demodify
 
     inherited.Setup(
-        instance
+        instance,
+        "cooldown",
+        "creator"
     )
 end
 
 function this:Modify(frame)
-    self.frame = CooldownClaim(self.UIObject, frame, nil)
-    self.frame:SetAllPoints()
-    self.frame:SetDrawBling(false)
-    self.frame:SetDrawEdge(false)
-    self.frame:SetCooldown(GetTime(), ReadySoonAlertLengthGet())
+    frame.cooldown = CooldownClaim(self.UIObject, frame, nil)
+    frame.cooldown:SetAllPoints()
+    frame.cooldown:SetDrawBling(false)
+    frame.cooldown:SetDrawEdge(false)
+    frame.cooldown:SetCooldown(GetTime(), this.AlertLengthGet())
 end
 
-function this:Demodify()
-    self.frame:Release()
-    self.frame = nil
+function this:Demodify(frame)
+    frame.cooldown:Release()
+    frame.cooldown = nil
+end
+
+function this.AlertLengthGet()
+    local alertLength = 0.75
+    local gcdLength = 1.5 / ((UnitSpellHaste("player") / 100) + 1)
+    if gcdLength > alertLength then
+        alertLength = gcdLength
+    end
+
+    return alertLength
 end

@@ -30,21 +30,21 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Group =
+    Frame =
     {
-        DisplayData =
+        Dimensions =
         {
-            DimensionTemplate =
+            PointSettings =
             {
-                PointSettings =
-                {
-                    point = "TOPLEFT",
-                    relativePoint = "TOP",
-                    offsetX = 32.5,
-                    offsetY = -5,
-                },
+                point = "TOPLEFT",
+                relativePoint = "TOP",
+                offsetX = 32.5,
+                offsetY = -5,
             },
         },
+    },
+    Group =
+    {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
         sortActionName = "SortDescending",
         sortValueComponentName = "PriorityRank",

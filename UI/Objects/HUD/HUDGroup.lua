@@ -30,20 +30,20 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
-    Group =
+    Frame =
     {
-        DisplayData =
+        Dimensions =
         {
-            DimensionTemplate =
+            PointSettings =
             {
-                PointSettings =
-                {
-                    point = "TOP",
-                    relativePoint = "CENTER",
-                    offsetY = -75,
-                }
+                point = "TOP",
+                relativePoint = "CENTER",
+                offsetY = -75,
             },
         },
+    },
+    Group =
+    {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =

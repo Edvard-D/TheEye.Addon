@@ -4,6 +4,10 @@ local spellID = 280711
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-280711", },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
     {
         spellID = spellID,
@@ -35,25 +39,21 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {
         ValueHandler =
         {
-            validKeys = { [0] = 13, }
+            validKeys = { [0] = 15, }
         },
-    },
-    ReadySoonAlert =
-    {
-        spellID = spellID
     },
     VisibleState =
     {
@@ -76,7 +76,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {
@@ -104,7 +104,7 @@ TheEyeAddon.Managers.UI:FormatData(
                     inputValues = { --[[unit]] "player", --[[powerType]] "INSANITY", },
                     comparisonValues =
                     {
-                        value = 0.75,
+                        value = 0.78,
                         type = "GreaterThan"
                     },
                     value = 32,

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_SIZE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_SIZE_CHANGED
+TheEyeAddon.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED = {}
+local this = TheEyeAddon.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED
 
 
 --[[ #this#TEMPLATE#
@@ -11,7 +11,7 @@ local this = TheEyeAddon.Evaluators.UIOBJECT_SIZE_CHANGED
 
 this.customEvents =
 {
-    "UIOBJECT_RESIZED",
+    "UIOBJECT_FRAME_DIMENSIONS_CHANGED",
 }
 
 

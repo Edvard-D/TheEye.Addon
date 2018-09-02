@@ -1,12 +1,20 @@
 TheEyeAddon.Values.FontTemplates = {}
+local this = TheEyeAddon.Values.FontTemplates
 
 
-TheEyeAddon.Values.FontTemplates.Icon = {}
-local Icon = TheEyeAddon.Values.FontTemplates.Icon
+this.Icon = {}
+local Icon = this.Icon
 
-Icon.default =
+Icon.Default =
 {
-    SetFont = function(fontInstance)
-        fontInstance:SetFont("Fonts\\FRIZQT__.TTF", 20, "OUTLINE")
-    end
+    font = "Fonts\\FRIZQT__.TTF",
+    size = 25,
+    flags = "OUTLINE",
+}
+
+Icon.Context =
+{
+    font = "Fonts\\FRIZQT__.TTF",
+    size = 17.5,
+    flags = "OUTLINE",
 }

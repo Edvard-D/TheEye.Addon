@@ -24,7 +24,7 @@ function this.Setup(
     listener =
     {
         eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-        inputValues = { uiObject.key, "Frame" },
+        inputValues = { "#SELF#UIOBJECT#KEY#", "Frame" },
         priority = priority,
         isInternal = true
     }

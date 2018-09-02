@@ -4,6 +4,10 @@ local spellID = 205385
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205385", },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
     {
         spellID = spellID,
@@ -35,25 +39,41 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {
         ValueHandler =
         {
-            validKeys = { [0] = 7, }
+            validKeys =
+            {
+                [0] = 5,
+                [2] = 9,
+            },
         },
-    },
-    ReadySoonAlert =
-    {
-        spellID = spellID
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 3,
+                        type = "GreaterThanEqualTo"
+                    },
+                    value = 2,
+                },
+            },
+        },
     },
     VisibleState =
     {
@@ -72,7 +92,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {

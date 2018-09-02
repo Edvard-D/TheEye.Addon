@@ -15,9 +15,13 @@ TheEyeAddon.Values.auraFilters =
     {
         "HARMFUL "
     },
+    [124430] = -- Shadowy Insight
+    {
+        "HELPFUL"
+    },
     [194249] = -- Voidform
     {
-        "HELPFUL " -- @TODO figure out why using NOT_CANCELABLE caused this aura to not be found
+        "HELPFUL " -- @DEBUG figure out why using NOT_CANCELABLE caused this aura to not be found
     },
     [211681] = -- Power Word: Fortitude
     {

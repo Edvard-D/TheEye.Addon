@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_SIZE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_SIZE_CHANGED
+TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_FRAME_DIMENSIONS_CHANGED = {}
+local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_FRAME_DIMENSIONS_CHANGED
 
 local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
 
@@ -17,7 +17,7 @@ this.reevaluateEvents =
 }
 this.customEvents =
 {
-    "UIOBJECT_RESIZED",
+    "UIOBJECT_FRAME_DIMENSIONS_CHANGED",
 }
 
 

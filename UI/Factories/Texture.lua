@@ -2,11 +2,13 @@ TheEyeAddon.UI.Factories.Texture = {}
 local this = TheEyeAddon.UI.Factories.Texture
 
 
-function this.Create(instance, parentFrame, layer, fileID)
-	instance = instance or parentFrame:CreateTexture(nil, layer)
-	
-	instance:SetTexture(fileID)
-	instance:SetAllPoints()
-
+function this.Create(parentFrame, layer)
+	instance = parentFrame:CreateTexture(nil, layer)
+	instance.TextureSet = this.TextureSet
 	return instance
+end
+
+function this:TextureSet(fileID)	
+	self:SetTexture(fileID)
+	self:SetAllPoints()
 end

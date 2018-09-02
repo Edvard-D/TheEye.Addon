@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-## Version: 0.3.0
+## Version: 0.4.0
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -84,6 +84,7 @@ Managers\UI.lua
 Helpers\Auras.lua
 Helpers\ChildArrangers.lua
 Helpers\Comparisons.lua
+Helpers\Files.lua
 Helpers\Player.lua
 Helpers\Table.lua
 Helpers\Timers.lua
@@ -112,14 +113,14 @@ Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
 # --- UIObject ---
 Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
-Evaluators\UIObject\UIOBJECT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
-Evaluators\UIObject\UIOBJECT_WITH_PARENT_SIZE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_FRAME_DIMENSIONS_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
-Evaluators\UIObject\UIOBJECT_WITH_TAGS_SIZE_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
 Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 
@@ -192,9 +193,7 @@ UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
 UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
-
 # --- Other ---
-UI\Components\Elements\Frame.lua
 UI\Components\Elements\FrameModifier.lua
 
 
@@ -202,27 +201,29 @@ UI\Components\Elements\FrameModifier.lua
 # ---------------------------
 # |	     UI\Factories		|
 # ---------------------------
-UI\Factories\FontString.lua
-UI\Factories\Frame.lua
 UI\Factories\Texture.lua
+UI\Factories\FontString.lua
+
+UI\Factories\Frame.lua
 
 UI\Factories\Cooldown.lua
-UI\Factories\Group.lua
-UI\Factories\Icon.lua
 
 
 
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Components\CastSoonAlert.lua
 UI\Components\CastStartAlert.lua
+UI\Components\Charges.lua
 UI\Components\Child.lua
+UI\Components\ContextIcon.lua
 UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
+UI\Components\Frame.lua
 UI\Components\Group.lua
 UI\Components\Icon.lua
 UI\Components\PriorityRank.lua
-UI\Components\ReadySoonAlert.lua
 UI\Components\VisibleState.lua
 
 

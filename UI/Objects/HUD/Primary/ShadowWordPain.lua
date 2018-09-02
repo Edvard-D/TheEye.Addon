@@ -4,6 +4,10 @@ local spellID = 589
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-589" },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
     {
         spellID = spellID,
@@ -30,14 +34,14 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {
@@ -46,19 +50,15 @@ TheEyeAddon.Managers.UI:FormatData(
             validKeys = { [0] = 3, }
         },
     },
-    ReadySoonAlert =
-    {
-        spellID = spellID
-    },
     VisibleState =
     {
         ValueHandler =
         {
             validKeys =
             {
-                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, [18] = true, [20] = true, [22] = true,
-                [26] = true, [34] = true, [36] = true, [38] = true, [40] = true, [42] = true, [50] = true,
-                [54] = true, [58] = true,
+                [2] = true, [4] = true, [6] = true, [8] = true, [10] = true, [18] = true, [20] = true,
+                [22] = true, [26] = true, [34] = true, [36] = true, [38] = true, [40] = true, [42] = true,
+                [50] = true, [54] = true, [58] = true,
             },
         },
         ListenerGroup =
@@ -72,7 +72,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {

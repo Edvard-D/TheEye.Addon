@@ -2,12 +2,16 @@ TheEyeAddon.UI.Factories.FontString = {}
 local this = TheEyeAddon.UI.Factories.FontString
 
 
-function this.Create(parentFrame, layer, text, fontTemplate)
-	local instance = parentFrame:CreateFontString(nil, layer)
+function this.Create(parentFrame)
+	local instance = parentFrame:CreateFontString()
 	
-	fontTemplate.SetFont(instance)
-	instance:SetText(text)
-	instance:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)
+	instance.StyleSet = this.StyleSet
 	
 	return instance
+end
+
+function this:StyleSet(layer, fontTemplate, point)
+	self:SetDrawLayer(layer)
+	self:SetFont(fontTemplate.font, fontTemplate.size, fontTemplate.flags)
+	self:SetPoint(point)
 end

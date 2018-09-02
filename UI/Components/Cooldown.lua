@@ -46,23 +46,25 @@ function this.Setup(
     instance.SortValueGet = this.SortValueGet
 
     inherited.Setup(
-        instance
+        instance,
+        "cooldown",
+        "creator"
     )
 end
 
 
 function this:Modify(frame)
-    self.frame = CooldownClaim(self.UIObject, frame, nil)
-    self.frame:SetAllPoints()
-    self.frame:SetDrawBling(false)
-    self.frame:SetDrawEdge(false)
+    frame.cooldown = CooldownClaim(self.UIObject, frame, nil)
+    frame.cooldown:SetAllPoints()
+    frame.cooldown:SetDrawBling(false)
+    frame.cooldown:SetDrawEdge(false)
     local startTime, duration = GetSpellCooldown(self.spellID)
-    self.frame:SetCooldown(startTime, duration)
+    frame.cooldown:SetCooldown(startTime, duration)
 end
 
-function this:Demodify()
-    self.frame:Release()
-    self.frame = nil
+function this:Demodify(frame)
+    frame.cooldown:Release()
+    frame.cooldown = nil
 end
 
 function this:SortValueGet()

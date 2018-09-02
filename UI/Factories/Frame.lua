@@ -6,26 +6,27 @@ local minSize = 0.0001
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
-function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensionTemplate)
+function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensions)
 	local instance = CreateFrame(frameType, nil, parentFrame or UIParent, inheritsFrom)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
-	this.SetDimensions(instance, dimensionTemplate)
 
+	this.SetDimensions(instance, dimensions)
+	
 	return instance
 end
 
-function this.SetDimensions(frame, dimensionTemplate)
-	if dimensionTemplate ~= nil then
-		frame:SetSize(dimensionTemplate.width or minSize, dimensionTemplate.height or minSize)
-		if dimensionTemplate.PointSettings ~= nil then
+function this.SetDimensions(frame, dimensions)
+	if dimensions ~= nil then
+		frame:SetSize(dimensions.width or minSize, dimensions.height or minSize)
+		if dimensions.PointSettings ~= nil then
 			frame:SetPoint(
-				dimensionTemplate.PointSettings.point,
+				dimensions.PointSettings.point,
 				frame:GetParent(),
-				dimensionTemplate.PointSettings.relativePoint,
-				dimensionTemplate.PointSettings.offsetX or 0,
-				dimensionTemplate.PointSettings.offsetY or 0)
+				dimensions.PointSettings.relativePoint,
+				dimensions.PointSettings.offsetX or 0,
+				dimensions.PointSettings.offsetY or 0)
 		end
 	else
 		frame:SetSize(minSize, minSize)
@@ -39,6 +40,6 @@ function this:SetSizeWithEvent(width, height)
 
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
-		SendCustomEvent("UIOBJECT_RESIZED" , self.UIObject)
+		SendCustomEvent("UIOBJECT_FRAME_DIMENSIONS_CHANGED" , self.UIObject)
 	end
 end

@@ -4,7 +4,15 @@ local spellID = 32379
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-32379", },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
+    {
+        spellID = spellID,
+    },
+    Charges =
     {
         spellID = spellID,
     },
@@ -12,7 +20,6 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
-    -- @TODO show charges
     EnabledState =
     {
         ValueHandler =
@@ -36,14 +43,14 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {
@@ -51,8 +58,8 @@ TheEyeAddon.Managers.UI:FormatData(
         {
             validKeys =
             {
-                [0] = 4, [2] = 4, [8] = 4,
-                [4] = 11, [6] = 11, [10] = 11, [12] = 11, [14] = 11,
+                [0] = 7, [2] = 7, [8] = 7,
+                [4] = 13, [6] = 13, [10] = 13, [12] = 13, [14] = 13,
             }
         },
         ListenerGroup =
@@ -81,15 +88,11 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 8,
                 },
             }
         },
-    },
-    ReadySoonAlert =
-    {
-        spellID = spellID
     },
     VisibleState = -- @TODO possibly change so it's visible when there's one stack currently and the cooldown for two is about to end
     {
@@ -114,7 +117,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {

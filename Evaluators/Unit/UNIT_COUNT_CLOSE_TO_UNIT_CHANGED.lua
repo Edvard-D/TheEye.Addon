@@ -113,6 +113,10 @@ end
 local function CurrentEventTryAddData(inputGroup, eventData)
     local currentEvent = inputGroup.events.current
 
+    if eventData.overkill > 0 then
+        return
+    end
+
     if EventIsValid(inputGroup, eventData) then
         if currentEvent.event == nil then
             currentEvent.sourceGUID = eventData.sourceGUID
@@ -179,7 +183,7 @@ local function GroupedUnitWeightGet(groupedUnit)
     return weight
 end
 
-local function GroupedUnitsWeightsUpdate(groupedUnits)
+local function GroupedUnitsHighestWeightUpdate(groupedUnits)
     local guids = groupedUnits.guids
     local highestWeight = 0
 
@@ -308,7 +312,7 @@ local function UnitsUpdate(inputGroup)
     UnitsRemoveOldEvents(inputGroup.meleeUnits)
     UnitsRemoveOldEvents(inputGroup.groupedUnits)
 
-    GroupedUnitsWeightsUpdate(inputGroup.groupedUnits)
+    GroupedUnitsHighestWeightUpdate(inputGroup.groupedUnits)
 end
 
 

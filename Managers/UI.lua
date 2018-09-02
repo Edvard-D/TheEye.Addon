@@ -46,4 +46,5 @@ function this.Initialize()
 
     this.currentUIObject = nil
     this.currentComponent = nil
+    CastingBarFrame:UnregisterAllEvents()
 end

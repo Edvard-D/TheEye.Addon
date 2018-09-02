@@ -4,6 +4,10 @@ local spellID = 263346
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-263346", },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
     {
         spellID = spellID,
@@ -35,31 +39,51 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {
         ValueHandler =
         {
-            validKeys = { [0] = 8, }
+            validKeys =
+            {
+                [0] = 6,
+                [2] = 10,
+            },
         },
-    },
-    ReadySoonAlert =
-    {
-        spellID = spellID
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                    comparisonValues =
+                    {
+                        value = 3,
+                        type = "GreaterThanEqualTo"
+                    },
+                    value = 2,
+                },
+            },
+        },
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [2] = true, [4] = true, [6] = true, [16] = true, [18] = true, [26] = true, },
+            validKeys =
+            {
+                [2] = true, [4] = true, [6] = true, [16] = true, [18] = true, [26] = true, [34] = true,
+                [42] = true,
+            },
         },
         ListenerGroup =
         {
@@ -72,7 +96,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {
@@ -89,6 +113,11 @@ TheEyeAddon.Managers.UI:FormatData(
                         type = "EqualTo",
                     },
                     value = 16,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    value = 32,
                 },
             },
         },

@@ -3,16 +3,6 @@ local this = TheEyeAddon.Values
 local UnitSpellHaste = UnitSpellHaste
 
 
-function this.ReadySoonAlertLengthGet()
-    local readySoonAlertLength = 0.75
-    local gcdLength = 1.5 / ((UnitSpellHaste("player") / 100) + 1)
-    if gcdLength > readySoonAlertLength then
-        readySoonAlertLength = gcdLength
-    end
-
-    return readySoonAlertLength
-end
-
 this.screenSize =
 {
     width = GetScreenWidth(),

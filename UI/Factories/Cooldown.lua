@@ -1,9 +1,9 @@
 TheEyeAddon.UI.Factories.Cooldown = {}
 local this = TheEyeAddon.UI.Factories.Cooldown
 
-local Pool = TheEyeAddon.Managers.FramePools.Create()
+local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
 
 
-function this.Claim(uiObject, parentFrame, displayData)
-	return Pool:Claim(uiObject, "Cooldown", parentFrame, "CooldownFrameTemplate", displayData)
+function this.Claim(uiObject, parentFrame, dimensions)
+	return FrameClaim(uiObject, "Cooldown", parentFrame, "CooldownFrameTemplate", dimensions)
 end

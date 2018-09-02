@@ -90,24 +90,26 @@ function this.ListenerRegister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
+    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
 
     if listener.isListening == nil then
         if listener.priority == nil then
             listener.priority = math.huge
         end
 
-            table.insert(listeners, listener)
+        table.insert(listeners, listener)
         table.sort(listeners, function(a,b)
-            return (a.isInternal and not b.isInternal)
-                or (a.isInternal == b.isInternal and a.priority < b.priority) end)
+        return (a.isInternal and not b.isInternal)
+            or (a.isInternal == b.isInternal and a.priority < b.priority) end)
     end
 
     listener.isListening = true
     EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if listener.comparisonValues ~= nil or inputGroup.currentValue == true then
+    if inputGroup.currentValue == true
+        or (inputGroup.currentValue ~= nil and type(inputGroup.currentValue) ~= "boolean")
+        then
         listener:Notify(evaluatorKey, inputGroup)
     end
 end
@@ -117,7 +119,7 @@ function this.ListenerDeregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
+    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
 
     listener.isListening = false
     EvaluatorDecreaseListenerCount(evaluator)
@@ -149,7 +151,7 @@ end
 
 -- Event Evaluation
 local function ListenersNotify(inputGroup, shouldSend, event)
-    --DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
     
     if shouldSend == true then
         local listeners = inputGroup.listeners
