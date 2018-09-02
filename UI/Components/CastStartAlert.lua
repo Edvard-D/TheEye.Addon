@@ -62,6 +62,5 @@ function this:Demodify(frame)
 end
 
 function this.AlertLengthGet()
-    print(castStartHideDelay + select(4, GetNetStats()) / 1000)
     return castStartHideDelay + select(4, GetNetStats()) / 1000
 end
