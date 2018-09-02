@@ -91,7 +91,7 @@ TheEyeAddon.Managers.UI:FormatData(
                     comparisonValues =
                     {
                         value = 3,
-                        type = "GreaterThanEqualTo"
+                        type = "GreaterThanEqualTo",
                     },
                     value = 8,
                 },
