@@ -12,6 +12,26 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [2] = true, },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 23126, }, -- Misery
+                    value = 2,
+                },
+            },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 589,
+    },
     EnabledState =
     {
         ValueHandler =
