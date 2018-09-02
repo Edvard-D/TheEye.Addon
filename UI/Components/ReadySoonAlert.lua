@@ -35,7 +35,7 @@ function this.Setup(
                 comparisonValues =
                 {
                     floor = 0,
-                    ceiling = TheEyeAddon.Values.AlertLengthGet,
+                    ceiling = this.AlertLengthGet,
                     type = "Between",
                 },
                 value = 2,
@@ -65,7 +65,7 @@ function this:Modify(frame)
     frame.cooldown:SetAllPoints()
     frame.cooldown:SetDrawBling(false)
     frame.cooldown:SetDrawEdge(false)
-    frame.cooldown:SetCooldown(GetTime(), AlertLengthGet())
+    frame.cooldown:SetCooldown(GetTime(), this.AlertLengthGet())
 end
 
 function this:Demodify(frame)
