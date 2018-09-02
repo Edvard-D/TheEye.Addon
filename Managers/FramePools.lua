@@ -1,6 +1,8 @@
 TheEyeAddon.Managers.FramePools = {}
 local this = TheEyeAddon.Managers.FramePools
 
+local FrameCreate = TheEyeAddon.UI.Factories.Frame.Create
+local FrameSetDimensions = TheEyeAddon.UI.Factories.Frame.SetDimensions
 local pools = {}
 local table = table
 
@@ -36,9 +38,9 @@ function this.FrameClaim(uiObject, frameType, parentFrame, template, dimensions)
 	if instance ~= nil then
 		instance:SetParent(parentFrame or UIParent)
 		instance.UIObject = uiObject
-		TheEyeAddon.UI.Factories.Frame.SetDimensions(instance, dimensions)
+		FrameSetDimensions(instance, dimensions)
 	else
-		instance = TheEyeAddon.UI.Factories.Frame.Create(uiObject, frameType, parentFrame, template, dimensions)
+		instance = FrameCreate(uiObject, frameType, parentFrame, template, dimensions)
 		instance.Release = this.Release
 		table.insert(pool, instance)
 	end
