@@ -12,6 +12,25 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [0] = true, },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 277702, -- crosshair symbol
+        TextValueListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                    inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                },
+            },
+        },
+    },
     EnabledState =
     {
         ValueHandler =
