@@ -77,5 +77,5 @@ function this:Demodify(frame)
 end
 
 function this:OnNotify(event, value)
-    self.instance.text:SetText(tostring(value))
+    self.instance.text:SetText(value)
 end
