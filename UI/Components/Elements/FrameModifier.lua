@@ -2,7 +2,7 @@ TheEyeAddon.UI.Components.FrameModifier = {}
 local this = TheEyeAddon.UI.Components.FrameModifier
 local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
@@ -32,24 +32,24 @@ function this.Setup(
         this.OnValidKey,
         this.OnInvalidKey
     )
-    
-    -- EnabledStateFunctionCaller
-    instance.OnEnable = this.OnEnable
-    instance.OnDisable = this.OnDisable
 
-    instance.EnabledStateFunctionCaller = {}
-    EnabledStateFunctionCallerSetup(
-        instance.EnabledStateFunctionCaller,
+    -- FrameStateFunctionCaller
+    instance.OnClaim = this.OnClaim
+    instance.OnRelease = this.OnRelease
+
+    instance.FrameStateFunctionCaller = {}
+    FrameStateFunctionCallerSetup(
+        instance.FrameStateFunctionCaller,
         instance,
         1
     )
 end
 
-function this:OnEnable()
+function this:OnClaim()
     self:Activate()
 end
 
-function this:OnDisable()
+function this:OnRelease()
     self:Deactivate()
 end
 
