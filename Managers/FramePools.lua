@@ -8,6 +8,7 @@ local table = table
 function this:Release()
 	self:Hide()
 	self:SetParent(nil)
+	self:ClearAllPoints()
 	self.isClaimed = false
 	self.UIObject = nil
 end
