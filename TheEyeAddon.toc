@@ -213,6 +213,7 @@ UI\Factories\Cooldown.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Components\CastSoonAlert.lua
 UI\Components\CastStartAlert.lua
 UI\Components\Charges.lua
 UI\Components\Child.lua
@@ -223,7 +224,6 @@ UI\Components\Frame.lua
 UI\Components\Group.lua
 UI\Components\Icon.lua
 UI\Components\PriorityRank.lua
-UI\Components\ReadySoonAlert.lua
 UI\Components\VisibleState.lua
 
 

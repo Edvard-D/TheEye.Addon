@@ -1,6 +1,6 @@
 -- @REFACTOR Rename to CastSoonAlert
-TheEyeAddon.UI.Components.ReadySoonAlert = {}
-local this = TheEyeAddon.UI.Components.ReadySoonAlert
+TheEyeAddon.UI.Components.CastSoonAlert = {}
+local this = TheEyeAddon.UI.Components.CastSoonAlert
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local auraFilters = TheEyeAddon.Values.auraFilters

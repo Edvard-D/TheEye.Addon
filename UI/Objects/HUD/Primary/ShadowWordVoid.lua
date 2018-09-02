@@ -4,6 +4,10 @@ local spellID = 205351
 TheEyeAddon.Managers.UI:FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-205351", },
+    CastSoonAlert =
+    {
+        spellID = spellID
+    },
     CastStartAlert =
     {
         spellID = spellID,
@@ -55,10 +59,6 @@ TheEyeAddon.Managers.UI:FormatData(
             validKeys = { [0] = 8, }
         },
     },
-    ReadySoonAlert =
-    {
-        spellID = spellID
-    },
     VisibleState =
     {
         ValueHandler = -- @DEBUG
@@ -81,7 +81,7 @@ TheEyeAddon.Managers.UI:FormatData(
                 },
                 {
                     eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "ReadySoonAlert" },
+                    inputValues = { --[[uiObject]] "#SELF#UIOBJECT#KEY#", --[[componentName]] "CastSoonAlert" },
                     value = 4,
                 },
                 {
