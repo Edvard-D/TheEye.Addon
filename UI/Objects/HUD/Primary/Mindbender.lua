@@ -12,6 +12,25 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [0] = true, },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 194249,
+        TextValueListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_AURA_STACK_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                },
+            },
+        },
+    },
     EnabledState =
     {
         ValueHandler =
