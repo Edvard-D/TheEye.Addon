@@ -8,13 +8,13 @@ local Icon = this.Icon
 Icon.Default =
 {
     font = "Fonts\\FRIZQT__.TTF",
-    size = 20,
+    size = 25,
     flags = "OUTLINE",
 }
 
 Icon.Context =
 {
     font = "Fonts\\FRIZQT__.TTF",
-    size = 15,
+    size = 17.5,
     flags = "OUTLINE",
 }
