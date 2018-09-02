@@ -12,5 +12,5 @@ end
 
 function this:StyleSet(layer, fontTemplate)
 	self:SetDrawLayer(layer)
-	fontTemplate.SetFont(self)
+	self:SetFont(fontTemplate.font, fontTemplate.size, fontTemplate.flags)
 end

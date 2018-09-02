@@ -5,16 +5,16 @@ local this = TheEyeAddon.Values.FontTemplates
 this.Icon = {}
 local Icon = this.Icon
 
-Icon.default =
+Icon.Default =
 {
-    SetFont = function(fontInstance)
-        fontInstance:SetFont("Fonts\\FRIZQT__.TTF", 20, "OUTLINE")
-    end
+    font = "Fonts\\FRIZQT__.TTF",
+    size = 20,
+    flags = "OUTLINE",
 }
 
-Icon.context =
+Icon.Context =
 {
-    SetFont = function(fontInstance)
-        fontInstance:SetFont("Fonts\\FRIZQT__.TTF", 15, "OUTLINE")
-    end
+    font = "Fonts\\FRIZQT__.TTF",
+    size = 15,
+    flags = "OUTLINE",
 }
