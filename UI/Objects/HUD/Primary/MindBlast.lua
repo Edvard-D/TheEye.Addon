@@ -12,6 +12,26 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [2] = true, },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 124430 }, -- Shadowy Insight
+                    value = 2,
+                },
+            },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 124430,
+    },
     -- @TODO show charges
     EnabledState =
     {
