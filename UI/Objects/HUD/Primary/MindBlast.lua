@@ -32,7 +32,6 @@ TheEyeAddon.Managers.UI:FormatData(
         iconObjectType = "SPELL",
         iconObjectID = 124430,
     },
-    -- @TODO show charges
     EnabledState =
     {
         ValueHandler =
