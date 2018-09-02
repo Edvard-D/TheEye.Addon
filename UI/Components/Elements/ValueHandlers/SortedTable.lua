@@ -44,10 +44,32 @@ end
 -- Sort Actions
 function this:SortAscending()
     table.sort(self[self.valueKey], function(a,b)
-        return a[self.sortValueComponentName]:SortValueGet() < b[self.sortValueComponentName]:SortValueGet() end)
+        local aValue = a[self.sortValueComponentName]:SortValueGet()
+        local bValue = b[self.sortValueComponentName]:SortValueGet()
+
+        if aValue == nil then
+            return false
+        end
+        
+        if bValue == nil then
+            return true
+        end
+
+        return aValue < bValue end)
 end
 
 function this:SortDescending()
     table.sort(self[self.valueKey], function(a,b)
-        return a[self.sortValueComponentName]:SortValueGet() > b[self.sortValueComponentName]:SortValueGet() end)
+        local aValue = a[self.sortValueComponentName]:SortValueGet()
+        local bValue = b[self.sortValueComponentName]:SortValueGet()
+
+        if aValue == nil then
+            return false
+        end
+        
+        if bValue == nil then
+            return true
+        end
+
+        return aValue > bValue end)
 end
