@@ -12,6 +12,41 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [2] = true, },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_AURA_STACK_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "GreaterThan"
+                    },
+                    value = 2,
+                },
+            },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 194249,
+        TextValueListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_AURA_STACK_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] 194249, },
+                },
+            },
+        },
+    },
     EnabledState =
     {
         ValueHandler =
@@ -35,14 +70,14 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {

@@ -30,6 +30,7 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame = {},
     Group =
     {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,

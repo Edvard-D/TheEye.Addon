@@ -2,9 +2,8 @@ TheEyeAddon.UI.Components.Child = {}
 local this = TheEyeAddon.UI.Components.Child
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
-local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
+local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
-
 
 
 --[[ #this#TEMPLATE#
@@ -26,22 +25,22 @@ function this.Setup(
         instance
     )
 
-    -- VisibleStateFunctionCaller
-    instance.OnShow = this.OnShow
-    instance.OnHide = this.OnHide
+    -- FrameStateFunctionCaller
+    instance.OnClaim = this.OnClaim
+    instance.OnRelease = this.OnRelease
 
-    instance.VisibleStateFunctionCaller = {}
-    VisibleStateFunctionCallerSetup(
-        instance.VisibleStateFunctionCaller,
+    instance.FrameStateFunctionCaller = {}
+    FrameStateFunctionCallerSetup(
+        instance.FrameStateFunctionCaller,
         instance,
         2
     )
 end
 
-function this:OnShow()
+function this:OnClaim()
     UIObjectInstances[self.parentKey].Group:ChildRegister(self.UIObject)
 end
 
-function this:OnHide()
+function this:OnRelease()
     UIObjectInstances[self.parentKey].Group:ChildDeregister(self.UIObject)
 end

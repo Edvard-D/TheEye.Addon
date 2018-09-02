@@ -12,6 +12,41 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         parentKey = parentKey,
     },
+    ContextIcon =
+    {
+        ValueHandler =
+        {
+            validKeys = { [6] = true, [10] = true, [14] = true, },
+        },
+        ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                    inputValues = { --[[talentID]] 23126, }, -- Misery
+                    value = 2,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] 589, }, -- Shadow Word: Pain
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "EqualTo"
+                    },
+                    value = 4,
+                },
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] "HUD_ICON_PRIMARY_SPELL-589", --[[componentName]] "ReadySoonAlert" },
+                    value = 8,
+                },
+            },
+        },
+        iconObjectType = "SPELL",
+        iconObjectID = 589,
+    },
     EnabledState =
     {
         ValueHandler =
@@ -30,14 +65,14 @@ TheEyeAddon.Managers.UI:FormatData(
             },
         },
     },
+    Frame =
+    {
+        Dimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    },
     Icon =
     {
-        DisplayData =
-        {
-            DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-            iconObjectType = "SPELL",
-            iconObjectID = spellID,
-        },
+        iconObjectType = "SPELL",
+        iconObjectID = spellID,
     },
     PriorityRank =
     {

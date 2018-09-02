@@ -1,8 +1,7 @@
 TheEyeAddon.UI.Components.Group = {}
 local this = TheEyeAddon.UI.Components.Group
-local inherited = TheEyeAddon.UI.Components.Elements.Frame
+local inherited = TheEyeAddon.UI.Components.Elements.Base
 
-local GroupFactory = TheEyeAddon.UI.Factories.Group
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
@@ -28,8 +27,7 @@ function this.Setup(
 )
 
     inherited.Setup(
-        instance,
-        GroupFactory
+        instance
     )
 
     instance.ChildDeregister = this.ChildDeregister
@@ -53,7 +51,7 @@ function this.Setup(
             Listeners =
             {
                 {
-                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_SIZE_CHANGED",
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED",
                     inputValues = { --[[parentKey]] instance.UIObject.key },
                 },
             }
@@ -94,11 +92,15 @@ end
 
 -- Child Registration
 function this:ChildRegister(childUIObject)
+    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "ChildRegister", self.UIObject, self, childUIObject.key)
+
     self.ValueHandler:Insert(childUIObject)
     self:DisplayUpdate()
 end
 
 function this:ChildDeregister(childUIObject)
+    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "ChildDeregister", self.UIObject, self, childUIObject.key)
+
     self.ValueHandler:Remove(childUIObject)
     self:DisplayUpdate()
 end
@@ -140,6 +142,7 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
 
     if frame ~= nil then
+        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate", self.UIObject, self)
         self.childArranger.Arrange(frame, self, self.childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end

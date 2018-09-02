@@ -3,6 +3,7 @@ local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
 local inherited = TheEyeAddon.UI.Components.Elements.Base
 
 local Comparisons = TheEyeAddon.Helpers.Comparisons
+local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local ListenerRegister = TheEyeAddon.Managers.Evaluators.ListenerRegister
 local ListenerDeregister = TheEyeAddon.Managers.Evaluators.ListenerDeregister
 
@@ -13,6 +14,12 @@ local ListenerDeregister = TheEyeAddon.Managers.Evaluators.ListenerDeregister
     eventEvaluatorKey = #EVALUATOR#NAME#
     inputValues = { #EVALUATOR#TEMPLATE#inputValues# }
     #OPTIONAL#priority = #INT#
+    #OPTIONAL#isInternal = #BOOL#
+    #OPTIONAL#comparisonValues =
+    {
+        type = TheEyeAddon.Helpers.Comparisons#NAME#
+        TheEyeAddon.Helpers.Comparisons#NAME#TEMPLATE#
+    }
 }
 ]]
 
@@ -59,6 +66,8 @@ function this:Deactivate()
 end
 
 function this:Notify(event, inputGroup)
+    DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.Listeners.Base", "Notify", self.UIObject, self.Component, event, inputGroup.key, inputGroup.currentValue)
+    
     if self.comparisonValues == nil then
         self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue)
     else

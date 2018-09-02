@@ -22,7 +22,7 @@ function this.Setup(
     instance
 )
 
-    instance.ValueHandler = { validKeys = { [2] = true } }
+    instance.ValueHandler = { validKeys = { [2] = true, } }
     instance.ListenerGroup =
     {
         Listeners =
@@ -44,15 +44,17 @@ function this.Setup(
     instance.Demodify = this.Demodify
 
     inherited.Setup(
-        instance
+        instance,
+        "background",
+        "changer"
     )
 end
 
 
 function this:Modify(frame)
-    frame.texture:SetDesaturated(1)
+    frame.background:SetDesaturated(1)
 end
 
 function this:Demodify(frame)
-    frame.texture:SetDesaturated(nil)
+    frame.background:SetDesaturated(nil)
 end

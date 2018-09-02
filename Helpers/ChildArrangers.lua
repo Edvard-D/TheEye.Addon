@@ -6,8 +6,9 @@ this.Delegate =
 {
     Arrange = function(parentFrame, groupInstance, childUIObjects)
         for i = 1, #childUIObjects do
-            local childFrame = childUIObjects[i].Frame.instance
-            local childPointSettings = childFrame.UIObject.DisplayData.DimensionTemplate.PointSettings
+            local childUIObject = childUIObjects[i]
+            local childFrame = childUIObject.Frame.instance
+            local childPointSettings = childUIObject.Frame.Dimensions.PointSettings
             childFrame:ClearAllPoints()
             childFrame:SetPoint(
                 childPointSettings.point,

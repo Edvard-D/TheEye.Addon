@@ -14,18 +14,25 @@ local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 --[[ SETUP
-    instance                    { #name#STRING#, function Modify(frame), function Demodify(frame) }
+    instance                    { function Modify(frame), function Demodify(frame) }
+    categoryKey                 #STRING#
+    roleKey                     #STRING#
 ]]
 function this.Setup(
-    instance
+    instance,
+    categoryKey,
+    roleKey
 )
+
+    instance.categoryKey = categoryKey
+    instance.roleKey = roleKey
 
     inherited.Setup(
         instance,
         this.OnValidKey,
         this.OnInvalidKey
     )
-    
+
     -- EnabledStateFunctionCaller
     instance.OnEnable = this.OnEnable
     instance.OnDisable = this.OnDisable

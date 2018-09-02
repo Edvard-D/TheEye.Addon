@@ -97,17 +97,19 @@ function this.ListenerRegister(evaluatorKey, listener)
             listener.priority = math.huge
         end
 
-            table.insert(listeners, listener)
+        table.insert(listeners, listener)
         table.sort(listeners, function(a,b)
-            return (a.isInternal and not b.isInternal)
-                or (a.isInternal == b.isInternal and a.priority < b.priority) end)
+        return (a.isInternal and not b.isInternal)
+            or (a.isInternal == b.isInternal and a.priority < b.priority) end)
     end
 
     listener.isListening = true
     EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
 
-    if listener.comparisonValues ~= nil or inputGroup.currentValue == true then
+    if inputGroup.currentValue == true
+        or (inputGroup.currentValue ~= nil and type(inputGroup.currentValue) ~= "boolean")
+        then
         listener:Notify(evaluatorKey, inputGroup)
     end
 end
