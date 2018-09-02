@@ -10,7 +10,8 @@ function this.Create(parentFrame)
 	return instance
 end
 
-function this:StyleSet(layer, fontTemplate)
+function this:StyleSet(layer, fontTemplate, point)
 	self:SetDrawLayer(layer)
 	self:SetFont(fontTemplate.font, fontTemplate.size, fontTemplate.flags)
+	self:SetPoint(point)
 end
