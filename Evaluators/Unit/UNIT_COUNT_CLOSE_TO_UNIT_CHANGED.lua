@@ -183,7 +183,7 @@ local function GroupedUnitWeightGet(groupedUnit)
     return weight
 end
 
-local function GroupedUnitsWeightsUpdate(groupedUnits)
+local function GroupedUnitsHighestWeightUpdate(groupedUnits)
     local guids = groupedUnits.guids
     local highestWeight = 0
 
@@ -312,7 +312,7 @@ local function UnitsUpdate(inputGroup)
     UnitsRemoveOldEvents(inputGroup.meleeUnits)
     UnitsRemoveOldEvents(inputGroup.groupedUnits)
 
-    GroupedUnitsWeightsUpdate(inputGroup.groupedUnits)
+    GroupedUnitsHighestWeightUpdate(inputGroup.groupedUnits)
 end
 
 
