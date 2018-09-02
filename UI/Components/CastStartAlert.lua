@@ -3,6 +3,8 @@ local this = TheEyeAddon.UI.Components.CastStartAlert
 local inherited = TheEyeAddon.UI.Components.FrameModifier
 
 local castStartHideDelay = 0.5
+local GetNetStats = GetNetStats
+local select = select
 
 
 --[[ #this#TEMPLATE#
@@ -32,7 +34,7 @@ function this.Setup(
                 inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
                 comparisonValues =
                 {
-                    value = castStartHideDelay,
+                    value = this.AlertLengthGet,
                     type = "LessThan",
                 },
                 value = 2,
@@ -57,4 +59,9 @@ end
 
 function this:Demodify(frame)
     frame.background:SetDesaturated(nil)
+end
+
+function this.AlertLengthGet()
+    print(castStartHideDelay + select(4, GetNetStats()) / 1000)
+    return castStartHideDelay + select(4, GetNetStats()) / 1000
 end
