@@ -8,11 +8,14 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         spellID = spellID,
     },
+    Charges =
+    {
+        spellID = spellID,
+    },
     Child =
     {
         parentKey = parentKey,
     },
-    -- @TODO show charges
     EnabledState =
     {
         ValueHandler =
