@@ -216,6 +216,7 @@ UI\Factories\Cooldown.lua
 # ---------------------------
 UI\Components\CastStartAlert.lua
 UI\Components\Child.lua
+UI\Components\ContextIcon.lua
 UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
