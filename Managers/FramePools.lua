@@ -3,16 +3,30 @@ local this = TheEyeAddon.Managers.FramePools
 
 local FrameCreate = TheEyeAddon.UI.Factories.Frame.Create
 local FrameSetDimensions = TheEyeAddon.UI.Factories.Frame.SetDimensions
+local pendingDeclaim = {}
 local pools = {}
 local table = table
 
 
-function this:Release()
-	self:Hide()
-	self:SetParent(nil)
-	self:ClearAllPoints()
-	self.isClaimed = false
-	self.UIObject = nil
+this.customEvents =
+{
+    "UPDATE",
+}
+
+
+function this.Initialize()
+    TheEyeAddon.Managers.Events.Register(this)
+end
+
+function this:OnEvent()
+	if #pendingDeclaim > 0 then
+		for i = 1, #pendingDeclaim do
+			pendingDeclaim[i].isClaimed = false
+		end
+
+		pendingDeclaim = nil
+		pendingDeclaim = {}
+	end
 end
 
 local function PoolGet(frameType)
@@ -49,4 +63,13 @@ function this.FrameClaim(uiObject, frameType, parentFrame, template, dimensions)
 	instance:Show()
 
 	return instance
+end
+
+function this:Release()
+	self:Hide()
+	self:SetParent(nil)
+	self:ClearAllPoints()
+	self.UIObject = nil
+
+	table.insert(pendingDeclaim, self)
 end
