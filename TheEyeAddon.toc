@@ -71,10 +71,14 @@ Values\General.lua
 Managers\Events.lua
 
 Managers\Evaluators.lua
-Managers\FramePools.lua
 Managers\GarbageCollector.lua
 Managers\SlashCommands.lua
 Managers\UI.lua
+
+
+UI\Factories\Frame.lua
+
+Managers\FramePools.lua
 
 
 
@@ -203,8 +207,6 @@ UI\Components\Elements\FrameModifier.lua
 # ---------------------------
 UI\Factories\Texture.lua
 UI\Factories\FontString.lua
-
-UI\Factories\Frame.lua
 
 UI\Factories\Cooldown.lua
 

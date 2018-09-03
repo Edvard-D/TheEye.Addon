@@ -92,15 +92,11 @@ end
 
 -- Child Registration
 function this:ChildRegister(childUIObject)
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "ChildRegister", self.UIObject, self, childUIObject.key)
-
     self.ValueHandler:Insert(childUIObject)
     self:DisplayUpdate()
 end
 
 function this:ChildDeregister(childUIObject)
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "ChildDeregister", self.UIObject, self, childUIObject.key)
-
     self.ValueHandler:Remove(childUIObject)
     self:DisplayUpdate()
 end
@@ -140,9 +136,10 @@ end
 
 function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
-
+    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate TRY", self.UIObject, self)
+        
     if frame ~= nil then
-        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate", self.UIObject, self)
+        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate SUCCESS", self.UIObject, self)
         self.childArranger.Arrange(frame, self, self.childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end
