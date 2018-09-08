@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.Cooldown = {}
 local this = TheEyeAddon.UI.Components.Cooldown
-local inherited = TheEyeAddon.UI.Components.FrameModifier
+local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local GetSpellCooldown = GetSpellCooldown

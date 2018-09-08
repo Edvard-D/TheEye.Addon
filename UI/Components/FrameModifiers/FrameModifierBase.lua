@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.FrameModifier = {}
-local this = TheEyeAddon.UI.Components.FrameModifier
+TheEyeAddon.UI.Components.FrameModifierBase = {}
+local this = TheEyeAddon.UI.Components.FrameModifierBase
 local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
 local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup

@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.CastStartAlert = {}
 local this = TheEyeAddon.UI.Components.CastStartAlert
-local inherited = TheEyeAddon.UI.Components.FrameModifier
+local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local castStartHideDelay = 0.5
 local GetNetStats = GetNetStats

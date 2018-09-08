@@ -214,17 +214,20 @@ UI\Factories\Cooldown.lua
 UI\Components\Child.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
-UI\Components\FrameModifier.lua
 UI\Components\Group.lua
 UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
 
-UI\Components\CastSoonAlert.lua
-UI\Components\CastStartAlert.lua
-UI\Components\Charges.lua
-UI\Components\ContextIcon.lua
-UI\Components\Cooldown.lua
-UI\Components\Icon.lua
+
+# --- FrameModifiers ---
+UI\Components\FrameModifiers\FrameModifierBase.lua
+
+UI\Components\FrameModifiers\CastSoonAlert.lua
+UI\Components\FrameModifiers\CastStartAlert.lua
+UI\Components\FrameModifiers\Charges.lua
+UI\Components\FrameModifiers\ContextIcon.lua
+UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\Icon.lua
 
 
 

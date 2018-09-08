@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.Icon = {}
 local this = TheEyeAddon.UI.Components.Icon
-local inherited = TheEyeAddon.UI.Components.FrameModifier
+local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
