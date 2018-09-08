@@ -80,7 +80,7 @@ function this.MarkerSetup()
             }
         }
     }
-    TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
+    TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
         functionCaller,
         function()
             this.markerTag = "HUD_ACTIVE"

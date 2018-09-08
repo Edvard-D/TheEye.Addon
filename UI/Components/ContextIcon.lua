@@ -6,7 +6,7 @@ local DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Context
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
 local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Context
 local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
 
@@ -16,7 +16,7 @@ local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
     #inherited#TEMPLATE#
     iconObjectType = #ICON#TYPE#
     iconObjectID = #ICON#ID#
-    #OPTIONAL#TextValueListenerGroup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller#TEMPLATE#
+    #OPTIONAL#TextValueListenerGroup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller#TEMPLATE#
 }
 ]]
 

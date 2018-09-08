@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyValue = {}
-local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyValue
-local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyValue
+TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyValue = {}
+local this = TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyValue
+local inherited = TheEyeAddon.UI.Elements.ValueHandlers.KeyValue
 
 
 --[[ #this#TEMPLATE#

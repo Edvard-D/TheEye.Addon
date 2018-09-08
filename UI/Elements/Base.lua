@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.Elements.Base = {}
-local this = TheEyeAddon.UI.Components.Elements.Base
+TheEyeAddon.UI.Elements.Base = {}
+local this = TheEyeAddon.UI.Elements.Base
 
 local uiManager = TheEyeAddon.Managers.UI
 

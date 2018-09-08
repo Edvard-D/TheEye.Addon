@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter = {}
-local this = TheEyeAddon.UI.Components.Elements.ListenerGroups.ValueSetter
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerGroups.Base
+TheEyeAddon.UI.Elements.ListenerGroups.ValueSetter = {}
+local this = TheEyeAddon.UI.Elements.ListenerGroups.ValueSetter
+local inherited = TheEyeAddon.UI.Elements.ListenerGroups.Base
 
-local ListenerBaseSetup = TheEyeAddon.UI.Components.Elements.Listeners.Base.Setup
+local ListenerBaseSetup = TheEyeAddon.UI.Elements.Listeners.Base.Setup
 
 
 --[[ #this#TEMPLATE#

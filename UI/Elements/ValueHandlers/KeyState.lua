@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState = {}
-local this = TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState
-local inherited = TheEyeAddon.UI.Components.Elements.ValueHandlers.Base
+TheEyeAddon.UI.Elements.ValueHandlers.KeyState = {}
+local this = TheEyeAddon.UI.Elements.ValueHandlers.KeyState
+local inherited = TheEyeAddon.UI.Elements.ValueHandlers.Base
 
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 
@@ -54,7 +54,7 @@ end
 function this:OnValueChange(key)
     local state = self.validKeys[key] or false
     
-    DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.ValueHandlers.KeyState", "OnValueChange", self.UIObject, self.Component, key, state)
+    DebugLogEntryAdd("TheEyeAddon.UI.Elements.ValueHandlers.KeyState", "OnValueChange", self.UIObject, self.Component, key, state)
     
     if self.state ~= state then
         self.state = state

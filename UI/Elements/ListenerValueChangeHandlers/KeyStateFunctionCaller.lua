@@ -1,16 +1,16 @@
-TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller = {}
-local this = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
-local inherited = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.Base
+TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller = {}
+local this = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.Base
 
-local IntegerKeyStateSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState.Setup
-local StateBasedIntChangerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger.Setup
+local IntegerKeyStateSetup = TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyState.Setup
+local StateBasedIntChangerSetup = TheEyeAddon.UI.Elements.ListenerGroups.StateBasedIntChanger.Setup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    ValueHandler = #TheEyeAddon.UI.Components.Elements.ValueHandlers.IntegerKeyState#TEMPLATE#
-    ListenerGroup = #TheEyeAddon.UI.Components.Elements.ListenerGroups.StateBasedIntChanger#TEMPLATE#
+    ValueHandler = #TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyState#TEMPLATE#
+    ListenerGroup = #TheEyeAddon.UI.Elements.ListenerGroups.StateBasedIntChanger#TEMPLATE#
 }
 ]]
 

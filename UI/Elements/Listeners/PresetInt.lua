@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Components.Elements.Listeners.PresetInt = {}
-local this = TheEyeAddon.UI.Components.Elements.Listeners.PresetInt
-local inherited = TheEyeAddon.UI.Components.Elements.Listeners.Base
+TheEyeAddon.UI.Elements.Listeners.PresetInt = {}
+local this = TheEyeAddon.UI.Elements.Listeners.PresetInt
+local inherited = TheEyeAddon.UI.Elements.Listeners.Base
 
 
 --[[ #this#TEMPLATE#

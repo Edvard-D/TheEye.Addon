@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Components.Elements.Listeners.Base = {}
-local this = TheEyeAddon.UI.Components.Elements.Listeners.Base
-local inherited = TheEyeAddon.UI.Components.Elements.Base
+TheEyeAddon.UI.Elements.Listeners.Base = {}
+local this = TheEyeAddon.UI.Elements.Listeners.Base
+local inherited = TheEyeAddon.UI.Elements.Base
 
 local Comparisons = TheEyeAddon.Helpers.Comparisons
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
@@ -66,7 +66,7 @@ function this:Deactivate()
 end
 
 function this:Notify(event, inputGroup)
-    DebugLogEntryAdd("TheEyeAddon.UI.Components.Elements.Listeners.Base", "Notify", self.UIObject, self.Component, event, inputGroup.key, inputGroup.currentValue)
+    DebugLogEntryAdd("TheEyeAddon.UI.Elements.Listeners.Base", "Notify", self.UIObject, self.Component, event, inputGroup.key, inputGroup.currentValue)
     
     if self.comparisonValues == nil then
         self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue)

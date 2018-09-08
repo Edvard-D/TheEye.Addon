@@ -1,11 +1,11 @@
 TheEyeAddon.UI.Components.Group = {}
 local this = TheEyeAddon.UI.Components.Group
-local inherited = TheEyeAddon.UI.Components.Elements.Base
+local inherited = TheEyeAddon.UI.Elements.Base
 
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
-local SortedTableSetup = TheEyeAddon.UI.Components.Elements.ValueHandlers.SortedTable.Setup
+local SortedTableSetup = TheEyeAddon.UI.Elements.ValueHandlers.SortedTable.Setup
 local table = table
 
 

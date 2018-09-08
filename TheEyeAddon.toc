@@ -150,55 +150,51 @@ Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
 
 
 # ---------------------------
-# |	UI\Components\Elements  |
+# |	      UI\Elements       |
 # ---------------------------
-UI\Components\Elements\Base.lua
+UI\Elements\Base.lua
 
 
 # --- Value Handlers ---
-UI\Components\Elements\ValueHandlers\Base.lua
+UI\Elements\ValueHandlers\Base.lua
 
-UI\Components\Elements\ValueHandlers\KeyState.lua
-UI\Components\Elements\ValueHandlers\KeyValue.lua
-UI\Components\Elements\ValueHandlers\StaticValue.lua
-UI\Components\Elements\ValueHandlers\TableBase.lua
-UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
+UI\Elements\ValueHandlers\KeyState.lua
+UI\Elements\ValueHandlers\KeyValue.lua
+UI\Elements\ValueHandlers\StaticValue.lua
+UI\Elements\ValueHandlers\TableBase.lua
+UI\Elements\ValueHandlers\ValueChangeNotifier.lua
 
-UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
-UI\Components\Elements\ValueHandlers\IntegerKeyValue.lua
-UI\Components\Elements\ValueHandlers\SortedTable.lua
+UI\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Elements\ValueHandlers\IntegerKeyValue.lua
+UI\Elements\ValueHandlers\SortedTable.lua
 
 
 # --- Listeners ---
-UI\Components\Elements\Listeners\Base.lua
+UI\Elements\Listeners\Base.lua
 
-UI\Components\Elements\Listeners\PresetInt.lua
+UI\Elements\Listeners\PresetInt.lua
 
 
 # --- Listener Groups ---
-UI\Components\Elements\ListenerGroups\Base.lua
+UI\Elements\ListenerGroups\Base.lua
 
-UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Components\Elements\ListenerGroups\ValueChanger.lua
-UI\Components\Elements\ListenerGroups\ValueSetter.lua
+UI\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Elements\ListenerGroups\ValueChanger.lua
+UI\Elements\ListenerGroups\ValueSetter.lua
 
-UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
+UI\Elements\ListenerGroups\StateBasedIntChanger.lua
 
 
 # --- Listener Value Change Handlers ---
-UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+UI\Elements\ListenerValueChangeHandlers\Base.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
-UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
+UI\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
-
-
-# --- Other ---
-UI\Components\Elements\FrameModifier.lua
+UI\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
 
@@ -215,18 +211,20 @@ UI\Factories\Cooldown.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Components\Child.lua
+UI\Components\EnabledState.lua
+UI\Components\Frame.lua
+UI\Components\FrameModifier.lua
+UI\Components\Group.lua
+UI\Components\PriorityRank.lua
+UI\Components\VisibleState.lua
+
 UI\Components\CastSoonAlert.lua
 UI\Components\CastStartAlert.lua
 UI\Components\Charges.lua
-UI\Components\Child.lua
 UI\Components\ContextIcon.lua
 UI\Components\Cooldown.lua
-UI\Components\EnabledState.lua
-UI\Components\Frame.lua
-UI\Components\Group.lua
 UI\Components\Icon.lua
-UI\Components\PriorityRank.lua
-UI\Components\VisibleState.lua
 
 
 

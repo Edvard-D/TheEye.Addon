@@ -1,8 +1,8 @@
 TheEyeAddon.UI.Components.Child = {}
 local this = TheEyeAddon.UI.Components.Child
-local inherited = TheEyeAddon.UI.Components.Elements.Base
+local inherited = TheEyeAddon.UI.Elements.Base
 
-local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
+local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
 local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
 
 
