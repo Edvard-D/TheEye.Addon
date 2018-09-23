@@ -11,7 +11,7 @@ TheEyeAddon.Managers.UI:FormatData(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true },
+            validKeys = { },--[6] = true },
         },
         ListenerGroup =
         {
