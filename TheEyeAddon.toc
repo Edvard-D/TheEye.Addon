@@ -70,6 +70,7 @@ Values\General.lua
 # ---------------------------
 Managers\Events.lua
 
+Managers\Actions.lua
 Managers\Evaluators.lua
 Managers\GarbageCollector.lua
 Managers\SlashCommands.lua
