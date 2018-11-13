@@ -40,7 +40,7 @@ local function IsActionValidForFilters(action, filters)
     return true
 end
 
-function this.FilteredGet(filters)
+function this.GetFiltered(filters)
     local filteredActions = {}
     local values = this.values
 
