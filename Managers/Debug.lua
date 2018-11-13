@@ -171,7 +171,7 @@ local function IsFilterValid(filter, namespace, action, uiObject, component, ...
         if filterKeyStates[filterElement.key] == nil then
             filterKeyStates[filterElement.key] = false
         end
-        if IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...) == true then
+        if filterKeyStates[filterElement.key] ~= true and IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...) == true then
             filterKeyStates[filterElement.key] = true
         end
     end
