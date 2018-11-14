@@ -186,10 +186,12 @@ local function IsFilterValid(filter, namespace, action, uiObject, component, ...
 end
 
 local function IsLogEntryValid(namespace, action, uiObject, component, ...)
+    if filters ~= nil then
     for i = 1, #filters do
         if IsFilterValid(filters[i], namespace, action, uiObject, component, ...) == true then
             return true
         end
+    end
     end
 
     return false
@@ -198,8 +200,8 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
-        and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true
+    if (TheEyeAddon.Managers.Settings.Account.Saved == nil
+            or TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true)
         and IsLogEntryValid(namespace, action, uiObject, component) == true
         then
         local logEntry =
@@ -217,7 +219,9 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
 
-        if TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true then
+        if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
+            and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true
+            then
             local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
             table.remove(formattedLogEntry, 1)
             table.remove(formattedLogEntry, 1)
