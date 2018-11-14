@@ -47,6 +47,7 @@
 # ---------------------------
 Values\Namespaces.lua
 
+Managers\Actions.lua
 Managers\Settings.lua
 Helpers\Tags.lua
 
@@ -112,7 +113,6 @@ Values\Spells\VoidTorrent.lua
 # ---------------------------
 Managers\Events.lua
 
-Managers\Actions.lua
 Managers\Evaluators.lua
 Managers\GarbageCollector.lua
 Managers\SlashCommands.lua
