@@ -64,6 +64,48 @@ Values\FontTemplates.lua
 Values\General.lua
 
 
+# --- Spells ---
+Values\Spells\DarkAscension.lua
+Values\Spells\DarkVoid.lua
+Values\Spells\DispelMagic.lua
+Values\Spells\Dispersion.lua
+Values\Spells\Fade.lua
+Values\Spells\GladiatorsMedallion.lua
+Values\Spells\LeapOfFaith.lua
+Values\Spells\Levitate.lua
+Values\Spells\MassDispel.lua
+Values\Spells\Mindbender.lua
+Values\Spells\MindBlast.lua
+Values\Spells\MindBomb.lua
+Values\Spells\MindControl.lua
+Values\Spells\MindFlay.lua
+Values\Spells\MindSear.lua
+Values\Spells\MindVision.lua
+Values\Spells\PowerWordFortitude.lua
+Values\Spells\PowerWordShield.lua
+Values\Spells\PsychicHorror.lua
+Values\Spells\PsychicScream.lua
+Values\Spells\Psyfiend.lua
+Values\Spells\PurifyDisease.lua
+Values\Spells\Resurrection.lua
+Values\Spells\ShackleUndead.lua
+Values\Spells\ShadowCrash.lua
+Values\Spells\Shadowfiend.lua
+Values\Spells\Shadowform.lua
+Values\Spells\ShadowMend.lua
+Values\Spells\ShadowWordDeath.lua
+Values\Spells\ShadowWordPain.lua
+Values\Spells\ShadowWordVoid.lua
+Values\Spells\Silence.lua
+Values\Spells\SurrenderToMadness.lua
+Values\Spells\VampiricEmbrace.lua
+Values\Spells\VampiricTouch.lua
+Values\Spells\VoidBolt.lua
+Values\Spells\VoidEruption.lua
+Values\Spells\VoidShift.lua
+Values\Spells\VoidTorrent.lua
+
+
 
 # ---------------------------
 # |	       Managers        	|
