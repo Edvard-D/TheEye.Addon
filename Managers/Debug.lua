@@ -202,7 +202,7 @@ end
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
     if (TheEyeAddon.Managers.Settings.Account.Saved == nil
             or TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true)
-        and IsLogEntryValid(namespace, action, uiObject, component) == true
+        and IsLogEntryValid(namespace, action, uiObject, component, ...) == true
         then
         local logEntry =
         {
