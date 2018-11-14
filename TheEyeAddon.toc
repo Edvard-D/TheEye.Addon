@@ -47,7 +47,7 @@
 # ---------------------------
 Values\Namespaces.lua
 
-Managers\Actions.lua
+Managers\Icons.lua
 Managers\Settings.lua
 Helpers\Tags.lua
 
@@ -65,46 +65,46 @@ Values\FontTemplates.lua
 Values\General.lua
 
 
-# --- Spells ---
-Values\Spells\DarkAscension.lua
-Values\Spells\DarkVoid.lua
-Values\Spells\DispelMagic.lua
-Values\Spells\Dispersion.lua
-Values\Spells\Fade.lua
-Values\Spells\GladiatorsMedallion.lua
-Values\Spells\LeapOfFaith.lua
-Values\Spells\Levitate.lua
-Values\Spells\MassDispel.lua
-Values\Spells\Mindbender.lua
-Values\Spells\MindBlast.lua
-Values\Spells\MindBomb.lua
-Values\Spells\MindControl.lua
-Values\Spells\MindFlay.lua
-Values\Spells\MindSear.lua
-Values\Spells\MindVision.lua
-Values\Spells\PowerWordFortitude.lua
-Values\Spells\PowerWordShield.lua
-Values\Spells\PsychicHorror.lua
-Values\Spells\PsychicScream.lua
-Values\Spells\Psyfiend.lua
-Values\Spells\PurifyDisease.lua
-Values\Spells\Resurrection.lua
-Values\Spells\ShackleUndead.lua
-Values\Spells\ShadowCrash.lua
-Values\Spells\Shadowfiend.lua
-Values\Spells\Shadowform.lua
-Values\Spells\ShadowMend.lua
-Values\Spells\ShadowWordDeath.lua
-Values\Spells\ShadowWordPain.lua
-Values\Spells\ShadowWordVoid.lua
-Values\Spells\Silence.lua
-Values\Spells\SurrenderToMadness.lua
-Values\Spells\VampiricEmbrace.lua
-Values\Spells\VampiricTouch.lua
-Values\Spells\VoidBolt.lua
-Values\Spells\VoidEruption.lua
-Values\Spells\VoidShift.lua
-Values\Spells\VoidTorrent.lua
+# --- Icons ---
+Values\Icons\DarkAscension.lua
+Values\Icons\DarkVoid.lua
+Values\Icons\DispelMagic.lua
+Values\Icons\Dispersion.lua
+Values\Icons\Fade.lua
+Values\Icons\GladiatorsMedallion.lua
+Values\Icons\LeapOfFaith.lua
+Values\Icons\Levitate.lua
+Values\Icons\MassDispel.lua
+Values\Icons\Mindbender.lua
+Values\Icons\MindBlast.lua
+Values\Icons\MindBomb.lua
+Values\Icons\MindControl.lua
+Values\Icons\MindFlay.lua
+Values\Icons\MindSear.lua
+Values\Icons\MindVision.lua
+Values\Icons\PowerWordFortitude.lua
+Values\Icons\PowerWordShield.lua
+Values\Icons\PsychicHorror.lua
+Values\Icons\PsychicScream.lua
+Values\Icons\Psyfiend.lua
+Values\Icons\PurifyDisease.lua
+Values\Icons\Resurrection.lua
+Values\Icons\ShackleUndead.lua
+Values\Icons\ShadowCrash.lua
+Values\Icons\Shadowfiend.lua
+Values\Icons\Shadowform.lua
+Values\Icons\ShadowMend.lua
+Values\Icons\ShadowWordDeath.lua
+Values\Icons\ShadowWordPain.lua
+Values\Icons\ShadowWordVoid.lua
+Values\Icons\Silence.lua
+Values\Icons\SurrenderToMadness.lua
+Values\Icons\VampiricEmbrace.lua
+Values\Icons\VampiricTouch.lua
+Values\Icons\VoidBolt.lua
+Values\Icons\VoidEruption.lua
+Values\Icons\VoidShift.lua
+Values\Icons\VoidTorrent.lua
 
 
 
