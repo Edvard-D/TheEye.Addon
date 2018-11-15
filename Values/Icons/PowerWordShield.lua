@@ -1,6 +1,5 @@
 TheEyeAddon.Managers.Icons.Add(
 {
-    spellID = 17,
     properties =
     {
         {
@@ -14,6 +13,14 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "DEFENSIVE",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 17,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
         },
         {
             type = "TARGETING",

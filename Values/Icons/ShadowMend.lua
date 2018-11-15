@@ -1,6 +1,5 @@
 TheEyeAddon.Managers.Icons.Add(
 {
-    spellID = 186263,
     properties =
     {
         {
@@ -18,6 +17,14 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY_SUB_TYPE",
             value = "HOT",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 186263,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
         },
         {
             type = "TARGETING",

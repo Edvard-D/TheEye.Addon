@@ -24,6 +24,14 @@ TheEyeAddon.Managers.Icons.Add(
             value = 60,
         },
         {
+            type = "OBJECT_ID",
+            value = 123040,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
             type = "TARGETING",
             value = "DIRECT",
         },
