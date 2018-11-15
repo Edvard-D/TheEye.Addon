@@ -39,6 +39,14 @@ TheEyeAddon.Managers.Icons.Add(
             value = "POSITIONAL",
         },
         {
+            type = "UNITS_NEAR_MAX",
+            value = math.huge,
+        },
+        {
+            type = "UNITS_NEAR_MIN",
+            value = 1,
+        },
+        {
             type = "USAGE_RATE",
             value = 2,
         },

@@ -31,6 +31,14 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SELF",
         },
         {
+            type = "UNITS_NEAR_MAX",
+            value = math.huge,
+        },
+        {
+            type = "UNITS_NEAR_MIN",
+            value = 1,
+        },
+        {
             type = "USAGE_RATE",
             value = 2,
         },
