@@ -27,6 +27,14 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "TALENT_REQUIRED",
+            value = 21752,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 23137,
+        },
+        {
             type = "TARGETING",
             value = "SELF",
         },
