@@ -1,6 +1,6 @@
 local parentKey = "HUD_MODULE_ACTIVE"
 
-TheEyeAddon.Managers.UI:FormatData(
+TheEyeAddon.Managers.UI.FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "HEROLUST", },
     Child =

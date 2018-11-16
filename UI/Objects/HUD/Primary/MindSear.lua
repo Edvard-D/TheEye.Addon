@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_PRIMARY"
 local spellID = 48045
 
-TheEyeAddon.Managers.UI:FormatData(
+TheEyeAddon.Managers.UI.FormatData(
 {
     tags = { "HUD", "ICON", "PRIMARY", "SPELL-48045", },
     CastStartAlert =

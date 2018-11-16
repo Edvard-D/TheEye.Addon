@@ -1,7 +1,7 @@
 local parentKey = "HUD_MODULE_ACTIVE"
 local spellID = 194249
 
-TheEyeAddon.Managers.UI:FormatData(
+TheEyeAddon.Managers.UI.FormatData(
 {
     tags = { "HUD", "ICON", "ACTIVE", "SPELL-194249", },
     Child =

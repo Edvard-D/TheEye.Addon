@@ -1,6 +1,6 @@
 local parentKey = "GROUP_HUD"
 
-TheEyeAddon.Managers.UI:FormatData(
+TheEyeAddon.Managers.UI.FormatData(
 {
     tags = { "HUD", "MODULE", "PRIMARY" },
     Child =

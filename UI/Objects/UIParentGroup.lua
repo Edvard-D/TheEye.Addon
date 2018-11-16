@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.UI:FormatData(
+TheEyeAddon.Managers.UI.FormatData(
 {
     tags = { "UIPARENT" },
     EnabledState =

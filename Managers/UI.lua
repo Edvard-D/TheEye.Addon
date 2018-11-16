@@ -4,7 +4,7 @@ local this = TheEyeAddon.Managers.UI
 local table = table
 
 
-function this:FormatData(uiObject)
+function this.FormatData(uiObject)
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEyeAddon.UI.Objects.Instances[key] = uiObject
