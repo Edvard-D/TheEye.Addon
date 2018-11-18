@@ -27,6 +27,10 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "PVP_REQUIRED",
+            value = true,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 128,
         },
