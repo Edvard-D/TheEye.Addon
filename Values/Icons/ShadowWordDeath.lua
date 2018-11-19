@@ -23,6 +23,11 @@ TheEyeAddon.Managers.Icons.Add(
             value = 9,
         },
         {
+            type = "HEALTH_REQUIRED",
+            comparison = "LessThan",
+            value = 0.2,
+        },
+        {
             type = "OBJECT_ID",
             value = 32379,
         },
