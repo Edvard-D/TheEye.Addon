@@ -39,10 +39,6 @@ TheEyeAddon.Managers.Icons.Add(
             value = 9,
         },
         {
-            type = "UNITS_NEAR_MIN",
-            value = 1,
-        },
-        {
             type = "USAGE_RATE",
             value = 5,
         },

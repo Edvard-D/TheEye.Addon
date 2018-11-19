@@ -27,10 +27,6 @@ TheEyeAddon.Managers.Icons.Add(
             value = "DIRECT",
         },
         {
-            type = "UNITS_NEAR_MAX",
-            value = math.huge,
-        },
-        {
             type = "UNITS_NEAR_MIN",
             value = 3,
         },
