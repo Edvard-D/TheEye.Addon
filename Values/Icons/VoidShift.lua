@@ -28,7 +28,6 @@ TheEyeAddon.Managers.Icons.Add(
         },
         {
             type = "PVP_REQUIRED",
-            value = true,
         },
         {
             type = "TALENT_REQUIRED",
