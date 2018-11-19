@@ -8,6 +8,12 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SINGLE",
         },
         {
+            type = "AURA_REQUIRED",
+            comparison = "GreaterThanEqualTo",
+            stacks = 6,
+            value = 194249,
+        },
+        {
             type = "CAST_TYPE",
             value = "INSTANT",
         },
