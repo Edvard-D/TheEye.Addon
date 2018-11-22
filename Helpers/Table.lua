@@ -2,6 +2,21 @@ local pairs = pairs
 local table = table
 
 
+-- See: http://lua-users.org/wiki/CopyTable
+function table.copy()
+    local originalType = type(original)
+    local copy
+    if originalType == 'table' then
+        copy = {}
+        for originalKey, originalValue in next, original, nil do
+            copy[table.copy(originalKey)] = table.copy(originalValue)
+        end
+    else
+        copy = original
+    end
+    return copy
+end
+
 function table.hasvalue(tab, value)
     for i = 1, #tab do
         if tab[i] == value then
