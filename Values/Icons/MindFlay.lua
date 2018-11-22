@@ -21,7 +21,7 @@ TheEyeAddon.Managers.Icons.Add(
         },
         {
             type = "OBJECT_ID",
-            value = 585,
+            value = 15407,
         },
         {
             type = "OBJECT_TYPE",
