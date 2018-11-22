@@ -1,6 +1,5 @@
 TheEyeAddon.Managers.Icons.Add(
 {
-    spellID = 585,
     properties =
     {
         {
