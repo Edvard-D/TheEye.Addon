@@ -8,6 +8,7 @@ local math = math
 local select = select
 local table = table
 local UnitCastingInfo = UnitCastingInfo
+local UnitChannelInfo = UnitChannelInfo
 
 
 --[[ #this#TEMPLATE#
@@ -55,8 +56,14 @@ local function CalculateCurrentValue(inputValues, spellID, startTime)
     local elapsedTime = math.huge
     local expectedSpellID = inputValues[2]
     local unit = inputValues[1]
+    local retrievedSpellID
+    local retrievedStartTime
+    
+    retrievedStartTime, _, _, _, _, retrievedSpellID = select(4, UnitCastingInfo(unit))
+    if retrievedSpellID == nil then
+        retrievedStartTime, _, _, _, retrievedSpellID = select(4, UnitChannelInfo(unit))
+    end
 
-    local retrievedStartTime, _, _, _, _, retrievedSpellID = select(4, UnitCastingInfo(unit))
     if retrievedStartTime ~= nil then
         retrievedStartTime = retrievedStartTime / 1000
     end
