@@ -6,7 +6,7 @@ local table = table
 function table.copy(original)
     local originalType = type(original)
     local copy
-    if originalType == 'table' then
+    if originalType == "table" then
         copy = {}
         for originalKey, originalValue in next, original, nil do
             copy[table.copy(originalKey)] = table.copy(originalValue)
