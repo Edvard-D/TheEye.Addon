@@ -1,5 +1,25 @@
 TheEyeAddon.Managers.Icons.Add(
 {
+    PriorityRank =
+    {
+        validKeys = {
+            [0] = 6,
+            [2] = 10,
+        },
+        listeners =
+        {
+            {
+                eventEvaluatorKey = "UNIT_COUNT_CLOSE_TO_UNIT_CHANGED",
+                inputValues = { --[[unit]] "target", --[[hostilityMask]] COMBATLOG_OBJECT_REACTION_HOSTILE, },
+                comparisonValues =
+                {
+                    value = 3,
+                    type = "GreaterThanEqualTo"
+                },
+                value = 2,
+            },
+        }
+    },
     properties =
     {
         {
