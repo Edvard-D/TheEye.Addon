@@ -3,7 +3,7 @@ local table = table
 
 
 -- See: http://lua-users.org/wiki/CopyTable
-function table.copy()
+function table.copy(original)
     local originalType = type(original)
     local copy
     if originalType == 'table' then
