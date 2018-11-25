@@ -17,10 +17,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "DAMAGE",
-        },
-        {
-            type = "CATEGORY_SUB_TYPE",
-            value = "DOT",
+            subvalue = "DOT",
         },
         {
             type = "OBJECT_ID",

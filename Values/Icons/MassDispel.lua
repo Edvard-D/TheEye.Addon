@@ -13,14 +13,12 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "REMOVE_BUFF",
+            subvalue = "MAGIC",
         },
         {
             type = "CATEGORY",
             value = "REMOVE_DEBUFF",
-        },
-        {
-            type = "CATEGORY_SUB_TYPE",
-            value = "MAGIC",
+            subvalue = "MAGIC",
         },
         {
             type = "COOLDOWN",

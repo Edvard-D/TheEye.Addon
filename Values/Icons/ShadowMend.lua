@@ -13,10 +13,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "HEAL",
-        },
-        {
-            type = "CATEGORY_SUB_TYPE",
-            value = "HOT",
+            subvalue = "HOT",
         },
         {
             type = "OBJECT_ID",

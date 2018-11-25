@@ -13,10 +13,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "REMOVE_DEBUFF",
-        },
-        {
-            type = "CATEGORY_SUB_TYPE",
-            value = "DISEASE",
+            subvalue = "DISEASE",
         },
         {
             type = "COOLDOWN",

@@ -17,10 +17,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "DAMAGE",
-        },
-        {
-            type = "CATEGORY_SUB_TYPE",
-            value = "BUFF",
+            subvalue = "BUFF",
         },
         {
             type = "COOLDOWN",
