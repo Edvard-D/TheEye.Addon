@@ -11,7 +11,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             {
                 eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
-                inputValues = { --[[spellID]] spellID, },
+                inputValues = { --[[spellID]] 32379, },
                 comparisonValues =
                 {
                     value = 1,
@@ -21,7 +21,7 @@ TheEyeAddon.Managers.Icons.Add(
             },
             {
                 eventEvaluatorKey = "PLAYER_SPELL_CHARGE_CHANGED",
-                inputValues = { --[[spellID]] spellID, },
+                inputValues = { --[[spellID]] 32379, },
                 comparisonValues =
                 {
                     value = 2,
