@@ -28,6 +28,19 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "SUBSTITUTED",
+            value = 34914, -- Vampiric Touch
+            requirement =
+            {
+                type = "TALENT_REQUIRED",
+                value = 23126, -- Misery
+            },
+        },
+        {
+            type = "SUBSTITUTED",
+            value = 263346, -- Dark Void
+        },
+        {
             type = "TARGETING",
             value = "DIRECT",
         },

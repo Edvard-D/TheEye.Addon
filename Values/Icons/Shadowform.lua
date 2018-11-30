@@ -28,6 +28,10 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "SUBSTITUTED",
+            value = 194249, -- Voidform
+        },
+        {
             type = "TARGETING",
             value = "SELF",
         },
