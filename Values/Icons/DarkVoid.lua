@@ -47,6 +47,10 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "SUBSTITUTES",
+            value = 589, -- Shadow Word: Pain
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 23127,
         },
