@@ -20,10 +20,6 @@ TheEyeAddon.Managers.Icons.Add(
             subvalue = "BUFF",
         },
         {
-            type = "COOLDOWN",
-            value = 0,
-        },
-        {
             type = "OBJECT_ID",
             value = 232698,
         },
