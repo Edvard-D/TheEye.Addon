@@ -31,6 +31,9 @@ TheEyeAddon.Managers.Icons.Add(
             value = "SPELL",
         },
         {
+            type = "POWER_REQUIRED",
+        },
+        {
             type = "TARGETING",
             value = "DIRECT",
         },
