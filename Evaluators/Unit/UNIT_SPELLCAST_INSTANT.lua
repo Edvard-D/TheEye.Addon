@@ -5,6 +5,7 @@ local GetTime = GetTime
 local select = select
 local table = table
 local UnitCastingInfo = UnitCastingInfo
+local UnitChannelInfo = UnitChannelInfo
 
 
 --[[ #this#TEMPLATE#
@@ -42,7 +43,12 @@ end
 
 function this:Evaluate(inputGroup, event, ...)
     if event == "PLAYER_TARGET_CHANGED" then
-        inputGroup.isCasting = select(9, UnitCastingInfo(inputGroup.inputValues[1])) == inputGroup.inputValues[2]
+        local retrievedSpellID = select(9, UnitCastingInfo(inputGroup.inputValues[1]))
+        if retrievedSpellID == nil then
+            retrievedSpellID = select(8, UnitChannelInfo(inputGroup.inputValues[1]))
+        end
+
+        inputGroup.isCasting = retrievedSpellID == inputGroup.inputValues[2]
     elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
         if inputGroup.isCasting ~= true then
             inputGroup.castTimestamp = GetTime()
