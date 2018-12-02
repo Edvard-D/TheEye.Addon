@@ -38,7 +38,7 @@ function this.Setup(
 
         local iconUIObject =
         {
-            tags = { "ICON", table.concat({ OBJECT_TYPE.value, "-", OBJECT_ID.value }), string.sub(tostring(instance.UIObject), 13, 19) },
+            tags = { "ICON", table.concat({ OBJECT_TYPE.value, "-", OBJECT_ID.value }), instance.instanceID },
             Child =
             {
                 parentKey = instance.UIObject.key,
@@ -72,6 +72,9 @@ function this.Setup(
             },
         }
 
+        icon.UIObject = iconUIObject
+        icon.UIObject.instanceID = instance.instanceID
+
         -- Talent Required
         local talentData, talentCount = GetPropertiesOfType(icon, "TALENT_REQUIRED")
         if talentCount > 0 then
@@ -88,13 +91,11 @@ function this.Setup(
                 end
             end
         end
-
-        icon.UIObject = iconUIObject
     end
 end
 
 function this.IconKeyGet(objectType, objectID, uiObject)
-    return table.concat({ "ICON_", objectType, "-", objectID, "_", string.sub(tostring(uiObject), 13, 19) })
+    return table.concat({ "ICON_", objectType, "-", objectID, "_", uiObject.instanceID })
 end
 
 function this.TalentSetup(iconUIObject, validKeys, talentData, previousValue)

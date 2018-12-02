@@ -13,6 +13,7 @@ local table = table
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
+    instanceID = #INSTANCE#ID#
     childArranger = TheEyeAddon.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#

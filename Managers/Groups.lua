@@ -211,9 +211,17 @@ local function IconGroupUIObjectSetup(iconGroup)
         }
     }
 
+    -- Key
+    if iconGroup.instanceID == nil then
+        iconGroup.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    table.insert(uiObject.tags, iconGroup.instanceID)
+    FormatData(uiObject)
+
     -- Group Component
     uiObject.Group =
     {
+        instanceID = iconGroup.instanceID,
         Filters = iconGroup.Filters,
         IconDimensions = iconGroup.IconDimensions,
         childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
@@ -222,13 +230,9 @@ local function IconGroupUIObjectSetup(iconGroup)
     }
     uiObject[groupComponentNames[iconGroup.type]] = uiObject.Group
 
-    -- Key
-    table.insert(uiObject.tags, string.sub(tostring(uiObject), 13, 19))
-    FormatData(uiObject)
-
+    -- Setup
     UIObjectSetup(uiObject)
     
-    -- Icons Setup
     local icons = uiObject[groupComponentNames[iconGroup.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
