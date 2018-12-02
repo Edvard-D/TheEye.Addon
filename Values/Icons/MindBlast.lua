@@ -15,6 +15,15 @@ TheEyeAddon.Managers.Icons.Add(
             value = "CAST",
         },
         {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+            requirement =
+            {
+                type = "AURA_REQUIRED",
+                value = 124430, -- Shadowy Insight
+            },
+        },
+        {
             type = "CATEGORY",
             value = "DAMAGE",
         },
