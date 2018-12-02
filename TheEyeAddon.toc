@@ -118,6 +118,8 @@ Managers\GarbageCollector.lua
 Managers\SlashCommands.lua
 Managers\UI.lua
 
+Managers\Groups.lua
+
 
 UI\Factories\Frame.lua
 
@@ -275,6 +277,8 @@ UI\Components\FrameModifiers\Icon.lua
 # --- Groups ---
 UI\Components\Groups\GroupBase.lua
 UI\Components\Groups\IconGroup.lua
+UI\Components\Groups\PriorityGroup.lua
+UI\Components\Groups\RotationGroup.lua
 
 
 
