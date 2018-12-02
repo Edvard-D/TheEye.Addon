@@ -137,6 +137,10 @@ function this:ModifierAdd(modifier)
 end
 
 function this:ModifierRemove(modifier)
+    if self.modifiers == nil then
+        return
+    end
+
     local category = ModifierCategoryGet(self.modifiers, modifier.categoryKey)
 
     if modifier.roleKey == "creator" then
