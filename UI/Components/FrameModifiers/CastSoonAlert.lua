@@ -34,7 +34,7 @@ function this.Setup(
             {
                 comparisonValues =
                 {
-                    floor = 0,
+                    floor = 0.001, -- Represents value of 0 but must be greater than 0
                     ceiling = this.AlertLengthGet,
                     type = "Between",
                 },
