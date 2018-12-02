@@ -10,7 +10,7 @@ function this.Add(icon)
     table.insert(this.values, icon)
 end
 
-local function IsIconValidForFilter(icon, filter)
+function this.IsIconValidForFilter(icon, filter)
     local properties = icon.properties
     for i = 1, #properties do
         if properties[i].type == filter.type and properties[i].value == filter.value then
@@ -26,7 +26,7 @@ local function IsIconValidForFilters(icon, filters)
         if filterTypeStates[filter.type] == nil then
             filterTypeStates[filter.type] = false
         end
-        if filterTypeStates[filter.type] ~= true and IsIconValidForFilter(icon, filter) == true then
+        if filterTypeStates[filter.type] ~= true and this.IsIconValidForFilter(icon, filter) == true then
             filterTypeStates[filter.type] = true
         end
     end
