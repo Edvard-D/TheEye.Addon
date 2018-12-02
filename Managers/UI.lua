@@ -17,7 +17,7 @@ function this.FormatData(uiObject)
     uiObject.tags = searchableTags
 end
 
-local function UIObjectSetup(uiObject)
+function this.UIObjectSetup(uiObject)
     local components = TheEyeAddon.UI.Components
     local pairs = pairs
 
@@ -41,7 +41,7 @@ function this.Initialize()
     local pairs = pairs
 
     for instanceKey,_ in pairs(instances) do
-        UIObjectSetup(instances[instanceKey])
+        this.UIObjectSetup(instances[instanceKey])
     end
 
     this.currentUIObject = nil
