@@ -1,7 +1,8 @@
-TheEyeAddon.UI.Components.Group = {}
-local this = TheEyeAddon.UI.Components.Group
+TheEyeAddon.UI.Components.GroupBase = {}
+local this = TheEyeAddon.UI.Components.GroupBase
 local inherited = TheEyeAddon.UI.Elements.Base
 
+local FormatData = TheEyeAddon.Managers.UI.FormatData
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local screenWidth = TheEyeAddon.Values.screenSize.width
 local screenHeight = TheEyeAddon.Values.screenSize.height
@@ -136,10 +137,10 @@ end
 
 function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate TRY", self.UIObject, self)
+    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.GroupBase", "DisplayUpdate TRY", self.UIObject, self)
         
     if frame ~= nil then
-        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.Group", "DisplayUpdate SUCCESS", self.UIObject, self)
+        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.GroupBase", "DisplayUpdate SUCCESS", self.UIObject, self)
         self.childArranger.Arrange(frame, self, self.childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end

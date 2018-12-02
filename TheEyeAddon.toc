@@ -257,7 +257,6 @@ UI\Factories\Cooldown.lua
 UI\Components\Child.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
-UI\Components\Group.lua
 UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
 
@@ -271,6 +270,10 @@ UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
+
+
+# --- Groups ---
+UI\Components\Groups\GroupBase.lua
 
 
 
