@@ -1,6 +1,6 @@
 TheEyeAddon.UI.Components.IconGroup = {}
 local this = TheEyeAddon.UI.Components.IconGroup
-local inherited = TheEyeAddon.UI.Components.GroupBase
+local inherited = TheEyeAddon.UI.Components.Group
 
 local IconsGetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
 local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType

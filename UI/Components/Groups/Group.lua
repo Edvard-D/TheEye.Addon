@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.GroupBase = {}
-local this = TheEyeAddon.UI.Components.GroupBase
+TheEyeAddon.UI.Components.Group = {}
+local this = TheEyeAddon.UI.Components.Group
 local inherited = TheEyeAddon.UI.Elements.Base
 
 local FormatData = TheEyeAddon.Managers.UI.FormatData
