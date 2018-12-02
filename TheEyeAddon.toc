@@ -274,6 +274,7 @@ UI\Components\FrameModifiers\Icon.lua
 
 # --- Groups ---
 UI\Components\Groups\GroupBase.lua
+UI\Components\Groups\IconGroup.lua
 
 
 
