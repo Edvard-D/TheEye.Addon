@@ -175,7 +175,6 @@ local function IconGroupUIObjectSetup(iconGroup)
 
     local uiObject =
     {
-        tags = { "GROUP", iconGroup.type, },
         Child =
         {
             parentKey = parentKey,
@@ -215,7 +214,7 @@ local function IconGroupUIObjectSetup(iconGroup)
     if iconGroup.instanceID == nil then
         iconGroup.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    table.insert(uiObject.tags, iconGroup.instanceID)
+    uiObject.tags = { "GROUP", iconGroup.instanceID }
     FormatData(uiObject)
 
     -- Group Component
