@@ -275,10 +275,13 @@ UI\Components\FrameModifiers\Icon.lua
 
 
 # --- Groups ---
-UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\Group.lua
+
 UI\Components\Groups\IconGroup.lua
+
+UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\PriorityGroup.lua
+
 UI\Components\Groups\RotationGroup.lua
 
 
