@@ -2,8 +2,8 @@ TheEyeAddon.Managers.Icons = {}
 local this = TheEyeAddon.Managers.Icons
 
 
-local table = table
 local keyValues = {}
+local table = table
 local values = {}
 
 
