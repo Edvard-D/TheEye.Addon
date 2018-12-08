@@ -3,15 +3,15 @@ local this = TheEyeAddon.Managers.Icons
 
 
 local table = table
-this.keyValues = {}
-this.values = {}
+local keyValues = {}
+local values = {}
 
 
 function this.Add(icon)
     local key = this.GetPropertiesOfType(icon, "OBJECT_ID").value
 
-    this.keyValues[key] = icon
-    table.insert(this.values, icon)
+    keyValues[key] = icon
+    table.insert(values, icon)
 end
 
 function this.IsIconValidForFilter(icon, filter)
@@ -46,7 +46,6 @@ end
 
 function this.GetFiltered(filters)
     local filteredIcons = {}
-    local values = this.values
 
     for i = 1, #values do
         if IsIconValidForFilters(values[i], filters) == true then
