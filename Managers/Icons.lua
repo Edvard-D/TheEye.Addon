@@ -20,6 +20,10 @@ function this.DisplayerChange(iconID, displayerID)
     SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID)
 end
 
+function this.DisplayerGet(iconID)
+    return keyValues[iconID].displayerID
+end
+
 function this.IsIconValidForFilter(icon, filter)
     local properties = icon.properties
     for i = 1, #properties do
