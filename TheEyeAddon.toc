@@ -147,6 +147,7 @@ Helpers\Timers.lua
 Evaluators\General\ADDON_LOADED.lua
 Evaluators\General\COMBAT_LOG.lua
 Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
+Evaluators\General\ICON_DISPLAYER_CHANGED.lua
 
 
 # --- Player ---
