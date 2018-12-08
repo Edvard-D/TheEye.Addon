@@ -2,6 +2,7 @@ TheEyeAddon.UI.Components.Icon = {}
 local this = TheEyeAddon.UI.Components.Icon
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
+local DisplayerIDChange = TheEyeAddon.Managers.Icons.DisplayerIDChange
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
 
@@ -40,8 +41,12 @@ function this:Modify(frame)
     frame.background = frame.background or TextureCreate(frame, "BACKGROUND")
     self.iconTextureFileID = self.iconTextureFileID or TextureFileIDGet(self.iconObjectType, self.iconObjectID)
     frame.background:TextureSet(self.iconTextureFileID)
+
+    DisplayerChange(self.iconObjectID, self.UIObject.instanceID)
 end
 
 function this:Demodify(frame)
     frame.background:TextureSet(nil)
+
+    DisplayerChange(self.iconObjectID, nil)
 end
