@@ -3,6 +3,7 @@ local this = TheEyeAddon.Managers.Icons
 
 
 local keyValues = {}
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 local table = table
 local values = {}
 
@@ -12,6 +13,11 @@ function this.Add(icon)
 
     keyValues[key] = icon
     table.insert(values, icon)
+end
+
+function this.DisplayerChange(iconID, displayerID)
+    keyValues[iconID].displayerID = displayerID
+    SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID)
 end
 
 function this.IsIconValidForFilter(icon, filter)
