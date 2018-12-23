@@ -70,6 +70,11 @@ function this.Setup(
                 iconObjectID = OBJECT_ID.value,
                 iconObjectType = OBJECT_TYPE.value,
             },
+            VisibleState =
+            {
+                ValueHandler = { validKeys = {}, },
+                ListenerGroup = { Listeners = {}, },
+            },
         }
 
         icon.UIObject = iconUIObject

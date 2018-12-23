@@ -38,7 +38,7 @@ end
 
 function this.VisibleStateSetup(instance, icon)
     local iconUIObject = icon.UIObject
-    local validKeys
+    local validKeys = iconUIObject.VisibleState.ValueHandler.validKeys
     local value = 1
     local values = {}
     local castingKeyValues = {}
@@ -69,15 +69,6 @@ function this.VisibleStateSetup(instance, icon)
     local TARGETING = GetPropertiesOfType(icon, "TARGETING")
     local UNITS_NEAR_MAX = GetPropertiesOfType(icon, "UNITS_NEAR_MAX")
     local UNITS_NEAR_MIN = GetPropertiesOfType(icon, "UNITS_NEAR_MIN")
-    
-    
-    -- VisibleState
-    iconUIObject.VisibleState =
-    {
-        ValueHandler = { validKeys = {}, },
-        ListenerGroup = { Listeners = {}, },
-    }
-    validKeys = iconUIObject.VisibleState.ValueHandler.validKeys
 
 
     -- CASTING
