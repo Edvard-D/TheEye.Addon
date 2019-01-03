@@ -20,6 +20,10 @@ this.customEvents =
 {
     "ICON_DISPLAYER_CHANGED",
 }
+this.reevaluateEvents =
+{
+    ICON_DISPLAYER_CHANGED = true
+}
 
 
 function this:InputGroupSetup(inputGroup)
