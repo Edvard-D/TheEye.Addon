@@ -5,6 +5,7 @@ local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local FormatData = TheEyeAddon.Managers.UI.FormatData
 local groupComponentNames =
 {
+    COOLDOWN = "CooldownGroup",
     ROTATION = "RotationGroup",
 }
 local table = table
