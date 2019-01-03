@@ -3,7 +3,10 @@ local this = TheEyeAddon.Managers.Groups
 
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local FormatData = TheEyeAddon.Managers.UI.FormatData
-local groupComponentNames = {}
+local groupComponentNames =
+{
+    ROTATION = "RotationGroup",
+}
 local table = table
 local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
 
@@ -11,8 +14,6 @@ local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
 function this.Initialize()
     this.gameEvents = { "ADDON_LOADED" }
     TheEyeAddon.Managers.Events.Register(this)
-
-    groupComponentNames["ROTATION"] = "RotationGroup"
 end
 
 local function UIParentUIObjectSetup()
