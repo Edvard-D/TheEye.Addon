@@ -50,6 +50,7 @@ function this.VisibleStateSetup(instance, icon)
         spellcastActive = {},
         final = { 0, }, -- 0 value prevents nil table error in VALID KEYS section 
     }
+    local exceptionKeyValues = {}
     local baseModifierKeyValue = 0
 
     local AURA_REQUIRED = GetPropertiesOfType(icon, "AURA_REQUIRED")
@@ -276,6 +277,9 @@ function this.VisibleStateSetup(instance, icon)
 
         for i = 1, #requirementKeys do
             table.insert(substitutedKeyValues.final, requirementKeys[i])
+            if requirementKeys[i] ~= 0 then
+                table.insert(exceptionKeyValues, requirementKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
+            end
         end
 
         for i = 1, #spellcastActiveKeys do
@@ -434,6 +438,11 @@ function this.VisibleStateSetup(instance, icon)
         for j = 1, #finalSubstitutedKeyValues do
             validKeys[castingKeyValues[i] + finalSubstitutedKeyValues[j] + baseModifierKeyValue] = true
         end
+    end
+
+    -- Remove key values that are known to be invalid
+    for i = 1, #exceptionKeyValues do
+        validKeys[exceptionKeyValues[i]] = nil
     end
 
     -- @TODO ContextIcon
