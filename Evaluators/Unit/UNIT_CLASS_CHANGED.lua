@@ -16,7 +16,7 @@ local UnitClass = UnitClass
 ]]
 
 
-reevaluateEvents =
+this.reevaluateEvents =
 {
     PLAYER_TARGET_CHANGED = true
 }
