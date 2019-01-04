@@ -223,6 +223,7 @@ local function IconGroupUIObjectSetup(iconGroup)
     uiObject.Group =
     {
         instanceID = iconGroup.instanceID,
+        instanceType = iconGroup.type,
         Filters = iconGroup.Filters,
         IconDimensions = iconGroup.IconDimensions,
         childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
