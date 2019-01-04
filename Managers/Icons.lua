@@ -1,7 +1,7 @@
 TheEyeAddon.Managers.Icons = {}
 local this = TheEyeAddon.Managers.Icons
 
-
+local Comparisons = TheEyeAddon.Helpers.Comparisons
 local keyValues = {}
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 local table = table
@@ -27,7 +27,11 @@ end
 function this.IsIconValidForFilter(icon, filter)
     local properties = icon.properties
     for i = 1, #properties do
-        if properties[i].type == filter.type and properties[i].value == filter.value then
+        local property = properties[i]
+        if property.type == filter.type
+            and (property.value == filter.value
+                or (filter.comparisonValues ~= nil and Comparisons[filter.comparisonValues.type](property.value, filter.comparisonValues) == true))
+            then
             return true
         end
     end
