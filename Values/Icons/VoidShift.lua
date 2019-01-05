@@ -1,5 +1,9 @@
 TheEyeAddon.Managers.Icons.Add(
 {
+    PriorityRank =
+    {
+        validKeys = { [0] = 6, }
+    },
     properties =
     {
         {

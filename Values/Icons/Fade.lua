@@ -1,5 +1,9 @@
 TheEyeAddon.Managers.Icons.Add(
 {
+    PriorityRank =
+    {
+        validKeys = { [0] = 2, }
+    },
     properties =
     {
         {
@@ -13,6 +17,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "DEFENSIVE",
+            subvalue = "THREAT",
         },
         {
             type = "COOLDOWN",
