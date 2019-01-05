@@ -2,7 +2,7 @@ TheEyeAddon.Managers.Icons.Add(
 {
     PriorityRank =
     {
-        validKeys = { [0] = 2, }
+        validKeys = { [0] = 11, }
     },
     properties =
     {
