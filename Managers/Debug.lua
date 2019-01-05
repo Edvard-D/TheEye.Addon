@@ -149,7 +149,7 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
             return true
         end
     elseif filterElement.key == "values" then
-        local values = ...
+        local values = { ... }
         if values ~= nil then
             for i = 1, #values do
                 local value = tostring(values[i])
