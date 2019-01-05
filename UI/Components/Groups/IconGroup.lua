@@ -13,6 +13,7 @@ local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
     #inherited#TEMPLATE#
     filters = { #ICON#PROPERTY# }
     iconDimensionKey = TheEyeAddon.Values.DimensionTemplates.Icon#NAME#
+    priorityDisplayers = { #UIOBJECT#ID# }
 }
 ]]
 
@@ -79,6 +80,7 @@ function this.Setup(
 
         icon.UIObject = iconUIObject
         icon.UIObject.instanceID = instance.instanceID
+        icon.UIObject.instanceType = instance.instanceType
 
         -- Talent Required
         local talentData, talentCount = GetPropertiesOfType(icon, "TALENT_REQUIRED")

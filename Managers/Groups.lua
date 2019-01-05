@@ -226,6 +226,7 @@ local function IconGroupUIObjectSetup(iconGroup)
         instanceType = iconGroup.type,
         Filters = iconGroup.Filters,
         IconDimensions = iconGroup.IconDimensions,
+        PriorityDisplayers = iconGroup.PriorityDisplayers,
         childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
         sortActionName = iconGroup.Group.sortActionName,
         sortValueComponentName = iconGroup.Group.sortValueComponentName,
