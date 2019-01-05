@@ -280,6 +280,7 @@ UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\PriorityGroup.lua
 
 UI\Components\Groups\RotationGroup.lua
+UI\Components\Groups\SituationalGroup.lua
 
 
 
