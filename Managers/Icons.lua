@@ -15,13 +15,23 @@ function this.Add(icon)
     table.insert(values, icon)
 end
 
-function this.DisplayerChange(iconID, displayerID)
-    keyValues[iconID].displayerID = displayerID
-    SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID)
+function this.DisplayerAdd(iconID, displayerID)
+    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.Managers.Icons", "DisplayerChange", nil, nil, iconID, displayerID)
+    
+    if keyValues[iconID].displayers == nil then
+        keyValues[iconID].displayers = {}
+    end
+    keyValues[iconID].displayers[displayerID] = true
+    SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID, true)
 end
 
-function this.DisplayerGet(iconID)
-    return keyValues[iconID].displayerID
+function this.DisplayerRemove(iconID, displayerID)
+    keyValues[iconID].displayers[displayerID] = nil
+    SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID, false)
+end
+
+function this.DisplayersGet(iconID)
+    return keyValues[iconID].displayers
 end
 
 function this.IsIconValidForFilter(icon, filter)
