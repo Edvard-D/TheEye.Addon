@@ -159,7 +159,7 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
             end
         end
     else
-        print("No filterElement valid check setup for filterElement key \"" .. tostring(filter.key) .. "\".")
+        print("No filterElement valid check setup for filterElement key \"" .. tostring(filterElement.key) .. "\".")
     end
 
     return false
