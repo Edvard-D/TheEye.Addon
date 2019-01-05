@@ -29,7 +29,6 @@ function this.Setup(
         local iconUIObject = icon.UIObject
         local validKeys = iconUIObject.VisibleState.ValueHandler.validKeys
         local value = 1
-        local values = {}
 
         local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
@@ -39,7 +38,6 @@ function this.Setup(
         -- PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
         if COOLDOWN ~= nil then
             value = value * 2
-            values.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = value
             baseModifierKeyValue = baseModifierKeyValue + value
 
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
@@ -59,7 +57,6 @@ function this.Setup(
         -- DEFENSIVE (THREAT)
         if CATEGORY.value == "DEFENSIVE" and CATEGORY.subvalue == "THREAT" then
             value = value * 2
-            values.UNIT_THREAT_SITUATION_CHANGED = value
             baseModifierKeyValue = baseModifierKeyValue + value
 
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
@@ -76,7 +73,6 @@ function this.Setup(
             )
 
             value = value * 2
-            values.UNIT_IN_GROUP_CHANGED = value
             baseModifierKeyValue = baseModifierKeyValue + value
 
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
