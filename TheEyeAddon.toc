@@ -47,7 +47,7 @@
 # ---------------------------
 Values\Namespaces.lua
 
-Managers\Icons.lua
+Helpers\Comparisons.lua
 Managers\Settings.lua
 Helpers\Tags.lua
 
@@ -59,13 +59,49 @@ Managers\Debug.lua
 # |	        Values         	|
 # ---------------------------
 Values\AuraFilters.lua
-Values\DefaultSettings.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua
 
+Values\DefaultSettings.lua
 
-# --- Icons ---
+
+
+# ---------------------------
+# |	       Managers        	|
+# ---------------------------
+Managers\Events.lua
+
+Managers\Evaluators.lua
+Managers\GarbageCollector.lua
+Managers\Icons.lua
+Managers\SlashCommands.lua
+Managers\UI.lua
+
+Managers\Groups.lua
+
+
+UI\Factories\Frame.lua
+
+Managers\FramePools.lua
+
+
+
+# ---------------------------
+# |	        Helpers        	|
+# ---------------------------
+Helpers\Auras.lua
+Helpers\ChildArrangers.lua
+Helpers\Files.lua
+Helpers\Player.lua
+Helpers\Table.lua
+Helpers\Timers.lua
+
+
+
+# ---------------------------
+# |	    Values\Icons       	|
+# ---------------------------
 Values\Icons\DarkAscension.lua
 Values\Icons\DarkVoid.lua
 Values\Icons\DispelMagic.lua
@@ -109,39 +145,7 @@ Values\Icons\VoidTorrent.lua
 
 
 # ---------------------------
-# |	       Managers        	|
-# ---------------------------
-Managers\Events.lua
-
-Managers\Evaluators.lua
-Managers\GarbageCollector.lua
-Managers\SlashCommands.lua
-Managers\UI.lua
-
-Managers\Groups.lua
-
-
-UI\Factories\Frame.lua
-
-Managers\FramePools.lua
-
-
-
-# ---------------------------
-# |	        Helpers        	|
-# ---------------------------
-Helpers\Auras.lua
-Helpers\ChildArrangers.lua
-Helpers\Comparisons.lua
-Helpers\Files.lua
-Helpers\Player.lua
-Helpers\Table.lua
-Helpers\Timers.lua
-
-
-
-# ---------------------------
-# |	   Evaluators   	|
+# |	      Evaluators     	|
 # ---------------------------
 # --- General ---
 Evaluators\General\ADDON_LOADED.lua
