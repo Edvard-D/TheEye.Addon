@@ -8,6 +8,7 @@ local groupComponentNames =
     COOLDOWN = "CooldownGroup",
     ROTATION = "RotationGroup",
 }
+local groupers = {}
 local table = table
 local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
 
@@ -172,8 +173,66 @@ local function HUDUIObjectSetup()
     UIObjectSetup(uiObject)
 end
 
-local function IconGroupUIObjectSetup(iconGroup)
+local function GrouperUIObjectSetup(tag, pointSettings)
+    local grouper = {}
     local parentKey = "HUD"
+
+    grouper.UIObject =
+    {
+        tags = { tag },
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        Frame =
+        {
+            Dimensions =
+            {
+                PointSettings = pointSettings,
+            },
+        },
+        Group =
+        {
+            childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
+            childPadding = 5,
+            sortActionName = "SortDescending",
+            sortValueComponentName = "PriorityRank",
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = true },
+            },
+        },
+    }
+
+    FormatData(grouper.UIObject)
+    UIObjectSetup(grouper.UIObject)
+
+    return grouper
+end
+
+local function IconGroupUIObjectSetup(iconGroup)
+    local parentKey = groupers[iconGroup.grouper].UIObject.key
 
     local uiObject =
     {
@@ -202,6 +261,13 @@ local function IconGroupUIObjectSetup(iconGroup)
         Frame =
         {
             Dimensions = iconGroup.Dimensions
+        },
+        PriorityRank =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = iconGroup.grouperPriority, }
+            },
         },
         VisibleState =
         {
@@ -281,6 +347,35 @@ function this:OnEvent(event, addon)
         UIParentUIObjectSetup()
         HUDUIObjectSetup()
         
+        groupers =
+        {
+            LEFT = GrouperUIObjectSetup(
+                "LEFT",
+                {
+                    point = "TOPRIGHT",
+                    relativePoint = "TOP",
+                    offsetX = -32.5,
+                    offsetY = -5,
+                }
+            ),
+            CENTER = GrouperUIObjectSetup(
+                "CENTER",
+                {
+                    point = "TOP",
+                    relativePoint = "TOP",
+                }
+            ),
+            RIGHT = GrouperUIObjectSetup(
+                "RIGHT",
+                {
+                    point = "TOPLEFT",
+                    relativePoint = "TOP",
+                    offsetX = 32.5,
+                    offsetY = -5,
+                }
+            ),
+        }
+
         local iconGroups = TheEyeAddon.Managers.Settings.Character.Saved.IconGroups
         for i = 1, #iconGroups do
             IconGroupUIObjectSetup(iconGroups[i])
