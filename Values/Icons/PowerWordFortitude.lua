@@ -19,10 +19,6 @@ TheEyeAddon.Managers.Icons.Add(
             value = "BUFF",
         },
         {
-            type = "CATEGORY",
-            value = "REMOVE_DEBUFF",
-        },
-        {
             type = "OBJECT_ID",
             value = 21562,
         },
