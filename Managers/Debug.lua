@@ -116,11 +116,11 @@ filters =
         {
         {
             key = "namespace",
-            value ="TheEyeAddon.UI.Components",
+            value = "TheEyeAddon.UI.Components",
         },
         {
             key = "UIObject",
-            value ="UIPARENT",
+            value = "UIPARENT",
         },
     },
 }
