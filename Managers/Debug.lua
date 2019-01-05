@@ -4,6 +4,7 @@ local this = TheEyeAddon.Managers.Debug
 local editBox
 local filters
 local frame
+local GetTime = GetTime
 local logs = {}
 local marker
 this.markerTag = "LOAD"
@@ -206,6 +207,7 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         then
         local logEntry =
         {
+            ["timestamp"] = GetTime(),
             ["marker"] = marker,
             ["markerTag"] = this.markerTag,
             ["namespace"] = namespace,
@@ -243,6 +245,7 @@ end
 
 function this.LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     local formattedLogEntry = {}
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.timestamp))
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.marker))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.markerTag))
