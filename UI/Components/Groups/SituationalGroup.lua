@@ -31,6 +31,7 @@ function this.Setup(
         local value = 1
         local values = {}
 
+        local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
         local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
 
@@ -50,6 +51,38 @@ function this.Setup(
                         value = 0,
                         type = "EqualTo"
                     },
+                    value = value,
+                }
+            )
+        end
+        
+        -- DEFENSIVE (THREAT)
+        if CATEGORY.value == "DEFENSIVE" and CATEGORY.subvalue == "THREAT" then
+            value = value * 2
+            values.UNIT_THREAT_SITUATION_CHANGED = value
+            baseModifierKeyValue = baseModifierKeyValue + value
+
+            table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+                {
+                    eventEvaluatorKey = "UNIT_THREAT_SITUATION_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[otherUnit]] "_", },
+                    comparisonValues =
+                    {
+                        value = 1,
+                        type = "GreaterThanEqualTo"
+                    },
+                    value = value,
+                }
+            )
+
+            value = value * 2
+            values.UNIT_IN_GROUP_CHANGED = value
+            baseModifierKeyValue = baseModifierKeyValue + value
+
+            table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+                {
+                    eventEvaluatorKey = "UNIT_IN_GROUP_CHANGED",
+                    inputValues = { --[[unit]] "player", },
                     value = value,
                 }
             )
