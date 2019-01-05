@@ -32,7 +32,7 @@ TheEyeAddon.Managers.Icons.Add(
         },
         {
             type = "TALENT_REQUIRED",
-            value = 23127,
+            value = 21752,
         },
         {
             type = "TARGETING",
