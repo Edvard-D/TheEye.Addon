@@ -3,8 +3,8 @@ TheEyeAddon.Managers.Icons.Add(
     PriorityRank =
     {
         validKeys = {
-            [0] = 6,
-            [2] = 10,
+            [0] = 17,
+            [2] = 21,
         },
         listeners =
         {

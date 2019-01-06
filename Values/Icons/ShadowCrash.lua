@@ -4,8 +4,8 @@ TheEyeAddon.Managers.Icons.Add(
     {
         validKeys =
         {
-            [0] = 5,
-            [2] = 9,
+            [0] = 16,
+            [2] = 20,
         },
         listeners =
         {
