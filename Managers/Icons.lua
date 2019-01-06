@@ -39,7 +39,7 @@ function this.IsIconValidForFilter(icon, filter)
     for i = 1, #properties do
         local property = properties[i]
         if property.type == filter.type
-            and (property.value == filter.value
+            and ((property.value == filter.value and (filter.subvalue == nil or property.subvalue == filter.subvalue))
                 or (filter.comparisonValues ~= nil and Comparisons[filter.comparisonValues.type](property.value, filter.comparisonValues) == true))
             then
             return true
