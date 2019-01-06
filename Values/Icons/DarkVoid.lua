@@ -23,10 +23,6 @@ TheEyeAddon.Managers.Icons.Add(
     properties =
     {
         {
-            type = "AFFECTED",
-            value = "MULTIPLE",
-        },
-        {
             type = "CAST_TYPE",
             value = "CAST",
         },

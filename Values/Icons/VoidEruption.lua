@@ -7,10 +7,6 @@ TheEyeAddon.Managers.Icons.Add(
     properties =
     {
         {
-            type = "AFFECTED",
-            value = "MULTIPLE",
-        },
-        {
             type = "AURA_APPLIED",
             value = 194249,
         },

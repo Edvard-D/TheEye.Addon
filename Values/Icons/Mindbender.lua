@@ -7,10 +7,6 @@ TheEyeAddon.Managers.Icons.Add(
     properties =
     {
         {
-            type = "AFFECTED",
-            value = "SINGLE",
-        },
-        {
             type = "AURA_REQUIRED",
             comparison = "GreaterThanEqualTo",
             stacks = 6,

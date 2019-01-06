@@ -39,10 +39,6 @@ TheEyeAddon.Managers.Icons.Add(
     properties =
     {
         {
-            type = "AFFECTED",
-            value = "SINGLE",
-        },
-        {
             type = "CAST_TYPE",
             value = "INSTANT",
         },
