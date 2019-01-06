@@ -4,7 +4,7 @@ local this = TheEyeAddon.Managers.UI
 local table = table
 
 
-function this:FormatData(uiObject)
+function this.FormatData(uiObject)
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEyeAddon.UI.Objects.Instances[key] = uiObject
@@ -17,7 +17,7 @@ function this:FormatData(uiObject)
     uiObject.tags = searchableTags
 end
 
-local function UIObjectSetup(uiObject)
+function this.UIObjectSetup(uiObject)
     local components = TheEyeAddon.UI.Components
     local pairs = pairs
 
@@ -37,14 +37,5 @@ local function UIObjectSetup(uiObject)
 end
 
 function this.Initialize()
-    local instances = TheEyeAddon.UI.Objects.Instances
-    local pairs = pairs
-
-    for instanceKey,_ in pairs(instances) do
-        UIObjectSetup(instances[instanceKey])
-    end
-
-    this.currentUIObject = nil
-    this.currentComponent = nil
     CastingBarFrame:UnregisterAllEvents()
 end

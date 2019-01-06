@@ -9,7 +9,6 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroup
 local math = math
 local select = select
 local table = table
-local UnitCastingInfo = UnitCastingInfo
 
 
 --[[ #this#TEMPLATE#

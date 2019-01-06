@@ -47,6 +47,7 @@
 # ---------------------------
 Values\Namespaces.lua
 
+Helpers\Comparisons.lua
 Managers\Settings.lua
 Helpers\Tags.lua
 
@@ -58,10 +59,11 @@ Managers\Debug.lua
 # |	        Values         	|
 # ---------------------------
 Values\AuraFilters.lua
-Values\DefaultSettings.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua
+
+Values\DefaultSettings.lua
 
 
 
@@ -72,8 +74,11 @@ Managers\Events.lua
 
 Managers\Evaluators.lua
 Managers\GarbageCollector.lua
+Managers\Icons.lua
 Managers\SlashCommands.lua
 Managers\UI.lua
+
+Managers\Groups.lua
 
 
 UI\Factories\Frame.lua
@@ -87,7 +92,6 @@ Managers\FramePools.lua
 # ---------------------------
 Helpers\Auras.lua
 Helpers\ChildArrangers.lua
-Helpers\Comparisons.lua
 Helpers\Files.lua
 Helpers\Player.lua
 Helpers\Table.lua
@@ -96,12 +100,56 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	   Evaluators   	|
+# |	    Values\Icons       	|
+# ---------------------------
+Values\Icons\AncientHysteria.lua
+Values\Icons\Bloodlust.lua
+Values\Icons\DarkAscension.lua
+Values\Icons\DarkVoid.lua
+Values\Icons\Dispersion.lua
+Values\Icons\DrumsOfRage.lua
+Values\Icons\Fade.lua
+Values\Icons\GladiatorsMedallion.lua
+Values\Icons\Heroism.lua
+Values\Icons\LeapOfFaith.lua
+Values\Icons\MassDispel.lua
+Values\Icons\Mindbender.lua
+Values\Icons\MindBlast.lua
+Values\Icons\MindBomb.lua
+Values\Icons\MindFlay.lua
+Values\Icons\MindSear.lua
+Values\Icons\Netherwinds.lua
+Values\Icons\PowerWordFortitude.lua
+Values\Icons\PsychicHorror.lua
+Values\Icons\PsychicScream.lua
+Values\Icons\Psyfiend.lua
+Values\Icons\ShadowCrash.lua
+Values\Icons\Shadowfiend.lua
+Values\Icons\Shadowform.lua
+Values\Icons\ShadowWordDeath.lua
+Values\Icons\ShadowWordPain.lua
+Values\Icons\ShadowWordVoid.lua
+Values\Icons\Silence.lua
+Values\Icons\SurrenderToMadness.lua
+Values\Icons\TimeWarp.lua
+Values\Icons\VampiricEmbrace.lua
+Values\Icons\VampiricTouch.lua
+Values\Icons\VoidBolt.lua
+Values\Icons\VoidEruption.lua
+Values\Icons\Voidform.lua
+Values\Icons\VoidShift.lua
+Values\Icons\VoidTorrent.lua
+
+
+
+# ---------------------------
+# |	      Evaluators     	|
 # ---------------------------
 # --- General ---
 Evaluators\General\ADDON_LOADED.lua
 Evaluators\General\COMBAT_LOG.lua
 Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
+Evaluators\General\ICON_DISPLAYER_CHANGED.lua
 
 
 # --- Player ---
@@ -138,6 +186,7 @@ Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Evaluators\Unit\UNIT_CLASS_CHANGED.lua
 Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
 Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
+Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
 Evaluators\Unit\UNIT_SPEC_CHANGED.lua
@@ -150,55 +199,51 @@ Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
 
 
 # ---------------------------
-# |	UI\Components\Elements  |
+# |	      UI\Elements       |
 # ---------------------------
-UI\Components\Elements\Base.lua
+UI\Elements\Base.lua
 
 
 # --- Value Handlers ---
-UI\Components\Elements\ValueHandlers\Base.lua
+UI\Elements\ValueHandlers\Base.lua
 
-UI\Components\Elements\ValueHandlers\KeyState.lua
-UI\Components\Elements\ValueHandlers\KeyValue.lua
-UI\Components\Elements\ValueHandlers\StaticValue.lua
-UI\Components\Elements\ValueHandlers\TableBase.lua
-UI\Components\Elements\ValueHandlers\ValueChangeNotifier.lua
+UI\Elements\ValueHandlers\KeyState.lua
+UI\Elements\ValueHandlers\KeyValue.lua
+UI\Elements\ValueHandlers\StaticValue.lua
+UI\Elements\ValueHandlers\TableBase.lua
+UI\Elements\ValueHandlers\ValueChangeNotifier.lua
 
-UI\Components\Elements\ValueHandlers\IntegerKeyState.lua
-UI\Components\Elements\ValueHandlers\IntegerKeyValue.lua
-UI\Components\Elements\ValueHandlers\SortedTable.lua
+UI\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Elements\ValueHandlers\IntegerKeyValue.lua
+UI\Elements\ValueHandlers\SortedTable.lua
 
 
 # --- Listeners ---
-UI\Components\Elements\Listeners\Base.lua
+UI\Elements\Listeners\Base.lua
 
-UI\Components\Elements\Listeners\PresetInt.lua
+UI\Elements\Listeners\PresetInt.lua
 
 
 # --- Listener Groups ---
-UI\Components\Elements\ListenerGroups\Base.lua
+UI\Elements\ListenerGroups\Base.lua
 
-UI\Components\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
-UI\Components\Elements\ListenerGroups\ValueChanger.lua
-UI\Components\Elements\ListenerGroups\ValueSetter.lua
+UI\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Elements\ListenerGroups\ValueChanger.lua
+UI\Elements\ListenerGroups\ValueSetter.lua
 
-UI\Components\Elements\ListenerGroups\StateBasedIntChanger.lua
+UI\Elements\ListenerGroups\StateBasedIntChanger.lua
 
 
 # --- Listener Value Change Handlers ---
-UI\Components\Elements\ListenerValueChangeHandlers\Base.lua
+UI\Elements\ListenerValueChangeHandlers\Base.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
-UI\Components\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
+UI\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
 
-UI\Components\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
-UI\Components\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
-
-
-# --- Other ---
-UI\Components\Elements\FrameModifier.lua
+UI\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 
 
 
@@ -215,107 +260,35 @@ UI\Factories\Cooldown.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
-UI\Components\CastSoonAlert.lua
-UI\Components\CastStartAlert.lua
-UI\Components\Charges.lua
 UI\Components\Child.lua
-UI\Components\ContextIcon.lua
-UI\Components\Cooldown.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
-UI\Components\Group.lua
-UI\Components\Icon.lua
 UI\Components\PriorityRank.lua
 UI\Components\VisibleState.lua
 
 
+# --- FrameModifiers ---
+UI\Components\FrameModifiers\FrameModifierBase.lua
 
-# ---------------------------
-# |	      UI\Objects      	|
-# ---------------------------
-UI\Objects\UIParentGroup.lua
-
-
-
-# ---------------------------
-# |	    UI\Objects\HUD     	|
-# ---------------------------
-UI\Objects\HUD\HUDGroup.lua
-UI\Objects\HUD\HUDLeft.lua
+UI\Components\FrameModifiers\CastSoonAlert.lua
+UI\Components\FrameModifiers\CastStartAlert.lua
+UI\Components\FrameModifiers\Charges.lua
+UI\Components\FrameModifiers\ContextIcon.lua
+UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\Icon.lua
 
 
-# --- Active ---
-UI\Objects\HUD\Active\ActiveModule.lua
-UI\Objects\HUD\Active\Dispersion.lua
-UI\Objects\HUD\Active\HeroLust.lua
-UI\Objects\HUD\Active\Mindbender.lua
-UI\Objects\HUD\Active\Psyfiend.lua
-UI\Objects\HUD\Active\ShadowFiend.lua
-UI\Objects\HUD\Active\SurrenderToMadness.lua
-UI\Objects\HUD\Active\Voidform.lua
+# --- Groups ---
+UI\Components\Groups\Group.lua
 
+UI\Components\Groups\IconGroup.lua
 
-# --- Cooldown ---
-UI\Objects\HUD\Cooldown\CooldownModule.lua
-UI\Objects\HUD\Cooldown\DarkAscension.lua
-UI\Objects\HUD\Cooldown\DarkVoid.lua
-UI\Objects\HUD\Cooldown\Dispersion.lua
-UI\Objects\HUD\Cooldown\Fade.lua
-UI\Objects\HUD\Cooldown\GladiatorsMedallion.lua
-UI\Objects\HUD\Cooldown\LeapOfFaith.lua
-UI\Objects\HUD\Cooldown\MassDispel.lua
-UI\Objects\HUD\Cooldown\Mindbender.lua
-UI\Objects\HUD\Cooldown\MindBomb.lua
-UI\Objects\HUD\Cooldown\PsychicHorror.lua
-UI\Objects\HUD\Cooldown\PsychicScream.lua
-UI\Objects\HUD\Cooldown\Psyfiend.lua
-UI\Objects\HUD\Cooldown\ShadowCrash.lua
-UI\Objects\HUD\Cooldown\Shadowfiend.lua
-UI\Objects\HUD\Cooldown\Silence.lua
-UI\Objects\HUD\Cooldown\SurrenderToMadness.lua
-UI\Objects\HUD\Cooldown\VampiricEmbrace.lua
-UI\Objects\HUD\Cooldown\VoidShift.lua
-UI\Objects\HUD\Cooldown\VoidTorrent.lua
+UI\Components\Groups\CooldownGroup.lua
+UI\Components\Groups\PriorityGroup.lua
 
-
-# --- Primary ---
-UI\Objects\HUD\Primary\DarkAscension.lua
-UI\Objects\HUD\Primary\DarkVoid.lua
-UI\Objects\HUD\Primary\Mindbender.lua
-UI\Objects\HUD\Primary\MindBlast.lua
-UI\Objects\HUD\Primary\MindFlay.lua
-UI\Objects\HUD\Primary\MindSear.lua
-UI\Objects\HUD\Primary\PrimaryModule.lua
-UI\Objects\HUD\Primary\Psyfiend.lua
-UI\Objects\HUD\Primary\ShadowCrash.lua
-UI\Objects\HUD\Primary\Shadowfiend.lua
-UI\Objects\HUD\Primary\Shadowform.lua
-UI\Objects\HUD\Primary\ShadowWordDeath.lua
-UI\Objects\HUD\Primary\ShadowWordPain.lua
-UI\Objects\HUD\Primary\ShadowWordVoid.lua
-UI\Objects\HUD\Primary\VampiricTouch.lua
-UI\Objects\HUD\Primary\VoidBolt.lua
-UI\Objects\HUD\Primary\VoidEruption.lua
-UI\Objects\HUD\Primary\VoidTorrent.lua
-
-
-# --- Secondary ---
-UI\Objects\HUD\Secondary\DarkAscension.lua
-UI\Objects\HUD\Secondary\Dispersion.lua
-UI\Objects\HUD\Secondary\Fade.lua
-UI\Objects\HUD\Secondary\GladiatorsMedallion.lua
-UI\Objects\HUD\Secondary\LeapOfFaith.lua
-UI\Objects\HUD\Secondary\MassDispel.lua
-UI\Objects\HUD\Secondary\Mindbender.lua
-UI\Objects\HUD\Secondary\MindBomb.lua
-UI\Objects\HUD\Secondary\PowerWordFortitude.lua
-UI\Objects\HUD\Secondary\PsychicHorror.lua
-UI\Objects\HUD\Secondary\PsychicScream.lua
-UI\Objects\HUD\Secondary\SecondaryModule.lua
-UI\Objects\HUD\Secondary\Silence.lua
-UI\Objects\HUD\Secondary\SurrenderToMadness.lua
-UI\Objects\HUD\Secondary\VampiricEmbrace.lua
-UI\Objects\HUD\Secondary\VoidShift.lua
+UI\Components\Groups\ActiveGroup.lua
+UI\Components\Groups\RotationGroup.lua
+UI\Components\Groups\SituationalGroup.lua
 
 
 
