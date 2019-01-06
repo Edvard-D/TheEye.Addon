@@ -130,6 +130,7 @@ Values\Icons\VampiricEmbrace.lua
 Values\Icons\VampiricTouch.lua
 Values\Icons\VoidBolt.lua
 Values\Icons\VoidEruption.lua
+Values\Icons\Voidform.lua
 Values\Icons\VoidShift.lua
 Values\Icons\VoidTorrent.lua
 
@@ -279,6 +280,7 @@ UI\Components\Groups\IconGroup.lua
 UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\PriorityGroup.lua
 
+UI\Components\Groups\ActiveGroup.lua
 UI\Components\Groups\RotationGroup.lua
 UI\Components\Groups\SituationalGroup.lua
 
