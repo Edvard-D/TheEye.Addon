@@ -31,8 +31,10 @@ function this.Setup(
         local validKeys = iconUIObject.VisibleState.ValueHandler.validKeys
         local value = 1
 
+        local AURA_APPLIED = GetPropertiesOfType(icon, "AURA_APPLIED")
         local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
+        local USAGE_RATE = GetPropertiesOfType(icon, "USAGE_RATE")
 
 
         -- UIOBJECT_COMPONENT_STATE_CHANGED (Cooldown)
@@ -53,7 +55,12 @@ function this.Setup(
         for i = 1, #priorityDisplayers do
             value = value * 2
 
-            if priorityDisplayers[i] == "ROTATION" and CATEGORY.value == "DAMAGE" then
+            if (priorityDisplayers[i] == "ROTATION" and CATEGORY.value == "DAMAGE")
+                or (priorityDisplayers[i] == "ACTIVE"
+                    and ((CATEGORY.value == "DAMAGE" and (CATEGORY.subvalue == "MINION" or CATEGORY.subvalue == "TOTEM"))
+                        or (CATEGORY.value == "DEFENSIVE" and AURA_APPLIED ~= nil)
+                        or (CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "BUFF" and USAGE_RATE.value <= 4)))
+                then
                 table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                     {
                         eventEvaluatorKey = "ICON_DISPLAYER_CHANGED",
