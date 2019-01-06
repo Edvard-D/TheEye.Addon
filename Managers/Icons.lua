@@ -68,12 +68,14 @@ local function IsIconValidForFilters(icon, filters)
     return true
 end
 
-function this.GetFiltered(filters)
+function this.GetFiltered(filterGroups)
     local filteredIcons = {}
 
     for i = 1, #values do
-        if IsIconValidForFilters(values[i], filters) == true then
-            table.insert(filteredIcons, values[i])
+        for j = 1, #filterGroups do
+            if IsIconValidForFilters(values[i], filterGroups[j]) == true then
+                table.insert(filteredIcons, values[i])
+            end
         end
     end
 
