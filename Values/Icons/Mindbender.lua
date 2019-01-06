@@ -23,7 +23,7 @@ TheEyeAddon.Managers.Icons.Add(
         {
             type = "CATEGORY",
             value = "DAMAGE",
-            subvalue = "MINION",
+            subvalue = "TOTEM",
         },
         {
             type = "COOLDOWN",

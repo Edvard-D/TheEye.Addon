@@ -18,6 +18,7 @@ TheEyeAddon.Managers.Icons.Add(
             type = "CATEGORY",
             value = "DAMAGE",
             subvalue = "MINION",
+            length = 12,
         },
         {
             type = "COOLDOWN",
