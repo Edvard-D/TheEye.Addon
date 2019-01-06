@@ -37,14 +37,5 @@ function this.UIObjectSetup(uiObject)
 end
 
 function this.Initialize()
-    local instances = TheEyeAddon.UI.Objects.Instances
-    local pairs = pairs
-
-    for instanceKey,_ in pairs(instances) do
-        this.UIObjectSetup(instances[instanceKey])
-    end
-
-    this.currentUIObject = nil
-    this.currentComponent = nil
     CastingBarFrame:UnregisterAllEvents()
 end
