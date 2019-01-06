@@ -293,21 +293,6 @@ UI\Components\Groups\SituationalGroup.lua
 
 
 # ---------------------------
-# |	      UI\Objects      	|
-# ---------------------------
-UI\Objects\UIParentGroup.lua
-
-
-
-# ---------------------------
-# |	    UI\Objects\HUD     	|
-# ---------------------------
-UI\Objects\HUD\HUDGroup.lua
-UI\Objects\HUD\HUDLeft.lua
-
-
-
-# ---------------------------
 # |			FINAL			|
 # ---------------------------
 Managers\Initializer.lua
