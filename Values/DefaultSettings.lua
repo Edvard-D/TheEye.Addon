@@ -71,5 +71,36 @@ TheEyeAddon.Managers.Settings.Character.Default =
             grouperPriority = 2,
             IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
         },
+        {
+            instanceID = "0000002",
+            type = "COOLDOWN",
+            Filters =
+            {
+                {
+                    {
+                        type = "COOLDOWN",
+                        comparisonValues =
+                        {
+                            value = 20,
+                            type = "GreaterThanEqualTo",
+                        },
+                    },
+                },
+            },
+            Group =
+            {
+                childArranger = "TopToBottom",
+                sortActionName = "SortAscending",
+                sortValueComponentName = "Cooldown",
+            },
+            grouper = "LEFT",
+            grouperPriority = 1,
+            IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
+            PriorityDisplayers =
+            {
+                "ACTIVE",
+                "ROTATION",
+            },
+        },
     },
 }
