@@ -306,17 +306,6 @@ UI\Objects\HUD\HUDGroup.lua
 UI\Objects\HUD\HUDLeft.lua
 
 
-# --- Active ---
-UI\Objects\HUD\Active\ActiveModule.lua
-UI\Objects\HUD\Active\Dispersion.lua
-UI\Objects\HUD\Active\HeroLust.lua
-UI\Objects\HUD\Active\Mindbender.lua
-UI\Objects\HUD\Active\Psyfiend.lua
-UI\Objects\HUD\Active\ShadowFiend.lua
-UI\Objects\HUD\Active\SurrenderToMadness.lua
-UI\Objects\HUD\Active\Voidform.lua
-
-
 # --- Cooldown ---
 UI\Objects\HUD\Cooldown\CooldownModule.lua
 UI\Objects\HUD\Cooldown\DarkAscension.lua
