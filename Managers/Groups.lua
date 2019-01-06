@@ -16,8 +16,8 @@ local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
 
 
 function this.Initialize()
-    this.gameEvents = { "ADDON_LOADED" }
-    TheEyeAddon.Managers.Events.Register(this)
+    this.inputValues = { --[[addonName]] "TheEyeAddon" }
+    TheEyeAddon.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
 end
 
 local function UIParentUIObjectSetup()
@@ -344,43 +344,41 @@ local function IconGroupUIObjectSetup(iconGroup)
     uiObject[groupComponentNames[iconGroup.type]].Icons = nil
 end
 
-function this:OnEvent(event, addon)
-    if addon == "TheEyeAddon" then
-        UIParentUIObjectSetup()
-        HUDUIObjectSetup()
-        
-        groupers =
-        {
-            LEFT = GrouperUIObjectSetup(
-                "LEFT",
-                {
-                    point = "TOPRIGHT",
-                    relativePoint = "TOP",
-                    offsetX = -32.5,
-                    offsetY = -5,
-                }
-            ),
-            CENTER = GrouperUIObjectSetup(
-                "CENTER",
-                {
-                    point = "TOP",
-                    relativePoint = "TOP",
-                }
-            ),
-            RIGHT = GrouperUIObjectSetup(
-                "RIGHT",
-                {
-                    point = "TOPLEFT",
-                    relativePoint = "TOP",
-                    offsetX = 32.5,
-                    offsetY = -5,
-                }
-            ),
-        }
+function this:Notify(event, addon)
+    UIParentUIObjectSetup()
+    HUDUIObjectSetup()
+    
+    groupers =
+    {
+        LEFT = GrouperUIObjectSetup(
+            "LEFT",
+            {
+                point = "TOPRIGHT",
+                relativePoint = "TOP",
+                offsetX = -32.5,
+                offsetY = -5,
+            }
+        ),
+        CENTER = GrouperUIObjectSetup(
+            "CENTER",
+            {
+                point = "TOP",
+                relativePoint = "TOP",
+            }
+        ),
+        RIGHT = GrouperUIObjectSetup(
+            "RIGHT",
+            {
+                point = "TOPLEFT",
+                relativePoint = "TOP",
+                offsetX = 32.5,
+                offsetY = -5,
+            }
+        ),
+    }
 
-        local iconGroups = TheEyeAddon.Managers.Settings.Character.Saved.IconGroups
-        for i = 1, #iconGroups do
-            IconGroupUIObjectSetup(iconGroups[i])
-        end
+    local iconGroups = TheEyeAddon.Managers.Settings.Character.Saved.IconGroups
+    for i = 1, #iconGroups do
+        IconGroupUIObjectSetup(iconGroups[i])
     end
 end
