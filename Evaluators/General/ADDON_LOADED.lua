@@ -21,8 +21,8 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = false
 end
 
-function this:GetKey(event, ...)
-    return select(1, ...)
+function this:GetKey(event, addon)
+    return select(1, addon)
 end
 
 function this:Evaluate(inputGroup)
