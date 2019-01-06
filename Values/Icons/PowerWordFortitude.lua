@@ -11,7 +11,8 @@ TheEyeAddon.Managers.Icons.Add(
             value = "MULTIPLE",
         },
         {
-            type = "AURA",
+            type = "AURA_APPLIED",
+            value = 21562,
         },
         {
             type = "CAST_TYPE",
