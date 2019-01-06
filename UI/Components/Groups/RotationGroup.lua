@@ -53,6 +53,7 @@ function this.VisibleStateSetup(instance, icon)
     local exceptionKeyValues = {}
     local baseModifierKeyValue = 0
 
+    local AURA_APPLIED = GetPropertiesOfType(icon, "AURA_APPLIED")
     local AURA_REQUIRED = GetPropertiesOfType(icon, "AURA_REQUIRED")
     local CAST_TYPE = GetPropertiesOfType(icon, "CAST_TYPE")
     local isCastTypeCast = IsIconValidForFilter(icon, { type = "CAST_TYPE", value = "CAST" })
@@ -325,6 +326,18 @@ function this.VisibleStateSetup(instance, icon)
         end
     end
 
+    -- AURA_APPLIED different than OBJECT_ID
+    if AURA_APPLIED ~= nil and AURA_APPLIED.value ~= OBJECT_ID.value then
+        value = value * 2
+
+        table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+            {
+                eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] AURA_APPLIED.value },
+                value = value,
+            }
+        )
+    end
 
     -- BASE MODIFIER
     -- UNIT_HEALTH_PERCENT_CHANGED
