@@ -78,8 +78,6 @@ Managers\Icons.lua
 Managers\SlashCommands.lua
 Managers\UI.lua
 
-Managers\Groups.lua
-
 
 UI\Factories\Frame.lua
 
