@@ -45,6 +45,7 @@
 # ---------------------------
 # |			 CORE			|
 # ---------------------------
+Libs\LibStub.lua
 Values\Namespaces.lua
 
 Helpers\Comparisons.lua
