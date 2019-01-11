@@ -74,6 +74,10 @@ Values\General.lua
 Values\DefaultSettings.lua
 
 
+# --- Locales ---
+Values\Locales\enUS.lua
+
+
 
 # ---------------------------
 # |	       Managers        	|

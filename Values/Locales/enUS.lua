@@ -1,0 +1,1 @@
+local locale = LibStub("AceLocale-3.0"):NewLocale("TheEyeAddon", "enUS", true)
