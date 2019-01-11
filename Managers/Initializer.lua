@@ -1,3 +1,6 @@
+TheEyeAddon.AceConfig = LibStub("AceConfig-3.0")
+TheEyeAddon.AceGUI = LibStub("AceGUI-3.0")
+
 TheEyeAddon.Managers.Debug.Initialize()
 TheEyeAddon.Managers.GarbageCollector.Initialize()
 TheEyeAddon.Managers.Settings.Initialize()
