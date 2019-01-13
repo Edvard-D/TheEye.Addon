@@ -70,7 +70,6 @@ Values\AuraFilters.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua
-Values\Options.lua
 
 Values\DefaultSettings.lua
 
@@ -300,6 +299,13 @@ UI\Components\Groups\PriorityGroup.lua
 UI\Components\Groups\ActiveGroup.lua
 UI\Components\Groups\RotationGroup.lua
 UI\Components\Groups\SituationalGroup.lua
+
+
+
+# ---------------------------
+# |	        UI\Menus	    |
+# ---------------------------
+UI\Menus\Options.lua
 
 
 
