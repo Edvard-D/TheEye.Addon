@@ -55,31 +55,41 @@ this.options =
     type = "group",
     args =
     {
-        position =
+        general =
         {
             type = "group",
-            name = "Position",
+            name = "General",
             order = 1,
             inline = true,
             args =
             {
-                x =
+                position =
                 {
-                    type = "input",
-                    name = "X",
-                    desc = locale["Negative: Left | Positive: Right"],
-                    get = this.XPositionGet,
-                    set = this.XPositionSet,
-                    validate = this.ValidateAsNumber,
-                },
-                y =
-                {
-                    type = "input",
-                    name = "Y",
-                    desc = locale["Negative: Down | Positive: Up"],
-                    get = this.YPositionGet,
-                    set = this.YPositionSet,
-                    validate = this.ValidateAsNumber,
+                    type = "group",
+                    name = "Position",
+                    order = 1,
+                    inline = true,
+                    args =
+                    {
+                        x =
+                        {
+                            type = "input",
+                            name = "X",
+                            desc = locale["Negative: Left | Positive: Right"],
+                            get = this.XPositionGet,
+                            set = this.XPositionSet,
+                            validate = this.ValidateAsNumber,
+                        },
+                        y =
+                        {
+                            type = "input",
+                            name = "Y",
+                            desc = locale["Negative: Down | Positive: Up"],
+                            get = this.YPositionGet,
+                            set = this.YPositionSet,
+                            validate = this.ValidateAsNumber,
+                        },
+                    },
                 },
             },
         },
