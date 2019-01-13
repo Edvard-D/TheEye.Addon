@@ -9,10 +9,13 @@ TheEyeAddon.Managers.Settings.Account.Default =
 
 TheEyeAddon.Managers.Settings.Character.Default =
 {
-    uiParentOffset =
+    UI =
     {
-        X = 0,
-        Y = -200,
+        Offset =
+        {
+            X = 0,
+            Y = -200,
+        },
     },
     IconGroups =
     {

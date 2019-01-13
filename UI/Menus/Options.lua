@@ -8,7 +8,7 @@ local yPosition = -50
 
 function this.XPositionGet(info)
     local characterSettings = TheEyeAddon.Managers.Settings.Character
-    return characterSettings.Saved.uiParentOffset.X or characterSettings.Default.uiParentOffset.X
+    return characterSettings.Saved.UI.Offset.X or characterSettings.Default.UI.Offset.X
 end
 
 function this.XPositionSet(info, value)
@@ -20,12 +20,12 @@ function this.XPositionSet(info, value)
         pointSettings.offsetX, pointSettings.offsetY
     )
 
-    TheEyeAddon.Managers.Settings.Character.Saved.uiParentOffset.X = value
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.X = value
 end
 
 function this.YPositionGet(info)
     local characterSettings = TheEyeAddon.Managers.Settings.Character
-    return characterSettings.Saved.uiParentOffset.Y or characterSettings.Default.uiParentOffset.Y
+    return characterSettings.Saved.UI.Offset.Y or characterSettings.Default.UI.Offset.Y
 end
 
 function this.YPositionSet(info, value)
@@ -37,7 +37,7 @@ function this.YPositionSet(info, value)
         pointSettings.offsetX, pointSettings.offsetY
     )
 
-    TheEyeAddon.Managers.Settings.Character.Saved.uiParentOffset.Y = value
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y = value
 end
 
 function this.ValidateAsNumber(info, value)

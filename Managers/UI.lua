@@ -87,8 +87,8 @@ local function UIParentUIObjectSetup()
                 {
                     point = "CENTER",
                     relativePoint = "CENTER",
-                    offsetX = TheEyeAddon.Managers.Settings.Character.Saved.uiParentOffset.X or TheEyeAddon.Managers.Settings.Character.Default.uiParentOffset.X,
-                    offsetY = TheEyeAddon.Managers.Settings.Character.Saved.uiParentOffset.Y or TheEyeAddon.Managers.Settings.Character.Default.uiParentOffset.Y,
+                    offsetX = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.X or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.X,
+                    offsetY = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.Y,
                 },
             },
         },
