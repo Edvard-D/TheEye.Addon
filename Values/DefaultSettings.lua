@@ -71,7 +71,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             },
             Group =
             {
-                childArranger = "TopToBottom",
+                childArranger = "Vertical",
                 sortActionName = "SortDescending",
                 sortValueComponentName = "PriorityRank",
             },
@@ -97,7 +97,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             },
             Group =
             {
-                childArranger = "TopToBottom",
+                childArranger = "Vertical",
                 sortActionName = "SortAscending",
                 sortValueComponentName = "Cooldown",
             },
@@ -144,7 +144,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             },
             Group =
             {
-                childArranger = "TopToBottom",
+                childArranger = "Vertical",
                 sortActionName = "SortDescending",
                 sortValueComponentName = "PriorityRank",
             },
@@ -174,7 +174,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             },
             Group =
             {
-                childArranger = "TopToBottom",
+                childArranger = "Vertical",
                 sortActionName = "SortDescending",
                 sortValueComponentName = "PriorityRank",
             },

@@ -21,7 +21,7 @@ this.Delegate =
     end,
 }
 
-this.TopToBottom =
+this.Vertical =
 {
     Arrange = function(parentFrame, groupInstance, childUIObjects)
         local combinedOffsetY = 0

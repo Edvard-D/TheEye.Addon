@@ -83,6 +83,7 @@ local function UIParentUIObjectSetup()
         {
             Dimensions =
             {
+                scale =  TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale,
                 PointSettings =
                 {
                     point = "CENTER",
@@ -246,7 +247,7 @@ local function GrouperUIObjectSetup(tag, pointSettings)
         },
         Group =
         {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
+            childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
             childPadding = 5,
             sortActionName = "SortDescending",
             sortValueComponentName = "PriorityRank",
