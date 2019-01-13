@@ -73,21 +73,31 @@ this.options =
                     {
                         x =
                         {
-                            type = "input",
+                            type = "range",
                             name = "X",
                             desc = locale["Negative: Left | Positive: Right"],
                             get = this.XPositionGet,
                             set = this.XPositionSet,
                             validate = this.ValidateAsNumber,
+                            min = -2000,
+                            max = 2000,
+                            softMin = -500,
+                            softMax = 500,
+                            step = 1,
                         },
                         y =
                         {
-                            type = "input",
+                            type = "range",
                             name = "Y",
                             desc = locale["Negative: Down | Positive: Up"],
                             get = this.YPositionGet,
                             set = this.YPositionSet,
                             validate = this.ValidateAsNumber,
+                            min = -2000,
+                            max = 2000,
+                            softMin = -500,
+                            softMax = 500,
+                            step = 1,
                         },
                     },
                 },
