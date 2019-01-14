@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80000
 ## Title: TheEye.Addon
-## Version: 0.4.0
+## Version: 0.5.0
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -36,7 +36,7 @@
 # needs to be moved within or removed from players' current saved settings, a dataVersionConverter
 # should be created. See Settings.lua for more information on this.
 ## X-AccountSettingsVersion: 0.3.0
-## X-CharacterSettingsVersion: 0.2.1
+## X-CharacterSettingsVersion: 0.5.0
 ## SavedVariables: TheEyeAddonAccountSettings
 ## SavedVariablesPerCharacter: TheEyeAddonCharacterSettings
 
@@ -47,7 +47,6 @@
 # ---------------------------
 # --- Libraries ---
 Libs\AceConfig-3.0\AceConfig-3.0.xml
-Libs\AceGUI-3.0\AceGUI-3.0.xml
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 Libs\LibStub\LibStub.lua
 
