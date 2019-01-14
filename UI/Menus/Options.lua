@@ -50,14 +50,6 @@ function this.SizeSet(info, value)
     TheEyeAddon.Managers.Settings.Character.Saved.UI.scale = value
 end
 
-function this.ValidateAsNumber(info, value)
-    if tonumber(value) == nil then
-        return locale["Number required"]
-    else
-        return true
-    end
-end
-
 
 this.options =
 {
@@ -88,7 +80,6 @@ this.options =
                             desc = locale["Negative: Left | Positive: Right"],
                             get = this.XPositionGet,
                             set = this.XPositionSet,
-                            validate = this.ValidateAsNumber,
                             min = -2000,
                             max = 2000,
                             softMin = -500,
@@ -102,7 +93,6 @@ this.options =
                             desc = locale["Negative: Down | Positive: Up"],
                             get = this.YPositionGet,
                             set = this.YPositionSet,
-                            validate = this.ValidateAsNumber,
                             min = -2000,
                             max = 2000,
                             softMin = -500,
@@ -118,7 +108,6 @@ this.options =
                     order = 2,
                     get = this.SizeGet,
                     set = this.SizeSet,
-                    validate = this.ValidateAsNumber,
                     min = 0.75,
                     max = 1.25,
                     step = 0.05,
