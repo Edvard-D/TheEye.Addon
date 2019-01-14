@@ -10,6 +10,10 @@ local groupComponentNames =
     SITUATIONAL = "SituationalGroup",
 }
 local groupers = {}
+this.Modules =
+{
+    IconGroups = {},
+}
 local table = table
 
 
@@ -50,6 +54,10 @@ local function UIObjectSetup(uiObject)
             componentInstance.wasSetup = true
         end
     end
+end
+
+function this.ModuleAdd(module, key)
+    this.Modules[key][module.type] = module
 end
 
 local function UIParentUIObjectSetup()
@@ -376,6 +384,8 @@ local function IconGroupUIObjectSetup(iconGroup)
         end
     end
     uiObject[groupComponentNames[iconGroup.type]].Icons = nil
+
+    return uiObject
 end
 
 function this:Notify(event, addon)
@@ -413,8 +423,7 @@ function this:Notify(event, addon)
         ),
     }
 
-    local iconGroups = TheEyeAddon.Managers.Settings.Character.Saved.IconGroups
-    for i = 1, #iconGroups do
-        IconGroupUIObjectSetup(iconGroups[i])
+    for k,module in pairs(this.Modules.IconGroups) do
+        module.UIObject = IconGroupUIObjectSetup(module)
     end
 end

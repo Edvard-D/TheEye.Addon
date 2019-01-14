@@ -110,7 +110,7 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	    Values\Icons       	|
+# |	     Values\Icons      	|
 # ---------------------------
 Values\Icons\AncientHysteria.lua
 Values\Icons\Bloodlust.lua
@@ -149,6 +149,16 @@ Values\Icons\VoidEruption.lua
 Values\Icons\Voidform.lua
 Values\Icons\VoidShift.lua
 Values\Icons\VoidTorrent.lua
+
+
+
+# ---------------------------
+# |	    Values\Modules     	|
+# ---------------------------
+Values\Modules\HUD\Active.lua
+Values\Modules\HUD\Cooldown.lua
+Values\Modules\HUD\Rotation.lua
+Values\Modules\HUD\Situational.lua
 
 
 
