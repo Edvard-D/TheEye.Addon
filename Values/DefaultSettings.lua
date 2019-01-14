@@ -14,7 +14,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
         Offset =
         {
             X = 0,
-            Y = -200,
+            Y = -70,
         },
         scale = 1,
         Modules =
