@@ -76,7 +76,7 @@ this.options =
                 position =
                 {
                     type = "group",
-                    name = "Position",
+                    name = locale["Position"],
                     order = 1,
                     inline = true,
                     args =
