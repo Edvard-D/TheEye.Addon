@@ -50,6 +50,17 @@ function this.SizeSet(info, value)
     TheEyeAddon.Managers.Settings.Character.Saved.UI.scale = value
 end
 
+function this.MaxIconsGet(info)
+    local moduleName = string.upper(info[#info - 1])
+    return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons
+end
+
+function this.MaxIconsSet(info, value)
+    local moduleName = string.upper(info[#info - 1])
+    TheEyeAddon.Managers.UI.Modules.IconGroups[moduleName].UIObject.Group.maxDisplayedChildren = value
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons = value
+end
+
 
 this.options =
 {
@@ -111,6 +122,100 @@ this.options =
                     min = 0.75,
                     max = 1.25,
                     step = 0.05,
+                },
+            },
+        },
+        modules =
+        {
+            type = "group",
+            name = locale["Modules"],
+            order = 2,
+            inline = true,
+            args =
+            {
+                active =
+                {
+                    type = "group",
+                    name = locale["Active"],
+                    order = 1,
+                    inline = true,
+                    args =
+                    {
+                        maxIcons =
+                        {
+                            type = "range",
+                            name = locale["Max Icons"],
+                            order = 1,
+                            get = this.MaxIconsGet,
+                            set = this.MaxIconsSet,
+                            min = 1,
+                            max = 10,
+                            step = 1,
+                        },
+                    },
+                },
+                cooldown =
+                {
+                    type = "group",
+                    name = locale["Cooldown"],
+                    order = 2,
+                    inline = true,
+                    args =
+                    {
+                        maxIcons =
+                        {
+                            type = "range",
+                            name = locale["Max Icons"],
+                            order = 1,
+                            get = this.MaxIconsGet,
+                            set = this.MaxIconsSet,
+                            min = 1,
+                            max = 10,
+                            step = 1,
+                        },
+                    },
+                },
+                rotation =
+                {
+                    type = "group",
+                    name = locale["Rotation"],
+                    order = 3,
+                    inline = true,
+                    args =
+                    {
+                        maxIcons =
+                        {
+                            type = "range",
+                            name = locale["Max Icons"],
+                            order = 1,
+                            get = this.MaxIconsGet,
+                            set = this.MaxIconsSet,
+                            min = 1,
+                            max = 10,
+                            step = 1,
+                        },
+                    },
+                },
+                situational =
+                {
+                    type = "group",
+                    name = locale["Situational"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        maxIcons =
+                        {
+                            type = "range",
+                            name = locale["Max Icons"],
+                            order = 1,
+                            get = this.MaxIconsGet,
+                            set = this.MaxIconsSet,
+                            min = 1,
+                            max = 10,
+                            step = 1,
+                        },
+                    },
                 },
             },
         },

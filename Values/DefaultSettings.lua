@@ -17,5 +17,24 @@ TheEyeAddon.Managers.Settings.Character.Default =
             Y = -200,
         },
         scale = 1,
+        Modules =
+        {
+            ACTIVE =
+            {
+                maxIcons = 10,
+            },
+            COOLDOWN =
+            {
+                maxIcons = 10,
+            },
+            ROTATION =
+            {
+                maxIcons = 10,
+            },
+            SITUATIONAL =
+            {
+                maxIcons = 10,
+            },
+        },
     },
 }

@@ -17,6 +17,7 @@ local table = table
     childArranger = TheEyeAddon.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
+    #OPTIONAL#maxDisplayedChildren = #NUMBER#
 }
 ]]
 

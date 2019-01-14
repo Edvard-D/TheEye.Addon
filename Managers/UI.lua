@@ -275,7 +275,7 @@ local function GrouperUIObjectSetup(tag, pointSettings)
     return grouper
 end
 
-local function IconGroupUIObjectSetup(iconGroup)
+local function IconGroupUIObjectSetup(iconGroup, maxIcons)
     local parentKey = groupers[iconGroup.grouper].UIObject.key
 
     local uiObject =
@@ -338,6 +338,7 @@ local function IconGroupUIObjectSetup(iconGroup)
         IconDimensions = iconGroup.IconDimensions,
         PriorityDisplayers = iconGroup.PriorityDisplayers,
         childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
+        maxDisplayedChildren = maxIcons,
         sortActionName = iconGroup.Group.sortActionName,
         sortValueComponentName = iconGroup.Group.sortValueComponentName,
     }
@@ -424,6 +425,7 @@ function this:Notify(event, addon)
     }
 
     for k,module in pairs(this.Modules.IconGroups) do
-        module.UIObject = IconGroupUIObjectSetup(module)
+        local maxIcons = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type].maxIcons
+        module.UIObject = IconGroupUIObjectSetup(module, maxIcons)
     end
 end
