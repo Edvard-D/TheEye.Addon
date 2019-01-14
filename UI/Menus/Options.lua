@@ -50,6 +50,16 @@ function this.SizeSet(info, value)
     TheEyeAddon.Managers.Settings.Character.Saved.UI.scale = value
 end
 
+function this.EnabledGet(info)
+    local moduleName = string.upper(info[#info - 1])
+    return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled
+end
+
+function this.EnabledSet(info, value)
+    local moduleName = string.upper(info[#info - 1])
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled = value
+end
+
 function this.MaxIconsGet(info)
     local moduleName = string.upper(info[#info - 1])
     return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons
@@ -141,11 +151,20 @@ this.options =
                     inline = true,
                     args =
                     {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 1,
+                            order = 2,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -162,11 +181,20 @@ this.options =
                     inline = true,
                     args =
                     {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 1,
+                            order = 2,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -183,11 +211,20 @@ this.options =
                     inline = true,
                     args =
                     {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 1,
+                            order = 2,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -204,11 +241,20 @@ this.options =
                     inline = true,
                     args =
                     {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 1,
+                            order = 2,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,

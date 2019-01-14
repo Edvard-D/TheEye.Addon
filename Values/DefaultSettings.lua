@@ -21,18 +21,22 @@ TheEyeAddon.Managers.Settings.Character.Default =
         {
             ACTIVE =
             {
+                enabled = true,
                 maxIcons = 10,
             },
             COOLDOWN =
             {
+                enabled = true,
                 maxIcons = 10,
             },
             ROTATION =
             {
+                enabled = true,
                 maxIcons = 10,
             },
             SITUATIONAL =
             {
+                enabled = true,
                 maxIcons = 10,
             },
         },

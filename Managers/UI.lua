@@ -424,8 +424,10 @@ function this:Notify(event, addon)
         ),
     }
 
-    for k,module in pairs(this.Modules.IconGroups) do
-        local maxIcons = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type].maxIcons
-        module.UIObject = IconGroupUIObjectSetup(module, maxIcons)
+    for k, module in pairs(this.Modules.IconGroups) do
+        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+        if moduleSettings.enabled == true then
+            module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+        end
     end
 end
