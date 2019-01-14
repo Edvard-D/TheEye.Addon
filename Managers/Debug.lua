@@ -4,6 +4,7 @@ local this = TheEyeAddon.Managers.Debug
 local editBox
 local filters
 local frame
+local GetTime = GetTime
 local logs = {}
 local marker
 this.markerTag = "LOAD"
@@ -80,7 +81,7 @@ function this.MarkerSetup()
             }
         }
     }
-    TheEyeAddon.UI.Components.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
+    TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
         functionCaller,
         function()
             this.markerTag = "HUD_ACTIVE"
@@ -115,11 +116,11 @@ filters =
         {
         {
             key = "namespace",
-            value ="TheEyeAddon.UI.Components",
+            value = "TheEyeAddon.UI.Components",
         },
         {
             key = "UIObject",
-            value ="UIPARENT",
+            value = "UIPARENT",
         },
     },
 }
@@ -148,7 +149,7 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
             return true
         end
     elseif filterElement.key == "values" then
-        local values = ...
+        local values = { ... }
         if values ~= nil then
             for i = 1, #values do
                 local value = tostring(values[i])
@@ -158,7 +159,7 @@ local function IsFilterElementValid(filterElement, namespace, action, uiObject, 
             end
         end
     else
-        print("No filterElement valid check setup for filterElement key \"" .. tostring(filter.key) .. "\".")
+        print("No filterElement valid check setup for filterElement key \"" .. tostring(filterElement.key) .. "\".")
     end
 
     return false
@@ -171,7 +172,7 @@ local function IsFilterValid(filter, namespace, action, uiObject, component, ...
         if filterKeyStates[filterElement.key] == nil then
             filterKeyStates[filterElement.key] = false
         end
-        if IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...) == true then
+        if filterKeyStates[filterElement.key] ~= true and IsFilterElementValid(filterElement, namespace, action, uiObject, component, ...) == true then
             filterKeyStates[filterElement.key] = true
         end
     end
@@ -186,10 +187,12 @@ local function IsFilterValid(filter, namespace, action, uiObject, component, ...
 end
 
 local function IsLogEntryValid(namespace, action, uiObject, component, ...)
+    if filters ~= nil then
     for i = 1, #filters do
         if IsFilterValid(filters[i], namespace, action, uiObject, component, ...) == true then
             return true
         end
+    end
     end
 
     return false
@@ -198,12 +201,13 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
-        and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true
-        and IsLogEntryValid(namespace, action, uiObject, component) == true
+    if (TheEyeAddon.Managers.Settings.Account.Saved == nil
+            or TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true)
+        and IsLogEntryValid(namespace, action, uiObject, component, ...) == true
         then
         local logEntry =
         {
+            ["timestamp"] = GetTime(),
             ["marker"] = marker,
             ["markerTag"] = this.markerTag,
             ["namespace"] = namespace,
@@ -217,7 +221,9 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
 
-        if TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true then
+        if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
+            and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true
+            then
             local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
             table.remove(formattedLogEntry, 1)
             table.remove(formattedLogEntry, 1)
@@ -239,6 +245,7 @@ end
 
 function this.LogEntryFormat(entryPosition, markerEntryPosition, logEntry)
     local formattedLogEntry = {}
+    table.insert(formattedLogEntry, LogValueFormat(logEntry.timestamp))
     table.insert(formattedLogEntry, LogValueFormat(entryPosition))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.marker))
     table.insert(formattedLogEntry, LogValueFormat(logEntry.markerTag))

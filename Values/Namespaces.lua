@@ -4,19 +4,18 @@ TheEyeAddon =
 {
     Evaluators = {},
     Helpers = {},
+    Libraries = {},
     Managers = {},
     UI =
     {
-        Components =
+        Components = {},
+        Elements =
         {
-            Elements =
-            {
-                ListenerGroups = {},
-                Listeners = {},
-                ListenerValueChangeHandlers = {},
-                ValueEvaluators = {},
-                ValueHandlers = {},
-            },
+            ListenerGroups = {},
+            Listeners = {},
+            ListenerValueChangeHandlers = {},
+            ValueEvaluators = {},
+            ValueHandlers = {},
         },
         Factories = {},
         Objects =
