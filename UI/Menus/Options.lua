@@ -40,6 +40,16 @@ function this.YPositionSet(info, value)
     TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y = value
 end
 
+function this.SizeGet(info)
+    local characterSettings = TheEyeAddon.Managers.Settings.Character
+    return characterSettings.Saved.UI.scale or characterSettings.Default.UI.scale
+end
+
+function this.SizeSet(info, value)
+    TheEyeAddon.Managers.UI.scale = value
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.scale = value
+end
+
 function this.ValidateAsNumber(info, value)
     if tonumber(value) == nil then
         return locale["Number required"]
@@ -100,6 +110,18 @@ this.options =
                             step = 1,
                         },
                     },
+                },
+                size =
+                {
+                    type = "range",
+                    name = locale["Size"],
+                    order = 2,
+                    get = this.SizeGet,
+                    set = this.SizeSet,
+                    validate = this.ValidateAsNumber,
+                    min = 0.75,
+                    max = 1.25,
+                    step = 0.05,
                 },
             },
         },

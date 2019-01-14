@@ -140,6 +140,11 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
         
     if frame ~= nil then
+        local scale = TheEyeAddon.Managers.UI.scale
+        for i = 1, #self.childUIObjects do
+            self.childUIObjects[i].Frame.instance:SetScale(scale)
+        end
+
         self.childArranger.Arrange(frame, self, self.childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end

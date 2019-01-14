@@ -379,6 +379,8 @@ local function IconGroupUIObjectSetup(iconGroup)
 end
 
 function this:Notify(event, addon)
+    this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+
     UIParentUIObjectSetup()
     HUDUIObjectSetup()
     

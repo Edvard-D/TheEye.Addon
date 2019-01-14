@@ -16,6 +16,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             X = 0,
             Y = -200,
         },
+        scale = 1,
     },
     IconGroups =
     {
