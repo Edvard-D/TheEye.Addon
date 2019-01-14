@@ -45,7 +45,14 @@
 # ---------------------------
 # |			 CORE			|
 # ---------------------------
-Libs\LibStub.lua
+# --- Libraries ---
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceLocale-3.0\AceLocale-3.0.xml
+Libs\LibStub\LibStub.lua
+
+
+# --- Addon ---
 Values\Namespaces.lua
 
 Helpers\Comparisons.lua
@@ -65,6 +72,10 @@ Values\FontTemplates.lua
 Values\General.lua
 
 Values\DefaultSettings.lua
+
+
+# --- Locales ---
+Values\Locales\enUS.lua
 
 
 
@@ -99,7 +110,7 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	    Values\Icons       	|
+# |	     Values\Icons      	|
 # ---------------------------
 Values\Icons\AncientHysteria.lua
 Values\Icons\Bloodlust.lua
@@ -138,6 +149,16 @@ Values\Icons\VoidEruption.lua
 Values\Icons\Voidform.lua
 Values\Icons\VoidShift.lua
 Values\Icons\VoidTorrent.lua
+
+
+
+# ---------------------------
+# |	    Values\Modules     	|
+# ---------------------------
+Values\Modules\HUD\Active.lua
+Values\Modules\HUD\Cooldown.lua
+Values\Modules\HUD\Rotation.lua
+Values\Modules\HUD\Situational.lua
 
 
 
@@ -288,6 +309,13 @@ UI\Components\Groups\PriorityGroup.lua
 UI\Components\Groups\ActiveGroup.lua
 UI\Components\Groups\RotationGroup.lua
 UI\Components\Groups\SituationalGroup.lua
+
+
+
+# ---------------------------
+# |	        UI\Menus	    |
+# ---------------------------
+UI\Menus\Options.lua
 
 
 

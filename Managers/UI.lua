@@ -10,6 +10,10 @@ local groupComponentNames =
     SITUATIONAL = "SituationalGroup",
 }
 local groupers = {}
+this.Modules =
+{
+    IconGroups = {},
+}
 local table = table
 
 
@@ -52,6 +56,10 @@ local function UIObjectSetup(uiObject)
     end
 end
 
+function this.ModuleAdd(module, key)
+    this.Modules[key][module.type] = module
+end
+
 local function UIParentUIObjectSetup()
     local uiObject =
     {
@@ -83,11 +91,13 @@ local function UIParentUIObjectSetup()
         {
             Dimensions =
             {
+                scale =  TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale,
                 PointSettings =
                 {
                     point = "CENTER",
                     relativePoint = "CENTER",
-                    offsetY = -200,
+                    offsetX = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.X or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.X,
+                    offsetY = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.Y,
                 },
             },
         },
@@ -245,7 +255,7 @@ local function GrouperUIObjectSetup(tag, pointSettings)
         },
         Group =
         {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.TopToBottom,
+            childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
             childPadding = 5,
             sortActionName = "SortDescending",
             sortValueComponentName = "PriorityRank",
@@ -265,7 +275,7 @@ local function GrouperUIObjectSetup(tag, pointSettings)
     return grouper
 end
 
-local function IconGroupUIObjectSetup(iconGroup)
+local function IconGroupUIObjectSetup(iconGroup, maxIcons)
     local parentKey = groupers[iconGroup.grouper].UIObject.key
 
     local uiObject =
@@ -328,6 +338,7 @@ local function IconGroupUIObjectSetup(iconGroup)
         IconDimensions = iconGroup.IconDimensions,
         PriorityDisplayers = iconGroup.PriorityDisplayers,
         childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
+        maxDisplayedChildren = maxIcons,
         sortActionName = iconGroup.Group.sortActionName,
         sortValueComponentName = iconGroup.Group.sortValueComponentName,
     }
@@ -374,9 +385,13 @@ local function IconGroupUIObjectSetup(iconGroup)
         end
     end
     uiObject[groupComponentNames[iconGroup.type]].Icons = nil
+
+    return uiObject
 end
 
 function this:Notify(event, addon)
+    this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+
     UIParentUIObjectSetup()
     HUDUIObjectSetup()
     
@@ -409,8 +424,10 @@ function this:Notify(event, addon)
         ),
     }
 
-    local iconGroups = TheEyeAddon.Managers.Settings.Character.Saved.IconGroups
-    for i = 1, #iconGroups do
-        IconGroupUIObjectSetup(iconGroups[i])
+    for k, module in pairs(this.Modules.IconGroups) do
+        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+        if moduleSettings.enabled == true then
+            module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+        end
     end
 end

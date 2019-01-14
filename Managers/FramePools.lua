@@ -70,6 +70,7 @@ function this:Release()
 	self:SetParent(nil)
 	self:ClearAllPoints()
 	self.UIObject = nil
+	self:SetScale(1)
 
 	table.insert(pendingDeclaim, self)
 end

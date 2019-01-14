@@ -9,170 +9,36 @@ TheEyeAddon.Managers.Settings.Account.Default =
 
 TheEyeAddon.Managers.Settings.Character.Default =
 {
-    IconGroups =
+    UI =
     {
+        Offset =
         {
-            instanceID = "0000001",
-            type = "ACTIVE",
-            Filters =
-            {
-                {
-                    {
-                        type = "CATEGORY",
-                        value = "DAMAGE",
-                        subvalue = "MINION",
-                    },
-                    {
-                        type = "CATEGORY",
-                        value = "DAMAGE",
-                        subvalue = "TOTEM",
-                    },
-                },
-                {
-                    {
-                        type = "AURA_APPLIED",
-                    },
-                    {
-                        type = "CATEGORY",
-                        value = "DEFENSIVE",
-                    },
-                },
-                {
-                    {
-                        type = "CATEGORY",
-                        value = "DAMAGE",
-                        subvalue = "BUFF",
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 1,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 2,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 3,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 4,
-                    },
-                },
-            },
-            Group =
-            {
-                childArranger = "TopToBottom",
-                sortActionName = "SortDescending",
-                sortValueComponentName = "PriorityRank",
-            },
-            grouper = "LEFT",
-            grouperPriority = 2,
-            IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
+            X = 0,
+            Y = -70,
         },
+        scale = 1,
+        Modules =
         {
-            instanceID = "0000002",
-            type = "COOLDOWN",
-            Filters =
+            ACTIVE =
             {
-                {
-                    {
-                        type = "COOLDOWN",
-                        comparisonValues =
-                        {
-                            value = 20,
-                            type = "GreaterThanEqualTo",
-                        },
-                    },
-                },
+                enabled = true,
+                maxIcons = 10,
             },
-            Group =
+            COOLDOWN =
             {
-                childArranger = "TopToBottom",
-                sortActionName = "SortAscending",
-                sortValueComponentName = "Cooldown",
+                enabled = true,
+                maxIcons = 10,
             },
-            grouper = "LEFT",
-            grouperPriority = 1,
-            IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
-            PriorityDisplayers =
+            ROTATION =
             {
-                "ACTIVE",
-                "ROTATION",
+                enabled = true,
+                maxIcons = 10,
             },
-        },
-        {
-            instanceID = "0000003",
-            type = "ROTATION",
-            Filters =
+            SITUATIONAL =
             {
-                {
-                    {
-                        type = "CATEGORY",
-                        value = "DAMAGE",
-                    },
-                    {
-                        type = "TARGETING",
-                        value = "DIRECT",
-                    },
-                    {
-                        type = "TARGETING",
-                        value = "POSITIONAL",
-                    },
-                    {
-                        type = "TARGETING",
-                        value = "SELF",
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 4,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 5,
-                    },
-                },
+                enabled = true,
+                maxIcons = 10,
             },
-            Group =
-            {
-                childArranger = "TopToBottom",
-                sortActionName = "SortDescending",
-                sortValueComponentName = "PriorityRank",
-            },
-            grouper = "CENTER",
-            grouperPriority = 1,
-            IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-        },
-        {
-            instanceID = "0000004",
-            type = "SITUATIONAL",
-            Filters =
-            {
-                {
-                    {
-                        type = "USAGE_RATE",
-                        value = 1,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 2,
-                    },
-                    {
-                        type = "USAGE_RATE",
-                        value = 3,
-                    },
-                },
-            },
-            Group =
-            {
-                childArranger = "TopToBottom",
-                sortActionName = "SortDescending",
-                sortValueComponentName = "PriorityRank",
-            },
-            grouper = "RIGHT",
-            grouperPriority = 1,
-            IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
         },
     },
 }

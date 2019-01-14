@@ -17,6 +17,7 @@ local table = table
     childArranger = TheEyeAddon.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
+    #OPTIONAL#maxDisplayedChildren = #NUMBER#
 }
 ]]
 
@@ -138,10 +139,13 @@ end
 
 function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.GroupBase", "DisplayUpdate TRY", self.UIObject, self)
         
     if frame ~= nil then
-        TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.UI.Components.GroupBase", "DisplayUpdate SUCCESS", self.UIObject, self)
+        local scale = TheEyeAddon.Managers.UI.scale
+        for i = 1, #self.childUIObjects do
+            self.childUIObjects[i].Frame.instance:SetScale(scale)
+        end
+
         self.childArranger.Arrange(frame, self, self.childUIObjects)
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end

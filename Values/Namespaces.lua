@@ -4,6 +4,7 @@ TheEyeAddon =
 {
     Evaluators = {},
     Helpers = {},
+    Libraries = {},
     Managers = {},
     UI =
     {
