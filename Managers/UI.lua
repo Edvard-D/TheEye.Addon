@@ -171,7 +171,9 @@ local function HUDUIObjectSetup()
         },
         Group =
         {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
+            childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
+            sortActionName = "SortDescending",
+            sortValueComponentName = "PriorityRank",
         },
         VisibleState =
         {
@@ -217,9 +219,62 @@ local function HUDUIObjectSetup()
     UIObjectSetup(uiObject)
 end
 
+local function IconGroupersUIObjectSetup()
+    local parentKey = "HUD"
+
+    local uiObject =
+    {
+        tags = { "ICONGROUPERS", },
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        Frame = {},
+        Group =
+        {
+            childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
+        },
+        PriorityRank =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = 1, }
+            }
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = true, },
+            },
+        },
+    }
+    
+    FormatData(uiObject)
+    UIObjectSetup(uiObject)
+end
+
 local function GrouperUIObjectSetup(tag, pointSettings)
     local grouper = {}
-    local parentKey = "HUD"
+    local parentKey = "ICONGROUPERS"
 
     grouper.UIObject =
     {
@@ -394,6 +449,7 @@ function this:Notify(event, addon)
 
     UIParentUIObjectSetup()
     HUDUIObjectSetup()
+    IconGroupersUIObjectSetup()
     
     groupers =
     {
