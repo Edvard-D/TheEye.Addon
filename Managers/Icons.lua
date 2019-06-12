@@ -48,8 +48,10 @@ function this.Add(specID, iconData)
 
     if specID == "SHARED" then
         for specID,specSpells in pairs(keyValues) do
-            keyValues[specID][key] = iconData
-            table.insert(values[specID], iconData)
+            if keyValues[specID][key] == nil then
+                keyValues[specID][key] = iconData
+                table.insert(values[specID], iconData)
+            end
         end
     else
         if keyValues[specID] == nil then
