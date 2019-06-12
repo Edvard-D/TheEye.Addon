@@ -83,13 +83,15 @@ function this.GetFiltered(filterGroups)
     return filteredIcons
 end
 
-function this.GetPropertiesOfType(iconData, propertyType)
+function this.GetPropertiesOfType(iconData, propertyType, value)
     local filteredProperties = {}
     local properties = iconData.properties
 
     for i = 1, #properties do
         local property = properties[i]
-        if property.type == propertyType then
+        if property.type == propertyType
+            and (value == nil or property.value == value)
+            then
             table.insert(filteredProperties, property)
         end
     end
