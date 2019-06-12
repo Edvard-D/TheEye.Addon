@@ -8,11 +8,11 @@ local table = table
 local values = {}
 
 
-function this.Add(icon)
-    local key = this.GetPropertiesOfType(icon, "OBJECT_ID").value
+function this.Add(iconData)
+    local key = this.GetPropertiesOfType(iconData, "OBJECT_ID").value
 
-    keyValues[key] = icon
-    table.insert(values, icon)
+    keyValues[key] = iconData
+    table.insert(values, iconData)
 end
 
 function this.DisplayerAdd(iconID, displayerID)
@@ -83,9 +83,9 @@ function this.GetFiltered(filterGroups)
     return filteredIcons
 end
 
-function this.GetPropertiesOfType(icon, propertyType)
+function this.GetPropertiesOfType(iconData, propertyType)
     local filteredProperties = {}
-    local properties = icon.properties
+    local properties = iconData.properties
 
     for i = 1, #properties do
         local property = properties[i]
