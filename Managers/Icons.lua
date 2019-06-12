@@ -2,36 +2,85 @@ TheEyeAddon.Managers.Icons = {}
 local this = TheEyeAddon.Managers.Icons
 
 local Comparisons = TheEyeAddon.Helpers.Comparisons
+local GetSpecialization = GetSpecialization
+local GetSpecializationInfo = GetSpecializationInfo
 local keyValues = {}
+local playerSpec
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local select = select
+local sharedValues = {}
 local table = table
+local UnitClass = UnitClass
 local values = {}
 
 
-function this.Add(iconData)
+function this.Initialize()
+    this.gameEvents =
+    {
+        "PLAYER_ENTERING_WORLD",
+        "PLAYER_SPECIALIZATION_CHANGED",
+    }
+    TheEyeAddon.Managers.Events.Register(this)
+end
+
+local function UnnecessaryIconsRemove()
+    local classID = select(3, UnitClass("player"))
+    local necessarySpecs = TheEyeAddon.Values.Specializations[classID]
+
+    for specID,v in pairs(keyValues) do
+        if table.hasvalue(necessarySpecs, specID) == false then
+            keyValues[specID] = nil
+            value[specID] = nil
+        end
+    end
+end
+
+function this:OnEvent(eventName, ...)
+    playerSpec = GetSpecializationInfo(GetSpecialization())
+
+    if eventName == "PLAYER_ENTERING_WORLD" then
+        UnnecessaryIconsRemove()
+    end
+end
+
+function this.Add(specID, iconData)
     local key = this.GetPropertiesOfType(iconData, "OBJECT_ID").value
 
-    keyValues[key] = iconData
-    table.insert(values, iconData)
+    if specID == "SHARED" then
+        for specID,specSpells in pairs(keyValues) do
+            keyValues[specID][key] = iconData
+            table.insert(values[specID], iconData)
+        end
+    else
+        if keyValues[specID] == nil then
+            keyValues[specID] = {}
+        end
+        keyValues[specID][key] = iconData
+        
+        if values[specID] == nil then
+            values[specID] = {}
+        end
+        table.insert(values[specID], iconData)
+    end
 end
 
 function this.DisplayerAdd(iconID, displayerID)
     TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.Managers.Icons", "DisplayerChange", nil, nil, iconID, displayerID)
     
-    if keyValues[iconID].displayers == nil then
-        keyValues[iconID].displayers = {}
+    if keyValues[playerSpec][iconID].displayers == nil then
+        keyValues[playerSpec][iconID].displayers = {}
     end
-    keyValues[iconID].displayers[displayerID] = true
+    keyValues[playerSpec][iconID].displayers[displayerID] = true
     SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID, true)
 end
 
 function this.DisplayerRemove(iconID, displayerID)
-    keyValues[iconID].displayers[displayerID] = nil
+    keyValues[playerSpec][iconID].displayers[displayerID] = nil
     SendCustomEvent("ICON_DISPLAYER_CHANGED", iconID, displayerID, false)
 end
 
 function this.DisplayersGet(iconID)
-    return keyValues[iconID].displayers
+    return keyValues[playerSpec][iconID].displayers
 end
 
 function this.IsIconValidForFilter(icon, filter)
@@ -72,10 +121,12 @@ end
 function this.GetFiltered(filterGroups)
     local filteredIcons = {}
 
-    for i = 1, #values do
-        for j = 1, #filterGroups do
-            if IsIconValidForFilters(values[i], filterGroups[j]) == true then
-                table.insert(filteredIcons, values[i])
+    if values[playerSpec] ~= nil then
+        for i = 1, #values[playerSpec] do
+            for j = 1, #filterGroups do
+                if IsIconValidForFilters(values[playerSpec][i], filterGroups[j]) == true then
+                    table.insert(filteredIcons, values[playerSpec][i])
+                end
             end
         end
     end

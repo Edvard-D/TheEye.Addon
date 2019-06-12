@@ -69,6 +69,7 @@ Values\AuraFilters.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua
+Values\Specializations.lua
 
 Values\DefaultSettings.lua
 
@@ -111,15 +112,11 @@ Helpers\Timers.lua
 # ---------------------------
 # |	     Values\Icons      	|
 # ---------------------------
-Values\Icons\AncientHysteria.lua
-Values\Icons\Bloodlust.lua
 Values\Icons\DarkAscension.lua
 Values\Icons\DarkVoid.lua
 Values\Icons\Dispersion.lua
-Values\Icons\DrumsOfRage.lua
 Values\Icons\Fade.lua
 Values\Icons\GladiatorsMedallion.lua
-Values\Icons\Heroism.lua
 Values\Icons\LeapOfFaith.lua
 Values\Icons\MassDispel.lua
 Values\Icons\Mindbender.lua
@@ -127,7 +124,6 @@ Values\Icons\MindBlast.lua
 Values\Icons\MindBomb.lua
 Values\Icons\MindFlay.lua
 Values\Icons\MindSear.lua
-Values\Icons\Netherwinds.lua
 Values\Icons\PowerWordFortitude.lua
 Values\Icons\PsychicHorror.lua
 Values\Icons\PsychicScream.lua
@@ -140,7 +136,6 @@ Values\Icons\ShadowWordPain.lua
 Values\Icons\ShadowWordVoid.lua
 Values\Icons\Silence.lua
 Values\Icons\SurrenderToMadness.lua
-Values\Icons\TimeWarp.lua
 Values\Icons\VampiricEmbrace.lua
 Values\Icons\VampiricTouch.lua
 Values\Icons\VoidBolt.lua
@@ -148,6 +143,13 @@ Values\Icons\VoidEruption.lua
 Values\Icons\Voidform.lua
 Values\Icons\VoidShift.lua
 Values\Icons\VoidTorrent.lua
+
+Values\Icons\AncientHysteria.lua
+Values\Icons\DrumsOfRage.lua
+Values\Icons\Heroism.lua
+Values\Icons\Bloodlust.lua
+Values\Icons\Netherwinds.lua
+Values\Icons\TimeWarp.lua
 
 
 

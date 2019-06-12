@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.Icons.Add(
+TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {

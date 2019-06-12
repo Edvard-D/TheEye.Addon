@@ -29,6 +29,8 @@ function this.Setup(
         instance
     )
 
+    instance.OnDeactivate = this.OnDeactivate
+
     instance.Icons = IconsGetFiltered(instance.Filters)
     local icons = instance.Icons
 
@@ -98,6 +100,15 @@ function this.Setup(
                 end
             end
         end
+    end
+end
+
+function this:OnDeactivate()
+    for i = #self.Icons, 1, -1 do
+        local uiObject = self.Icons[i].UIObject
+        table.remove(self.Icons, i)
+        uiObject:Deactivate()
+        TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
     end
 end
 

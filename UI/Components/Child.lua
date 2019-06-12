@@ -25,6 +25,8 @@ function this.Setup(
         instance
     )
 
+    instance.Deactivate = this.Deactivate
+
     -- FrameStateFunctionCaller
     instance.OnClaim = this.OnClaim
     instance.OnRelease = this.OnRelease
@@ -35,6 +37,10 @@ function this.Setup(
         instance,
         2
     )
+end
+
+function this:Deactivate()
+    self.FrameStateFunctionCaller:Deactivate()
 end
 
 function this:OnClaim()

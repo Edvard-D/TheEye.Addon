@@ -10,16 +10,23 @@ local groupComponentNames =
     SITUATIONAL = "SituationalGroup",
 }
 local groupers = {}
+local playerSpec
+local table = table
+
+
 this.Modules =
 {
     IconGroups = {},
 }
-local table = table
 
 
 function this.Initialize()
-    this.inputValues = { --[[addonName]] "TheEyeAddon" }
-    TheEyeAddon.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
+    this.gameEvents =
+    {
+        "PLAYER_ENTERING_WORLD",
+        "PLAYER_SPECIALIZATION_CHANGED",
+    }
+    TheEyeAddon.Managers.Events.Register(this)
 
     CastingBarFrame:UnregisterAllEvents()
 end
@@ -42,6 +49,16 @@ local function UIObjectSetup(uiObject)
     local pairs = pairs
 
     this.currentUIObject = uiObject
+    
+    uiObject.Deactivate = function()
+        for componentKey,_ in pairs(uiObject) do
+            local component = components[componentKey]
+            local componentInstance = uiObject[componentKey]
+            if component ~= nil and componentInstance ~= nil then
+                componentInstance:Deactivate()
+            end
+        end
+    end
 
     for componentKey,_ in pairs(uiObject) do
         local component = components[componentKey]
@@ -439,51 +456,64 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
             DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
     end
-    uiObject[groupComponentNames[iconGroup.type]].Icons = nil
 
     return uiObject
 end
 
-function this:Notify(event, addon)
-    this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+function this:OnEvent(eventName, ...)
+    newSpec = GetSpecializationInfo(GetSpecialization())
+    if newSpec ~= playerSpec then
+        playerSpec = newSpec
+        
+        if eventName == "PLAYER_ENTERING_WORLD" then
+            this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
 
-    UIParentUIObjectSetup()
-    HUDUIObjectSetup()
-    IconGroupersUIObjectSetup()
-    
-    groupers =
-    {
-        LEFT = GrouperUIObjectSetup(
-            "LEFT",
+            UIParentUIObjectSetup()
+            HUDUIObjectSetup()
+            IconGroupersUIObjectSetup()
+            
+            groupers =
             {
-                point = "TOPRIGHT",
-                relativePoint = "TOP",
-                offsetX = -32.5,
-                offsetY = -5,
+                LEFT = GrouperUIObjectSetup(
+                    "LEFT",
+                    {
+                        point = "TOPRIGHT",
+                        relativePoint = "TOP",
+                        offsetX = -32.5,
+                        offsetY = -5,
+                    }
+                ),
+                CENTER = GrouperUIObjectSetup(
+                    "CENTER",
+                    {
+                        point = "TOP",
+                        relativePoint = "TOP",
+                    }
+                ),
+                RIGHT = GrouperUIObjectSetup(
+                    "RIGHT",
+                    {
+                        point = "TOPLEFT",
+                        relativePoint = "TOP",
+                        offsetX = 32.5,
+                        offsetY = -5,
+                    }
+                ),
             }
-        ),
-        CENTER = GrouperUIObjectSetup(
-            "CENTER",
-            {
-                point = "TOP",
-                relativePoint = "TOP",
-            }
-        ),
-        RIGHT = GrouperUIObjectSetup(
-            "RIGHT",
-            {
-                point = "TOPLEFT",
-                relativePoint = "TOP",
-                offsetX = 32.5,
-                offsetY = -5,
-            }
-        ),
-    }
+        else -- PLAYER_SPECIALIZATION_CHANGED
+            for k, module in pairs(this.Modules.IconGroups) do
+                local uiObject = this.Modules.IconGroups[k].UIObject
+                this.Modules.IconGroups[k].UIObject = nil
+                uiObject:Deactivate()
+                TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
+            end
+        end
 
-    for k, module in pairs(this.Modules.IconGroups) do
-        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
-        if moduleSettings.enabled == true then
-            module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+        for k, module in pairs(this.Modules.IconGroups) do
+            local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+            if moduleSettings.enabled == true then
+                module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+            end
         end
     end
 end
