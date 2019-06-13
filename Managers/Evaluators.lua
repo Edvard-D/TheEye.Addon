@@ -92,16 +92,14 @@ function this.ListenerRegister(evaluatorKey, listener)
     
     DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
 
-    if listener.isListening == nil then
-        if listener.priority == nil then
-            listener.priority = math.huge
-        end
-
-        table.insert(listeners, listener)
-        table.sort(listeners, function(a,b)
-        return (a.isInternal and not b.isInternal)
-            or (a.isInternal == b.isInternal and a.priority < b.priority) end)
+    if listener.priority == nil then
+        listener.priority = math.huge
     end
+
+    table.insert(listeners, listener)
+    table.sort(listeners, function(a,b)
+    return (a.isInternal and not b.isInternal)
+        or (a.isInternal == b.isInternal and a.priority < b.priority) end)
 
     listener.isListening = true
     EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
@@ -121,9 +119,12 @@ function this.ListenerDeregister(evaluatorKey, listener)
     
     DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
 
-    listener.isListening = false
-    EvaluatorDecreaseListenerCount(evaluator)
-    InputGroupDecreaseListenerCount(evaluator, inputGroup)
+    if listener.isListening == true then
+        table.removevalue(listeners, listener)
+        listener.isListening = false
+        EvaluatorDecreaseListenerCount(evaluator)
+        InputGroupDecreaseListenerCount(evaluator, inputGroup)
+    end
 end
 
 -- Listening To: handling of Evaluators that are listening to an Evaluator
@@ -158,7 +159,7 @@ local function ListenersNotify(inputGroup, shouldSend, event)
         for i = 1, #listeners do
             local listener = listeners[i]
 
-            if listener.isListening == true then
+            if listener.isListening == true and listener.Notify ~= nil then
                 listener:Notify(event, inputGroup)
             end
         end
