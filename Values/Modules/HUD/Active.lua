@@ -8,7 +8,7 @@ TheEyeAddon.Managers.UI.ModuleAdd(
             {
                 type = "CATEGORY",
                 value = "DAMAGE",
-                subvalue = "MINION",
+                subvalue = "SUMMON",
             },
             {
                 type = "CATEGORY",
@@ -28,24 +28,35 @@ TheEyeAddon.Managers.UI.ModuleAdd(
         {
             {
                 type = "CATEGORY",
-                value = "DAMAGE",
-                subvalue = "BUFF",
+                value = "BUFF",
+                subvalue = "POWER",
             },
             {
-                type = "USAGE_RATE",
-                value = 1,
+                type = "CAST_TYPE",
+                value = "CAST",
             },
             {
-                type = "USAGE_RATE",
-                value = 2,
+                type = "CAST_TYPE",
+                value = "INSTANT",
             },
             {
-                type = "USAGE_RATE",
-                value = 3,
+                type = "COOLDOWN",
+                comparisonValues =
+                {
+                    value = 0,
+                    type = "GreaterThan",
+                },
+            },
+        },
+        {
+            {
+                type = "CATEGORY",
+                value = "BUFF",
+                subvalue = "POWER",
             },
             {
-                type = "USAGE_RATE",
-                value = 4,
+                type = "CAST_TYPE",
+                value = "TRIGGERED",
             },
         },
     },

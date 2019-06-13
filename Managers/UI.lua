@@ -23,11 +23,15 @@ this.Modules =
 function this.Initialize()
     this.gameEvents =
     {
+        "ADDON_LOADED",
         "PLAYER_ENTERING_WORLD",
         "PLAYER_SPECIALIZATION_CHANGED",
     }
     TheEyeAddon.Managers.Events.Register(this)
 
+    this.inputValues = { --[[addonName]] "TheEyeAddon" }
+    TheEyeAddon.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
+    
     CastingBarFrame:UnregisterAllEvents()
 end
 
@@ -434,11 +438,11 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
         
         local listeners = iconUIObject.EnabledState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
 
         -- VisibleState
@@ -449,11 +453,11 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
 
         listeners = iconUIObject.VisibleState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
     end
 
@@ -461,11 +465,10 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
 end
 
 function this:OnEvent(eventName, ...)
-    newSpec = GetSpecializationInfo(GetSpecialization())
-    if newSpec ~= playerSpec then
-        playerSpec = newSpec
-        
-        if eventName == "PLAYER_ENTERING_WORLD" then
+    if eventName == "ADDON_LOADED" then
+        local addon = ...
+
+        if addon == "TheEyeAddon" then
             this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
 
             UIParentUIObjectSetup()
@@ -500,19 +503,26 @@ function this:OnEvent(eventName, ...)
                     }
                 ),
             }
-        else -- PLAYER_SPECIALIZATION_CHANGED
-            for k, module in pairs(this.Modules.IconGroups) do
-                local uiObject = this.Modules.IconGroups[k].UIObject
-                this.Modules.IconGroups[k].UIObject = nil
-                uiObject:Deactivate()
-                TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
-            end
         end
-
-        for k, module in pairs(this.Modules.IconGroups) do
-            local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
-            if moduleSettings.enabled == true then
-                module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+    else
+        newSpec = GetSpecializationInfo(GetSpecialization())
+        if newSpec ~= playerSpec then
+            playerSpec = newSpec
+            
+            if eventName == "PLAYER_SPECIALIZATION_CHANGED" then
+                for k, module in pairs(this.Modules.IconGroups) do
+                    local uiObject = this.Modules.IconGroups[k].UIObject
+                    this.Modules.IconGroups[k].UIObject = nil
+                    uiObject:Deactivate()
+                    TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
+                end
+            end
+    
+            for k, module in pairs(this.Modules.IconGroups) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+                end
             end
         end
     end

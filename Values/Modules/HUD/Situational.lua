@@ -6,16 +6,39 @@ TheEyeAddon.Managers.UI.ModuleAdd(
     {
         {
             {
-                type = "USAGE_RATE",
-                value = 1,
+                type = "CATEGORY",
+                value = "BUFF",
+                subvalue = "SURVIVABILITY",
             },
             {
-                type = "USAGE_RATE",
-                value = 2,
+                type = "CATEGORY",
+                value = "CC",
             },
             {
-                type = "USAGE_RATE",
-                value = 3,
+                type = "CATEGORY",
+                value = "DEFENSIVE",
+            },
+            {
+                type = "CATEGORY",
+                value = "REMOVE_BUFF",
+            },
+        },
+        {
+            {
+                type = "CATEGORY",
+                value = "HEAL",
+            },
+            {
+                type = "CATEGORY",
+                value = "UTILITY",
+            },
+            {
+                type = "COOLDOWN",
+                comparisonValues =
+                {
+                    value = 20,
+                    type = "GreaterThanEqualTo",
+                },
             },
         },
     },

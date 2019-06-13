@@ -85,10 +85,11 @@ function this.DisplayersGet(iconID)
     return keyValues[playerSpec][iconID].displayers
 end
 
-function this.IsIconValidForFilter(icon, filter)
-    local properties = icon.properties
+function this.IsIconValidForFilter(iconData, filter)
+    local properties = iconData.properties
     for i = 1, #properties do
         local property = properties[i]
+
         if property.type == filter.type
             and ((filter.value == nil and filter.comparisonValues == nil)
                 or (filter.value == property.value and (filter.subvalue == nil or filter.subvalue == property.subvalue))
@@ -99,14 +100,14 @@ function this.IsIconValidForFilter(icon, filter)
     end
 end
 
-local function IsIconValidForFilters(icon, filters)
+local function IsIconValidForFilters(iconData, filters)
     local filterTypeStates = {}
     for i = 1, #filters do
         local filter = filters[i]
         if filterTypeStates[filter.type] == nil then
             filterTypeStates[filter.type] = false
         end
-        if filterTypeStates[filter.type] ~= true and this.IsIconValidForFilter(icon, filter) == true then
+        if filterTypeStates[filter.type] == false and this.IsIconValidForFilter(iconData, filter) == true then
             filterTypeStates[filter.type] = true
         end
     end
@@ -122,12 +123,13 @@ end
 
 function this.GetFiltered(filterGroups)
     local filteredIcons = {}
+    local icons = values[playerSpec]
 
-    if values[playerSpec] ~= nil then
-        for i = 1, #values[playerSpec] do
+    if icons ~= nil then
+        for i = 1, #icons do
             for j = 1, #filterGroups do
-                if IsIconValidForFilters(values[playerSpec][i], filterGroups[j]) == true then
-                    table.insert(filteredIcons, values[playerSpec][i])
+                if IsIconValidForFilters(icons[i], filterGroups[j]) == true then
+                    table.insert(filteredIcons, icons[i])
                 end
             end
         end

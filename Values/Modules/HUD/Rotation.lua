@@ -9,25 +9,20 @@ TheEyeAddon.Managers.UI.ModuleAdd(
                 type = "CATEGORY",
                 value = "DAMAGE",
             },
+        },
+        {
             {
-                type = "TARGETING",
-                value = "DIRECT",
+                type = "CATEGORY",
+                value = "BUFF",
+                subvalue = "POWER",
             },
             {
-                type = "TARGETING",
-                value = "POSITIONAL",
+                type = "CAST_TYPE",
+                value = "CAST",
             },
             {
-                type = "TARGETING",
-                value = "SELF",
-            },
-            {
-                type = "USAGE_RATE",
-                value = 4,
-            },
-            {
-                type = "USAGE_RATE",
-                value = 5,
+                type = "CAST_TYPE",
+                value = "INSTANT",
             },
         },
     },
