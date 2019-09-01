@@ -116,13 +116,17 @@ function this.IconKeyGet(objectType, objectID, uiObject)
     return table.concat({ "ICON_", objectType, "-", objectID, "_", uiObject.instanceID })
 end
 
-function this.TalentSetup(iconUIObject, validKeys, talentData, previousValue)
+function this.TalentSetup(iconUIObject, validKeys, TALENT_REQUIRED, previousValue)
     local value = previousValue * 2
-    validKeys[2 + value] = true
+
+    if TALENT_REQUIRED.isInverse == false then
+        validKeys[2 + value] = true
+    end
+    
     table.insert(iconUIObject.EnabledState.ListenerGroup.Listeners, 
         {
             eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-            inputValues = { --[[talentID]] talentData.value, },
+            inputValues = { --[[talentID]] TALENT_REQUIRED.value, },
             value = value,
         }
     )
