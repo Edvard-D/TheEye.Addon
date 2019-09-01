@@ -63,7 +63,7 @@ TheEyeAddon.Managers.UI.ModuleAdd(
     Group =
     {
         childArranger = "Vertical",
-        sortActionName = "SortDescending",
+        sortActionName = "SortAscending",
         sortValueComponentName = "PriorityRank",
     },
     grouper = "LEFT",
