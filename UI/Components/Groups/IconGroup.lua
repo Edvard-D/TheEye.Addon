@@ -119,7 +119,7 @@ end
 function this.TalentSetup(iconUIObject, validKeys, TALENT_REQUIRED, previousValue)
     local value = previousValue * 2
 
-    if TALENT_REQUIRED.isInverse == false then
+    if TALENT_REQUIRED.isInverse ~= true then
         validKeys[2 + value] = true
     end
     
