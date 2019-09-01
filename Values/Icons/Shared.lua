@@ -118,6 +118,47 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 }
 )
 
+-- Honorable Medallion
+TheEyeAddon.Managers.Icons.Add("SHARED",
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 29, }
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "REMOVE_DEBUFF",
+            subvalue = "CC",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 195710,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
+            type = "PVP_REQUIRED",
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3477,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3478,
+        },
+    },
+}
+)
+
 -- Netherwinds
 TheEyeAddon.Managers.Icons.Add("SHARED",
 {
