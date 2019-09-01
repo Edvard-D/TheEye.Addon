@@ -1,15 +1,65 @@
+--[[ Spell Priorities
+1	232698	Shadowform
+2	194249	Voidform
+3	193223	Surrender to Madness
+4	228260	Void Eruption
+5	280711	Dark Ascension
+6	205448	Void Bolt (1-9 enemies)
+7	32379	Shadow Word: Death (2 charges, 1-4 enemies)
+8	34433	Shadowfiend
+9	200174	Mindbender (6+ Voidform stacks)
+10	211522	Psyfiend
+11	263346	Dark Void (3+ enemies)
+12	205385	Shadow Crash (3+ enemies)
+13	205351	Shadow Word: Void (1-5 enemies)
+14	8092	Mind Blast (1-4 enemies)
+15	32379	Shadow Word: Death (-Voidform, 1 charge, 1-4 enemies)
+16	263346	Dark Void (1-2 enemies)
+17	205385	Shadow Crash (1-2 enemies)
+18	263165	Void Torrent (1-4 enemies)
+19	589	Shadow Word: Pain
+20	34914	Vampiric Touch
+21	48045	Mind Sear (3+ enemies)
+22	15407	Mind Flay (1-2 enemies)
+23	208683	Gladiator's Medallion
+24	108968	Void Shift
+25	47585	Dispersion
+26	15286	Vampiric Embrace
+27	213602	Greater Fade
+28	586	Fade
+29	15487	Silence
+30	64044	Psychic Horror
+31	205369	Mind Bomb
+32	8122	Psychic Scream
+33	72734	Mass Dispel
+34	528	Dispel Magic
+35	186263	Shadow Mend
+36	17	Power Word: Shield
+37	73325	Leap of Faith
+38	213634	Purify Disease
+39	21562	Power Word: Fortitude
+40	2096	Mind Vision
+41	1706	Levitate
+]]
+
+
+
 -- Dark Ascension
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 26, },
+        validKeys = { [0] = 5, },
     },
     properties =
     {
         {
             type = "AURA_APPLIED",
-            value = 194249,
+            value = 194249, -- Voidform
+        },
+        {
+            type = "AURA_REQUIRED",
+            value = 232698, -- Shadowform
         },
         {
             type = "CAST_TYPE",
@@ -32,6 +82,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 50,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 21978,
         },
@@ -44,8 +99,8 @@ TheEyeAddon.Managers.Icons.Add(258,
     PriorityRank =
     {
         validKeys = {
-            [0] = 17,
-            [2] = 21,
+            [0] = 16,
+            [2] = 11,
         },
         listeners =
         {
@@ -88,8 +143,41 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 30,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 23127,
+        },
+    },
+})
+
+-- Dispel Magic
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 34, },
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "REMOVE_BUFF",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 528,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
         },
     },
 })
@@ -99,7 +187,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 10, }
+        validKeys = { [0] = 25, },
     },
     properties =
     {
@@ -135,10 +223,14 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 11, }
+        validKeys = { [0] = 28, },
     },
     properties =
     {
+        {
+            type = "AURA_APPLIED",
+            value = 586,
+        },
         {
             type = "CAST_TYPE",
             value = "INSTANT",
@@ -160,6 +252,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "OBJECT_TYPE",
             value = "SPELL",
         },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3753, -- Greater Fade
+            isInverse = true,
+        },
     },
 })
 
@@ -168,17 +265,22 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 9, }
+        validKeys = { [0] = 23, },
     },
     properties =
     {
+        {
+            type = "AURA_APPLIED",
+            value = 208683,
+        },
         {
             type = "CAST_TYPE",
             value = "INSTANT",
         },
         {
             type = "CATEGORY",
-            value = "DEFENSIVE",
+            value = "REMOVE_DEBUFF",
+            subvalue = "CC",
         },
         {
             type = "COOLDOWN",
@@ -202,12 +304,55 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
+-- Greater Fade
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 27, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_APPLIED",
+            value = 213602,
+        },
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "DEFENSIVE",
+        },
+        {
+            type = "COOLDOWN",
+            value = 45,
+        },
+        {
+            type = "OBJECT_ID",
+            value = 213602,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
+            type = "PVP_REQUIRED",
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3753,
+        },
+    },
+})
+
 -- Leap of Faith
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 1, }
+        validKeys = { [0] = 37, }
     },
     properties =
     {
@@ -234,12 +379,45 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
--- Mass Disepl
+-- Levitate
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 5, }
+        validKeys = { [0] = 41, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_APPLIED",
+            value = 111759,
+        },
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "UTILITY",
+            subvalue = "NON-COMBAT",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 1706,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+    },
+})
+
+-- Mass Dispel
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 33, },
     },
     properties =
     {
@@ -250,12 +428,6 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "CATEGORY",
             value = "REMOVE_BUFF",
-            subvalue = "MAGIC",
-        },
-        {
-            type = "CATEGORY",
-            value = "REMOVE_DEBUFF",
-            subvalue = "MAGIC",
         },
         {
             type = "COOLDOWN",
@@ -272,55 +444,12 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
--- Mindbender
-TheEyeAddon.Managers.Icons.Add(258,
-{
-    PriorityRank =
-    {
-        validKeys = { [0] = 23, }
-    },
-    properties =
-    {
-        {
-            type = "AURA_REQUIRED",
-            comparison = "GreaterThanEqualTo",
-            stacks = 6,
-            value = 194249,
-        },
-        {
-            type = "CAST_TYPE",
-            value = "INSTANT",
-        },
-        {
-            type = "CATEGORY",
-            value = "DAMAGE",
-            subvalue = "TOTEM",
-        },
-        {
-            type = "COOLDOWN",
-            value = 60,
-        },
-        {
-            type = "OBJECT_ID",
-            value = 200174,
-        },
-        {
-            type = "OBJECT_TYPE",
-            value = "SPELL",
-        },
-        {
-            type = "TALENT_REQUIRED",
-            value = 21719,
-        },
-    },
-})
-
 -- Mind Blast
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 19, }
+        validKeys = { [0] = 14, },
     },
     properties =
     {
@@ -354,12 +483,17 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
-            type = "TALENT_REQUIRED",
-            value = 22136,
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 14,
         },
         {
             type = "TALENT_REQUIRED",
-            value = 22328,
+            value = 22136, -- Shadowy Insight
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 22328, -- Fortress of the Mind
         },
         {
             type = "UNITS_NEAR_MAX",
@@ -373,7 +507,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 2, }
+        validKeys = { [0] = 31, },
     },
     properties =
     {
@@ -388,10 +522,6 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "CATEGORY",
             value = "CC",
-        },
-        {
-            type = "CATEGORY",
-            value = "REMOVE_DEBUFF",
         },
         {
             type = "COOLDOWN",
@@ -417,10 +547,14 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 12, }
+        validKeys = { [0] = 22, },
     },
     properties =
     {
+        {
+            type = "AURA_APPLIED",
+            value = 15407,
+        },
         {
             type = "CAST_TYPE",
             value = "CHANNEL",
@@ -438,6 +572,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 14,
+        },
+        {
             type = "UNITS_NEAR_MAX",
             value = 2,
         },
@@ -449,10 +588,14 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 12, }
+        validKeys = { [0] = 21, },
     },
     properties =
     {
+        {
+            type = "AURA_APPLIED",
+            value = 48045,
+        },
         {
             type = "CAST_TYPE",
             value = "CHANNEL",
@@ -476,12 +619,93 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
--- Power Word Fortitude
+-- Mind Vision
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 6, }
+        validKeys = { [0] = 40, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_APPLIED",
+            value = 2096,
+        },
+        {
+            type = "CAST_TYPE",
+            value = "CHANNEL",
+        },
+        {
+            type = "CATEGORY",
+            value = "UTILITY",
+            subvalue = "NON-COMBAT",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 2096,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+    },
+})
+
+-- Mindbender
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 9, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_REQUIRED",
+            comparison = "GreaterThanEqualTo",
+            stacks = 6,
+            value = 194249,
+        },
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "DAMAGE",
+            subvalue = "TOTEM",
+        },
+        {
+            type = "COOLDOWN",
+            value = 60,
+        },
+        {
+            type = "OBJECT_ID",
+            value = 200174,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 72,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 21719,
+        },
+    },
+})
+
+-- Power Word: Fortitude
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 39, },
     },
     properties =
     {
@@ -506,6 +730,44 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "OBJECT_TYPE",
             value = "SPELL",
         },
+        {
+            type = "POWER_REQUIRED",
+        },
+    },
+})
+
+-- Power Word: Shield
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 36, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_APPLIED",
+            value = 17,
+        },
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "DEFENSIVE",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 17,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
+            type = "POWER_REQUIRED",
+        },
     },
 })
 
@@ -514,7 +776,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 3, }
+        validKeys = { [0] = 30, },
     },
     properties =
     {
@@ -554,7 +816,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 2, }
+        validKeys = { [0] = 32, },
     },
     properties =
     {
@@ -584,11 +846,11 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "TALENT_REQUIRED",
-            value = 21752,
+            value = 21752, -- Psychic Horror
         },
         {
             type = "TALENT_REQUIRED",
-            value = 23137,
+            value = 23137, -- Last Word
         },
     },
 })
@@ -598,10 +860,14 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 22, }
+        validKeys = { [0] = 10, },
     },
     properties =
     {
+        {
+            type = "AURA_APPLIED",
+            value = 211522,
+        },
         {
             type = "CAST_TYPE",
             value = "INSTANT",
@@ -610,7 +876,6 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "CATEGORY",
             value = "DAMAGE",
             subvalue = "SUMMON",
-            length = 12,
         },
         {
             type = "COOLDOWN",
@@ -629,7 +894,40 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "TALENT_REQUIRED",
-            value = 736,
+            value = 763,
+        },
+    },
+})
+
+-- Purify Disease
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 38, },
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "REMOVE_DEBUFF",
+            subvalue = "DISEASE",
+        },
+        {
+            type = "COOLDOWN",
+            value = 8,
+        },
+        {
+            type = "OBJECT_ID",
+            value = 213634,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
         },
     },
 })
@@ -641,8 +939,8 @@ TheEyeAddon.Managers.Icons.Add(258,
     {
         validKeys =
         {
-            [0] = 16,
-            [2] = 20,
+            [0] = 17,
+            [2] = 12,
         },
         listeners =
         {
@@ -681,86 +979,44 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 20,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 21755,
         },
     },
 })
 
--- Shadowfiend
+-- Shadow Mend
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 23, }
+        validKeys = { [0] = 35, },
     },
     properties =
     {
         {
             type = "CAST_TYPE",
-            value = "INSTANT",
+            value = "CAST",
         },
         {
             type = "CATEGORY",
-            value = "DAMAGE",
-            subvalue = "TOTEM",
-        },
-        {
-            type = "COOLDOWN",
-            value = 180,
+            value = "HEAL",
         },
         {
             type = "OBJECT_ID",
-            value = 34433,
+            value = 186263,
         },
         {
             type = "OBJECT_TYPE",
             value = "SPELL",
         },
         {
-            type = "TALENT_REQUIRED",
-            value = 21718,
-        },
-        {
-            type = "TALENT_REQUIRED",
-            value = 21720,
-        },
-    },
-})
-
--- Shadowform
-TheEyeAddon.Managers.Icons.Add(258,
-{
-    PriorityRank =
-    {
-        validKeys = { [0] = math.huge, }
-    },
-    properties =
-    {
-        {
-            type = "AURA_APPLIED",
-            value = 232698,
-        },
-        {
-            type = "AURA_REPLACED",
-            value = 194249, -- Voidform
-        },
-        {
-            type = "CAST_TYPE",
-            value = "INSTANT",
-        },
-        {
-            type = "CATEGORY",
-            value = "BUFF",
-            subvalue = "POWER",
-        },
-        {
-            type = "OBJECT_ID",
-            value = 232698,
-        },
-        {
-            type = "OBJECT_TYPE",
-            value = "SPELL",
+            type = "POWER_REQUIRED",
         },
     },
 })
@@ -772,8 +1028,8 @@ TheEyeAddon.Managers.Icons.Add(258,
     {
         validKeys =
         {
-            [0] = 18, [2] = 18, [8] = 18,
-            [4] = 24, [6] = 24, [10] = 24, [12] = 24, [14] = 24,
+            [0] = 15, [2] = 15, [8] = 15,
+            [4] = 7, [6] = 7, [10] = 7, [12] = 7, [14] = 7,
         },
         listeners =
         {
@@ -824,8 +1080,8 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "HEALTH_REQUIRED",
-            comparison = "LessThan",
             value = 0.2,
+            comparison = "LessThan",
         },
         {
             type = "OBJECT_ID",
@@ -834,6 +1090,11 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "OBJECT_TYPE",
             value = "SPELL",
+        },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 15,
         },
         {
             type = "TALENT_REQUIRED",
@@ -851,7 +1112,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 14, }
+        validKeys = { [0] = 19, },
     },
     properties =
     {
@@ -876,6 +1137,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "OBJECT_TYPE",
             value = "SPELL",
         },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 4,
+        },
     },
 })
 
@@ -884,7 +1150,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 19, }
+        validKeys = { [0] = 13, },
     },
     properties =
     {
@@ -913,6 +1179,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 15,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 22314,
         },
@@ -923,12 +1194,95 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
+-- Shadowfiend
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 8, },
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "DAMAGE",
+            subvalue = "TOTEM",
+        },
+        {
+            type = "COOLDOWN",
+            value = 180,
+        },
+        {
+            type = "OBJECT_ID",
+            value = 34433,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 36,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 21718, -- Lingering Insanity
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 21720, -- Void Torrent
+        },
+    },
+})
+
+-- Shadowform
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 1, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_APPLIED",
+            value = 232698,
+        },
+        {
+            type = "AURA_REPLACED",
+            value = 194249, -- Voidform
+        },
+        {
+            type = "CAST_TYPE",
+            value = "INSTANT",
+        },
+        {
+            type = "CATEGORY",
+            value = "BUFF",
+            subvalue = "POWER",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 232698,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+    },
+})
+
 -- Silence
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 4, }
+        validKeys = { [0] = 29, },
     },
     properties =
     {
@@ -964,7 +1318,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 28, }
+        validKeys = { [0] = 3, },
     },
     properties =
     {
@@ -983,7 +1337,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "COOLDOWN",
-            value = 240,
+            value = 180,
         },
         {
             type = "OBJECT_ID",
@@ -992,6 +1346,11 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "OBJECT_TYPE",
             value = "SPELL",
+        },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = "x2",
         },
         {
             type = "TALENT_REQUIRED",
@@ -1005,7 +1364,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 8, }
+        validKeys = { [0] = 26, },
     },
     properties =
     {
@@ -1020,7 +1379,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "CATEGORY",
             value = "HEAL",
-            subvalue = "HOT",
+            subvalue = "PERIODIC",
         },
         {
             type = "COOLDOWN",
@@ -1042,7 +1401,7 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 13, }
+        validKeys = { [0] = 20, },
     },
     properties =
     {
@@ -1076,6 +1435,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "OBJECT_TYPE",
             value = "SPELL",
         },
+        {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 6,
+        },
     },
 })
 
@@ -1084,13 +1448,13 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 25, }
+        validKeys = { [0] = 6, },
     },
     properties =
     {
         {
             type = "AURA_REQUIRED",
-            value = 194249,
+            value = 194249, -- Voidform
         },
         {
             type = "CAST_TYPE",
@@ -1113,6 +1477,11 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 20,
+        },
+        {
             type = "UNITS_NEAR_MAX",
             value = 9,
         },
@@ -1124,17 +1493,17 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 26, }
+        validKeys = { [0] = 4, },
     },
     properties =
     {
         {
             type = "AURA_APPLIED",
-            value = 194249,
+            value = 194249, -- Voidform
         },
         {
             type = "AURA_REQUIRED",
-            value = 232698,
+            value = 232698, -- Shadowform
         },
         {
             type = "CAST_TYPE",
@@ -1158,45 +1527,12 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
 })
 
--- Voidform
-TheEyeAddon.Managers.Icons.Add(258,
-{
-    PriorityRank =
-    {
-        validKeys = { [0] = 27, }
-    },
-    properties =
-    {
-        {
-            type = "AURA_REPLACED",
-            value = 232698, -- Shadowform
-        },
-        {
-            type = "CAST_TYPE",
-            value = "TRIGGERED",
-        },
-        {
-            type = "CATEGORY",
-            value = "BUFF",
-            subvalue = "POWER",
-        },
-        {
-            type = "OBJECT_ID",
-            value = 194249,
-        },
-        {
-            type = "OBJECT_TYPE",
-            value = "SPELL",
-        },
-    },
-})
-
 -- Void Shift
 TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 7, }
+        validKeys = { [0] = 24, }
     },
     properties =
     {
@@ -1235,13 +1571,13 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 15, }
+        validKeys = { [0] = 18, },
     },
     properties =
     {
         {
-            type = "AURA_REQUIRED",
-            value = 194249,
+            type = "AURA_APPLIED",
+            value = 289577,
         },
         {
             type = "CAST_TYPE",
@@ -1264,12 +1600,50 @@ TheEyeAddon.Managers.Icons.Add(258,
             value = "SPELL",
         },
         {
+            type = "POWER_MODIFIED",
+            value = 13, -- INSANITY
+            subvalue = 30,
+        },
+        {
             type = "TALENT_REQUIRED",
             value = 21720,
         },
         {
             type = "UNITS_NEAR_MAX",
             value = 4,
+        },
+    },
+})
+
+-- Voidform
+TheEyeAddon.Managers.Icons.Add(258,
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 4, },
+    },
+    properties =
+    {
+        {
+            type = "AURA_REPLACED",
+            value = 232698, -- Shadowform
+        },
+        {
+            type = "CAST_TYPE",
+            value = "TRIGGERED",
+        },
+        {
+            type = "CATEGORY",
+            value = "BUFF",
+            subvalue = "POWER",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 194249,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
         },
     },
 })

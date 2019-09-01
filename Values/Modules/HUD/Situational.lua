@@ -16,21 +16,27 @@ TheEyeAddon.Managers.UI.ModuleAdd(
             },
             {
                 type = "CATEGORY",
-                value = "DEFENSIVE",
-            },
-            {
-                type = "CATEGORY",
-                value = "REMOVE_BUFF",
+                value = "REMOVE_DEBUFF",
+                subvalue = "CC",
             },
         },
         {
+            {
+                type = "CATEGORY",
+                value = "DEFENSIVE",
+            },
             {
                 type = "CATEGORY",
                 value = "HEAL",
             },
             {
                 type = "CATEGORY",
+                value = "REMOVE_BUFF",
+            },
+            {
+                type = "CATEGORY",
                 value = "UTILITY",
+                subvalue = "COMBAT",
             },
             {
                 type = "COOLDOWN",

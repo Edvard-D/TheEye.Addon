@@ -3,7 +3,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
@@ -33,7 +33,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
@@ -63,7 +63,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
@@ -93,7 +93,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
@@ -123,7 +123,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 23, }
     },
     properties =
     {
@@ -164,7 +164,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
@@ -194,7 +194,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
 {
     PriorityRank =
     {
-        validKeys = { [0] = 29, }
+        validKeys = { [0] = 0, }
     },
     properties =
     {
