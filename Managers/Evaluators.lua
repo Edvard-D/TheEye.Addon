@@ -163,7 +163,7 @@ local function ListenersNotify(inputGroup, shouldSend, event)
         for i = 1, #listeners do
             local listener = listeners[i]
 
-            if listener.isListening == true and listener.Notify ~= nil then
+            if listener ~= nil and listener.isListening == true and listener.Notify ~= nil then
                 listener:Notify(event, inputGroup)
             end
         end
