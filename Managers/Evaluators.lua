@@ -1,8 +1,8 @@
 TheEyeAddon.Managers.Evaluators = {}
 local this = TheEyeAddon.Managers.Evaluators
 
-local CoordinatorRegister = TheEyeAddon.Managers.Events.Register
-local CoordinatorDeregister = TheEyeAddon.Managers.Events.Deregister
+local EventsRegister = TheEyeAddon.Managers.Events.Register
+local EventsDeregister = TheEyeAddon.Managers.Events.Deregister
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local Evaluators = TheEyeAddon.Evaluators
 local pairs = pairs
@@ -47,7 +47,7 @@ local function EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
     if evaluator.listenerCount == 1 then -- If listenerCount was 0 before
         evaluator.key = evaluatorKey
         evaluator.OnEvent = this.OnEvent
-        CoordinatorRegister(evaluator)
+        EventsRegister(evaluator)
     end
 end
 
@@ -73,7 +73,7 @@ end
 local function EvaluatorDecreaseListenerCount(evaluator)
     evaluator.listenerCount = evaluator.listenerCount - 1
     if evaluator.listenerCount == 0 then -- If the listenerCount was greater than 0 before
-        CoordinatorDeregister(evaluator)
+        EventsDeregister(evaluator)
     end
 end
 
