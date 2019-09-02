@@ -65,7 +65,7 @@ function this.Setup(
                     inputValues = { --[[unit]] "player", --[[spellID]] OBJECT_ID.value, },
                     comparisonValues =
                     {
-                        value = CATEGORY.length,
+                        value = CATEGORY.duration,
                         type = "LessThan"
                     },
                     value = value,

@@ -876,6 +876,7 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "CATEGORY",
             value = "DAMAGE",
             subvalue = "SUMMON",
+            duration = 12,
         },
         {
             type = "COOLDOWN",
