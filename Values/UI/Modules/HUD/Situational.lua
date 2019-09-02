@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.UI.ModuleAdd(
+TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
 {
     instanceID = "0000004",
     type = "SITUATIONAL",
@@ -57,6 +57,4 @@ TheEyeAddon.Managers.UI.ModuleAdd(
     grouper = "RIGHT",
     grouperPriority = 1,
     IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
-},
-"IconGroups"
-)
+})

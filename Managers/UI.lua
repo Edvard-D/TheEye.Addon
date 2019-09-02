@@ -88,7 +88,7 @@ function this.GrouperAdd(uiObject, setupFunction)
     }
 end
 
-function this.ModuleAdd(module, key)
+function this.ModuleAdd(key, module)
     this.Modules[key][module.type] = module
 end
 

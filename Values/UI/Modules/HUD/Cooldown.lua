@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.UI.ModuleAdd(
+TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
 {
     instanceID = "0000002",
     type = "COOLDOWN",
@@ -29,6 +29,4 @@ TheEyeAddon.Managers.UI.ModuleAdd(
         "ACTIVE",
         "ROTATION",
     },
-},
-"IconGroups"
-)
+})

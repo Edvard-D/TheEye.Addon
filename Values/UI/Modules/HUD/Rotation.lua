@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.UI.ModuleAdd(
+TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
 {
     instanceID = "0000003",
     type = "ROTATION",
@@ -35,6 +35,4 @@ TheEyeAddon.Managers.UI.ModuleAdd(
     grouper = "CENTER",
     grouperPriority = 1,
     IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
-},
-"IconGroups"
-)
+})
