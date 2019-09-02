@@ -1,7 +1,5 @@
 local this = TheEyeAddon.Values
 
-local UnitSpellHaste = UnitSpellHaste
-
 
 this.screenSize =
 {
