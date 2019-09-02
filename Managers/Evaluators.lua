@@ -24,7 +24,11 @@ local function InputGroupGet(evaluator, inputValues)
     end
 
     if evaluator.InputGroups[inputGroupKey] == nil then
-        evaluator.InputGroups[inputGroupKey] = { key = inputGroupKey, }
+        evaluator.InputGroups[inputGroupKey] =
+        {
+            key = inputGroupKey,
+            inputValues = inputValues,
+        }
     end
 
     return evaluator.InputGroups[inputGroupKey]
