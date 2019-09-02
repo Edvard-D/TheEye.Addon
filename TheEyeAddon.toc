@@ -154,12 +154,23 @@ Values\Icons\TimeWarp.lua
 
 
 # ---------------------------
-# |	    Values\Modules     	|
+# |	       Values\UI     	|
 # ---------------------------
-Values\Modules\HUD\Active.lua
-Values\Modules\HUD\Cooldown.lua
-Values\Modules\HUD\Rotation.lua
-Values\Modules\HUD\Situational.lua
+# --- Groupers ---
+Values\UI\Groupers\Bottom.lua
+Values\UI\Groupers\Center.lua
+Values\UI\Groupers\HUD.lua
+Values\UI\Groupers\Left.lua
+Values\UI\Groupers\Right.lua
+Values\UI\Groupers\Top.lua
+Values\UI\Groupers\UIParent.lua
+
+
+# --- Modules ---
+Values\UI\Modules\HUD\Active.lua
+Values\UI\Modules\HUD\Cooldown.lua
+Values\UI\Modules\HUD\Rotation.lua
+Values\UI\Modules\HUD\Situational.lua
 
 
 

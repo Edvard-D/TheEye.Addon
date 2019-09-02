@@ -22,7 +22,7 @@ TheEyeAddon.Managers.UI.ModuleAdd(
         sortValueComponentName = "Cooldown",
     },
     grouper = "LEFT",
-    grouperPriority = 1,
+    grouperPriority = 2,
     IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
     PriorityDisplayers =
     {
