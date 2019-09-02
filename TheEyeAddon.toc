@@ -222,6 +222,7 @@ Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
 Evaluators\Unit\UNIT_NAME_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
+Evaluators\Unit\UNIT_RAID_MARKER_CHANGED.lua
 Evaluators\Unit\UNIT_SPEC_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
