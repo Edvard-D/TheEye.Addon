@@ -27,6 +27,8 @@ function this.SetDimensions(frame, dimensions)
 				dimensions.PointSettings.relativePoint,
 				dimensions.PointSettings.offsetX or 0,
 				dimensions.PointSettings.offsetY or 0)
+		else
+			frame:SetAllPoints()
 		end
 	else
 		frame:SetSize(minSize, minSize)
