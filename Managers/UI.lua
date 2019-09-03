@@ -2,21 +2,20 @@ TheEyeAddon.Managers.UI = {}
 local this = TheEyeAddon.Managers.UI
 
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
-local groupComponentNames =
+local groupers = {}
+local moduleComponentNames =
 {
     ACTIVE = "ActiveGroup",
     COOLDOWN = "CooldownGroup",
     ROTATION = "RotationGroup",
     SITUATIONAL = "SituationalGroup",
 }
-local groupers = {}
 local playerSpec
 local table = table
 
 
 this.Modules =
 {
-    Groupers = {},
     IconGroups = {},
 }
 
@@ -81,9 +80,9 @@ end
 function this.GrouperAdd(uiObject, setupFunction)
     local grouperKey = uiObject.tags[1]
 
-    this.Modules["Groupers"][grouperKey] =
+    groupers[grouperKey] =
     {
-        uiObject = uiObject,
+        UIObject = uiObject,
         Setup = setupFunction,
     }
 end
@@ -93,14 +92,12 @@ function this.ModuleAdd(key, module)
 end
 
 local function GrouperUIObjectSetup(uiObject)    
-    groupers[uiObject.tags[1]] = uiObject
-
     FormatData(uiObject)
     UIObjectSetup(uiObject)
 end
 
 local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
-    local parentKey = groupers[iconGroupData.grouper].key
+    local parentKey = groupers[iconGroupData.grouper].UIObject.key
 
     local uiObject =
     {
@@ -166,12 +163,12 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
         sortActionName = iconGroupData.Group.sortActionName,
         sortValueComponentName = iconGroupData.Group.sortValueComponentName,
     }
-    uiObject[groupComponentNames[iconGroupData.type]] = uiObject.Group
+    uiObject[moduleComponentNames[iconGroupData.type]] = uiObject.Group
 
     -- Setup
     UIObjectSetup(uiObject)
     
-    local icons = uiObject[groupComponentNames[iconGroupData.type]].Icons
+    local icons = uiObject[moduleComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
         FormatData(iconUIObject)
@@ -219,11 +216,11 @@ function this:OnEvent(eventName, ...)
         if addon == "TheEyeAddon" then
             this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
 
-            for k,v in pairs(this.Modules.Groupers) do
+            for k,v in pairs(groupers) do
                 if v.Setup ~= nil then
-                    v.Setup(v.uiObject)
+                    v.Setup(v.UIObject)
                 end
-                GrouperUIObjectSetup(v.uiObject)
+                GrouperUIObjectSetup(v.UIObject)
             end
         end
     else -- PLAYER_ENTERING_WORLD, PLAYER_SPECIALIZATION_CHANGED
