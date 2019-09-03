@@ -8,6 +8,7 @@ local moduleNames =
     cooldown = "COOLDOWN",
     rotation = "ROTATION",
     situational = "SITUATIONAL",
+    targetAction = "TARGET_ACTION",
     targetFrame = "TARGET_FRAME",
 }
 local xPosition = 0
