@@ -6,6 +6,7 @@ local frameTypes =
 {
 	Cooldown = "Cooldown",
 	Frame = "Frame",
+	TargetAction = "Frame",
 	TargetFrame = "Frame",
 }
 local minSize = 0.0001

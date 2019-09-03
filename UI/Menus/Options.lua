@@ -271,6 +271,25 @@ this.options =
                         },
                     },
                 },
+                targetAction =
+                {
+                    type = "group",
+                    name = locale["Target Action"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
+                    },
+                },
                 targetFrame =
                 {
                     type = "group",
