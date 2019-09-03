@@ -99,8 +99,8 @@ local function GrouperUIObjectSetup(uiObject)
     UIObjectSetup(uiObject)
 end
 
-local function IconGroupUIObjectSetup(iconGroup, maxIcons)
-    local parentKey = groupers[iconGroup.grouper].key
+local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
+    local parentKey = groupers[iconGroupData.grouper].key
 
     local uiObject =
     {
@@ -128,13 +128,13 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
         },
         Frame =
         {
-            Dimensions = iconGroup.Dimensions
+            Dimensions = iconGroupData.Dimensions
         },
         PriorityRank =
         {
             ValueHandler =
             {
-                validKeys = { [0] = iconGroup.grouperPriority, }
+                validKeys = { [0] = iconGroupData.grouperPriority, }
             },
         },
         VisibleState =
@@ -147,31 +147,31 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
     }
 
     -- Key
-    if iconGroup.instanceID == nil then
-        iconGroup.instanceID = string.sub(tostring(uiObject), 13, 19)
+    if iconGroupData.instanceID == nil then
+        iconGroupData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    uiObject.tags = { "GROUP", iconGroup.instanceID }
+    uiObject.tags = { "GROUP", iconGroupData.instanceID }
     FormatData(uiObject)
 
     -- Group Component
     uiObject.Group =
     {
-        instanceID = iconGroup.instanceID,
-        instanceType = iconGroup.type,
-        Filters = iconGroup.Filters,
-        IconDimensions = iconGroup.IconDimensions,
-        PriorityDisplayers = iconGroup.PriorityDisplayers,
-        childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
+        instanceID = iconGroupData.instanceID,
+        instanceType = iconGroupData.type,
+        Filters = iconGroupData.Filters,
+        IconDimensions = iconGroupData.IconDimensions,
+        PriorityDisplayers = iconGroupData.PriorityDisplayers,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroupData.Group.childArranger],
         maxDisplayedChildren = maxIcons,
-        sortActionName = iconGroup.Group.sortActionName,
-        sortValueComponentName = iconGroup.Group.sortValueComponentName,
+        sortActionName = iconGroupData.Group.sortActionName,
+        sortValueComponentName = iconGroupData.Group.sortValueComponentName,
     }
-    uiObject[groupComponentNames[iconGroup.type]] = uiObject.Group
+    uiObject[groupComponentNames[iconGroupData.type]] = uiObject.Group
 
     -- Setup
     UIObjectSetup(uiObject)
     
-    local icons = uiObject[groupComponentNames[iconGroup.type]].Icons
+    local icons = uiObject[groupComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
         FormatData(iconUIObject)
