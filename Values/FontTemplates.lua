@@ -17,3 +17,18 @@ this.Icon =
         flags = "OUTLINE",
     },
 }
+this.TargetFrame =
+{
+    Health =
+    {
+        font = "Fonts\\FRIZQT__.TTF",
+        size = 20,
+        flags = "OUTLINE",
+    },
+    Name =
+    {
+        font = "Fonts\\FRIZQT__.TTF",
+        size = 10,
+        flags = "OUTLINE",
+    },
+}

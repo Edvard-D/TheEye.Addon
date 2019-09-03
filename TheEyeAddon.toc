@@ -121,6 +121,9 @@ Values\Icons\Shared.lua
 # ---------------------------
 # |	       Values\UI     	|
 # ---------------------------
+Values\UI\Colors.lua
+
+
 # --- Groupers ---
 Values\UI\Groupers\Bottom.lua
 Values\UI\Groupers\Center.lua
@@ -136,6 +139,7 @@ Values\UI\Modules\HUD\Active.lua
 Values\UI\Modules\HUD\Cooldown.lua
 Values\UI\Modules\HUD\Rotation.lua
 Values\UI\Modules\HUD\Situational.lua
+Values\UI\Modules\HUD\TargetFrame.lua
 
 
 
@@ -253,6 +257,7 @@ UI\Factories\FontString.lua
 UI\Factories\Texture.lua
 
 UI\Factories\Cooldown.lua
+UI\Factories\TargetFrame.lua
 
 
 
@@ -275,6 +280,7 @@ UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
+UI\Components\FrameModifiers\TargetFrame.lua
 
 
 # --- Groups ---

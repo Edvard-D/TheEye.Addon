@@ -30,4 +30,9 @@ this.Icon =
         width = 30,
         height = 30,
     },
+    TargetFrameDoT =
+    {
+        width = 20,
+        height = 20,
+    },
 }

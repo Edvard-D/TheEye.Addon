@@ -17,6 +17,7 @@ local table = table
 this.Modules =
 {
     IconGroups = {},
+    TargetFrames = {},
 }
 
 
@@ -91,7 +92,7 @@ function this.ModuleAdd(key, module)
     this.Modules[key][module.type] = module
 end
 
-local function GrouperUIObjectSetup(uiObject)    
+local function GrouperUIObjectSetup(uiObject)
     FormatData(uiObject)
     UIObjectSetup(uiObject)
 end
@@ -209,6 +210,67 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     return uiObject
 end
 
+local function TargetFrameUIObjectSetup(targetFrameData)
+    local parentKey = groupers["TOP"].UIObject.key
+
+    local uiObject =
+    {
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        Frame =
+        {
+            Dimensions = targetFrameData.Dimensions
+        },
+        PriorityRank =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = targetFrameData.grouperPriority, }
+            },
+        },
+        TargetFrame =
+        {
+            unit = targetFrameData.unit,
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = true },
+            },
+        }        
+    }
+
+    -- Key
+    if targetFrameData.instanceID == nil then
+        targetFrameData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    uiObject.tags = { "TARGET_FRAME", targetFrameData.instanceID }
+    FormatData(uiObject)
+
+    UIObjectSetup(uiObject)
+end
+
 function this:OnEvent(eventName, ...)
     if eventName == "ADDON_LOADED" then
         local addon = ...
@@ -241,6 +303,13 @@ function this:OnEvent(eventName, ...)
                 local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+                end
+            end
+
+            for k, module in pairs(this.Modules.TargetFrames) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = TargetFrameUIObjectSetup(module)
                 end
             end
         end
