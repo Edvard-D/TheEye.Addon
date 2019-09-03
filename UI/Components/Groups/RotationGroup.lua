@@ -478,8 +478,6 @@ end
 function this.SubstitutedSetup(value, spellID, substituteIcon, substitutedKeyValues, instanceUIObject, iconUIObject) 
     local OBJECT_ID = GetPropertiesOfType(substituteIcon, "OBJECT_ID")
 
-    print("OBJECT_ID.value: " .. tostring(OBJECT_ID.value))
-
     if OBJECT_ID.value ~= spellID then
         local AURA_APPLIED = GetPropertiesOfType(substituteIcon, "AURA_APPLIED", spellID)
         local baseValue
