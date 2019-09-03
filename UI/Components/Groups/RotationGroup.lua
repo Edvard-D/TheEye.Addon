@@ -289,7 +289,7 @@ function this.VisibleStateSetup(instance, icon)
             for i = 1, #requirementKeys do
                 table.insert(substitutedKeyValues.final, requirementKeys[i])
                 if requirementKeys[i] ~= 0 then
-                    table.insert(exceptionKeyValues, requirementKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
+                    table.insert(exceptionKeyValues, requirementKeys[i] + spellcastActiveKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
                 end
             end
 
@@ -487,7 +487,7 @@ function this.SubstitutedSetup(value, spellID, substituteIcon, substitutedKeyVal
         table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
             {
                 eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                inputValues = { --[[uiObject]] IconKeyGet("SPELL", AURA_APPLIED.value, instanceUIObject), --[[componentName]] "VisibleState" },
+                inputValues = { --[[uiObject]] IconKeyGet("SPELL", OBJECT_ID.value, instanceUIObject), --[[componentName]] "VisibleState" },
                 value = value,
             }
         )
@@ -518,7 +518,7 @@ function this.SubstitutedSetup(value, spellID, substituteIcon, substitutedKeyVal
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                 {
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] AURA_APPLIED.value, },
+                    inputValues = { --[[unit]] "player", --[[spellID]] OBJECT_ID.value, },
                     value = value,
                 }
             )
