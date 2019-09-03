@@ -14,7 +14,7 @@ local UnitChannelInfo = UnitChannelInfo
     inputValues =
     {
         #LABEL#Unit# #UNIT#
-        #LABEL#Spell ID# #SPELL#ID#
+        #OPTIONAL#LABEL#Spell ID# #SPELL#ID#
     }
 }
 ]]
@@ -22,7 +22,11 @@ local UnitChannelInfo = UnitChannelInfo
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true
+    PLAYER_TARGET_CHANGED = true,
+    UNIT_SPELLCAST_CHANNEL_START = true,
+    UNIT_SPELLCAST_CHANNEL_STOP = true,
+    UNIT_SPELLCAST_START = true,
+    UNIT_SPELLCAST_STOP = true,
 }
 this.gameEvents =
 {
@@ -43,7 +47,11 @@ local function CalculateCurrentValue(inputValues)
     local unit = inputValues[1]
     local currentSpellID = select(9, UnitCastingInfo(unit)) or select(8, UnitChannelInfo(unit))
 
-    return currentSpellID == expectedSpellID
+    if expectedSpellID ~= "_" then
+        return currentSpellID == expectedSpellID
+    else
+        return currentSpellID ~= nil
+    end
 end
 
 function this:InputGroupSetup(inputGroup)

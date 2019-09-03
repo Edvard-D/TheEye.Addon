@@ -69,6 +69,7 @@ Values\AuraFilters.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua
+Values\Specializations.lua
 
 Values\DefaultSettings.lua
 
@@ -111,53 +112,34 @@ Helpers\Timers.lua
 # ---------------------------
 # |	     Values\Icons      	|
 # ---------------------------
-Values\Icons\AncientHysteria.lua
-Values\Icons\Bloodlust.lua
-Values\Icons\DarkAscension.lua
-Values\Icons\DarkVoid.lua
-Values\Icons\Dispersion.lua
-Values\Icons\DrumsOfRage.lua
-Values\Icons\Fade.lua
-Values\Icons\GladiatorsMedallion.lua
-Values\Icons\Heroism.lua
-Values\Icons\LeapOfFaith.lua
-Values\Icons\MassDispel.lua
-Values\Icons\Mindbender.lua
-Values\Icons\MindBlast.lua
-Values\Icons\MindBomb.lua
-Values\Icons\MindFlay.lua
-Values\Icons\MindSear.lua
-Values\Icons\Netherwinds.lua
-Values\Icons\PowerWordFortitude.lua
-Values\Icons\PsychicHorror.lua
-Values\Icons\PsychicScream.lua
-Values\Icons\Psyfiend.lua
-Values\Icons\ShadowCrash.lua
-Values\Icons\Shadowfiend.lua
-Values\Icons\Shadowform.lua
-Values\Icons\ShadowWordDeath.lua
-Values\Icons\ShadowWordPain.lua
-Values\Icons\ShadowWordVoid.lua
-Values\Icons\Silence.lua
-Values\Icons\SurrenderToMadness.lua
-Values\Icons\TimeWarp.lua
-Values\Icons\VampiricEmbrace.lua
-Values\Icons\VampiricTouch.lua
-Values\Icons\VoidBolt.lua
-Values\Icons\VoidEruption.lua
-Values\Icons\Voidform.lua
-Values\Icons\VoidShift.lua
-Values\Icons\VoidTorrent.lua
+Values\Icons\Shadow.lua
+
+Values\Icons\Shared.lua
 
 
 
 # ---------------------------
-# |	    Values\Modules     	|
+# |	       Values\UI     	|
 # ---------------------------
-Values\Modules\HUD\Active.lua
-Values\Modules\HUD\Cooldown.lua
-Values\Modules\HUD\Rotation.lua
-Values\Modules\HUD\Situational.lua
+Values\UI\Colors.lua
+
+
+# --- Groupers ---
+Values\UI\Groupers\Bottom.lua
+Values\UI\Groupers\Center.lua
+Values\UI\Groupers\HUD.lua
+Values\UI\Groupers\Left.lua
+Values\UI\Groupers\Right.lua
+Values\UI\Groupers\Top.lua
+Values\UI\Groupers\UIParent.lua
+
+
+# --- Modules ---
+Values\UI\Modules\HUD\Active.lua
+Values\UI\Modules\HUD\Cooldown.lua
+Values\UI\Modules\HUD\Rotation.lua
+Values\UI\Modules\HUD\Situational.lua
+Values\UI\Modules\HUD\TargetFrame.lua
 
 
 
@@ -206,8 +188,10 @@ Evaluators\Unit\UNIT_CLASS_CHANGED.lua
 Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
 Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
+Evaluators\Unit\UNIT_NAME_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
+Evaluators\Unit\UNIT_RAID_MARKER_CHANGED.lua
 Evaluators\Unit\UNIT_SPEC_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
@@ -269,10 +253,11 @@ UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 # ---------------------------
 # |	     UI\Factories		|
 # ---------------------------
-UI\Factories\Texture.lua
 UI\Factories\FontString.lua
+UI\Factories\Texture.lua
 
 UI\Factories\Cooldown.lua
+UI\Factories\TargetFrame.lua
 
 
 
@@ -295,6 +280,7 @@ UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
+UI\Components\FrameModifiers\TargetFrame.lua
 
 
 # --- Groups ---

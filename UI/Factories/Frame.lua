@@ -2,12 +2,18 @@ TheEyeAddon.UI.Factories.Frame = {}
 local this = TheEyeAddon.UI.Factories.Frame
 
 local CreateFrame = CreateFrame
+local frameTypes =
+{
+	Cooldown = "Cooldown",
+	Frame = "Frame",
+	TargetFrame = "Frame",
+}
 local minSize = 0.0001
 local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensions)
-	local instance = CreateFrame(frameType, nil, parentFrame or UIParent, inheritsFrom)
+	local instance = CreateFrame(frameTypes[frameType], nil, parentFrame or UIParent, inheritsFrom)
 
 	instance.UIObject = uiObject
 	instance.SetSizeWithEvent = this.SetSizeWithEvent
@@ -27,6 +33,8 @@ function this.SetDimensions(frame, dimensions)
 				dimensions.PointSettings.relativePoint,
 				dimensions.PointSettings.offsetX or 0,
 				dimensions.PointSettings.offsetY or 0)
+		else
+			frame:SetAllPoints()
 		end
 	else
 		frame:SetSize(minSize, minSize)

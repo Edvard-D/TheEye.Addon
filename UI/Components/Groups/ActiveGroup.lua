@@ -35,7 +35,7 @@ function this.Setup(
 
 
         -- BUFF
-        if (CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "BUFF")
+        if (CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER")
             or CATEGORY.value == "DEFENSIVE"
             then
             value = value * 2
@@ -50,8 +50,12 @@ function this.Setup(
             )
         end
 
-        -- MINION
-        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "MINION" then
+        -- @TODO change this to "SUMMON" and create new evaluator that tracks SPELL_SUMMON
+        --  and UNIT_DIED events. Can't check if spellIDs match since Psyfiend has a different
+        --  spellID for SPELL_SUMMON than what UNIT_SPELLCAST_SUCCEEDED events return. Should
+        --  check spell names instead.
+        -- SUMMON
+        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "SUMMON" then
             value = value * 2
             baseModifierKeyValue = baseModifierKeyValue + value
 
@@ -61,7 +65,7 @@ function this.Setup(
                     inputValues = { --[[unit]] "player", --[[spellID]] OBJECT_ID.value, },
                     comparisonValues =
                     {
-                        value = CATEGORY.length,
+                        value = CATEGORY.duration,
                         type = "LessThan"
                     },
                     value = value,

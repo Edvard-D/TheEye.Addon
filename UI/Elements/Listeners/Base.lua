@@ -69,7 +69,7 @@ function this:Notify(event, inputGroup)
     DebugLogEntryAdd("TheEyeAddon.UI.Elements.Listeners.Base", "Notify", self.UIObject, self.Component, event, inputGroup.key, inputGroup.currentValue)
     
     if self.comparisonValues == nil then
-        self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue)
+        self.NotificationHandler:OnNotify(self, event, inputGroup.currentValue, inputGroup)
     else
         local comparisonState = Comparisons[self.comparisonValues.type](
             inputGroup.currentValue, self.comparisonValues)
@@ -77,7 +77,7 @@ function this:Notify(event, inputGroup)
             or (self.comparisonState == nil and comparisonState == true)
             then
             self.comparisonState = comparisonState
-            self.NotificationHandler:OnNotify(self, event, comparisonState)
+            self.NotificationHandler:OnNotify(self, event, comparisonState, inputGroup)
         end
     end
 end

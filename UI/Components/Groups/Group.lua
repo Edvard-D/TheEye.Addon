@@ -35,6 +35,7 @@ function this.Setup(
 
     instance.ChildDeregister = this.ChildDeregister
     instance.ChildRegister = this.ChildRegister
+    instance.Deactivate = this.Deactivate
     instance.DisplayUpdate = this.DisplayUpdate
 
     -- ValueHandler
@@ -92,6 +93,16 @@ function this.Setup(
     instance.ListenerGroups.Sort:Activate()
 end
 
+
+function this:Deactivate()
+    if self.OnDeactivate ~= nil then
+        self:OnDeactivate()
+    end
+
+    self.ValueHandler:Deactivate()
+    self.ListenerGroups.DisplayUpdate:Deactivate()
+    self.ListenerGroups.Sort:Deactivate()
+end
 
 -- Child Registration
 function this:ChildRegister(childUIObject)

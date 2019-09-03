@@ -2,25 +2,37 @@ TheEyeAddon.Managers.UI = {}
 local this = TheEyeAddon.Managers.UI
 
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
-local groupComponentNames =
+local groupers = {}
+local moduleComponentNames =
 {
     ACTIVE = "ActiveGroup",
     COOLDOWN = "CooldownGroup",
     ROTATION = "RotationGroup",
     SITUATIONAL = "SituationalGroup",
 }
-local groupers = {}
-this.Modules =
-{
-    IconGroups = {},
-}
+local playerSpec
 local table = table
 
 
+this.Modules =
+{
+    IconGroups = {},
+    TargetFrames = {},
+}
+
+
 function this.Initialize()
+    this.gameEvents =
+    {
+        "ADDON_LOADED",
+        "PLAYER_ENTERING_WORLD",
+        "PLAYER_SPECIALIZATION_CHANGED",
+    }
+    TheEyeAddon.Managers.Events.Register(this)
+
     this.inputValues = { --[[addonName]] "TheEyeAddon" }
     TheEyeAddon.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
-
+    
     CastingBarFrame:UnregisterAllEvents()
 end
 
@@ -42,6 +54,16 @@ local function UIObjectSetup(uiObject)
     local pairs = pairs
 
     this.currentUIObject = uiObject
+    
+    uiObject.Deactivate = function()
+        for componentKey,_ in pairs(uiObject) do
+            local component = components[componentKey]
+            local componentInstance = uiObject[componentKey]
+            if component ~= nil and componentInstance ~= nil then
+                componentInstance:Deactivate()
+            end
+        end
+    end
 
     for componentKey,_ in pairs(uiObject) do
         local component = components[componentKey]
@@ -56,227 +78,27 @@ local function UIObjectSetup(uiObject)
     end
 end
 
-function this.ModuleAdd(module, key)
+function this.GrouperAdd(uiObject, setupFunction)
+    local grouperKey = uiObject.tags[1]
+
+    groupers[grouperKey] =
+    {
+        UIObject = uiObject,
+        Setup = setupFunction,
+    }
+end
+
+function this.ModuleAdd(key, module)
     this.Modules[key][module.type] = module
 end
 
-local function UIParentUIObjectSetup()
-    local uiObject =
-    {
-        tags = { "UIPARENT" },
-        EnabledState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [6] = true },
-            },
-            ListenerGroup =
-            {
-                Listeners =
-                {
-                    {
-                        eventEvaluatorKey = "ADDON_LOADED",
-                        inputValues = { --[[addonName]] "TheEyeAddon" },
-                        value = 2,
-                    },
-                    {
-                        eventEvaluatorKey = "GAMEDATA_LOADED_CHANGED",
-                        inputValues = nil,
-                        value = 4,
-                    },
-                },
-            },
-        },
-        Frame =
-        {
-            Dimensions =
-            {
-                scale =  TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale,
-                PointSettings =
-                {
-                    point = "CENTER",
-                    relativePoint = "CENTER",
-                    offsetX = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.X or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.X,
-                    offsetY = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.Y,
-                },
-            },
-        },
-        Group =
-        {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
-        },
-        VisibleState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [2] = true },
-            },
-            ListenerGroup =
-            {
-                Listeners =
-                {
-                    {
-                        eventEvaluatorKey = "UNIT_SPEC_CHANGED",
-                        inputValues = { --[[unit]] "player", --[[specID]] 258 },
-                        value = 2,
-                    },
-                },
-            },
-        },
-    }
-
+local function GrouperUIObjectSetup(uiObject)
     FormatData(uiObject)
     UIObjectSetup(uiObject)
 end
 
-local function HUDUIObjectSetup()
-    local parentKey = "UIPARENT"
-
-    local uiObject =
-    {
-        tags = { "HUD", },
-        Child =
-        {
-            parentKey = parentKey,
-        },
-        EnabledState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [2] = true },
-            },
-            ListenerGroup =
-            {
-                Listeners =
-                {
-                    {
-                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
-                        value = 2,
-                    },
-                },
-            },
-        },
-        Frame =
-        {
-            Dimensions =
-            {
-                PointSettings =
-                {
-                    point = "TOP",
-                    relativePoint = "CENTER",
-                    offsetY = -75,
-                },
-            },
-        },
-        Group =
-        {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
-        },
-        VisibleState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [14] = true, },
-            },
-            ListenerGroup =
-            {
-                Listeners =
-                {
-                    {
-                        eventEvaluatorKey = "UNIT_AFFECTING_COMBAT_CHANGED",
-                        inputValues = { --[[unit]] "player" },
-                        value = 2,
-                    },
-                    {
-                        eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
-                        inputValues = { --[[unit]] "player" },
-                        comparisonValues =
-                        {
-                            value = 0,
-                            type = "GreaterThan"
-                        },
-                        value = 4,
-                    },
-                    {
-                        eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
-                        inputValues = { --[[unit]] "target" },
-                        comparisonValues =
-                        {
-                            value = 0,
-                            type = "GreaterThan"
-                        },
-                        value = 8,
-                    },
-                },
-            },
-        },
-    }
-    
-    FormatData(uiObject)
-    UIObjectSetup(uiObject)
-end
-
-local function GrouperUIObjectSetup(tag, pointSettings)
-    local grouper = {}
-    local parentKey = "HUD"
-
-    grouper.UIObject =
-    {
-        tags = { tag },
-        Child =
-        {
-            parentKey = parentKey,
-        },
-        EnabledState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [2] = true },
-            },
-            ListenerGroup =
-            {
-                Listeners =
-                {
-                    {
-                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
-                        value = 2,
-                    },
-                },
-            },
-        },
-        Frame =
-        {
-            Dimensions =
-            {
-                PointSettings = pointSettings,
-            },
-        },
-        Group =
-        {
-            childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
-            childPadding = 5,
-            sortActionName = "SortDescending",
-            sortValueComponentName = "PriorityRank",
-        },
-        VisibleState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [0] = true },
-            },
-        },
-    }
-
-    FormatData(grouper.UIObject)
-    UIObjectSetup(grouper.UIObject)
-
-    return grouper
-end
-
-local function IconGroupUIObjectSetup(iconGroup, maxIcons)
-    local parentKey = groupers[iconGroup.grouper].UIObject.key
+local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
+    local parentKey = groupers[iconGroupData.grouper].UIObject.key
 
     local uiObject =
     {
@@ -304,13 +126,13 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
         },
         Frame =
         {
-            Dimensions = iconGroup.Dimensions
+            Dimensions = iconGroupData.Dimensions
         },
         PriorityRank =
         {
             ValueHandler =
             {
-                validKeys = { [0] = iconGroup.grouperPriority, }
+                validKeys = { [0] = iconGroupData.grouperPriority, }
             },
         },
         VisibleState =
@@ -323,31 +145,31 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
     }
 
     -- Key
-    if iconGroup.instanceID == nil then
-        iconGroup.instanceID = string.sub(tostring(uiObject), 13, 19)
+    if iconGroupData.instanceID == nil then
+        iconGroupData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    uiObject.tags = { "GROUP", iconGroup.instanceID }
+    uiObject.tags = { "GROUP", iconGroupData.instanceID }
     FormatData(uiObject)
 
     -- Group Component
     uiObject.Group =
     {
-        instanceID = iconGroup.instanceID,
-        instanceType = iconGroup.type,
-        Filters = iconGroup.Filters,
-        IconDimensions = iconGroup.IconDimensions,
-        PriorityDisplayers = iconGroup.PriorityDisplayers,
-        childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroup.Group.childArranger],
+        instanceID = iconGroupData.instanceID,
+        instanceType = iconGroupData.type,
+        Filters = iconGroupData.Filters,
+        IconDimensions = iconGroupData.IconDimensions,
+        PriorityDisplayers = iconGroupData.PriorityDisplayers,
+        childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroupData.Group.childArranger],
         maxDisplayedChildren = maxIcons,
-        sortActionName = iconGroup.Group.sortActionName,
-        sortValueComponentName = iconGroup.Group.sortValueComponentName,
+        sortActionName = iconGroupData.Group.sortActionName,
+        sortValueComponentName = iconGroupData.Group.sortValueComponentName,
     }
-    uiObject[groupComponentNames[iconGroup.type]] = uiObject.Group
+    uiObject[moduleComponentNames[iconGroupData.type]] = uiObject.Group
 
     -- Setup
     UIObjectSetup(uiObject)
     
-    local icons = uiObject[groupComponentNames[iconGroup.type]].Icons
+    local icons = uiObject[moduleComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
         FormatData(iconUIObject)
@@ -362,11 +184,11 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
         
         local listeners = iconUIObject.EnabledState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
 
         -- VisibleState
@@ -377,57 +199,119 @@ local function IconGroupUIObjectSetup(iconGroup, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
 
         listeners = iconUIObject.VisibleState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.Groups", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
     end
-    uiObject[groupComponentNames[iconGroup.type]].Icons = nil
 
     return uiObject
 end
 
-function this:Notify(event, addon)
-    this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+local function TargetFrameUIObjectSetup(targetFrameData)
+    local parentKey = groupers["TOP"].UIObject.key
 
-    UIParentUIObjectSetup()
-    HUDUIObjectSetup()
-    
-    groupers =
+    local uiObject =
     {
-        LEFT = GrouperUIObjectSetup(
-            "LEFT",
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
             {
-                point = "TOPRIGHT",
-                relativePoint = "TOP",
-                offsetX = -32.5,
-                offsetY = -5,
-            }
-        ),
-        CENTER = GrouperUIObjectSetup(
-            "CENTER",
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
             {
-                point = "TOP",
-                relativePoint = "TOP",
-            }
-        ),
-        RIGHT = GrouperUIObjectSetup(
-            "RIGHT",
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        Frame =
+        {
+            Dimensions = targetFrameData.Dimensions
+        },
+        PriorityRank =
+        {
+            ValueHandler =
             {
-                point = "TOPLEFT",
-                relativePoint = "TOP",
-                offsetX = 32.5,
-                offsetY = -5,
-            }
-        ),
+                validKeys = { [0] = targetFrameData.grouperPriority, }
+            },
+        },
+        TargetFrame =
+        {
+            unit = targetFrameData.unit,
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = true },
+            },
+        }        
     }
 
-    for k, module in pairs(this.Modules.IconGroups) do
-        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
-        if moduleSettings.enabled == true then
-            module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+    -- Key
+    if targetFrameData.instanceID == nil then
+        targetFrameData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    uiObject.tags = { "TARGET_FRAME", targetFrameData.instanceID }
+    FormatData(uiObject)
+
+    UIObjectSetup(uiObject)
+end
+
+function this:OnEvent(eventName, ...)
+    if eventName == "ADDON_LOADED" then
+        local addon = ...
+
+        if addon == "TheEyeAddon" then
+            this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+
+            for k,v in pairs(groupers) do
+                if v.Setup ~= nil then
+                    v.Setup(v.UIObject)
+                end
+                GrouperUIObjectSetup(v.UIObject)
+            end
+        end
+    else -- PLAYER_ENTERING_WORLD, PLAYER_SPECIALIZATION_CHANGED
+        newSpec = GetSpecializationInfo(GetSpecialization())
+        if newSpec ~= playerSpec then
+            playerSpec = newSpec
+            
+            if eventName == "PLAYER_SPECIALIZATION_CHANGED" then
+                for k, module in pairs(this.Modules.IconGroups) do
+                    local uiObject = this.Modules.IconGroups[k].UIObject
+                    this.Modules.IconGroups[k].UIObject = nil
+                    uiObject:Deactivate()
+                    TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
+                end
+            end
+    
+            for k, module in pairs(this.Modules.IconGroups) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+                end
+            end
+
+            for k, module in pairs(this.Modules.TargetFrames) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = TargetFrameUIObjectSetup(module)
+                end
+            end
         end
     end
 end

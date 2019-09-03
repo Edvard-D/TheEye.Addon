@@ -39,6 +39,10 @@ TheEyeAddon.Managers.Settings.Character.Default =
                 enabled = true,
                 maxIcons = 10,
             },
+            TARGET_FRAME =
+            {
+                enabled = true,
+            }
         },
     },
 }

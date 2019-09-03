@@ -37,6 +37,7 @@ function this.Setup(
         instance
     )
 
+    instance.Deactivate = this.Deactivate
     instance.ModifierAdd = this.ModifierAdd
     instance.ModifierRemove = this.ModifierRemove
 
@@ -52,6 +53,10 @@ function this.Setup(
     )
 end
 
+
+function this:Deactivate()
+    self.VisibleStateFunctionCaller:Deactivate()
+end
 
 function this:OnShow()
     self.state = true

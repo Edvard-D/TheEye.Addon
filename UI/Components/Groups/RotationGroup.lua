@@ -54,6 +54,7 @@ function this.VisibleStateSetup(instance, icon)
     local baseModifierKeyValue = 0
 
     local AURA_APPLIED = GetPropertiesOfType(icon, "AURA_APPLIED")
+    local AURA_REPLACED, auraReplacedCount = GetPropertiesOfType(icon, "AURA_REPLACED")
     local AURA_REQUIRED = GetPropertiesOfType(icon, "AURA_REQUIRED")
     local CAST_TYPE = GetPropertiesOfType(icon, "CAST_TYPE")
     local isCastTypeCast = IsIconValidForFilter(icon, { type = "CAST_TYPE", value = "CAST" })
@@ -67,8 +68,6 @@ function this.VisibleStateSetup(instance, icon)
     local OBJECT_TYPE = GetPropertiesOfType(icon, "OBJECT_TYPE")
     local POWER_REQUIRED = GetPropertiesOfType(icon, "POWER_REQUIRED")
     local PVP_REQUIRED = GetPropertiesOfType(icon, "PVP_REQUIRED")
-    local SUBSTITUTED, substitutedCount = GetPropertiesOfType(icon, "SUBSTITUTED")
-    local TARGETING = GetPropertiesOfType(icon, "TARGETING")
     local UNITS_NEAR_MAX = GetPropertiesOfType(icon, "UNITS_NEAR_MAX")
     local UNITS_NEAR_MIN = GetPropertiesOfType(icon, "UNITS_NEAR_MIN")
 
@@ -90,7 +89,7 @@ function this.VisibleStateSetup(instance, icon)
     )
 
     -- CastSoonAlert
-    if COOLDOWN ~= nil or CATEGORY.subvalue == "DOT" then
+    if COOLDOWN ~= nil or CATEGORY.subvalue == "PERIODIC" then
         iconUIObject.CastSoonAlert = { spellID = OBJECT_ID.value, }
         value = value * 2
         values.CastSoonAlert = value
@@ -221,9 +220,9 @@ function this.VisibleStateSetup(instance, icon)
         )
     end
 
-    -- DOT
-    -- UNIT_AURA_DURATION_CHANGED (DOT)
-    if CATEGORY.subvalue == "DOT" then
+    -- PERIODIC
+    -- UNIT_AURA_DURATION_CHANGED (PERIODIC)
+    if CATEGORY.subvalue == "PERIODIC" then
         value = value * 2
         values.UNIT_AURA_DURATION_CHANGED = value
         table.insert(castingKeyValues, value)
@@ -253,47 +252,59 @@ function this.VisibleStateSetup(instance, icon)
         )
     end
 
-    -- SUBSTITUTED (DOT)
-    if SUBSTITUTED ~= nil and CATEGORY.subvalue == "DOT" then
-        -- Setup
-        if substitutedCount == 1 then
-            value = this.SubstitutedSetup(value, SUBSTITUTED, 1, substitutedKeyValues, instance.UIObject, iconUIObject)
-        else
-            for i = 1, substitutedCount do
-                value = this.SubstitutedSetup(value, SUBSTITUTED[i], i, substitutedKeyValues, instance.UIObject, iconUIObject)
+    -- Substitute Icons (PERIODIC)
+    if CATEGORY.subvalue == "PERIODIC" then
+        local substituteIcons = IconsGetFiltered(
+            {
+                {
+                    {
+                        type = "AURA_APPLIED",
+                        value = OBJECT_ID.value,
+                    },
+                },
+            })
+
+        if #substituteIcons > 0 then
+            -- Setup
+            if #substituteIcons == 1 then
+                value = this.SubstitutedSetup(value, OBJECT_ID.value, substituteIcons[1], substitutedKeyValues, instance.UIObject, iconUIObject)
+            else
+                for i = 1, #substituteIcons do
+                    value = this.SubstitutedSetup(value, OBJECT_ID.value, substituteIcons[i], substitutedKeyValues, instance.UIObject, iconUIObject)
+                end
             end
-        end
 
-        -- Final key values
-        local componentVisibleKeys = substitutedKeyValues.componentVisible
-        local requirementKeys = substitutedKeyValues.requirement
-        local spellcastActiveKeys = substitutedKeyValues.spellcastActive
-        local finalKeys = substitutedKeyValues.final
+            -- Final key values
+            local componentVisibleKeys = substitutedKeyValues.componentVisible
+            local requirementKeys = substitutedKeyValues.requirement
+            local spellcastActiveKeys = substitutedKeyValues.spellcastActive
+            local finalKeys = substitutedKeyValues.final
 
-        for i = 1, #componentVisibleKeys do
-            if requirementKeys[i] ~= 0 then
-                table.insert(substitutedKeyValues.final, componentVisibleKeys[i])
+            for i = 1, #componentVisibleKeys do
+                if requirementKeys[i] ~= 0 then
+                    table.insert(substitutedKeyValues.final, componentVisibleKeys[i])
+                end
             end
-        end
 
-        for i = 1, #requirementKeys do
-            table.insert(substitutedKeyValues.final, requirementKeys[i])
-            if requirementKeys[i] ~= 0 then
-                table.insert(exceptionKeyValues, requirementKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
+            for i = 1, #requirementKeys do
+                table.insert(substitutedKeyValues.final, requirementKeys[i])
+                if requirementKeys[i] ~= 0 then
+                    table.insert(exceptionKeyValues, requirementKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
+                end
             end
-        end
 
-        for i = 1, #spellcastActiveKeys do
-            table.insert(substitutedKeyValues.final, spellcastActiveKeys[i])
-        end
+            for i = 1, #spellcastActiveKeys do
+                table.insert(substitutedKeyValues.final, spellcastActiveKeys[i])
+            end
 
-        for i = 1, #componentVisibleKeys do
-            table.insert(castingKeyValues, values.CastStartAlert + componentVisibleKeys[i])
-            table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+            for i = 1, #componentVisibleKeys do
+                table.insert(castingKeyValues, values.CastStartAlert + componentVisibleKeys[i])
+                table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
 
-            for j = 1, #requirementKeys do
-                if i ~= j then
-                    table.insert(finalKeys, componentVisibleKeys[i] + requirementKeys[j])
+                for j = 1, #requirementKeys do
+                    if i ~= j then
+                        table.insert(finalKeys, componentVisibleKeys[i] + requirementKeys[j])
+                    end
                 end
             end
         end
@@ -301,7 +312,7 @@ function this.VisibleStateSetup(instance, icon)
 
 
     -- SELF BUFF
-    if CATEGORY.subvalue == "BUFF" and TARGETING.value == "SELF" then
+    if CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER" and CAST_TYPE ~= nil then
         value = value * 2
         table.insert(castingKeyValues, 0)
         table.insert(castingKeyValues, value + values.CastStartAlert)
@@ -315,12 +326,12 @@ function this.VisibleStateSetup(instance, icon)
             }
         )
 
-        if SUBSTITUTED ~= nil then
-            if substitutedCount == 1 then
-                value = this.SelfBuffSubstitutedSetup(value, SUBSTITUTED, iconUIObject)
+        if AURA_REPLACED ~= nil then
+            if auraReplacedCount == 1 then
+                value = this.AuraReplacedSetup(value, AURA_REPLACED, iconUIObject)
             else
-                for i = 1, #substitutedCount do
-                    value = this.SelfBuffSubstitutedSetup(value, SUBSTITUTED[i], iconUIObject)
+                for i = 1, #AURA_REPLACED do
+                    value = this.AuraReplacedSetup(value, AURA_REPLACED[i], iconUIObject)
                 end
             end
         end
@@ -426,7 +437,7 @@ function this.VisibleStateSetup(instance, icon)
     end
 
     -- UNIT_PVP_FLAGGED_CHANGED
-    if PVP_REQUIRED ~= nil then
+    if PVP_REQUIRED ~= nil then -- @TODO refactor to check if spell is useable so it works at target dummies
         value = value * 2
         values.UNIT_PVP_FLAGGED_CHANGED = value
         baseModifierKeyValue = baseModifierKeyValue + value
@@ -464,76 +475,75 @@ function this.VisibleStateSetup(instance, icon)
     -- @TODO Another ability applies this one and isn't visible (Shadow Word: Pain with Misery talented)
 end
 
-function this.SubstitutedSetup(value, SUBSTITUTED, currentSubstitutedCount, substitutedKeyValues, instanceUIObject, iconUIObject)
-    local baseValue
-    local substituteIcon = IconsGetFiltered(
-        {
-            {
-                type = "OBJECT_ID",
-                value = SUBSTITUTED.value,
-            },
-        }
-    )[1]
-    local isCastTypeCast = IsIconValidForFilter(substituteIcon, { type = "CAST_TYPE", value = "CAST" })
-    local isCastTypeChannel = IsIconValidForFilter(substituteIcon, { type = "CAST_TYPE", value = "CHANNEL" })
+function this.SubstitutedSetup(value, spellID, substituteIcon, substitutedKeyValues, instanceUIObject, iconUIObject) 
+    local OBJECT_ID = GetPropertiesOfType(substituteIcon, "OBJECT_ID")
+
+    print("OBJECT_ID.value: " .. tostring(OBJECT_ID.value))
+
+    if OBJECT_ID.value ~= spellID then
+        local AURA_APPLIED = GetPropertiesOfType(substituteIcon, "AURA_APPLIED", spellID)
+        local baseValue
+        local isCastTypeCast = IsIconValidForFilter(substituteIcon, { type = "CAST_TYPE", value = "CAST" })
+        local isCastTypeChannel = IsIconValidForFilter(substituteIcon, { type = "CAST_TYPE", value = "CHANNEL" })
 
 
-    value = value * 2
-    baseValue = value
-    table.insert(substitutedKeyValues.componentVisible, value)
-
-    table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
-        {
-            eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-            inputValues = { --[[uiObject]] IconKeyGet("SPELL", SUBSTITUTED.value, instanceUIObject), --[[componentName]] "VisibleState" },
-            value = value,
-        }
-    )
-
-
-    if SUBSTITUTED.requirement ~= nil then
         value = value * 2
-        table.insert(substitutedKeyValues.requirement, value)
-
-        if SUBSTITUTED.requirement.type == "TALENT_REQUIRED" then
-            table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners, 
-                {
-                    eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                    inputValues = { --[[talentID]] SUBSTITUTED.requirement.value, },
-                    value = value,
-                }
-            )
-        end
-    else
-        table.insert(substitutedKeyValues.requirement, 0)
-    end
-
-
-    if isCastTypeCast == true or isCastTypeChannel == true then
-        value = value * 2
-        table.insert(substitutedKeyValues.spellcastActive, value)
+        baseValue = value
+        table.insert(substitutedKeyValues.componentVisible, value)
 
         table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
             {
-                eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                inputValues = { --[[unit]] "player", --[[spellID]] SUBSTITUTED.value, },
+                eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                inputValues = { --[[uiObject]] IconKeyGet("SPELL", AURA_APPLIED.value, instanceUIObject), --[[componentName]] "VisibleState" },
                 value = value,
             }
         )
-    else
-        table.insert(substitutedKeyValues.spellcastActive, 0)
+
+
+        if AURA_APPLIED.requirement ~= nil then
+            value = value * 2
+            table.insert(substitutedKeyValues.requirement, value)
+
+            if AURA_APPLIED.requirement.type == "TALENT_REQUIRED" then
+                table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners, 
+                    {
+                        eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                        inputValues = { --[[talentID]] AURA_APPLIED.requirement.value, },
+                        value = value,
+                    }
+                )
+            end
+        else
+            table.insert(substitutedKeyValues.requirement, 0)
+        end
+
+
+        if isCastTypeCast == true or isCastTypeChannel == true then
+            value = value * 2
+            table.insert(substitutedKeyValues.spellcastActive, value)
+
+            table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] AURA_APPLIED.value, },
+                    value = value,
+                }
+            )
+        else
+            table.insert(substitutedKeyValues.spellcastActive, 0)
+        end
     end
     
     return value
 end
 
-function this.SelfBuffSubstitutedSetup(value, SUBSTITUTED, iconUIObject)
+function this.AuraReplacedSetup(value, AURA_REPLACED, iconUIObject)
     value = value * 2
 
     table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
         {
             eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-            inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] SUBSTITUTED.value },
+            inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] AURA_REPLACED.value },
             value = value,
         }
     )
@@ -545,8 +555,9 @@ function this.ContextIconSetup(instance, icon)
     local listeners = {}
     local validKeys = {}
 
+    local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
+    local appliedAuras, appliedAurasCount = GetPropertiesOfType(icon, "AURA_APPLIED")
     local CAST_TYPE, castTypeCount = GetPropertiesOfType(icon, "CAST_TYPE")
-    local SUBSTITUTES = GetPropertiesOfType(icon, "SUBSTITUTES")
     local UNITS_NEAR_MIN = GetPropertiesOfType(icon, "UNITS_NEAR_MIN")
     
     local instantCastProperty
@@ -559,9 +570,19 @@ function this.ContextIconSetup(instance, icon)
     end
 
 
-    if SUBSTITUTES ~= nil then
+    -- Substitutes Icons
+    if appliedAurasCount > 1 then
+        local subsitutueProperty
         local value = 1
         local values = {}
+
+        for i = 1, appliedAurasCount do
+            local property = appliedAuras[i]
+            
+            if property.value ~= OBJECT_ID.value then
+                subsitutueProperty = property
+            end
+        end
 
         -- UIOBJECT_COMPONENT_STATE_CHANGED
         value = value * 2
@@ -570,7 +591,7 @@ function this.ContextIconSetup(instance, icon)
         table.insert(listeners,
             {
                 eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                inputValues = { --[[uiObject]] IconKeyGet("SPELL", SUBSTITUTES.value, instance.UIObject), --[[componentName]] "CastSoonAlert", },
+                inputValues = { --[[uiObject]] IconKeyGet("SPELL", subsitutueProperty.value, instance.UIObject), --[[componentName]] "CastSoonAlert", },
                 value = value,
             }
         )
@@ -582,7 +603,7 @@ function this.ContextIconSetup(instance, icon)
         table.insert(listeners,
             {
                 eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
-                inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] SUBSTITUTES.value, },
+                inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] subsitutueProperty.value, },
                 comparisonValues =
                 {
                     value = 0,
@@ -594,15 +615,15 @@ function this.ContextIconSetup(instance, icon)
 
         -- REQUIREMENTS
         values.requirement = 0
-        if SUBSTITUTES.requirement ~= nil then
+        if subsitutueProperty.requirement ~= nil then
             value = value * 2
             values.requirement = value
     
-            if SUBSTITUTES.requirement.type == "TALENT_REQUIRED" then
+            if subsitutueProperty.requirement.type == "TALENT_REQUIRED" then
                 table.insert(listeners, 
                     {
                         eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                        inputValues = { --[[talentID]] SUBSTITUTES.requirement.value, },
+                        inputValues = { --[[talentID]] subsitutueProperty.requirement.value, },
                         value = value,
                     }
                 )
@@ -619,7 +640,7 @@ function this.ContextIconSetup(instance, icon)
         icon.UIObject.ContextIcon =
         {
             iconObjectType = "SPELL",
-            iconObjectID = SUBSTITUTES.value,
+            iconObjectID = subsitutueProperty.value,
             ValueHandler = { validKeys = validKeys, },
             ListenerGroup = { Listeners = listeners, },
         }

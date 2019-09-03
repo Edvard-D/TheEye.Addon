@@ -5,7 +5,7 @@ local Listeners = {}
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
 local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
-local updateInterval = 0.1
+local updateInterval = 0.01
 
 
 -- OnEvent

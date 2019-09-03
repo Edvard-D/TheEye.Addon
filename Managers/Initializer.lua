@@ -3,6 +3,7 @@ TheEyeAddon.Libraries.AceGUI = LibStub("AceGUI-3.0")
 TheEyeAddon.Libraries.AceLocale = LibStub("AceLocale-3.0")
 
 TheEyeAddon.Managers.Debug.Initialize()
+TheEyeAddon.Managers.Icons.Initialize()
 TheEyeAddon.Managers.GarbageCollector.Initialize()
 TheEyeAddon.Managers.Settings.Initialize()
 TheEyeAddon.Managers.SlashCommands.Initialize()

@@ -18,9 +18,11 @@ function table.copy(original)
 end
 
 function table.hasvalue(tab, value)
-    for i = 1, #tab do
-        if tab[i] == value then
-            return true
+    if tab ~= nil and value ~= nil then
+        for i = 1, #tab do
+            if tab[i] == value then
+                return true
+            end
         end
     end
 
@@ -28,7 +30,7 @@ function table.hasvalue(tab, value)
 end
 
 function table.haskeyvalue(tab, value)
-    if tab ~= nil then
+    if tab ~= nil and value ~= nil then
         for k,v in pairs(tab) do
             if v == value then
                 return true

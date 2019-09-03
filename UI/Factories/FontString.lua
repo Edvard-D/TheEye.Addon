@@ -13,5 +13,7 @@ end
 function this:StyleSet(layer, fontTemplate, point)
 	self:SetDrawLayer(layer)
 	self:SetFont(fontTemplate.font, fontTemplate.size, fontTemplate.flags)
-	self:SetPoint(point)
+	if point ~= nil then
+		self:SetPoint(point)
+	end
 end
