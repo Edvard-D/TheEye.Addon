@@ -54,8 +54,8 @@ function this.Setup(
         --  and UNIT_DIED events. Can't check if spellIDs match since Psyfiend has a different
         --  spellID for SPELL_SUMMON than what UNIT_SPELLCAST_SUCCEEDED events return. Should
         --  check spell names instead.
-        -- MINION
-        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "MINION" then
+        -- SUMMON
+        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "SUMMON" then
             value = value * 2
             baseModifierKeyValue = baseModifierKeyValue + value
 
