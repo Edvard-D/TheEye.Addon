@@ -226,7 +226,7 @@ function this:OnEvent(eventName, ...)
                 GrouperUIObjectSetup(v.uiObject)
             end
         end
-    else
+    else -- PLAYER_ENTERING_WORLD, PLAYER_SPECIALIZATION_CHANGED
         newSpec = GetSpecializationInfo(GetSpecialization())
         if newSpec ~= playerSpec then
             playerSpec = newSpec
