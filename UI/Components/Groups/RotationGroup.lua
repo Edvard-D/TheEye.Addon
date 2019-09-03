@@ -468,11 +468,6 @@ function this.VisibleStateSetup(instance, icon)
     for i = 1, #exceptionKeyValues do
         validKeys[exceptionKeyValues[i]] = nil
     end
-
-    -- @TODO ContextIcon
-    -- @TODO Aura inactive (SW:D)
-    -- @TODO Power %
-    -- @TODO Another ability applies this one and isn't visible (Shadow Word: Pain with Misery talented)
 end
 
 function this.SubstitutedSetup(value, spellID, substituteIcon, substitutedKeyValues, instanceUIObject, iconUIObject) 
