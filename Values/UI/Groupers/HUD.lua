@@ -40,6 +40,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     Group =
     {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
+        childPadding = 10,
         sortActionName = "SortAscending",
         sortValueComponentName = "PriorityRank",
     },

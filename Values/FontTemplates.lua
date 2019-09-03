@@ -17,6 +17,15 @@ this.Icon =
         flags = "OUTLINE",
     },
 }
+this.TargetAction =
+{
+    CastName =
+    {
+        font = "Fonts\\FRIZQT__.TTF",
+        size = 12,
+        flags = "OUTLINE",
+    },
+}
 this.TargetFrame =
 {
     Health =
