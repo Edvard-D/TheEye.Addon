@@ -149,6 +149,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     if iconGroupData.instanceID == nil then
         iconGroupData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
+    uiObject.instanceID = iconGroupData.instanceID
     uiObject.tags = { "GROUP", iconGroupData.instanceID }
     FormatData(uiObject)
 
