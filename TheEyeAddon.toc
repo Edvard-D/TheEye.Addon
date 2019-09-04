@@ -20,7 +20,7 @@
 # ---------------------------
 # |		   SETTINGS			|
 # ---------------------------
-## Interface: 80000
+## Interface: 80200
 ## Title: TheEye.Addon
 ## Version: 0.5.0
 ## Author: Edvard-D aka Alaror
