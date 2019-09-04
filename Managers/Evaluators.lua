@@ -102,8 +102,9 @@ function this.ListenerRegister(evaluatorKey, listener)
 
     table.insert(listeners, listener)
     table.sort(listeners, function(a,b)
-    return (a.isInternal and not b.isInternal)
-        or (a.isInternal == b.isInternal and a.priority < b.priority) end)
+        return (a.isInternal and not b.isInternal)
+            or (a.isInternal == b.isInternal and a.priority < b.priority)
+    end)
 
     listener.isListening = true
     EvaluatorIncreaseListenerCount(evaluator, evaluatorKey)
