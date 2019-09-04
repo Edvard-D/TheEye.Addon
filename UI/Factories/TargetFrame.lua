@@ -11,6 +11,7 @@ local select = select
 local swirlRotationRate = 0.01
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 local tostring = tostring
+local UnitName = UnitName
 local unpack = unpack
 
 
@@ -82,7 +83,13 @@ function this:RaidMarkerSet(index)
 end
 
 function this:HealthSet(percent)
-    self.Health:SetText(tostring(math.floor((percent * 100) + 0.5)))
+    local unitName = UnitName(self.unit)
+
+    if unitName ~= nil then
+        self.Health:SetText(tostring(math.floor((percent * 100) + 0.5)))
+    else
+        self.Health:SetText("")
+    end
 end
 
 function this:NameSet(name)

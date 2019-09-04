@@ -48,7 +48,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     {
         ValueHandler =
         {
-            validKeys = { [14] = true, [28] = true, [30] = true, },
+            validKeys = { [6] = true, [14] = true, [22] = true, [28] = true, [30] = true, },
         },
         ListenerGroup =
         {
