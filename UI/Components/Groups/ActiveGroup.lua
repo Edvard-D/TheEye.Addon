@@ -45,7 +45,7 @@ function this.Setup(
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                 {
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] OBJECT_ID.value, },
+                    inputValues = { --[[sourceUnit]] "_", --[[destUnit]] "player", --[[spellID]] OBJECT_ID.value, },
                     value = value,
                 }
             )
