@@ -163,7 +163,6 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
         
     if frame ~= nil then
-        print("YEEEEEEP")
         local scale = TheEyeAddon.Managers.UI.scale
         for i = 1, #self.childUIObjects do
             self.childUIObjects[i].Frame.instance:SetScale(scale)
