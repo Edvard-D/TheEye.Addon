@@ -65,7 +65,6 @@ Managers\Debug.lua
 # ---------------------------
 # |	        Values         	|
 # ---------------------------
-Values\AuraFilters.lua
 Values\DimensionTemplates.lua
 Values\FontTemplates.lua
 Values\General.lua

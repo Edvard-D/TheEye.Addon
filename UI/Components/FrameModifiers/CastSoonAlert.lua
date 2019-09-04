@@ -4,6 +4,7 @@ local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local auraFilters = TheEyeAddon.Values.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
+local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local GetTime = GetTime
 
 
@@ -41,12 +42,15 @@ function this.Setup(
             },
         },
     }
-    if auraFilters[instance.spellID] == nil then
-        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
-        instance.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
-    else
+
+    local CATEGORY = GetPropertiesOfType(TheEyeAddon.Managers.UI.currentUIObject.IconData, "CATEGORY")
+
+    if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "PERIODIC" then
         instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED"
         instance.ListenerGroup.Listeners[1].inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] instance.spellID }
+    else
+        instance.ListenerGroup.Listeners[1].eventEvaluatorKey = "PLAYER_SPELL_COOLDOWN_DURATION_CHANGED"
+        instance.ListenerGroup.Listeners[1].inputValues = { --[[spellID]] instance.spellID }
     end
     
     instance.Modify = this.Modify
