@@ -58,7 +58,17 @@ function this.Setup(
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED",
                     inputValues = { --[[parentKey]] instance.UIObject.key },
                 },
-            }
+                {
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED",
+                    inputValues =
+                    {
+                        --[[parentKey]] instance.UIObject.key,
+                        --[[componentKey]] "PriorityRank",
+                        --[[valueKey]] "value",
+                    },
+                    priority = 2,
+                },
+            },
         },
         Sort =
         {
@@ -72,8 +82,9 @@ function this.Setup(
                         --[[componentKey]] "PriorityRank",
                         --[[valueKey]] "value",
                     },
-                }
-            }
+                    priority = 1,
+                },
+            },
         },
     }
 
@@ -152,6 +163,7 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
         
     if frame ~= nil then
+        print("YEEEEEEP")
         local scale = TheEyeAddon.Managers.UI.scale
         for i = 1, #self.childUIObjects do
             self.childUIObjects[i].Frame.instance:SetScale(scale)
