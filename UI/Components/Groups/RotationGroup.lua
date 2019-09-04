@@ -354,8 +354,8 @@ function this.VisibleStateSetup(instance, icon)
     end
 
     -- BASE MODIFIER
-    -- UNIT_HEALTH_PERCENT_CHANGED
     if HEALTH_REQUIRED ~= nil then
+        -- UNIT_HEALTH_PERCENT_CHANGED
         value = value * 2
         values.UNIT_HEALTH_PERCENT_CHANGED = value
         baseModifierKeyValue = baseModifierKeyValue + value
@@ -369,6 +369,18 @@ function this.VisibleStateSetup(instance, icon)
                     value = HEALTH_REQUIRED.value,
                     type = HEALTH_REQUIRED.comparison,
                 },
+                value = value,
+            }
+        )
+
+        -- UNIT_CAN_ATTACK_UNIT_CHANGED
+        value = value * 2
+        baseModifierKeyValue = baseModifierKeyValue + value
+
+        table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+            {
+                eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
+                inputValues = { --[[unti1]] "player", --[[unit2]] "target", },
                 value = value,
             }
         )
