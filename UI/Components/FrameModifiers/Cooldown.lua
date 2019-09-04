@@ -55,11 +55,7 @@ end
 
 function this:Modify(frame)
     frame.cooldown = CooldownClaim(self.UIObject, frame, nil)
-    frame.cooldown:SetAllPoints()
-    frame.cooldown:SetDrawBling(false)
-    frame.cooldown:SetDrawEdge(false)
-    local startTime, duration = GetSpellCooldown(self.spellID)
-    frame.cooldown:SetCooldown(startTime, duration)
+    frame.cooldown:CooldownStart(self.spellID)
 end
 
 function this:Demodify(frame)
