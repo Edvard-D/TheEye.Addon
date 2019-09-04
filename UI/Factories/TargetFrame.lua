@@ -26,7 +26,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Background:SetVertexColor(unpack(colors.background))
 
     instance.Swirl = instance.Swirl or TextureCreate(instance, "BORDER", "BLEND")
-    instance.Swirl:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Swirl.blp")
+    instance.Swirl:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Mid.blp")
     instance.Swirl:SetVertexColor(unpack(colors.swirl))
     instance.Swirl:RotationStart(swirlRotationRate)
     
