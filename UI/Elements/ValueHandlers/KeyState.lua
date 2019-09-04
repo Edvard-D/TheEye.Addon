@@ -3,6 +3,7 @@ local this = TheEyeAddon.UI.Elements.ValueHandlers.KeyState
 local inherited = TheEyeAddon.UI.Elements.ValueHandlers.Base
 
 local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
@@ -59,6 +60,7 @@ function this:OnValueChange(key)
     if self.state ~= state then
         self.state = state
         self.StateChangeListener:OnStateChange(self.state)
+        SendCustomEvent("UIOBJECT_COMPONENT_STATE_CHANGED", self.UIObject, self.Component, "value")
     end
 end
 
