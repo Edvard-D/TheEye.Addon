@@ -338,7 +338,7 @@ function this.VisibleStateSetup(instance, icon)
     end
 
     -- AURA_APPLIED different than OBJECT_ID
-    if AURA_APPLIED ~= nil and AURA_APPLIED.value ~= OBJECT_ID.value then
+    if AURA_APPLIED ~= nil and AURA_APPLIED.value ~= OBJECT_ID.value and isCastTypeChannel == false then
         value = value * 2
 
         table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
