@@ -1577,7 +1577,19 @@ TheEyeAddon.Managers.Icons.Add(258,
 {
     PriorityRank =
     {
-        validKeys = { [0] = 18, },
+        validKeys =
+        {
+            [0] = 18,
+            [2] = 0,
+        },
+        listeners =
+        {
+            {
+                eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                inputValues = { --[[unit]] "player", --[[spellID]] 263165, },
+                value = 2,
+            },
+        },
     },
     properties =
     {
