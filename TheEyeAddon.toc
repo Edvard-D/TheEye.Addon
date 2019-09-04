@@ -276,12 +276,14 @@ UI\Components\VisibleState.lua
 # --- FrameModifiers ---
 UI\Components\FrameModifiers\FrameModifierBase.lua
 
+UI\Components\FrameModifiers\AuraDuration.lua
 UI\Components\FrameModifiers\CastSoonAlert.lua
 UI\Components\FrameModifiers\CastStartAlert.lua
 UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
+UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\TargetAction.lua
 UI\Components\FrameModifiers\TargetFrame.lua
 

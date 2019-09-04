@@ -732,6 +732,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "POWER_REQUIRED",
+            value = 0, -- MANA
         },
     },
 })
@@ -767,6 +768,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "POWER_REQUIRED",
+            value = 0, -- MANA
         },
     },
 })
@@ -1018,6 +1020,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "POWER_REQUIRED",
+            value = 0, -- MANA
         },
     },
 })
@@ -1525,6 +1528,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "POWER_REQUIRED",
+            value = 13, -- INSANITY
         },
     },
 })
@@ -1646,6 +1650,10 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "OBJECT_TYPE",
             value = "SPELL",
+        },
+        {
+            type = "POWER_REQUIRED",
+            value = 13, -- INSANITY
         },
     },
 })

@@ -32,6 +32,7 @@ function this.Setup(
 
         local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
+        local POWER_REQUIRED = GetPropertiesOfType(icon, "POWER_REQUIRED")
 
 
         -- BUFF
@@ -48,6 +49,16 @@ function this.Setup(
                     value = value,
                 }
             )
+
+            if POWER_REQUIRED == nil then
+                iconUIObject["AuraDuration"] = { spellID = OBJECT_ID.value, }
+            else
+                iconUIObject["LowPowerAlert"] =
+                {
+                    powerID = POWER_REQUIRED.value,
+                    spellID = OBJECT_ID.value,
+                }
+            end
         end
 
         -- @TODO change this to "SUMMON" and create new evaluator that tracks SPELL_SUMMON

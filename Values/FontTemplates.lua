@@ -4,6 +4,12 @@ local this = TheEyeAddon.Values.FontTemplates
 
 this.Icon =
 {
+    Active =
+    {
+        font = "Fonts\\FRIZQT__.TTF",
+        size = 17.5,
+        flags = "OUTLINE",
+    },
     Cooldown =
     {
         font = "Fonts\\FRIZQT__.TTF",
