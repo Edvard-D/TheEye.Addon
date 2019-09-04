@@ -549,7 +549,7 @@ function this.ContextIconSetup(instance, icon)
     local validKeys = {}
 
     local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
-    local appliedAuras, appliedAurasCount = GetPropertiesOfType(icon, "AURA_APPLIED")
+    local appliedAuras, appliedAurasCount = GetPropertiesOfType(icon, "AURA_APPLIED", nil, true)
     local CAST_TYPE, castTypeCount = GetPropertiesOfType(icon, "CAST_TYPE")
     local UNITS_NEAR_MIN = GetPropertiesOfType(icon, "UNITS_NEAR_MIN")
     
@@ -564,79 +564,100 @@ function this.ContextIconSetup(instance, icon)
 
 
     -- Substitutes Icons
-    if appliedAurasCount > 1 then
-        local subsitutueProperty
+    if appliedAurasCount > 0 then
+        local AURA_APPLIED
         local value = 1
         local values = {}
 
-        for i = 1, appliedAurasCount do
-            local property = appliedAuras[i]
-            
-            if property.value ~= OBJECT_ID.value then
-                subsitutueProperty = property
+        if appliedAurasCount == 1 then
+            AURA_APPLIED = appliedAuras
+        else
+            for i = 1, appliedAurasCount do
+                local property = appliedAuras[i]
+                
+                if property.value ~= OBJECT_ID.value then
+                    AURA_APPLIED = property
+                end
             end
         end
-
-        -- UIOBJECT_COMPONENT_STATE_CHANGED
-        value = value * 2
-        values.UIOBJECT_COMPONENT_STATE_CHANGED = value
-
-        table.insert(listeners,
+        
+        local substituteIcons = IconsGetFiltered(
             {
-                eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
-                inputValues = { --[[uiObject]] IconKeyGet("SPELL", subsitutueProperty.value, instance.UIObject), --[[componentName]] "CastSoonAlert", },
-                value = value,
-            }
-        )
-
-        -- UNIT_AURA_DURATION_CHANGED
-        value = value * 2
-        values.UNIT_AURA_DURATION_CHANGED = value
-
-        table.insert(listeners,
-            {
-                eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
-                inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] subsitutueProperty.value, },
-                comparisonValues =
                 {
-                    value = 0,
-                    type = "EqualTo",
-                },
-                value = value,
-            }
-        )
-
-        -- REQUIREMENTS
-        values.requirement = 0
-        if subsitutueProperty.requirement ~= nil then
-            value = value * 2
-            values.requirement = value
-    
-            if subsitutueProperty.requirement.type == "TALENT_REQUIRED" then
-                table.insert(listeners, 
                     {
-                        eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-                        inputValues = { --[[talentID]] subsitutueProperty.requirement.value, },
-                        value = value,
-                    }
-                )
+                        type = "OBJECT_ID",
+                        value = AURA_APPLIED.value,
+                    },
+                    {
+                        type = "CATEGORY",
+                        value = "DAMAGE",
+                        subvalue = "PERIODIC",
+                    },
+                },
+            })
+        
+        if #substituteIcons == 1 and AURA_APPLIED.value ~= OBJECT_ID.value then
+            -- UIOBJECT_COMPONENT_STATE_CHANGED
+            value = value * 2
+            values.UIOBJECT_COMPONENT_STATE_CHANGED = value
+
+            table.insert(listeners,
+                {
+                    eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                    inputValues = { --[[uiObject]] IconKeyGet("SPELL", AURA_APPLIED.value, instance.UIObject), --[[componentName]] "CastSoonAlert", },
+                    value = value,
+                }
+            )
+
+            -- UNIT_AURA_DURATION_CHANGED
+            value = value * 2
+            values.UNIT_AURA_DURATION_CHANGED = value
+
+            table.insert(listeners,
+                {
+                    eventEvaluatorKey = "UNIT_AURA_DURATION_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "target", --[[spellID]] AURA_APPLIED.value, },
+                    comparisonValues =
+                    {
+                        value = 0,
+                        type = "EqualTo",
+                    },
+                    value = value,
+                }
+            )
+
+            -- REQUIREMENTS
+            values.requirement = 0
+            if AURA_APPLIED.requirement ~= nil then
+                value = value * 2
+                values.requirement = value
+        
+                if AURA_APPLIED.requirement.type == "TALENT_REQUIRED" then
+                    table.insert(listeners, 
+                        {
+                            eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
+                            inputValues = { --[[talentID]] AURA_APPLIED.requirement.value, },
+                            value = value,
+                        }
+                    )
+                end
             end
-        end
         
 
-        -- Valid Keys
-        validKeys[values.UIOBJECT_COMPONENT_STATE_CHANGED + values.requirement] = true
-        validKeys[values.UNIT_AURA_DURATION_CHANGED + values.requirement] = true
-        validKeys[values.UIOBJECT_COMPONENT_STATE_CHANGED + values.UNIT_AURA_DURATION_CHANGED + values.requirement] = true
-    
+            -- Valid Keys
+            validKeys[values.UIOBJECT_COMPONENT_STATE_CHANGED + values.requirement] = true
+            validKeys[values.UNIT_AURA_DURATION_CHANGED + values.requirement] = true
+            validKeys[values.UIOBJECT_COMPONENT_STATE_CHANGED + values.UNIT_AURA_DURATION_CHANGED + values.requirement] = true
         
-        icon.UIObject.ContextIcon =
-        {
-            iconObjectType = "SPELL",
-            iconObjectID = subsitutueProperty.value,
-            ValueHandler = { validKeys = validKeys, },
-            ListenerGroup = { Listeners = listeners, },
-        }
+            
+            icon.UIObject.ContextIcon =
+            {
+                iconObjectType = "SPELL",
+                iconObjectID = AURA_APPLIED.value,
+                ValueHandler = { validKeys = validKeys, },
+                ListenerGroup = { Listeners = listeners, },
+            }
+        end
     elseif UNITS_NEAR_MIN ~= nil then
         icon.UIObject.ContextIcon =
         {
