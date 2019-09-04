@@ -314,9 +314,12 @@ function this.VisibleStateSetup(instance, icon)
     -- SELF BUFF
     if CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER" and CAST_TYPE ~= nil then
         value = value * 2
-        table.insert(castingKeyValues, 0)
         table.insert(castingKeyValues, value + values.CastStartAlert)
         table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+
+        if COOLDOWN == nil then
+            table.insert(castingKeyValues, 0)
+        end
 
         table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
             {
