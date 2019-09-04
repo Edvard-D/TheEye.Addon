@@ -1,7 +1,7 @@
 TheEyeAddon.Evaluators.UNIT_POWER_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Evaluators.UNIT_POWER_PERCENT_CHANGED
 
-local powerTypes = TheEyeAddon.Values.powerTypes
+local powerIDs = TheEyeAddon.Values.powerIDs
 local table = table
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
@@ -12,7 +12,7 @@ local UnitPowerMax = UnitPowerMax
     inputValues =
     {
         #LABEL#Unit# #UNIT#
-        #LABEL#Power Type# #POWER#
+        #LABEL#Power ID# #POWER#ID#
     }
 }
 ]]
@@ -31,16 +31,17 @@ this.gameEvents =
 
 local function CalculateCurrentValue(inputValues)
     local unit = inputValues[1]
-    local powerType = powerTypes[inputValues[2]]
-    return UnitPower(unit, powerType) / UnitPowerMax(unit, powerType)
+    local powerID = inputValues[2]
+
+    return UnitPower(unit, powerID) / UnitPowerMax(unit, powerID)
 end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
 end
 
-function this:GetKey(event, unit, powerType)
-    return table.concat({ unit, powerType })
+function this:GetKey(event, unit, powerName)
+    return table.concat({ unit, powerIDs[powerName] })
 end
 
 function this:Evaluate(inputGroup, event, unit)
