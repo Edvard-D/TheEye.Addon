@@ -1298,6 +1298,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "CATEGORY",
             value = "CC",
+            subvalue = "INTERRUPT",
         },
         {
             type = "COOLDOWN",

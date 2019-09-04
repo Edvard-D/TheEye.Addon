@@ -2,8 +2,8 @@ TheEyeAddon.UI.Factories.TargetAction = {}
 local this = TheEyeAddon.UI.Factories.TargetAction
 
 local backgroundColor = { 0.1, 0.1, 0.1, 1 }
-local castDefaultColor = { 0.8, 0.46, 0.19, 1 }
 local castImmuneColor = { 0.5, 0.5, 0.5, 1 }
+local castInterruptableColor = { 0.8, 0.46, 0.19, 1 }
 local EventRegister = TheEyeAddon.Managers.Events.Register
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
 local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
@@ -22,19 +22,20 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.unit = unit
 
     instance.CastSet = this.CastSet
+    instance.InterruptSet = this.InterruptSet
 	instance.customEvents = { "UPDATE", }
     EventRegister(instance)
     instance.OnEvent = this.OnEvent
     
-    instance.Icon = instance.Icon or TextureCreate(instance, "ARTWORK")
-    instance.Icon:SetSize(dimensions.height, dimensions.height)
-    instance.Icon:SetPoint("LEFT", instance, "LEFT")
+    instance.CastIcon = instance.CastIcon or TextureCreate(instance, "ARTWORK")
+    instance.CastIcon:SetSize(dimensions.height, dimensions.height)
+    instance.CastIcon:SetPoint("LEFT", instance, "LEFT")
 
     local barWidth = dimensions.width - dimensions.height
     instance.Background = instance.Background or {}
     instance.Background.Base = instance.Background.Base or TextureCreate(instance, "BACKGROUND", "BLEND")
     instance.Background.Base:SetSize(barWidth - (dimensions.height / 2), dimensions.height)
-    instance.Background.Base:SetPoint("LEFT", instance.Icon, "RIGHT")
+    instance.Background.Base:SetPoint("LEFT", instance.CastIcon, "RIGHT")
     instance.Background.Base:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/TargetAction_Cast_Base.blp")
     instance.Background.Base:SetVertexColor(unpack(backgroundColor))
 
@@ -49,7 +50,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Bar.height = dimensions.height
     instance.Bar.Base = instance.Bar.Base or TextureCreate(instance, "ARTWORK", "BLEND")
     instance.Bar.Base:SetSize(instance.Bar.maxWidth, dimensions.height)
-    instance.Bar.Base:SetPoint("LEFT", instance.Icon, "RIGHT")
+    instance.Bar.Base:SetPoint("LEFT", instance.CastIcon, "RIGHT")
     instance.Bar.Base:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/TargetAction_Cast_Base.blp")
 
     instance.Bar.End = instance.Bar.End or TextureCreate(instance, "ARTWORK", "BLEND")
@@ -57,9 +58,13 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Bar.End:SetPoint("LEFT", instance.Bar.Base, "RIGHT")
     instance.Bar.End:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/TargetAction_Cast_End.blp")
 
+    instance.InterruptIcon = instance.InterruptIcon or TextureCreate(instance, "OVERLAY")
+    instance.InterruptIcon:SetSize(dimensions.height * 1.5, dimensions.height * 1.5)
+    instance.InterruptIcon:SetPoint("CENTER", instance.Bar.End, "CENTER")
+
     instance.Name = instance.Name or FontStringCreate(instance)
     instance.Name:StyleSet("ARTWORK", TheEyeAddon.Values.FontTemplates.TargetAction.CastName)
-    instance.Name:SetPoint("LEFT", instance.Icon, "RIGHT", dimensions.height * 0.2, 0)
+    instance.Name:SetPoint("LEFT", instance.CastIcon, "RIGHT", dimensions.height * 0.2, 0)
 
     return instance
 end
@@ -72,14 +77,36 @@ function this:CastSet(spellID)
     local name, _, fileID = GetSpellInfo(spellID)
 
     self.Name:SetText(name)
-    self.Icon:SetTexture(fileID)
+    self.CastIcon:SetTexture(fileID)
 
     if notInterruptible == true then
         self.Bar.Base:SetVertexColor(unpack(castImmuneColor))
         self.Bar.End:SetVertexColor(unpack(castImmuneColor))
     else
-        self.Bar.Base:SetVertexColor(unpack(castDefaultColor))
-        self.Bar.End:SetVertexColor(unpack(castDefaultColor))
+        self.Bar.Base:SetVertexColor(unpack(castInterruptableColor))
+        self.Bar.End:SetVertexColor(unpack(castInterruptableColor))
+
+        if self.interruptSpellID ~= nil then
+            self:InterruptSet(true, self.interruptSpellID)
+        end
+    end
+end
+
+function this:InterruptSet(isVisible, spellID)
+    local notInterruptible = select(8, UnitCastingInfo(self.unit))
+    if notInterruptible == nil then
+        notInterruptible = select(7, UnitChannelInfo(self.unit))
+    end
+
+    if isVisible == true and notInterruptible == false then
+        local fileID = select(3, GetSpellInfo(spellID))
+
+        self.interruptSpellID = spellID
+        self.InterruptIcon:SetTexture(fileID)
+        self.InterruptIcon:Show()
+    else
+        self.interruptSpellID = nil
+        self.InterruptIcon:Hide()
     end
 end
 
