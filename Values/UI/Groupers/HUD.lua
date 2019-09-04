@@ -48,7 +48,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     {
         ValueHandler =
         {
-            validKeys = { [14] = true, },
+            validKeys = { [14] = true, [28] = true, [30] = true, },
         },
         ListenerGroup =
         {
@@ -78,6 +78,11 @@ TheEyeAddon.Managers.UI.GrouperAdd(
                         type = "GreaterThan"
                     },
                     value = 8,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] "_", },
+                    value = 16,
                 },
             },
         },
