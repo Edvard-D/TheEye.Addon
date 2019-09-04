@@ -3,7 +3,9 @@ local this = TheEyeAddon.UI.Components.CastStartAlert
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local castStartHideDelay = 0.5
+local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local GetNetStats = GetNetStats
+local IsIconValidForFilter = TheEyeAddon.Managers.Icons.IsIconValidForFilter
 local select = select
 
 
@@ -42,6 +44,31 @@ function this.Setup(
         },
     }
 
+
+    local iconData = TheEyeAddon.Managers.UI.currentUIObject.IconData
+    local isCastTypeCast = IsIconValidForFilter(iconData, { type = "CAST_TYPE", value = "CAST" })
+    local isCastTypeChannel = IsIconValidForFilter(iconData, { type = "CAST_TYPE", value = "CHANNEL" })
+    local COOLDOWN = GetPropertiesOfType(iconData, "COOLDOWN")
+    local OBJECT_ID = GetPropertiesOfType(iconData, "OBJECT_ID")
+
+    if isCastTypeCast == true or (isCastTypeChannel == true and COOLDOWN ~= nil) then
+        instance.ValueHandler.validKeys[4] = true
+        instance.ValueHandler.validKeys[6] = true
+
+        instance.ListenerGroup =
+        {
+            Listeners =
+            {
+                {
+                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+                    inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
+                    value = 4,
+                },
+            },
+        }
+    end
+    
+    
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
 

@@ -174,6 +174,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     local icons = uiObject[moduleComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
+        iconUIObject.IconData = icons[i]
         FormatData(iconUIObject)
         UIObjectSetup(iconUIObject)
 
