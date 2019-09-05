@@ -91,7 +91,9 @@ function this:Evaluate(inputGroup, event)
         local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if remainingTime ~= RemainingTimeCalculate(gcdStartTime, gcdDuration) then
+        if remainingTime == 0
+            or remainingTime ~= RemainingTimeCalculate(gcdStartTime, gcdDuration)
+            then
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
             return true, this.key
