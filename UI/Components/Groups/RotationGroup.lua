@@ -673,7 +673,9 @@ function this.ContextIconSetup(instance, icon)
                 ListenerGroup = { Listeners = listeners, },
             }
         end
-    elseif UNITS_NEAR_MIN ~= nil then
+    end
+    
+    if UNITS_NEAR_MIN ~= nil then
         icon.UIObject.ContextIcon =
         {
             iconObjectType = "SPELL",
@@ -693,7 +695,9 @@ function this.ContextIconSetup(instance, icon)
                 },
             },
         }
-    elseif instantCastProperty ~= nil then
+    end
+
+    if instantCastProperty ~= nil then
         icon.UIObject.ContextIcon =
         {
             iconObjectType = "SPELL",
