@@ -210,6 +210,8 @@ function this.VisibleStateSetup(instance, icon)
         table.insert(castingKeyValues, value)
         table.insert(castingKeyValues, value + values.CastStartAlert)
         table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+        table.insert(castingKeyValues, value + values.CastStartAlert + values.UNIT_SPELLCAST_ACTIVE_CHANGED)
+        table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
 
         table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
             {
