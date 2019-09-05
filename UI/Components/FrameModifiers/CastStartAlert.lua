@@ -82,10 +82,18 @@ end
 
 function this:Modify(frame)
     frame.background:SetDesaturated(1)
+
+    if frame.context ~= nil then
+        frame.context.background:SetDesaturated(1)
+    end
 end
 
 function this:Demodify(frame)
     frame.background:SetDesaturated(nil)
+
+    if frame.context ~= nil then
+        frame.context.background:SetDesaturated(nil)
+    end
 end
 
 function this.AlertLengthGet()
