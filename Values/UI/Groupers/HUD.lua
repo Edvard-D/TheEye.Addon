@@ -48,7 +48,11 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     {
         ValueHandler =
         {
-            validKeys = { [6] = true, [14] = true, [22] = true, [28] = true, [30] = true, },
+            validKeys =
+            {
+                [6] = true, [14] = true, [30] = true, [38] = true, [46] = true, [54] = true,
+                [60] = true, [62] = true,
+            },
         },
         ListenerGroup =
         {
@@ -83,6 +87,11 @@ TheEyeAddon.Managers.UI.GrouperAdd(
                     eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
                     inputValues = { --[[unit]] "player", --[[spellID]] "_", },
                     value = 16,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
+                    inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target", },
+                    value = 32,
                 },
             },
         },
