@@ -1,6 +1,7 @@
 TheEyeAddon.UI.Factories.TargetFrame = {}
 local this = TheEyeAddon.UI.Factories.TargetFrame
 
+local backgroundRotationRate = -0.0025
 local dotPadding = 5
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
 local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
@@ -24,6 +25,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Background = instance.Background or TextureCreate(instance, "BACKGROUND", "BLEND")
     instance.Background:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Background.blp")
     instance.Background:SetVertexColor(unpack(colors.background))
+    instance.Background:RotationStart(backgroundRotationRate)
 
     instance.Swirl = instance.Swirl or TextureCreate(instance, "BORDER", "BLEND")
     instance.Swirl:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Mid.blp")
