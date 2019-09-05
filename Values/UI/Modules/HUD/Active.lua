@@ -27,6 +27,23 @@ TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
         },
         {
             {
+                type = "AURA_APPLIED",
+            },
+            {
+                type = "CATEGORY",
+                value = "HEAL",
+            },
+            {
+                type = "COOLDOWN",
+                comparisonValues =
+                {
+                    value = 0,
+                    type = "GreaterThan",
+                },
+            },
+        },
+        {
+            {
                 type = "CATEGORY",
                 value = "BUFF",
                 subvalue = "POWER",

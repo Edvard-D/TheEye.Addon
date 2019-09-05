@@ -60,6 +60,7 @@ function this.Setup(
                 or (priorityDisplayers[i] == "ACTIVE"
                     and ((CATEGORY.value == "DAMAGE" and (CATEGORY.subvalue == "SUMMON" or CATEGORY.subvalue == "TOTEM"))
                         or (CATEGORY.value == "DEFENSIVE" and AURA_APPLIED ~= nil)
+                        or (CATEGORY.value == "HEAL" and AURA_APPLIED ~= nil)
                         or (CATEGORY.value == "BUFF" and (CAST_TYPE.value == "CAST" or CAST_TYPE.value == "INSTANT"))))
                 then
                 table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,

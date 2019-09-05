@@ -38,6 +38,7 @@ function this.Setup(
         -- BUFF
         if (CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER")
             or CATEGORY.value == "DEFENSIVE"
+            or CATEGORY.value == "HEAL"
             then
             value = value * 2
             baseModifierKeyValue = baseModifierKeyValue + value
