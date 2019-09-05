@@ -30,7 +30,9 @@ this.gameEvents =
 
 
 local function CalculateCurrentValue(inputValues)
-    return UnitCanAttack(inputValues[1], inputValues[2])
+    local canAttack = UnitCanAttack(inputValues[1], inputValues[2])
+    
+    return canAttack or false
 end
 
 function this:InputGroupSetup(inputGroup)

@@ -21,7 +21,8 @@ local table = table
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true
+    PLAYER_SPECIALIZATION_CHANGED = true,
+    PLAYER_TARGET_CHANGED = true,
 }
 this.gameEvents =
 {
@@ -45,10 +46,6 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-end
-
-function this:GetKey(event, ...) -- doesn't get called on PLAYER_TARGET_CHANGED
-    return table.concat({ "player", this.playerSpec })
 end
 
 function this:Evaluate(inputGroup, event)

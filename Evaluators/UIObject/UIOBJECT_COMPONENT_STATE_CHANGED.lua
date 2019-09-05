@@ -24,7 +24,7 @@ this.customEvents =
 
 local function CalculateCurrentValue(component)
     if component == nil then return nil end
-
+    
     return component.state
 end
 
@@ -33,7 +33,7 @@ function this:InputGroupSetup(inputGroup)
     if uiObject == nil then return end
 
     local component = uiObject[inputGroup.inputValues[2]]
-    inputGroup.currentValue = CalculateCurrentValue(uiObject, component)
+    inputGroup.currentValue = CalculateCurrentValue(component)
 end
 
 function this:GetKey(event, uiObject, ...)
@@ -51,7 +51,7 @@ end
 
 function this:Evaluate(inputGroup, event, uiObject, component)
     local state = CalculateCurrentValue(component)
-    
+
     if inputGroup.currentValue ~= state then
         inputGroup.currentValue = state
         return true, this.key

@@ -113,14 +113,28 @@ multiple keys will pass if all of the keys have at least one valid value. Filter
 
 filters =
 {
-        {
+    {
         {
             key = "namespace",
-            value = "TheEyeAddon.UI.Components",
+            value = "TheEyeAddon.Managers.UI",
         },
         {
             key = "UIObject",
-            value = "UIPARENT",
+            value = "8092",
+        },
+    },
+    {
+        {
+            key = "namespace",
+            value = "TheEyeAddon.UI.Elements.ValueHandlers.KeyState",
+        },
+        {
+            key = "UIObject",
+            value = "8092",
+        },
+        {
+            key = "Component",
+            value = "VisibleState",
         },
     },
 }

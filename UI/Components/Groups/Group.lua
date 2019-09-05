@@ -35,6 +35,7 @@ function this.Setup(
 
     instance.ChildDeregister = this.ChildDeregister
     instance.ChildRegister = this.ChildRegister
+    instance.Deactivate = this.Deactivate
     instance.DisplayUpdate = this.DisplayUpdate
 
     -- ValueHandler
@@ -57,7 +58,17 @@ function this.Setup(
                     eventEvaluatorKey = "UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED",
                     inputValues = { --[[parentKey]] instance.UIObject.key },
                 },
-            }
+                {
+                    eventEvaluatorKey = "UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED",
+                    inputValues =
+                    {
+                        --[[parentKey]] instance.UIObject.key,
+                        --[[componentKey]] "PriorityRank",
+                        --[[valueKey]] "value",
+                    },
+                    priority = 2,
+                },
+            },
         },
         Sort =
         {
@@ -71,8 +82,9 @@ function this.Setup(
                         --[[componentKey]] "PriorityRank",
                         --[[valueKey]] "value",
                     },
-                }
-            }
+                    priority = 1,
+                },
+            },
         },
     }
 
@@ -92,6 +104,16 @@ function this.Setup(
     instance.ListenerGroups.Sort:Activate()
 end
 
+
+function this:Deactivate()
+    if self.OnDeactivate ~= nil then
+        self:OnDeactivate()
+    end
+
+    self.ValueHandler:Deactivate()
+    self.ListenerGroups.DisplayUpdate:Deactivate()
+    self.ListenerGroups.Sort:Deactivate()
+end
 
 -- Child Registration
 function this:ChildRegister(childUIObject)

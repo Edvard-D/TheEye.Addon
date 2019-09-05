@@ -32,11 +32,13 @@ function this.Setup(
 
         local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
+        local POWER_REQUIRED = GetPropertiesOfType(icon, "POWER_REQUIRED")
 
 
         -- BUFF
-        if (CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "BUFF")
+        if (CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER")
             or CATEGORY.value == "DEFENSIVE"
+            or CATEGORY.value == "HEAL"
             then
             value = value * 2
             baseModifierKeyValue = baseModifierKeyValue + value
@@ -44,14 +46,28 @@ function this.Setup(
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                 {
                     eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
-                    inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] OBJECT_ID.value, },
+                    inputValues = { --[[sourceUnit]] "_", --[[destUnit]] "player", --[[spellID]] OBJECT_ID.value, },
                     value = value,
                 }
             )
+
+            if POWER_REQUIRED == nil then
+                iconUIObject["AuraDuration"] = { spellID = OBJECT_ID.value, }
+            else
+                iconUIObject["LowPowerAlert"] =
+                {
+                    powerID = POWER_REQUIRED.value,
+                    spellID = OBJECT_ID.value,
+                }
+            end
         end
 
-        -- MINION
-        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "MINION" then
+        -- @TODO change this to "SUMMON" and create new evaluator that tracks SPELL_SUMMON
+        --  and UNIT_DIED events. Can't check if spellIDs match since Psyfiend has a different
+        --  spellID for SPELL_SUMMON than what UNIT_SPELLCAST_SUCCEEDED events return. Should
+        --  check spell names instead.
+        -- SUMMON
+        if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "SUMMON" then
             value = value * 2
             baseModifierKeyValue = baseModifierKeyValue + value
 
@@ -61,7 +77,7 @@ function this.Setup(
                     inputValues = { --[[unit]] "player", --[[spellID]] OBJECT_ID.value, },
                     comparisonValues =
                     {
-                        value = CATEGORY.length,
+                        value = CATEGORY.duration,
                         type = "LessThan"
                     },
                     value = value,

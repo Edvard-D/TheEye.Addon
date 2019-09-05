@@ -71,6 +71,10 @@ function this:Release()
 	self:ClearAllPoints()
 	self.UIObject = nil
 	self:SetScale(1)
+	
+	if self.background ~= nil then
+		self.background:SetDesaturated(nil)
+	end
 
 	table.insert(pendingDeclaim, self)
 end

@@ -2,34 +2,37 @@ TheEyeAddon.Values.DimensionTemplates = {}
 local this = TheEyeAddon.Values.DimensionTemplates
 
 
-this.Icon = {}
-
-this.Icon.Large =
+this.Icon =
 {
-    width = 50,
-    height = 50,
-}
-
-this.Icon.Medium =
-{
-    width = 37.5,
-    height = 37.5,
-}
-
-this.Icon.Small =
-{
-    width = 30,
-    height = 30,
-}
-
-this.Icon.Context =
-{
-    PointSettings =
+    Context =
     {
-        point = "RIGHT",
-        relativePoint = "RIGHT",
-        offsetX = 6.25,
+        PointSettings =
+        {
+            point = "RIGHT",
+            relativePoint = "RIGHT",
+            offsetX = 6.25,
+        },
+        width = 25,
+        height = 25,
     },
-    width = 25,
-    height = 25,
+    Large =
+    {
+        width = 50,
+        height = 50,
+    },
+    Medium =
+    {
+        width = 37.5,
+        height = 37.5,
+    },
+    Small =
+    {
+        width = 30,
+        height = 30,
+    },
+    TargetFrameDoT =
+    {
+        width = 20,
+        height = 20,
+    },
 }

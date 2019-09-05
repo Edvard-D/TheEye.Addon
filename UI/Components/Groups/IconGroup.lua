@@ -29,6 +29,8 @@ function this.Setup(
         instance
     )
 
+    instance.OnDeactivate = this.OnDeactivate
+
     instance.Icons = IconsGetFiltered(instance.Filters)
     local icons = instance.Icons
 
@@ -83,7 +85,7 @@ function this.Setup(
         icon.UIObject.instanceType = instance.instanceType
 
         -- Talent Required
-        local talentData, talentCount = GetPropertiesOfType(icon, "TALENT_REQUIRED")
+        local TALENT_REQUIRED, talentCount = GetPropertiesOfType(icon, "TALENT_REQUIRED")
         if talentCount > 0 then
             local validKeys = iconUIObject.EnabledState.ValueHandler.validKeys
             local value = 2
@@ -91,13 +93,22 @@ function this.Setup(
             validKeys[2] = nil
 
             if talentCount == 1 then
-                this.TalentSetup(iconUIObject, validKeys, talentData, value)
+                this.TalentSetup(iconUIObject, validKeys, TALENT_REQUIRED, value)
             else
-                for i = 1, #talentData do
-                    value = this.TalentSetup(iconUIObject, validKeys, talentData[i], value)
+                for i = 1, #TALENT_REQUIRED do
+                    value = this.TalentSetup(iconUIObject, validKeys, TALENT_REQUIRED[i], value)
                 end
             end
         end
+    end
+end
+
+function this:OnDeactivate()
+    for i = #self.Icons, 1, -1 do
+        local uiObject = self.Icons[i].UIObject
+        table.remove(self.Icons, i)
+        uiObject:Deactivate()
+        TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
     end
 end
 
@@ -105,13 +116,17 @@ function this.IconKeyGet(objectType, objectID, uiObject)
     return table.concat({ "ICON_", objectType, "-", objectID, "_", uiObject.instanceID })
 end
 
-function this.TalentSetup(iconUIObject, validKeys, talentData, previousValue)
+function this.TalentSetup(iconUIObject, validKeys, TALENT_REQUIRED, previousValue)
     local value = previousValue * 2
-    validKeys[2 + value] = true
+
+    if TALENT_REQUIRED.isInverse ~= true then
+        validKeys[2 + value] = true
+    end
+    
     table.insert(iconUIObject.EnabledState.ListenerGroup.Listeners, 
         {
             eventEvaluatorKey = "PLAYER_TALENT_KNOWN_CHANGED",
-            inputValues = { --[[talentID]] talentData.value, },
+            inputValues = { --[[talentID]] TALENT_REQUIRED.value, },
             value = value,
         }
     )

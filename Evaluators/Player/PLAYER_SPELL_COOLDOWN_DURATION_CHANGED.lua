@@ -63,9 +63,7 @@ function this:InputGroupSetup(inputGroup)
 
     if inputGroup.currentValue == RemainingTimeCalculate(gcdStartTime, gcdDuration) then
         inputGroup.currentValue = 0
-        inputGroup.isGCD = true
     else
-        inputGroup.isGCD = false
         TimerStart(inputGroup, inputGroup.currentValue)
     end
 end
@@ -89,17 +87,13 @@ end
 function this:Evaluate(inputGroup, event)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         TimerStart(inputGroup, initialTimerLength)
-        inputGroup.isGCD = false
     else
-        local gcdDuration = select(2, GetSpellCooldown(61304))
+        local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if inputGroup.currentValue ~= remainingTime
-            and (gcdDuration == 0 or inputGroup.isGCD == false)
+        if remainingTime == 0
+            or remainingTime ~= RemainingTimeCalculate(gcdStartTime, gcdDuration)
             then
-            if remainingTime == 0 then
-                inputGroup.isGCD = true
-            end
             TimerStart(inputGroup, remainingTime)
             inputGroup.currentValue = remainingTime
             return true, this.key

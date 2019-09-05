@@ -2,6 +2,15 @@ TheEyeAddon.Managers.Options = {}
 local this = TheEyeAddon.Managers.Options
 
 local locale = LibStub("AceLocale-3.0"):GetLocale("TheEyeAddon", true)
+local moduleNames =
+{
+    active = "ACTIVE",
+    cooldown = "COOLDOWN",
+    rotation = "ROTATION",
+    situational = "SITUATIONAL",
+    targetAction = "TARGET_ACTION",
+    targetFrame = "TARGET_FRAME",
+}
 local xPosition = 0
 local yPosition = -50
 
@@ -51,22 +60,22 @@ function this.SizeSet(info, value)
 end
 
 function this.EnabledGet(info)
-    local moduleName = string.upper(info[#info - 1])
+    local moduleName = moduleNames[info[#info - 1]]
     return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled
 end
 
 function this.EnabledSet(info, value)
-    local moduleName = string.upper(info[#info - 1])
+    local moduleName = moduleNames[info[#info - 1]]
     TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled = value
 end
 
 function this.MaxIconsGet(info)
-    local moduleName = string.upper(info[#info - 1])
+    local moduleName = moduleNames[info[#info - 1]]
     return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons
 end
 
 function this.MaxIconsSet(info, value)
-    local moduleName = string.upper(info[#info - 1])
+    local moduleName = moduleNames[info[#info - 1]]
     TheEyeAddon.Managers.UI.Modules.IconGroups[moduleName].UIObject.Group.maxDisplayedChildren = value
     TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons = value
 end
@@ -260,6 +269,44 @@ this.options =
                             min = 1,
                             max = 10,
                             step = 1,
+                        },
+                    },
+                },
+                targetAction =
+                {
+                    type = "group",
+                    name = locale["Target Action"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
+                    },
+                },
+                targetFrame =
+                {
+                    type = "group",
+                    name = locale["Target Frame"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
                         },
                     },
                 },

@@ -32,6 +32,7 @@ function this.Setup(
         local value = 1
 
         local AURA_APPLIED = GetPropertiesOfType(icon, "AURA_APPLIED")
+        local CAST_TYPE = GetPropertiesOfType(icon, "CAST_TYPE")
         local CATEGORY = GetPropertiesOfType(icon, "CATEGORY")
         local OBJECT_ID = GetPropertiesOfType(icon, "OBJECT_ID")
         local USAGE_RATE = GetPropertiesOfType(icon, "USAGE_RATE")
@@ -57,9 +58,10 @@ function this.Setup(
 
             if (priorityDisplayers[i] == "ROTATION" and CATEGORY.value == "DAMAGE")
                 or (priorityDisplayers[i] == "ACTIVE"
-                    and ((CATEGORY.value == "DAMAGE" and (CATEGORY.subvalue == "MINION" or CATEGORY.subvalue == "TOTEM"))
+                    and ((CATEGORY.value == "DAMAGE" and (CATEGORY.subvalue == "SUMMON" or CATEGORY.subvalue == "TOTEM"))
                         or (CATEGORY.value == "DEFENSIVE" and AURA_APPLIED ~= nil)
-                        or (CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "BUFF" and USAGE_RATE.value <= 4)))
+                        or (CATEGORY.value == "HEAL" and AURA_APPLIED ~= nil)
+                        or (CATEGORY.value == "BUFF" and (CAST_TYPE.value == "CAST" or CAST_TYPE.value == "INSTANT"))))
                 then
                 table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                     {
