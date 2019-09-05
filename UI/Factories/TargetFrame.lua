@@ -6,9 +6,9 @@ local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
 local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
 local GetSpellInfo = GetSpellInfo
 local math = math
-local overlayRotationRate = 0.005
+local midRotationRate = -0.01
+local overlayRotationRate = -0.005
 local select = select
-local swirlRotationRate = 0.01
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
 local tostring = tostring
 local UnitName = UnitName
@@ -28,7 +28,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Swirl = instance.Swirl or TextureCreate(instance, "BORDER", "BLEND")
     instance.Swirl:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Mid.blp")
     instance.Swirl:SetVertexColor(unpack(colors.swirl))
-    instance.Swirl:RotationStart(swirlRotationRate)
+    instance.Swirl:RotationStart(midRotationRate)
     
     instance.Overlay = instance.Overlay or TextureCreate(instance, "BORDER", "BLEND")
     instance.Overlay:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Overlay.blp")
