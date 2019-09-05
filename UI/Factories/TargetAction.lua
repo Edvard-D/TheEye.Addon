@@ -82,6 +82,8 @@ function this:CastSet(spellID)
     if notInterruptible == true then
         self.Bar.Base:SetVertexColor(unpack(castImmuneColor))
         self.Bar.End:SetVertexColor(unpack(castImmuneColor))
+
+        self:InterruptSet(false, self.interruptSpellID)
     else
         self.Bar.Base:SetVertexColor(unpack(castInterruptableColor))
         self.Bar.End:SetVertexColor(unpack(castInterruptableColor))
@@ -93,12 +95,7 @@ function this:CastSet(spellID)
 end
 
 function this:InterruptSet(isVisible, spellID)
-    local notInterruptible = select(8, UnitCastingInfo(self.unit))
-    if notInterruptible == nil then
-        notInterruptible = select(7, UnitChannelInfo(self.unit))
-    end
-
-    if isVisible == true and notInterruptible == false then
+    if isVisible == true then
         local fileID = select(3, GetSpellInfo(spellID))
 
         self.interruptSpellID = spellID
