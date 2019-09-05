@@ -82,6 +82,10 @@ local function RemainingTimeGet(self)
     local startTime, duration = GetSpellCooldown(self.spellID)
     local remainingTime = (startTime + duration) - GetTime()
 
+    if remainingTime < 0 then
+        remainingTime = 0
+    end
+
     return remainingTime
 end
 
