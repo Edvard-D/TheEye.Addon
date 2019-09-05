@@ -71,7 +71,6 @@ end
 --[[
 function this:PlayerCastSet(isActive, startTime, duration, isReverse)
     if isActive == true then
-        --print("startTime: " .. startTime .. ", duration: " .. duration)
         --self.PlayerCast:Show()
         --self.PlayerCast:SetReverse(isReverse)
         --self.PlayerCast:SetCooldown(startTime, duration)
