@@ -104,7 +104,7 @@ local function EventIsValid(inputGroup, eventData)
     if (eventData.event == "SWING_DAMAGE"
             and (eventData.sourceGUID == inputValueUnitGUID or eventData.destGUID == inputValueUnitGUID) -- @TODO Create table that stores the GUIDs for each unitID
         or (eventData.event == "SPELL_DAMAGE"
-            and bit.band(eventData.destFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) > 0))
+            and bit.band(eventData.destFlags, inputGroup.inputValues[2]) > 0))
     then
         return true
     end
