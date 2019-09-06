@@ -113,10 +113,6 @@ end
 local function CurrentEventTryAddData(inputGroup, eventData)
     local currentEvent = inputGroup.events.current
 
-    if eventData.overkill > 0 then
-        return
-    end
-
     if EventIsValid(inputGroup, eventData) then
         if currentEvent.event == nil then
             currentEvent.sourceGUID = eventData.sourceGUID
