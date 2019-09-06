@@ -100,9 +100,12 @@ end
 -- Current/Pending Events
 local function EventIsValid(inputGroup, eventData)
     local inputValueUnitGUID = UnitGUID(inputGroup.inputValues[1])
+    local playerGUID = UnitGUID("player")
 
     if (eventData.event == "SWING_DAMAGE"
-            and (eventData.sourceGUID == inputValueUnitGUID or eventData.destGUID == inputValueUnitGUID) -- @TODO Create table that stores the GUIDs for each unitID
+            and (eventData.sourceGUID == inputValueUnitGUID
+                or eventData.destGUID == inputValueUnitGUID
+                or eventData.destGUID == playerGUID) -- @TODO Create table that stores the GUIDs for each unitID
         or (eventData.event == "SPELL_DAMAGE"
             and bit.band(eventData.destFlags, inputGroup.inputValues[2]) > 0))
     then
@@ -212,6 +215,36 @@ local function GroupedUnitCountGetWeighted(inputGroup)
 end
 
 
+-- MeleeUnits
+local function MeleeAttackingPlayerUnitCountGet(inputGroup)
+    local meleeAttackingPlayerCount = 0
+    local meleeUnits = inputGroup.meleeUnits
+    local playerGUID = UnitGUID("player")
+
+    if meleeUnits ~= nil then
+        for unitGUID,unitData in pairs(meleeUnits) do
+            local isAttackingPlayer = false
+
+            if unitData.events ~= nil then
+                for j = 1, #unitData.events do
+                    local event = unitData.events[j]
+
+                    if event.destGUIDs ~= nil and event.destGUIDs[1] == playerGUID then
+                        isAttackingPlayer = true
+                    end
+                end
+
+                if isAttackingPlayer == true then
+                    meleeAttackingPlayerCount = meleeAttackingPlayerCount + 1
+                end
+            end
+        end
+    end
+
+    return meleeAttackingPlayerCount
+end
+
+
 -- Units
 local function UnitAddEventData(units, guid, eventData, eventMaxElapsedTime)
     if units[guid] == nil then
@@ -223,14 +256,8 @@ local function UnitAddEventData(units, guid, eventData, eventMaxElapsedTime)
         table.insert(units.guids, guid)
     end
 
-    local event =
-    {
-        timestamp = eventData.timestamp,
-        eventMaxElapsedTime = eventMaxElapsedTime,
-    }
-    table.insert(units[guid].events, event)
-
-    return event
+    eventData.eventMaxElapsedTime = eventMaxElapsedTime
+    table.insert(units[guid].events, eventData)
 end
 
 local function UnitRemove(units, guid)
@@ -286,8 +313,7 @@ local function UnitsUpdateWithPendingEvents(inputGroup)
                 local destGUIDs = pendingEvent.destGUIDs
 
                 for j = 1, #destGUIDs do
-                    local unitEvent = UnitAddEventData(groupedUnits, destGUIDs[j], pendingEvent, spellEventMaxElapsedTime)
-                    unitEvent.wasInitiatorPlayer = pendingEvent.wasInitiatorPlayer
+                    UnitAddEventData(groupedUnits, destGUIDs[j], pendingEvent, spellEventMaxElapsedTime)
                 end
             else -- SWING_DAMAGE
                 if pendingEvent.sourceGUID == inputValueUnitGUID then
@@ -340,7 +366,13 @@ function this:Evaluate(inputGroup, event, ...)
         inputGroup.events.pending = {}
     end
 
+
     unitCount = GroupedUnitCountGetWeighted(inputGroup)
+    if unitCount == 0 then
+        unitCount = MeleeAttackingPlayerUnitCountGet(inputGroup)
+    end
+
+
     if inputGroup.currentValue ~= unitCount then
         inputGroup.currentValue = unitCount
         return true, this.name
