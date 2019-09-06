@@ -305,8 +305,6 @@ local function UnitsUpdateWithPendingEvents(inputGroup)
 end
 
 local function UnitsUpdate(inputGroup)
-    local validMeleeUnits = inputGroup.validMeleeUnits
-
     UnitsUpdateWithPendingEvents(inputGroup)
 
     UnitsRemoveOldEvents(inputGroup.meleeUnits)
