@@ -295,7 +295,7 @@ local function UnitsUpdateWithPendingEvents(inputGroup)
                 end
             else -- SWING_DAMAGE
                 if pendingEvent.sourceGUID == inputValueUnitGUID then
-                    UnitAddEventData(meleeUnits, pendingEvent.destGUID, pendingEvent, meleeEventMaxElapsedTime)
+                    UnitAddEventData(meleeUnits, pendingEvent.destGUIDs[1], pendingEvent, meleeEventMaxElapsedTime)
                 else
                     UnitAddEventData(meleeUnits, pendingEvent.sourceGUID, pendingEvent, meleeEventMaxElapsedTime)
                 end
