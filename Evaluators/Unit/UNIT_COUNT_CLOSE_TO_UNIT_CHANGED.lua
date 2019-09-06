@@ -277,7 +277,7 @@ end
 
 local function UnitsUpdateWithPendingEvents(inputGroup)
     local pendingEvents = inputGroup.events.pending
-    local inputValueUnitGUID = inputGroup.inputValues[1]
+    local inputValueUnitGUID = UnitGUID(inputGroup.inputValues[1])
 
     if #pendingEvents > 0 then
         local meleeUnits = inputGroup.meleeUnits
