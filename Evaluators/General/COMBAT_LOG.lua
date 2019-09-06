@@ -3,6 +3,7 @@ local this = TheEyeAddon.Evaluators.COMBAT_LOG
 
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local formattedEventInfo = {}
+local GetTime = GetTime
 local pairs = pairs
 local table = table
 local UnitGUID = UnitGUID
@@ -70,6 +71,7 @@ local function FormatData(rawEventData)
         formattedEventInfo[valueNames[i]] = rawEventData[i]
     end
  
+    formattedEventInfo["timestamp"] = GetTime() -- By default this returns the system time, the same value as time()
     formattedEventInfo["prefix"] = eventDataFormat["prefix"]
     formattedEventInfo["suffix"] = eventDataFormat["suffix"]
 end
