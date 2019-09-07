@@ -39,6 +39,10 @@ TheEyeAddon.Managers.Settings.Character.Default =
                 enabled = true,
                 maxIcons = 10,
             },
+            PLAYER_CAST =
+            {
+                enabled = true,
+            },
             TARGET_ACTION =
             {
                 enabled = true,
