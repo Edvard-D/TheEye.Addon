@@ -16,8 +16,8 @@ local table = table
 
 this.Modules =
 {
+    CastBars = {},
     IconGroups = {},
-    TargetActions = {},
     TargetFrames = {},
 }
 
@@ -213,8 +213,8 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     return uiObject
 end
 
-local function TargetActionUIObjectSetup(targetActionData)
-    local parentKey = groupers["TOP"].UIObject.key
+local function CastBarUIObjectSetup(castBarData)
+    local parentKey = groupers[castBarData.grouper].UIObject.key
 
     local uiObject =
     {
@@ -242,18 +242,14 @@ local function TargetActionUIObjectSetup(targetActionData)
         },
         Frame =
         {
-            Dimensions = targetActionData.Dimensions
+            Dimensions = castBarData.Dimensions
         },
         PriorityRank =
         {
             ValueHandler =
             {
-                validKeys = { [0] = targetActionData.grouperPriority, }
+                validKeys = { [0] = castBarData.grouperPriority, }
             },
-        },
-        TargetAction =
-        {
-            unit = targetActionData.unit,
         },
         VisibleState =
         {
@@ -264,11 +260,19 @@ local function TargetActionUIObjectSetup(targetActionData)
         }        
     }
 
-    -- Key
-    if targetActionData.instanceID == nil then
-        targetActionData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    if castBarData.unit == "player" then
+        uiObject.PlayerCast = { unit = castBarData.unit }
+    elseif castBarData.unit == "target" then
+        uiObject.TargetAction = { unit = castBarData.unit }
+    else
+        print("DEBUG: unknown component for cast bar with a unit type of " .. castBarData.unit .. ".")
     end
-    uiObject.tags = { "TARGET_ACTION", targetActionData.instanceID }
+
+    -- Key
+    if castBarData.instanceID == nil then
+        castBarData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    uiObject.tags = { "TARGET_ACTION", castBarData.instanceID }
     FormatData(uiObject)
 
     UIObjectSetup(uiObject)
@@ -370,10 +374,10 @@ function this:OnEvent(eventName, ...)
                 end
             end
 
-            for k, module in pairs(this.Modules.TargetActions) do
+            for k, module in pairs(this.Modules.CastBars) do
                 local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
                 if moduleSettings.enabled == true then
-                    module.UIObject = TargetActionUIObjectSetup(module)
+                    module.UIObject = CastBarUIObjectSetup(module)
                 end
             end
 

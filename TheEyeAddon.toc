@@ -256,8 +256,8 @@ UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 UI\Factories\FontString.lua
 UI\Factories\Texture.lua
 
+UI\Factories\CastBar.lua
 UI\Factories\Cooldown.lua
-UI\Factories\TargetAction.lua
 UI\Factories\TargetFrame.lua
 
 

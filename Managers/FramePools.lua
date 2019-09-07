@@ -1,6 +1,7 @@
 TheEyeAddon.Managers.FramePools = {}
 local this = TheEyeAddon.Managers.FramePools
 
+local EventsDeregister = TheEyeAddon.Managers.Events.Deregister
 local FrameCreate = TheEyeAddon.UI.Factories.Frame.Create
 local FrameSetDimensions = TheEyeAddon.UI.Factories.Frame.SetDimensions
 local pendingDeclaim = {}
@@ -75,6 +76,8 @@ function this:Release()
 	if self.background ~= nil then
 		self.background:SetDesaturated(nil)
 	end
+
+	EventsDeregister(self)
 
 	table.insert(pendingDeclaim, self)
 end
