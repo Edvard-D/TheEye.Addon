@@ -1123,6 +1123,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "AURA_APPLIED",
             value = 589,
+            duration = 16,
         },
         {
             type = "CAST_TYPE",
@@ -1422,6 +1423,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         {
             type = "AURA_APPLIED",
             value = 34914,
+            duration = 21,
         },
         {
             type = "CAST_TYPE",
