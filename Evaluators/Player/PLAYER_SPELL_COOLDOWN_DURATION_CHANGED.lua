@@ -10,7 +10,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroup
 local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local tostring = tostring
-local updateRate = 0.1
+local updateRate = 1
 
 
 --[[ #this#TEMPLATE#
