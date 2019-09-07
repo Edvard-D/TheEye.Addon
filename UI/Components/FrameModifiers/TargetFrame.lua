@@ -73,24 +73,6 @@ function this.DoTSpellIDsGet()
 end
 
 local function ListenerGroupsSetup(self)
-    -- Player Cast
-    --self.PlayerCastListenerGroup =
-    --{
-    --    Listeners =
-    --    {
-    --        {
-    --            eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-    --            inputValues = { --[[unit]] "player", --[[spellID]] "_", },
-    --        },
-    --    },
-    --}
-    --NotifyBasedFunctionCallerSetup(
-    --    self.PlayerCastListenerGroup,
-    --    self,
-    --    "OnPlayerCastNotify"
-    --)
-    --self.PlayerCastListenerGroup:Activate()
-
     -- Raid Marker
     self.RaidMarkerListenerGroup =
     {
@@ -171,7 +153,6 @@ local function ListenerGroupsSetup(self)
 end
 
 local function ListenerGroupsTeardown(self)
-    --self.PlayerCastListenerGroup:Deactivate()
     self.RaidMarkerListenerGroup:Deactivate()
     self.HealthListenerGroup:Deactivate()
     self.NameListenerGroup:Deactivate()
@@ -197,22 +178,6 @@ function this:Demodify(frame)
     self.targetFrame = nil
     ListenerGroupsTeardown(self)
 end
-
---[[function this:OnPlayerCastNotify(event, value)
-    if value == true then
-        local isChannel = false
-        local startTime, endTime = select(4, UnitCastingInfo("player"))
-        if startTime == nil then
-            isChannel = true
-            startTime, endTime = select(4, UnitChannelInfo("player"))
-        end
-        local duration = (endTime - startTime) / 1000
-
-        self.targetFrame:PlayerCastSet(true, (startTime) / 1000, duration, isChannel)
-    else
-        self.targetFrame:PlayerCastSet(false)
-    end
-end]]
 
 function this:OnRaidMarkerNotify(event, value)
     self.targetFrame:RaidMarkerSet(value)
