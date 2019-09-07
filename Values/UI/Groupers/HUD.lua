@@ -93,6 +93,11 @@ TheEyeAddon.Managers.UI.GrouperAdd(
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target", },
                     value = 32,
                 },
+                {
+                    eventEvaluatorKey = "UNIT_IN_VEHICLE_CHANGED",
+                    inputValues = { --[[unit]] "player", },
+                    value = 64,
+                },
             },
         },
     },
