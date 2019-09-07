@@ -10,6 +10,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroup
 local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local tostring = tostring
+local updateRate = 0.1
 
 
 --[[ #this#TEMPLATE#
@@ -34,11 +35,11 @@ this.customEvents =
 }
 
 
-local function TimerStart(inputGroup, remainingTime)
-    if remainingTime == initialTimerLength then
-        StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+local function TimerStart(inputGroup, timerLength)
+    if timerLength == initialTimerLength then
+        StartEventTimer(timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupDurationTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupDurationTimerStart(inputGroup, timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 
@@ -94,7 +95,7 @@ function this:Evaluate(inputGroup, event)
         if remainingTime == 0
             or remainingTime ~= RemainingTimeCalculate(gcdStartTime, gcdDuration)
             then
-            TimerStart(inputGroup, remainingTime)
+            TimerStart(inputGroup, updateRate)
             inputGroup.currentValue = remainingTime
             return true, this.key
         end
