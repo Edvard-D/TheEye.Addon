@@ -154,6 +154,35 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
     },
 })
 
+-- Mallet of Thunderous Skins
+TheEyeAddon.Managers.Icons.Add("SHARED",
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 0, }
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "TRIGGERED",
+        },
+        {
+            type = "CATEGORY",
+            value = "BUFF",
+            subvalue = "POWER",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 293076,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+    },
+})
+
 -- Netherwinds
 TheEyeAddon.Managers.Icons.Add("SHARED",
 {
