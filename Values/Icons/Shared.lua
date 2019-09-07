@@ -25,8 +25,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
 
 -- Bloodlust
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -55,8 +54,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
 
 -- Drums of Rage
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -85,8 +83,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
 
 -- Heroism
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -115,8 +112,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
 
 -- Honorable Medallion
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -156,8 +152,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = 3478,
         },
     },
-}
-)
+})
 
 -- Netherwinds
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -186,8 +181,7 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
 
 -- Time Warp
 TheEyeAddon.Managers.Icons.Add("SHARED",
@@ -216,5 +210,4 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
             value = "SPELL",
         },
     },
-}
-)
+})
