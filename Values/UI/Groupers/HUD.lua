@@ -40,7 +40,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     Group =
     {
         childArranger = TheEyeAddon.Helpers.ChildArrangers.Vertical,
-        childPadding = 10,
+        childPadding = 5,
         sortActionName = "SortAscending",
         sortValueComponentName = "PriorityRank",
     },
@@ -92,6 +92,11 @@ TheEyeAddon.Managers.UI.GrouperAdd(
                     eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
                     inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] "target", },
                     value = 32,
+                },
+                {
+                    eventEvaluatorKey = "UNIT_IN_VEHICLE_CHANGED",
+                    inputValues = { --[[unit]] "player", },
+                    value = 64,
                 },
             },
         },

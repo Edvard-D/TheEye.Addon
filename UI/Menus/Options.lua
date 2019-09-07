@@ -8,6 +8,7 @@ local moduleNames =
     cooldown = "COOLDOWN",
     rotation = "ROTATION",
     situational = "SITUATIONAL",
+    playerCast = "PLAYER_CAST",
     targetAction = "TARGET_ACTION",
     targetFrame = "TARGET_FRAME",
 }
@@ -269,6 +270,25 @@ this.options =
                             min = 1,
                             max = 10,
                             step = 1,
+                        },
+                    },
+                },
+                playerCast =
+                {
+                    type = "group",
+                    name = locale["Player Cast"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
                         },
                     },
                 },

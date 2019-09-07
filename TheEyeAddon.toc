@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80200
 ## Title: TheEye.Addon
-## Version: 0.6.1
+## Version: 0.6.2
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -138,6 +138,7 @@ Values\UI\Modules\HUD\Active.lua
 Values\UI\Modules\HUD\Cooldown.lua
 Values\UI\Modules\HUD\Rotation.lua
 Values\UI\Modules\HUD\Situational.lua
+Values\UI\Modules\HUD\PlayerCast.lua
 Values\UI\Modules\HUD\TargetAction.lua
 Values\UI\Modules\HUD\TargetFrame.lua
 
@@ -188,6 +189,7 @@ Evaluators\Unit\UNIT_CLASS_CHANGED.lua
 Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
 Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
+Evaluators\Unit\UNIT_IN_VEHICLE_CHANGED.lua
 Evaluators\Unit\UNIT_NAME_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
@@ -256,8 +258,8 @@ UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 UI\Factories\FontString.lua
 UI\Factories\Texture.lua
 
+UI\Factories\CastBar.lua
 UI\Factories\Cooldown.lua
-UI\Factories\TargetAction.lua
 UI\Factories\TargetFrame.lua
 
 
@@ -283,6 +285,7 @@ UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
+UI\Components\FrameModifiers\PlayerCast.lua
 UI\Components\FrameModifiers\TargetAction.lua
 UI\Components\FrameModifiers\TargetFrame.lua
 

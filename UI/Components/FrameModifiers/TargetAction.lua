@@ -2,12 +2,18 @@ TheEyeAddon.UI.Components.TargetAction = {}
 local this = TheEyeAddon.UI.Components.TargetAction
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
+local CastBarClaim = TheEyeAddon.UI.Factories.CastBar.Claim
+local colors =
+{
+    background = { 0.1, 0.1, 0.1, 1 },
+    immune = { 0.5, 0.5, 0.5, 1 },
+    interruptable = { 0.8, 0.46, 0.19, 1 },
+}
 local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
 local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local pairs = pairs
 local table = table
-local TargetActionClaim = TheEyeAddon.UI.Factories.TargetAction.Claim
 
 
 --[[ #this#TEMPLATE#
@@ -36,7 +42,7 @@ function this.Setup(
 
     inherited.Setup(
         instance,
-        "targetAction",
+        "castBar",
         "creator"
     )
     
@@ -132,23 +138,23 @@ local function ListenerGroupsTeardown(self)
 end
 
 function this:Modify(frame)
-    frame.targetAction = TargetActionClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, self.unit, self.dotSpellIDs)
-    self.targetAction = frame.targetAction
+    frame.castbar = CastBarClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, self.unit, colors, true, true, true)
+    self.castbar = frame.castbar
     ListenerGroupsSetup(self)
 end
 
 function this:Demodify(frame)
-    frame.targetAction:Release()
-    self.targetAction = nil
+    frame.castbar:Release()
+    self.castbar = nil
     ListenerGroupsTeardown(self)
 end
 
 function this:OnCastNotify(event, value)
     if value == true then
-        self.targetAction:CastSet()
+        self.castbar:CastSet()
     end
 end
 
 function this:OnInterruptNotify(event, value, inputGroup)
-    self.targetAction:InterruptSet(value, inputGroup.inputValues[1])
+    self.castbar:SecondaryIconSet(value, inputGroup.inputValues[1])
 end

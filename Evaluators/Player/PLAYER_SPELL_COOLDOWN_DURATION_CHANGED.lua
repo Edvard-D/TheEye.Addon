@@ -10,6 +10,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroup
 local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local tostring = tostring
+local updateRate = 1
 
 
 --[[ #this#TEMPLATE#
@@ -34,11 +35,11 @@ this.customEvents =
 }
 
 
-local function TimerStart(inputGroup, remainingTime)
-    if remainingTime == initialTimerLength then
-        StartEventTimer(remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+local function TimerStart(inputGroup, timerLength)
+    if timerLength == initialTimerLength then
+        StartEventTimer(timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
-        InputGroupDurationTimerStart(inputGroup, remainingTime, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
+        InputGroupDurationTimerStart(inputGroup, timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     end
 end
 
@@ -60,6 +61,8 @@ end
 function this:InputGroupSetup(inputGroup)
     local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+
+    inputGroup.isGCD = true
 
     if inputGroup.currentValue == RemainingTimeCalculate(gcdStartTime, gcdDuration) then
         inputGroup.currentValue = 0
@@ -87,14 +90,20 @@ end
 function this:Evaluate(inputGroup, event)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         TimerStart(inputGroup, initialTimerLength)
+        inputGroup.isGCD = false
     else
         local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
+        local gcdRemainingTime = RemainingTimeCalculate(gcdStartTime, gcdDuration)
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if remainingTime == 0
-            or remainingTime ~= RemainingTimeCalculate(gcdStartTime, gcdDuration)
+        if remainingTime ~= gcdRemainingTime
+            or inputGroup.isGCD == false
             then
-            TimerStart(inputGroup, remainingTime)
+            if remainingTime == 0 or remainingTime == gcdRemainingTime then
+                inputGroup.isGCD = true
+            end
+            
+            TimerStart(inputGroup, updateRate)
             inputGroup.currentValue = remainingTime
             return true, this.key
         end

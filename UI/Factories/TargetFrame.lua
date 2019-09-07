@@ -37,14 +37,6 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Overlay:SetVertexColor(unpack(colors.overlay))
     instance.Overlay:RotationStart(overlayRotationRate)
 
-    --[[instance.PlayerCast = instance.PlayerCast or CreateFrame("Cooldown", nil, instance, "CooldownFrameTemplate")
-    instance.PlayerCast:SetSize(dimensions.width, dimensions.height)
-    instance.PlayerCast:SetAllPoints()
-    instance.PlayerCast:SetDrawBling(false)
-    instance.PlayerCast:SetDrawEdge(false)
-    instance.PlayerCastSet = this.PlayerCastSet
-    instance.PlayerCast:SetSwipeTexture("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_PlayerCast.blp")
-]]
     instance.RaidMarker = instance.RaidMarker or TextureCreate(instance, "ARTWORK")
     instance.RaidMarker:SetSize(dimensions.width * 0.35, dimensions.height * 0.35)
     instance.RaidMarker:SetPoint("CENTER", instance, "TOP", 0, -dimensions.height * 0.07)
@@ -68,16 +60,6 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
 
     return instance
 end
---[[
-function this:PlayerCastSet(isActive, startTime, duration, isReverse)
-    if isActive == true then
-        --self.PlayerCast:Show()
-        --self.PlayerCast:SetReverse(isReverse)
-        --self.PlayerCast:SetCooldown(startTime, duration)
-    else
-        self.PlayerCast:Hide()
-    end
-end]]
 
 function this:RaidMarkerSet(index)
     self.RaidMarker:SetTexture(TheEyeAddon.Values.raidMarkerFileIDs[index])

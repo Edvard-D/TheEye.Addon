@@ -33,6 +33,6 @@ TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
         sortValueComponentName = "PriorityRank",
     },
     grouper = "CENTER",
-    grouperPriority = 1,
+    grouperPriority = 2,
     IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
 })

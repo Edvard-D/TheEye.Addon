@@ -4,9 +4,11 @@ local this = TheEyeAddon.Evaluators.UNIT_AURA_DURATION_CHANGED
 local GetTime = GetTime
 local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
 local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
+local updateRate = 1
 local unpack = unpack
 
 
@@ -24,30 +26,23 @@ local unpack = unpack
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true
+    PLAYER_TARGET_CHANGED = true,
 }
 this.gameEvents =
 {
-    "PLAYER_TARGET_CHANGED"
+    "PLAYER_TARGET_CHANGED",
 }
 this.customEvents =
 {
-    "AURA_DURATION_TIMER_END"
+    "AURA_DURATION_TIMER_END",
 }
 local combatLogEvents =
 {
     "SPELL_AURA_APPLIED",
     "SPELL_AURA_BROKEN",
     "SPELL_AURA_BROKEN_SPELL",
+    "SPELL_AURA_REFRESH",
     "SPELL_AURA_REMOVED",
-    "SPELL_BUILDING_AURA_APPLIED",
-    "SPELL_BUILDING_AURA_BROKEN",
-    "SPELL_BUILDING_AURA_BROKEN_SPELL",
-    "SPELL_BUILDING_AURA_REMOVED",
-    "SPELL_PERIODIC_AURA_APPLIED",
-    "SPELL_PERIODIC_AURA_BROKEN",
-    "SPELL_PERIODIC_AURA_BROKEN_SPELL",
-    "SPELL_PERIODIC_AURA_REMOVED",
 }
 
 function this:SetupListeningTo(inputGroup)
@@ -61,8 +56,8 @@ function this:SetupListeningTo(inputGroup)
     end
 end
 
-local function TimerStart(inputGroup, remainingTime)
-    InputGroupDurationTimerStart(inputGroup, remainingTime, "AURA_DURATION_TIMER_END", inputGroup.inputValues)
+local function TimerStart(inputGroup, timerLength)
+    InputGroupDurationTimerStart(inputGroup, timerLength, "AURA_DURATION_TIMER_END", inputGroup.inputValues)
 end
 
 local function CalculateCurrentValue(inputValues)
@@ -86,31 +81,26 @@ function this:InputGroupSetup(inputGroup)
 end
 
 function this:GetKey(event, ...)
-    local sourceUnit
-    local destUnit
-    local spellID
-
     if event == "AURA_DURATION_TIMER_END" then
         local inputValues = select(2, ...)
-        sourceUnit = inputValues[1]
-        destUnit = inputValues[2]
-        spellID = inputValues[3]
+        return table.concat(inputValues)
     else
         local inputGroup = ...
         local eventData = inputGroup.eventData
-        sourceUnit = eventData["sourceUnit"]
-        destUnit = eventData["destUnit"]
-        spellID = eventData["spellID"]
-    end
 
-    return table.concat({ sourceUnit, destUnit, spellID })
+        local sourceUnit = eventData["sourceUnit"]
+        local destUnit = eventData["destUnit"]
+        local spellID = eventData["spellID"]
+
+        return table.concat({ sourceUnit, destUnit, spellID })
+    end
 end
 
 function this:Evaluate(inputGroup, event)
     local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
     if inputGroup.currentValue ~= remainingTime then
-        TimerStart(inputGroup, remainingTime)
+        TimerStart(inputGroup, updateRate)
         inputGroup.currentValue = remainingTime
         return true, this.key
     end
