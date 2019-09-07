@@ -79,24 +79,19 @@ function this:InputGroupSetup(inputGroup)
 end
 
 function this:GetKey(event, ...)
-    local sourceUnit
-    local destUnit
-    local spellID
-
     if event == "AURA_DURATION_TIMER_END" then
         local inputValues = select(2, ...)
-        sourceUnit = inputValues[1]
-        destUnit = inputValues[2]
-        spellID = inputValues[3]
+        return table.concat(inputValues)
     else
         local inputGroup = ...
         local eventData = inputGroup.eventData
-        sourceUnit = eventData["sourceUnit"]
-        destUnit = eventData["destUnit"]
-        spellID = eventData["spellID"]
-    end
+
+        local sourceUnit = eventData["sourceUnit"]
+        local destUnit = eventData["destUnit"]
+        local spellID = eventData["spellID"]
 
     return table.concat({ sourceUnit, destUnit, spellID })
+end
 end
 
 function this:Evaluate(inputGroup, event)
