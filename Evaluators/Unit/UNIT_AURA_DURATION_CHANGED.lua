@@ -8,7 +8,7 @@ local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local table = table
 local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
-local updateRate = 1
+local updateRate = 0.5
 local unpack = unpack
 
 
