@@ -150,6 +150,7 @@ Values\UI\Modules\HUD\TargetFrame.lua
 # --- General ---
 Evaluators\General\ADDON_LOADED.lua
 Evaluators\General\COMBAT_LOG.lua
+Evaluators\General\DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED.lua
 Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
 Evaluators\General\ICON_DISPLAYER_CHANGED.lua
 
