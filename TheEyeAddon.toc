@@ -139,7 +139,7 @@ Values\UI\Modules\HUD\Cooldown.lua
 Values\UI\Modules\HUD\Rotation.lua
 Values\UI\Modules\HUD\Situational.lua
 Values\UI\Modules\HUD\PlayerCast.lua
-Values\UI\Modules\HUD\TargetAction.lua
+Values\UI\Modules\HUD\TargetCast.lua
 Values\UI\Modules\HUD\TargetFrame.lua
 
 
@@ -286,7 +286,7 @@ UI\Components\FrameModifiers\Cooldown.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\PlayerCast.lua
-UI\Components\FrameModifiers\TargetAction.lua
+UI\Components\FrameModifiers\TargetCast.lua
 UI\Components\FrameModifiers\TargetFrame.lua
 
 

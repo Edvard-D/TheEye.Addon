@@ -9,7 +9,7 @@ local moduleNames =
     rotation = "ROTATION",
     situational = "SITUATIONAL",
     playerCast = "PLAYER_CAST",
-    targetAction = "TARGET_ACTION",
+    targetAction = "TARGET_CAST",
     targetFrame = "TARGET_FRAME",
 }
 local xPosition = 0
@@ -295,7 +295,7 @@ this.options =
                 targetAction =
                 {
                     type = "group",
-                    name = locale["Target Action"],
+                    name = locale["Target Cast"],
                     order = 4,
                     inline = true,
                     args =

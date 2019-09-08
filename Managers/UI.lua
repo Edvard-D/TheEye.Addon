@@ -263,7 +263,7 @@ local function CastBarUIObjectSetup(castBarData)
     if castBarData.unit == "player" then
         uiObject.PlayerCast = { unit = castBarData.unit }
     elseif castBarData.unit == "target" then
-        uiObject.TargetAction = { unit = castBarData.unit }
+        uiObject.TargetCast = { unit = castBarData.unit }
     else
         print("DEBUG: unknown component for cast bar with a unit type of " .. castBarData.unit .. ".")
     end
@@ -272,7 +272,7 @@ local function CastBarUIObjectSetup(castBarData)
     if castBarData.instanceID == nil then
         castBarData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    uiObject.tags = { "TARGET_ACTION", castBarData.instanceID }
+    uiObject.tags = { "TARGET_CAST", castBarData.instanceID }
     FormatData(uiObject)
 
     UIObjectSetup(uiObject)

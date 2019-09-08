@@ -29,7 +29,7 @@ this.Icon =
         flags = "OUTLINE",
     },
 }
-this.TargetAction =
+this.TargetCast =
 {
     CastName =
     {

@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.TargetAction = {}
-local this = TheEyeAddon.UI.Components.TargetAction
+TheEyeAddon.UI.Components.TargetCast = {}
+local this = TheEyeAddon.UI.Components.TargetCast
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local CastBarClaim = TheEyeAddon.UI.Factories.CastBar.Claim

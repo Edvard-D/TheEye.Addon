@@ -7,7 +7,7 @@ TheEyeAddon.Managers.UI.ModuleAdd("CastBars",
         height = 15,
     },
     instanceID = "0000006",
-    type = "TARGET_ACTION",
+    type = "TARGET_CAST",
     grouper = "TOP",
     grouperPriority = 2,
 })

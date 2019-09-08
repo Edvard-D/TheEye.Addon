@@ -43,7 +43,7 @@ TheEyeAddon.Managers.Settings.Character.Default =
             {
                 enabled = true,
             },
-            TARGET_ACTION =
+            TARGET_CAST =
             {
                 enabled = true,
             },

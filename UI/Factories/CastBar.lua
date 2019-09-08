@@ -91,7 +91,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     end
 
     instance.Name = instance.Name or FontStringCreate(instance)
-    instance.Name:StyleSet("ARTWORK", TheEyeAddon.Values.FontTemplates.TargetAction.CastName)
+    instance.Name:StyleSet("ARTWORK", TheEyeAddon.Values.FontTemplates.TargetCast.CastName)
     instance.Name:SetPoint("LEFT", instance.CastIcon, "RIGHT", dimensions.height * 0.2, 0)
     if showName == true then
         instance.Name:Show()
