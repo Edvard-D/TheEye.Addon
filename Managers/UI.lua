@@ -272,7 +272,7 @@ local function CastBarUIObjectSetup(castBarData)
     if castBarData.instanceID == nil then
         castBarData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    uiObject.tags = { "TARGET_CAST", castBarData.instanceID }
+    uiObject.tags = { "CAST", castBarData.instanceID }
     FormatData(uiObject)
 
     UIObjectSetup(uiObject)
