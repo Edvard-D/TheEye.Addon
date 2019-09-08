@@ -29,6 +29,10 @@ TheEyeAddon.Managers.Settings.Character.Default =
                 enabled = true,
                 maxIcons = 10,
             },
+            PLAYER_CAST =
+            {
+                enabled = true,
+            },
             ROTATION =
             {
                 enabled = true,
@@ -38,10 +42,6 @@ TheEyeAddon.Managers.Settings.Character.Default =
             {
                 enabled = true,
                 maxIcons = 10,
-            },
-            PLAYER_CAST =
-            {
-                enabled = true,
             },
             TARGET_CAST =
             {
