@@ -14,7 +14,7 @@ local UnitChannelInfo = UnitChannelInfo
 local unpack = unpack
 
 
-function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, showSecondaryIcon, showName)
+function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, showSecondaryIcon, showName, fontTemplate)
     local instance = FrameClaim(uiObject, "CastBar", parentFrame, nil, dimensions)
 
     instance.unit = unit
@@ -91,7 +91,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     end
 
     instance.Name = instance.Name or FontStringCreate(instance)
-    instance.Name:StyleSet("ARTWORK", TheEyeAddon.Values.FontTemplates.TargetCast.CastName)
+    instance.Name:StyleSet("ARTWORK", fontTemplate)
     instance.Name:SetPoint("LEFT", instance.CastIcon, "RIGHT", dimensions.height * 0.2, 0)
     if showName == true then
         instance.Name:Show()
