@@ -6,6 +6,7 @@ local moduleNames =
 {
     active = "ACTIVE",
     cooldown = "COOLDOWN",
+    encounterAlert = "ENCOUNTER_ALERT",
     playerCast = "PLAYER_CAST",
     rotation = "ROTATION",
     situational = "SITUATIONAL",
@@ -210,6 +211,25 @@ this.options =
                             min = 1,
                             max = 10,
                             step = 1,
+                        },
+                    },
+                },
+                encounterAlert =
+                {
+                    type = "group",
+                    name = locale["Encounter Alert"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
                         },
                     },
                 },

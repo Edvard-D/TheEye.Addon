@@ -136,6 +136,7 @@ Values\UI\Groupers\UIParent.lua
 # --- Modules ---
 Values\UI\Modules\HUD\Active.lua
 Values\UI\Modules\HUD\Cooldown.lua
+Values\UI\Modules\HUD\EncounterAlert.lua
 Values\UI\Modules\HUD\Rotation.lua
 Values\UI\Modules\HUD\Situational.lua
 Values\UI\Modules\HUD\PlayerCast.lua
@@ -284,6 +285,7 @@ UI\Components\FrameModifiers\CastStartAlert.lua
 UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\EncounterAlert.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\PlayerCast.lua

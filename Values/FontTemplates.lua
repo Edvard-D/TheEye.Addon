@@ -2,6 +2,12 @@ TheEyeAddon.Values.FontTemplates = {}
 local this = TheEyeAddon.Values.FontTemplates
 
 
+this.EncounterAlert =
+{
+    font = "Fonts\\FRIZQT__.TTF",
+    size = 15,
+    flags = "OUTLINE",
+}
 this.Icon =
 {
     Active =
