@@ -257,8 +257,8 @@ local function CastBarUIObjectSetup(castBarData)
             {
                 validKeys = { [0] = true },
             },
+        },
         }        
-    }
 
     if castBarData.unit == "player" then
         uiObject.PlayerCast = { unit = castBarData.unit }
@@ -326,7 +326,7 @@ local function TargetFrameUIObjectSetup(targetFrameData)
             {
                 validKeys = { [0] = true },
             },
-        }        
+        },
     }
 
     -- Key
