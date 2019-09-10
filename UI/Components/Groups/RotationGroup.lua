@@ -303,6 +303,7 @@ function this.VisibleStateSetup(instance, icon)
 
             for i = 1, #spellcastActiveKeys do
                 table.insert(substitutedKeyValues.final, spellcastActiveKeys[i])
+                table.insert(substitutedKeyValues.final, spellcastActiveKeys[i] + componentVisibleKeys[i])
             end
 
             for i = 1, #componentVisibleKeys do
