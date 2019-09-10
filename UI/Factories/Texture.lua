@@ -9,7 +9,7 @@ function this.Create(parentFrame, layer, blendMode)
 	instance.TextureSet = this.TextureSet
 	instance.RotationStart = this.RotationStart
 
-	blendMode = blendMode or "DISABLE"
+	blendMode = blendMode or "BLEND"
 	instance:SetBlendMode(blendMode)
 
 	return instance
