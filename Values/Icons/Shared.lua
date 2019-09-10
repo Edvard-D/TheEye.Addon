@@ -174,11 +174,18 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
         },
         {
             type = "TALENT_REQUIRED",
-            value = 3477,
+            value = 3476, -- Gladiator's Medallion
+            isInverse = true,
         },
         {
             type = "TALENT_REQUIRED",
-            value = 3478,
+            value = 3477, -- Adaptation/Relentless
+            isInverse = true,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3478, -- Adaptation/Relentless
+            isInverse = true,
         },
     },
 })
