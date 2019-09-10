@@ -39,16 +39,20 @@ end
 
 function this:Evaluate(inputGroup, event, ...)
     if event == "DBM_Announce" then
-        lastEventTimeStamp = GetTime()
-        lastEventData = 
-        {
-            message = select(1, ...),
-            iconFileID = select(2, ...),
-            type = select(3, ...),
-            spellID = select(4, ...),
-            modID = select(5, ...),
-        }
-        inputGroup.eventData = lastEventData
+        local isSpecial = select(6, ...)
+
+        if isSpecial == true then
+            lastEventTimeStamp = GetTime()
+            lastEventData = 
+            {
+                message = select(1, ...),
+                iconFileID = select(2, ...),
+                type = select(3, ...),
+                spellID = select(4, ...),
+                modID = select(5, ...),
+            }
+            inputGroup.eventData = lastEventData
+        end
     end
 
     local elapsedTime = GetTime() - lastEventTimeStamp
