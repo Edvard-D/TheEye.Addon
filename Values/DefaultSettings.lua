@@ -40,11 +40,13 @@ TheEyeAddon.Managers.Settings.Character.Default =
             ROTATION =
             {
                 enabled = true,
+                isLongCooldownsOnly = false,
                 maxIcons = 10,
             },
             SITUATIONAL =
             {
                 enabled = true,
+                isLongCooldownsOnly = false,
                 maxIcons = 10,
             },
             TARGET_CAST =

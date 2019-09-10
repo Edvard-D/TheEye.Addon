@@ -71,6 +71,16 @@ function this.EnabledSet(info, value)
     TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled = value
 end
 
+function this.LongCooldownsGet(info)
+    local moduleName = moduleNames[info[#info - 1]]
+    return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].isLongCooldownsOnly
+end
+
+function this.LongCooldownsSet(info, value)
+    local moduleName = moduleNames[info[#info - 1]]
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].isLongCooldownsOnly = value
+end
+
 function this.MaxIconsGet(info)
     local moduleName = moduleNames[info[#info - 1]]
     return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].maxIcons
@@ -269,11 +279,20 @@ this.options =
                             get = this.EnabledGet,
                             set = this.EnabledSet,
                         },
+                        isLongCooldownsOnly =
+                        {
+                            type = "toggle",
+                            name = locale["Long Cooldowns Only"],
+                            desc = locale["Requires reload"],
+                            order = 2,
+                            get = this.LongCooldownsGet,
+                            set = this.LongCooldownsSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 2,
+                            order = 3,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -299,11 +318,20 @@ this.options =
                             get = this.EnabledGet,
                             set = this.EnabledSet,
                         },
+                        isLongCooldownsOnly =
+                        {
+                            type = "toggle",
+                            name = locale["Long Cooldowns Only"],
+                            desc = locale["Requires reload"],
+                            order = 2,
+                            get = this.LongCooldownsGet,
+                            set = this.LongCooldownsSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 2,
+                            order = 3,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,

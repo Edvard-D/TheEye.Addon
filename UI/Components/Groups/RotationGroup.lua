@@ -30,9 +30,15 @@ function this.Setup(
     local icons = instance.Icons    
     for i = 1, #icons do
         local icon = icons[i]
+        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules["ROTATION"]
+        local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
         
-        this.VisibleStateSetup(instance, icon)
-        this.ContextIconSetup(instance, icon)
+        if (COOLDOWN ~= nil and COOLDOWN.value >= 20)
+            or moduleSettings.isLongCooldownsOnly == false
+            then
+            this.VisibleStateSetup(instance, icon)
+            this.ContextIconSetup(instance, icon)
+        end
     end
 end
 
