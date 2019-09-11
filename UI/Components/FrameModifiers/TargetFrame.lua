@@ -25,7 +25,7 @@ function this.Setup(
     instance
 )
 
-    instance.ValueHandler = { validKeys = { [2] = true, } }
+    instance.ValueHandler = { validKeys = { [6] = true, } }
     instance.ListenerGroup =
     {
         Listeners =
@@ -34,6 +34,16 @@ function this.Setup(
                 eventEvaluatorKey = "UNIT_CAN_ATTACK_UNIT_CHANGED",
                 inputValues = { --[[attackerUnit]] "player", --[[attackedUnit]] instance.unit, },
                 value = 2,
+            },
+            {
+                eventEvaluatorKey = "UNIT_HEALTH_PERCENT_CHANGED",
+                inputValues = { --[[unit]] instance.unit },
+                comparisonValues =
+                {
+                    value = 0,
+                    type = "GreaterThan"
+                },
+                value = 4,
             },
         },
     }
