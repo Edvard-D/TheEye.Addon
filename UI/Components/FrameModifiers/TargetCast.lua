@@ -157,5 +157,9 @@ function this:OnCastNotify(event, value)
 end
 
 function this:OnInterruptNotify(event, value, inputGroup)
-    self.castbar:SecondaryIconSet(value, inputGroup.inputValues[1])
+    if value == true then
+        self.castbar:SecondaryIconAdd(inputGroup.inputValues[1])
+    else
+        self.castbar:SecondaryIconRemove(inputGroup.inputValues[1])
+    end
 end

@@ -24,8 +24,9 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     instance.showName = showName
 
     instance.CastSet = this.CastSet
-    instance.SecondaryIconSet = this.SecondaryIconSet
-    instance.secondaryIconSpellID = nil
+    instance.SecondaryIconAdd = this.SecondaryIconAdd
+    instance.SecondaryIconRemove = this.SecondaryIconRemove
+    instance.secondaryIcons = {}
 	instance.customEvents = { "UPDATE", }
     EventRegister(instance)
     instance.OnEvent = this.OnEvent
@@ -120,30 +121,29 @@ function this:CastSet(spellID)
         self.Bar.Base:SetVertexColor(unpack(self.colors.immune))
         self.Bar.End:SetVertexColor(unpack(self.colors.immune))
 
-        if self.showSecondaryIcon == true then
-            self:SecondaryIconSet(false, self.interruptSpellID)
-        end
+        self.SecondaryIcon:Hide()
     else
         self.Bar.Base:SetVertexColor(unpack(self.colors.interruptable))
         self.Bar.End:SetVertexColor(unpack(self.colors.interruptable))
 
-        if self.showSecondaryIcon == true and self.secondaryIconSpellID ~= nil then
-            self:SecondaryIconSet(true, self.secondaryIconSpellID)
+        if self.showSecondaryIcon == true and #self.secondaryIcons > 0 then
+            local fileID = select(3, GetSpellInfo(self.secondaryIcons[1]))
+            self.SecondaryIcon:SetTexture(fileID)
+            self.SecondaryIcon:Show()
+        else
+            self.SecondaryIcon:Hide()
         end
     end
 end
 
-function this:SecondaryIconSet(isVisible, spellID)
-    if isVisible == true then
-        local fileID = select(3, GetSpellInfo(spellID))
-
-        self.secondaryIconSpellID = spellID
-        self.SecondaryIcon:SetTexture(fileID)
-        self.SecondaryIcon:Show()
-    else
-        self.secondaryIconSpellID = nil
-        self.SecondaryIcon:Hide()
+function this:SecondaryIconAdd(spellID)
+    if table.hasvalue(self.secondaryIcons, spellID) == false then
+        table.insert(self.secondaryIcons, spellID)
     end
+end
+
+function this:SecondaryIconRemove(spellID)
+    table.removevalue(self.secondaryIcons, spellID)
 end
 
 function this:OnEvent(event)
