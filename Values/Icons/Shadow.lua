@@ -665,7 +665,7 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "AURA_REQUIRED",
             comparison = "GreaterThanEqualTo",
             stacks = 6,
-            value = 194249,
+            value = 194249, -- Voidform
         },
         {
             type = "CAST_TYPE",
