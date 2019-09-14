@@ -10,4 +10,11 @@ TheEyeAddon.Managers.UI.ModuleAdd("CastBars",
     type = "PLAYER_CAST",
     grouper = "TOP",
     grouperPriority = 3,
+    VisibleState =
+    {
+        ValueHandler =
+        {
+            validKeys = { [0] = true },
+        },
+    },
 })

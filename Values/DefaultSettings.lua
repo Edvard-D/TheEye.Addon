@@ -29,21 +29,27 @@ TheEyeAddon.Managers.Settings.Character.Default =
                 enabled = true,
                 maxIcons = 10,
             },
-            ROTATION =
+            ENCOUNTER_ALERT =
             {
                 enabled = true,
-                maxIcons = 10,
-            },
-            SITUATIONAL =
-            {
-                enabled = true,
-                maxIcons = 10,
             },
             PLAYER_CAST =
             {
                 enabled = true,
             },
-            TARGET_ACTION =
+            ROTATION =
+            {
+                enabled = true,
+                isLongCooldownsOnly = false,
+                maxIcons = 10,
+            },
+            SITUATIONAL =
+            {
+                enabled = true,
+                isLongCooldownsOnly = false,
+                maxIcons = 10,
+            },
+            TARGET_CAST =
             {
                 enabled = true,
             },

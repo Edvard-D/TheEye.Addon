@@ -6,10 +6,11 @@ local moduleNames =
 {
     active = "ACTIVE",
     cooldown = "COOLDOWN",
+    encounterAlert = "ENCOUNTER_ALERT",
+    playerCast = "PLAYER_CAST",
     rotation = "ROTATION",
     situational = "SITUATIONAL",
-    playerCast = "PLAYER_CAST",
-    targetAction = "TARGET_ACTION",
+    targetAction = "TARGET_CAST",
     targetFrame = "TARGET_FRAME",
 }
 local xPosition = 0
@@ -68,6 +69,16 @@ end
 function this.EnabledSet(info, value)
     local moduleName = moduleNames[info[#info - 1]]
     TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].enabled = value
+end
+
+function this.LongCooldownsGet(info)
+    local moduleName = moduleNames[info[#info - 1]]
+    return TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].isLongCooldownsOnly
+end
+
+function this.LongCooldownsSet(info, value)
+    local moduleName = moduleNames[info[#info - 1]]
+    TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[moduleName].isLongCooldownsOnly = value
 end
 
 function this.MaxIconsGet(info)
@@ -213,6 +224,44 @@ this.options =
                         },
                     },
                 },
+                encounterAlert =
+                {
+                    type = "group",
+                    name = locale["Encounter Alert"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
+                    },
+                },
+                playerCast =
+                {
+                    type = "group",
+                    name = locale["Player Cast"],
+                    order = 4,
+                    inline = true,
+                    args =
+                    {
+                        enabled =
+                        {
+                            type = "toggle",
+                            name = locale["Enabled"],
+                            desc = locale["Requires reload"],
+                            order = 1,
+                            get = this.EnabledGet,
+                            set = this.EnabledSet,
+                        },
+                    },
+                },
                 rotation =
                 {
                     type = "group",
@@ -230,11 +279,20 @@ this.options =
                             get = this.EnabledGet,
                             set = this.EnabledSet,
                         },
+                        isLongCooldownsOnly =
+                        {
+                            type = "toggle",
+                            name = locale["Long Cooldowns Only"],
+                            desc = locale["Requires reload"],
+                            order = 2,
+                            get = this.LongCooldownsGet,
+                            set = this.LongCooldownsSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 2,
+                            order = 3,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -260,11 +318,20 @@ this.options =
                             get = this.EnabledGet,
                             set = this.EnabledSet,
                         },
+                        isLongCooldownsOnly =
+                        {
+                            type = "toggle",
+                            name = locale["Long Cooldowns Only"],
+                            desc = locale["Requires reload"],
+                            order = 2,
+                            get = this.LongCooldownsGet,
+                            set = this.LongCooldownsSet,
+                        },
                         maxIcons =
                         {
                             type = "range",
                             name = locale["Max Icons"],
-                            order = 2,
+                            order = 3,
                             get = this.MaxIconsGet,
                             set = this.MaxIconsSet,
                             min = 1,
@@ -273,29 +340,10 @@ this.options =
                         },
                     },
                 },
-                playerCast =
-                {
-                    type = "group",
-                    name = locale["Player Cast"],
-                    order = 4,
-                    inline = true,
-                    args =
-                    {
-                        enabled =
-                        {
-                            type = "toggle",
-                            name = locale["Enabled"],
-                            desc = locale["Requires reload"],
-                            order = 1,
-                            get = this.EnabledGet,
-                            set = this.EnabledSet,
-                        },
-                    },
-                },
                 targetAction =
                 {
                     type = "group",
-                    name = locale["Target Action"],
+                    name = locale["Target Cast"],
                     order = 4,
                     inline = true,
                     args =

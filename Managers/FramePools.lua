@@ -77,6 +77,10 @@ function this:Release()
 		self.background:SetDesaturated(nil)
 	end
 
+	if self.text ~= nil then
+		self.text:SetTextColor(1, 1, 1, 1)
+	end
+
 	EventsDeregister(self)
 
 	table.insert(pendingDeclaim, self)

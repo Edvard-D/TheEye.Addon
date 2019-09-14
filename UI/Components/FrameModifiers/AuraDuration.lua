@@ -72,11 +72,14 @@ end
 
 function this:OnEvent(event, value)
     local auraData = UnitAuraGetBySpellID("_", "player", self.spellID)
-    local remainingTime = auraData[6] - GetTime()
 
-    if remainingTime < 0 then
-        remainingTime = 0
+    if auraData ~= nil then
+        local remainingTime = auraData[6] - GetTime()
+
+        if remainingTime < 0 then
+            remainingTime = 0
+        end
+
+        self.instance:SetText(math.floor(remainingTime + 0.5))
     end
-
-    self.instance:SetText(math.floor(remainingTime + 0.5))
 end

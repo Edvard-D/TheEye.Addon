@@ -25,6 +25,10 @@ local function RelayEvent(self, eventName, ...)
 end
 frame:SetScript("OnEvent", RelayEvent)
 
+local function OnDBMEvent(eventName, ...)
+    RelayEvent(nil, eventName, ...)
+end
+
 
 -- OnUpdate
 local function RelayUpdate(self, elapsedTime)
@@ -39,7 +43,7 @@ frame.timeSinceUpdate = 0
 
 
 -- Register
-local function ListenerRegister(listener, eventName, isGameEvent)
+local function ListenerRegister(listener, eventName, eventType)
     if Listeners[eventName] == nil then
         Listeners[eventName] = {}
     end
@@ -54,25 +58,34 @@ local function ListenerRegister(listener, eventName, isGameEvent)
     end
     
     listeners.listenerCount = listeners.listenerCount + 1
-    if listeners.listenerCount == 1 and isGameEvent == true then
+    if listeners.listenerCount == 1 then
         DebugLogEntryAdd("TheEyeAddon.Managers.Events", "RegisterEvent", nil, nil, eventName)
-        frame:RegisterEvent(eventName)
+        
+        if eventType == "GAME" then
+            frame:RegisterEvent(eventName)
+        elseif eventType == "DBM" and DBM ~= nil then
+            DBM:RegisterCallback(eventName, OnDBMEvent)
+        end
     end
 end
 
-local function ListenersRegister(listener, events, isGameEvent)
+local function ListenersRegister(listener, events, eventType)
     for i = 1, #events do
-        ListenerRegister(listener, events[i], isGameEvent)
+        ListenerRegister(listener, events[i], eventType)
     end
 end
 
 function this.Register(listener)
     if listener.gameEvents ~= nil then
-        ListenersRegister(listener, listener.gameEvents, true)
+        ListenersRegister(listener, listener.gameEvents, "GAME")
     end
 
     if listener.customEvents ~= nil then
-        ListenersRegister(listener, listener.customEvents, false)
+        ListenersRegister(listener, listener.customEvents, "CUSTOM")
+    end
+
+    if listener.dbmEvents ~= nil then
+        ListenersRegister(listener, listener.dbmEvents, "DBM")
     end
 
     listener.isListening = true
@@ -80,29 +93,38 @@ end
 
 
 -- Deregister
-local function ListenerDeregister(listener, eventName, isGameEvent)
+local function ListenerDeregister(listener, eventName, eventType)
     local listeners = Listeners[eventName]
 
     listeners.listenerCount = listeners.listenerCount - 1
-    if listeners.listenerCount == 0 and isGameEvent == true then
+    if listeners.listenerCount == 0 then
         DebugLogEntryAdd("TheEyeAddon.Managers.Events", "UnregisterEvent", nil, nil, eventName)
-        frame:UnregisterEvent(eventName)
+
+        if eventType == "GAME" then
+            frame:UnregisterEvent(eventName)
+        elseif eventType == "DBM" and DBM ~= nil then
+            DBM:UnregisterCallback(eventName, OnDBMEvent)
+        end
     end
 end
 
-local function ListenersDeregister(listener, events, isGameEvent)
+local function ListenersDeregister(listener, events, eventType)
     for i = 1, #events do
-        ListenerDeregister(listener, events[i], isGameEvent)
+        ListenerDeregister(listener, events[i], eventType)
     end
 end
 
 function this.Deregister(listener)
     if listener.gameEvents ~= nil then
-        ListenersDeregister(listener, listener.gameEvents, true)
+        ListenersDeregister(listener, listener.gameEvents, "GAME")
     end
     
     if listener.customEvents ~= nil then
-        ListenersDeregister(listener, listener.customEvents, false)
+        ListenersDeregister(listener, listener.customEvents, "CUSTOM")
+    end
+
+    if listener.dbmEvents ~= nil then
+        ListenersDeregister(listener, listener.dbmEvents, "DBM")
     end
     
     listener.isListening = false

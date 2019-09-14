@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Components.TargetAction = {}
-local this = TheEyeAddon.UI.Components.TargetAction
+TheEyeAddon.UI.Components.TargetCast = {}
+local this = TheEyeAddon.UI.Components.TargetCast
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local CastBarClaim = TheEyeAddon.UI.Factories.CastBar.Claim
@@ -9,6 +9,7 @@ local colors =
     immune = { 0.5, 0.5, 0.5, 1 },
     interruptable = { 0.8, 0.46, 0.19, 1 },
 }
+local fontTemplate = TheEyeAddon.Values.FontTemplates.TargetCast.CastName
 local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
 local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
@@ -138,7 +139,7 @@ local function ListenerGroupsTeardown(self)
 end
 
 function this:Modify(frame)
-    frame.castbar = CastBarClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, self.unit, colors, true, true, true)
+    frame.castbar = CastBarClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, self.unit, colors, true, true, true, fontTemplate)
     self.castbar = frame.castbar
     ListenerGroupsSetup(self)
 end
@@ -156,5 +157,9 @@ function this:OnCastNotify(event, value)
 end
 
 function this:OnInterruptNotify(event, value, inputGroup)
-    self.castbar:SecondaryIconSet(value, inputGroup.inputValues[1])
+    if value == true then
+        self.castbar:SecondaryIconAdd(inputGroup.inputValues[1])
+    else
+        self.castbar:SecondaryIconRemove(inputGroup.inputValues[1])
+    end
 end

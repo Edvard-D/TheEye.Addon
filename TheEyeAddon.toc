@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 80200
 ## Title: TheEye.Addon
-## Version: 0.6.2
+## Version: 0.7.0
 ## Author: Edvard-D aka Alaror
 ## X-Website: TheEye.Site
 
@@ -136,10 +136,11 @@ Values\UI\Groupers\UIParent.lua
 # --- Modules ---
 Values\UI\Modules\HUD\Active.lua
 Values\UI\Modules\HUD\Cooldown.lua
+Values\UI\Modules\HUD\EncounterAlert.lua
 Values\UI\Modules\HUD\Rotation.lua
 Values\UI\Modules\HUD\Situational.lua
 Values\UI\Modules\HUD\PlayerCast.lua
-Values\UI\Modules\HUD\TargetAction.lua
+Values\UI\Modules\HUD\TargetCast.lua
 Values\UI\Modules\HUD\TargetFrame.lua
 
 
@@ -150,6 +151,7 @@ Values\UI\Modules\HUD\TargetFrame.lua
 # --- General ---
 Evaluators\General\ADDON_LOADED.lua
 Evaluators\General\COMBAT_LOG.lua
+Evaluators\General\DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED.lua
 Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
 Evaluators\General\ICON_DISPLAYER_CHANGED.lua
 
@@ -283,10 +285,11 @@ UI\Components\FrameModifiers\CastStartAlert.lua
 UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\EncounterAlert.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\PlayerCast.lua
-UI\Components\FrameModifiers\TargetAction.lua
+UI\Components\FrameModifiers\TargetCast.lua
 UI\Components\FrameModifiers\TargetFrame.lua
 
 

@@ -56,6 +56,35 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
     },
 })
 
+-- Drums of Fury
+TheEyeAddon.Managers.Icons.Add("SHARED",
+{
+    PriorityRank =
+    {
+        validKeys = { [0] = 0, }
+    },
+    properties =
+    {
+        {
+            type = "CAST_TYPE",
+            value = "TRIGGERED",
+        },
+        {
+            type = "CATEGORY",
+            value = "BUFF",
+            subvalue = "POWER",
+        },
+        {
+            type = "OBJECT_ID",
+            value = 178207,
+        },
+        {
+            type = "OBJECT_TYPE",
+            value = "SPELL",
+        },
+    },
+})
+
 -- Drums of Rage
 TheEyeAddon.Managers.Icons.Add("SHARED",
 {
@@ -145,11 +174,18 @@ TheEyeAddon.Managers.Icons.Add("SHARED",
         },
         {
             type = "TALENT_REQUIRED",
-            value = 3477,
+            value = 3476, -- Gladiator's Medallion
+            isInverse = true,
         },
         {
             type = "TALENT_REQUIRED",
-            value = 3478,
+            value = 3477, -- Adaptation/Relentless
+            isInverse = true,
+        },
+        {
+            type = "TALENT_REQUIRED",
+            value = 3478, -- Adaptation/Relentless
+            isInverse = true,
         },
     },
 })

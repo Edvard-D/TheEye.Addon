@@ -4,8 +4,8 @@
 3	193223	Surrender to Madness
 4	228260	Void Eruption
 5	280711	Dark Ascension
-6	205448	Void Bolt (1-9 enemies)
-7	32379	Shadow Word: Death (2 charges, 1-4 enemies)
+6	205448	Void Bolt
+7	32379	Shadow Word: Death (2 charges, 1-5 enemies)
 8	34433	Shadowfiend
 9	200174	Mindbender (6+ Voidform stacks)
 10	211522	Psyfiend
@@ -13,14 +13,14 @@
 12	205385	Shadow Crash (3+ enemies)
 13	205351	Shadow Word: Void (1-5 enemies)
 14	8092	Mind Blast (1-4 enemies)
-15	32379	Shadow Word: Death (-Voidform, 1 charge, 1-4 enemies)
+15	32379	Shadow Word: Death (-Voidform, 1 charge, 1-5 enemies)
 16	263346	Dark Void (1-2 enemies)
 17	205385	Shadow Crash (1-2 enemies)
 18	263165	Void Torrent (1-4 enemies)
 19	589	Shadow Word: Pain
 20	34914	Vampiric Touch
-21	48045	Mind Sear (3+ enemies)
-22	15407	Mind Flay (1-2 enemies)
+21	48045	Mind Sear (2+ enemies)
+22	15407	Mind Flay (1 enemie)
 23	208683	Gladiator's Medallion
 24	108968	Void Shift
 25	47585	Dispersion
@@ -578,7 +578,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "UNITS_NEAR_MAX",
-            value = 2,
+            value = 1,
         },
     },
 })
@@ -614,7 +614,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "UNITS_NEAR_MIN",
-            value = 3,
+            value = 2,
         },
     },
 })
@@ -665,7 +665,7 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "AURA_REQUIRED",
             comparison = "GreaterThanEqualTo",
             stacks = 6,
-            value = 194249,
+            value = 194249, -- Voidform
         },
         {
             type = "CAST_TYPE",
@@ -1106,7 +1106,7 @@ TheEyeAddon.Managers.Icons.Add(258,
         },
         {
             type = "UNITS_NEAR_MAX",
-            value = 4,
+            value = 5,
         },
     },
 })
@@ -1208,6 +1208,12 @@ TheEyeAddon.Managers.Icons.Add(258,
     },
     properties =
     {
+        {
+            type = "AURA_REQUIRED",
+            comparison = "GreaterThanEqualTo",
+            stacks = 10,
+            value = 194249, -- Voidform
+        },
         {
             type = "CAST_TYPE",
             value = "INSTANT",
@@ -1487,10 +1493,6 @@ TheEyeAddon.Managers.Icons.Add(258,
             type = "POWER_MODIFIED",
             value = 13, -- INSANITY
             subvalue = 20,
-        },
-        {
-            type = "UNITS_NEAR_MAX",
-            value = 9,
         },
     },
 })

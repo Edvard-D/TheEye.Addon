@@ -70,7 +70,7 @@ local function ListenerGroupsTeardown(self)
 end
 
 function this:Modify(frame)
-    frame.castbar = CastBarClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, "player", colors, false, false, false)
+    frame.castbar = CastBarClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, "player", colors, false, false, false, nil)
     self.castbar = frame.castbar
     ListenerGroupsSetup(self)
 end

@@ -1,4 +1,3 @@
--- @TODO add coverage for cooldowns being reset
 TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
 
@@ -10,7 +9,7 @@ local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroup
 local select = select
 local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
 local tostring = tostring
-local updateRate = 1
+local updateRate = 0.5
 
 
 --[[ #this#TEMPLATE#
@@ -36,7 +35,7 @@ this.customEvents =
 
 
 local function TimerStart(inputGroup, timerLength)
-    if timerLength == initialTimerLength then
+    if timerLength == initialTimerLength or timerLength == updateRate then
         StartEventTimer(timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
     else
         InputGroupDurationTimerStart(inputGroup, timerLength, "SPELL_COOLDOWN_TIMER_END", inputGroup.inputValues)
@@ -91,19 +90,24 @@ function this:Evaluate(inputGroup, event)
     if event == "UNIT_SPELLCAST_SUCCEEDED" then
         TimerStart(inputGroup, initialTimerLength)
         inputGroup.isGCD = false
-    else
+    else -- SPELL_COOLDOWN_TIMER_END, SPELL_UPDATE_USABLE
         local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
         local gcdRemainingTime = RemainingTimeCalculate(gcdStartTime, gcdDuration)
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if remainingTime ~= gcdRemainingTime
-            or inputGroup.isGCD == false
-            then
+        if remainingTime > 0 and event ~= "SPELL_UPDATE_USABLE" then
+            if remainingTime ~= gcdRemainingTime then
+                TimerStart(inputGroup, updateRate)
+            else
+                TimerStart(inputGroup, remainingTime)
+            end
+        end
+
+        if remainingTime == 0 or inputGroup.isGCD == false then
             if remainingTime == 0 or remainingTime == gcdRemainingTime then
                 inputGroup.isGCD = true
             end
-            
-            TimerStart(inputGroup, updateRate)
+
             inputGroup.currentValue = remainingTime
             return true, this.key
         end

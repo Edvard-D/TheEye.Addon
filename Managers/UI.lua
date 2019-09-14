@@ -17,6 +17,7 @@ local table = table
 this.Modules =
 {
     CastBars = {},
+    EncounterAlerts = {},
     IconGroups = {},
     TargetFrames = {},
 }
@@ -251,19 +252,13 @@ local function CastBarUIObjectSetup(castBarData)
                 validKeys = { [0] = castBarData.grouperPriority, }
             },
         },
-        VisibleState =
-        {
-            ValueHandler =
-            {
-                validKeys = { [0] = true },
-            },
-        }        
+        VisibleState = castBarData.VisibleState,
     }
 
     if castBarData.unit == "player" then
         uiObject.PlayerCast = { unit = castBarData.unit }
     elseif castBarData.unit == "target" then
-        uiObject.TargetAction = { unit = castBarData.unit }
+        uiObject.TargetCast = { unit = castBarData.unit }
     else
         print("DEBUG: unknown component for cast bar with a unit type of " .. castBarData.unit .. ".")
     end
@@ -272,7 +267,80 @@ local function CastBarUIObjectSetup(castBarData)
     if castBarData.instanceID == nil then
         castBarData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
-    uiObject.tags = { "TARGET_ACTION", castBarData.instanceID }
+    uiObject.tags = { "CAST", castBarData.instanceID }
+    FormatData(uiObject)
+
+    UIObjectSetup(uiObject)
+end
+
+local function EncounterAlertUIObjectSetup(encounterAlertData)
+    local parentKey = groupers[encounterAlertData.grouper].UIObject.key
+
+    local uiObject =
+    {
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        EncounterAlert = {},
+        Frame =
+        {
+            Dimensions = encounterAlertData.Dimensions
+        },
+        PriorityRank =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = encounterAlertData.grouperPriority, }
+            },
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED",
+                        comparisonValues =
+                        {
+                            value = 2,
+                            type = "LessThan",
+                        },
+                        value = 2,
+                    },
+                },
+            },
+        },
+    }
+
+    -- Key
+    if encounterAlertData.instanceID == nil then
+        encounterAlertData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    uiObject.tags = { "ENCOUNTER_ALERT", encounterAlertData.instanceID }
     FormatData(uiObject)
 
     UIObjectSetup(uiObject)
@@ -326,7 +394,7 @@ local function TargetFrameUIObjectSetup(targetFrameData)
             {
                 validKeys = { [0] = true },
             },
-        }        
+        },
     }
 
     -- Key
@@ -366,18 +434,25 @@ function this:OnEvent(eventName, ...)
                     TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
                 end
             end
-    
-            for k, module in pairs(this.Modules.IconGroups) do
-                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
-                if moduleSettings.enabled == true then
-                    module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
-                end
-            end
 
             for k, module in pairs(this.Modules.CastBars) do
                 local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = CastBarUIObjectSetup(module)
+                end
+            end
+    
+            for k, module in pairs(this.Modules.EncounterAlerts) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = EncounterAlertUIObjectSetup(module, moduleSettings.maxIcons)
+                end
+            end
+    
+            for k, module in pairs(this.Modules.IconGroups) do
+                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
                 end
             end
 
