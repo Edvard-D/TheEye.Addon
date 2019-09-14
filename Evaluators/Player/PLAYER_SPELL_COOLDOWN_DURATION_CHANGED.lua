@@ -1,4 +1,3 @@
--- @TODO add coverage for cooldowns being reset
 TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
 local this = TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
 
