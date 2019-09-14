@@ -41,6 +41,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.RaidMarker:SetSize(dimensions.width * 0.35, dimensions.height * 0.35)
     instance.RaidMarker:SetPoint("CENTER", instance, "TOP", 0, -dimensions.height * 0.07)
     instance.RaidMarkerSet = this.RaidMarkerSet
+    instance:RaidMarkerSet(nil)
 
     instance.Health = instance.Health or FontStringCreate(instance)
     instance.Health:StyleSet("OVERLAY", TheEyeAddon.Values.FontTemplates.TargetFrame.Health, "CENTER")
@@ -62,7 +63,12 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
 end
 
 function this:RaidMarkerSet(index)
-    self.RaidMarker:SetTexture(TheEyeAddon.Values.raidMarkerFileIDs[index])
+    if index ~= nil then
+        local textureFileID = TheEyeAddon.Values.raidMarkerFileIDs[index]
+        self.RaidMarker:SetTexture(textureFileID)
+    else
+        self.RaidMarker:SetTexture(nil)
+    end
 end
 
 function this:HealthSet(percent)
