@@ -95,10 +95,12 @@ function this:Evaluate(inputGroup, event)
         local gcdRemainingTime = RemainingTimeCalculate(gcdStartTime, gcdDuration)
         local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
 
-        if remainingTime ~= gcdRemainingTime then
-            TimerStart(inputGroup, updateRate)
-        else
-            TimerStart(inputGroup, remainingTime)
+        if remainingTime > 0 and event ~= "SPELL_UPDATE_USABLE" then
+            if remainingTime ~= gcdRemainingTime then
+                TimerStart(inputGroup, updateRate)
+            else
+                TimerStart(inputGroup, remainingTime)
+            end
         end
 
         if remainingTime == 0 or inputGroup.isGCD == false then
