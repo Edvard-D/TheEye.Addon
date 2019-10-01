@@ -1,5 +1,5 @@
-TheEyeAddon.Values.Colors = {}
-local this = TheEyeAddon.Values.Colors
+TheEyeAddon.Data.Colors = {}
+local this = TheEyeAddon.Data.Colors
 
 
 -- Shadow

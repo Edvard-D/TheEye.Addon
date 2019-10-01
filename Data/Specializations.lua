@@ -1,4 +1,4 @@
-TheEyeAddon.Values.Specializations =
+TheEyeAddon.Data.Specializations =
 {
     [6] = -- Death Knight
     {

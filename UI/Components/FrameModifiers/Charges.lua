@@ -3,7 +3,7 @@ local this = TheEyeAddon.UI.Components.Charges
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Default
+local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Default
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 
 

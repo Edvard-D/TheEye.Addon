@@ -12,7 +12,7 @@ local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
 {
     #inherited#TEMPLATE#
     filters = { #ICON#PROPERTY# }
-    iconDimensionKey = TheEyeAddon.Values.DimensionTemplates.Icon#NAME#
+    iconDimensionKey = TheEyeAddon.Data.DimensionTemplates.Icon#NAME#
     priorityDisplayers = { #UIOBJECT#ID# }
 }
 ]]

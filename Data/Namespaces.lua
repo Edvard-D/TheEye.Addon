@@ -2,6 +2,7 @@
 -- are part of the program hierarchy but don't have a dedicated file.
 TheEyeAddon =
 {
+    Data = {},
     Evaluators = {},
     Helpers = {},
     Libraries = {},
@@ -23,5 +24,4 @@ TheEyeAddon =
             Instances = {},
         },
     },
-    Values = {},
 }

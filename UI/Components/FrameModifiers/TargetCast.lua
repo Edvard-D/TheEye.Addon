@@ -9,7 +9,7 @@ local colors =
     immune = { 0.5, 0.5, 0.5, 1 },
     interruptable = { 0.8, 0.46, 0.19, 1 },
 }
-local fontTemplate = TheEyeAddon.Values.FontTemplates.TargetCast.CastName
+local fontTemplate = TheEyeAddon.Data.FontTemplates.TargetCast.CastName
 local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
 local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup

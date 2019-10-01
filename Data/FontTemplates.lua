@@ -1,5 +1,5 @@
-TheEyeAddon.Values.FontTemplates = {}
-local this = TheEyeAddon.Values.FontTemplates
+TheEyeAddon.Data.FontTemplates = {}
+local this = TheEyeAddon.Data.FontTemplates
 
 
 this.EncounterAlert =

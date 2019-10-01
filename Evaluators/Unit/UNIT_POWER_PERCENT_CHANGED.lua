@@ -1,7 +1,7 @@
 TheEyeAddon.Evaluators.UNIT_POWER_PERCENT_CHANGED = {}
 local this = TheEyeAddon.Evaluators.UNIT_POWER_PERCENT_CHANGED
 
-local powerIDs = TheEyeAddon.Values.powerIDs
+local powerIDs = TheEyeAddon.Data.powerIDs
 local table = table
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax

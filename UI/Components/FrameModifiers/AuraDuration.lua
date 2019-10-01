@@ -5,7 +5,7 @@ local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 local EventDeregister = TheEyeAddon.Managers.Events.Deregister
 local EventRegister = TheEyeAddon.Managers.Events.Register
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Active
+local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Active
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
 

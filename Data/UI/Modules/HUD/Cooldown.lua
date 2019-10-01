@@ -23,7 +23,7 @@ TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
     },
     grouper = "LEFT",
     grouperPriority = 2,
-    IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Small,
+    IconDimensions = TheEyeAddon.Data.DimensionTemplates.Icon.Small,
     PriorityDisplayers =
     {
         "ACTIVE",

@@ -34,5 +34,5 @@ TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
     },
     grouper = "CENTER",
     grouperPriority = 2,
-    IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Large,
+    IconDimensions = TheEyeAddon.Data.DimensionTemplates.Icon.Large,
 })

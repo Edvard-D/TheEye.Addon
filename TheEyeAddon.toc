@@ -52,7 +52,7 @@ Libs\LibStub\LibStub.lua
 
 
 # --- Addon ---
-Values\Namespaces.lua
+Data\Namespaces.lua
 
 Helpers\Comparisons.lua
 Managers\Settings.lua
@@ -63,18 +63,18 @@ Managers\Debug.lua
 
 
 # ---------------------------
-# |	        Values         	|
+# |	        Data         	|
 # ---------------------------
-Values\DimensionTemplates.lua
-Values\FontTemplates.lua
-Values\General.lua
-Values\Specializations.lua
+Data\DimensionTemplates.lua
+Data\FontTemplates.lua
+Data\General.lua
+Data\Specializations.lua
 
-Values\DefaultSettings.lua
+Data\DefaultSettings.lua
 
 
 # --- Locales ---
-Values\Locales\enUS.lua
+Data\Locales\enUS.lua
 
 
 
@@ -109,39 +109,39 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	     Values\Icons      	|
+# |	      Data\Icons      	|
 # ---------------------------
-Values\Icons\Shadow.lua
+Data\Icons\Shadow.lua
 
-Values\Icons\Shared.lua
+Data\Icons\Shared.lua
 
 
 
 # ---------------------------
-# |	       Values\UI     	|
+# |	        Data\UI       	|
 # ---------------------------
-Values\UI\Colors.lua
+Data\UI\Colors.lua
 
 
 # --- Groupers ---
-Values\UI\Groupers\Bottom.lua
-Values\UI\Groupers\Center.lua
-Values\UI\Groupers\HUD.lua
-Values\UI\Groupers\Left.lua
-Values\UI\Groupers\Right.lua
-Values\UI\Groupers\Top.lua
-Values\UI\Groupers\UIParent.lua
+Data\UI\Groupers\Bottom.lua
+Data\UI\Groupers\Center.lua
+Data\UI\Groupers\HUD.lua
+Data\UI\Groupers\Left.lua
+Data\UI\Groupers\Right.lua
+Data\UI\Groupers\Top.lua
+Data\UI\Groupers\UIParent.lua
 
 
 # --- Modules ---
-Values\UI\Modules\HUD\Active.lua
-Values\UI\Modules\HUD\Cooldown.lua
-Values\UI\Modules\HUD\EncounterAlert.lua
-Values\UI\Modules\HUD\Rotation.lua
-Values\UI\Modules\HUD\Situational.lua
-Values\UI\Modules\HUD\PlayerCast.lua
-Values\UI\Modules\HUD\TargetCast.lua
-Values\UI\Modules\HUD\TargetFrame.lua
+Data\UI\Modules\HUD\Active.lua
+Data\UI\Modules\HUD\Cooldown.lua
+Data\UI\Modules\HUD\EncounterAlert.lua
+Data\UI\Modules\HUD\Rotation.lua
+Data\UI\Modules\HUD\Situational.lua
+Data\UI\Modules\HUD\PlayerCast.lua
+Data\UI\Modules\HUD\TargetCast.lua
+Data\UI\Modules\HUD\TargetFrame.lua
 
 
 

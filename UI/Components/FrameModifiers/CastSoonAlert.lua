@@ -2,7 +2,7 @@ TheEyeAddon.UI.Components.CastSoonAlert = {}
 local this = TheEyeAddon.UI.Components.CastSoonAlert
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
-local auraFilters = TheEyeAddon.Values.auraFilters
+local auraFilters = TheEyeAddon.Data.auraFilters
 local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
 local GetTime = GetTime

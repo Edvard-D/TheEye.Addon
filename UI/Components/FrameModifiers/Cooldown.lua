@@ -6,7 +6,7 @@ local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
 local EventDeregister = TheEyeAddon.Managers.Events.Deregister
 local EventRegister = TheEyeAddon.Managers.Events.Register
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Cooldown
+local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Cooldown
 local GetSpellCooldown = GetSpellCooldown
 
 

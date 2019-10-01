@@ -85,5 +85,5 @@ TheEyeAddon.Managers.UI.ModuleAdd("IconGroups",
     },
     grouper = "LEFT",
     grouperPriority = 1,
-    IconDimensions = TheEyeAddon.Values.DimensionTemplates.Icon.Medium,
+    IconDimensions = TheEyeAddon.Data.DimensionTemplates.Icon.Medium,
 })

@@ -1,5 +1,5 @@
-TheEyeAddon.Values.DimensionTemplates = {}
-local this = TheEyeAddon.Values.DimensionTemplates
+TheEyeAddon.Data.DimensionTemplates = {}
+local this = TheEyeAddon.Data.DimensionTemplates
 
 
 this.Icon =

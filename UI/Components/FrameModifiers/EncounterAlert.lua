@@ -4,7 +4,7 @@ local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
 local fontColor = { 255, 0.75, 0.16, 1, }
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.EncounterAlert
+local FontTemplate = TheEyeAddon.Data.FontTemplates.EncounterAlert
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local unpack = unpack
 

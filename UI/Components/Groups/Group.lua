@@ -4,8 +4,8 @@ local inherited = TheEyeAddon.UI.Elements.Base
 
 local FormatData = TheEyeAddon.Managers.UI.FormatData
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local screenWidth = TheEyeAddon.Values.screenSize.width
-local screenHeight = TheEyeAddon.Values.screenSize.height
+local screenWidth = TheEyeAddon.Data.screenSize.width
+local screenHeight = TheEyeAddon.Data.screenSize.height
 local SortedTableSetup = TheEyeAddon.UI.Elements.ValueHandlers.SortedTable.Setup
 local table = table
 

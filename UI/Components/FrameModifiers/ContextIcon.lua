@@ -2,9 +2,9 @@ TheEyeAddon.UI.Components.ContextIcon = {}
 local this = TheEyeAddon.UI.Components.ContextIcon
 local inherited = TheEyeAddon.UI.Components.FrameModifierBase
 
-local DimensionTemplate = TheEyeAddon.Values.DimensionTemplates.Icon.Context
+local DimensionTemplate = TheEyeAddon.Data.DimensionTemplates.Icon.Context
 local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Context
+local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Context
 local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
 local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create

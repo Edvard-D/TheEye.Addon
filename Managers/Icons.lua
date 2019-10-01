@@ -25,7 +25,7 @@ end
 
 local function UnnecessaryIconsRemove()
     local classID = select(3, UnitClass("player"))
-    local necessarySpecs = TheEyeAddon.Values.Specializations[classID]
+    local necessarySpecs = TheEyeAddon.Data.Specializations[classID]
 
     for specID,v in pairs(keyValues) do
         if table.hasvalue(necessarySpecs, specID) == false then
