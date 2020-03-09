@@ -244,6 +244,7 @@ UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 # |	     UI\Factories		|
 # ---------------------------
 UI\Factories\FontString.lua
+UI\Factories\Model.lua
 UI\Factories\Texture.lua
 
 UI\Factories\CastBar.lua
