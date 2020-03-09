@@ -1,11 +1,11 @@
-TheEyeAddon.UI.Components.RotationGroup = {}
-local this = TheEyeAddon.UI.Components.RotationGroup
-local inherited = TheEyeAddon.UI.Components.PriorityGroup
+TheEye.Core.UI.Components.RotationGroup = {}
+local this = TheEye.Core.UI.Components.RotationGroup
+local inherited = TheEye.Core.UI.Components.PriorityGroup
 
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
-local IconsGetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
-local IconKeyGet = TheEyeAddon.UI.Components.IconGroup.IconKeyGet
-local IsIconValidForFilter = TheEyeAddon.Managers.Icons.IsIconValidForFilter
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local IconsGetFiltered = TheEye.Core.Managers.Icons.GetFiltered
+local IconKeyGet = TheEye.Core.UI.Components.IconGroup.IconKeyGet
+local IsIconValidForFilter = TheEye.Core.Managers.Icons.IsIconValidForFilter
 local table = table
 
 
@@ -30,7 +30,7 @@ function this.Setup(
     local icons = instance.Icons    
     for i = 1, #icons do
         local icon = icons[i]
-        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules["ROTATION"]
+        local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules["ROTATION"]
         local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
         
         if (COOLDOWN ~= nil and COOLDOWN.value >= 20)

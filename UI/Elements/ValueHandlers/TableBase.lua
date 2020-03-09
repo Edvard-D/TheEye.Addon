@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ValueHandlers.TableBase = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.TableBase
-local inherited = TheEyeAddon.UI.Elements.ValueHandlers.Base
+TheEye.Core.UI.Elements.ValueHandlers.TableBase = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.TableBase
+local inherited = TheEye.Core.UI.Elements.ValueHandlers.Base
 
 local table = table
 

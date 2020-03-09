@@ -1,16 +1,16 @@
-TheEyeAddon.UI.Factories.TargetFrame = {}
-local this = TheEyeAddon.UI.Factories.TargetFrame
+TheEye.Core.UI.Factories.TargetFrame = {}
+local this = TheEye.Core.UI.Factories.TargetFrame
 
 local backgroundRotationRate = -0.0025
 local dotPadding = 5
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FrameClaim = TheEye.Core.Managers.FramePools.FrameClaim
 local GetSpellInfo = GetSpellInfo
 local math = math
 local midRotationRate = -0.01
 local overlayRotationRate = -0.005
 local select = select
-local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
+local TextureCreate = TheEye.Core.UI.Factories.Texture.Create
 local tostring = tostring
 local UnitName = UnitName
 local unpack = unpack
@@ -19,21 +19,22 @@ local unpack = unpack
 function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     local instance = FrameClaim(uiObject, "TargetFrame", parentFrame, nil, dimensions)
     local spec = GetSpecializationInfo(GetSpecialization())
-    local colors = TheEyeAddon.Values.Colors[spec].TargetFrame
+    local colors = TheEye.Core.Data.Colors[spec].TargetFrame
+    local texturePaths = TheEye.Core.Data.TexturePaths.TargetFrame
     instance.unit = unit
 
     instance.Background = instance.Background or TextureCreate(instance, "BACKGROUND", "BLEND")
-    instance.Background:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Background.blp")
+    instance.Background:TextureSet(texturePaths.background)
     instance.Background:SetVertexColor(unpack(colors.background))
     instance.Background:RotationStart(backgroundRotationRate)
 
     instance.Swirl = instance.Swirl or TextureCreate(instance, "BORDER", "BLEND")
-    instance.Swirl:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Mid.blp")
+    instance.Swirl:TextureSet(texturePaths.mid)
     instance.Swirl:SetVertexColor(unpack(colors.mid))
     instance.Swirl:RotationStart(midRotationRate)
     
     instance.Overlay = instance.Overlay or TextureCreate(instance, "BORDER", "BLEND")
-    instance.Overlay:TextureSet("Interface/AddOns/TheEyeAddon/UI/Textures/TargetFrame_Overlay.blp")
+    instance.Overlay:TextureSet(texturePaths.overlay)
     instance.Overlay:SetVertexColor(unpack(colors.overlay))
     instance.Overlay:RotationStart(overlayRotationRate)
 
@@ -44,17 +45,17 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance:RaidMarkerSet(nil)
 
     instance.Health = instance.Health or FontStringCreate(instance)
-    instance.Health:StyleSet("OVERLAY", TheEyeAddon.Values.FontTemplates.TargetFrame.Health, "CENTER")
+    instance.Health:StyleSet("OVERLAY", TheEye.Core.Data.FontTemplates.TargetFrame.Health, "CENTER")
     instance.HealthSet = this.HealthSet
 
     instance.Name = instance.Name or FontStringCreate(instance)
-    instance.Name:StyleSet("OVERLAY", TheEyeAddon.Values.FontTemplates.TargetFrame.Name, nil)
+    instance.Name:StyleSet("OVERLAY", TheEye.Core.Data.FontTemplates.TargetFrame.Name, nil)
     instance.Name:SetPoint("TOP", instance, "TOP", 0, -dimensions.height * 0.12)
     instance.NameSet = this.NameSet
 
-    local width = (#dotSpellIDs * TheEyeAddon.Values.DimensionTemplates.Icon.TargetFrameDoT.width) + (dotPadding * (#dotSpellIDs - 1))
+    local width = (#dotSpellIDs * TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.width) + (dotPadding * (#dotSpellIDs - 1))
     instance.DoTs = instance.DoTs or CreateFrame("Frame", nil, instance)
-    instance.DoTs:SetSize(width, TheEyeAddon.Values.DimensionTemplates.Icon.TargetFrameDoT.height)
+    instance.DoTs:SetSize(width, TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.height)
     instance.DoTs:SetPoint("BOTTOM", instance, "BOTTOM", 0, dimensions.height * 0.1)
     instance.DoTSet = this.DoTSet
     this.DoTsSetup(instance.DoTs, width, dotSpellIDs)
@@ -64,7 +65,7 @@ end
 
 function this:RaidMarkerSet(index)
     if index ~= nil then
-        local textureFileID = TheEyeAddon.Values.raidMarkerFileIDs[index]
+        local textureFileID = TheEye.Core.Data.raidMarkerFileIDs[index]
         self.RaidMarker:SetTexture(textureFileID)
     else
         self.RaidMarker:SetTexture(nil)
@@ -87,8 +88,8 @@ end
 
 function this.DoTsSetup(instance, parentWidth, dotSpellIDs)
     local spacing = parentWidth / #dotSpellIDs
-    local width = TheEyeAddon.Values.DimensionTemplates.Icon.TargetFrameDoT.width
-    local height = TheEyeAddon.Values.DimensionTemplates.Icon.TargetFrameDoT.height
+    local width = TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.width
+    local height = TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.height
     instance.Icons = instance.Icons or {}
 
     for i = 1, #dotSpellIDs do

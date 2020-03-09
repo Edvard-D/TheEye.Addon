@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.PLAYER_SPELL_USEABLE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_SPELL_USEABLE_CHANGED
+TheEye.Core.Evaluators.PLAYER_SPELL_USEABLE_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_SPELL_USEABLE_CHANGED
 
 local IsUsableSpell = IsUsableSpell
 

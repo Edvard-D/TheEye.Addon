@@ -1,18 +1,18 @@
-TheEyeAddon.UI.Components.IconGroup = {}
-local this = TheEyeAddon.UI.Components.IconGroup
-local inherited = TheEyeAddon.UI.Components.Group
+TheEye.Core.UI.Components.IconGroup = {}
+local this = TheEye.Core.UI.Components.IconGroup
+local inherited = TheEye.Core.UI.Components.Group
 
-local IconsGetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local IconsGetFiltered = TheEye.Core.Managers.Icons.GetFiltered
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 local table = table
-local UIObjectSetup = TheEyeAddon.Managers.UI.UIObjectSetup
+local UIObjectSetup = TheEye.Core.Managers.UI.UIObjectSetup
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
     filters = { #ICON#PROPERTY# }
-    iconDimensionKey = TheEyeAddon.Values.DimensionTemplates.Icon#NAME#
+    iconDimensionKey = TheEye.Core.Data.DimensionTemplates.Icon#NAME#
     priorityDisplayers = { #UIOBJECT#ID# }
 }
 ]]
@@ -108,7 +108,7 @@ function this:OnDeactivate()
         local uiObject = self.Icons[i].UIObject
         table.remove(self.Icons, i)
         uiObject:Deactivate()
-        TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
+        TheEye.Core.UI.Objects.Instances[uiObject.key] = nil
     end
 end
 

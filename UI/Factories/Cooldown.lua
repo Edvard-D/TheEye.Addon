@@ -1,9 +1,9 @@
-TheEyeAddon.UI.Factories.Cooldown = {}
-local this = TheEyeAddon.UI.Factories.Cooldown
+TheEye.Core.UI.Factories.Cooldown = {}
+local this = TheEye.Core.UI.Factories.Cooldown
 
-local EventRegister = TheEyeAddon.Managers.Events.Register
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
+local EventRegister = TheEye.Core.Managers.Events.Register
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FrameClaim = TheEye.Core.Managers.FramePools.FrameClaim
 
 
 function this.Claim(uiObject, parentFrame, dimensions)

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_MODULE_SETTING_CHANGED
 
 local select = select
 local table = table
@@ -27,8 +27,8 @@ this.customEvents =
 
 
 local function CalculateCurrentValue(inputValues)
-    if TheEyeAddon.Managers.Settings ~= nil
-            and table.haskeyvalue(TheEyeAddon.Managers.Settings.DisabledUIModules, inputValues[1]) == false then
+    if TheEye.Core.Managers.Settings ~= nil
+            and table.haskeyvalue(TheEye.Core.Managers.Settings.DisabledUIModules, inputValues[1]) == false then
         return true
     else
         return false

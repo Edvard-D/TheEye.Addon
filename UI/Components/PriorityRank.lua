@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.PriorityRank = {}
-local this = TheEyeAddon.UI.Components.PriorityRank
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.IntegerKeyValueEventSender
+TheEye.Core.UI.Components.PriorityRank = {}
+local this = TheEye.Core.UI.Components.PriorityRank
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.IntegerKeyValueEventSender
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+local EnabledStateFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#

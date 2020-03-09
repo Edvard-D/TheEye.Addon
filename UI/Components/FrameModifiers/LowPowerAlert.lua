@@ -1,12 +1,12 @@
-TheEyeAddon.UI.Components.LowPowerAlert = {}
-local this = TheEyeAddon.UI.Components.LowPowerAlert
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.LowPowerAlert = {}
+local this = TheEye.Core.UI.Components.LowPowerAlert
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local EventDeregister = TheEyeAddon.Managers.Events.Deregister
-local EventRegister = TheEyeAddon.Managers.Events.Register
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Active
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local EventDeregister = TheEye.Core.Managers.Events.Deregister
+local EventRegister = TheEye.Core.Managers.Events.Register
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FontTemplate = TheEye.Core.Data.FontTemplates.Icon.Active
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#

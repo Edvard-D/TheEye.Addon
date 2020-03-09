@@ -1,12 +1,12 @@
-TheEyeAddon.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED
+TheEye.Core.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED
 
 local initialTimerLength = 0.01
-local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupDurationTimerStart = TheEye.Core.Helpers.Timers.InputGroupDurationTimerStart
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local select = select
-local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Helpers.Player.SpellChargeCooldownRemainingTimeGet
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
+local SpellChargeCooldownRemainingTimeGet = TheEye.Core.Helpers.Player.SpellChargeCooldownRemainingTimeGet
+local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local tostring = tostring
 
 

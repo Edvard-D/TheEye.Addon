@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_NAME_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_NAME_CHANGED
+TheEye.Core.Evaluators.UNIT_NAME_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_NAME_CHANGED
 
 local UnitName = UnitName
 

@@ -1,9 +1,9 @@
-TheEyeAddon.UI.Components.Child = {}
-local this = TheEyeAddon.UI.Components.Child
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Components.Child = {}
+local this = TheEye.Core.UI.Components.Child
+local inherited = TheEye.Core.UI.Elements.Base
 
-local FrameStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
-local UIObjectInstances = TheEyeAddon.UI.Objects.Instances
+local FrameStateFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller.Setup
+local UIObjectInstances = TheEye.Core.UI.Objects.Instances
 
 
 --[[ #this#TEMPLATE#

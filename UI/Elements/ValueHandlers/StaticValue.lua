@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ValueHandlers.StaticValue = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.StaticValue
-local inherited = TheEyeAddon.UI.Elements.ValueHandlers.Base
+TheEye.Core.UI.Elements.ValueHandlers.StaticValue = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.StaticValue
+local inherited = TheEye.Core.UI.Elements.ValueHandlers.Base
 
 
 --[[ #this#TEMPLATE#

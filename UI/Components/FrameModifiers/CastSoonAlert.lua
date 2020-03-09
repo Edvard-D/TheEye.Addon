@@ -1,12 +1,12 @@
-TheEyeAddon.UI.Components.CastSoonAlert = {}
-local this = TheEyeAddon.UI.Components.CastSoonAlert
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.CastSoonAlert = {}
+local this = TheEye.Core.UI.Components.CastSoonAlert
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local auraFilters = TheEyeAddon.Values.auraFilters
-local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local auraFilters = TheEye.Core.Data.auraFilters
+local CooldownClaim = TheEye.Core.UI.Factories.Cooldown.Claim
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 local GetTime = GetTime
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#
@@ -44,7 +44,7 @@ function this.Setup(
         },
     }
 
-    local iconData = TheEyeAddon.Managers.UI.currentUIObject.IconData
+    local iconData = TheEye.Core.Managers.UI.currentUIObject.IconData
     local CATEGORY = GetPropertiesOfType(iconData, "CATEGORY")
 
     if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "PERIODIC" then

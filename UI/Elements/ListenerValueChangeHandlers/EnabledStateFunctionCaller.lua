@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller = {}
-local this = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
+TheEye.Core.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller = {}
+local this = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
 
 --[[ #this#TEMPLATE#

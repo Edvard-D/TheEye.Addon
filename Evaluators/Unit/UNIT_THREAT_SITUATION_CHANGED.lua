@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_THREAT_SITUATION_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_THREAT_SITUATION_CHANGED
+TheEye.Core.Evaluators.UNIT_THREAT_SITUATION_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_THREAT_SITUATION_CHANGED
 
 local UnitThreatSituation = UnitThreatSituation
 

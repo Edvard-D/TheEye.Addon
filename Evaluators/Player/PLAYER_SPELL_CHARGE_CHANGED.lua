@@ -1,11 +1,11 @@
-TheEyeAddon.Evaluators.PLAYER_SPELL_CHARGE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_SPELL_CHARGE_CHANGED
+TheEye.Core.Evaluators.PLAYER_SPELL_CHARGE_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_SPELL_CHARGE_CHANGED
 
 local GetSpellCharges = GetSpellCharges
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local select = select
-local SpellChargeCooldownRemainingTimeGet = TheEyeAddon.Helpers.Player.SpellChargeCooldownRemainingTimeGet
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
+local SpellChargeCooldownRemainingTimeGet = TheEye.Core.Helpers.Player.SpellChargeCooldownRemainingTimeGet
+local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local table = table
 
 

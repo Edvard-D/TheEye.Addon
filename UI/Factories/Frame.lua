@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Factories.Frame = {}
-local this = TheEyeAddon.UI.Factories.Frame
+TheEye.Core.UI.Factories.Frame = {}
+local this = TheEye.Core.UI.Factories.Frame
 
 local CreateFrame = CreateFrame
 local frameTypes =
@@ -10,7 +10,7 @@ local frameTypes =
 	TargetFrame = "Frame",
 }
 local minSize = 0.0001
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
 function this.Create(uiObject, frameType, parentFrame, inheritsFrom, dimensions)

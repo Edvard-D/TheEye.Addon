@@ -1,18 +1,18 @@
-TheEyeAddon.UI.Components.TargetCast = {}
-local this = TheEyeAddon.UI.Components.TargetCast
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.TargetCast = {}
+local this = TheEye.Core.UI.Components.TargetCast
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local CastBarClaim = TheEyeAddon.UI.Factories.CastBar.Claim
+local CastBarClaim = TheEye.Core.UI.Factories.CastBar.Claim
 local colors =
 {
     background = { 0.1, 0.1, 0.1, 1 },
     immune = { 0.5, 0.5, 0.5, 1 },
     interruptable = { 0.8, 0.46, 0.19, 1 },
 }
-local fontTemplate = TheEyeAddon.Values.FontTemplates.TargetCast.CastName
-local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local fontTemplate = TheEye.Core.Data.FontTemplates.TargetCast.CastName
+local GetFiltered = TheEye.Core.Managers.Icons.GetFiltered
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local pairs = pairs
 local table = table
 

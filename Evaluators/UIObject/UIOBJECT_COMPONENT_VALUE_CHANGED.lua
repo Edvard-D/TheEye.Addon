@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_COMPONENT_VALUE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_COMPONENT_VALUE_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_COMPONENT_VALUE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_COMPONENT_VALUE_CHANGED
 
 local table = table
 
@@ -29,7 +29,7 @@ local function CalculateCurrentValue(component, valueKey)
 end
 
 function this:InputGroupSetup(inputGroup)
-    local uiObject = TheEyeAddon.UI.Objects.Instances[inputGroup.inputValues[1]]
+    local uiObject = TheEye.Core.UI.Objects.Instances[inputGroup.inputValues[1]]
     if uiObject == nil then return nil end
 
     local component = uiObject[inputGroup.inputValues[2]]

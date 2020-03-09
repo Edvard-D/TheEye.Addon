@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_HEALTH_PERCENT_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_HEALTH_PERCENT_CHANGED
+TheEye.Core.Evaluators.UNIT_HEALTH_PERCENT_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_HEALTH_PERCENT_CHANGED
 
 local math = math
 local UnitHealth = UnitHealth

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED
 
 local table = table
 

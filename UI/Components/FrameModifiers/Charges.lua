@@ -1,10 +1,10 @@
-TheEyeAddon.UI.Components.Charges = {}
-local this = TheEyeAddon.UI.Components.Charges
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.Charges = {}
+local this = TheEye.Core.UI.Components.Charges
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Values.FontTemplates.Icon.Default
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FontTemplate = TheEye.Core.Data.FontTemplates.Icon.Default
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#

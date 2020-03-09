@@ -1,0 +1,306 @@
+# ---------------------------
+# |		  STYLE GUIDE		|
+# ---------------------------
+# Add a space after hashtags.
+#
+# Sections
+#	Signified by a large header.
+#	Name in all caps.
+#	Add 3 lines between sections.
+#
+# Subsections
+#	Signified by a small header.
+#	Add 2 lines between sections.
+#	Order: Types > Dimension Templates > Factories.
+#	Add a line between files in the same section that need to be loaded in the order they appear. 
+#	Alphabetically organize files in the same section that can be loaded in any order.
+
+
+
+# ---------------------------
+# |		   SETTINGS			|
+# ---------------------------
+## Interface: 80200
+## Title: TheEye.Core
+## Version: 0.7.0
+## Author: Edvard-D
+## X-Website: TheEye.Site
+
+
+
+# ---------------------------
+# |	    SAVED VARIABLES		|
+# ---------------------------
+# Setting versions should be increased only when the setting data structure changes in some way.
+# The version number should reflect the version in which the setting data structure. If data 
+# needs to be moved within or removed from players' current saved settings, a dataVersionConverter
+# should be created. See Settings.lua for more information on this.
+## X-AccountSettingsVersion: 0.3.0
+## X-CharacterSettingsVersion: 0.5.0
+## SavedVariables: TheEyeAccountSettings
+## SavedVariablesPerCharacter: TheEyeCharacterSettings
+
+
+
+# ---------------------------
+# |		    INITIAL			|
+# ---------------------------
+# --- Libraries ---
+Libraries\LibStub\LibStub.lua
+
+Libraries\AceGUI-3.0\AceGUI-3.0.xml
+Libraries\AceLocale-3.0\AceLocale-3.0.xml
+Libraries\CallbackHandler-1.0\CallbackHandler-1.0.xml
+
+Libraries\AceConfig-3.0\AceConfig-3.0.xml
+
+
+# --- Addon ---
+Data\Namespaces.lua
+
+Helpers\Comparisons.lua
+Managers\Settings.lua
+Helpers\Tags.lua
+
+Managers\Debug.lua
+
+
+
+# ---------------------------
+# |	        Data         	|
+# ---------------------------
+Data\General.lua
+Data\Specializations.lua
+
+Data\DefaultSettings.lua
+
+
+# --- Locales ---
+Data\Locales\enUS.lua
+
+
+
+# ---------------------------
+# |	       Managers        	|
+# ---------------------------
+Managers\Events.lua
+
+Managers\Evaluators.lua
+Managers\GarbageCollector.lua
+Managers\Icons.lua
+Managers\Options.lua
+Managers\SlashCommands.lua
+Managers\UI.lua
+
+
+UI\Factories\Frame.lua
+
+Managers\FramePools.lua
+
+
+
+# ---------------------------
+# |	        Helpers        	|
+# ---------------------------
+Helpers\Auras.lua
+Helpers\ChildArrangers.lua
+Helpers\Files.lua
+Helpers\Player.lua
+Helpers\Table.lua
+Helpers\Timers.lua
+
+
+
+# ---------------------------
+# |	        Data\UI       	|
+# ---------------------------
+Data\UI\Colors.lua
+Data\UI\DimensionTemplates.lua
+Data\UI\FontTemplates.lua
+Data\UI\TexturePaths.lua
+
+
+# --- Groupers ---
+Data\UI\Groupers\Bottom.lua
+Data\UI\Groupers\Center.lua
+Data\UI\Groupers\HUD.lua
+Data\UI\Groupers\Left.lua
+Data\UI\Groupers\Right.lua
+Data\UI\Groupers\Top.lua
+Data\UI\Groupers\UIParent.lua
+
+
+
+# ---------------------------
+# |	      Evaluators     	|
+# ---------------------------
+# --- General ---
+Evaluators\General\ADDON_LOADED.lua
+Evaluators\General\COMBAT_LOG.lua
+Evaluators\General\DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED.lua
+Evaluators\General\GAMEDATA_LOADED_CHANGED.lua
+Evaluators\General\ICON_DISPLAYER_CHANGED.lua
+
+
+# --- Player ---
+Evaluators\Player\PLAYER_ITEM_EQUIPPED_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_CHARGE_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_CHARGE_COOLDOWN_DURATION_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_COOLDOWN_DURATION_CHANGED.lua
+Evaluators\Player\PLAYER_SPELL_USEABLE_CHANGED.lua
+Evaluators\Player\PLAYER_TALENT_KNOWN_CHANGED.lua
+Evaluators\Player\PLAYER_TOTEM_ACTIVE_CHANGED.lua
+
+
+# --- UIObject ---
+Evaluators\UIObject\UIOBJECT_COMPONENT_STATE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_COMPONENT_VALUE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_FRAME_DIMENSIONS_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_MODULE_SETTING_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_COMPONENT_VALUE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_FRAME_DIMENSIONS_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_SORTRANK_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_PARENT_VISIBLE_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_FRAME_DIMENSIONS_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_INITIALIZED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_SORTRANK_CHANGED.lua
+Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
+
+
+# --- Unit ---
+Evaluators\Unit\UNIT_AFFECTING_COMBAT_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
+Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
+Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
+Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
+Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
+Evaluators\Unit\UNIT_IN_VEHICLE_CHANGED.lua
+Evaluators\Unit\UNIT_NAME_CHANGED.lua
+Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
+Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
+Evaluators\Unit\UNIT_RAID_MARKER_CHANGED.lua
+Evaluators\Unit\UNIT_SPEC_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
+Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
+
+
+
+# ---------------------------
+# |	      UI\Elements       |
+# ---------------------------
+UI\Elements\Base.lua
+
+
+# --- Value Handlers ---
+UI\Elements\ValueHandlers\Base.lua
+
+UI\Elements\ValueHandlers\KeyState.lua
+UI\Elements\ValueHandlers\KeyValue.lua
+UI\Elements\ValueHandlers\StaticValue.lua
+UI\Elements\ValueHandlers\TableBase.lua
+UI\Elements\ValueHandlers\ValueChangeNotifier.lua
+
+UI\Elements\ValueHandlers\IntegerKeyState.lua
+UI\Elements\ValueHandlers\IntegerKeyValue.lua
+UI\Elements\ValueHandlers\SortedTable.lua
+
+
+# --- Listeners ---
+UI\Elements\Listeners\Base.lua
+
+UI\Elements\Listeners\PresetInt.lua
+
+
+# --- Listener Groups ---
+UI\Elements\ListenerGroups\Base.lua
+
+UI\Elements\ListenerGroups\NotifyBasedFunctionCaller.lua
+UI\Elements\ListenerGroups\ValueChanger.lua
+UI\Elements\ListenerGroups\ValueSetter.lua
+
+UI\Elements\ListenerGroups\StateBasedIntChanger.lua
+
+
+# --- Listener Value Change Handlers ---
+UI\Elements\ListenerValueChangeHandlers\Base.lua
+
+UI\Elements\ListenerValueChangeHandlers\KeyStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\IntegerKeyValueEventSender.lua
+UI\Elements\ListenerValueChangeHandlers\StateFunctionCaller.lua
+
+UI\Elements\ListenerValueChangeHandlers\EnabledStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\FrameStateFunctionCaller.lua
+UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
+
+
+
+# ---------------------------
+# |	     UI\Factories		|
+# ---------------------------
+UI\Factories\FontString.lua
+UI\Factories\Texture.lua
+
+UI\Factories\CastBar.lua
+UI\Factories\Cooldown.lua
+UI\Factories\TargetFrame.lua
+
+
+
+# ---------------------------
+# |	    UI\Components	    |
+# ---------------------------
+UI\Components\Child.lua
+UI\Components\EnabledState.lua
+UI\Components\Frame.lua
+UI\Components\PriorityRank.lua
+UI\Components\VisibleState.lua
+
+
+# --- FrameModifiers ---
+UI\Components\FrameModifiers\FrameModifierBase.lua
+
+UI\Components\FrameModifiers\AuraDuration.lua
+UI\Components\FrameModifiers\CastSoonAlert.lua
+UI\Components\FrameModifiers\CastStartAlert.lua
+UI\Components\FrameModifiers\Charges.lua
+UI\Components\FrameModifiers\ContextIcon.lua
+UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\EncounterAlert.lua
+UI\Components\FrameModifiers\Icon.lua
+UI\Components\FrameModifiers\LowPowerAlert.lua
+UI\Components\FrameModifiers\PlayerCast.lua
+UI\Components\FrameModifiers\TargetCast.lua
+UI\Components\FrameModifiers\TargetFrame.lua
+
+
+# --- Groups ---
+UI\Components\Groups\Group.lua
+
+UI\Components\Groups\IconGroup.lua
+
+UI\Components\Groups\CooldownGroup.lua
+UI\Components\Groups\PriorityGroup.lua
+
+UI\Components\Groups\ActiveGroup.lua
+UI\Components\Groups\RotationGroup.lua
+UI\Components\Groups\SituationalGroup.lua
+
+
+
+# ---------------------------
+# |	        UI\Menus	    |
+# ---------------------------
+UI\Menus\Options.lua
+
+
+
+# ---------------------------
+# |			FINAL			|
+# ---------------------------
+Managers\Initializer.lua

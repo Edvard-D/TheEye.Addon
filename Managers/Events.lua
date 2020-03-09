@@ -1,8 +1,8 @@
-TheEyeAddon.Managers.Events = {}
-local this = TheEyeAddon.Managers.Events
+TheEye.Core.Managers.Events = {}
+local this = TheEye.Core.Managers.Events
 local Listeners = {}
 
-local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local DebugLogEntryAdd = TheEye.Core.Managers.Debug.LogEntryAdd
 local frame = CreateFrame("Frame", nil, UIParent)
 local table = table
 local updateInterval = 0.01
@@ -10,7 +10,7 @@ local updateInterval = 0.01
 
 -- OnEvent
 local function RelayEvent(self, eventName, ...)
-    DebugLogEntryAdd("TheEyeAddon.Managers.Events", "RelayEvent", nil, nil, eventName)
+    DebugLogEntryAdd("TheEye.Core.Managers.Events", "RelayEvent", nil, nil, eventName)
     local listeners = Listeners[eventName]
     for i = 1, #listeners do
         -- Nil is checked since it's possible for a listener earlier in the array to
@@ -59,7 +59,7 @@ local function ListenerRegister(listener, eventName, eventType)
     
     listeners.listenerCount = listeners.listenerCount + 1
     if listeners.listenerCount == 1 then
-        DebugLogEntryAdd("TheEyeAddon.Managers.Events", "RegisterEvent", nil, nil, eventName)
+        DebugLogEntryAdd("TheEye.Core.Managers.Events", "RegisterEvent", nil, nil, eventName)
         
         if eventType == "GAME" then
             frame:RegisterEvent(eventName)
@@ -98,7 +98,7 @@ local function ListenerDeregister(listener, eventName, eventType)
 
     listeners.listenerCount = listeners.listenerCount - 1
     if listeners.listenerCount == 0 then
-        DebugLogEntryAdd("TheEyeAddon.Managers.Events", "UnregisterEvent", nil, nil, eventName)
+        DebugLogEntryAdd("TheEye.Core.Managers.Events", "UnregisterEvent", nil, nil, eventName)
 
         if eventType == "GAME" then
             frame:UnregisterEvent(eventName)

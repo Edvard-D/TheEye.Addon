@@ -1,11 +1,11 @@
 -- @DEBUG Doesn't account for spells cast by units other than "player" prior to them being
 --       watched by this evaluator.
-TheEyeAddon.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED
+TheEye.Core.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED
 
 local GetTime = GetTime
-local InputGroupElapsedTimerStart = TheEyeAddon.Helpers.Timers.InputGroupElapsedTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupElapsedTimerStart = TheEye.Core.Helpers.Timers.InputGroupElapsedTimerStart
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local math = math
 local select = select
 local table = table

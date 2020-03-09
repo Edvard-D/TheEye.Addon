@@ -1,12 +1,12 @@
-TheEyeAddon.Managers.Icons = {}
-local this = TheEyeAddon.Managers.Icons
+TheEye.Core.Managers.Icons = {}
+local this = TheEye.Core.Managers.Icons
 
-local Comparisons = TheEyeAddon.Helpers.Comparisons
+local Comparisons = TheEye.Core.Helpers.Comparisons
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local keyValues = {}
 local playerSpec
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 local select = select
 local sharedValues = {}
 local table = table
@@ -20,12 +20,12 @@ function this.Initialize()
         "PLAYER_ENTERING_WORLD",
         "PLAYER_SPECIALIZATION_CHANGED",
     }
-    TheEyeAddon.Managers.Events.Register(this)
+    TheEye.Core.Managers.Events.Register(this)
 end
 
 local function UnnecessaryIconsRemove()
     local classID = select(3, UnitClass("player"))
-    local necessarySpecs = TheEyeAddon.Values.Specializations[classID]
+    local necessarySpecs = TheEye.Core.Data.Specializations[classID]
 
     for specID,v in pairs(keyValues) do
         if table.hasvalue(necessarySpecs, specID) == false then
@@ -67,7 +67,7 @@ function this.Add(specID, iconData)
 end
 
 function this.DisplayerAdd(iconID, displayerID)
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.Managers.Icons", "DisplayerChange", nil, nil, iconID, displayerID)
+    TheEye.Core.Managers.Debug.LogEntryAdd("TheEye.Core.Managers.Icons", "DisplayerChange", nil, nil, iconID, displayerID)
     
     if keyValues[playerSpec][iconID].displayers == nil then
         keyValues[playerSpec][iconID].displayers = {}

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_IN_GROUP_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_IN_GROUP_CHANGED
+TheEye.Core.Evaluators.UNIT_IN_GROUP_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_IN_GROUP_CHANGED
 
 local GetNumGroupMembers = GetNumGroupMembers
 local UnitInParty = UnitInParty

@@ -1,9 +1,9 @@
-TheEyeAddon.UI.Components.FrameModifierBase = {}
-local this = TheEyeAddon.UI.Components.FrameModifierBase
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+TheEye.Core.UI.Components.FrameModifierBase = {}
+local this = TheEye.Core.UI.Components.FrameModifierBase
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local EnabledStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local EnabledStateFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#

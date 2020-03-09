@@ -1,13 +1,13 @@
-TheEyeAddon.UI.Components.TargetFrame = {}
-local this = TheEyeAddon.UI.Components.TargetFrame
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.TargetFrame = {}
+local this = TheEye.Core.UI.Components.TargetFrame
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local GetFiltered = TheEye.Core.Managers.Icons.GetFiltered
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local pairs = pairs
 local table = table
-local TargetFrameClaim = TheEyeAddon.UI.Factories.TargetFrame.Claim
+local TargetFrameClaim = TheEye.Core.UI.Factories.TargetFrame.Claim
 
 
 --[[ #this#TEMPLATE#

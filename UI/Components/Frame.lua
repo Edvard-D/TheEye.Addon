@@ -1,11 +1,11 @@
-TheEyeAddon.UI.Components.Frame = {}
-local this = TheEyeAddon.UI.Components.Frame
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Components.Frame = {}
+local this = TheEye.Core.UI.Components.Frame
+local inherited = TheEye.Core.UI.Elements.Base
 
-local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
-local VisibleStateFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
+local FrameClaim = TheEye.Core.Managers.FramePools.FrameClaim
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
+local VisibleStateFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.VisibleStateFunctionCaller.Setup
 
 
 --[[ #this#TEMPLATE#

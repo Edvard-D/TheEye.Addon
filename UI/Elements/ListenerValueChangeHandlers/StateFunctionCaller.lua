@@ -1,9 +1,9 @@
-TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller = {}
-local this = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.Base
+TheEye.Core.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller = {}
+local this = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.Base
 
-local ValueChangeNotifierSetup = TheEyeAddon.UI.Elements.ValueHandlers.ValueChangeNotifier.Setup
-local ValueSetterSetup = TheEyeAddon.UI.Elements.ListenerGroups.ValueSetter.Setup
+local ValueChangeNotifierSetup = TheEye.Core.UI.Elements.ValueHandlers.ValueChangeNotifier.Setup
+local ValueSetterSetup = TheEye.Core.UI.Elements.ListenerGroups.ValueSetter.Setup
 
 
 --[[ #this#TEMPLATE#

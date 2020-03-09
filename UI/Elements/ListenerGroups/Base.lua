@@ -1,12 +1,12 @@
-TheEyeAddon.UI.Elements.ListenerGroups.Base = {}
-local this = TheEyeAddon.UI.Elements.ListenerGroups.Base
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Elements.ListenerGroups.Base = {}
+local this = TheEye.Core.UI.Elements.ListenerGroups.Base
+local inherited = TheEye.Core.UI.Elements.Base
 
 
 --[[ #this#TEMPLATE#
 {
     #inherited#TEMPLATE#
-    Listeners = { #ARRAY#TheEyeAddon.UI.Elements.Listeners#NAME#TEMPLATE# }
+    Listeners = { #ARRAY#TheEye.Core.UI.Elements.Listeners#NAME#TEMPLATE# }
 }
 ]]
 

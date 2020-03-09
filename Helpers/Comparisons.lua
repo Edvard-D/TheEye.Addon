@@ -1,5 +1,5 @@
-TheEyeAddon.Helpers.Comparisons = {}
-this = TheEyeAddon.Helpers.Comparisons
+TheEye.Core.Helpers.Comparisons = {}
+this = TheEye.Core.Helpers.Comparisons
 
 local type = type
 

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.GAMEDATA_LOADED_CHANGED = {}
-local this = TheEyeAddon.Evaluators.GAMEDATA_LOADED_CHANGED
+TheEye.Core.Evaluators.GAMEDATA_LOADED_CHANGED = {}
+local this = TheEye.Core.Evaluators.GAMEDATA_LOADED_CHANGED
 
 
 --[[ #this#TEMPLATE#

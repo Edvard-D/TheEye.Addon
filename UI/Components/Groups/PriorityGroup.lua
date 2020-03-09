@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Components.PriorityGroup = {}
-local this = TheEyeAddon.UI.Components.PriorityGroup
-local inherited = TheEyeAddon.UI.Components.IconGroup
+TheEye.Core.UI.Components.PriorityGroup = {}
+local this = TheEye.Core.UI.Components.PriorityGroup
+local inherited = TheEye.Core.UI.Components.IconGroup
 
 
 --[[ #this#TEMPLATE#

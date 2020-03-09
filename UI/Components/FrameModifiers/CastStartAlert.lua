@@ -1,11 +1,11 @@
-TheEyeAddon.UI.Components.CastStartAlert = {}
-local this = TheEyeAddon.UI.Components.CastStartAlert
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.CastStartAlert = {}
+local this = TheEye.Core.UI.Components.CastStartAlert
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
 local castStartHideDelay = 0.5
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 local GetNetStats = GetNetStats
-local IsIconValidForFilter = TheEyeAddon.Managers.Icons.IsIconValidForFilter
+local IsIconValidForFilter = TheEye.Core.Managers.Icons.IsIconValidForFilter
 local select = select
 
 
@@ -45,7 +45,7 @@ function this.Setup(
     }
 
 
-    local iconData = TheEyeAddon.Managers.UI.currentUIObject.IconData
+    local iconData = TheEye.Core.Managers.UI.currentUIObject.IconData
     local isCastTypeCast = IsIconValidForFilter(iconData, { type = "CAST_TYPE", value = "CAST" })
     local isCastTypeChannel = IsIconValidForFilter(iconData, { type = "CAST_TYPE", value = "CHANNEL" })
     local COOLDOWN = GetPropertiesOfType(iconData, "COOLDOWN")

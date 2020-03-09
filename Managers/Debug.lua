@@ -1,5 +1,5 @@
-TheEyeAddon.Managers.Debug = {}
-local this = TheEyeAddon.Managers.Debug
+TheEye.Core.Managers.Debug = {}
+local this = TheEye.Core.Managers.Debug
 
 local editBox
 local filters
@@ -11,7 +11,7 @@ this.markerTag = "LOAD"
 local pairs = pairs
 local table = table
 local tostring = tostring
-local UIObjectHasTag = TheEyeAddon.Tags.UIObjectHasTag
+local UIObjectHasTag = TheEye.Core.Tags.UIObjectHasTag
 
 
 function this.Initialize()
@@ -29,33 +29,33 @@ function this.Initialize()
     editBox:SetAllPoints(true)
     editBox:SetWidth(frame.ScrollFrame:GetWidth())
 
-    TheEyeAddon.Managers.SlashCommands.HandlerRegister(this, "Debug")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "Enable")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "Disable")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "PrintEnable")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "PrintDisable")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "LogsClear")
-    TheEyeAddon.Managers.SlashCommands.FunctionRegister("Debug", "LogsGet")
+    TheEye.Core.Managers.SlashCommands.HandlerRegister(this, "Debug")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "Enable")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "Disable")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "PrintEnable")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "PrintDisable")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "MarkerIncrease")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "LogsClear")
+    TheEye.Core.Managers.SlashCommands.FunctionRegister("Debug", "LogsGet")
 
     this.MarkerSetup()
     this.FiltersSetup()
 end
 
 function this.Enable()
-    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled = true
+    _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled = true
 end
 
 function this.Disable()
-    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled = false
+    _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled = false
 end
 
 function this.PrintEnable()
-    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled = true
+    _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled = true
 end
 
 function this.PrintDisable()
-    TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled = false
+    _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled = false
 end
 
 
@@ -81,7 +81,7 @@ function this.MarkerSetup()
             }
         }
     }
-    TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
+    TheEye.Core.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller.Setup(
         functionCaller,
         function()
             this.markerTag = "HUD_ACTIVE"
@@ -116,7 +116,7 @@ filters =
     {
         {
             key = "namespace",
-            value = "TheEyeAddon.Managers.UI",
+            value = "TheEye.Core.Managers.UI",
         },
         {
             key = "UIObject",
@@ -126,7 +126,7 @@ filters =
     {
         {
             key = "namespace",
-            value = "TheEyeAddon.UI.Elements.ValueHandlers.KeyState",
+            value = "TheEye.Core.UI.Elements.ValueHandlers.KeyState",
         },
         {
             key = "UIObject",
@@ -142,6 +142,16 @@ filters =
 function this.FiltersSetup()
     filters =
     {
+        {
+            {
+                key = "namespace",
+                value = "TheEye.Core.UI.Elements.ValueHandlers.KeyState",
+            },
+            {
+                key = "Component",
+                value = "EnabledState",
+            },
+        },
     }
 end
 
@@ -215,8 +225,8 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if (TheEyeAddon.Managers.Settings.Account.Saved == nil
-            or TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true)
+    if (_G["TheEyeAddonAccountSettings"] == nil
+            or _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled == true)
         and IsLogEntryValid(namespace, action, uiObject, component, ...) == true
         then
         local logEntry =
@@ -235,8 +245,8 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
 
-        if TheEyeAddon.Managers.Settings.Account.Saved ~= nil
-            and TheEyeAddon.Managers.Settings.Account.Saved.Debug.isPrintEnabled == true
+        if _G["TheEyeAddonAccountSettings"] ~= nil
+            and _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled == true
             then
             local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
             table.remove(formattedLogEntry, 1)
@@ -324,7 +334,7 @@ local function LogsFormat(logs)
 end
 
 function this.LogsGet()
-    if TheEyeAddon.Managers.Settings.Account.Saved.Debug.isLoggingEnabled == true then
+    if _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled == true then
         editBox:SetText("")
         editBox:SetText(table.concat(LogsFormat(logs)))
         frame:Show()
@@ -332,7 +342,7 @@ function this.LogsGet()
         editBox:SetFocus(true)
     else
         this.Enable()
-        print("No logs exist as debug logging was disabled. Debug logging have now been enabled.")
+        print("No logs exist as debug logging was disabled. Debug logging has now been enabled.")
     end
 end
 

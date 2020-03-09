@@ -1,12 +1,12 @@
-TheEyeAddon.UI.Components.Group = {}
-local this = TheEyeAddon.UI.Components.Group
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Components.Group = {}
+local this = TheEye.Core.UI.Components.Group
+local inherited = TheEye.Core.UI.Elements.Base
 
-local FormatData = TheEyeAddon.Managers.UI.FormatData
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local screenWidth = TheEyeAddon.Values.screenSize.width
-local screenHeight = TheEyeAddon.Values.screenSize.height
-local SortedTableSetup = TheEyeAddon.UI.Elements.ValueHandlers.SortedTable.Setup
+local FormatData = TheEye.Core.Managers.UI.FormatData
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local screenWidth = TheEye.Core.Data.screenSize.width
+local screenHeight = TheEye.Core.Data.screenSize.height
+local SortedTableSetup = TheEye.Core.UI.Elements.ValueHandlers.SortedTable.Setup
 local table = table
 
 
@@ -14,7 +14,7 @@ local table = table
 {
     #inherited#TEMPLATE#
     instanceID = #INSTANCE#ID#
-    childArranger = TheEyeAddon.UI.Objects.ChildArrangers#NAME#
+    childArranger = TheEye.Core.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
     #OPTIONAL#maxDisplayedChildren = #NUMBER#
@@ -163,7 +163,7 @@ function this:DisplayUpdate()
     local frame = self.UIObject.Frame.instance
         
     if frame ~= nil then
-        local scale = TheEyeAddon.Managers.UI.scale
+        local scale = TheEye.Core.Managers.UI.scale
         for i = 1, #self.childUIObjects do
             self.childUIObjects[i].Frame.instance:SetScale(scale)
         end

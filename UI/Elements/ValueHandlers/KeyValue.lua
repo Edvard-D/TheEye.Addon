@@ -1,9 +1,9 @@
-TheEyeAddon.UI.Elements.ValueHandlers.KeyValue = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.KeyValue
-local inherited = TheEyeAddon.UI.Elements.ValueHandlers.Base
+TheEye.Core.UI.Elements.ValueHandlers.KeyValue = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.KeyValue
+local inherited = TheEye.Core.UI.Elements.ValueHandlers.Base
 
-local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local DebugLogEntryAdd = TheEye.Core.Managers.Debug.LogEntryAdd
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#
@@ -47,7 +47,7 @@ end
 function this:OnValueChange(key)
     local value = self.validKeys[key]
 
-    DebugLogEntryAdd("TheEyeAddon.UI.Elements.ValueHandlers.KeyValue", "OnValueChange", self.UIObject, self.Component, key, value)
+    DebugLogEntryAdd("TheEye.Core.UI.Elements.ValueHandlers.KeyValue", "OnValueChange", self.UIObject, self.Component, key, value)
     
     if self.value ~= value then
         self.value = value

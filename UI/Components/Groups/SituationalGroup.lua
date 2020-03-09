@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.SituationalGroup = {}
-local this = TheEyeAddon.UI.Components.SituationalGroup
-local inherited = TheEyeAddon.UI.Components.PriorityGroup
+TheEye.Core.UI.Components.SituationalGroup = {}
+local this = TheEye.Core.UI.Components.SituationalGroup
+local inherited = TheEye.Core.UI.Components.PriorityGroup
 
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 
 
 --[[ #this#TEMPLATE#
@@ -25,7 +25,7 @@ function this.Setup(
     local icons = instance.Icons
     for i = 1, #icons do
         local icon = icons[i]
-        local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules["SITUATIONAL"]
+        local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules["SITUATIONAL"]
         local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
         
         if (COOLDOWN ~= nil and COOLDOWN.value >= 20)

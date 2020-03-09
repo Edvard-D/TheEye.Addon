@@ -1,5 +1,5 @@
-TheEyeAddon.Helpers.Files = {}
-local this = TheEyeAddon.Helpers.Files
+TheEye.Core.Helpers.Files = {}
+local this = TheEye.Core.Helpers.Files
 
 
 function this.TextureFileIDGet(iconObjectType, iconObjectID)

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.PLAYER_TALENT_KNOWN_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_TALENT_KNOWN_CHANGED
+TheEye.Core.Evaluators.PLAYER_TALENT_KNOWN_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_TALENT_KNOWN_CHANGED
 
 local GetAllSelectedPvpTalentIDs = C_SpecializationInfo.GetAllSelectedPvpTalentIDs
 local GetTalentInfoByID = GetTalentInfoByID

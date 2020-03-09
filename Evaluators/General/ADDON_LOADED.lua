@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.ADDON_LOADED = {}
-local this = TheEyeAddon.Evaluators.ADDON_LOADED
+TheEye.Core.Evaluators.ADDON_LOADED = {}
+local this = TheEye.Core.Evaluators.ADDON_LOADED
 
 local select = select
 

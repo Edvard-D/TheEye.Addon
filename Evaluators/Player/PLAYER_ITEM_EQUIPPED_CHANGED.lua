@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED
+TheEye.Core.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_ITEM_EQUIPPED_CHANGED
 
 local IsEquippedItem = IsEquippedItem
 

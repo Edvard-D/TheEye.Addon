@@ -1,9 +1,9 @@
-TheEyeAddon.Evaluators.UNIT_AURA_STACK_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_AURA_STACK_CHANGED
+TheEye.Core.Evaluators.UNIT_AURA_STACK_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_AURA_STACK_CHANGED
 
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local table = table
-local UnitAuraGetBySpellID = TheEyeAddon.Helpers.Auras.UnitAuraGetBySpellID
+local UnitAuraGetBySpellID = TheEye.Core.Helpers.Auras.UnitAuraGetBySpellID
 local unpack = unpack
 
 

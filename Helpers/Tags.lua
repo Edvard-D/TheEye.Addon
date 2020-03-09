@@ -1,5 +1,5 @@
-TheEyeAddon.Tags = {}
-local this = TheEyeAddon.Tags
+TheEye.Core.Tags = {}
+local this = TheEye.Core.Tags
 
 local tagGroups = {}
 

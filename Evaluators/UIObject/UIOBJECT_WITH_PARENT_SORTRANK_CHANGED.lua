@@ -1,7 +1,7 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_SORTRANK_CHANGED
 
-local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
+local UIObjectHasTags = TheEye.Core.Tags.UIObjectHasTags
 
 
 --[[ #this#TEMPLATE#

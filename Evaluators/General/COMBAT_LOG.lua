@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.COMBAT_LOG = {}
-local this = TheEyeAddon.Evaluators.COMBAT_LOG
+TheEye.Core.Evaluators.COMBAT_LOG = {}
+local this = TheEye.Core.Evaluators.COMBAT_LOG
 
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local formattedEventInfo = {}

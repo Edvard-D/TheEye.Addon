@@ -1,10 +1,10 @@
-TheEyeAddon.Managers.Evaluators = {}
-local this = TheEyeAddon.Managers.Evaluators
+TheEye.Core.Managers.Evaluators = {}
+local this = TheEye.Core.Managers.Evaluators
 
-local EventsRegister = TheEyeAddon.Managers.Events.Register
-local EventsDeregister = TheEyeAddon.Managers.Events.Deregister
-local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
-local Evaluators = TheEyeAddon.Evaluators
+local EventsRegister = TheEye.Core.Managers.Events.Register
+local EventsDeregister = TheEye.Core.Managers.Events.Deregister
+local DebugLogEntryAdd = TheEye.Core.Managers.Debug.LogEntryAdd
+local Evaluators = TheEye.Core.Evaluators
 local pairs = pairs
 local select = select
 local table = table
@@ -94,7 +94,7 @@ function this.ListenerRegister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
+    DebugLogEntryAdd("TheEye.Core.Managers.Evaluators", "ListenerRegister", listener.UIObject, listener.Component, evaluatorKey)
 
     if listener.priority == nil then
         listener.priority = math.huge
@@ -122,7 +122,7 @@ function this.ListenerDeregister(evaluatorKey, listener)
     local inputGroup = InputGroupGet(evaluator, listener.inputValues)
     local listeners = InputGroupGetListeners(inputGroup)
     
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
+    DebugLogEntryAdd("TheEye.Core.Managers.Evaluators", "ListenerDeregister", listener.UIObject, listener.Component, evaluatorKey)
 
     if listener.isListening == true then
         table.removevalue(listeners, listener)
@@ -157,7 +157,7 @@ end
 
 -- Event Evaluation
 local function ListenersNotify(inputGroup, shouldSend, event)
-    DebugLogEntryAdd("TheEyeAddon.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+    DebugLogEntryAdd("TheEye.Core.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
     
     if shouldSend == true then
         local listeners = inputGroup.listeners

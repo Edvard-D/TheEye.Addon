@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED
+TheEye.Core.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_AFFECTING_COMBAT_CHANGED
 
 local UnitAffectingCombat = UnitAffectingCombat
 
