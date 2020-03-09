@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ListenerGroups.StateBasedIntChanger = {}
-local this = TheEyeAddon.UI.Elements.ListenerGroups.StateBasedIntChanger
-local inherited = TheEyeAddon.UI.Elements.ListenerGroups.ValueChanger
+TheEye.Core.UI.Elements.ListenerGroups.StateBasedIntChanger = {}
+local this = TheEye.Core.UI.Elements.ListenerGroups.StateBasedIntChanger
+local inherited = TheEye.Core.UI.Elements.ListenerGroups.ValueChanger
 
 local select = select
 

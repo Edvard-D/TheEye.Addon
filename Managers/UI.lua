@@ -1,7 +1,7 @@
-TheEyeAddon.Managers.UI = {}
-local this = TheEyeAddon.Managers.UI
+TheEye.Core.Managers.UI = {}
+local this = TheEye.Core.Managers.UI
 
-local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local DebugLogEntryAdd = TheEye.Core.Managers.Debug.LogEntryAdd
 local groupers = {}
 local moduleComponentNames =
 {
@@ -30,10 +30,10 @@ function this.Initialize()
         "PLAYER_ENTERING_WORLD",
         "PLAYER_SPECIALIZATION_CHANGED",
     }
-    TheEyeAddon.Managers.Events.Register(this)
+    TheEye.Core.Managers.Events.Register(this)
 
-    this.inputValues = { --[[addonName]] "TheEyeAddon" }
-    TheEyeAddon.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
+    this.inputValues = { --[[addonName]] "TheEye.Core" }
+    TheEye.Core.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
     
     CastingBarFrame:UnregisterAllEvents()
 end
@@ -41,7 +41,7 @@ end
 local function FormatData(uiObject)
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
-    TheEyeAddon.UI.Objects.Instances[key] = uiObject
+    TheEye.Core.UI.Objects.Instances[key] = uiObject
 
     local searchableTags = {}
     local tags = uiObject.tags
@@ -52,7 +52,7 @@ local function FormatData(uiObject)
 end
 
 local function UIObjectSetup(uiObject)
-    local components = TheEyeAddon.UI.Components
+    local components = TheEye.Core.UI.Components
     local pairs = pairs
 
     this.currentUIObject = uiObject
@@ -82,7 +82,7 @@ end
 
 function this.GrouperAdd(uiObject, setupFunction)
     local grouperKey = uiObject.tags[1]
-
+    
     groupers[grouperKey] =
     {
         UIObject = uiObject,
@@ -162,7 +162,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
         Filters = iconGroupData.Filters,
         IconDimensions = iconGroupData.IconDimensions,
         PriorityDisplayers = iconGroupData.PriorityDisplayers,
-        childArranger = TheEyeAddon.Helpers.ChildArrangers[iconGroupData.Group.childArranger],
+        childArranger = TheEye.Core.Helpers.ChildArrangers[iconGroupData.Group.childArranger],
         maxDisplayedChildren = maxIcons,
         sortActionName = iconGroupData.Group.sortActionName,
         sortValueComponentName = iconGroupData.Group.sortValueComponentName,
@@ -188,11 +188,11 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEye.Core.Managers.UI", "IconGroupUIObjectSetup: EnabledState Valid Keys", iconUIObject, iconUIObject.EnabledState, table.concat(formattedValidKeys))
         
         local listeners = iconUIObject.EnabledState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEye.Core.Managers.UI", "IconGroupUIObjectSetup: EnabledState Listeners", iconUIObject, iconUIObject.EnabledState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
 
         -- VisibleState
@@ -203,11 +203,11 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
             table.insert(formattedValidKeys, ", ")
         end
         table.remove(formattedValidKeys, #formattedValidKeys)
-        DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
+        DebugLogEntryAdd("TheEye.Core.Managers.UI", "IconGroupUIObjectSetup: VisibleState Valid Keys", iconUIObject, iconUIObject.VisibleState, table.concat(formattedValidKeys))
 
         listeners = iconUIObject.VisibleState.ListenerGroup.Listeners
         for i = 1, #listeners do
-            DebugLogEntryAdd("TheEyeAddon.Managers.UI", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
+            DebugLogEntryAdd("TheEye.Core.Managers.UI", "IconGroupUIObjectSetup: VisibleState Listeners", iconUIObject, iconUIObject.VisibleState, listeners[i].eventEvaluatorKey, table.concat(listeners[i].inputValues), listeners[i].value)
         end
     end
 
@@ -411,8 +411,8 @@ function this:OnEvent(eventName, ...)
     if eventName == "ADDON_LOADED" then
         local addon = ...
 
-        if addon == "TheEyeAddon" then
-            this.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
+        if addon == "TheEyeCore" then
+            this.scale = _G["TheEyeAddonCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
 
             for k,v in pairs(groupers) do
                 if v.Setup ~= nil then
@@ -422,7 +422,7 @@ function this:OnEvent(eventName, ...)
             end
         end
     else -- PLAYER_ENTERING_WORLD, PLAYER_SPECIALIZATION_CHANGED
-        newSpec = GetSpecializationInfo(GetSpecialization())
+        local newSpec = GetSpecializationInfo(GetSpecialization())
         if newSpec ~= playerSpec then
             playerSpec = newSpec
             
@@ -431,33 +431,33 @@ function this:OnEvent(eventName, ...)
                     local uiObject = this.Modules.IconGroups[k].UIObject
                     this.Modules.IconGroups[k].UIObject = nil
                     uiObject:Deactivate()
-                    TheEyeAddon.UI.Objects.Instances[uiObject.key] = nil
+                    TheEye.Core.UI.Objects.Instances[uiObject.key] = nil
                 end
             end
 
             for k, module in pairs(this.Modules.CastBars) do
-                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = CastBarUIObjectSetup(module)
                 end
             end
     
             for k, module in pairs(this.Modules.EncounterAlerts) do
-                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
-                    module.UIObject = EncounterAlertUIObjectSetup(module, moduleSettings.maxIcons)
+                    module.UIObject = EncounterAlertUIObjectSetup(module)
                 end
             end
     
             for k, module in pairs(this.Modules.IconGroups) do
-                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
                 end
             end
 
             for k, module in pairs(this.Modules.TargetFrames) do
-                local moduleSettings = TheEyeAddon.Managers.Settings.Character.Saved.UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = TargetFrameUIObjectSetup(module)
                 end

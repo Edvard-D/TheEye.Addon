@@ -1,11 +1,11 @@
-TheEyeAddon.UI.Components.Icon = {}
-local this = TheEyeAddon.UI.Components.Icon
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.Icon = {}
+local this = TheEye.Core.UI.Components.Icon
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local DisplayerAdd = TheEyeAddon.Managers.Icons.DisplayerAdd
-local DisplayerRemove = TheEyeAddon.Managers.Icons.DisplayerRemove
-local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
-local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
+local DisplayerAdd = TheEye.Core.Managers.Icons.DisplayerAdd
+local DisplayerRemove = TheEye.Core.Managers.Icons.DisplayerRemove
+local TextureCreate = TheEye.Core.UI.Factories.Texture.Create
+local TextureFileIDGet = TheEye.Core.Helpers.Files.TextureFileIDGet
 
 
 --[[ #this#TEMPLATE#

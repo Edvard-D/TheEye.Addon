@@ -1,9 +1,9 @@
-TheEyeAddon.Helpers.Timers = {}
-local this = TheEyeAddon.Helpers.Timers
+TheEye.Core.Helpers.Timers = {}
+local this = TheEye.Core.Helpers.Timers
 
 local After = C_Timer.After
 local math = math
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 local unpack = unpack
 
 

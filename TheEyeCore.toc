@@ -12,7 +12,7 @@
 #	Signified by a small header.
 #	Add 2 lines between sections.
 #	Order: Types > Dimension Templates > Factories.
-#	Add a line bewteen files in the same section that need to be loaded in the order they appear. 
+#	Add a line between files in the same section that need to be loaded in the order they appear. 
 #	Alphabetically organize files in the same section that can be loaded in any order.
 
 
@@ -21,9 +21,9 @@
 # |		   SETTINGS			|
 # ---------------------------
 ## Interface: 80200
-## Title: TheEye.Addon
+## Title: TheEye.Core
 ## Version: 0.7.0
-## Author: Edvard-D aka Alaror
+## Author: Edvard-D
 ## X-Website: TheEye.Site
 
 
@@ -37,18 +37,22 @@
 # should be created. See Settings.lua for more information on this.
 ## X-AccountSettingsVersion: 0.3.0
 ## X-CharacterSettingsVersion: 0.5.0
-## SavedVariables: TheEyeAddonAccountSettings
-## SavedVariablesPerCharacter: TheEyeAddonCharacterSettings
+## SavedVariables: TheEyeAccountSettings
+## SavedVariablesPerCharacter: TheEyeCharacterSettings
 
 
 
 # ---------------------------
-# |			 CORE			|
+# |		    INITIAL			|
 # ---------------------------
 # --- Libraries ---
-Libs\AceConfig-3.0\AceConfig-3.0.xml
-Libs\AceLocale-3.0\AceLocale-3.0.xml
-Libs\LibStub\LibStub.lua
+Libraries\LibStub\LibStub.lua
+
+Libraries\AceGUI-3.0\AceGUI-3.0.xml
+Libraries\AceLocale-3.0\AceLocale-3.0.xml
+Libraries\CallbackHandler-1.0\CallbackHandler-1.0.xml
+
+Libraries\AceConfig-3.0\AceConfig-3.0.xml
 
 
 # --- Addon ---
@@ -65,8 +69,6 @@ Managers\Debug.lua
 # ---------------------------
 # |	        Data         	|
 # ---------------------------
-Data\DimensionTemplates.lua
-Data\FontTemplates.lua
 Data\General.lua
 Data\Specializations.lua
 
@@ -86,6 +88,7 @@ Managers\Events.lua
 Managers\Evaluators.lua
 Managers\GarbageCollector.lua
 Managers\Icons.lua
+Managers\Options.lua
 Managers\SlashCommands.lua
 Managers\UI.lua
 
@@ -109,18 +112,12 @@ Helpers\Timers.lua
 
 
 # ---------------------------
-# |	      Data\Icons      	|
-# ---------------------------
-Data\Icons\Shadow.lua
-
-Data\Icons\Shared.lua
-
-
-
-# ---------------------------
 # |	        Data\UI       	|
 # ---------------------------
 Data\UI\Colors.lua
+Data\UI\DimensionTemplates.lua
+Data\UI\FontTemplates.lua
+Data\UI\TexturePaths.lua
 
 
 # --- Groupers ---
@@ -131,17 +128,6 @@ Data\UI\Groupers\Left.lua
 Data\UI\Groupers\Right.lua
 Data\UI\Groupers\Top.lua
 Data\UI\Groupers\UIParent.lua
-
-
-# --- Modules ---
-Data\UI\Modules\HUD\Active.lua
-Data\UI\Modules\HUD\Cooldown.lua
-Data\UI\Modules\HUD\EncounterAlert.lua
-Data\UI\Modules\HUD\Rotation.lua
-Data\UI\Modules\HUD\Situational.lua
-Data\UI\Modules\HUD\PlayerCast.lua
-Data\UI\Modules\HUD\TargetCast.lua
-Data\UI\Modules\HUD\TargetFrame.lua
 
 
 

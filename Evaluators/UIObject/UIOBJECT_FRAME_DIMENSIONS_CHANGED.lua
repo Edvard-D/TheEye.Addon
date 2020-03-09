@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_FRAME_DIMENSIONS_CHANGED
 
 
 --[[ #this#TEMPLATE#

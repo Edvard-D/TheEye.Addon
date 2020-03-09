@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.Base = {}
-local this = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.Base
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Elements.ListenerValueChangeHandlers.Base = {}
+local this = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.Base
+local inherited = TheEye.Core.UI.Elements.Base
 
 
 --[[ #this#TEMPLATE#

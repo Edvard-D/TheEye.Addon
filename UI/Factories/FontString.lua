@@ -1,5 +1,5 @@
-TheEyeAddon.UI.Factories.FontString = {}
-local this = TheEyeAddon.UI.Factories.FontString
+TheEye.Core.UI.Factories.FontString = {}
+local this = TheEye.Core.UI.Factories.FontString
 
 
 function this.Create(parentFrame)

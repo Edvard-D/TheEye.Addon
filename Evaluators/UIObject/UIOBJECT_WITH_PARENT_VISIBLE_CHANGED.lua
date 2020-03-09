@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_VISIBLE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_PARENT_VISIBLE_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_VISIBLE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_WITH_PARENT_VISIBLE_CHANGED
 
 
 --[[ #this#TEMPLATE#

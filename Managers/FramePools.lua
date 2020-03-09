@@ -1,9 +1,9 @@
-TheEyeAddon.Managers.FramePools = {}
-local this = TheEyeAddon.Managers.FramePools
+TheEye.Core.Managers.FramePools = {}
+local this = TheEye.Core.Managers.FramePools
 
-local EventsDeregister = TheEyeAddon.Managers.Events.Deregister
-local FrameCreate = TheEyeAddon.UI.Factories.Frame.Create
-local FrameSetDimensions = TheEyeAddon.UI.Factories.Frame.SetDimensions
+local EventsDeregister = TheEye.Core.Managers.Events.Deregister
+local FrameCreate = TheEye.Core.UI.Factories.Frame.Create
+local FrameSetDimensions = TheEye.Core.UI.Factories.Frame.SetDimensions
 local pendingDeclaim = {}
 local pools = {}
 local table = table
@@ -16,7 +16,7 @@ this.customEvents =
 
 
 function this.Initialize()
-    TheEyeAddon.Managers.Events.Register(this)
+    TheEye.Core.Managers.Events.Register(this)
 end
 
 function this:OnEvent()

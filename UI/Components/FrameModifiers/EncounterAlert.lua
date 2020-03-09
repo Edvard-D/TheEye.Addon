@@ -1,11 +1,11 @@
-TheEyeAddon.UI.Components.EncounterAlert = {}
-local this = TheEyeAddon.UI.Components.EncounterAlert
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.EncounterAlert = {}
+local this = TheEye.Core.UI.Components.EncounterAlert
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
 local fontColor = { 255, 0.75, 0.16, 1, }
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Data.FontTemplates.EncounterAlert
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FontTemplate = TheEye.Core.Data.FontTemplates.EncounterAlert
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local unpack = unpack
 
 

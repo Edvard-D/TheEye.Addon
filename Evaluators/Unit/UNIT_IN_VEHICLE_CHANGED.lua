@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_IN_VEHICLE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_IN_VEHICLE_CHANGED
+TheEye.Core.Evaluators.UNIT_IN_VEHICLE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_IN_VEHICLE_CHANGED
 
 local UnitInVehicle = UnitInVehicle
 

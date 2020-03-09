@@ -1,12 +1,12 @@
-TheEyeAddon.UI.Components.Cooldown = {}
-local this = TheEyeAddon.UI.Components.Cooldown
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.Cooldown = {}
+local this = TheEye.Core.UI.Components.Cooldown
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local CooldownClaim = TheEyeAddon.UI.Factories.Cooldown.Claim
-local EventDeregister = TheEyeAddon.Managers.Events.Deregister
-local EventRegister = TheEyeAddon.Managers.Events.Register
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Cooldown
+local CooldownClaim = TheEye.Core.UI.Factories.Cooldown.Claim
+local EventDeregister = TheEye.Core.Managers.Events.Deregister
+local EventRegister = TheEye.Core.Managers.Events.Register
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FontTemplate = TheEye.Core.Data.FontTemplates.Icon.Cooldown
 local GetSpellCooldown = GetSpellCooldown
 
 

@@ -1,4 +1,4 @@
-TheEyeAddon.Managers.UI.GrouperAdd(
+TheEye.Core.Managers.UI.GrouperAdd(
 {
     tags = { "UIPARENT" },
     EnabledState =
@@ -13,7 +13,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
             {
                 {
                     eventEvaluatorKey = "ADDON_LOADED",
-                    inputValues = { --[[addonName]] "TheEyeAddon" },
+                    inputValues = { --[[addonName]] "TheEyeCore" },
                     value = 2,
                 },
                 {
@@ -37,7 +37,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     },
     Group =
     {
-        childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
+        childArranger = TheEye.Core.Helpers.ChildArrangers.Delegate,
     },
     VisibleState =
     {
@@ -59,7 +59,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     },
 },
 function(uiObject)
-    uiObject.Frame.Dimensions.scale = TheEyeAddon.Managers.Settings.Character.Saved.UI.scale or TheEyeAddon.Managers.Settings.Character.Default.UI.scale
-    uiObject.Frame.Dimensions.PointSettings.offsetX = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.X or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.X
-    uiObject.Frame.Dimensions.PointSettings.offsetY = TheEyeAddon.Managers.Settings.Character.Saved.UI.Offset.Y or TheEyeAddon.Managers.Settings.Character.Default.UI.Offset.Y
+    uiObject.Frame.Dimensions.scale = _G["TheEyeAddonCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
+    uiObject.Frame.Dimensions.PointSettings.offsetX = _G["TheEyeAddonCharacterSettings"].UI.Offset.X or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.X
+    uiObject.Frame.Dimensions.PointSettings.offsetY = _G["TheEyeAddonCharacterSettings"].UI.Offset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.Y
 end)

@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyState = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.IntegerKeyState
-local inherited = TheEyeAddon.UI.Elements.ValueHandlers.KeyState
+TheEye.Core.UI.Elements.ValueHandlers.IntegerKeyState = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.IntegerKeyState
+local inherited = TheEye.Core.UI.Elements.ValueHandlers.KeyState
 
 
 --[[ #this#TEMPLATE#

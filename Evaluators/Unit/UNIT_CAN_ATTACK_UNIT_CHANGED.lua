@@ -1,7 +1,7 @@
 -- @DEBUG Doesn't account for situations where a targeted unit changes from friendly to hostile,
 --  but isn't in combat.
-TheEyeAddon.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
+TheEye.Core.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_CAN_ATTACK_UNIT_CHANGED
 
 local UnitCanAttack = UnitCanAttack
 

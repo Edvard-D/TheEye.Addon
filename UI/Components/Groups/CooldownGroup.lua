@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.CooldownGroup = {}
-local this = TheEyeAddon.UI.Components.CooldownGroup
-local inherited = TheEyeAddon.UI.Components.IconGroup
+TheEye.Core.UI.Components.CooldownGroup = {}
+local this = TheEye.Core.UI.Components.CooldownGroup
+local inherited = TheEye.Core.UI.Components.IconGroup
 
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 
 
 --[[ #this#TEMPLATE#

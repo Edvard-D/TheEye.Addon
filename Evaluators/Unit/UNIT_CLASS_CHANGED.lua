@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_CLASS_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_CLASS_CHANGED
+TheEye.Core.Evaluators.UNIT_CLASS_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_CLASS_CHANGED
 
 local select = select
 local UnitClass = UnitClass

@@ -1,5 +1,5 @@
-TheEyeAddon.Managers.SlashCommands = {}
-local this = TheEyeAddon.Managers.SlashCommands
+TheEye.Core.Managers.SlashCommands = {}
+local this = TheEye.Core.Managers.SlashCommands
 
 local handlers = {}
 local string = string

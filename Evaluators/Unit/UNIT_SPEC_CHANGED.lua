@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_SPEC_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_SPEC_CHANGED
+TheEye.Core.Evaluators.UNIT_SPEC_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_SPEC_CHANGED
 
 local GetInspectSpecialization = GetInspectSpecialization
 local GetSpecialization = GetSpecialization

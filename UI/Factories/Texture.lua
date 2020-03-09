@@ -1,7 +1,7 @@
-TheEyeAddon.UI.Factories.Texture = {}
-local this = TheEyeAddon.UI.Factories.Texture
+TheEye.Core.UI.Factories.Texture = {}
+local this = TheEye.Core.UI.Factories.Texture
 
-local EventRegister = TheEyeAddon.Managers.Events.Register
+local EventRegister = TheEye.Core.Managers.Events.Register
 
 
 function this.Create(parentFrame, layer, blendMode)

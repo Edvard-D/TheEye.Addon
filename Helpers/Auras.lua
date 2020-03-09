@@ -1,9 +1,9 @@
-TheEyeAddon.Helpers.Auras = {}
-local this = TheEyeAddon.Helpers.Auras
+TheEye.Core.Helpers.Auras = {}
+local this = TheEye.Core.Helpers.Auras
 
-local auraFilters = TheEyeAddon.Data.auraFilters
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
-local IconsGetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
+local auraFilters = TheEye.Core.Data.auraFilters
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local IconsGetFiltered = TheEye.Core.Managers.Icons.GetFiltered
 local select = select
 local table = table
 local UnitAura = UnitAura

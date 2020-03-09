@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_RAID_MARKER_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_RAID_MARKER_CHANGED
+TheEye.Core.Evaluators.UNIT_RAID_MARKER_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_RAID_MARKER_CHANGED
 
 local UnitName = UnitName
 

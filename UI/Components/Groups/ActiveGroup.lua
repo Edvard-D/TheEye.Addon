@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.ActiveGroup = {}
-local this = TheEyeAddon.UI.Components.ActiveGroup
-local inherited = TheEyeAddon.UI.Components.PriorityGroup
+TheEye.Core.UI.Components.ActiveGroup = {}
+local this = TheEye.Core.UI.Components.ActiveGroup
+local inherited = TheEye.Core.UI.Components.PriorityGroup
 
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 
 
 --[[ #this#TEMPLATE#

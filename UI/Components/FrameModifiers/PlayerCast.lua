@@ -1,17 +1,17 @@
-TheEyeAddon.UI.Components.PlayerCast = {}
-local this = TheEyeAddon.UI.Components.PlayerCast
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.PlayerCast = {}
+local this = TheEye.Core.UI.Components.PlayerCast
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local CastBarClaim = TheEyeAddon.UI.Factories.CastBar.Claim
+local CastBarClaim = TheEye.Core.UI.Factories.CastBar.Claim
 local colors =
 {
     background = { 0.1, 0.1, 0.1, 1 },
     immune = { 1, 1, 1, 1 },
     interruptable = { 1, 1, 1, 1 },
 }
-local GetFiltered = TheEyeAddon.Managers.Icons.GetFiltered
-local GetPropertiesOfType = TheEyeAddon.Managers.Icons.GetPropertiesOfType
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local GetFiltered = TheEye.Core.Managers.Icons.GetFiltered
+local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local pairs = pairs
 local table = table
 

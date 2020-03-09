@@ -1,6 +1,6 @@
 local parentKey = "HUD"
 
-TheEyeAddon.Managers.UI.GrouperAdd(
+TheEye.Core.Managers.UI.GrouperAdd(
 {
     tags = { "BOTTOM", },
     Child =
@@ -28,7 +28,7 @@ TheEyeAddon.Managers.UI.GrouperAdd(
     Frame = {},
     Group =
     {
-        childArranger = TheEyeAddon.Helpers.ChildArrangers.Delegate,
+        childArranger = TheEye.Core.Helpers.ChildArrangers.Delegate,
     },
     PriorityRank =
     {

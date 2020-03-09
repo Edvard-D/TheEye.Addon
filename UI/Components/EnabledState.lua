@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Components.EnabledState = {}
-local this = TheEyeAddon.UI.Components.EnabledState
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
+TheEye.Core.UI.Components.EnabledState = {}
+local this = TheEye.Core.UI.Components.EnabledState
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
-local SendCustomEvent = TheEyeAddon.Managers.Events.SendCustomEvent
+local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
 --[[ #this#TEMPLATE#

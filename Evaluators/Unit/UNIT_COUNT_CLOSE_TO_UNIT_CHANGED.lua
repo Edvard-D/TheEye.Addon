@@ -1,16 +1,16 @@
 -- @TODO Implement tracking of friendly units using beneficial and harmful AoE spells.
-TheEyeAddon.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED
+TheEye.Core.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_COUNT_CLOSE_TO_UNIT_CHANGED
 
 local bit = bit
 local GetTime = GetTime
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local math = math
 local meleeEventMaxElapsedTime = 5
 local playerInitiatedMultiplier = 3
 local reevaluateRate = 0.5
 local spellEventMaxElapsedTime = 3
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
+local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local table = table
 local UnitCanAttack = UnitCanAttack
 local UnitGUID = UnitGUID

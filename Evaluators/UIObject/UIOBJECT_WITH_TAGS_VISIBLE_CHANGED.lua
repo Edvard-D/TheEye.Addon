@@ -1,7 +1,7 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED
+TheEye.Core.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_WITH_TAGS_VISIBLE_CHANGED
 
-local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
+local UIObjectHasTags = TheEye.Core.Tags.UIObjectHasTags
 
 
 --[[ #this#TEMPLATE#

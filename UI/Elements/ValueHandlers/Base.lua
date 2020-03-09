@@ -1,8 +1,8 @@
-TheEyeAddon.UI.Elements.ValueHandlers.Base = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.Base
-local inherited = TheEyeAddon.UI.Elements.Base
+TheEye.Core.UI.Elements.ValueHandlers.Base = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.Base
+local inherited = TheEye.Core.UI.Elements.Base
 
-local DebugLogEntryAdd = TheEyeAddon.Managers.Debug.LogEntryAdd
+local DebugLogEntryAdd = TheEye.Core.Managers.Debug.LogEntryAdd
 
 
 --[[ #this#TEMPLATE#
@@ -64,14 +64,14 @@ function this:Deactivate()
 end
 
 function this:Change(value)
-    DebugLogEntryAdd("TheEyeAddon.UI.Elements.ValueHandlers.Base", "Change: BEFORE", self.UIObject, self.Component, value)
+    DebugLogEntryAdd("TheEye.Core.UI.Elements.ValueHandlers.Base", "Change: BEFORE", self.UIObject, self.Component, value)
     
     if self.ValueAction ~= nil then
         value = self:ValueAction(value)
     end
     
     if self[self.valueKey] ~= value then
-        DebugLogEntryAdd("TheEyeAddon.UI.Elements.ValueHandlers.Base", "Change: AFTER", self.UIObject, self.Component, value)
+        DebugLogEntryAdd("TheEye.Core.UI.Elements.ValueHandlers.Base", "Change: AFTER", self.UIObject, self.Component, value)
         
         self[self.valueKey] = value
         

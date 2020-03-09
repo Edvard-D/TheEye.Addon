@@ -1,4 +1,4 @@
-local this = TheEyeAddon.Data
+local this = TheEye.Core.Data
 
 
 this.screenSize =

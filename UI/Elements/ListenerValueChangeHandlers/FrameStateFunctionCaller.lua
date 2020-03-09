@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller = {}
-local this = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller
-local inherited = TheEyeAddon.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
+TheEye.Core.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller = {}
+local this = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.FrameStateFunctionCaller
+local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.StateFunctionCaller
 
 
 --[[ #this#TEMPLATE#

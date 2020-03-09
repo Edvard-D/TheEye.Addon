@@ -1,13 +1,13 @@
-TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
-local this = TheEyeAddon.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
+TheEye.Core.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED = {}
+local this = TheEye.Core.Evaluators.PLAYER_SPELL_COOLDOWN_DURATION_CHANGED
 
 local GetSpellCooldown = GetSpellCooldown
 local GetTime = GetTime
 local initialTimerLength = 0.01
-local InputGroupDurationTimerStart = TheEyeAddon.Helpers.Timers.InputGroupDurationTimerStart
-local InputGroupRegisterListeningTo = TheEyeAddon.Managers.Evaluators.InputGroupRegisterListeningTo
+local InputGroupDurationTimerStart = TheEye.Core.Helpers.Timers.InputGroupDurationTimerStart
+local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroupRegisterListeningTo
 local select = select
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
+local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local tostring = tostring
 local updateRate = 0.5
 

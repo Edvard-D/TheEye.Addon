@@ -1,7 +1,7 @@
-TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED = {}
-local this = TheEyeAddon.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED
+TheEye.Core.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED = {}
+local this = TheEye.Core.Evaluators.UIOBJECT_WITH_TAGS_INITIALIZED
 
-local UIObjectHasTags = TheEyeAddon.Tags.UIObjectHasTags
+local UIObjectHasTags = TheEye.Core.Tags.UIObjectHasTags
 
 
 --[[ #this#TEMPLATE#

@@ -1,9 +1,9 @@
 -- @REFACTOR maybe refactor to use CombatEvent?
-TheEyeAddon.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
+TheEye.Core.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_SPELLCAST_ACTIVE_CHANGED
 
 local select = select
-local StartEventTimer = TheEyeAddon.Helpers.Timers.StartEventTimer
+local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local table = table
 local UnitCastingInfo = UnitCastingInfo
 local UnitChannelInfo = UnitChannelInfo

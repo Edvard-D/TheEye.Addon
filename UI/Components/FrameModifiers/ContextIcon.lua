@@ -1,14 +1,14 @@
-TheEyeAddon.UI.Components.ContextIcon = {}
-local this = TheEyeAddon.UI.Components.ContextIcon
-local inherited = TheEyeAddon.UI.Components.FrameModifierBase
+TheEye.Core.UI.Components.ContextIcon = {}
+local this = TheEye.Core.UI.Components.ContextIcon
+local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local DimensionTemplate = TheEyeAddon.Data.DimensionTemplates.Icon.Context
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FontTemplate = TheEyeAddon.Data.FontTemplates.Icon.Context
-local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
-local NotifyBasedFunctionCallerSetup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
-local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
-local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
+local DimensionTemplate = TheEye.Core.Data.DimensionTemplates.Icon.Context
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FontTemplate = TheEye.Core.Data.FontTemplates.Icon.Context
+local FrameClaim = TheEye.Core.Managers.FramePools.FrameClaim
+local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
+local TextureCreate = TheEye.Core.UI.Factories.Texture.Create
+local TextureFileIDGet = TheEye.Core.Helpers.Files.TextureFileIDGet
 
 
 --[[ #this#TEMPLATE#
@@ -16,7 +16,7 @@ local TextureFileIDGet = TheEyeAddon.Helpers.Files.TextureFileIDGet
     #inherited#TEMPLATE#
     iconObjectType = #ICON#TYPE#
     iconObjectID = #ICON#ID#
-    #OPTIONAL#TextValueListenerGroup = TheEyeAddon.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller#TEMPLATE#
+    #OPTIONAL#TextValueListenerGroup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller#TEMPLATE#
 }
 ]]
 

@@ -1,7 +1,7 @@
-TheEyeAddon.Evaluators.ICON_DISPLAYER_CHANGED = {}
-local this = TheEyeAddon.Evaluators.ICON_DISPLAYER_CHANGED
+TheEye.Core.Evaluators.ICON_DISPLAYER_CHANGED = {}
+local this = TheEye.Core.Evaluators.ICON_DISPLAYER_CHANGED
 
-local DisplayersGet = TheEyeAddon.Managers.Icons.DisplayersGet
+local DisplayersGet = TheEye.Core.Managers.Icons.DisplayersGet
 local table = table
 
 
@@ -40,7 +40,7 @@ function this:GetKey(event, iconID, displayerID)
 end
 
 function this:Evaluate(inputGroup, event, iconID, displayerID, isDisplayed)
-    TheEyeAddon.Managers.Debug.LogEntryAdd("TheEyeAddon.Evaluators.ICON_DISPLAYER_CHANGED", "Evaluate", nil, nil, inputGroup.inputValues[1], displayerID, isDisplayed)
+    TheEye.Core.Managers.Debug.LogEntryAdd("TheEye.Core.Evaluators.ICON_DISPLAYER_CHANGED", "Evaluate", nil, nil, inputGroup.inputValues[1], displayerID, isDisplayed)
     
     if inputGroup.currentValue ~= isDisplayed then
         inputGroup.currentValue = isDisplayed

@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_PVP_FLAGGED_CHANGED = {}
-local this = TheEyeAddon.Evaluators.UNIT_PVP_FLAGGED_CHANGED
+TheEye.Core.Evaluators.UNIT_PVP_FLAGGED_CHANGED = {}
+local this = TheEye.Core.Evaluators.UNIT_PVP_FLAGGED_CHANGED
 
 local IsWarModeActive = C_PvP.IsWarModeActive
 local IsWarModeDesired = C_PvP.IsWarModeDesired

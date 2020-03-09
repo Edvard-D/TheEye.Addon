@@ -1,8 +1,8 @@
-TheEyeAddon.Evaluators.DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED = {}
-local this = TheEyeAddon.Evaluators.DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED
+TheEye.Core.Evaluators.DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED = {}
+local this = TheEye.Core.Evaluators.DBM_ANNOUNCEMENT_ELAPSED_TIME_CHANGED
 
 local GetTime = GetTime
-local InputGroupElapsedTimerStart = TheEyeAddon.Helpers.Timers.InputGroupElapsedTimerStart
+local InputGroupElapsedTimerStart = TheEye.Core.Helpers.Timers.InputGroupElapsedTimerStart
 local lastEventData
 local lastEventTimeStamp = 0
 local select = select

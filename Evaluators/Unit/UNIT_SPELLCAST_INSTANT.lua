@@ -1,5 +1,5 @@
-TheEyeAddon.Evaluators.UNIT_SPELLCAST_INSTANT = {}
-local this = TheEyeAddon.Evaluators.UNIT_SPELLCAST_INSTANT
+TheEye.Core.Evaluators.UNIT_SPELLCAST_INSTANT = {}
+local this = TheEye.Core.Evaluators.UNIT_SPELLCAST_INSTANT
 
 local GetTime = GetTime
 local select = select

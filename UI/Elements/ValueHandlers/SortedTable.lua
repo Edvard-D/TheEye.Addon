@@ -1,6 +1,6 @@
-TheEyeAddon.UI.Elements.ValueHandlers.SortedTable = {}
-local this = TheEyeAddon.UI.Elements.ValueHandlers.SortedTable
-local inherited = TheEyeAddon.UI.Elements.ValueHandlers.TableBase
+TheEye.Core.UI.Elements.ValueHandlers.SortedTable = {}
+local this = TheEye.Core.UI.Elements.ValueHandlers.SortedTable
+local inherited = TheEye.Core.UI.Elements.ValueHandlers.TableBase
 
 local table = table
 

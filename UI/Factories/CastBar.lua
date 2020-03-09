@@ -1,13 +1,13 @@
-TheEyeAddon.UI.Factories.CastBar = {}
-local this = TheEyeAddon.UI.Factories.CastBar
+TheEye.Core.UI.Factories.CastBar = {}
+local this = TheEye.Core.UI.Factories.CastBar
 
-local EventRegister = TheEyeAddon.Managers.Events.Register
-local FontStringCreate = TheEyeAddon.UI.Factories.FontString.Create
-local FrameClaim = TheEyeAddon.Managers.FramePools.FrameClaim
+local EventRegister = TheEye.Core.Managers.Events.Register
+local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
+local FrameClaim = TheEye.Core.Managers.FramePools.FrameClaim
 local GetSpellInfo = GetSpellInfo
 local GetTime = GetTime
 local select = select
-local TextureCreate = TheEyeAddon.UI.Factories.Texture.Create
+local TextureCreate = TheEye.Core.UI.Factories.Texture.Create
 local tostring = tostring
 local UnitCastingInfo = UnitCastingInfo
 local UnitChannelInfo = UnitChannelInfo
@@ -16,6 +16,7 @@ local unpack = unpack
 
 function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, showSecondaryIcon, showName, fontTemplate)
     local instance = FrameClaim(uiObject, "CastBar", parentFrame, nil, dimensions)
+    local texturePaths = TheEye.Core.Data.TexturePaths.CastBar
 
     instance.unit = unit
     instance.colors = colors -- { background, immune, interruptable }
@@ -49,13 +50,13 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     instance.Background = instance.Background or {}
     instance.Background.Base = instance.Background.Base or TextureCreate(instance, "BACKGROUND", "BLEND")
     instance.Background.Base:SetSize(barWidth - (dimensions.height / 2), dimensions.height)
-    instance.Background.Base:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/CastBar_Base.blp")
+    instance.Background.Base:SetTexture(texturePaths.base)
     instance.Background.Base:SetVertexColor(unpack(colors.background))
 
     instance.Background.End = instance.Background.End or TextureCreate(instance, "BACKGROUND", "BLEND")
     instance.Background.End:SetSize(dimensions.height / 2, dimensions.height)
     instance.Background.End:SetPoint("LEFT", instance.Background.Base, "RIGHT")
-    instance.Background.End:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/CastBar_End.blp")
+    instance.Background.End:SetTexture(texturePaths["end"])
     instance.Background.End:SetVertexColor(unpack(colors.background))
 
     instance.Bar = instance.Bar or {}
@@ -63,12 +64,12 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     instance.Bar.height = dimensions.height
     instance.Bar.Base = instance.Bar.Base or TextureCreate(instance, "ARTWORK", "BLEND")
     instance.Bar.Base:SetSize(instance.Bar.maxWidth, dimensions.height)
-    instance.Bar.Base:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/CastBar_Base.blp")
+    instance.Bar.Base:SetTexture(texturePaths.base)
 
     instance.Bar.End = instance.Bar.End or TextureCreate(instance, "ARTWORK", "BLEND")
     instance.Bar.End:SetSize(dimensions.height / 2, dimensions.height)
     instance.Bar.End:SetPoint("LEFT", instance.Bar.Base, "RIGHT")
-    instance.Bar.End:SetTexture("Interface/AddOns/TheEyeAddon/UI/Textures/CastBar_End.blp")
+    instance.Bar.End:SetTexture(texturePaths["end"])
 
     if showIcon == true then
         instance.Background.Base:ClearAllPoints()
