@@ -69,6 +69,7 @@ Managers\Debug.lua
 # ---------------------------
 # |	        Data         	|
 # ---------------------------
+Data\Classes.lua
 Data\General.lua
 Data\Specializations.lua
 
