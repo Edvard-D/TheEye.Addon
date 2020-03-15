@@ -29,6 +29,16 @@ function table.hasvalue(tab, value)
     return false
 end
 
+function table.haskey(tab, key)
+    if tab ~= nil and key ~= nil then
+        if tab[key] ~= nil then
+            return true
+        end
+    end
+
+    return false
+end
+
 function table.haskeyvalue(tab, value)
     if tab ~= nil and value ~= nil then
         for k,v in pairs(tab) do
