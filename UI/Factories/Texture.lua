@@ -4,8 +4,8 @@ local this = TheEye.Core.UI.Factories.Texture
 local EventRegister = TheEye.Core.Managers.Events.Register
 
 
-function this.Create(parentFrame, layer, blendMode)
-	instance = parentFrame:CreateTexture(nil, layer)
+function this.Create(parentFrame, drawLayer, drawOrder, blendMode)
+	instance = parentFrame:CreateTexture(nil, drawLayer, nil, drawOrder or 0)
 	instance.TextureSet = this.TextureSet
 	instance.RotationStart = this.RotationStart
 

@@ -23,17 +23,17 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     local texturePaths = TheEye.Core.Data.TexturePaths.TargetFrame
     instance.unit = unit
 
-    instance.Background = instance.Background or TextureCreate(instance, "BACKGROUND", "BLEND")
+    instance.Background = instance.Background or TextureCreate(instance, "BACKGROUND", -8, "BLEND")
     instance.Background:TextureSet(texturePaths.background)
     instance.Background:SetVertexColor(unpack(colors.background))
     instance.Background:RotationStart(backgroundRotationRate)
 
-    instance.Swirl = instance.Swirl or TextureCreate(instance, "BORDER", "BLEND")
+    instance.Swirl = instance.Swirl or TextureCreate(instance, "BACKGROUND", -7, "BLEND")
     instance.Swirl:TextureSet(texturePaths.mid)
     instance.Swirl:SetVertexColor(unpack(colors.mid))
     instance.Swirl:RotationStart(midRotationRate)
     
-    instance.Overlay = instance.Overlay or TextureCreate(instance, "BORDER", "BLEND")
+    instance.Overlay = instance.Overlay or TextureCreate(instance, "BACKGROUND", -6, "BLEND")
     instance.Overlay:TextureSet(texturePaths.overlay)
     instance.Overlay:SetVertexColor(unpack(colors.overlay))
     instance.Overlay:RotationStart(overlayRotationRate)
