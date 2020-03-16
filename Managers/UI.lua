@@ -32,7 +32,7 @@ function this.Initialize()
     }
     TheEye.Core.Managers.Events.Register(this)
 
-    this.inputValues = { --[[addonName]] "TheEye.Core" }
+    this.inputValues = { --[[addonName]] "TheEyeCore" }
     TheEye.Core.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
     
     CastingBarFrame:UnregisterAllEvents()
