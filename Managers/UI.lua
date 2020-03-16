@@ -38,7 +38,7 @@ function this.Initialize()
     CastingBarFrame:UnregisterAllEvents()
 end
 
-local function FormatData(uiObject)
+function this.FormatData(uiObject)
     local key = table.concat(uiObject.tags, "_")
     uiObject.key = key
     TheEye.Core.UI.Objects.Instances[key] = uiObject
@@ -51,7 +51,7 @@ local function FormatData(uiObject)
     uiObject.tags = searchableTags
 end
 
-local function UIObjectSetup(uiObject)
+function this.UIObjectSetup(uiObject)
     local components = TheEye.Core.UI.Components
     local pairs = pairs
 
@@ -95,8 +95,8 @@ function this.ModuleAdd(key, module)
 end
 
 local function GrouperUIObjectSetup(uiObject)
-    FormatData(uiObject)
-    UIObjectSetup(uiObject)
+    this.FormatData(uiObject)
+    this.UIObjectSetup(uiObject)
 end
 
 local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
@@ -152,7 +152,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     end
     uiObject.instanceID = iconGroupData.instanceID
     uiObject.tags = { "GROUP", iconGroupData.instanceID }
-    FormatData(uiObject)
+    this.FormatData(uiObject)
 
     -- Group Component
     uiObject.Group =
@@ -170,14 +170,14 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     uiObject[moduleComponentNames[iconGroupData.type]] = uiObject.Group
 
     -- Setup
-    UIObjectSetup(uiObject)
+    this.UIObjectSetup(uiObject)
     
     local icons = uiObject[moduleComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
         local iconUIObject = icons[i].UIObject
         iconUIObject.IconData = icons[i]
-        FormatData(iconUIObject)
-        UIObjectSetup(iconUIObject)
+        this.FormatData(iconUIObject)
+        this.UIObjectSetup(iconUIObject)
 
         -- DEBUG
         -- EnabledState
@@ -268,9 +268,9 @@ local function CastBarUIObjectSetup(castBarData)
         castBarData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
     uiObject.tags = { "CAST", castBarData.instanceID }
-    FormatData(uiObject)
+    this.FormatData(uiObject)
 
-    UIObjectSetup(uiObject)
+    this.UIObjectSetup(uiObject)
 end
 
 local function EncounterAlertUIObjectSetup(encounterAlertData)
@@ -341,9 +341,9 @@ local function EncounterAlertUIObjectSetup(encounterAlertData)
         encounterAlertData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
     uiObject.tags = { "ENCOUNTER_ALERT", encounterAlertData.instanceID }
-    FormatData(uiObject)
+    this.FormatData(uiObject)
 
-    UIObjectSetup(uiObject)
+    this.UIObjectSetup(uiObject)
 end
 
 local function TargetFrameUIObjectSetup(targetFrameData)
@@ -402,9 +402,9 @@ local function TargetFrameUIObjectSetup(targetFrameData)
         targetFrameData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
     uiObject.tags = { "TARGET_FRAME", targetFrameData.instanceID }
-    FormatData(uiObject)
+    this.FormatData(uiObject)
 
-    UIObjectSetup(uiObject)
+    this.UIObjectSetup(uiObject)
 end
 
 function this:OnEvent(eventName, ...)
