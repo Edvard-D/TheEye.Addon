@@ -3,12 +3,12 @@ local this = TheEye.Core.Managers.Settings
 
 this.Account =
 {
-    savedVariableKey = "TheEyeAddonAccountSettings",
+    savedVariableKey = "TheEyeAccountSettings",
     versionVariableKey = "X-AccountSettingsVersion",
 }
 this.Character =
 {
-    savedVariableKey = "TheEyeAddonCharacterSettings",
+    savedVariableKey = "TheEyeCharacterSettings",
     versionVariableKey = "X-CharacterSettingsVersion",
 }
 

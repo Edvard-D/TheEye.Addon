@@ -30,7 +30,7 @@ function this.Setup(
     local icons = instance.Icons    
     for i = 1, #icons do
         local icon = icons[i]
-        local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules["ROTATION"]
+        local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules["ROTATION"]
         local COOLDOWN = GetPropertiesOfType(icon, "COOLDOWN")
         
         if (COOLDOWN ~= nil and COOLDOWN.value >= 20)

@@ -43,19 +43,19 @@ function this.Initialize()
 end
 
 function this.Enable()
-    _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled = true
+    _G["TheEyeAccountSettings"].Debug.isLoggingEnabled = true
 end
 
 function this.Disable()
-    _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled = false
+    _G["TheEyeAccountSettings"].Debug.isLoggingEnabled = false
 end
 
 function this.PrintEnable()
-    _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled = true
+    _G["TheEyeAccountSettings"].Debug.isPrintEnabled = true
 end
 
 function this.PrintDisable()
-    _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled = false
+    _G["TheEyeAccountSettings"].Debug.isPrintEnabled = false
 end
 
 
@@ -225,8 +225,8 @@ end
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
-    if (_G["TheEyeAddonAccountSettings"] == nil
-            or _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled == true)
+    if (_G["TheEyeAccountSettings"] == nil
+            or _G["TheEyeAccountSettings"].Debug.isLoggingEnabled == true)
         and IsLogEntryValid(namespace, action, uiObject, component, ...) == true
         then
         local logEntry =
@@ -245,8 +245,8 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         end
         table.insert(logs, logEntry)
 
-        if _G["TheEyeAddonAccountSettings"] ~= nil
-            and _G["TheEyeAddonAccountSettings"].Debug.isPrintEnabled == true
+        if _G["TheEyeAccountSettings"] ~= nil
+            and _G["TheEyeAccountSettings"].Debug.isPrintEnabled == true
             then
             local formattedLogEntry = this.LogEntryFormat(nil, nil, logEntry)
             table.remove(formattedLogEntry, 1)
@@ -334,7 +334,7 @@ local function LogsFormat(logs)
 end
 
 function this.LogsGet()
-    if _G["TheEyeAddonAccountSettings"].Debug.isLoggingEnabled == true then
+    if _G["TheEyeAccountSettings"].Debug.isLoggingEnabled == true then
         editBox:SetText("")
         editBox:SetText(table.concat(LogsFormat(logs)))
         frame:Show()

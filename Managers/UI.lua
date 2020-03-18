@@ -412,7 +412,7 @@ function this:OnEvent(eventName, ...)
         local addon = ...
 
         if addon == "TheEyeCore" then
-            this.scale = _G["TheEyeAddonCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
+            this.scale = _G["TheEyeCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
 
             for k,v in pairs(groupers) do
                 if v.Setup ~= nil then
@@ -436,28 +436,28 @@ function this:OnEvent(eventName, ...)
             end
 
             for k, module in pairs(this.Modules.CastBars) do
-                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = CastBarUIObjectSetup(module)
                 end
             end
     
             for k, module in pairs(this.Modules.EncounterAlerts) do
-                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = EncounterAlertUIObjectSetup(module)
                 end
             end
     
             for k, module in pairs(this.Modules.IconGroups) do
-                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
                 end
             end
 
             for k, module in pairs(this.Modules.TargetFrames) do
-                local moduleSettings = _G["TheEyeAddonCharacterSettings"].UI.Modules[module.type]
+                local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = TargetFrameUIObjectSetup(module)
                 end

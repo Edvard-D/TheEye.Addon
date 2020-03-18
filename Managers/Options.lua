@@ -33,7 +33,7 @@ function this.TreeGroupAdd(key, value, newModuleNames)
 end
 
 function this.XPositionGet(info)
-    return _G["TheEyeAddonCharacterSettings"].UI.Offset.X or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.X
+    return _G["TheEyeCharacterSettings"].UI.Offset.X or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.X
 end
 
 function this.XPositionSet(info, value)
@@ -45,11 +45,11 @@ function this.XPositionSet(info, value)
         pointSettings.offsetX, pointSettings.offsetY
     )
 
-    _G["TheEyeAddonCharacterSettings"].UI.Offset.X = value
+    _G["TheEyeCharacterSettings"].UI.Offset.X = value
 end
 
 function this.YPositionGet(info)
-    return _G["TheEyeAddonCharacterSettings"].UI.Offset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.Y
+    return _G["TheEyeCharacterSettings"].UI.Offset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.Y
 end
 
 function this.YPositionSet(info, value)
@@ -61,45 +61,45 @@ function this.YPositionSet(info, value)
         pointSettings.offsetX, pointSettings.offsetY
     )
     
-    _G["TheEyeAddonCharacterSettings"].UI.Offset.Y = value
+    _G["TheEyeCharacterSettings"].UI.Offset.Y = value
 end
 
 function this.SizeGet(info)
-    return _G["TheEyeAddonCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
+    return _G["TheEyeCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
 end
 
 function this.SizeSet(info, value)
     TheEye.Core.Managers.UI.scale = value
-    _G["TheEyeAddonCharacterSettings"].UI.scale = value
+    _G["TheEyeCharacterSettings"].UI.scale = value
 end
 
 function this.EnabledGet(info)
     local moduleName = moduleNames[info[#info - 1]]
-    return _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].enabled
+    return _G["TheEyeCharacterSettings"].UI.Modules[moduleName].enabled
 end
 
 function this.EnabledSet(info, value)
     local moduleName = moduleNames[info[#info - 1]]
-    _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].enabled = value
+    _G["TheEyeCharacterSettings"].UI.Modules[moduleName].enabled = value
 end
 
 function this.LongCooldownsGet(info)
     local moduleName = moduleNames[info[#info - 1]]
-    return _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].isLongCooldownsOnly
+    return _G["TheEyeCharacterSettings"].UI.Modules[moduleName].isLongCooldownsOnly
 end
 
 function this.LongCooldownsSet(info, value)
     local moduleName = moduleNames[info[#info - 1]]
-    _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].isLongCooldownsOnly = value
+    _G["TheEyeCharacterSettings"].UI.Modules[moduleName].isLongCooldownsOnly = value
 end
 
 function this.MaxIconsGet(info)
     local moduleName = moduleNames[info[#info - 1]]
-    return _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].maxIcons
+    return _G["TheEyeCharacterSettings"].UI.Modules[moduleName].maxIcons
 end
 
 function this.MaxIconsSet(info, value)
     local moduleName = moduleNames[info[#info - 1]]
     TheEye.Core.Managers.UI.Modules.IconGroups[moduleName].UIObject.Group.maxDisplayedChildren = value
-    _G["TheEyeAddonCharacterSettings"].UI.Modules[moduleName].maxIcons = value
+    _G["TheEyeCharacterSettings"].UI.Modules[moduleName].maxIcons = value
 end
