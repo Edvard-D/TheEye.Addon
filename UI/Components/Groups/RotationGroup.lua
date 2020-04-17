@@ -427,6 +427,36 @@ function this.VisibleStateSetup(instance, icon)
                 value = value,
                 }
             )
+            
+            -- requiredAura POWER_REQUIRED
+            local requiredAuraIcon = IconsGetFiltered(
+                {
+                    {
+                        {
+                            type = "OBJECT_ID",
+                            value = AURA_REQUIRED.value,
+                        },
+                    },
+                })[1]
+            local requiredAuraPOWER_REQUIRED = GetPropertiesOfType(requiredAuraIcon, "POWER_REQUIRED")
+
+            if requiredAuraPOWER_REQUIRED ~= nil then
+                value = value * 2
+                baseModifierKeyValue = baseModifierKeyValue + value
+
+                table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+                    {
+                        eventEvaluatorKey = "UNIT_POWER_PERCENT_CHANGED",
+                        inputValues = { --[[unit]] "player", --[[powerID]] requiredAuraPOWER_REQUIRED.value, },
+                        comparisonValues =
+                        {
+                            value = TheEye.Core.Data.powerLowThreshold,
+                            type = "GreaterThan",
+                        },
+                    value = value,
+                    }
+                )
+            end
         end
     end
 
