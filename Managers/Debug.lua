@@ -142,16 +142,6 @@ filters =
 function this.FiltersSetup()
     filters =
     {
-        {
-            {
-                key = "namespace",
-                value = "TheEye.Core.UI.Elements.ValueHandlers.KeyState",
-            },
-            {
-                key = "Component",
-                value = "EnabledState",
-            },
-        },
     }
 end
 
