@@ -10,6 +10,7 @@ local UIObjectInstances = TheEye.Core.UI.Objects.Instances
 {
     #inherited#TEMPLATE#
     parentKey = #UIOBJECT#KEY#
+    frameAttachPointPath = { #OPTIONAL#STRING# }
 }
 ]]
 
@@ -44,9 +45,34 @@ function this:Deactivate()
 end
 
 function this:OnClaim()
-    UIObjectInstances[self.parentKey].Group:ChildRegister(self.UIObject)
+    if self.frameAttachPointPath == nil then
+        UIObjectInstances[self.parentKey].Group:ChildRegister(self.UIObject)
+    else
+        local selectedTable = UIObjectInstances[self.parentKey].Frame.instance
+
+        for i = 1, #self.frameAttachPointPath do
+            selectedTable = selectedTable[self.frameAttachPointPath[i]]
+        end
+
+        local attachPointFrame = selectedTable
+        local pointSettings = self.UIObject.Frame.Dimensions.PointSettings
+
+        if pointSettings ~= nil then
+            self.UIObject.Frame.instance:SetPoint(
+                pointSettings.point,
+                attachPointFrame,
+                pointSettings.relativePoint,
+                pointSettings.offsetX or 0,
+                pointSettings.offsetY or 0
+            )
+        else
+            self.UIObject.Frame.instance:SetAllPoints(attachPointFrame)
+        end
+    end
 end
 
 function this:OnRelease()
-    UIObjectInstances[self.parentKey].Group:ChildDeregister(self.UIObject)
+    if self.frameAttachPointPath == nil then
+        UIObjectInstances[self.parentKey].Group:ChildDeregister(self.UIObject)
+    end
 end
