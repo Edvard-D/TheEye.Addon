@@ -2,6 +2,8 @@ TheEye.Core.UI.Components.LowPowerAlert = {}
 local this = TheEye.Core.UI.Components.LowPowerAlert
 local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
+this.lowPowerThreshold = 0.5
+
 local EventDeregister = TheEye.Core.Managers.Events.Deregister
 local EventRegister = TheEye.Core.Managers.Events.Register
 local FontStringCreate = TheEye.Core.UI.Factories.FontString.Create
@@ -42,7 +44,7 @@ function this.Setup(
                 inputValues = { --[[unit]] "player", --[[powerID]] instance.powerID, },
                 comparisonValues =
                 {
-                    value = 0.5,
+                    value = TheEye.Core.Data.powerLowThreshold,
                     type = "LessThanEqualTo",
                 },
                 value = 4,

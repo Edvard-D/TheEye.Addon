@@ -37,3 +37,4 @@ this.raidMarkerFileIDs =
     [7] = 137007,
     [8] = 137008,
 }
+this.powerLowThreshold = 0.5
