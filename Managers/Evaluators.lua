@@ -172,6 +172,8 @@ local function ListenersNotify(inputGroup, shouldSend, event)
             local listener = listeners[i]
 
             if listener ~= nil and listener.isListening == true and listener.Notify ~= nil then
+                DebugLogEntryAdd("TheEye.Core.Managers.Evaluators", "ListenersNotify: listener notified", listener.UIObject, listener.Component, i, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
+                
                 listener:Notify(event, inputGroup)
             end
         end
