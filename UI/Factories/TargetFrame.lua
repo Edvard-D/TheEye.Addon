@@ -53,6 +53,25 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Name:SetPoint("TOP", instance, "TOP", 0, -dimensions.height * 0.12)
     instance.NameSet = this.NameSet
 
+
+    challengeWidth = TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameChallenge.width
+    challengeHeight = TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameChallenge.height
+    instance.ChallengeSet = this.ChallengeSet
+    instance.challengeAlignment = "centerAlign"
+
+    instance.ChallengeContainer = instance.ChallengeContainer or CreateFrame("Frame", nil, instance)
+    instance.ChallengeContainer:SetSize(challengeWidth, challengeHeight)
+    instance.ChallengeContainer:SetPoint("RIGHT", instance.Name, "LEFT", -3, 0)
+
+    instance.ChallengeBorder = instance.ChallengeBorder or TextureCreate(instance.ChallengeContainer, "OVERLAY")
+    instance.ChallengeBorder:SetPoint("CENTER", instance.ChallengeContainer, "CENTER")
+    instance.ChallengeBorder:SetSize(challengeWidth, challengeHeight)
+
+    instance.ChallengeSymbol = instance.ChallengeSymbol or TextureCreate(instance.ChallengeContainer, "OVERLAY")
+    instance.ChallengeSymbol:SetPoint("CENTER", instance.ChallengeContainer, "CENTER")
+    instance.ChallengeSymbol:SetSize(challengeWidth, challengeHeight)
+
+
     local width = (#dotSpellIDs * TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.width) + (dotPadding * (#dotSpellIDs - 1))
     instance.DoTs = instance.DoTs or CreateFrame("Frame", nil, instance)
     instance.DoTs:SetSize(width, TheEye.Core.Data.DimensionTemplates.Icon.TargetFrameDoT.height)
@@ -79,6 +98,63 @@ function this:HealthSet(percent)
         self.Health:SetText(tostring(math.floor((percent * 100) + 0.5)))
     else
         self.Health:SetText("")
+    end
+end
+
+function this:ChallengeSet(targetClassification, targetLevel, playerLevel, targetReaction, isTargetPlayer, targetFaction)
+    local colors = TheEye.Core.Data.Colors.TargetFrame.challenge
+    local texturePaths = TheEye.Core.Data.TexturePaths.TargetFrame.Challenge[self.challengeAlignment]
+    local borderVersion = 0
+    local levelDifference = targetLevel - playerLevel
+
+    if targetLevel == -1 then
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol6"])
+        borderVersion = 3
+    elseif targetClassification == "trivial" and isTargetPlayer == false then
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol1"])
+    elseif targetClassification == "minus" then
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol2"])
+    elseif levelDifference == 0 or (targetClassification == "trivial" and isTargetPlayer == true) then
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol3"])
+        borderVersion = 1
+    elseif levelDifference == 1 then
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol4"])
+        borderVersion = 2
+    else
+        self.ChallengeSymbol:TextureSet(texturePaths["symbol5"])
+        borderVersion = 3
+    end
+    
+    if targetReaction < 4 then
+        self.ChallengeSymbol:SetVertexColor(unpack(colors["red"]))
+    elseif targetReaction > 4 then
+        self.ChallengeSymbol:SetVertexColor(unpack(colors["green"]))
+    else
+        self.ChallengeSymbol:SetVertexColor(unpack(colors["yellow"]))
+    end
+    
+    if isTargetPlayer == true
+        or targetClassification == "worldboss"
+        or targetClassification == "elite"
+        or targetClassification == "rareelite"
+        or targetClassification == "rare"
+        then
+        self.ChallengeBorder:Show()
+        self.ChallengeBorder:TextureSet(texturePaths["border" .. borderVersion])
+        
+        if isTargetPlayer == true then
+            if targetFaction == "Alliance" then
+                self.ChallengeBorder:SetVertexColor(unpack(colors["blue"]))
+            else -- Horde
+                self.ChallengeBorder:SetVertexColor(unpack(colors["red"]))
+            end
+        elseif targetClassification == "elite" then
+            self.ChallengeBorder:SetVertexColor(unpack(colors["gold"]))
+        else
+            self.ChallengeBorder:SetVertexColor(unpack(colors["silver"]))
+        end
+    else
+        self.ChallengeBorder:Hide()
     end
 end
 

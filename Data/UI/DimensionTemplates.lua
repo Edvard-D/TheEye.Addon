@@ -30,6 +30,11 @@ this.Icon =
         width = 30,
         height = 30,
     },
+    TargetFrameChallenge =
+    {
+        width = 25,
+        height = 25,
+    },
     TargetFrameDoT =
     {
         width = 20,
