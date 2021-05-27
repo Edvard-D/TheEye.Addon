@@ -16,6 +16,13 @@ local methods =
             end)
         end
     end,
+    ModelShowAndSet = function(self, fileID)
+        self:Show()
+
+        After(0.001, function()
+            self:ModelSet(fileID)
+        end)
+    end,
     Redraw = function(self)
         local offset = (0.205 * self.size) / 1000
 
