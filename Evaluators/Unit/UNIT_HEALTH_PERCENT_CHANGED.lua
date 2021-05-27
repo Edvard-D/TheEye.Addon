@@ -15,12 +15,16 @@ local UnitHealthMax = UnitHealthMax
 
 this.reevaluateEvents =
 {
-    PLAYER_TARGET_CHANGED = true
+    PLAYER_ALIVE = true,
+    PLAYER_TARGET_CHANGED = true,
+    PLAYER_UNGHOST = true,
 }
 this.gameEvents =
 {
+    "PLAYER_ALIVE",
     "PLAYER_TARGET_CHANGED",
-    "UNIT_HEALTH"
+    "PLAYER_UNGHOST",
+    "UNIT_HEALTH",
 }
 
 local function CalculateCurrentValue(inputValues)
