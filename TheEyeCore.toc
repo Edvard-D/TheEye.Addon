@@ -122,12 +122,13 @@ Data\UI\TexturePaths.lua
 
 
 # --- Groupers ---
-Data\UI\Groupers\Bottom.lua
-Data\UI\Groupers\Center.lua
+Data\UI\Groupers\CenterBottom.lua
+Data\UI\Groupers\CenterBottomCenter.lua
+Data\UI\Groupers\CenterBottomLeft.lua
+Data\UI\Groupers\CenterBottomRight.lua
+Data\UI\Groupers\CenterTop.lua
+Data\UI\Groupers\Effects.lua
 Data\UI\Groupers\HUD.lua
-Data\UI\Groupers\Left.lua
-Data\UI\Groupers\Right.lua
-Data\UI\Groupers\Top.lua
 Data\UI\Groupers\UIParent.lua
 
 

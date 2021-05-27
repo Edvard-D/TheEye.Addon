@@ -1,8 +1,8 @@
-local parentKey = "BOTTOM"
+local parentKey = "CENTER_BOTTOM"
 
 TheEye.Core.Managers.UI.GrouperAdd(
 {
-    tags = { "RIGHT", },
+    tags = { "CENTER_BOTTOM_CENTER", },
     Child =
     {
         parentKey = parentKey,
@@ -31,10 +31,8 @@ TheEye.Core.Managers.UI.GrouperAdd(
         {
             PointSettings =
             {
-                point = "TOPLEFT",
+                point = "TOP",
                 relativePoint = "TOP",
-                offsetX = 32.5,
-                offsetY = -5,
             },
         },
     },
