@@ -23,6 +23,7 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     local texturePaths = TheEye.Core.Data.TexturePaths.TargetFrame
     instance.unit = unit
 
+    
     instance.Background = instance.Background or TextureCreate(instance, "BACKGROUND", -8, "BLEND")
     instance.Background:TextureSet(texturePaths.background)
     instance.Background:SetVertexColor(unpack(colors.background))
