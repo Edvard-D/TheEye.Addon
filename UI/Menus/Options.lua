@@ -53,6 +53,15 @@ local options =
             max = 1.25,
             step = 0.05,
         },
+        hideActionBarDuringCombat =
+        {
+            type = "toggle",
+            name = locale["Hide action bar during combat"],
+            desc = locale["Requires reload"],
+            order = 3,
+            get = TheEye.Core.Managers.Options.HideActionBarDuringCombatGet,
+            set = TheEye.Core.Managers.Options.HideActionBarDuringCombatSet,
+        },
         extraAbilityPosition =
         {
             type = "group",

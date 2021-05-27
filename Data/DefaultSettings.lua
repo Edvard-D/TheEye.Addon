@@ -23,5 +23,6 @@ TheEye.Core.Managers.Settings.Character.Default =
             X = 250,
             Y = 200
         },
+        ShouldHideActionBarDuringCombat = true,
     },
 }

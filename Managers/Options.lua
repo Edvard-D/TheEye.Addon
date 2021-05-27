@@ -19,9 +19,9 @@ end
 
 function this:OnEvent(event, addon)
     if addon == "TheEyeCore" then
-    LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("TheEye", options)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("TheEye")
-end
+        LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("TheEye", options)
+        LibStub("AceConfigDialog-3.0"):AddToBlizOptions("TheEye")
+    end
 end
 
 function this.TreeGroupAdd(key, value, newModuleNames)
@@ -99,6 +99,14 @@ end
 function this.SizeSet(info, value)
     TheEye.Core.Managers.UI.scale = value
     _G["TheEyeCharacterSettings"].UI.scale = value
+end
+
+function this.HideActionBarDuringCombatGet(info)
+    return _G["TheEyeCharacterSettings"].UI.ShouldHideActionBarDuringCombat
+end
+
+function this.HideActionBarDuringCombatSet(info, value)
+    _G["TheEyeCharacterSettings"].UI.ShouldHideActionBarDuringCombat = value
 end
 
 function this.EnabledGet(info)

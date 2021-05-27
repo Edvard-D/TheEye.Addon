@@ -7,6 +7,7 @@ TheEye.Core.Managers.UI.GrouperAdd(
     {
         parentKey = parentKey,
     },
+    ActionBarCombatHider = {},
     EnabledState =
     {
         ValueHandler =
