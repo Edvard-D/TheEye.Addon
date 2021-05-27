@@ -25,12 +25,13 @@ local methods =
     end,
     Redraw = function(self)
         local offset = (0.205 * self.size) / 1000
-
+        
         self:ClearTransform()
         self:SetTransform(
             offset, offset, 0,
             rad(self.rotation.X), rad(self.rotation.Y), rad(self.rotation.Z),
             self.scale / 1000)
+        self:MakeCurrentCameraCustom()
     end,
     RotationSet = function(self, rotation)
         self.rotation = rotation
