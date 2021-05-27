@@ -200,18 +200,6 @@ local function IsFilterValid(filter, namespace, action, uiObject, component, ...
     return true
 end
 
-local function IsLogEntryValid(namespace, action, uiObject, component, ...)
-    if filters ~= nil then
-    for i = 1, #filters do
-        if IsFilterValid(filters[i], namespace, action, uiObject, component, ...) == true then
-            return true
-        end
-    end
-    end
-
-    return false
-end
-
 
 -- Logging
 function this.LogEntryAdd(namespace, action, uiObject, component, ...)
