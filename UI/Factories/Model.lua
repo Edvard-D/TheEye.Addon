@@ -9,7 +9,7 @@ local methods =
 {
     ModelSet = function(self, fileID)
         if fileID ~= nil then
-            self:SetModel(fileID)
+            self:SetModel(tonumber(fileID))
 
             After(0.01, function()
                 self:Redraw()
