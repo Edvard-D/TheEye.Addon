@@ -54,18 +54,13 @@ function this.Setup(
     if isCastTypeCast == true or (isCastTypeChannel == true and COOLDOWN ~= nil) then
         instance.ValueHandler.validKeys[4] = true
         instance.ValueHandler.validKeys[6] = true
-
-        instance.ListenerGroup =
+        
+        table.insert(instance.ListenerGroup.Listeners, 
         {
-            Listeners =
-            {
-                {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
-                    value = 4,
-                },
-            },
-        }
+            eventEvaluatorKey = "UNIT_SPELLCAST_ACTIVE_CHANGED",
+            inputValues = { --[[unit]] "player", --[[spellID]] instance.spellID },
+            value = 4,
+        })
     end
     
     
