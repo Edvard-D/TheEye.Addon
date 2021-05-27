@@ -23,7 +23,7 @@ this.gameEvents =
 local function CalculateCurrentValue(inputValues)
     local unit = inputValues[1]
     
-    return select(1, UnitFactionGroup(unit))
+    return select(1, UnitFactionGroup(unit)) or "None"
 end
 
 function this:InputGroupSetup(inputGroup)
