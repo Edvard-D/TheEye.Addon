@@ -233,6 +233,7 @@ function this.LogEntryAdd(namespace, action, uiObject, component, ...)
         if logs == nil then
             logs = {}
         end
+        
         table.insert(logs, logEntry)
 
         if _G["TheEyeAccountSettings"] ~= nil
