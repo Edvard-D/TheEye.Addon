@@ -7,7 +7,7 @@ local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroup
 local select = select
 local StartEventTimer = TheEye.Core.Helpers.Timers.StartEventTimer
 local table = table
-local UnitAuraGetBySpellID = TheEye.Core.Helpers.Auras.UnitAuraGetBySpellID
+local UnitAuraDurationGet = TheEye.Core.Helpers.Auras.UnitAuraDurationGet
 local updateRate = 0.5
 local unpack = unpack
 
@@ -62,17 +62,8 @@ end
 
 local function CalculateCurrentValue(inputValues)
     local sourceUnitExpected, destUnit, spellIDExpected = unpack(inputValues)
-    local auraData = UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
     
-    local remainingTime = 0
-    if auraData ~= nil then
-        remainingTime = auraData[6] - GetTime()
-        if remainingTime < 0 then
-            remainingTime = 0
-        end
-    end
-    
-    return remainingTime
+    return UnitAuraDurationGet(sourceUnitExpected, destUnit, spellIDExpected)
 end
 
 function this:InputGroupSetup(inputGroup)

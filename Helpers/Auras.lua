@@ -46,3 +46,17 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         end
     end
 end
+
+function this.UnitAuraDurationGet(sourceUnit, destUnit, spellIDExpected)
+    local auraData = this.UnitAuraGetBySpellID(sourceUnit, destUnit, spellIDExpected)
+    
+    local remainingTime = 0
+    if auraData ~= nil then
+        remainingTime = auraData[6] - GetTime()
+        if remainingTime < 0 then
+            remainingTime = 0
+        end
+    end
+    
+    return remainingTime
+end
