@@ -4,9 +4,9 @@ local table = table
 
 -- See: http://lua-users.org/wiki/CopyTable
 function table.copy(original)
-    local originalType = type(original)
     local copy
-    if originalType == "table" then
+    
+    if type(original) == "table" then
         copy = {}
         for originalKey, originalValue in next, original, nil do
             copy[table.copy(originalKey)] = table.copy(originalValue)
@@ -14,6 +14,7 @@ function table.copy(original)
     else
         copy = original
     end
+
     return copy
 end
 
