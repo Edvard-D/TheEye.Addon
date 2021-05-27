@@ -220,6 +220,7 @@ local function ListenerGroupsSetup(self)
         self,
         "OnIsTargetPlayerNotify"
     )
+    self.isTargetPlayer = false
     self.IsTargetPlayerListenerGroup:Activate()
 
     self.TargetFactionListenerGroup =
