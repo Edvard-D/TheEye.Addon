@@ -11,7 +11,7 @@ local methods =
         if fileID ~= nil then
             self:SetModel(tonumber(fileID))
 
-            After(0.01, function()
+            After(0.001, function()
                 self:Redraw()
             end)
         end
