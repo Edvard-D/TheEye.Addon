@@ -160,7 +160,14 @@ local function ListenersNotify(inputGroup, shouldSend, event)
     DebugLogEntryAdd("TheEye.Core.Managers.Evaluators", "ListenersNotify", nil, nil, event, inputGroup.Evaluator.key, inputGroup.key, inputGroup.currentValue)
     
     if shouldSend == true then
-        local listeners = inputGroup.listeners
+        -- It's necessary to create a seperate list of references to listeners as items from inputGroup.listeners may
+        -- be removed based on a listener being notified. This can result in a listener later in the list never being
+        -- notified, as the size of the list gets reduced by 1 when a listener is removed.
+        local listeners = {}
+        for i = 1, #inputGroup.listeners do
+            table.insert(listeners, inputGroup.listeners[i])
+        end
+        
         for i = 1, #listeners do
             local listener = listeners[i]
 
