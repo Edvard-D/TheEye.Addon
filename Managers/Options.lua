@@ -13,13 +13,15 @@ local options =
 
 
 function this.Initialize()
-    this.gameEvents = { "PLAYER_ENTERING_WORLD" }
+    this.gameEvents = { "ADDON_LOADED" }
     TheEye.Core.Managers.Events.Register(this)
 end
 
-function this:OnEvent(event)
+function this:OnEvent(event, addon)
+    if addon == "TheEyeCore" then
     LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("TheEye", options)
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions("TheEye")
+end
 end
 
 function this.TreeGroupAdd(key, value, newModuleNames)
