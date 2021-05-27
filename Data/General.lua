@@ -38,3 +38,4 @@ this.raidMarkerFileIDs =
     [8] = 137008,
 }
 this.powerLowThreshold = 0.5
+this.frameMinSize = 0.0001

@@ -10,7 +10,7 @@ local frameTypes =
     Model = "PlayerModel",
 	TargetFrame = "Frame",
 }
-local minSize = 0.0001
+local minSize = TheEye.Core.Data.frameMinSize
 local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
