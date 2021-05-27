@@ -282,6 +282,7 @@ UI\Components\FrameModifiers\CastStartAlert.lua
 UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\EffectPlayer.lua
 UI\Components\FrameModifiers\EncounterAlert.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
