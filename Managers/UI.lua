@@ -34,8 +34,6 @@ function this.Initialize()
 
     this.inputValues = { --[[addonName]] "TheEyeCore" }
     TheEye.Core.Managers.Evaluators.ListenerRegister("ADDON_LOADED", this)
-    
-    CastingBarFrame:UnregisterAllEvents()
 end
 
 function this.FormatData(uiObject)
@@ -407,6 +405,10 @@ local function TargetFrameUIObjectSetup(targetFrameData)
     this.UIObjectSetup(uiObject)
 end
 
+local function DefaultFramesManage()
+    CastingBarFrame:UnregisterAllEvents()
+end
+
 function this:OnEvent(eventName, ...)
     if eventName == "ADDON_LOADED" then
         local addon = ...
@@ -422,6 +424,8 @@ function this:OnEvent(eventName, ...)
             end
         end
     else -- PLAYER_ENTERING_WORLD, PLAYER_SPECIALIZATION_CHANGED
+        DefaultFramesManage()
+
         local newSpec = GetSpecializationInfo(GetSpecialization())
         if newSpec ~= playerSpec then
             playerSpec = newSpec
