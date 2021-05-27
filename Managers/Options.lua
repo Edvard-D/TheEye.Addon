@@ -70,6 +70,32 @@ function this.SizeGet(info)
     return _G["TheEyeCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
 end
 
+function this.ExtraAbilityXPositionGet(info)
+    return _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.X or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.X
+end
+
+function this.ExtraAbilityXPositionSet(info, value)
+    ExtraAbilityContainer:ClearAllPoints()
+    x = value
+    y = _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.Y
+    ExtraAbilityContainer:SetPoint("CENTER", UIParent, "BOTTOM", x, y)
+
+    _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.X = value
+end
+
+function this.ExtraAbilityYPositionGet(info)
+    return _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.Y
+end
+
+function this.ExtraAbilityYPositionSet(info, value)    
+    ExtraAbilityContainer:ClearAllPoints()
+    x = _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.X or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.X
+    y = value
+    ExtraAbilityContainer:SetPoint("CENTER", UIParent, "BOTTOM", x, y)
+
+    _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.Y = value
+end
+
 function this.SizeSet(info, value)
     TheEye.Core.Managers.UI.scale = value
     _G["TheEyeCharacterSettings"].UI.scale = value

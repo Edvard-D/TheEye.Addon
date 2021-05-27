@@ -407,6 +407,11 @@ end
 
 local function DefaultFramesManage()
     CastingBarFrame:UnregisterAllEvents()
+
+    ExtraAbilityContainer:ClearAllPoints()
+    x = _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.X or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.X
+    y = _G["TheEyeCharacterSettings"].UI.ExtraAbilityOffset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.ExtraAbilityOffset.Y
+    ExtraAbilityContainer:SetPoint("CENTER", UIParent, "BOTTOM", x, y)
 end
 
 function this:OnEvent(eventName, ...)

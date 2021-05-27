@@ -18,5 +18,10 @@ TheEye.Core.Managers.Settings.Character.Default =
         },
         scale = 1,
         Modules = {},
+        ExtraAbilityOffset =
+        {
+            X = 250,
+            Y = 200
+        },
     },
 }
