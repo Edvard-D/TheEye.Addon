@@ -18,6 +18,7 @@ this.reevaluateEvents =
 this.gameEvents =
 {
     "SPELL_UPDATE_USABLE",
+    "UNIT_SPELLCAST_SUCCEEDED",
 }
 
 
@@ -27,6 +28,16 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+end
+
+function this:GetKey(event, ...)
+    local unit, _, spellID = ...
+    
+    if unit ~= "player" then
+        return
+    end
+
+    return table.concat({ spellID })
 end
 
 function this:Evaluate(inputGroup, event)
