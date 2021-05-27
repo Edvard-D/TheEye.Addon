@@ -39,6 +39,9 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, dotSpellIDs)
     instance.Overlay:SetVertexColor(unpack(colors.overlay))
     instance.Overlay:RotationStart(overlayRotationRate)
 
+    instance.EffectAttachPoint = instance.EffectAttachPoint or CreateFrame("Frame", nil, instance)
+    instance.EffectAttachPoint:SetAllPoints(instance)
+
     instance.RaidMarker = instance.RaidMarker or TextureCreate(instance, "ARTWORK")
     instance.RaidMarker:SetSize(dimensions.width * 0.35, dimensions.height * 0.35)
     instance.RaidMarker:SetPoint("CENTER", instance, "TOP", 0, -dimensions.height * 0.07)
