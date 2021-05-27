@@ -56,13 +56,14 @@ function this.VisibleStateSetup(instance, icon)
         spellcastActive = {},
         final = { 0, }, -- 0 value prevents nil table error in VALID KEYS section 
     }
-    local exceptionKeyValues = {}
+    local exceptionValidKeyValues = {}
+    local exceptionInvalidKeyValues = {}
     local baseModifierKeyValue = 0
 
     local AURA_APPLIED = GetPropertiesOfType(icon, "AURA_APPLIED")
     local AURA_REPLACED, auraReplacedCount = GetPropertiesOfType(icon, "AURA_REPLACED")
     local AURA_REQUIRED = GetPropertiesOfType(icon, "AURA_REQUIRED")
-    local CAST_TYPE = GetPropertiesOfType(icon, "CAST_TYPE")
+    local CAST_TYPE, castTypeCount = GetPropertiesOfType(icon, "CAST_TYPE")
     local isCastTypeCast = IsIconValidForFilter(icon, { type = "CAST_TYPE", value = "CAST" })
     local isCastTypeChannel = IsIconValidForFilter(icon, { type = "CAST_TYPE", value = "CHANNEL" })
     local isCastTypeInstant = IsIconValidForFilter(icon, { type = "CAST_TYPE", value = "INSTANT" })
@@ -172,6 +173,9 @@ function this.VisibleStateSetup(instance, icon)
     end
 
     -- UNIT_SPELLCAST_ACTIVE_CHANGED
+    castingKeyValuesLengthPriorToAdditions = #castingKeyValues
+    castStartAlertKeyValuesLengthPriorToAdditions = #castStartAlertKeyValues
+
     if isCastTypeCast == true or isCastTypeChannel == true then
         value = value * 2
         values.UNIT_SPELLCAST_ACTIVE_CHANGED = value
@@ -208,24 +212,48 @@ function this.VisibleStateSetup(instance, icon)
             }
         )
     end
+    
+    -- INSTANT if UNIT_AURA_ACTIVE_CHANGED is true
+    if castTypeCount > 1 then
+        for i = 1, castTypeCount do
+            if CAST_TYPE[i].value == "INSTANT" and CAST_TYPE[i].requirement ~= nil then
+                value = value * 2
 
-    -- POWER_REQUIRED
-    if POWER_REQUIRED ~= nil then
-        value = value * 2
-        values.PLAYER_SPELL_USEABLE_CHANGED = value
-        table.insert(castingKeyValues, value)
-        table.insert(castingKeyValues, value + values.CastStartAlert)
-        table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
-        table.insert(castingKeyValues, value + values.CastStartAlert + values.UNIT_SPELLCAST_ACTIVE_CHANGED)
-        table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+                for i = #castingKeyValues, castingKeyValuesLengthPriorToAdditions, -1 do
+                    table.insert(castingKeyValues, castingKeyValues[i] + value)
+                end
 
-        table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
-            {
-                eventEvaluatorKey = "PLAYER_SPELL_USEABLE_CHANGED",
-                inputValues = { --[[spellID]] OBJECT_ID.value },
-                value = value,
-            }
-        )
+                for i = #castStartAlertKeyValues, castStartAlertKeyValuesLengthPriorToAdditions, -1 do
+                    table.insert(castStartAlertKeyValues, castStartAlertKeyValues[i] + value)
+                end
+                
+                table.insert(castingKeyValues, value)
+                if iconUIObject.CastSoonAlert ~= nil then
+                    table.insert(castingKeyValues, value)
+                    table.insert(castingKeyValues, value + values.CastStartAlert)
+                    table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+                end
+                if CHARGES ~= nil then
+                    for i = 1, CHARGES.value do
+                        local chargeKeyValue = values[table.concat({ "CHARGES", i })]
+                        table.insert(castingKeyValues, value + chargeKeyValue)
+                        table.insert(castingKeyValues, value + values.CastStartAlert + chargeKeyValue)
+                        table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+                        table.insert(castingKeyValues, value + values.CastSoonAlert + chargeKeyValue)
+                        table.insert(castingKeyValues, value + values.CastStartAlert + values.CastSoonAlert + chargeKeyValue)
+                        table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
+                    end
+                end
+                
+                table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+                    {
+                        eventEvaluatorKey = "UNIT_AURA_ACTIVE_CHANGED",
+                        inputValues = { --[[sourceUnit]] "player", --[[destUnit]] "player", --[[spellID]] CAST_TYPE[i].requirement.value },
+                        value = value,
+                    }
+                )
+            end
+        end
     end
 
     -- PERIODIC
@@ -233,6 +261,7 @@ function this.VisibleStateSetup(instance, icon)
     if CATEGORY.subvalue == "PERIODIC" then
         value = value * 2
         values.UNIT_AURA_DURATION_CHANGED = value
+
         table.insert(castingKeyValues, value)
         table.insert(castingKeyValues, value + values.CastStartAlert)
         table.insert(castStartAlertKeyValues, castingKeyValues[#castingKeyValues])
@@ -297,7 +326,7 @@ function this.VisibleStateSetup(instance, icon)
             for i = 1, #requirementKeys do
                 table.insert(substitutedKeyValues.final, requirementKeys[i])
                 if requirementKeys[i] ~= 0 then
-                    table.insert(exceptionKeyValues, requirementKeys[i] + spellcastActiveKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
+                    table.insert(exceptionInvalidKeyValues, requirementKeys[i] + spellcastActiveKeys[i] + values.UNIT_AURA_DURATION_CHANGED)
                 end
             end
 
@@ -361,6 +390,7 @@ function this.VisibleStateSetup(instance, icon)
             }
         )
     end
+
 
     -- BASE MODIFIER
     if HEALTH_REQUIRED ~= nil then
@@ -460,6 +490,22 @@ function this.VisibleStateSetup(instance, icon)
         end
     end
 
+    -- POWER_REQUIRED
+    if POWER_REQUIRED ~= nil then
+        value = value * 2
+        values.PLAYER_SPELL_USEABLE_CHANGED = value
+        baseModifierKeyValue = baseModifierKeyValue + value
+        table.insert(exceptionValidKeyValues, value)
+
+        table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
+            {
+                eventEvaluatorKey = "PLAYER_SPELL_USEABLE_CHANGED",
+                inputValues = { --[[spellID]] OBJECT_ID.value },
+                value = value,
+            }
+        )
+    end
+
     -- UNIT_COUNT_CLOSE_TO_UNIT_CHANGED
     if UNITS_NEAR_MAX ~= nil or UNITS_NEAR_MIN ~= nil then
         value = value * 2
@@ -518,9 +564,14 @@ function this.VisibleStateSetup(instance, icon)
         end
     end
 
+    -- Add key values that ar eknown to be valid
+    for i = 1, #exceptionValidKeyValues do
+        validKeys[exceptionValidKeyValues[i]] = true
+    end
+
     -- Remove key values that are known to be invalid
-    for i = 1, #exceptionKeyValues do
-        validKeys[exceptionKeyValues[i]] = nil
+    for i = 1, #exceptionInvalidKeyValues do
+        validKeys[exceptionInvalidKeyValues[i]] = nil
     end
 end
 
