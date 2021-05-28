@@ -80,12 +80,6 @@ function this.Initialize()
     TheEye.Core.Managers.Events.Register(this)
 end
 
-function this.ModuleDefaultSettingsAdd(settings)
-    for k,v in pairs(settings) do
-        TheEye.Core.Managers.Settings.Character.Default.UI.Modules[k] = v
-    end
-end
-
 local function SettingsAssignUnassigned(fromSettings, toSettings)
     for k,v in pairs(fromSettings) do
         if type(v) == "table" then
@@ -174,6 +168,14 @@ local function SettingsGroupSetup(settingsGroupKey)
     end
 
     _G[settingsGroup.savedVariableKey] = currentSettings
+end
+
+function this.ModuleDefaultSettingsAdd(settings)
+    for k,v in pairs(settings) do
+        TheEye.Core.Managers.Settings.Character.Default.UI.Modules[k] = v
+    end
+
+    SettingsGroupSetup("Character")
 end
 
 function this:OnEvent(event, addon)
