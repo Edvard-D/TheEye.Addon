@@ -17,6 +17,7 @@ local table = table
     childArranger = TheEye.Core.UI.Objects.ChildArrangers#NAME#
     #OPTIONAL#sortActionName = #SORTACTION#NAME#
     #OPTIONAL#sortValueComponentName = #COMPONENT#NAME#
+    #OPTIONAL#anchorChildSortValue = #NUMBER#
     #OPTIONAL#maxDisplayedChildren = #NUMBER#
 }
 ]]
@@ -128,6 +129,30 @@ end
 
 
 -- DisplayUpdate
+local function AnchorPointsCenterHorizontallyOnAnchorChild(self)
+    local childUIObjects = self.childUIObjects
+    local offsetX = 0
+    local combinedWidthToLeftOfAnchor = 0
+    local anchorWidth = 0
+    local combinedWidthToRightOfAnchor = 0
+
+    if #childUIObjects > 1 then
+        for i = #childUIObjects, 1, -1 do
+            local childUIObject = childUIObjects[i]
+            local childFrame = childUIObject.Frame.instance
+            local sortValue = childUIObject[self.sortValueComponentName]:SortValueGet()
+            
+            if sortValue < self.anchorChildSortValue then
+                combinedWidthToLeftOfAnchor = combinedWidthToLeftOfAnchor + childFrame:GetWidth() + (self.childPadding or 0)
+            elseif sortValue > self.anchorChildSortValue then
+                combinedWidthToRightOfAnchor = combinedWidthToRightOfAnchor + childFrame:GetWidth() + (self.childPadding or 0)
+            end
+        end
+    end
+
+    self.UIObject.Frame.Dimensions.PointSettings.offsetX = (-combinedWidthToLeftOfAnchor + combinedWidthToRightOfAnchor) / 2
+end
+
 local function BoundsCalculate(childUIObjects)
     local leftMin = screenWidth
     local bottomMin = screenHeight
@@ -169,6 +194,10 @@ function this:DisplayUpdate()
         end
 
         self.childArranger.Arrange(frame, self, self.childUIObjects)
+        if self.anchorChildSortValue ~= nil then
+            AnchorPointsCenterHorizontallyOnAnchorChild(self, width)
+        end
+        
         frame:SetSizeWithEvent(SizeCalculate(self.childUIObjects))
     end
 end
