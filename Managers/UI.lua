@@ -49,7 +49,17 @@ function this.FormatData(uiObject)
     uiObject.tags = searchableTags
 end
 
-function this.UIObjectSetup(uiObject)
+local function AreComponentDependenciesMet(uiObject, dependencies)
+    for i = 1, #dependencies do
+        if uiObject[dependencies[i]].wasSetup == false then
+            return false
+        end
+    end
+
+    return true
+end
+
+function this.UIObjectSetup(uiObject, ignoreDuringSetupComponents)
     local components = TheEye.Core.UI.Components
     local pairs = pairs
 
@@ -65,15 +75,32 @@ function this.UIObjectSetup(uiObject)
         end
     end
 
-    for componentKey,_ in pairs(uiObject) do
+    local componentsToSetup = {}
+    for componentKey, _ in pairs(uiObject) do
         local component = components[componentKey]
-        local componentInstance = uiObject[componentKey]
-        if component ~= nil and componentInstance.wasSetup == nil then
-            this.currentComponent = componentInstance
-            componentInstance.key = componentKey
+        
+        if component ~= nil and table.hasvalue(ignoreDuringSetupComponents, componentKey) == false then
+            table.insert(componentsToSetup, componentKey)
+        end
+    end
 
-            component.Setup(componentInstance, uiObject)
-            componentInstance.wasSetup = true
+    while #componentsToSetup > 0 do
+        for i = #componentsToSetup, 1, -1 do
+            local componentKey = componentsToSetup[i]
+            local component = components[componentKey]
+            local componentInstance = uiObject[componentKey]
+
+            if component.dependencies == nil or AreComponentDependenciesMet(uiObject, component.dependencies) == true then
+                if componentInstance.wasSetup == nil then
+                    this.currentComponent = componentInstance
+                    componentInstance.key = componentKey
+
+                    component.Setup(componentInstance, uiObject)
+                    componentInstance.wasSetup = true
+                end
+
+                table.removevalue(componentsToSetup, componentKey)
+            end
         end
     end
 end
