@@ -406,7 +406,7 @@ local function TargetFrameUIObjectSetup(targetFrameData)
         {
             ValueHandler =
             {
-                validKeys = { [0] = targetFrameData.grouperPriority, }
+                validKeys = { [0] = targetFrameData.grouperPriority, },
             },
         },
         TargetFrame =
