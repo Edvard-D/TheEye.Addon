@@ -89,14 +89,14 @@ local function InputGroupIncreaseListenerCount(evaluator, inputGroup, listener)
     if inputGroup.listenerCount == 1 then -- If listenerCount was 0 before
         inputGroup.Evaluator = evaluator
         inputGroup.inputValues = listener.inputValues
-
+    
         if evaluator.isAlwaysActive ~= true
             and evaluator.SetupListeningTo ~= nil
             and inputGroup.ListeningTo == nil
             then
             evaluator:SetupListeningTo(inputGroup)
         end
-
+    
         if evaluator.InputGroupSetup ~= nil then
             evaluator:InputGroupSetup(inputGroup)
         end
