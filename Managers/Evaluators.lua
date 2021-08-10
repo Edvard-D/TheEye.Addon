@@ -168,6 +168,13 @@ function this.ListenerDeregister(evaluatorKey, listener)
 end
 
 -- Listening To: handling of Evaluators that are listening to an Evaluator
+function this.EvaluatorRegisterListeningTo(evaluator, listener)
+    listener.Notify = this.Notify
+    listener.evaluator = evaluator
+
+    this.ListenerRegister(listener.listeningToKey, listener)
+end
+
 function this.InputGroupRegisterListeningTo(inputGroup, listener)
     if inputGroup.ListeningTo == nil then
         inputGroup.ListeningTo = {}
