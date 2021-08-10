@@ -44,6 +44,7 @@ function this.Setup(
     instance.Notify = this.Notify
     instance.Register = this.Register
     instance.Deregister = this.Deregister
+    instance.isActive = false
 
     if instance.inputValues ~= nil then
         local inputValues = instance.inputValues
@@ -57,10 +58,20 @@ function this.Setup(
 end
 
 function this:Activate()
+    if self.isActive == true then
+        return
+    end
+    self.isActive = true
+
     self:Register()
 end
 
 function this:Deactivate()
+    if self.isActive == false then
+        return 
+    end
+    self.isActive = false
+
     self:Deregister()
     self.comparisonState = nil
 end

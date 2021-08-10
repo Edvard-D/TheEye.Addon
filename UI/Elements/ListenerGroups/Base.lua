@@ -36,6 +36,7 @@ function this.Setup(
     
     instance.Activate = this.Activate
     instance.Deactivate = this.Deactivate
+    instance.isActive = false
 
     local listeners = instance.Listeners
     for i = 1, #listeners do -- must come after value assignment
@@ -46,6 +47,11 @@ function this.Setup(
 end
 
 function this:Activate()
+    if self.isActive == true then
+        return
+    end
+    self.isActive = true
+
     if self.OnActivate ~= nil then 
         self:OnActivate() -- must be called before activating listeners
     end
@@ -57,6 +63,11 @@ function this:Activate()
 end
 
 function this:Deactivate()
+    if self.isActive == false then
+        return
+    end
+    self.isActive = false
+
     if self.OnDeactivate ~= nil then
         self:OnDeactivate()
     end
