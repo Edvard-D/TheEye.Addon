@@ -19,6 +19,7 @@ this.Modules =
     CastBars = {},
     EncounterAlerts = {},
     IconGroups = {},
+    InteractionsGroups = {},
     TargetFrames = {},
 }
 
@@ -176,7 +177,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
         iconGroupData.instanceID = string.sub(tostring(uiObject), 13, 19)
     end
     uiObject.instanceID = iconGroupData.instanceID
-    uiObject.tags = { "GROUP", iconGroupData.instanceID }
+    uiObject.tags = { "ICON_GROUP", iconGroupData.instanceID }
     this.FormatData(uiObject)
 
     -- Group Component
@@ -195,7 +196,7 @@ local function IconGroupUIObjectSetup(iconGroupData, maxIcons)
     uiObject[moduleComponentNames[iconGroupData.type]] = uiObject.Group
 
     -- Setup
-    this.UIObjectSetup(uiObject)
+    this.UIObjectSetup(uiObject, { "Group" })
     
     local icons = uiObject[moduleComponentNames[iconGroupData.type]].Icons
     for i = 1, #icons do
@@ -296,6 +297,8 @@ local function CastBarUIObjectSetup(castBarData)
     this.FormatData(uiObject)
 
     this.UIObjectSetup(uiObject)
+    
+    return uiObject
 end
 
 local function EncounterAlertUIObjectSetup(encounterAlertData)
@@ -369,6 +372,80 @@ local function EncounterAlertUIObjectSetup(encounterAlertData)
     this.FormatData(uiObject)
 
     this.UIObjectSetup(uiObject)
+
+    return uiObject
+end
+
+local function InteractionsGroupUIObjectSetup(interactionsGroupData, maxTargetFrames)
+    local parentKey = groupers[interactionsGroupData.grouper].UIObject.key
+
+    local uiObject =
+    {
+        Child =
+        {
+            parentKey = parentKey,
+        },
+        EnabledState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [2] = true },
+            },
+            ListenerGroup =
+            {
+                Listeners =
+                {
+                    {
+                        eventEvaluatorKey = "UIOBJECT_COMPONENT_STATE_CHANGED",
+                        inputValues = { --[[uiObjectKey]] parentKey, --[[componentName]] "VisibleState" },
+                        value = 2,
+                    },
+                },
+            },
+        },
+        Frame =
+        {
+            Dimensions = interactionsGroupData.Dimensions
+        },
+        PriorityRank =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = interactionsGroupData.grouperPriority, }
+            },
+        },
+        VisibleState =
+        {
+            ValueHandler =
+            {
+                validKeys = { [0] = true },
+            },
+        }
+    }
+
+    -- Group Component
+    uiObject.Group =
+    {
+        instanceID = interactionsGroupData.instanceID,
+        instanceType = interactionsGroupData.type,
+        childArranger = TheEye.Core.Helpers.ChildArrangers[interactionsGroupData.Group.childArranger],
+        childPadding = interactionsGroupData.Group.childPadding,
+        maxDisplayedChildren = maxTargetFrames,
+        sortActionName = interactionsGroupData.Group.sortActionName,
+        sortValueComponentName = interactionsGroupData.Group.sortValueComponentName,
+    }
+    uiObject.InteractionsGroup = uiObject.Group
+
+    -- Key
+    if interactionsGroupData.instanceID == nil then
+        interactionsGroupData.instanceID = string.sub(tostring(uiObject), 13, 19)
+    end
+    uiObject.tags = { "INTERACTIONS_GROUP", interactionsGroupData.instanceID }
+    this.FormatData(uiObject)
+
+    this.UIObjectSetup(uiObject, { "Group" })
+
+    return uiObject
 end
 
 local function TargetFrameUIObjectSetup(targetFrameData)
@@ -409,7 +486,7 @@ local function TargetFrameUIObjectSetup(targetFrameData)
                 validKeys = { [0] = targetFrameData.grouperPriority, },
             },
         },
-        TargetFrame =
+        TargetFramePrimary =
         {
             unit = targetFrameData.unit,
         },
@@ -430,6 +507,8 @@ local function TargetFrameUIObjectSetup(targetFrameData)
     this.FormatData(uiObject)
 
     this.UIObjectSetup(uiObject)
+
+    return uiObject
 end
 
 local function DefaultFramesManage()
@@ -489,6 +568,13 @@ function this:OnEvent(eventName, ...)
                 local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
                 if moduleSettings.enabled == true then
                     module.UIObject = IconGroupUIObjectSetup(module, moduleSettings.maxIcons)
+                end
+            end
+
+            for k, module in pairs(this.Modules.InteractionsGroups) do
+                local moduleSettings = _G["TheEyeCharacterSettings"].UI.Modules[module.type]
+                if moduleSettings.enabled == true then
+                    module.UIObject = InteractionsGroupUIObjectSetup(module, moduleSettings.maxTargetFrames)
                 end
             end
 

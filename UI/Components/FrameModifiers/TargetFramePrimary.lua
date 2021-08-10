@@ -1,13 +1,17 @@
-TheEye.Core.UI.Components.TargetFrame = {}
-local this = TheEye.Core.UI.Components.TargetFrame
+TheEye.Core.UI.Components.TargetFramePrimary = {}
+local this = TheEye.Core.UI.Components.TargetFramePrimary
 local inherited = TheEye.Core.UI.Components.FrameModifierBase
 
-local GetFiltered = TheEye.Core.Managers.Icons.GetFiltered
-local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
+local DoTSpellIDsGet = TheEye.Core.Managers.Icons.DoTSpellIDsGet
+local EventsDeregister = TheEye.Core.Managers.Events.Deregister
+local EventsRegister = TheEye.Core.Managers.Events.Register
+local healthChangePerSecondLookbackDuration = 30 -- seconds
 local NotifyBasedFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerGroups.NotifyBasedFunctionCaller.Setup
 local pairs = pairs
 local table = table
 local TargetFrameClaim = TheEye.Core.UI.Factories.TargetFrame.Claim
+local UnitGUID = UnitGUID
+local UnitHealth = UnitHealth
 
 
 --[[ #this#TEMPLATE#
@@ -24,6 +28,7 @@ local TargetFrameClaim = TheEye.Core.UI.Factories.TargetFrame.Claim
 function this.Setup(
     instance
 )
+    instance.gameEvents = { "PLAYER_TARGET_CHANGED" }
 
     instance.ValueHandler = { validKeys = { [6] = true, } }
     instance.ListenerGroup =
@@ -52,6 +57,7 @@ function this.Setup(
 
     instance.Modify = this.Modify
     instance.Demodify = this.Demodify
+    instance.OnEvent = this.OnEvent
     instance.OnRaidMarkerNotify = this.OnRaidMarkerNotify
     instance.OnHealthNotify = this.OnHealthNotify
     instance.OnTargetClassificationNotify = this.OnTargetClassificationNotify
@@ -61,7 +67,9 @@ function this.Setup(
     instance.OnIsTargetPlayerNotify = this.OnIsTargetPlayerNotify
     instance.OnTargetFactionNotify = this.OnTargetFactionNotify
     instance.OnNameNotify = this.OnNameNotify
-    instance.OnDoTNotify = this.OnDoTNotify
+    instance.OnAuraNotify = this.OnAuraNotify
+    instance.OnIsBossNotify = this.OnIsBossNotify
+    instance.OnHealthChangePerSecondNotify = this.OnHealthChangePerSecondNotify
 
     inherited.Setup(
         instance,
@@ -69,34 +77,33 @@ function this.Setup(
         "creator"
     )
 
-    instance.dotSpellIDs = this.DoTSpellIDsGet()
+    instance.auraSpellIDs = DoTSpellIDsGet()
 end
 
-function this.DoTSpellIDsGet()
-    local dotSpellIDs = {}
-
-    local icons = GetFiltered(
-        {
-            {
-                {
-                    type = "CATEGORY",
-                    value = "DAMAGE",
-                    subvalue = "PERIODIC",
-                },
-            },
-        }
-    )
-
-    for i = 1, #icons do
-        local OBJECT_ID = GetPropertiesOfType(icons[i], "OBJECT_ID")
-        table.insert(dotSpellIDs, OBJECT_ID.value)
+local function HealthChangePerSecondListenerGroupSetup(self)
+    if self.HealthChangePerSecondListenerGroup ~= nil and self.HealthChangePerSecondListenerGroup.isActive == true then
+        return
     end
 
-    table.sort(dotSpellIDs, function(a,b)
-        return a < b
-    end)
+    self.HealthChangePerSecondListenerGroup =
+    {
+        Listeners =
+        {
+            {
+                eventEvaluatorKey = "UNIT_HEALTH_CHANGE_PER_SECOND_CHANGED",
+                inputValues = { --[[unitGUID]] UnitGUID(self.unit), --[[lookbackDuration]] healthChangePerSecondLookbackDuration },
+            },
+        },
+    }
+    NotifyBasedFunctionCallerSetup(
+        self.HealthChangePerSecondListenerGroup,
+        self,
+        "OnHealthChangePerSecondNotify"
+    )
 
-    return dotSpellIDs
+    if self.isBoss == true then
+        self.HealthChangePerSecondListenerGroup:Activate()
+    end
 end
 
 local function ListenerGroupsSetup(self)
@@ -194,7 +201,7 @@ local function ListenerGroupsSetup(self)
         {
             {
                 eventEvaluatorKey = "UNIT_REACTION_CHANGED",
-                inputValues = { --[[unit1]] "player", --[[unit2]] "target", },
+                inputValues = { --[[unit1]] "target", --[[unit2]] "player", },
             },
         },
     }
@@ -258,10 +265,10 @@ local function ListenerGroupsSetup(self)
     )
     self.NameListenerGroup:Activate()
 
-    -- DoTs
-    for i = 1, #self.dotSpellIDs do
-        local spellID = self.dotSpellIDs[i]
-        local key = table.concat({ "DoTListenerGroup_", spellID })
+    -- Auras
+    for i = 1, #self.auraSpellIDs do
+        local spellID = self.auraSpellIDs[i]
+        local key = table.concat({ "AuraListenerGroup_", spellID })
 
         self[key] =
         {
@@ -277,10 +284,28 @@ local function ListenerGroupsSetup(self)
         NotifyBasedFunctionCallerSetup(
             self[key],
             self,
-            "OnDoTNotify"
+            "OnAuraNotify"
         )
         self[key]:Activate()
     end
+
+    -- Is Boss
+    self.IsBossListenerGroup =
+    {
+        Listeners =
+        {
+            {
+                eventEvaluatorKey = "UNIT_IS_BOSS_CHANGED",
+                inputValues = { --[[unit]] self.unit, },
+            },
+        },
+    }
+    NotifyBasedFunctionCallerSetup(
+        self.IsBossListenerGroup,
+        self,
+        "OnIsBossNotify"
+    )
+    self.IsBossListenerGroup:Activate()
 end
 
 local function ListenerGroupsTeardown(self)
@@ -293,11 +318,17 @@ local function ListenerGroupsTeardown(self)
     self.IsTargetPlayerListenerGroup:Deactivate()
     self.TargetFactionListenerGroup:Deactivate()
     self.NameListenerGroup:Deactivate()
+    self.IsBossListenerGroup:Deactivate()
+    if self.HealthChangePerSecondListenerGroup ~= nil then
+        self.HealthChangePerSecondListenerGroup:Deactivate()
+    end
 
-    -- DoTs
-    for i = 1, #self.dotSpellIDs do
-        local spellID = self.dotSpellIDs[i]
-        local key = table.concat({ "DoTListenerGroup_", spellID })
+    self.isBoss = false
+
+    -- Auras
+    for i = 1, #self.auraSpellIDs do
+        local spellID = self.auraSpellIDs[i]
+        local key = table.concat({ "AuraListenerGroup_", spellID })
 
         self[key]:Deactivate()
         self[key] = nil
@@ -305,9 +336,10 @@ local function ListenerGroupsTeardown(self)
 end
 
 function this:Modify(frame)
-    frame.targetFrame = TargetFrameClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, self.unit, self.dotSpellIDs)
+    frame.targetFrame = TargetFrameClaim(self.UIObject, frame, self.UIObject.Frame.Dimensions, "PRIMARY", self.auraSpellIDs)
     self.targetFrame = frame.targetFrame
     ListenerGroupsSetup(self)
+    EventsRegister(self)
 end
 
 function this:Demodify(frame)
@@ -320,6 +352,14 @@ function this:Demodify(frame)
     self.isTargetPlayer = nil
     self.targetFaction = nil
     ListenerGroupsTeardown(self)
+    EventsDeregister(self)
+end
+
+function this:OnEvent(event) -- PLAYER_TARGET_CHANGED
+    if self.isBoss == true then
+        self.HealthChangePerSecondListenerGroup:Deactivate()
+        HealthChangePerSecondListenerGroupSetup(self)
+    end
 end
 
 function this:OnRaidMarkerNotify(event, value)
@@ -330,10 +370,9 @@ function this:OnHealthNotify(event, value)
     self.targetFrame:HealthSet(value)
 end
 
-function this:OnTargetClassificationNotify(event, value)
-    self.targetClassification = value
-
-    if self.targetLevel ~= nil
+local function ChallengeSet(self)
+    if self.targetClassification ~= nil
+        and self.targetLevel ~= nil
         and self.playerLevel ~= nil
         and self.targetReaction ~= nil
         and self.isTargetPlayer ~= nil
@@ -341,77 +380,60 @@ function this:OnTargetClassificationNotify(event, value)
         then
         self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
     end
+end
+
+function this:OnTargetClassificationNotify(event, value)
+    self.targetClassification = value
+    ChallengeSet(self)
 end
 
 function this:OnTargetLevelNotify(event, value)
     self.targetLevel = value
-
-    if self.targetClassification ~= nil
-        and self.playerLevel ~= nil
-        and self.targetReaction ~= nil
-        and self.isTargetPlayer ~= nil
-        and self.targetFaction ~= nil
-        then
-        self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
-    end
+    ChallengeSet(self)
 end
 
 function this:OnPlayerLevelNotify(event, value)
     self.playerLevel = value
-
-    if self.targetClassification ~= nil
-        and self.targetLevel ~= nil
-        and self.targetReaction ~= nil
-        and self.isTargetPlayer ~= nil
-        and self.targetFaction ~= nil
-        then
-        self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
-    end
+    ChallengeSet(self)
 end
 
 function this:OnTargetReactionNotify(event, value)
     self.targetReaction = value
-
-    if self.targetClassification ~= nil
-        and self.targetLevel ~= nil
-        and self.playerLevel ~= nil
-        and self.isTargetPlayer ~= nil
-        and self.targetFaction ~= nil
-        then
-        self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
-    end
+    ChallengeSet(self)
 end
 
 function this:OnIsTargetPlayerNotify(event, value)
     self.isTargetPlayer = value
-
-    if self.targetClassification ~= nil
-        and self.targetLevel ~= nil
-        and self.targetReaction ~= nil
-        and self.playerLevel ~= nil
-        and self.targetFaction ~= nil
-        then
-        self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
-    end
+    ChallengeSet(self)
 end
 
 function this:OnTargetFactionNotify(event, value)
     self.targetFaction = value
-
-    if self.targetClassification ~= nil
-        and self.targetLevel ~= nil
-        and self.playerLevel ~= nil
-        and self.targetReaction ~= nil
-        and self.isTargetPlayer ~= nil
-        then
-        self.targetFrame:ChallengeSet(self.targetClassification, self.targetLevel, self.playerLevel, self.targetReaction, self.isTargetPlayer, self.targetFaction)
-    end
+    ChallengeSet(self)
 end
 
 function this:OnNameNotify(event, value)
     self.targetFrame:NameSet(value)
 end
 
-function this:OnDoTNotify(event, value, inputGroup)
-    self.targetFrame:DoTSet(inputGroup.inputValues[3], value)
+function this:OnAuraNotify(event, value, inputGroup)
+    self.targetFrame:AuraSet(inputGroup.inputValues[3], value)
+end
+
+function this:OnIsBossNotify(event, value)
+    if self.isBoss ~= value then
+        self.isBoss = value
+
+        if self.isBoss == true then
+            HealthChangePerSecondListenerGroupSetup(self)
+        elseif self.HealthChangePerSecondListenerGroup ~= nil then
+            self.HealthChangePerSecondListenerGroup:Deactivate()
+        end
+    end
+
+    self.targetFrame:IsBossSet(value)
+end
+
+function this:OnHealthChangePerSecondNotify(event, value)
+    self.targetFrame:TimeUntilDeathSet(UnitHealth(self.unit), value)
 end

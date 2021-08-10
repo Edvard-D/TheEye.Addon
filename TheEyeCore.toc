@@ -296,7 +296,8 @@ UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\PlayerCast.lua
 UI\Components\FrameModifiers\TargetCast.lua
-UI\Components\FrameModifiers\TargetFrame.lua
+UI\Components\FrameModifiers\TargetFrameInteraction.lua
+UI\Components\FrameModifiers\TargetFramePrimary.lua
 
 
 # --- Groups ---
@@ -308,6 +309,7 @@ UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\PriorityGroup.lua
 
 UI\Components\Groups\ActiveGroup.lua
+UI\Components\Groups\InteractionsGroup.lua
 UI\Components\Groups\RotationGroup.lua
 UI\Components\Groups\SituationalGroup.lua
 

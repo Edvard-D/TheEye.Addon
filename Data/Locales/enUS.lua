@@ -11,3 +11,7 @@ locale["Size"] = "Size"
 locale["Hide action bar during combat"] = "Hide action bar during combat"
 locale["Requires reload"] = "Requires reload"
 locale["Extra Ability Position"] = "Extra Ability Position"
+
+-- Target Frame
+locale["sec"] = "sec"
+locale["secs"] = "secs"
