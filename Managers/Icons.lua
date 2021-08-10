@@ -30,7 +30,7 @@ local function UnnecessaryIconsRemove()
     for specID,v in pairs(keyValues) do
         if table.haskey(necessarySpecs, specID) == false then
             keyValues[specID] = nil
-            value[specID] = nil
+            values[specID] = nil
         end
     end
 end
