@@ -72,7 +72,7 @@ this.Vertical =
                         0,
                         combinedOffsetY
                     )
-                    
+
                     combinedOffsetY = combinedOffsetY - childFrame:GetHeight() - (groupInstance.childPadding or 0)
                 else
                     childFrame:Hide()
