@@ -1,8 +1,8 @@
-local parentKey = "CENTER"
+local parentKey = "HUD"
 
 TheEye.Core.Managers.UI.GrouperAdd(
 {
-    tags = { "CENTER_BOTTOM", },
+    tags = { "CENTER", },
     Child =
     {
         parentKey = parentKey,
@@ -28,7 +28,10 @@ TheEye.Core.Managers.UI.GrouperAdd(
     Frame = {},
     Group =
     {
-        childArranger = TheEye.Core.Helpers.ChildArrangers.Delegate,
+        childArranger = TheEye.Core.Helpers.ChildArrangers.Vertical,
+        childPadding = 5,
+        sortActionName = "SortAscending",
+        sortValueComponentName = "PriorityRank",
     },
     PriorityRank =
     {

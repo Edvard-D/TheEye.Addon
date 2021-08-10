@@ -372,7 +372,7 @@ local function EncounterAlertUIObjectSetup(encounterAlertData)
 end
 
 local function TargetFrameUIObjectSetup(targetFrameData)
-    local parentKey = groupers["CENTER_TOP"].UIObject.key
+    local parentKey = groupers[targetFrameData.grouper].UIObject.key
 
     local uiObject =
     {

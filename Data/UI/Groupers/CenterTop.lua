@@ -1,4 +1,4 @@
-local parentKey = "HUD"
+local parentKey = "CENTER"
 
 TheEye.Core.Managers.UI.GrouperAdd(
 {

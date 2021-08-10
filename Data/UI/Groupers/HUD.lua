@@ -40,10 +40,11 @@ TheEye.Core.Managers.UI.GrouperAdd(
     },
     Group =
     {
-        childArranger = TheEye.Core.Helpers.ChildArrangers.Vertical,
-        childPadding = 5,
+        childArranger = TheEye.Core.Helpers.ChildArrangers.Horizontal,
+        childPadding = 50,
         sortActionName = "SortAscending",
         sortValueComponentName = "PriorityRank",
+        anchorChildSortValue = 2,
     },
     VisibleState =
     {
