@@ -160,3 +160,30 @@ function this.GetPropertiesOfType(iconData, propertyType, value)
         return filteredProperties, filteredPropertyCount
     end
 end
+
+function this.DoTSpellIDsGet()
+    local dotSpellIDs = {}
+
+    local icons = this.GetFiltered(
+        {
+            {
+                {
+                    type = "CATEGORY",
+                    value = "DAMAGE",
+                    subvalue = "PERIODIC",
+                },
+            },
+        }
+    )
+
+    for i = 1, #icons do
+        local OBJECT_ID = this.GetPropertiesOfType(icons[i], "OBJECT_ID")
+        table.insert(dotSpellIDs, OBJECT_ID.value)
+    end
+
+    table.sort(dotSpellIDs, function(a,b)
+        return a < b
+    end)
+
+    return dotSpellIDs
+end
