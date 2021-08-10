@@ -15,11 +15,13 @@ this.reevaluateEvents =
 {
     PLAYER_REGEN_DISABLED = true,
     PLAYER_TARGET_CHANGED = true,
+    RAID_TARGET_UPDATE = true,
 }
 this.gameEvents =
 {
     "PLAYER_REGEN_DISABLED",
     "PLAYER_TARGET_CHANGED",
+    "RAID_TARGET_UPDATE",
 }
 
 function this:InputGroupSetup(inputGroup)
