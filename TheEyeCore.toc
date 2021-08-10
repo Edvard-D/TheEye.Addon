@@ -109,6 +109,7 @@ Helpers\Files.lua
 Helpers\Player.lua
 Helpers\Table.lua
 Helpers\Timers.lua
+Helpers\Unit.lua
 
 
 
@@ -184,6 +185,7 @@ Evaluators\Unit\UNIT_HEALTH_CHANGE_PER_SECOND_CHANGED.lua
 Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
 Evaluators\Unit\UNIT_IN_VEHICLE_CHANGED.lua
+Evaluators\Unit\UNIT_IS_BOSS_CHANGED.lua
 Evaluators\Unit\UNIT_IS_PLAYER_CHANGED.lua
 Evaluators\Unit\UNIT_LEVEL_CHANGED.lua
 Evaluators\Unit\UNIT_NAME_CHANGED.lua
