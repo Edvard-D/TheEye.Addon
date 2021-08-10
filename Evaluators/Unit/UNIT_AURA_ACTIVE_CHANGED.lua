@@ -65,7 +65,7 @@ end
 
 function this:GetKey(event, eventInputGroup)
     local eventData = eventInputGroup.eventData
-    return table.concat({ eventData["sourceUnit"], eventData["destUnit"], eventData["spellID"] })
+    return table.concat({ eventData.sourceUnit, eventData.destUnit, eventData.spellID })
 end
 
 function this:Evaluate(inputGroup, event, eventInputGroup)
@@ -74,7 +74,7 @@ function this:Evaluate(inputGroup, event, eventInputGroup)
     if event == "PLAYER_TARGET_CHANGED" then
         isActive = CalculateCurrentValue(inputGroup.inputValues)
     else
-        isActive = eventInputGroup.eventData["suffix"] == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
+        isActive = eventInputGroup.eventData.suffix == "AURA_APPLIED" -- else AURA_BROKEN_SPELL, AURA_BROKEN, AURA_REMOVED
     end
     
     if inputGroup.currentValue ~= isActive then
