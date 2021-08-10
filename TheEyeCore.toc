@@ -20,7 +20,7 @@
 # ---------------------------
 # |		   SETTINGS			|
 # ---------------------------
-## Interface: 80200
+## Interface: 90002
 ## Title: TheEye.Core
 ## Version: 0.7.0
 ## Author: Edvard-D
