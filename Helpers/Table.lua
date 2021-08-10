@@ -105,3 +105,13 @@ function table.clear(tab)
         tab[k] = nil
     end
 end
+
+function table.count(tab)
+    local count = 0
+
+    for k,v in pairs(tab) do
+        count = count + 1
+    end
+
+    return count
+end
