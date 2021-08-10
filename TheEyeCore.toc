@@ -272,6 +272,7 @@ UI\Factories\TargetFrame.lua
 # ---------------------------
 UI\Components\ActionBarCombatHider.lua
 UI\Components\Child.lua
+UI\Components\ElapsedTimeTracker.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
 UI\Components\PriorityRank.lua
