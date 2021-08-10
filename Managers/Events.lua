@@ -59,7 +59,7 @@ local function ListenerRegister(listener, eventName, eventType)
     
     listeners.listenerCount = listeners.listenerCount + 1
     if listeners.listenerCount == 1 then
-        DebugLogEntryAdd("TheEye.Core.Managers.Events", "RegisterEvent", nil, nil, eventName)
+        DebugLogEntryAdd("TheEye.Core.Managers.Events", "RegisterEvent", listener.UIObject, listener.Component, eventName)
         
         if eventType == "GAME" then
             frame:RegisterEvent(eventName)
@@ -98,7 +98,7 @@ local function ListenerDeregister(listener, eventName, eventType)
 
     listeners.listenerCount = listeners.listenerCount - 1
     if listeners.listenerCount == 0 then
-        DebugLogEntryAdd("TheEye.Core.Managers.Events", "UnregisterEvent", nil, nil, eventName)
+        DebugLogEntryAdd("TheEye.Core.Managers.Events", "UnregisterEvent", listener.UIObject, listener.Component, eventName)
 
         if eventType == "GAME" then
             frame:UnregisterEvent(eventName)
