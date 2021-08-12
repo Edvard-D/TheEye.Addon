@@ -190,6 +190,7 @@ Evaluators\Unit\UNIT_IN_VEHICLE_CHANGED.lua
 Evaluators\Unit\UNIT_IS_BOSS_CHANGED.lua
 Evaluators\Unit\UNIT_IS_HOSTILE_CHANGED.lua
 Evaluators\Unit\UNIT_IS_PLAYER_CHANGED.lua
+Evaluators\Unit\UNIT_IS_MOVING_CHANGED.lua
 Evaluators\Unit\UNIT_LEVEL_CHANGED.lua
 Evaluators\Unit\UNIT_NAME_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
