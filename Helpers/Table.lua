@@ -115,3 +115,21 @@ function table.count(tab)
 
     return count
 end
+
+function table.areidenticle(tab1, tab2)
+    if tab1 == nil or tab2 == nil then
+        return false
+    end
+
+    if #tab1 ~= #tab2 then
+        return false
+    end
+
+    for i = 1, #tab1 do
+        if tab1[i] ~= tab2[i] then
+            return false
+        end
+    end
+
+    return true
+end
