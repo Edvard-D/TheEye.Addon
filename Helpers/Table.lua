@@ -116,7 +116,7 @@ function table.count(tab)
     return count
 end
 
-function table.areidenticle(tab1, tab2)
+function table.areidentical(tab1, tab2)
     if tab1 == nil or tab2 == nil then
         return false
     end
