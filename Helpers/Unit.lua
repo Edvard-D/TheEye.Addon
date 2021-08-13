@@ -28,3 +28,17 @@ function this.IsUnitBoss(unit)
 
     return false
 end
+
+function this.UnitCategoryGet(unit)
+    if unit == "player" then
+        return value "PLAYER"
+    elseif string.find(unit, "raidpet") ~= nil or string.find(unit, "partypet") then
+        return "FRIENDLY_PET"
+    elseif string.find(unit, "raid") ~= nil or string.find(unit, "party") then
+        return "FRIENDLY"
+    elseif string.find(unit "boss") ~= nil then
+        return "BOSS"
+    else
+        return "OTHER"
+    end
+end
