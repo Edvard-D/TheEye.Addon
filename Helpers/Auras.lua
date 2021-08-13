@@ -2,7 +2,6 @@ TheEye.Core.Helpers.Auras = {}
 local this = TheEye.Core.Helpers.Auras
 
 local auraFilters = TheEye.Core.Data.auraFilters
-local auraMax = 40
 local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 local IconsGetFiltered = TheEye.Core.Managers.Icons.GetFiltered
 local select = select
@@ -12,15 +11,17 @@ local UnitAura = UnitAura
 
 function this.UnitAurasGet(unit, filter)
     local auras = {}
+    local i = 0
 
-    for i = 1, auraMax do
+    while true do
+        i = i + 1
         local auraValues = { UnitAura(unit, i, filter) }
 
-        if auraValues[1] ~= nil then
-            table.insert(auras, auraValues)
-        else
-            break
+        if auraValues[1] == nil then
+            return auras
         end
+
+        table.insert(auras, auraValues)
     end
 
     return auras
@@ -28,10 +29,16 @@ end
 
 function this.UnitAuraSpellIDsGet(unit, filter)
     local spellIDs = {}
+    local i = 0
 
-    for i = 1, auraMax do
+    while true do
+        i = i + 1
         local spellID = select(10, UnitAura(unit, i, filter))
         
+        if spellID == nil then
+            return spellIDs
+        end
+
         if table.hasvalue(spellIDs, spellID) == false then
             table.insert(spellIDs, spellID)
         end
@@ -42,6 +49,7 @@ end
 
 function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
     local filter = "HELPFUL"
+    local i = 0
 
     local icons = IconsGetFiltered(
     {
@@ -60,7 +68,8 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         end
     end
 
-    for i = 1, auraMax do
+    while true do
+        i = i + 1
         local auraValues = { UnitAura(destUnit, i, filter) }
         local spellID = auraValues[10]
 
