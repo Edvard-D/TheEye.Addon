@@ -10,6 +10,16 @@ local table = table
 local UnitAura = UnitAura
 
 
+function this.UnitAurasGet(unit, filter)
+    local auras = {}
+
+    for i = 1, auraMax do        
+        table.insert(auras, { UnitAura(unit, i, filter) })
+    end
+
+    return auras
+end
+
 function this.UnitAuraSpellIDsGet(unit, filter)
     local spellIDs = {}
 
