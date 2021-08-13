@@ -13,8 +13,14 @@ local UnitAura = UnitAura
 function this.UnitAurasGet(unit, filter)
     local auras = {}
 
-    for i = 1, auraMax do        
-        table.insert(auras, { UnitAura(unit, i, filter) })
+    for i = 1, auraMax do
+        local auraValues = { UnitAura(unit, i, filter) }
+
+        if auraValues[1] ~= nil then
+            table.insert(auras, auraValues)
+        else
+            break
+        end
     end
 
     return auras
