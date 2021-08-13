@@ -2,6 +2,7 @@ TheEye.Core.Helpers.Auras = {}
 local this = TheEye.Core.Helpers.Auras
 
 local auraFilters = TheEye.Core.Data.auraFilters
+local auraMax = 40
 local GetPropertiesOfType = TheEye.Core.Managers.Icons.GetPropertiesOfType
 local IconsGetFiltered = TheEye.Core.Managers.Icons.GetFiltered
 local select = select
@@ -29,7 +30,7 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         end
     end
 
-    for i = 1, 40 do -- 40 is the maximum number of auras that can be on a unit
+    for i = 1, auraMax do
         local auraValues = { UnitAura(destUnit, i, filter) }
         local spellID = auraValues[10]
 
