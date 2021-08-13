@@ -21,7 +21,8 @@ function this.IsUnitBoss(unit)
         end
     end
 
-    if UnitClassification(unit) == "worldboss" then
+    local unitClassification = UnitClassification(unit)
+    if unitClassification == "worldboss" or (unitClassification == "elite" and UnitLevel(unit) == -1) then
         return true
     end
 
