@@ -10,6 +10,20 @@ local table = table
 local UnitAura = UnitAura
 
 
+function this.UnitAuraSpellIDsGet(unit, filter)
+    local spellIDs = {}
+
+    for i = 1, auraMax do
+        local spellID = select(10, UnitAura(unit, i, filter))
+        
+        if table.hasvalue(spellIDs, spellID) == false then
+            table.insert(spellIDs, spellID)
+        end
+    end
+
+    return spellIDs
+end
+
 function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
     local filter = "HELPFUL"
 
