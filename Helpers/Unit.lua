@@ -36,7 +36,7 @@ function this.UnitCategoryGet(unit)
         return "FRIENDLY_PET"
     elseif string.find(unit, "raid") ~= nil or string.find(unit, "party") then
         return "FRIENDLY"
-    elseif string.find(unit "boss") ~= nil then
+    elseif string.find(unit, "boss") ~= nil then
         return "BOSS"
     else
         return "OTHER"
