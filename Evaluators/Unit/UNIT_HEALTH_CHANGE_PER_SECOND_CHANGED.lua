@@ -3,9 +3,10 @@ local this = TheEye.Core.Evaluators.UNIT_HEALTH_CHANGE_PER_SECOND_CHANGED
 this.isAlwaysActive = true
 
 local EvaluatorRegisterListeningTo = TheEye.Core.Managers.Evaluators.EvaluatorRegisterListeningTo
-local lookbackMaxDuration = 10
 local GetTime = GetTime
 local lastInteractionMaxElapsedTime = 60
+local lookbackDurationMax = 10
+local lookbackDurationMin = 0.5
 local trackedGUIDs = {}
 local unitsClearedTimestamp = 0
 
@@ -83,14 +84,18 @@ local function CalculateCurrentValue(inputValues)
         lookbackDuration = firstInteractionElapsedTime
     end
 
+    if lookbackDuration < lookbackDurationMin then
+        lookbackDuration = lookbackDurationMin
+    end
+
     return (healTotal - damageTotal) / lookbackDuration
 end
 
 function this:InputGroupSetup(inputGroup)
     local lookbackDuration = inputGroup.inputValues[2]
 
-    if lookbackDuration > lookbackMaxDuration then
-        lookbackMaxDuration = lookbackDuration
+    if lookbackDuration > lookbackDurationMax then
+        lookbackDurationMax = lookbackDuration
     end
 
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
@@ -98,7 +103,7 @@ end
 
 local function OldDataRemove(data, currentTime)
     for i = #data, 1, -1 do
-        if currentTime - data[i].timestamp > lookbackMaxDuration then
+        if currentTime - data[i].timestamp > lookbackDurationMax then
             table.remove(data, i)
         end
     end
