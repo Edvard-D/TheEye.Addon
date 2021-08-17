@@ -317,11 +317,11 @@ end
 
 function this:OnEvent(event)
     if event == "PLAYER_TARGET_CHANGED" then
-        if UnitIsDead("target") == true then
+        self.currentTargetGUID = UnitGUID("target")
+
+        if UnitIsDead("target") == true or self.currentTargetGUID == nil then
             return
         end
-
-        self.currentTargetGUID = UnitGUID("target")
 
         if self.trackedGUIDs == nil then
             self.trackedGUIDs = {}
