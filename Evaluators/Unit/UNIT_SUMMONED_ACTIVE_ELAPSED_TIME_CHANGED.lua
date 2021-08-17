@@ -8,6 +8,7 @@ local InputGroupRegisterListeningTo = TheEye.Core.Managers.Evaluators.InputGroup
 local select = select
 local table = table
 local timerLength = 1 -- second
+local UnitGUID = UnitGUID
 
 
 --[[ #this#TEMPLATE#
@@ -64,24 +65,42 @@ function this:GetKey(event, ...)
         local inputValues = select(2, ...)
         sourceUnit = inputValues[1]
         spellID = inputValues[2]
-    else -- COMBAT_LOG
+    elseif event == "SPELL_SUMMON" then
+        local eventInputGroup = ...
         eventData = eventInputGroup.eventData
         local combatLogSpellName = select(1, GetSpellInfo(eventData.spellID))
 
-        for i = 1, #self.InputGroups do
-            local inputValues = self.InputGroups[i].inputValues
+        for k, inputGroup in pairs (self.InputGroups) do
+            local inputValues = inputGroup.inputValues
             local inputGroupSourceUnit = inputValues[1]
+            local inputGroupSourceGUID = UnitGUID(inputGroupSourceUnit)
             local inputGroupSpellID = inputValues[2]
             local inputGroupSpellName = select(1, GetSpellInfo(inputGroupSpellID))
 
-            if inputGroupSourceUnit == eventData.sourceUnit and inputGroupSpellName == combatLogSpellName then
+            if inputGroupSourceGUID == eventData.sourceGUID and inputGroupSpellName == combatLogSpellName then
                 if sourceUnit ~= nil and spellID ~= nil then
                     error("More than one input group matches for inputValues[1] of " .. tostring(inputValues[1]) ..
                         " and inputValues[2] of " .. tostring(inputValues[2]) .. ".")
                 end
-                
+
                 sourceUnit = inputGroupSourceUnit
                 spellID = inputGroupSpellID
+            end
+        end
+    else -- UNIT_DESTROYED, UNIT_DIED, UNIT_DISSIPATES
+        local eventInputGroup = ...
+        eventData = eventInputGroup.eventData
+
+        for k, inputGroup in pairs (self.InputGroups) do
+            if inputGroup.savedGUID == eventData.destGUID then
+                if sourceUnit ~= nil and spellID ~= nil then
+                    error("More than one input group matches for inputValues[1] of " .. tostring(inputValues[1]) ..
+                        " and inputValues[2] of " .. tostring(inputValues[2]) .. ".")
+                end
+
+                local inputValues = inputGroup.inputValues
+                sourceUnit = inputValues[1]
+                spellID = inputValues[2]
             end
         end
     end
@@ -93,6 +112,8 @@ function this:Evaluate(inputGroup, event, ...)
     local elapsedTime = 0
 
     if event == "SPELL_SUMMON" then
+        local eventInputGroup = ...
+        inputGroup.savedGUID = eventInputGroup.eventData.destGUID
         inputGroup.elapsedTimeStartTimestamp = GetTime()
         inputGroup.isAlive = true
         TimerStart(inputGroup)
