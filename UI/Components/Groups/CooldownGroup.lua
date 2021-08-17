@@ -56,7 +56,9 @@ function this.Setup(
         for i = 1, #priorityDisplayers do
             value = value * 2
 
-            if (priorityDisplayers[i] == "ROTATION" and CATEGORY.value == "DAMAGE")
+            if (priorityDisplayers[i] == "ROTATION"
+                    and (CATEGORY.value == "DAMAGE"
+                        or (CATEGORY.value == "BUFF" and CATEGORY.subvalue == "POWER")))
                 or (priorityDisplayers[i] == "ACTIVE"
                     and ((CATEGORY.value == "DAMAGE" and (CATEGORY.subvalue == "SUMMON" or CATEGORY.subvalue == "TOTEM"))
                         or (CATEGORY.value == "DEFENSIVE" and AURA_APPLIED ~= nil)
