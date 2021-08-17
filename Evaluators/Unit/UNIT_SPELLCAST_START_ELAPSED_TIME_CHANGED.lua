@@ -79,7 +79,10 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-    TimerStart(inputGroup, inputGroup.currentValue)
+
+    if inputGroup.currentValue ~= math.huge then
+        TimerStart(inputGroup, inputGroup.currentValue)
+    end
 end
 
 function this:GetKey(event, ...)
