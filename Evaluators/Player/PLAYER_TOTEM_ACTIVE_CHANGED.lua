@@ -63,8 +63,11 @@ function this:Evaluate(inputGroup, event, ...)
         totemSlot = select(3, ...)
     end
 
-    local isActive, totemName, _, remainingTime = GetTotemInfo(totemSlot)
-    if remainingTime > 0 then
+    local _, totemName, startTime, duration = GetTotemInfo(totemSlot)
+    local remainingTime = duration - (GetTime() - startTime)
+    local isActive = remainingTime > 0
+
+    if isActive == true then
         InputGroupDurationTimerStart(inputGroup, remainingTime, "PLAYER_TOTEM_TIMER_END", totemName, totemSlot)
     end
 
