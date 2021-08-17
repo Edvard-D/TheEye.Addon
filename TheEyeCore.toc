@@ -107,6 +107,7 @@ Helpers\Auras.lua
 Helpers\ChildArrangers.lua
 Helpers\Files.lua
 Helpers\Player.lua
+Helpers\Spells.lua
 Helpers\Table.lua
 Helpers\Timers.lua
 Helpers\Unit.lua
