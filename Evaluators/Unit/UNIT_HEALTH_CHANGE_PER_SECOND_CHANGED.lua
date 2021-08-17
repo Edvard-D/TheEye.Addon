@@ -88,7 +88,12 @@ local function CalculateCurrentValue(inputValues)
         lookbackDuration = lookbackDurationMin
     end
 
-    return (healTotal - damageTotal) / lookbackDuration
+    local healthChangePerSecond = (healTotal - damageTotal) / lookbackDuration
+    if healthChangePerSecond == -0 then
+        healthChangePerSecond = 0
+    end
+
+    return healthChangePerSecond
 end
 
 function this:InputGroupSetup(inputGroup)
