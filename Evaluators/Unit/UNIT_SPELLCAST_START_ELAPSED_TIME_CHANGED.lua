@@ -106,8 +106,8 @@ function this:Evaluate(inputGroup, event, ...)
 
     if event == "UNIT_SPELLCAST_INSTANT" then
         local eventInputGroup = ...
-        elapsedTime = CalculateCurrentValue(
-            inputGroup.inputValues, eventInputGroup.inputValues[2], eventInputGroup.castTimestamp)
+        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, eventInputGroup.inputValues[2],
+                eventInputGroup.castTimestamp)
     else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end
