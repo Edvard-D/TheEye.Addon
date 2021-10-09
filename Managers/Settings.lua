@@ -3,12 +3,12 @@ local this = TheEye.Core.Managers.Settings
 
 this.Account =
 {
-    savedVariableKey = "TheEyeAddonAccountSettings",
+    savedVariableKey = "TheEyeAccountSettings",
     versionVariableKey = "X-AccountSettingsVersion",
 }
 this.Character =
 {
-    savedVariableKey = "TheEyeAddonCharacterSettings",
+    savedVariableKey = "TheEyeCharacterSettings",
     versionVariableKey = "X-CharacterSettingsVersion",
 }
 
@@ -78,12 +78,6 @@ dataVersionConverters.Character =
 function this.Initialize()
     this.gameEvents = { "ADDON_LOADED" }
     TheEye.Core.Managers.Events.Register(this)
-end
-
-function this.ModuleDefaultSettingsAdd(settings)
-    for k,v in pairs(settings) do
-        TheEye.Core.Managers.Settings.Character.Default.UI.Modules[k] = v
-    end
 end
 
 local function SettingsAssignUnassigned(fromSettings, toSettings)
@@ -174,6 +168,14 @@ local function SettingsGroupSetup(settingsGroupKey)
     end
 
     _G[settingsGroup.savedVariableKey] = currentSettings
+end
+
+function this.ModuleDefaultSettingsAdd(settings)
+    for k,v in pairs(settings) do
+        TheEye.Core.Managers.Settings.Character.Default.UI.Modules[k] = v
+    end
+
+    SettingsGroupSetup("Character")
 end
 
 function this:OnEvent(event, addon)

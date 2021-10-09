@@ -59,7 +59,7 @@ TheEye.Core.Managers.UI.GrouperAdd(
     },
 },
 function(uiObject)
-    uiObject.Frame.Dimensions.scale = _G["TheEyeAddonCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
-    uiObject.Frame.Dimensions.PointSettings.offsetX = _G["TheEyeAddonCharacterSettings"].UI.Offset.X or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.X
-    uiObject.Frame.Dimensions.PointSettings.offsetY = _G["TheEyeAddonCharacterSettings"].UI.Offset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.Y
+    uiObject.Frame.Dimensions.scale = _G["TheEyeCharacterSettings"].UI.scale or TheEye.Core.Managers.Settings.Character.Default.UI.scale
+    uiObject.Frame.Dimensions.PointSettings.offsetX = _G["TheEyeCharacterSettings"].UI.Offset.X or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.X
+    uiObject.Frame.Dimensions.PointSettings.offsetY = _G["TheEyeCharacterSettings"].UI.Offset.Y or TheEye.Core.Managers.Settings.Character.Default.UI.Offset.Y
 end)

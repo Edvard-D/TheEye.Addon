@@ -7,9 +7,10 @@ local frameTypes =
 	CastBar = "Frame",
 	Cooldown = "Cooldown",
 	Frame = "Frame",
+    Model = "PlayerModel",
 	TargetFrame = "Frame",
 }
-local minSize = 0.0001
+local minSize = TheEye.Core.Data.frameMinSize
 local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 
 
@@ -49,6 +50,9 @@ function this:SetSizeWithEvent(width, height)
 
 	if width ~= self:GetWidth() or height ~= self:GetHeight() then
 		self:SetSize(width, height)
-		SendCustomEvent("UIOBJECT_FRAME_DIMENSIONS_CHANGED" , self.UIObject)
+
+		if self.UIObject ~= nil then
+			SendCustomEvent("UIOBJECT_FRAME_DIMENSIONS_CHANGED", self.UIObject)
+		end
 	end
 end

@@ -2,6 +2,11 @@ TheEye.Core.UI.Components.FrameModifierBase = {}
 local this = TheEye.Core.UI.Components.FrameModifierBase
 local inherited = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.KeyStateFunctionCaller
 
+if this.dependencies == nil then
+    this.dependencies = {}
+end
+table.insert(this.dependencies, "Frame")
+
 local EnabledStateFunctionCallerSetup = TheEye.Core.UI.Elements.ListenerValueChangeHandlers.EnabledStateFunctionCaller.Setup
 local SendCustomEvent = TheEye.Core.Managers.Events.SendCustomEvent
 

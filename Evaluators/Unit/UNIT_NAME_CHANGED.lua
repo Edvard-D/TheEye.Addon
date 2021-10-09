@@ -24,10 +24,6 @@ function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = UnitName(inputGroup.inputValues[1])
 end
 
-function this:GetKey(event, unit)
-    return unit
-end
-
 function this:Evaluate(inputGroup, event)
     local unitName = UnitName(inputGroup.inputValues[1])
 

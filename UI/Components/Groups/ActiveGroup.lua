@@ -62,10 +62,6 @@ function this.Setup(
             end
         end
 
-        -- @TODO change this to "SUMMON" and create new evaluator that tracks SPELL_SUMMON
-        --  and UNIT_DIED events. Can't check if spellIDs match since Psyfiend has a different
-        --  spellID for SPELL_SUMMON than what UNIT_SPELLCAST_SUCCEEDED events return. Should
-        --  check spell names instead.
         -- SUMMON
         if CATEGORY.value == "DAMAGE" and CATEGORY.subvalue == "SUMMON" then
             value = value * 2
@@ -73,12 +69,13 @@ function this.Setup(
 
             table.insert(iconUIObject.VisibleState.ListenerGroup.Listeners,
                 {
-                    eventEvaluatorKey = "UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED",
-                    inputValues = { --[[unit]] "player", --[[spellID]] OBJECT_ID.value, },
+                    eventEvaluatorKey = "UNIT_SUMMONED_ACTIVE_ELAPSED_TIME_CHANGED",
+                    inputValues = { --[[sourceUnit]] "player", --[[spellID]] OBJECT_ID.value, },
                     comparisonValues =
                     {
-                        value = CATEGORY.duration,
-                        type = "LessThan"
+                        floor = 0.001, -- Represents value of 0 but must be greater than 0
+                        ceiling = CATEGORY.duration,
+                        type = "Between"
                     },
                     value = value,
                 }

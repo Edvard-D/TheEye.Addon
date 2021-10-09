@@ -30,9 +30,22 @@ this.Icon =
         width = 30,
         height = 30,
     },
-    TargetFrameDoT =
+    TargetFrameAura =
     {
-        width = 20,
-        height = 20,
+        INTERACTION =
+        {
+            width = 15,
+            height = 15,
+        },
+        PRIMARY =
+        {
+            width = 20,
+            height = 20,
+        },
     },
+}
+this.TargetFrameInteraction =
+{
+    width = 200,
+    height = 35,
 }

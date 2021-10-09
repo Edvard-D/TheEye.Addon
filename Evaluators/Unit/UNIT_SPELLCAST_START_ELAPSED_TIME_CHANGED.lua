@@ -79,7 +79,10 @@ end
 
 function this:InputGroupSetup(inputGroup)
     inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
-    TimerStart(inputGroup, inputGroup.currentValue)
+
+    if inputGroup.currentValue ~= math.huge then
+        TimerStart(inputGroup, inputGroup.currentValue)
+    end
 end
 
 function this:GetKey(event, ...)
@@ -106,8 +109,8 @@ function this:Evaluate(inputGroup, event, ...)
 
     if event == "UNIT_SPELLCAST_INSTANT" then
         local eventInputGroup = ...
-        elapsedTime = CalculateCurrentValue(
-            inputGroup.inputValues, eventInputGroup.inputValues[2], eventInputGroup.castTimestamp)
+        elapsedTime = CalculateCurrentValue(inputGroup.inputValues, eventInputGroup.inputValues[2],
+                eventInputGroup.castTimestamp)
     else -- PLAYER_TARGET_CHANGED, UNIT_SPELLCAST_START, UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_START_ELAPSED_TIMER_END
         elapsedTime = CalculateCurrentValue(inputGroup.inputValues)
     end

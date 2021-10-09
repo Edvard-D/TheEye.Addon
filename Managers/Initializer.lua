@@ -3,6 +3,7 @@ TheEye.Core.Libraries.AceGUI = LibStub("AceGUI-3.0")
 TheEye.Core.Libraries.AceLocale = LibStub("AceLocale-3.0")
 
 TheEye.Core.Managers.Debug.Initialize()
+TheEye.Core.Managers.Evaluators.Initialize()
 TheEye.Core.Managers.Icons.Initialize()
 TheEye.Core.Managers.GarbageCollector.Initialize()
 TheEye.Core.Managers.Options.Initialize()

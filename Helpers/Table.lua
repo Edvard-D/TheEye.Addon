@@ -4,9 +4,9 @@ local table = table
 
 -- See: http://lua-users.org/wiki/CopyTable
 function table.copy(original)
-    local originalType = type(original)
     local copy
-    if originalType == "table" then
+    
+    if type(original) == "table" then
         copy = {}
         for originalKey, originalValue in next, original, nil do
             copy[table.copy(originalKey)] = table.copy(originalValue)
@@ -14,6 +14,7 @@ function table.copy(original)
     else
         copy = original
     end
+
     return copy
 end
 
@@ -23,6 +24,16 @@ function table.hasvalue(tab, value)
             if tab[i] == value then
                 return true
             end
+        end
+    end
+
+    return false
+end
+
+function table.haskey(tab, key)
+    if tab ~= nil and key ~= nil then
+        if tab[key] ~= nil then
+            return true
         end
     end
 
@@ -83,14 +94,42 @@ end
 
 function table.cleararray(tab)
     if tab ~= nil then
-    for i = #tab, 1, -1 do
-        tab[i] = nil
+        for i = #tab, 1, -1 do
+            tab[i] = nil
+        end
     end
-end
 end
 
 function table.clear(tab)
     for k,v in pairs(tab) do
         tab[k] = nil
     end
+end
+
+function table.count(tab)
+    local count = 0
+
+    for k,v in pairs(tab) do
+        count = count + 1
+    end
+
+    return count
+end
+
+function table.areidentical(tab1, tab2)
+    if tab1 == nil or tab2 == nil then
+        return false
+    end
+
+    if #tab1 ~= #tab2 then
+        return false
+    end
+
+    for i = 1, #tab1 do
+        if tab1[i] ~= tab2[i] then
+            return false
+        end
+    end
+
+    return true
 end

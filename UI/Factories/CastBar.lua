@@ -48,12 +48,12 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     end
 
     instance.Background = instance.Background or {}
-    instance.Background.Base = instance.Background.Base or TextureCreate(instance, "BACKGROUND", "BLEND")
+    instance.Background.Base = instance.Background.Base or TextureCreate(instance, "BACKGROUND", 0, "BLEND")
     instance.Background.Base:SetSize(barWidth - (dimensions.height / 2), dimensions.height)
     instance.Background.Base:SetTexture(texturePaths.base)
     instance.Background.Base:SetVertexColor(unpack(colors.background))
 
-    instance.Background.End = instance.Background.End or TextureCreate(instance, "BACKGROUND", "BLEND")
+    instance.Background.End = instance.Background.End or TextureCreate(instance, "BACKGROUND", 0, "BLEND")
     instance.Background.End:SetSize(dimensions.height / 2, dimensions.height)
     instance.Background.End:SetPoint("LEFT", instance.Background.Base, "RIGHT")
     instance.Background.End:SetTexture(texturePaths["end"])
@@ -62,11 +62,11 @@ function this.Claim(uiObject, parentFrame, dimensions, unit, colors, showIcon, s
     instance.Bar = instance.Bar or {}
     instance.Bar.maxWidth = barWidth - (dimensions.height / 2)
     instance.Bar.height = dimensions.height
-    instance.Bar.Base = instance.Bar.Base or TextureCreate(instance, "ARTWORK", "BLEND")
+    instance.Bar.Base = instance.Bar.Base or TextureCreate(instance, "ARTWORK", 0, "BLEND")
     instance.Bar.Base:SetSize(instance.Bar.maxWidth, dimensions.height)
     instance.Bar.Base:SetTexture(texturePaths.base)
 
-    instance.Bar.End = instance.Bar.End or TextureCreate(instance, "ARTWORK", "BLEND")
+    instance.Bar.End = instance.Bar.End or TextureCreate(instance, "ARTWORK", 0, "BLEND")
     instance.Bar.End:SetSize(dimensions.height / 2, dimensions.height)
     instance.Bar.End:SetPoint("LEFT", instance.Bar.Base, "RIGHT")
     instance.Bar.End:SetTexture(texturePaths["end"])

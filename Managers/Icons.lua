@@ -28,9 +28,9 @@ local function UnnecessaryIconsRemove()
     local necessarySpecs = TheEye.Core.Data.Specializations[classID]
 
     for specID,v in pairs(keyValues) do
-        if table.hasvalue(necessarySpecs, specID) == false then
+        if table.haskey(necessarySpecs, specID) == false then
             keyValues[specID] = nil
-            value[specID] = nil
+            values[specID] = nil
         end
     end
 end
@@ -159,4 +159,31 @@ function this.GetPropertiesOfType(iconData, propertyType, value)
     else
         return filteredProperties, filteredPropertyCount
     end
+end
+
+function this.DoTSpellIDsGet()
+    local dotSpellIDs = {}
+
+    local icons = this.GetFiltered(
+        {
+            {
+                {
+                    type = "CATEGORY",
+                    value = "DAMAGE",
+                    subvalue = "PERIODIC",
+                },
+            },
+        }
+    )
+
+    for i = 1, #icons do
+        local OBJECT_ID = this.GetPropertiesOfType(icons[i], "OBJECT_ID")
+        table.insert(dotSpellIDs, OBJECT_ID.value)
+    end
+
+    table.sort(dotSpellIDs, function(a,b)
+        return a < b
+    end)
+
+    return dotSpellIDs
 end

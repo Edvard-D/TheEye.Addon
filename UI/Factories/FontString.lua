@@ -10,7 +10,7 @@ function this.Create(parentFrame)
 	return instance
 end
 
-function this:StyleSet(layer, fontTemplate, point)
+function this:StyleSet(layer, fontTemplate, point, relativeTo, relativePoint, xOffset, yOffset)
 	self:SetDrawLayer(layer)
 
 	if fontTemplate ~= nil then
@@ -18,6 +18,12 @@ function this:StyleSet(layer, fontTemplate, point)
 	end
 
 	if point ~= nil then
-		self:SetPoint(point)
+		if relativeTo == nil and relativePoint == nil then
+			self:SetPoint(point)
+		elseif xOffset == nil and yOffset == nil then
+			self:SetPoint(point, relativeTo, relativePoint)
+		else
+			self:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset)
+		end
 	end
 end

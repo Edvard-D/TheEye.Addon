@@ -20,9 +20,9 @@
 # ---------------------------
 # |		   SETTINGS			|
 # ---------------------------
-## Interface: 80200
+## Interface: 90002
 ## Title: TheEye.Core
-## Version: 0.7.0
+## Version: 0.8.0
 ## Author: Edvard-D
 ## X-Website: TheEye.Site
 
@@ -69,6 +69,7 @@ Managers\Debug.lua
 # ---------------------------
 # |	        Data         	|
 # ---------------------------
+Data\Classes.lua
 Data\General.lua
 Data\Specializations.lua
 
@@ -106,8 +107,10 @@ Helpers\Auras.lua
 Helpers\ChildArrangers.lua
 Helpers\Files.lua
 Helpers\Player.lua
+Helpers\Spells.lua
 Helpers\Table.lua
 Helpers\Timers.lua
+Helpers\Unit.lua
 
 
 
@@ -121,12 +124,15 @@ Data\UI\TexturePaths.lua
 
 
 # --- Groupers ---
-Data\UI\Groupers\Bottom.lua
 Data\UI\Groupers\Center.lua
+Data\UI\Groupers\CenterBottom.lua
+Data\UI\Groupers\CenterBottomCenter.lua
+Data\UI\Groupers\CenterBottomLeft.lua
+Data\UI\Groupers\CenterBottomRight.lua
+Data\UI\Groupers\CenterTop.lua
+Data\UI\Groupers\Effects.lua
 Data\UI\Groupers\HUD.lua
-Data\UI\Groupers\Left.lua
 Data\UI\Groupers\Right.lua
-Data\UI\Groupers\Top.lua
 Data\UI\Groupers\UIParent.lua
 
 
@@ -171,22 +177,36 @@ Evaluators\UIObject\UIOBJECT_WITH_TAGS_VISIBLE_CHANGED.lua
 Evaluators\Unit\UNIT_AFFECTING_COMBAT_CHANGED.lua
 Evaluators\Unit\UNIT_AURA_ACTIVE_CHANGED.lua
 Evaluators\Unit\UNIT_AURA_DURATION_CHANGED.lua
+Evaluators\Unit\UNIT_AURA_ENDED_ELAPSED_TIME_CHANGED.lua
 Evaluators\Unit\UNIT_AURA_STACK_CHANGED.lua
 Evaluators\Unit\UNIT_CAN_ATTACK_UNIT_CHANGED.lua
 Evaluators\Unit\UNIT_CLASS_CHANGED.lua
+Evaluators\Unit\UNIT_CLASSIFICATION_CHANGED.lua
 Evaluators\Unit\UNIT_COUNT_CLOSE_TO_UNIT_CHANGED.lua
+Evaluators\Unit\UNIT_FACTION_CHANGED.lua
+Evaluators\Unit\UNIT_HEALTH_CHANGE_PER_SECOND_CHANGED.lua
 Evaluators\Unit\UNIT_HEALTH_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_IN_GROUP_CHANGED.lua
 Evaluators\Unit\UNIT_IN_VEHICLE_CHANGED.lua
+Evaluators\Unit\UNIT_IS_BOSS_CHANGED.lua
+Evaluators\Unit\UNIT_IS_HOSTILE_CHANGED.lua
+Evaluators\Unit\UNIT_IS_PLAYER_CHANGED.lua
+Evaluators\Unit\UNIT_IS_MOVING_CHANGED.lua
+Evaluators\Unit\UNIT_LEVEL_CHANGED.lua
 Evaluators\Unit\UNIT_NAME_CHANGED.lua
 Evaluators\Unit\UNIT_POWER_PERCENT_CHANGED.lua
 Evaluators\Unit\UNIT_PVP_FLAGGED_CHANGED.lua
 Evaluators\Unit\UNIT_RAID_MARKER_CHANGED.lua
+Evaluators\Unit\UNIT_REACTION_CHANGED.lua
 Evaluators\Unit\UNIT_SPEC_CHANGED.lua
+Evaluators\Unit\UNIT_SPEED_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_ACTIVE_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_INSTANT.lua
 Evaluators\Unit\UNIT_SPELLCAST_START_ELAPSED_TIME_CHANGED.lua
 Evaluators\Unit\UNIT_SPELLCAST_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_TYPE_ACTIVE_CHANGED.lua
+Evaluators\Unit\UNIT_SPELLCAST_TYPE_SUCCEEDED_ELAPSED_TIME_CHANGED.lua
+Evaluators\Unit\UNIT_SUMMONED_ACTIVE_ELAPSED_TIME_CHANGED.lua
 Evaluators\Unit\UNIT_THREAT_SITUATION_CHANGED.lua
 
 
@@ -244,6 +264,7 @@ UI\Elements\ListenerValueChangeHandlers\VisibleStateFunctionCaller.lua
 # |	     UI\Factories		|
 # ---------------------------
 UI\Factories\FontString.lua
+UI\Factories\Model.lua
 UI\Factories\Texture.lua
 
 UI\Factories\CastBar.lua
@@ -255,7 +276,9 @@ UI\Factories\TargetFrame.lua
 # ---------------------------
 # |	    UI\Components	    |
 # ---------------------------
+UI\Components\ActionBarCombatHider.lua
 UI\Components\Child.lua
+UI\Components\ElapsedTimeTracker.lua
 UI\Components\EnabledState.lua
 UI\Components\Frame.lua
 UI\Components\PriorityRank.lua
@@ -271,12 +294,14 @@ UI\Components\FrameModifiers\CastStartAlert.lua
 UI\Components\FrameModifiers\Charges.lua
 UI\Components\FrameModifiers\ContextIcon.lua
 UI\Components\FrameModifiers\Cooldown.lua
+UI\Components\FrameModifiers\EffectPlayer.lua
 UI\Components\FrameModifiers\EncounterAlert.lua
 UI\Components\FrameModifiers\Icon.lua
 UI\Components\FrameModifiers\LowPowerAlert.lua
 UI\Components\FrameModifiers\PlayerCast.lua
 UI\Components\FrameModifiers\TargetCast.lua
-UI\Components\FrameModifiers\TargetFrame.lua
+UI\Components\FrameModifiers\TargetFrameInteraction.lua
+UI\Components\FrameModifiers\TargetFramePrimary.lua
 
 
 # --- Groups ---
@@ -288,6 +313,7 @@ UI\Components\Groups\CooldownGroup.lua
 UI\Components\Groups\PriorityGroup.lua
 
 UI\Components\Groups\ActiveGroup.lua
+UI\Components\Groups\InteractionsGroup.lua
 UI\Components\Groups\RotationGroup.lua
 UI\Components\Groups\SituationalGroup.lua
 

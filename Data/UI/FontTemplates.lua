@@ -46,16 +46,55 @@ this.TargetCast =
 }
 this.TargetFrame =
 {
-    Health =
+    INTERACTION =
     {
-        font = "Fonts\\FRIZQT__.TTF",
-        size = 20,
-        flags = "OUTLINE",
+        Health =
+        {
+            font = "Fonts\\FRIZQT__.TTF",
+            size = 12.5,
+            flags = "OUTLINE",
+        },
+        Name =
+        {
+            font = "Fonts\\FRIZQT__.TTF",
+            size = 10,
+            flags = "OUTLINE",
+        },
+        TimeUntilDeath =
+        {
+            font = "Fonts\\FRIZQT__.TTF",
+            size = 10,
+            flags = "OUTLINE",
+        },
     },
-    Name =
+    PRIMARY =
     {
-        font = "Fonts\\FRIZQT__.TTF",
-        size = 10,
-        flags = "OUTLINE",
+        Health =
+        {
+            IsBoss =
+            {
+                font = "Fonts\\FRIZQT__.TTF",
+                size = 15,
+                flags = "OUTLINE",
+            },
+            IsNotBoss =
+            {
+                font = "Fonts\\FRIZQT__.TTF",
+                size = 20,
+                flags = "OUTLINE",
+            },
+        },
+        Name =
+        {
+            font = "Fonts\\FRIZQT__.TTF",
+            size = 10,
+            flags = "OUTLINE",
+        },
+        TimeUntilDeath =
+        {
+            font = "Fonts\\FRIZQT__.TTF",
+            size = 10,
+            flags = "OUTLINE",
+        },
     },
 }

@@ -53,6 +53,51 @@ local options =
             max = 1.25,
             step = 0.05,
         },
+        hideActionBarDuringCombat =
+        {
+            type = "toggle",
+            name = locale["Hide action bar during combat"],
+            desc = locale["Requires reload"],
+            order = 3,
+            get = TheEye.Core.Managers.Options.HideActionBarDuringCombatGet,
+            set = TheEye.Core.Managers.Options.HideActionBarDuringCombatSet,
+        },
+        extraAbilityPosition =
+        {
+            type = "group",
+            name = locale["Extra Ability Position"],
+            order = 4,
+            inline = true,
+            args =
+            {
+                x =
+                {
+                    type = "range",
+                    name = "X",
+                    desc = locale["Negative: Left | Positive: Right"],
+                    get = TheEye.Core.Managers.Options.ExtraAbilityXPositionGet,
+                    set = TheEye.Core.Managers.Options.ExtraAbilityXPositionSet,
+                    min = -2000,
+                    max = 2000,
+                    softMin = -500,
+                    softMax = 500,
+                    step = 1,
+                },
+                y =
+                {
+                    type = "range",
+                    name = "Y",
+                    desc = locale["Negative: Down | Positive: Up"],
+                    get = TheEye.Core.Managers.Options.ExtraAbilityYPositionGet,
+                    set = TheEye.Core.Managers.Options.ExtraAbilityYPositionSet,
+                    min = 0,
+                    max = 2000,
+                    softMin = 0,
+                    softMax = 1000,
+                    step = 1,
+                },
+            },
+        },
     },
 }
 

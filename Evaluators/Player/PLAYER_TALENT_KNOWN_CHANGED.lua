@@ -18,11 +18,13 @@ local select = select
 
 this.reevaluateEvents =
 {
+    PLAYER_PVP_TALENT_UPDATE = true,
     PLAYER_TALENT_UPDATE = true,
     UNIT_INVENTORY_CHANGED = true,
 }
 this.gameEvents = 
 {
+    "PLAYER_PVP_TALENT_UPDATE",
     "PLAYER_TALENT_UPDATE",
     "UNIT_INVENTORY_CHANGED",
 }

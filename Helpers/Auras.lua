@@ -9,8 +9,47 @@ local table = table
 local UnitAura = UnitAura
 
 
+function this.UnitAurasGet(unit, filter)
+    local auras = {}
+    local i = 0
+
+    while true do
+        i = i + 1
+        local auraValues = { UnitAura(unit, i, filter) }
+
+        if auraValues[1] == nil then
+            return auras
+        end
+
+        table.insert(auras, auraValues)
+    end
+
+    return auras
+end
+
+function this.UnitAuraSpellIDsGet(unit, filter)
+    local spellIDs = {}
+    local i = 0
+
+    while true do
+        i = i + 1
+        local spellID = select(10, UnitAura(unit, i, filter))
+        
+        if spellID == nil then
+            return spellIDs
+        end
+
+        if table.hasvalue(spellIDs, spellID) == false then
+            table.insert(spellIDs, spellID)
+        end
+    end
+
+    return spellIDs
+end
+
 function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected)
     local filter = "HELPFUL"
+    local i = 0
 
     local icons = IconsGetFiltered(
     {
@@ -29,7 +68,8 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
         end
     end
 
-    for i = 1, 40 do -- 40 is the maximum number of auras that can be on a unit
+    while true do
+        i = i + 1
         local auraValues = { UnitAura(destUnit, i, filter) }
         local spellID = auraValues[10]
 
@@ -45,4 +85,18 @@ function this.UnitAuraGetBySpellID(sourceUnitExpected, destUnit, spellIDExpected
             return nil
         end
     end
+end
+
+function this.UnitAuraDurationGet(sourceUnit, destUnit, spellIDExpected)
+    local auraData = this.UnitAuraGetBySpellID(sourceUnit, destUnit, spellIDExpected)
+    
+    local remainingTime = 0
+    if auraData ~= nil then
+        remainingTime = auraData[6] - GetTime()
+        if remainingTime < 0 then
+            remainingTime = 0
+        end
+    end
+    
+    return remainingTime
 end

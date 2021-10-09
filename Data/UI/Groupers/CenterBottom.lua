@@ -1,8 +1,8 @@
-local parentKey = "BOTTOM"
+local parentKey = "CENTER"
 
 TheEye.Core.Managers.UI.GrouperAdd(
 {
-    tags = { "LEFT", },
+    tags = { "CENTER_BOTTOM", },
     Child =
     {
         parentKey = parentKey,
@@ -25,31 +25,23 @@ TheEye.Core.Managers.UI.GrouperAdd(
             },
         },
     },
-    Frame =
-    {
-        Dimensions =
-        {
-            PointSettings =
-            {
-                point = "TOPRIGHT",
-                relativePoint = "TOP",
-                offsetX = -32.5,
-                offsetY = -5,
-            },
-        },
-    },
+    Frame = {},
     Group =
     {
-        childArranger = TheEye.Core.Helpers.ChildArrangers.Vertical,
-        childPadding = 5,
-        sortActionName = "SortAscending",
-        sortValueComponentName = "PriorityRank",
+        childArranger = TheEye.Core.Helpers.ChildArrangers.Delegate,
+    },
+    PriorityRank =
+    {
+        ValueHandler =
+        {
+            validKeys = { [0] = 2, }
+        }
     },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [0] = true },
+            validKeys = { [0] = true, },
         },
     },
 })

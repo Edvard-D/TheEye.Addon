@@ -1,4 +1,4 @@
-local parentKey = "BOTTOM"
+local parentKey = "HUD"
 
 TheEye.Core.Managers.UI.GrouperAdd(
 {
@@ -25,17 +25,7 @@ TheEye.Core.Managers.UI.GrouperAdd(
             },
         },
     },
-    Frame =
-    {
-        Dimensions =
-        {
-            PointSettings =
-            {
-                point = "TOP",
-                relativePoint = "TOP",
-            },
-        },
-    },
+    Frame = {},
     Group =
     {
         childArranger = TheEye.Core.Helpers.ChildArrangers.Vertical,
@@ -43,11 +33,18 @@ TheEye.Core.Managers.UI.GrouperAdd(
         sortActionName = "SortAscending",
         sortValueComponentName = "PriorityRank",
     },
+    PriorityRank =
+    {
+        ValueHandler =
+        {
+            validKeys = { [0] = 2, }
+        }
+    },
     VisibleState =
     {
         ValueHandler =
         {
-            validKeys = { [0] = true },
+            validKeys = { [0] = true, },
         },
     },
 })

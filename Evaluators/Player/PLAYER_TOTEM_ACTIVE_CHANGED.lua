@@ -55,15 +55,20 @@ function this:GetKey(event, ...)
 end
 
 function this:Evaluate(inputGroup, event, ...)
-    local isActive
     local totemSlot
-
+    
     if event == "PLAYER_TOTEM_UPDATE" then
         totemSlot = ...
-        isActive, totemName, _, remainingTime = GetTotemInfo(totemSlot)
-        InputGroupDurationTimerStart(inputGroup, remainingTime, "PLAYER_TOTEM_TIMER_END", totemName)
     else -- PLAYER_TOTEM_TIMER_END
-        isActive = false
+        totemSlot = select(3, ...)
+    end
+
+    local _, totemName, startTime, duration = GetTotemInfo(totemSlot)
+    local remainingTime = duration - (GetTime() - startTime)
+    local isActive = remainingTime > 0
+
+    if isActive == true then
+        InputGroupDurationTimerStart(inputGroup, remainingTime, "PLAYER_TOTEM_TIMER_END", totemName, totemSlot)
     end
 
     if inputGroup.currentValue ~= isActive then
