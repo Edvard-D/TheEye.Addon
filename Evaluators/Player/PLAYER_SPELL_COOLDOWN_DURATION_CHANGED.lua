@@ -54,16 +54,16 @@ end
 
 local function CalculateCurrentValue(inputValues)
     local startTime, duration = GetSpellCooldown(inputValues[1])
-    return RemainingTimeCalculate(startTime, duration)
+    return RemainingTimeCalculate(startTime, duration), startTime
 end
 
 function this:InputGroupSetup(inputGroup)
     local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
-    inputGroup.currentValue = CalculateCurrentValue(inputGroup.inputValues)
+    inputGroup.currentValue, startTime = CalculateCurrentValue(inputGroup.inputValues)
 
     inputGroup.isGCD = true
 
-    if inputGroup.currentValue == RemainingTimeCalculate(gcdStartTime, gcdDuration) then
+    if startTime == gcdStartTime then
         inputGroup.currentValue = 0
     else
         TimerStart(inputGroup, inputGroup.currentValue)
@@ -93,7 +93,7 @@ function this:Evaluate(inputGroup, event)
     else -- SPELL_COOLDOWN_TIMER_END, SPELL_UPDATE_USABLE
         local gcdStartTime, gcdDuration = GetSpellCooldown(61304)
         local gcdRemainingTime = RemainingTimeCalculate(gcdStartTime, gcdDuration)
-        local remainingTime = CalculateCurrentValue(inputGroup.inputValues)
+        local remainingTime, startTime = CalculateCurrentValue(inputGroup.inputValues)
 
         if remainingTime > 0 and event ~= "SPELL_UPDATE_USABLE" then
             if remainingTime ~= gcdRemainingTime then
@@ -104,7 +104,7 @@ function this:Evaluate(inputGroup, event)
         end
 
         if remainingTime == 0 or inputGroup.isGCD == false then
-            if remainingTime == 0 or remainingTime == gcdRemainingTime then
+            if remainingTime == 0 or startTime == gcdStartTime then
                 inputGroup.isGCD = true
             end
 
