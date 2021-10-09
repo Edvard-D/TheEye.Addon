@@ -22,7 +22,7 @@
 # ---------------------------
 ## Interface: 90002
 ## Title: TheEye.Core
-## Version: 0.7.0
+## Version: 0.8.0
 ## Author: Edvard-D
 ## X-Website: TheEye.Site
 
