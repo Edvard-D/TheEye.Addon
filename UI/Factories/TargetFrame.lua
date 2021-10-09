@@ -205,6 +205,10 @@ function this:HealthSet(percent)
 end
 
 function this:ChallengeSet(targetClassification, targetLevel, playerLevel, targetReaction, isTargetPlayer, targetFaction)
+    if targetLevel == 0 then
+        return
+    end
+
     local colors = TheEye.Core.Data.Colors.TargetFrame.challenge
     local texturePaths = TheEye.Core.Data.TexturePaths.TargetFrame.Challenge[self.challengeAlignment]
     local borderVersion = 0
