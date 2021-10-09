@@ -214,7 +214,6 @@ function this:ChallengeSet(targetClassification, targetLevel, playerLevel, targe
     local borderVersion = 0
     local levelDifference = targetLevel - playerLevel
 
-    --print("targetLevel: " .. targetLevel)
     if targetLevel == -1 then
         self.ChallengeSymbol:TextureSet(texturePaths["symbol6"])
         borderVersion = 3
