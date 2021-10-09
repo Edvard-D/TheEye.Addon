@@ -139,3 +139,14 @@ function this.MaxIconsSet(info, value)
     TheEye.Core.Managers.UI.Modules.IconGroups[moduleName].UIObject.Group.maxDisplayedChildren = value
     _G["TheEyeCharacterSettings"].UI.Modules[moduleName].maxIcons = value
 end
+
+function this.MaxTargetFramesGet(info)
+    local moduleName = moduleNames[info[#info - 1]]
+    return _G["TheEyeCharacterSettings"].UI.Modules[moduleName].maxTargetFrames
+end
+
+function this.MaxTargetFramesSet(info, value)
+    local moduleName = moduleNames[info[#info - 1]]
+    TheEye.Core.Managers.UI.Modules.InteractionsGroups[moduleName].UIObject.Group.maxDisplayedChildren = value
+    _G["TheEyeCharacterSettings"].UI.Modules[moduleName].maxTargetFrames = value
+end
