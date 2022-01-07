@@ -101,6 +101,10 @@ function this:Evaluate(inputGroup, event)
             else
                 TimerStart(inputGroup, remainingTime)
             end
+
+			if gcdRemainingTime == 0 or remainingTime > gcdRemainingTime then
+				inputGroup.isGCD = false
+			end
         end
 
         if remainingTime == 0 or inputGroup.isGCD == false then
